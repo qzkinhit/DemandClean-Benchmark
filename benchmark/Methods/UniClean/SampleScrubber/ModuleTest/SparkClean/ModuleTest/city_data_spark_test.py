@@ -5,7 +5,7 @@ from pyspark.sql.functions import monotonically_increasing_id
 from SampleScrubber.ModuleTest.SparkClean.function_dependency import OneToOne
 from SampleScrubber.ModuleTest.SparkClean.selector import solve, DEFAULT_SOLVER_CONFIG
 
-# os.environ['PYSPARK_PYTHON'] = "/Users/qianzekai/anaconda3/envs/sparkmini/bin/python"  # 放Python的位置
+# os.environ['PYSPARK_PYTHON'] = "python"  # 放Python的位置
 # 初始化 Spark 会话
 spark = SparkSession.builder \
     .appName("City Abbreviation Cleaning") \

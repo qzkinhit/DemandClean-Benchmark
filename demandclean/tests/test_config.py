@@ -4,7 +4,7 @@
 """
 
 import sys
-sys.path.insert(0, '/Users/qianzekai/PycharmProjects/TolerDM')
+import ossys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..')))
 
 import numpy as np
 from demandclean.config import DemandCleanConfig, TaskType, ModelType, AgentType

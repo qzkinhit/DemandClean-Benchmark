@@ -7,7 +7,9 @@
 
 import sys
 import os
-sys.path.insert(0, '/Users/qianzekai/PycharmProjects/TolerDM')
+_TEST_DIR = os.path.dirname(os.path.abspath(__file__))
+_PROJECT_ROOT = os.path.abspath(os.path.join(_TEST_DIR, '..', '..'))
+sys.path.insert(0, _PROJECT_ROOT)
 
 # import pytest  # Optional
 import numpy as np
@@ -17,7 +19,7 @@ from demandclean import DemandClean
 
 
 # 数据集路径
-DATASETS_PATH = '/Users/qianzekai/PycharmProjects/TolerDM/experiment/pre_exp/beers_ipa_experiment/datasets'
+DATASETS_PATH = os.path.join(_PROJECT_ROOT, 'experiment', 'ablation_beers', 'datasets')
 
 
 def load_beers_data():

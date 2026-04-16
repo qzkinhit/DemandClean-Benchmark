@@ -1,8 +1,8 @@
 import pandas as pd
 from pathlib import Path
 
-in_path = Path("D:/桌面/New Life/钱泽凯学长项目/ZzhProject/data/soilmoisture/dirty.csv")
-out_path = Path("D:/桌面/New Life/钱泽凯学长项目/ZzhProject/data/soilmoisture/dirty_with_index.csv")
+in_path = Path("./data/soilmoisture/dirty.csv")
+out_path = Path("./data/soilmoisture/dirty_with_index.csv")
 
 df = pd.read_csv(in_path)
 

@@ -36,7 +36,7 @@ echo "指定数据集: ${SELECTED_DATASET:-全部}"
 echo "开始时间: $(date)"
 echo "============================================================"
 
-source /home/qianzekai/miniconda3/etc/profile.d/conda.sh
+source $HOME/miniconda3/etc/profile.d/conda.sh
 conda activate multibaseline
 
 mkdir -p logs/donothing

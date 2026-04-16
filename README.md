@@ -85,7 +85,7 @@ DemandClean-Benchmark/
 ### Installation
 
 ```bash
-git clone https://github.com/qian-zekai/DemandClean-Benchmark.git
+git clone https://github.com/<your-username>/DemandClean-Benchmark.git
 cd DemandClean-Benchmark
 pip install -r requirements.txt
 ```
@@ -319,9 +319,9 @@ All experiment outputs are provided in `results_and_logs/`:
 If you use this benchmark in your research, please cite:
 
 ```bibtex
-@article{qian2026demandclean,
+@article{anonymous2026demandclean,
   title={DemandClean: Demand-Driven Data Cleaning for Machine Learning via Deep Reinforcement Learning},
-  author={Qian, Zekai},
+  author={Anonymous},
   year={2026}
 }
 ```

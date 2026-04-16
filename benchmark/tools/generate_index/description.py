@@ -1,7 +1,7 @@
 import pandas as pd
 from pathlib import Path
 
-path = Path("D:/桌面/New Life/钱泽凯学长项目/ZzhProject/data/soilmoisture/clean_with_index.csv")
+path = Path("./data/soilmoisture/clean_with_index.csv")
 
 df = pd.read_csv(path, encoding="utf-8-sig")
 

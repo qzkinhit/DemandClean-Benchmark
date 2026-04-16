@@ -9,7 +9,7 @@ import sys
 import os
 
 # 添加项目路径
-sys.path.insert(0, '/Users/qianzekai/PycharmProjects/TolerDM')
+sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..')))
 
 def test_imports():
     """测试所有模块是否能正确导入"""

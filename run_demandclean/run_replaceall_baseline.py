@@ -52,7 +52,7 @@ from demandclean.config import DemandCleanConfig
 from demandclean.core.environments.value_estimation import ValueEstimator
 
 SEED = 42
-C4ML_ROOT = '/Users/qianzekai/PycharmProjects/Clean4MLBaseline'
+C4ML_ROOT = os.path.join(_PROJECT_ROOT, 'benchmark')
 C4ML_DATA = os.path.join(C4ML_ROOT, 'Data')
 
 # ============================================================================

@@ -39,7 +39,7 @@ if [ -z "$JAVA_HOME" ]; then
     echo "警告: JAVA_HOME未设置，UniClean需要Java环境"
 fi
 
-source /home/qianzekai/miniconda3/etc/profile.d/conda.sh
+source $HOME/miniconda3/etc/profile.d/conda.sh
 conda activate multibaseline
 
 mkdir -p logs/uniclean

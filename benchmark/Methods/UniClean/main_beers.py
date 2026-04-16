@@ -22,8 +22,8 @@ cleaners = [
 ]
 
 # 默认参数
-file_load = '/home/qianzekai/Clean4MLBaseline/Data/beers/dirty_with_index.csv'
-clean_path = '/home/qianzekai/Clean4MLBaseline/Data/beers/clean_with_index.csv'
+file_load = '../..//Data/beers/dirty_with_index.csv'
+clean_path = '../..//Data/beers/clean_with_index.csv'
 save_path = './result/'
 table_name = 'beers_3'
 attributes = ["brewery_name", "city", "state"]

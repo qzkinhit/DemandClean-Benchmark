@@ -12,10 +12,12 @@ import pandas as pd
 from sklearn.preprocessing import LabelEncoder
 
 # 添加项目路径
-sys.path.insert(0, '/Users/qianzekai/PycharmProjects/TolerDM')
+_TEST_DIR = os.path.dirname(os.path.abspath(__file__))
+_PROJECT_ROOT = os.path.abspath(os.path.join(_TEST_DIR, '..', '..'))
+sys.path.insert(0, _PROJECT_ROOT)
 
 # 数据集路径
-DATASETS_PATH = '/Users/qianzekai/PycharmProjects/TolerDM/experiment/pre_exp/beers_ipa_experiment/datasets'
+DATASETS_PATH = os.path.join(_PROJECT_ROOT, 'experiment', 'ablation_beers', 'datasets')
 
 
 def load_beers_data():

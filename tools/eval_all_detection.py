@@ -13,7 +13,7 @@ import os, csv, glob
 import pandas as pd
 
 PROJECT_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-C4ML_ROOT = '/Users/qianzekai/PycharmProjects/Clean4MLBaseline'
+C4ML_ROOT = os.path.join(PROJECT_ROOT, 'benchmark')
 SUMMARY_DIR = os.path.join(PROJECT_ROOT, 'summary')
 
 DATASETS = ['adult', 'beers', 'bike', 'breast_cancer', 'har',
