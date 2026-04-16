@@ -1,0 +1,79 @@
+# =============================================================================
+# Dataset: breast_cancer (Wisconsin Breast Cancer)
+# =============================================================================
+# 699 行 × 11 列; 分类 (class: {2,4})
+# class=2 (良性), class=4 (恶性)
+# 所有特征列合法值域: 整数 [1, 10]
+# =============================================================================
+
+[REGEX]
+# 双位重复数字 (如 "33", "55")
+ALL_FEATURES: ^(\d)\1$
+# 含字母 (如 "1a0", "a10")
+ALL_FEATURES: [a-zA-Z]
+# 三位及以上数字
+ALL_FEATURES: ^\d{3,}$
+
+[DOMAIN]
+Clump Thickness: INT [1, 10]
+Uniformity of Cell Size: INT [1, 10]
+Uniformity of Cell Shape: INT [1, 10]
+Marginal Adhesion: INT [1, 10]
+Single Epithelial Cell Size: INT [1, 10]
+Bare Nuclei: INT [1, 10]
+Bland Chromatin: INT [1, 10]
+Normal Nucleoli: INT [1, 10]
+Mitoses: INT [1, 10]
+class: ENUM {2, 4}
+
+[CFD]
+# ===================================================================
+# A 方向: class=2 (良性) 中出现恶性特征 → 检测 4→2 翻转
+# ===================================================================
+
+# 良性 (class=2) 孤立高值异常: EXCESS >= 4（折中：从原 5 降到 4，不至于过多 FP）
+class=2, n_anomaly<=2 => Clump Thickness EXCESS >= 4 FROM_BASELINE 5
+class=2, n_anomaly<=2 => Uniformity of Cell Size EXCESS >= 4 FROM_BASELINE 3
+class=2, n_anomaly<=2 => Uniformity of Cell Shape EXCESS >= 4 FROM_BASELINE 3
+class=2, n_anomaly<=2 => Marginal Adhesion EXCESS >= 4 FROM_BASELINE 3
+class=2, n_anomaly<=2 => Single Epithelial Cell Size EXCESS >= 4 FROM_BASELINE 3
+class=2, n_anomaly<=2 => Bare Nuclei EXCESS >= 4 FROM_BASELINE 3
+class=2, n_anomaly<=2 => Bland Chromatin EXCESS >= 4 FROM_BASELINE 3
+class=2, n_anomaly<=2 => Normal Nucleoli EXCESS >= 4 FROM_BASELINE 3
+class=2, n_anomaly<=2 => Mitoses EXCESS >= 4 FROM_BASELINE 1
+
+# 良性 多列异常: 多列同时高值说明更像恶性，阈值适度放宽到 >= 3
+class=2, n_anomaly>=3 => Clump Thickness EXCESS >= 3 FROM_BASELINE 5
+class=2, n_anomaly>=3 => Uniformity of Cell Size EXCESS >= 3 FROM_BASELINE 3
+class=2, n_anomaly>=3 => Uniformity of Cell Shape EXCESS >= 3 FROM_BASELINE 3
+class=2, n_anomaly>=3 => Marginal Adhesion EXCESS >= 3 FROM_BASELINE 3
+class=2, n_anomaly>=3 => Single Epithelial Cell Size EXCESS >= 3 FROM_BASELINE 3
+class=2, n_anomaly>=3 => Bare Nuclei EXCESS >= 3 FROM_BASELINE 3
+class=2, n_anomaly>=3 => Bland Chromatin EXCESS >= 3 FROM_BASELINE 3
+class=2, n_anomaly>=3 => Normal Nucleoli EXCESS >= 3 FROM_BASELINE 3
+class=2, n_anomaly>=3 => Mitoses EXCESS >= 3 FROM_BASELINE 1
+
+# ===================================================================
+# B 方向: class=4 (恶性) 中出现良性特征 → 检测 2→4 翻转
+# ===================================================================
+
+# 恶性 (class=4) 低值特征: 核心区分列极低 → 可能标签错误
+class=4, n_anomaly<=2 => Clump Thickness DEFICIT >= 2 FROM_BASELINE 4
+class=4, n_anomaly<=2 => Uniformity of Cell Size DEFICIT >= 2 FROM_BASELINE 3
+class=4, n_anomaly<=2 => Uniformity of Cell Shape DEFICIT >= 2 FROM_BASELINE 3
+class=4, n_anomaly<=2 => Bland Chromatin DEFICIT >= 2 FROM_BASELINE 3
+
+[DC]
+# 特征不一致性检测（Cell Size 与 Cell Shape 高度相关，差值>4 即异常）
+t1&GT(ABS(t1.Uniformity of Cell Size - t1.Uniformity of Cell Shape), 4)
+
+# class=2 (良性) 中的恶性极端特征 — 高精度 DC 规则
+t1&EQ(t1.class, 2)&GTE(t1.Bare Nuclei, 8)&MARK(t1.class)
+t1&EQ(t1.class, 2)&GTE(t1.Mitoses, 5)&MARK(t1.class)
+t1&EQ(t1.class, 2)&GTE(t1.Uniformity of Cell Size, 7)&MARK(t1.class)
+t1&EQ(t1.class, 2)&GTE(t1.Clump Thickness, 8)&GTE(t1.Bare Nuclei, 5)&MARK(t1.class)
+
+# class=4 (恶性) 中的良性极端特征 — 高精度 DC 规则
+t1&EQ(t1.class, 4)&LTE(t1.Uniformity of Cell Size, 2)&LTE(t1.Bare Nuclei, 2)&MARK(t1.class)
+t1&EQ(t1.class, 4)&LTE(t1.Uniformity of Cell Size, 2)&LTE(t1.Uniformity of Cell Shape, 2)&MARK(t1.class)
+t1&EQ(t1.class, 4)&LTE(t1.Clump Thickness, 3)&LTE(t1.Bare Nuclei, 3)&LTE(t1.Bland Chromatin, 3)&MARK(t1.class)

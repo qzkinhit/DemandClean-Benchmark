@@ -1,0 +1,86 @@
+# =============================================================================
+# Dataset: adult (UCI Adult Census Income)
+# =============================================================================
+# 45222 行 × 15 列; 分类 (income: {0, 1})
+# income=1 表示低收入 (<=50K), income=0 表示高收入 (>50K)
+# 错误: 标签双向翻转 (0→1 和 1→0)
+# CFD 规则: 双向检测 — income=0 中低收入特征 + income=1 中高收入特征
+# =============================================================================
+
+[DOMAIN]
+age: INT [17, 90]
+educational_num: INT [1, 16]
+capital_gain: INT [0, 99999]
+capital_loss: INT [0, 4356]
+hours_per_week: INT [1, 99]
+income: ENUM {0, 1}
+
+
+
+[FD]
+education => educational_num
+
+[CFD]
+# ===================================================================
+# A 方向: income=0 中的低收入特征 → 检测 1→0 翻转 (低收入被标为高收入)
+# ===================================================================
+
+# ===== 高精度规则 (P>=85%): 极强低收入信号 =====
+# C1: 极年轻 (P=97.9%, R=8.3%)
+income=0, age<=20 => income DEFICIT >= 1 FROM_BASELINE 1
+# C2: 年轻 (P=90.7%)
+income=0, age<=22 => income DEFICIT >= 1 FROM_BASELINE 1
+# C3: 未婚+低教育+年轻 (P=90.0%)
+income=0, marital_status=Never-married, educational_num<=9, age<=30 => income DEFICIT >= 1 FROM_BASELINE 1
+# C4: Own-child+年轻 (P=87.8%)
+income=0, relationship=Own-child, age<=30 => income DEFICIT >= 1 FROM_BASELINE 1
+# C5: 未婚+极低教育 (P=86.5%)
+income=0, marital_status=Never-married, educational_num<=8 => income DEFICIT >= 1 FROM_BASELINE 1
+# C6: Own-child+低教育 (P=84.1%)
+income=0, relationship=Own-child, educational_num<=10 => income DEFICIT >= 1 FROM_BASELINE 1
+# C7: 年轻+低工时 (P=91.2%)
+income=0, age<=27, hours_per_week<=38 => income DEFICIT >= 1 FROM_BASELINE 1
+# C8: 未婚+中等教育+无资本收益 (P=81.5%)
+income=0, marital_status=Never-married, educational_num<=10, capital_gain<=0 => income DEFICIT >= 1 FROM_BASELINE 1
+# C9: 未婚+中高教育+年轻+无资本 (P=87.5%)
+income=0, marital_status=Never-married, educational_num<=12, age<=35, capital_gain<=0 => income DEFICIT >= 1 FROM_BASELINE 1
+
+# ===== 中等精度规则 (P>=60%): 覆盖非Never-married子群 =====
+# C10: 分居+中等教育+无资本 (P=60.9%)
+income=0, marital_status=Separated, educational_num<=12, capital_gain<=0 => income DEFICIT >= 1 FROM_BASELINE 1
+# C11: 离婚+中等教育+正常工时+无资本 (P=63.4%)
+income=0, marital_status=Divorced, educational_num<=12, hours_per_week<=40, capital_gain<=0 => income DEFICIT >= 1 FROM_BASELINE 1
+# C12: 离婚+行政文员+无资本 (P=71.8%)
+income=0, marital_status=Divorced, occupation=Adm-clerical, capital_gain<=0 => income DEFICIT >= 1 FROM_BASELINE 1
+# C13: 未婚角色+低教育+中年以下 (P=84.1%)
+income=0, relationship=Unmarried, educational_num<=9, age<=40 => income DEFICIT >= 1 FROM_BASELINE 1
+# C14: 非家庭成员+中等教育+无资本+正常工时 (P=63.9%)
+income=0, relationship=Not-in-family, educational_num<=10, capital_gain<=0, hours_per_week<=40 => income DEFICIT >= 1 FROM_BASELINE 1
+
+# ===================================================================
+# B 方向: income=1 中的高收入特征 → 检测 0→1 翻转 (高收入被标为低收入)
+# ===================================================================
+
+# ===== 极强高收入信号 =====
+# C16: 高资本收益 — capital_gain>=5000 几乎只出现在高收入群体
+income=1, capital_gain>=5000 => income EXCESS >= 1 FROM_BASELINE 0
+# C17: 博士/专业学位+中年以上
+income=1, educational_num>=14, age>=35 => income EXCESS >= 1 FROM_BASELINE 0
+# C18: 已婚+高教育+高资本
+income=1, marital_status=Married-civ-spouse, educational_num>=13, capital_gain>=3000 => income EXCESS >= 1 FROM_BASELINE 0
+
+# ===== 强高收入组合信号 =====
+# C19: 已婚+高教育+长工时 — 已婚+学士以上+长工时是典型高收入模式
+income=1, marital_status=Married-civ-spouse, educational_num>=13, hours_per_week>=45 => income EXCESS >= 1 FROM_BASELINE 0
+# C20: 管理层+高教育+有资本收益
+income=1, occupation=Exec-managerial, educational_num>=12, capital_gain>=3000 => income EXCESS >= 1 FROM_BASELINE 0
+# C21: 专业职业+高教育+中年 — Prof-specialty 高收入占比 45%
+income=1, occupation=Prof-specialty, educational_num>=13, age>=40 => income EXCESS >= 1 FROM_BASELINE 0
+# C22: 丈夫/妻子角色+长工时+高教育
+income=1, relationship=Husband, educational_num>=13, hours_per_week>=50 => income EXCESS >= 1 FROM_BASELINE 0
+# C23: 自雇者+高教育
+income=1, workclass=Self-emp-inc, educational_num>=12 => income EXCESS >= 1 FROM_BASELINE 0
+# C24: 已婚+高教育+中年+有资本损失 — 有资本操作说明有投资
+income=1, marital_status=Married-civ-spouse, educational_num>=12, age>=40, capital_loss>=100 => income EXCESS >= 1 FROM_BASELINE 0
+# C25: 联邦政府+高教育+中年
+income=1, workclass=Federal-gov, educational_num>=13, age>=35 => income EXCESS >= 1 FROM_BASELINE 0
