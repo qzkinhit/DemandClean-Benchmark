@@ -1,0 +1,291 @@
+{
+  "version_name": "v7_auto_plain_single",
+  "dataset": "adult",
+  "task_type": "classification",
+  "model_type": "random_forest",
+  "detector_mode": "auto",
+  "agent_type": "single_stage",
+  "inference_mode": "single_phase",
+  "n_episodes": 300,
+  "data_shape": [
+    27133,
+    14
+  ],
+  "action_counts": {
+    "no_action": 4329,
+    "repair_value": 1634,
+    "delete": 0,
+    "replace_nearby": 0
+  },
+  "keep_mask": "[ True  True  True ...  True  True  True]",
+  "ground_truth_used": 1634,
+  "cleaned_shape": [
+    27133,
+    14
+  ],
+  "detector_accuracy": {
+    "overall": {
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0,
+      "tp": 0,
+      "fp": 0,
+      "fn": 0,
+      "gt_count": 0,
+      "det_count": 0
+    },
+    "missing": {
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0,
+      "tp": 0,
+      "fp": 0,
+      "fn": 0,
+      "gt_count": 0,
+      "det_count": 0
+    },
+    "syntactic": {
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0,
+      "tp": 0,
+      "fp": 0,
+      "fn": 0,
+      "gt_count": 0,
+      "det_count": 0
+    },
+    "semantic": {
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0,
+      "tp": 0,
+      "fp": 0,
+      "fn": 0,
+      "gt_count": 0,
+      "det_count": 0
+    },
+    "value_error_combined": {
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0,
+      "tp": 0,
+      "fp": 0,
+      "fn": 0,
+      "gt_count": 0,
+      "det_count": 0
+    },
+    "ground_truth_total": 0,
+    "detected_total": 0
+  },
+  "baseline_results": {
+    "NoFix": {
+      "n_samples": 27133,
+      "n_test": 9045,
+      "rf_accuracy": 0.8519,
+      "rf_f1": 0.8502,
+      "lr_accuracy": 0.8203,
+      "lr_f1": 0.8088,
+      "auth": 1.0,
+      "div": 1.0,
+      "cost": 0
+    },
+    "DeleteAll": {
+      "n_samples": 27133,
+      "n_test": 9045,
+      "rf_accuracy": 0.8519,
+      "rf_f1": 0.8502,
+      "lr_accuracy": 0.8203,
+      "lr_f1": 0.8088,
+      "auth": 1.0,
+      "div": 1.0,
+      "cost": 0
+    },
+    "DeleteFix": {
+      "n_samples": 21162,
+      "n_test": 9045,
+      "rf_accuracy": 0.8384,
+      "rf_f1": 0.831,
+      "lr_accuracy": 0.8208,
+      "lr_f1": 0.802,
+      "auth": 0.0001,
+      "div": 0.7799,
+      "cost": 5971
+    },
+    "ReplaceAll": {
+      "n_samples": 27133,
+      "n_test": 9045,
+      "rf_accuracy": 0.8523,
+      "rf_f1": 0.8437,
+      "lr_accuracy": 0.8208,
+      "lr_f1": 0.8033,
+      "auth": 1.0,
+      "div": 1.0,
+      "cost": 0
+    },
+    "DemandClean": {
+      "n_samples": 27133,
+      "n_test": 9045,
+      "rf_accuracy": 0.8528,
+      "rf_f1": 0.8509,
+      "lr_accuracy": 0.8199,
+      "lr_f1": 0.8076,
+      "auth": 1.0,
+      "div": 1.0,
+      "cost": 1634
+    },
+    "FullFix": {
+      "n_samples": 27133,
+      "n_test": 9045,
+      "rf_accuracy": 0.8565,
+      "rf_f1": 0.8532,
+      "lr_accuracy": 0.8202,
+      "lr_f1": 0.806,
+      "auth": 1.0,
+      "div": 1.0,
+      "cost": 27133
+    }
+  },
+  "tolerance_results": {
+    "rf": {
+      "P_clean": 0.8525889073152755,
+      "P_dirty": 0.8525889073152755,
+      "P_dc": 0.8525889073152755,
+      "tolerance_prior": 1.0,
+      "tolerance_post": 1.0
+    },
+    "lr": {
+      "P_clean": 0.8186843559977889,
+      "P_dirty": 0.8186843559977889,
+      "P_dc": 0.8186843559977889,
+      "tolerance_prior": 1.0,
+      "tolerance_post": 1.0
+    }
+  },
+  "shapley_results": {
+    "meta": {
+      "n_samples": 5000,
+      "n_features": 14,
+      "n_errors": 1100,
+      "task_type": "classification",
+      "model_type": "random_forest",
+      "mc_samples": 50
+    },
+    "action_shapley": {
+      "no_action": 0.0,
+      "repair_value": -0.81,
+      "delete": 0.0,
+      "replace_nearby": 0.0
+    },
+    "feature_shapley": {
+      "age": 0.0,
+      "workclass": 0.0,
+      "fnlwgt": 0.0,
+      "education": 0.0,
+      "educational_num": 0.0,
+      "marital_status": 0.0,
+      "occupation": 0.0,
+      "relationship": 0.0,
+      "race": 0.0,
+      "gender": 0.0,
+      "capital_gain": 0.0,
+      "capital_loss": 0.0,
+      "hours_per_week": 0.0,
+      "native_country": 0.0
+    },
+    "feature_shapley_skipped": true,
+    "error_type_shapley": {
+      "label_noise": -0.81
+    },
+    "report_text": "# Shapley Value Analysis Report\n\n- 数据规模: 5000 行 × 14 列\n- 错误总数: 1100\n- 任务类型: classification (random_forest)\n- MC 采样次数: 50\n\n## 维度 1: 动作重要性 (Action Importance)\n\n| 排名 | 动作 | Shapley 值 | 占比 | 方向 |\n|------|------|-----------|------|------|\n| 1 | no_action | +0.000000 | 0.0% | — 无影响 |\n| 2 | delete | +0.000000 | 0.0% | — 无影响 |\n| 3 | replace_nearby | +0.000000 | 0.0% | — 无影响 |\n| 4 | repair_value | -0.810000 | 100.0% | ↓ 负贡献 |\n\n**结论**: 最有效的清洗动作是 **no_action**\n（repair_value 对性能有负面影响，建议减少使用）\n\n## 维度 2: 特征重要性 (Feature Importance)\n\n| 排名 | 特征 | Shapley 值 | 占比 | 清洗价值 |\n|------|------|-----------|------|---------|\n| 1 | age | +0.000000 | 0.0% | — 可忽略 |\n| 2 | workclass | +0.000000 | 0.0% | — 可忽略 |\n| 3 | fnlwgt | +0.000000 | 0.0% | — 可忽略 |\n| 4 | education | +0.000000 | 0.0% | — 可忽略 |\n| 5 | educational_num | +0.000000 | 0.0% | — 可忽略 |\n| 6 | marital_status | +0.000000 | 0.0% | — 可忽略 |\n| 7 | occupation | +0.000000 | 0.0% | — 可忽略 |\n| 8 | relationship | +0.000000 | 0.0% | — 可忽略 |\n| 9 | race | +0.000000 | 0.0% | — 可忽略 |\n| 10 | gender | +0.000000 | 0.0% | — 可忽略 |\n| 11 | capital_gain | +0.000000 | 0.0% | — 可忽略 |\n| 12 | capital_loss | +0.000000 | 0.0% | — 可忽略 |\n| 13 | hours_per_week | +0.000000 | 0.0% | — 可忽略 |\n| 14 | native_country | +0.000000 | 0.0% | — 可忽略 |\n\n**结论**: \n- 清洗价值极低的特征: age, workclass, fnlwgt（清洗它们几乎不影响性能）\n\n## 维度 3: 错误类型重要性 (Error Type Importance)\n\n| 排名 | 错误类型 | Shapley 值 | 占比 | 优先级 |\n|------|---------|-----------|------|--------|\n| 1 | label_noise | -0.810000 | 100.0% | 🔴 高 |\n\n**结论**: 对下游性能影响最大的错误类型是 **label_noise**，检测器应优先识别此类错误。\n\n## 综合清洗建议\n\n"
+  },
+  "getscoreml_results": {
+    "task_name": "v7_auto_plain_single",
+    "task_type": "classification",
+    "total_records": 27133,
+    "total_cells": 434128,
+    "cleaned_rows": 27133,
+    "accuracy": 0.0017671747294013696,
+    "precision": 0.0017671747294013696,
+    "recall": 0.287378640776699,
+    "f1_score": 0.0035127485465128202,
+    "edr": -162.04563106796115,
+    "hybrid_distance": 0.243223616666034,
+    "r_edr": -25.342718446601943,
+    "ml_rf_accuracy": 0.8528468767274737,
+    "ml_rf_f1": 0.8509241868673769,
+    "ml_rf_precision": 0.849728150929865,
+    "ml_rf_recall": 0.8528468767274737,
+    "ml_lr_accuracy": 0.8199004975124378,
+    "ml_lr_f1": 0.8075536418240117,
+    "ml_lr_precision": 0.8092154279217959,
+    "ml_lr_recall": 0.8199004975124378,
+    "ml_svm_accuracy": 0.8483139856274184,
+    "ml_svm_f1": 0.8413322654975789,
+    "ml_svm_precision": 0.8418711229398962,
+    "ml_svm_recall": 0.8483139856274184,
+    "ml_knn_accuracy": 0.8215588723051409,
+    "ml_knn_f1": 0.8200459239055745,
+    "ml_knn_precision": 0.8188256328342541,
+    "ml_knn_recall": 0.8215588723051409,
+    "ml_dt_accuracy": 0.7859590934217799,
+    "ml_dt_f1": 0.7900360939110912,
+    "ml_dt_precision": 0.7958360534469726,
+    "ml_dt_recall": 0.7859590934217799,
+    "ml_gb_accuracy": 0.8689883913764511,
+    "ml_gb_f1": 0.8643314435238673,
+    "ml_gb_precision": 0.8646320749867943,
+    "ml_gb_recall": 0.8689883913764511,
+    "tolerance_P_do_nothing": 0.8518518518518519,
+    "tolerance_P_demand_clean": 0.8528468767274737,
+    "tolerance_P_repair_all": 0.8564953012714207,
+    "tolerance_tolerance_prior": 1.0011680726800778,
+    "tolerance_tolerance_post": 0.21428571428570745,
+    "snoopy_snoopy_available": true,
+    "snoopy_upper_bound_dirty": 0.8143957962029418,
+    "snoopy_upper_bound_cleaned": 0.8262636592467348,
+    "snoopy_upper_bound_clean": 0.8499982307137097,
+    "snoopy_upper_bound_improvement": 0.33334414364848075,
+    "ideal_total_changes": 356010,
+    "ideal_correct_repairs": 0,
+    "ideal_wrong_repairs": 356010,
+    "ideal_deleted_rows": 0,
+    "ideal_ideal_min_ground_truth_cost": 0,
+    "ideal_repair_accuracy": 0.0,
+    "method_type": 1,
+    "ground_truth_cost": 1634,
+    "cost_ratio": 0.060221870047543584,
+    "total_samples": 27133,
+    "labeled_samples": 1634,
+    "validation_samples": 0
+  },
+  "raha_cost": {
+    "n_col_chunks": 1,
+    "n_row_chunks": 3,
+    "labeling_budget": 20,
+    "raha_total_cost": 60,
+    "total_labeled_rows": 60
+  },
+  "ground_truth_cost_summary": {
+    "raha_detection_cost": 60,
+    "agent_repair_cost": 1634,
+    "total_cost": 1694,
+    "total_data_cells": 379862,
+    "cost_ratio": 0.00446,
+    "apply_raha_truth": true,
+    "count_raha_cost": true
+  },
+  "elapsed_time": 22406.98,
+  "vis_time": 306.24,
+  "step_times": {
+    "step1_init": 0.0,
+    "step2_train": 22175.68,
+    "step3_infer": 96.24,
+    "step4_detect_eval": 0.42,
+    "step5_baseline": 30.8,
+    "step6_tolerance": 4.14,
+    "step7_shapley": 305.45,
+    "step8_vis": 0.61,
+    "step9_ml_eval": 99.87,
+    "step10_cost": 0.0
+  }
+}

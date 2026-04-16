@@ -1,0 +1,3 @@
+[23:31:15] INFO: 模型已保存: /Users/qianzekai/PycharmProjects/TolerDM/results/demandclean/mercedes/v3_oracle_plain_single/model/v3_oracle_plain_single_agent.pt
+[1;34m[02:08:00][0m[1;33m WARNING Snoopy may use all CPU cores! Set env. variable 'SNOOPY_LIMIT_CPU' to 'y' to limit CPU usage. [0m[1;34m(__init__ -> _init_tf_pytorch on MainThread)[0m
+[1;34m[02:08:00][0m[2;37m DEBUG   TensorFlow sees: 1 Physical GPUs, 1 Logical GPUs [0m[1;34m(__init__ -> _init_tf_pytorch on MainThread)[0m

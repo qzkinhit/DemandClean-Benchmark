@@ -1,0 +1,23 @@
+Attribute: index, MSE: nan, Jaccard: 0.0
+检查你指定的属性 age 是否为数值型！
+Attribute: age, MSE: nan, Jaccard: 0.0
+Attribute: workclass, MSE: nan, Jaccard: 0.9994500613393121
+检查你指定的属性 fnlwgt 是否为数值型！
+Attribute: fnlwgt, MSE: nan, Jaccard: 0.03414941683303563
+Attribute: education, MSE: nan, Jaccard: 0.9852568167406468
+检查你指定的属性 educational_num 是否为数值型！
+Attribute: educational_num, MSE: nan, Jaccard: 0.11764705882352944
+Attribute: marital_status, MSE: nan, Jaccard: 0.9952559623927201
+Attribute: occupation, MSE: nan, Jaccard: 0.995849780834524
+Attribute: relationship, MSE: nan, Jaccard: 0.9764969222160045
+Attribute: race, MSE: nan, Jaccard: 0.8281287069988137
+Attribute: gender, MSE: nan, Jaccard: 0.6636083926453143
+检查你指定的属性 capital_gain 是否为数值型！
+Attribute: capital_gain, MSE: nan, Jaccard: 0.017241379310344862
+检查你指定的属性 capital_loss 是否为数值型！
+Attribute: capital_loss, MSE: nan, Jaccard: 0.08247422680412375
+检查你指定的属性 hours_per_week 是否为数值型！
+Attribute: hours_per_week, MSE: nan, Jaccard: 0.02083333333333337
+Attribute: native_country, MSE: nan, Jaccard: 0.9999882373805189
+Attribute: income, MSE: nan, Jaccard: 0.11821123515082799
+加权混合距离: 0.24483098533759529

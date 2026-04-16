@@ -1,0 +1,19 @@
+Attribute,Index,Clean Value,Dirty Value
+frequency,1044,10000,0
+frequency,740,1000,0
+frequency,321,1000,110000
+frequency,897,2000,0
+frequency,493,3150,11550000
+frequency,22,2500,22..
+frequency,1096,5000,55..
+angle,937,19.7,1177
+angle,402,7.3,empty
+chord_length,815,0.0508,00..00
+chord_length,566,0.1524,..5522
+chord_length,88,0.3048,3388
+velocity,903,39.6,33..
+velocity,1254,71.3,1133
+velocity,855,71.3,7711..
+thickness,677,0.0233328,..00333388
+thickness,936,0.0341183,..0033441111
+thickness,1259,0.00131983,33998833

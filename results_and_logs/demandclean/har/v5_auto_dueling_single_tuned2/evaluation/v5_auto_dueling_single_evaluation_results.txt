@@ -1,0 +1,34 @@
+Clean4MLBaseline 统一测评报告
+任务名称: v5_auto_dueling_single
+======================================================================
+
+[传统清洗指标]
+  precision: 0.12921374010885972
+  accuracy: 0.12921374010885972
+  recall: 0.24907423734791043
+  f1_score: 0.17015509707894683
+  edr: -0.7180832304708165
+  hybrid_distance: 0.2664995244204005
+  r_edr: -0.5720780957475261
+
+[下游任务性能]
+
+[模型容忍度]
+  tolerance_P_do_nothing: 0.509544946049568
+  tolerance_P_demand_clean: 0.859032803836753
+  tolerance_P_repair_all: 0.909810248338127
+  tolerance_tolerance_prior: 1.6858822965407003
+  tolerance_tolerance_post: 0.8731405290165082
+
+[Snoopy上界评估]
+  snoopy_snoopy_available: True
+  snoopy_upper_bound_dirty: 0.509544946049568
+  snoopy_upper_bound_cleaned: 0.859032803836753
+  snoopy_upper_bound_clean: 0.909810248338127
+  snoopy_upper_bound_improvement: 0.8731405290165082
+
+[真值使用成本]
+  方法类型: Type 1
+  实际真值使用: 5880
+  理想最小成本: 5650
+  修复准确率: 0.1292

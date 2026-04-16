@@ -1,0 +1,8 @@
+Attribute: index, MSE: nan, Jaccard: 0.0
+Attribute: frequency, MSE: 12493.30473056904, Jaccard: 0.7877817591259876
+Attribute: angle, MSE: 0.056783489049706856, Jaccard: 0.7965740542864543
+Attribute: chord_length, MSE: 1925573703.086544, Jaccard: 1.0
+Attribute: velocity, MSE: 206.2558118119895, Jaccard: 0.9902643455834945
+Attribute: thickness, MSE: 0.020423732445508252, Jaccard: 1.0
+Attribute: sound_pressure_level, MSE: nan, Jaccard: 0.0
+加权混合距离: 137541886.2356367

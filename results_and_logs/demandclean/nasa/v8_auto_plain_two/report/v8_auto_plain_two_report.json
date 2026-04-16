@@ -1,0 +1,266 @@
+{
+  "version_name": "v8_auto_plain_two",
+  "dataset": "nasa",
+  "task_type": "regression",
+  "model_type": "ridge",
+  "detector_mode": "auto",
+  "agent_type": "single_stage",
+  "inference_mode": "two_phase",
+  "n_episodes": 300,
+  "data_shape": [
+    901,
+    5
+  ],
+  "keep_mask": "[ True  True False  True False  True False False  True False False  True\n False  True  True False  True  True  True  True False  True  True  True\n False  True False False False False  True  True  True False False False\n False False False False  True  True  True  True False False False False\n  True False  True False  True False  True  True  True  True  True  True\n  True False False  True  True  True False  True  True False  True  True\n False False  True False False  True False False  True False  True  True\n  True  True  True False  True  True  True False  True False False  True\n False False False  True False False False  True  True  True  True  True\n False  True False  True False  True False False False False False  True\n False False  True  True  True  True  True  True  True  True  True  True\n False  True  True  True  True False False False False False  True  True\n  True False False  True  True  True False  True  True False  True False\n  True  True  True  True  True  True False False  True False False False\n False False  True  True  True  True False  True False False False False\n False False False  True False False  True  True  True False False  True\n  True False  True  True  True False False  True  True False  True  True\n  True False False  True  True  True False False  True False  True  True\n  True  True False  True  True  True  True  True  True False  True  True\n  True False  True  True  True False  True False False False  True  True\n False False False False False False  True  True False  True False False\n False False  True False False  True  True  True  True  True False  True\n  True False  True  True False False  True  True False False False False\n False False False False False False False False  True False  True False\n False False  True False  True  True False  True  True  True  True  True\n False False  True False False False  True  True  True  True False False\n False  True False  True  True False  True False  True  True  True  True\n  True  True  True False False False  True False False  True False  True\n False  True  True  True False False  True False False  True False  True\n  True False  True  True False False False  True  True  True False False\n False False  True  True False  True  True  True  True False False  True\n  True False False  True  True  True False  True  True  True False  True\n False  True  True False False  True False  True False False  True False\n False  True  True  True False  True  True  True  True False  True  True\n  True  True  True False  True  True False  True False  True  True False\n  True False  True  True False False False  True False  True  True False\n  True  True  True  True False  True False  True False False  True  True\n False  True  True  True  True  True  True False  True False  True  True\n  True False  True False  True False  True False  True False False False\n  True  True False  True  True False False  True  True  True  True  True\n  True False  True False  True  True False False  True  True  True False\n  True  True  True False False False False False False False  True False\n False False False  True  True  True  True  True  True  True  True  True\n  True  True  True  True  True False  True  True  True  True False  True\n  True  True False False  True  True False False False  True  True False\n False False False  True  True False False False False False False  True\n  True False  True  True False  True False False False False False  True\n False  True  True  True False  True False  True  True  True False  True\n  True  True False False  True False False  True  True  True False False\n False False  True  True False  True False  True False  True  True  True\n  True False False False False False  True False False False  True  True\n  True  True  True  True False  True False False False False False False\n False  True False False  True False False  True False  True False  True\n False False False False  True  True  True  True False False False False\n False  True  True  True False  True  True  True  True  True False False\n  True  True  True False False  True  True False  True  True  True  True\n False  True False  True  True False False False  True False  True False\n  True  True  True  True False False  True False False  True  True  True\n  True  True False False  True False  True False  True  True False False\n  True  True False  True  True  True False False  True  True  True  True\n False  True  True  True False False  True  True  True  True False  True\n  True  True False  True  True  True  True False False False False  True\n  True False  True  True  True False  True  True False False  True False\n False  True  True  True  True  True False  True  True  True  True  True\n False  True  True  True  True  True False False  True  True False  True\n False False False  True  True False  True False False  True  True False\n  True  True False  True  True  True False False  True  True  True False\n False  True  True False  True False False  True  True  True  True  True\n  True  True  True False  True False  True  True False  True  True False\n  True  True  True False False  True  True  True False  True  True False\n  True  True  True  True  True  True False  True  True  True False  True\n False False False False False False False False False  True False False\n  True  True False  True False  True False False False False  True  True\n False  True False False  True False  True False False  True  True  True\n False  True False  True False  True  True False  True False False False\n  True]",
+  "ground_truth_used": 0,
+  "cleaned_shape": [
+    499,
+    5
+  ],
+  "detector_accuracy": {
+    "overall": {
+      "precision": 0.9439655172413793,
+      "recall": 0.9605263157894737,
+      "f1": 0.9521739130434783,
+      "tp": 438,
+      "fp": 26,
+      "fn": 18,
+      "gt_count": 456,
+      "det_count": 464
+    },
+    "missing": {
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0,
+      "tp": 236,
+      "fp": 0,
+      "fn": 0,
+      "gt_count": 236,
+      "det_count": 236
+    },
+    "syntactic": {
+      "precision": 0.9838709677419355,
+      "recall": 0.8318181818181818,
+      "f1": 0.9014778325123153,
+      "tp": 183,
+      "fp": 3,
+      "fn": 37,
+      "gt_count": 220,
+      "det_count": 186
+    },
+    "semantic": {
+      "precision": 0.4523809523809524,
+      "recall": 0.08636363636363636,
+      "f1": 0.14503816793893132,
+      "tp": 19,
+      "fp": 23,
+      "fn": 201,
+      "gt_count": 220,
+      "det_count": 42
+    },
+    "value_error_combined": {
+      "precision": 0.8859649122807017,
+      "recall": 0.9181818181818182,
+      "f1": 0.9017857142857142,
+      "tp": 202,
+      "fp": 26,
+      "fn": 18,
+      "gt_count": 220,
+      "det_count": 228
+    },
+    "ground_truth_total": 456,
+    "detected_total": 464
+  },
+  "baseline_results": {
+    "NoFix": {
+      "n_samples": 901,
+      "n_test": 301,
+      "rf_mse": 17.8841,
+      "rf_r2": 0.6238,
+      "ridge_mse": 47.5844,
+      "ridge_r2": -0.0011,
+      "auth": 0.6459,
+      "div": 0.7391,
+      "cost": 0
+    },
+    "DeleteAll": {
+      "n_samples": 665,
+      "n_test": 301,
+      "rf_mse": 17.9882,
+      "rf_r2": 0.6216,
+      "ridge_mse": 47.7018,
+      "ridge_r2": -0.0035,
+      "auth": 0.4767,
+      "div": 0.7381,
+      "cost": 0
+    },
+    "DeleteFix": {
+      "n_samples": 456,
+      "n_test": 301,
+      "rf_mse": 21.6299,
+      "rf_r2": 0.545,
+      "ridge_mse": 47.4847,
+      "ridge_r2": 0.001,
+      "auth": 0.511,
+      "div": 0.0,
+      "cost": 445
+    },
+    "ReplaceAll": {
+      "n_samples": 901,
+      "n_test": 301,
+      "rf_mse": 20.3449,
+      "rf_r2": 0.572,
+      "ridge_mse": 47.3188,
+      "ridge_r2": 0.0045,
+      "auth": 0.7048,
+      "div": 0.0004,
+      "cost": 0
+    },
+    "DemandClean": {
+      "n_samples": 499,
+      "n_test": 301,
+      "rf_mse": 19.93,
+      "rf_r2": 0.5807,
+      "ridge_mse": 47.3795,
+      "ridge_r2": 0.0033,
+      "auth": 0.5511,
+      "div": 0.1476,
+      "cost": 0
+    },
+    "FullFix": {
+      "n_samples": 901,
+      "n_test": 301,
+      "rf_mse": 15.2092,
+      "rf_r2": 0.68,
+      "ridge_mse": 47.3639,
+      "ridge_r2": 0.0036,
+      "auth": 1.0,
+      "div": 0.0,
+      "cost": 901
+    }
+  },
+  "tolerance_results": {
+    "rf": {
+      "P_clean": 0.6791534862086115,
+      "P_dirty": 0.5719498528481834,
+      "P_dc": -0.4721868898292516,
+      "tolerance_prior": -0.8255739335850261,
+      "tolerance_post": -9.739751442630265
+    },
+    "ridge": {
+      "P_clean": 0.002334946505679336,
+      "P_dirty": -0.0012476735822752882,
+      "P_dc": -0.006029429512750983,
+      "tolerance_prior": 4.832537611123871,
+      "tolerance_post": -1.3347091829671722
+    }
+  },
+  "shapley_results": {
+    "meta": {
+      "n_samples": 901,
+      "n_features": 5,
+      "n_errors": 464,
+      "task_type": "regression",
+      "model_type": "ridge",
+      "mc_samples": 200
+    },
+    "action_shapley": {
+      "no_action": -2.497045364911312,
+      "repair_value": -1.0056338960698905,
+      "delete": -1.524153946072796,
+      "replace_nearby": -1.2410209393415446
+    },
+    "feature_shapley": {
+      "frequency": 0.0,
+      "angle": 0.0,
+      "chord_length": 0.0,
+      "velocity": 0.0,
+      "thickness": 0.0
+    },
+    "feature_shapley_skipped": true,
+    "error_type_shapley": {
+      "missing": -4.145089469416848,
+      "semantic": -0.9169911400304139,
+      "syntactic": -0.05868327996963766
+    },
+    "report_text": "# Shapley Value Analysis Report\n\n- 数据规模: 901 行 × 5 列\n- 错误总数: 464\n- 任务类型: regression (ridge)\n- MC 采样次数: 200\n\n## 维度 1: 动作重要性 (Action Importance)\n\n| 排名 | 动作 | Shapley 值 | 占比 | 方向 |\n|------|------|-----------|------|------|\n| 1 | repair_value | -1.005634 | 16.0% | ↓ 负贡献 |\n| 2 | replace_nearby | -1.241021 | 19.8% | ↓ 负贡献 |\n| 3 | delete | -1.524154 | 24.3% | ↓ 负贡献 |\n| 4 | no_action | -2.497045 | 39.8% | ↓ 负贡献 |\n\n**结论**: 最有效的清洗动作是 **repair_value**\n（repair_value, replace_nearby, delete, no_action 对性能有负面影响，建议减少使用）\n\n## 维度 2: 特征重要性 (Feature Importance)\n\n| 排名 | 特征 | Shapley 值 | 占比 | 清洗价值 |\n|------|------|-----------|------|---------|\n| 1 | frequency | +0.000000 | 0.0% | — 可忽略 |\n| 2 | angle | +0.000000 | 0.0% | — 可忽略 |\n| 3 | chord_length | +0.000000 | 0.0% | — 可忽略 |\n| 4 | velocity | +0.000000 | 0.0% | — 可忽略 |\n| 5 | thickness | +0.000000 | 0.0% | — 可忽略 |\n\n**结论**: \n- 清洗价值极低的特征: frequency, angle, chord_length（清洗它们几乎不影响性能）\n\n## 维度 3: 错误类型重要性 (Error Type Importance)\n\n| 排名 | 错误类型 | Shapley 值 | 占比 | 优先级 |\n|------|---------|-----------|------|--------|\n| 1 | syntactic | -0.058683 | 1.1% | 🟢 低 |\n| 2 | semantic | -0.916991 | 17.9% | 🟢 低 |\n| 3 | missing | -4.145089 | 80.9% | 🔴 高 |\n\n**结论**: 对下游性能影响最大的错误类型是 **syntactic**，检测器应优先识别此类错误。\n\n## 综合清洗建议\n\n"
+  },
+  "getscoreml_results": {
+    "task_name": "v8_auto_plain_two",
+    "task_type": "regression",
+    "total_records": 901,
+    "total_cells": 6307,
+    "cleaned_rows": 499,
+    "accuracy": 0.0,
+    "precision": 0.0,
+    "recall": 0.0,
+    "f1_score": 0.0,
+    "edr": -25.9,
+    "hybrid_distance": 0.2857982203375222,
+    "r_edr": -7.316666666666666,
+    "ml_rf_mse": 19.93001941951472,
+    "ml_rf_r2": 0.5807226928460292,
+    "ml_lr_mse": 38.05784097232728,
+    "ml_lr_r2": 0.19935908023515747,
+    "ml_ridge_mse": 47.379540839442356,
+    "ml_ridge_r2": 0.0032540420958266925,
+    "ml_lasso_mse": 47.595955539573616,
+    "ml_lasso_r2": -0.0012987769852588205,
+    "ml_knn_mse": 39.15460712770762,
+    "ml_knn_r2": 0.17628588845716964,
+    "ml_gb_mse": 20.91065871677702,
+    "ml_gb_r2": 0.560092517069938,
+    "tolerance_P_do_nothing": 0.6237630590001768,
+    "tolerance_P_demand_clean": 0.5807226928460292,
+    "tolerance_P_repair_all": 0.680036678206931,
+    "tolerance_tolerance_prior": 0.930998853598133,
+    "tolerance_tolerance_post": -0.7648409105519506,
+    "snoopy_snoopy_available": true,
+    "snoopy_upper_bound_dirty": 28.88795953614174,
+    "snoopy_upper_bound_cleaned": 25.48140167595384,
+    "snoopy_upper_bound_clean": 17.223797781209107,
+    "snoopy_upper_bound_improvement": 0.2920533795535978,
+    "ideal_total_changes": 2280,
+    "ideal_correct_repairs": 666,
+    "ideal_wrong_repairs": 1614,
+    "ideal_deleted_rows": 402,
+    "ideal_ideal_min_ground_truth_cost": 666,
+    "ideal_repair_accuracy": 0.29210526315789476,
+    "method_type": 2,
+    "ground_truth_cost": 0,
+    "cost_ratio": 0.0,
+    "total_samples": 901,
+    "labeled_samples": 0,
+    "validation_samples": 0
+  },
+  "raha_cost": {
+    "n_col_chunks": 1,
+    "n_row_chunks": 1,
+    "labeling_budget": 20,
+    "raha_total_cost": 20,
+    "total_labeled_rows": 20
+  },
+  "ground_truth_cost_summary": {
+    "raha_detection_cost": 20,
+    "agent_repair_cost": 0,
+    "total_cost": 20,
+    "total_data_cells": 4505,
+    "cost_ratio": 0.00444,
+    "apply_raha_truth": true,
+    "count_raha_cost": true
+  },
+  "elapsed_time": 29.91,
+  "vis_time": 16.89,
+  "step_times": {
+    "step1_init": 0.0,
+    "step2_train": 0.0,
+    "step3_infer": 22.19,
+    "step4_detect_eval": 0.01,
+    "step5_baseline": 3.29,
+    "step6_tolerance": 0.99,
+    "step7_shapley": 16.66,
+    "step8_vis": 0.0,
+    "step9_ml_eval": 2.86,
+    "step10_cost": 0.0
+  }
+}

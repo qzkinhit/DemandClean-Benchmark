@@ -1,0 +1,267 @@
+{
+  "version_name": "v8_auto_plain_two",
+  "dataset": "adult",
+  "task_type": "classification",
+  "model_type": "random_forest",
+  "detector_mode": "auto",
+  "agent_type": "single_stage",
+  "inference_mode": "two_phase",
+  "n_episodes": 5,
+  "data_shape": [
+    45222,
+    14
+  ],
+  "keep_mask": "[ True  True  True ...  True  True  True]",
+  "ground_truth_used": 0,
+  "cleaned_shape": [
+    45222,
+    14
+  ],
+  "detector_accuracy": {
+    "overall": {
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0,
+      "tp": 0,
+      "fp": 0,
+      "fn": 0,
+      "gt_count": 0,
+      "det_count": 0
+    },
+    "missing": {
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0,
+      "tp": 0,
+      "fp": 0,
+      "fn": 0,
+      "gt_count": 0,
+      "det_count": 0
+    },
+    "syntactic": {
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0,
+      "tp": 0,
+      "fp": 0,
+      "fn": 0,
+      "gt_count": 0,
+      "det_count": 0
+    },
+    "semantic": {
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0,
+      "tp": 0,
+      "fp": 0,
+      "fn": 0,
+      "gt_count": 0,
+      "det_count": 0
+    },
+    "value_error_combined": {
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0,
+      "tp": 0,
+      "fp": 0,
+      "fn": 0,
+      "gt_count": 0,
+      "det_count": 0
+    },
+    "ground_truth_total": 0,
+    "detected_total": 0
+  },
+  "baseline_results": {
+    "NoFix": {
+      "n_samples": 45222,
+      "rf_accuracy": 0.8165,
+      "rf_f1": 0.8095,
+      "lr_accuracy": 0.7886,
+      "lr_f1": 0.7685,
+      "auth": 1.0,
+      "div": 1.0,
+      "cost": 0
+    },
+    "DeleteAll": {
+      "n_samples": 45222,
+      "rf_accuracy": 0.8165,
+      "rf_f1": 0.8095,
+      "lr_accuracy": 0.7886,
+      "lr_f1": 0.7685,
+      "auth": 1.0,
+      "div": 1.0,
+      "cost": 0
+    },
+    "DeleteFix": {
+      "n_samples": 38796,
+      "rf_accuracy": 0.8563,
+      "rf_f1": 0.8502,
+      "lr_accuracy": 0.8363,
+      "lr_f1": 0.8199,
+      "auth": 0.0001,
+      "div": 0.8579,
+      "cost": 6426
+    },
+    "ReplaceAll": {
+      "n_samples": 45222,
+      "rf_accuracy": 0.8165,
+      "rf_f1": 0.8095,
+      "lr_accuracy": 0.7886,
+      "lr_f1": 0.7685,
+      "auth": 1.0,
+      "div": 1.0,
+      "cost": 0
+    },
+    "DemandClean": {
+      "n_samples": 45222,
+      "rf_accuracy": 0.8165,
+      "rf_f1": 0.8095,
+      "lr_accuracy": 0.7886,
+      "lr_f1": 0.7685,
+      "auth": 1.0,
+      "div": 1.0,
+      "cost": 0
+    },
+    "FullFix": {
+      "n_samples": 45222,
+      "rf_accuracy": 0.8551,
+      "rf_f1": 0.851,
+      "lr_accuracy": 0.8211,
+      "lr_f1": 0.8057,
+      "auth": 1.0,
+      "div": 1.0,
+      "cost": 45222
+    }
+  },
+  "tolerance_results": {
+    "rf": {
+      "P_clean": 0.8550580431177446,
+      "P_dirty": 0.8550580431177446,
+      "P_dc": 0.8550580431177446,
+      "tolerance_prior": 1.0,
+      "tolerance_post": 1.0
+    },
+    "lr": {
+      "P_clean": 0.8211166390270868,
+      "P_dirty": 0.8211166390270868,
+      "P_dc": 0.8211166390270868,
+      "tolerance_prior": 1.0,
+      "tolerance_post": 1.0
+    }
+  },
+  "shapley_results": {
+    "meta": {
+      "n_samples": 5000,
+      "n_features": 14,
+      "n_errors": 710,
+      "task_type": "classification",
+      "model_type": "random_forest",
+      "mc_samples": 50
+    },
+    "action_shapley": {
+      "no_action": 0.0,
+      "repair_value": 0.0,
+      "delete": 0.0,
+      "replace_nearby": 0.0
+    },
+    "feature_shapley": {
+      "age": 0.0,
+      "workclass": 0.0,
+      "fnlwgt": 0.0,
+      "education": 0.0,
+      "educational_num": 0.0,
+      "marital_status": 0.0,
+      "occupation": 0.0,
+      "relationship": 0.0,
+      "race": 0.0,
+      "gender": 0.0,
+      "capital_gain": 0.0,
+      "capital_loss": 0.0,
+      "hours_per_week": 0.0,
+      "native_country": 0.0
+    },
+    "feature_shapley_skipped": true,
+    "error_type_shapley": {
+      "label_noise": 0.0
+    },
+    "report_text": "# Shapley Value Analysis Report\n\n- 数据规模: 5000 行 × 14 列\n- 错误总数: 710\n- 任务类型: classification (random_forest)\n- MC 采样次数: 50\n\n## 维度 1: 动作重要性 (Action Importance)\n\n| 排名 | 动作 | Shapley 值 | 占比 | 方向 |\n|------|------|-----------|------|------|\n| 1 | no_action | +0.000000 | 0.0% | — 无影响 |\n| 2 | repair_value | +0.000000 | 0.0% | — 无影响 |\n| 3 | delete | +0.000000 | 0.0% | — 无影响 |\n| 4 | replace_nearby | +0.000000 | 0.0% | — 无影响 |\n\n**结论**: 最有效的清洗动作是 **no_action**\n\n## 维度 2: 特征重要性 (Feature Importance)\n\n| 排名 | 特征 | Shapley 值 | 占比 | 清洗价值 |\n|------|------|-----------|------|---------|\n| 1 | age | +0.000000 | 0.0% | — 可忽略 |\n| 2 | workclass | +0.000000 | 0.0% | — 可忽略 |\n| 3 | fnlwgt | +0.000000 | 0.0% | — 可忽略 |\n| 4 | education | +0.000000 | 0.0% | — 可忽略 |\n| 5 | educational_num | +0.000000 | 0.0% | — 可忽略 |\n| 6 | marital_status | +0.000000 | 0.0% | — 可忽略 |\n| 7 | occupation | +0.000000 | 0.0% | — 可忽略 |\n| 8 | relationship | +0.000000 | 0.0% | — 可忽略 |\n| 9 | race | +0.000000 | 0.0% | — 可忽略 |\n| 10 | gender | +0.000000 | 0.0% | — 可忽略 |\n| 11 | capital_gain | +0.000000 | 0.0% | — 可忽略 |\n| 12 | capital_loss | +0.000000 | 0.0% | — 可忽略 |\n| 13 | hours_per_week | +0.000000 | 0.0% | — 可忽略 |\n| 14 | native_country | +0.000000 | 0.0% | — 可忽略 |\n\n**结论**: \n- 清洗价值极低的特征: age, workclass, fnlwgt（清洗它们几乎不影响性能）\n\n## 维度 3: 错误类型重要性 (Error Type Importance)\n\n| 排名 | 错误类型 | Shapley 值 | 占比 | 优先级 |\n|------|---------|-----------|------|--------|\n| 1 | label_noise | +0.000000 | 0.0% | 🟢 低 |\n\n**结论**: 对下游性能影响最大的错误类型是 **label_noise**，检测器应优先识别此类错误。\n\n## 综合清洗建议\n\n"
+  },
+  "getscoreml_results": {
+    "task_name": "v8_auto_plain_two",
+    "task_type": "classification",
+    "total_records": 45222,
+    "total_cells": 723552,
+    "cleaned_rows": 45222,
+    "accuracy": 0.0,
+    "precision": 0.0,
+    "recall": 0.0,
+    "f1_score": 0.0,
+    "edr": -1.2774838330393885,
+    "hybrid_distance": 0.01108567977217442,
+    "r_edr": -1.216931216931217,
+    "ml_rf_accuracy": 0.8494195688225539,
+    "ml_rf_f1": 0.8473218798260866,
+    "ml_rf_precision": 0.8459627797455782,
+    "ml_rf_recall": 0.8494195688225539,
+    "ml_lr_accuracy": 0.8222222222222222,
+    "ml_lr_f1": 0.8092564781162231,
+    "ml_lr_precision": 0.8106396358298202,
+    "ml_lr_recall": 0.8222222222222222,
+    "ml_svm_accuracy": 0.8490878938640133,
+    "ml_svm_f1": 0.841904836239395,
+    "ml_svm_precision": 0.8420374448514238,
+    "ml_svm_recall": 0.8490878938640133,
+    "ml_knn_accuracy": 0.8190160309563295,
+    "ml_knn_f1": 0.8180303445028476,
+    "ml_knn_precision": 0.8171549856093779,
+    "ml_knn_recall": 0.8190160309563295,
+    "ml_dt_accuracy": 0.7686014372581537,
+    "ml_dt_f1": 0.7754517609318109,
+    "ml_dt_precision": 0.7862621042830559,
+    "ml_dt_recall": 0.7686014372581537,
+    "ml_gb_accuracy": 0.866334991708126,
+    "ml_gb_f1": 0.8607892154677353,
+    "ml_gb_precision": 0.8612213049523435,
+    "ml_gb_recall": 0.866334991708126,
+    "tolerance_P_do_nothing": 0.8505086245024326,
+    "tolerance_P_demand_clean": 0.8505086245024326,
+    "tolerance_P_repair_all": 0.8542680229986731,
+    "tolerance_tolerance_prior": 1.0,
+    "tolerance_tolerance_post": 0.0,
+    "snoopy_snoopy_available": true,
+    "snoopy_upper_bound_dirty": 0.8184291476911966,
+    "snoopy_upper_bound_cleaned": 0.8184291476911966,
+    "snoopy_upper_bound_clean": 0.8523286315486308,
+    "snoopy_upper_bound_improvement": 0.0,
+    "ideal_total_changes": 316554,
+    "ideal_correct_repairs": 0,
+    "ideal_wrong_repairs": 316554,
+    "ideal_deleted_rows": 0,
+    "ideal_ideal_min_ground_truth_cost": 0,
+    "ideal_repair_accuracy": 0.0,
+    "method_type": 2,
+    "ground_truth_cost": 0,
+    "cost_ratio": 0.0,
+    "total_samples": 45222,
+    "labeled_samples": 0,
+    "validation_samples": 0
+  },
+  "raha_cost": {
+    "n_col_chunks": 1,
+    "n_row_chunks": 3,
+    "labeling_budget": 20,
+    "raha_total_cost": 60,
+    "total_labeled_rows": 60
+  },
+  "ground_truth_cost_summary": {
+    "raha_detection_cost": 60,
+    "agent_repair_cost": 0,
+    "total_cost": 60,
+    "total_data_cells": 633108,
+    "cost_ratio": 9.5e-05,
+    "apply_raha_truth": true,
+    "count_raha_cost": true
+  },
+  "elapsed_time": 5615.7,
+  "vis_time": 185.64
+}

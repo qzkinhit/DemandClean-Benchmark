@@ -1,0 +1,13 @@
+Attribute: index, MSE: nan, Jaccard: 0.0
+检查你指定的属性 frequency 是否为数值型！
+Attribute: frequency, MSE: nan, Jaccard: 0.39984618107082615
+检查你指定的属性 angle 是否为数值型！
+Attribute: angle, MSE: nan, Jaccard: 0.7441860465116279
+检查你指定的属性 chord_length 是否为数值型！
+Attribute: chord_length, MSE: nan, Jaccard: 1.0
+检查你指定的属性 velocity 是否为数值型！
+Attribute: velocity, MSE: nan, Jaccard: 0.8571428571428572
+检查你指定的属性 thickness 是否为数值型！
+Attribute: thickness, MSE: nan, Jaccard: 1.0
+Attribute: sound_pressure_level, MSE: nan, Jaccard: 0.0
+加权混合距离: 0.2857982203375222

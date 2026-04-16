@@ -1,0 +1,35 @@
+{
+  "meta": {
+    "n_samples": 5000,
+    "n_features": 14,
+    "n_errors": 1701,
+    "task_type": "classification",
+    "model_type": "random_forest",
+    "mc_samples": 50
+  },
+  "action_shapley": {
+    "no_action": 0.0,
+    "repair_value": 0.0,
+    "delete": 0.0,
+    "replace_nearby": 0.0
+  },
+  "feature_shapley": {
+    "age": 0.0,
+    "workclass": 0.0,
+    "fnlwgt": 0.0,
+    "education": 0.0,
+    "educational_num": 0.0,
+    "marital_status": 0.0,
+    "occupation": 0.0,
+    "relationship": 0.0,
+    "race": 0.0,
+    "gender": 0.0,
+    "capital_gain": 0.0,
+    "capital_loss": 0.0,
+    "hours_per_week": 0.0,
+    "native_country": 0.0
+  },
+  "error_type_shapley": {
+    "label_noise": 0.0
+  }
+}

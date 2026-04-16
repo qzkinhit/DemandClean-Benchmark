@@ -1,0 +1,181 @@
+[日志] 完整输出将保存到: /Users/qianzekai/PycharmProjects/TolerDM/logs/demandclean/har_v7_ep300_20260412_053421.log
+======================================================================
+DemandClean 统一运行脚本
+======================================================================
+数据集: ['har']
+启用版本: ['v7_auto_plain_single']
+训练轮数: 300
+详细输出: False
+Oracle 模式: 启用 (三路划分 60/20/20, --no-oracle 关闭)
+======================================================================
+
+######################################################################
+# 数据集: har
+######################################################################
+
+  60/20/20 划分: train=42000, val=14000, test=14000
+  60% 子集 CSV: /Users/qianzekai/PycharmProjects/TolerDM/results/demandclean/har/dirty_train_60pct.csv
+  数据集: har
+  脏数据: (42000, 3)
+  特征列: 3, 标签列: gt
+  分类列: (无)
+  LE fit: 仅 dirty (42000 行)
+  SS fit: 仅 dirty (42000 行)
+  FD规则: 0 条
+  编码完成: X_dirty_train=(42000, 3), X_clean_train=(42000, 3), X_clean_val=(14000, 3), X_clean_test=(14000, 3)
+
+======================================================================
+版本: v7_auto_plain_single
+数据集: har | 任务: clustering | 模型: kmeans
+检测器: auto | Agent: single_stage | 推理: single_phase
+训练轮数: 300 | 输出目录: /Users/qianzekai/PycharmProjects/TolerDM/results/demandclean/har/v7_auto_plain_single
+======================================================================
+
+[Step 1] 创建 DemandClean 实例...
+  [计时] Step 1 (初始化): 0.00s
+
+[Step 2] 训练 (300 episodes)...
+  RAHA 检测结果: 4391 个单元格
+  Precision=0.8631  Recall=0.9831  F1=0.9192
+  RAHA 标注行数: 20 (labeling_budget=20)
+  RAHA 检测结果: 4477 个单元格
+  Precision=0.8448  Recall=0.9859  F1=0.9099
+  RAHA 标注行数: 20 (labeling_budget=20)
+  RAHA 检测结果: 7693 个单元格
+  Precision=0.8623  Recall=0.8245  F1=0.8430
+  RAHA 标注行数: 20 (labeling_budget=20)
+  RAHA 检测结果: 8388 个单元格
+  Precision=0.8813  Recall=0.9498  F1=0.9142
+  RAHA 标注行数: 20 (labeling_budget=20)
+  模型已保存: /Users/qianzekai/PycharmProjects/TolerDM/results/demandclean/har/v7_auto_plain_single/model/v7_auto_plain_single_agent.pt
+  训练历史已保存: /Users/qianzekai/PycharmProjects/TolerDM/results/demandclean/har/v7_auto_plain_single/report/v7_auto_plain_single_history.json
+  [计时] Step 2 (训练): 26285.72s
+
+[Step 3] 推理 (模式: single_phase)...
+  真值使用: 0
+  动作分布: {'no_action': 0, 'repair_value': 0, 'delete': 0, 'replace_nearby': 25556}
+  清洗后数据已保存: /Users/qianzekai/PycharmProjects/TolerDM/results/demandclean/har/v7_auto_plain_single/data/v7_auto_plain_single_cleaned.csv
+  原始格式清洗数据已保存: /Users/qianzekai/PycharmProjects/TolerDM/results/demandclean/har/v7_auto_plain_single/data/v7_auto_plain_single_cleaned_original.csv
+  编码版本已保存: /Users/qianzekai/PycharmProjects/TolerDM/results/demandclean/har/v7_auto_plain_single/data/v7_auto_plain_single_cleaned_encoded.npz
+  [计时] Step 3 (推理): 383.81s
+
+[Step 4] 检测器准确率评估...
+  [计时] Step 4 (检测器评估): 0.16s
+
+[Step 5] Baseline 评估与可视化...
+  ReplaceAll VE: ValueEstimator(DOMAIN=3 cols)
+  ReplaceAll VE 估值: 25611 个错误, 82.4s
+  DeleteFix: 删除 20861 行, 保留 21139 行
+  统一测试集 (Oracle): 13863 行
+
+============================================================
+Baseline 对比评估 - v7_auto_plain_single
+============================================================
+  NoFix          : kmeans_silhouette=0.5095 | kmeans_ari=0.6652 | 1.5s
+  DeleteAll      : kmeans_silhouette=0.5216 | kmeans_ari=0.6628 | 1.8s
+  DeleteFix      : kmeans_silhouette=0.907 | kmeans_ari=0.997 | 1.7s
+  ReplaceAll     : kmeans_silhouette=0.8507 | kmeans_ari=0.9699 | 0.9s
+  DemandClean    : kmeans_silhouette=0.8542 | kmeans_ari=0.9691 | 0.9s
+  FullFix        : kmeans_silhouette=0.9098 | kmeans_ari=1.0 | 0.9s
+  [计时] Step 5 (Baseline评估): 93.04s
+
+[Step 6] 模型容忍度评估...
+============================================================
+模型容忍度计算 - v7_auto_plain_single
+任务类型: clustering  |  模型列表: ['kmeans']
+============================================================
+
+--- 模型: KMEANS ---
+  P_clean  = 0.9081
+  P_dirty  = 0.5083
+  P_dc     = 0.8556
+  先验容忍度 (P_dc / P_dirty)            = 1.6831
+  后验容忍度 (P_dc-P_dirty)/(P_clean-P_dirty) = 0.8686
+  容忍度柱状图已保存: /Users/qianzekai/PycharmProjects/TolerDM/results/demandclean/har/v7_auto_plain_single/visualization/v7_auto_plain_single_tolerance_bar.png
+  [计时] Step 6 (容忍度评估): 26.69s
+
+[Step 7] Shapley 三维度分析...
+[Shapley] 维度1: 动作重要性 (精确枚举 4!=24 排列) ...
+[Shapley] 图表已保存: /Users/qianzekai/PycharmProjects/TolerDM/results/demandclean/har/v7_auto_plain_single/evaluation/shapley/shapley_action_importance.png
+[Shapley] 维度2: 跳过特征 Shapley（计算量过大，仅保留维度1和维度3）
+[Shapley] 维度3: 错误类型重要性 (精确枚举 3!=6 排列) ...
+[Shapley] 图表已保存: /Users/qianzekai/PycharmProjects/TolerDM/results/demandclean/har/v7_auto_plain_single/evaluation/shapley/shapley_error_type_importance.png
+  [计时] Step 7 (Shapley分析): 1480.99s
+
+[Step 8] 训练曲线可视化...
+  [可视化] 训练曲线已保存: /Users/qianzekai/PycharmProjects/TolerDM/results/demandclean/har/v7_auto_plain_single/visualization/v7_auto_plain_single_training_curves.png
+  [计时] Step 8 (训练曲线): 1.11s
+
+[Step 9] Clean4MLBaseline 统一测评...
+差异文件已保存到:
+/Users/qianzekai/PycharmProjects/TolerDM/results/demandclean/har/v7_auto_plain_single/evaluation/v7_auto_plain_single_clean_vs_dirty.csv
+/Users/qianzekai/PycharmProjects/TolerDM/results/demandclean/har/v7_auto_plain_single/evaluation/v7_auto_plain_single_dirty_vs_cleaned.csv
+/Users/qianzekai/PycharmProjects/TolerDM/results/demandclean/har/v7_auto_plain_single/evaluation/v7_auto_plain_single_clean_vs_cleaned.csv
+修复错误数据文件已保存到: /Users/qianzekai/PycharmProjects/TolerDM/results/demandclean/har/v7_auto_plain_single/evaluation/v7_auto_plain_single_repair_errors.csv
+未修复但是应该修复数据文件已保存到: /Users/qianzekai/PycharmProjects/TolerDM/results/demandclean/har/v7_auto_plain_single/evaluation/v7_auto_plain_single_unrepaired.csv
+修复准确率: 0.02128784873727357, 修复召回率: 0.04107142857142857, F1值: 0.028041452537110285
+========================================
+EDR 结果已保存到: /Users/qianzekai/PycharmProjects/TolerDM/results/demandclean/har/v7_auto_plain_single/evaluation/v7_auto_plain_single_edr_evaluation.txt
+错误减少率 (EDR): -0.9113520408163265
+========================================
+混合距离结果已保存到: /Users/qianzekai/PycharmProjects/TolerDM/results/demandclean/har/v7_auto_plain_single/evaluation/v7_auto_plain_single_hybrid_distance_evaluation.txt
+混合距离 (Hybrid Distance): 0.28017363720184435
+========================================
+R-EDR 结果已保存到: /Users/qianzekai/PycharmProjects/TolerDM/results/demandclean/har/v7_auto_plain_single/evaluation/v7_auto_plain_single_record_based_edr_evaluation.txt
+基于条目的错误减少率 (R-EDR): -0.6427687229213946
+========================================
+  [下游任务] 使用编码版本（跳过 CSV preprocess）
+KMEANS 聚类失败: Found input variables with inconsistent numbers of samples: [13863, 41203]
+AGGLOMERATIVE 聚类失败: Found input variables with inconsistent numbers of samples: [13863, 41203]
+SPECTRAL 聚类失败: Found input variables with inconsistent numbers of samples: [13863, 41203]
+  [容忍度] 使用编码版本（跳过 CSV preprocess）
+  Oracle 模式: train dirty=40368, cleaned=41203, clean=41603, test=13863
+
+容忍度计算结果:
+  P_do_nothing (脏数据性能): 0.5095
+  P_demand_clean (清洗后性能): 0.8542
+  P_repair_all (完全修复性能): 0.9098
+  先验容忍度 (Tolerance_prior): 1.6764
+  后验容忍度 (Tolerance_post): 0.8610
+  [Snoopy] 使用编码版本（跳过 CSV preprocess）
+使用编码数据评估数据质量上界...
+  统一测评完成，结果已保存到: /Users/qianzekai/PycharmProjects/TolerDM/results/demandclean/har/v7_auto_plain_single/v7_auto_plain_single_evaluation_results.txt
+  [计时] Step 9 (统一测评): 269.78s
+
+[Step 10] 真值成本汇总...
+  RAHA 检测成本: 80
+  Agent 修复成本: 0
+  总成本: 80 / 126000 cells = 0.0635%
+  [计时] Step 10 (成本汇总): 0.00s
+
+──────────────────────────────────────────────────
+  步骤计时汇总
+──────────────────────────────────────────────────
+  Step 1 初始化         │     0.00s
+  Step 2 训练          │ 26285.72s
+  Step 3 推理          │   383.81s
+  Step 4 检测器评估       │     0.16s
+  Step 5 Baseline评估  │    93.04s
+  Step 6 容忍度评估       │    26.69s
+  Step 7 Shapley分析   │  1480.99s
+  Step 8 训练曲线        │     1.11s
+  Step 9 统一测评        │   269.78s
+  Step 10 成本汇总        │     0.00s
+──────────────────────────────────────────────────
+  总计(含可视化)       │ 28541.30s
+  可视化耗时           │  1482.10s
+  净耗时(扣可视化)     │ 27059.20s
+──────────────────────────────────────────────────
+
+  [输出] 报告已保存: /Users/qianzekai/PycharmProjects/TolerDM/results/demandclean/har/v7_auto_plain_single/report/v7_auto_plain_single_report.json
+
+  版本 v7_auto_plain_single 完成! 耗时: 27059.20s
+  输出目录: /Users/qianzekai/PycharmProjects/TolerDM/results/demandclean/har/v7_auto_plain_single
+
+  只有 1 个版本完成，跳过跨版本对比
+
+======================================================================
+全部完成! 总耗时: 28542.25s
+结果目录: /Users/qianzekai/PycharmProjects/TolerDM/results/demandclean
+日志文件: /Users/qianzekai/PycharmProjects/TolerDM/logs/demandclean/har_v7_ep300_20260412_053421.log
+======================================================================

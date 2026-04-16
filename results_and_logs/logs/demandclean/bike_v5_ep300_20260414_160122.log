@@ -1,0 +1,43 @@
+[日志] 完整输出将保存到: /Users/qianzekai/PycharmProjects/TolerDM/logs/demandclean/bike_v5_ep300_20260414_160122.log
+======================================================================
+DemandClean 统一运行脚本
+======================================================================
+数据集: ['bike']
+启用版本: ['v5_auto_dueling_single']
+训练轮数: 300
+详细输出: False
+Oracle 模式: 启用 (三路划分 60/20/20, --no-oracle 关闭)
+======================================================================
+
+######################################################################
+# 数据集: bike
+######################################################################
+
+  60/20/20 划分: train=10427, val=3476, test=3476
+  60% 子集 CSV: /Users/qianzekai/PycharmProjects/TolerDM/results/demandclean/bike/dirty_train_60pct.csv
+  数据集: bike
+  脏数据: (10427, 15)
+  特征列: 15, 标签列: cnt
+  分类列: (无)
+  LE fit: 仅 dirty (10427 行)
+  SS fit: 仅 dirty (10427 行)
+  FD规则: 0 条
+  编码完成: X_dirty_train=(10427, 15), X_clean_train=(10427, 15), X_clean_val=(3476, 15), X_clean_test=(3476, 15)
+
+======================================================================
+版本: v5_auto_dueling_single
+数据集: bike | 任务: regression | 模型: random_forest
+检测器: auto | Agent: dueling_two_stage | 推理: single_phase
+训练轮数: 300 | 输出目录: /Users/qianzekai/PycharmProjects/TolerDM/results/demandclean/bike/v5_auto_dueling_single
+======================================================================
+
+[Step 1] 创建 DemandClean 实例...
+  [计时] Step 1 (初始化): 0.00s
+
+[Step 2] 训练 (300 episodes)...
+  RAHA 检测结果: 24735 个单元格
+  Precision=0.9694  Recall=0.9578  F1=0.9636
+  RAHA 标注行数: 20 (labeling_budget=20)
+  RAHA 检测结果: 1505 个单元格
+  Precision=0.9362  Recall=0.9514  F1=0.9437
+  RAHA 标注行数: 20 (labeling_budget=20)

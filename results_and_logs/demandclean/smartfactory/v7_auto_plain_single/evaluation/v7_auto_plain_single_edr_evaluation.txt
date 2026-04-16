@@ -1,0 +1,83 @@
+Attribute: index
+Distance (Dirty to Clean): 0
+Distance (Repaired to Clean): 0
+========================================
+Attribute: i_w_blo_weg
+Distance (Dirty to Clean): 180
+Distance (Repaired to Clean): 1451
+========================================
+Attribute: o_w_blo_power
+Distance (Dirty to Clean): 223
+Distance (Repaired to Clean): 423
+========================================
+Attribute: o_w_blo_voltage
+Distance (Dirty to Clean): 236
+Distance (Repaired to Clean): 222
+========================================
+Attribute: i_w_bhl_weg
+Distance (Dirty to Clean): 245
+Distance (Repaired to Clean): 492
+========================================
+Attribute: o_w_bhl_power
+Distance (Dirty to Clean): 236
+Distance (Repaired to Clean): 1022
+========================================
+Attribute: o_w_bhl_voltage
+Distance (Dirty to Clean): 258
+Distance (Repaired to Clean): 538
+========================================
+Attribute: i_w_bhr_weg
+Distance (Dirty to Clean): 220
+Distance (Repaired to Clean): 852
+========================================
+Attribute: o_w_bhr_power
+Distance (Dirty to Clean): 239
+Distance (Repaired to Clean): 567
+========================================
+Attribute: o_w_bhr_voltage
+Distance (Dirty to Clean): 227
+Distance (Repaired to Clean): 528
+========================================
+Attribute: i_w_bru_weg
+Distance (Dirty to Clean): 235
+Distance (Repaired to Clean): 548
+========================================
+Attribute: o_w_bru_power
+Distance (Dirty to Clean): 269
+Distance (Repaired to Clean): 337
+========================================
+Attribute: o_w_bru_voltage
+Distance (Dirty to Clean): 257
+Distance (Repaired to Clean): 2747
+========================================
+Attribute: i_w_hr_weg
+Distance (Dirty to Clean): 232
+Distance (Repaired to Clean): 153
+========================================
+Attribute: o_w_hr_power
+Distance (Dirty to Clean): 236
+Distance (Repaired to Clean): 687
+========================================
+Attribute: o_w_hr_voltage
+Distance (Dirty to Clean): 231
+Distance (Repaired to Clean): 306
+========================================
+Attribute: i_w_hl_weg
+Distance (Dirty to Clean): 231
+Distance (Repaired to Clean): 6338
+========================================
+Attribute: o_w_hl_power
+Distance (Dirty to Clean): 258
+Distance (Repaired to Clean): 247
+========================================
+Attribute: o_w_hl_voltage
+Distance (Dirty to Clean): 245
+Distance (Repaired to Clean): 2674
+========================================
+Attribute: labels
+Distance (Dirty to Clean): 0
+Distance (Repaired to Clean): 0
+========================================
+总的脏数据到干净数据距离: 4258
+总的修复后数据到干净数据距离: 20132
+错误减少率 (EDR): -3.7280413339596055

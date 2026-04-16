@@ -1,0 +1,27 @@
+Attribute,Index,Dirty Value,Clean Value
+frequency,394,440000,400
+frequency,86,11,1000
+frequency,665,0,400
+frequency,1354,66330000,630
+frequency,734,550000,5000
+frequency,1102,550000,500
+frequency,393,331155,315
+angle,392,77,7.3
+angle,344,44,4
+chord_length,484,11552244,0.1524
+chord_length,690,1155,0.1524
+chord_length,1012,2255,0.0254
+chord_length,581,22,0.1524
+velocity,56,3311,31.7
+velocity,1162,33,71.3
+velocity,610,1133,71.3
+velocity,1336,11,31.7
+velocity,1,33,71.3
+velocity,235,1177,31.7
+velocity,780,33,71.3
+thickness,709,44883355,0.0483159
+thickness,1450,882266,0.0408268
+thickness,1078,3388,0.0043284
+thickness,1335,225511000000,0.00251435
+thickness,99,44225577,0.00425727
+thickness,65,1122,0.00331266

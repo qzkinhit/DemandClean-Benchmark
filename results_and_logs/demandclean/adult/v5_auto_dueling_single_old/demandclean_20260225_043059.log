@@ -1,0 +1,44 @@
+[2026-02-25 04:30:59,638] INFO - demandclean: ==================================================
+[2026-02-25 04:30:59,638] INFO - demandclean: DemandClean 训练开始
+[2026-02-25 04:30:59,638] INFO - demandclean:   检测器模式: auto
+[2026-02-25 04:30:59,638] INFO - demandclean:   训练模式: clean_base
+[2026-02-25 04:30:59,638] INFO - demandclean:   Agent类型: dueling_two_stage
+[2026-02-25 04:30:59,638] INFO - demandclean:   推理模式: single_phase
+[2026-02-25 04:30:59,638] INFO - demandclean:   FD规则: 1
+[2026-02-25 04:30:59,638] INFO - demandclean:   丰富规则: 有
+[2026-02-25 04:30:59,638] INFO - demandclean: ==================================================
+[2026-02-25 04:30:59,638] INFO - demandclean: 
+[Step 1] 初始化错误检测器...
+[2026-02-25 04:30:59,641] INFO - demandclean: 
+[Step 1.5] 运行 RAHA 检测获取标注行...
+[2026-02-25 05:33:41,144] INFO - demandclean:   [预修复] 利用 RAHA 标注行修复 0 个特征单元格 + 6 个标签
+[2026-02-25 05:33:41,147] INFO - demandclean:   标注行: [651, 905, 995, 1948, 2278, 2635, 8546, 8630, 9273, 10000]... (共 60 行)
+[2026-02-25 05:33:41,148] INFO - demandclean: 
+[Step 2] 训练 DQN Agent...
+[2026-02-25 05:33:41,150] INFO - demandclean: 开始训练 (dueling_two_stage Agent, mode=clean_base)
+[2026-02-25 05:33:41,150] INFO - demandclean:   任务类型: classification
+[2026-02-25 05:33:41,150] INFO - demandclean:   模型类型: random_forest
+[2026-02-25 05:33:41,150] INFO - demandclean:   原始数据: 45222 行
+[2026-02-25 05:33:41,154] INFO - demandclean:   基准数据: 45222 行
+[2026-02-25 05:33:41,185] INFO - demandclean:   标签注入: 检测到 7277 个标签错误, rate=0.161, symmetric=False
+[2026-02-25 05:33:41,186] INFO - demandclean:   自适应注入比例范围 (基于检测结果):
+[2026-02-25 05:33:41,186] INFO - demandclean:     missing: 不注入
+[2026-02-25 05:33:41,186] INFO - demandclean:     semantic: 不注入
+[2026-02-25 05:33:41,186] INFO - demandclean:     syntactic: 不注入
+[2026-02-25 05:33:41,186] INFO - demandclean:     label: (0.1287, 0.1931)
+[2026-02-25 05:33:41,303] INFO - demandclean:   ErrorInjector: rich_rules=True, domain=5, cfd=0, fd=1
+[2026-02-25 05:33:41,303] INFO - demandclean:   开始训练 DQN (5 episodes, 起始轮=0)...
+[2026-02-25 05:56:37,512] INFO - demandclean: 
+已恢复最佳模型权重 (Episode 1, Score=0.9619, Cost=974)
+[2026-02-25 05:56:37,516] INFO - demandclean: 
+训练完成! 最佳分数: 0.9619 (共 5 episodes)
+[2026-02-25 05:56:37,516] INFO - demandclean:   最佳动作分布: {'no_action': 1965, 'repair_value': 974, 'delete': 2072, 'replace_nearby': 978}
+[2026-02-25 05:56:37,527] INFO - demandclean: 
+训练完成!
+[2026-02-25 05:56:37,559] INFO - demandclean: 模型已保存: /Users/qianzekai/PycharmProjects/TolerDM/results/demandclean/adult/v5_auto_dueling_single/model/v5_auto_dueling_single_agent.pt
+[2026-02-25 05:56:37,561] INFO - demandclean: 
+==================================================
+[2026-02-25 05:56:37,561] INFO - demandclean: 单阶段推理
+[2026-02-25 05:56:37,561] INFO - demandclean: ==================================================
+[2026-02-25 05:57:04,866] INFO - demandclean:   [预修复] 利用 RAHA 标注行修复 0 个特征单元格 + 6 个标签
+[2026-02-25 05:57:04,866] INFO - demandclean:   移除已修复错误: label_noise=6

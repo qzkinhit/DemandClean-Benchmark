@@ -1,0 +1,78 @@
+[
+  {
+    "dataset": "nasa",
+    "task_type": "regression",
+    "elapsed_time": 2.69,
+    "truth_cost": 0,
+    "ml_results": {
+      "rf": {
+        "mse": 182.22142193328258,
+        "r2": -2.833478808311896
+      }
+    },
+    "P_do_nothing": -0.00789897249677396,
+    "P_demand_clean": -2.833478808311896,
+    "P_repair_all": 0.918660511325314,
+    "upper_bound_dirty": 31.2372433859195,
+    "upper_bound_cleaned": 28.657405939877396,
+    "upper_bound_clean": 12.618475956587426,
+    "upper_bound_improvement": 0.1385611295610158
+  },
+  {
+    "dataset": "beers",
+    "task_type": "classification",
+    "elapsed_time": 2.97,
+    "truth_cost": 0,
+    "ml_results": {
+      "rf": {
+        "accuracy": 0.2925311203319502,
+        "f1": 0.2607270594675684
+      }
+    },
+    "P_do_nothing": 0.24481327800829875,
+    "P_demand_clean": 0.2925311203319502,
+    "P_repair_all": 0.2925311203319502,
+    "upper_bound_dirty": 0.2053941908713693,
+    "upper_bound_cleaned": 0.21286307053941908,
+    "upper_bound_clean": 0.23319502074688797,
+    "upper_bound_improvement": 0.2686567164179104
+  },
+  {
+    "dataset": "breast_cancer",
+    "task_type": "classification",
+    "elapsed_time": 1.05,
+    "truth_cost": 0,
+    "ml_results": {
+      "rf": {
+        "accuracy": 0.85,
+        "f1": 0.8565210112171439
+      }
+    },
+    "P_do_nothing": 0.8214285714285714,
+    "P_demand_clean": 0.85,
+    "P_repair_all": 0.9857142857142858,
+    "upper_bound_dirty": 0.9185200411099691,
+    "upper_bound_cleaned": 0.9285097636176773,
+    "upper_bound_clean": 0.9585405960945529,
+    "upper_bound_improvement": 0.24961479198767628
+  },
+  {
+    "dataset": "har",
+    "task_type": "clustering",
+    "elapsed_time": 9.38,
+    "truth_cost": 0,
+    "ml_results": {
+      "kmeans": {
+        "silhouette": 0.6347389416694352,
+        "ari": 0.38461868388490156
+      }
+    },
+    "P_do_nothing": 0.6331523991041558,
+    "P_demand_clean": 0.6347389416694352,
+    "P_repair_all": 0.7481526407015222,
+    "upper_bound_dirty": 0.6331523991041558,
+    "upper_bound_cleaned": 0.6347389416694352,
+    "upper_bound_clean": 0.7481526407015222,
+    "upper_bound_improvement": 0.01379599332351134
+  }
+]

@@ -1,0 +1,136 @@
+Attribute,Index,Dirty Value,Cleaned Value,Clean Value
+Clump Thickness,108,1,5,1
+Clump Thickness,142,22,5,2
+Clump Thickness,170,empty,5,1
+Clump Thickness,418,11,5,1
+Clump Thickness,226,empty,5,1
+Clump Thickness,514,empty,5,3
+Clump Thickness,448,55,55.00000000000001,5
+Clump Thickness,37,1a0,5,10
+Clump Thickness,60,empty,5,9
+Clump Thickness,504,44,5,4
+Clump Thickness,267,1,5,10
+Clump Thickness,352,empty,5,2
+Clump Thickness,420,empty,5,2
+Clump Thickness,443,empty,5,1
+Clump Thickness,622,empty,5,6
+Clump Thickness,187,1,5,1
+Clump Thickness,294,empty,5,10
+Clump Thickness,233,88,5,8
+Clump Thickness,283,1,5,1
+Clump Thickness,201,99,5,9
+Clump Thickness,499,empty,5,4
+Clump Thickness,680,empty,5,2
+Clump Thickness,340,88,5,8
+Clump Thickness,346,empty,5,1
+Clump Thickness,103,44,5,4
+Uniformity of Cell Size,150,88,9.828001348430496,8
+Uniformity of Cell Size,606,1,10,5
+Uniformity of Cell Size,51,empty,10,5
+Uniformity of Cell Size,75,66,4.760370289111597,6
+Uniformity of Cell Size,263,empty,10,8
+Uniformity of Cell Size,372,empty,3.0711599360052975,1
+Uniformity of Cell Size,33,empty,9.828001348430496,7
+Uniformity of Cell Size,15,7,1.3819495828989976,7
+Uniformity of Cell Size,697,10,1,10
+Uniformity of Cell Size,566,empty,10,7
+Uniformity of Cell Size,309,8,1.3819495828989976,8
+Uniformity of Cell Shape,698,6,5.917836760194506,6
+Uniformity of Cell Shape,606,10,7.101821925998271,10
+Uniformity of Cell Shape,155,empty,1.7738886798813254,1
+Uniformity of Cell Shape,46,11,1.7738886798813254,1
+Uniformity of Cell Shape,104,33,2.3658812627832084,3
+Uniformity of Cell Shape,524,66,4.141859011488857,6
+Uniformity of Cell Shape,620,empty,1.7738886798813254,1
+Uniformity of Cell Shape,39,empty,3.549866428586974,4
+Uniformity of Cell Shape,97,empty,1.7738886798813254,1
+Uniformity of Cell Shape,697,1,1.7738886798813254,10
+Uniformity of Cell Shape,653,11,1.7738886798813254,1
+Marginal Adhesion,145,empty,3,1
+Marginal Adhesion,95,empty,3,1
+Marginal Adhesion,643,empty,3,1
+Marginal Adhesion,686,empty,3,1
+Marginal Adhesion,27,empty,3,1
+Marginal Adhesion,581,empty,3,1
+Marginal Adhesion,469,11,3,1
+Marginal Adhesion,537,empty,3,1
+Marginal Adhesion,497,empty,3,1
+Marginal Adhesion,646,11,3,1
+Marginal Adhesion,554,empty,3,1
+Marginal Adhesion,414,11,3,1
+Marginal Adhesion,436,empty,3,1
+Single Epithelial Cell Size,375,empty,3,2
+Single Epithelial Cell Size,592,empty,3,4
+Single Epithelial Cell Size,194,empty,3,2
+Single Epithelial Cell Size,479,empty,3,2
+Single Epithelial Cell Size,498,empty,3,2
+Single Epithelial Cell Size,227,44,3,4
+Single Epithelial Cell Size,112,empty,3,5
+Single Epithelial Cell Size,157,empty,3,2
+Single Epithelial Cell Size,367,empty,3,8
+Single Epithelial Cell Size,190,empty,3,2
+Single Epithelial Cell Size,662,empty,3,2
+Single Epithelial Cell Size,373,22,3,2
+Single Epithelial Cell Size,107,empty,3,2
+Bare Nuclei,117,2,3,2
+Bare Nuclei,519,empty,3,1
+Bare Nuclei,310,55,3,5
+Bare Nuclei,60,2,3,2
+Bare Nuclei,298,?,3.6280193236714977,?
+Bare Nuclei,147,88,3,8
+Bare Nuclei,622,2,3,2
+Bare Nuclei,638,2,3,2
+Bare Nuclei,160,1a0,3,10
+Bare Nuclei,525,empty,3,1
+Bare Nuclei,419,2,3,2
+Bare Nuclei,41,1,3.6280193236714977,?
+Bare Nuclei,428,2,3,2
+Bare Nuclei,22,empty,3,7
+Bare Nuclei,88,empty,3,10
+Bare Nuclei,122,2,3,2
+Bland Chromatin,466,77,3,7
+Bland Chromatin,368,empty,3,8
+Bland Chromatin,491,empty,3,1
+Bland Chromatin,375,22,3,2
+Bland Chromatin,592,1,3,7
+Bland Chromatin,9,empty,3,1
+Bland Chromatin,37,empty,3,8
+Bland Chromatin,263,77,3,7
+Bland Chromatin,417,77,3,7
+Bland Chromatin,523,empty,3,7
+Bland Chromatin,385,empty,3,1
+Bland Chromatin,525,22,3,2
+Bland Chromatin,564,empty,3,2
+Bland Chromatin,574,8,3,2
+Bland Chromatin,81,7,3,7
+Bland Chromatin,436,1,3,5
+Normal Nucleoli,117,2,3,2
+Normal Nucleoli,275,2,3,2
+Normal Nucleoli,383,2,3,2
+Normal Nucleoli,351,11,3,1
+Normal Nucleoli,356,2,3,2
+Normal Nucleoli,323,empty,3,1
+Normal Nucleoli,256,empty,3,6
+Normal Nucleoli,399,2,3,2
+Normal Nucleoli,68,99,3,9
+Normal Nucleoli,422,22,3,2
+Normal Nucleoli,441,empty,3,1
+Normal Nucleoli,147,empty,3,1
+Normal Nucleoli,470,11,3,1
+Normal Nucleoli,387,empty,3,1
+Normal Nucleoli,525,2,3,1
+Normal Nucleoli,5,empty,3,1
+Normal Nucleoli,201,empty,3,8
+Normal Nucleoli,419,2,3,2
+Normal Nucleoli,139,empty,3,1
+Normal Nucleoli,653,2,3,2
+Normal Nucleoli,167,empty,3,10
+Normal Nucleoli,485,empty,3,1
+Normal Nucleoli,314,empty,3,1
+Normal Nucleoli,386,2,3,2
+Normal Nucleoli,492,empty,3,1
+Mitoses,690,8,1,8
+Mitoses,321,66,1,6
+Mitoses,9,5,1,5
+Mitoses,309,empty,1,4
+class,349,4,2,4

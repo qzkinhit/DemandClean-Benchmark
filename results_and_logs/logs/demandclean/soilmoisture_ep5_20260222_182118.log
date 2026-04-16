@@ -1,0 +1,127 @@
+[日志] 完整输出将保存到: /Users/qianzekai/PycharmProjects/TolerDM/logs/demandclean/soilmoisture_ep5_20260222_182118.log
+======================================================================
+DemandClean 统一运行脚本
+======================================================================
+数据集: ['soilmoisture']
+启用版本: ['v3_oracle_plain_single']
+训练轮数: 5
+详细输出: False
+======================================================================
+
+######################################################################
+# 数据集: soilmoisture
+######################################################################
+  数据集: soilmoisture
+  脏数据: (679, 127), 干净数据: (679, 127)
+  特征列: 127, 标签列: soil_moisture
+  FD规则: 0 条
+
+======================================================================
+版本: v3_oracle_plain_single
+数据集: soilmoisture | 任务: regression | 模型: ridge
+检测器: oracle | Agent: single_stage | 推理: single_phase
+训练轮数: 5 | 输出目录: /Users/qianzekai/PycharmProjects/TolerDM/results/demandclean/soilmoisture/v3_oracle_plain_single
+======================================================================
+
+[Step 1] 创建 DemandClean 实例...
+
+[Step 2] 训练 (5 episodes)...
+  模型已保存: /Users/qianzekai/PycharmProjects/TolerDM/results/demandclean/soilmoisture/v3_oracle_plain_single/model/v3_oracle_plain_single_agent.pt
+  训练历史已保存: /Users/qianzekai/PycharmProjects/TolerDM/results/demandclean/soilmoisture/v3_oracle_plain_single/report/v3_oracle_plain_single_history.json
+
+[Step 3] 推理 (模式: single_phase)...
+  真值使用: 0
+  动作分布: {'no_action': 26014, 'repair_value': 0, 'delete': 0, 'replace_nearby': 0}
+  清洗后数据已保存: /Users/qianzekai/PycharmProjects/TolerDM/results/demandclean/soilmoisture/v3_oracle_plain_single/data/v3_oracle_plain_single_cleaned.csv
+  原始格式清洗数据已保存: /Users/qianzekai/PycharmProjects/TolerDM/results/demandclean/soilmoisture/v3_oracle_plain_single/data/v3_oracle_plain_single_cleaned_original.csv
+
+[Step 4] 检测器准确率评估...
+
+[Step 5] Baseline 评估与可视化...
+  DeleteFix: 删除 544 行, 保留 135 行
+
+============================================================
+Baseline 对比评估 - v3_oracle_plain_single
+============================================================
+  NoFix          : rf_mse=2.7104 | rf_r2=0.8108 | ridge_mse=8.4941 | ridge_r2=0.4069
+  DeleteAll      : rf_mse=3.2182 | rf_r2=0.7352 | ridge_mse=8.306 | ridge_r2=0.3166
+  DeleteFix      : rf_mse=1.6922 | rf_r2=0.8713 | ridge_mse=13.7424 | ridge_r2=-0.0451
+  ReplaceAll     : rf_mse=2.7104 | rf_r2=0.8108 | ridge_mse=8.4941 | ridge_r2=0.4069
+  DemandClean    : rf_mse=2.7104 | rf_r2=0.8108 | ridge_mse=8.4941 | ridge_r2=0.4069
+  FullFix        : rf_mse=0.8911 | rf_r2=0.9378 | ridge_mse=1.5644 | ridge_r2=0.8908
+  [可视化] Baseline 对比图已保存: /Users/qianzekai/PycharmProjects/TolerDM/results/demandclean/soilmoisture/v3_oracle_plain_single/visualization/v3_oracle_plain_single_baseline_comparison.png
+
+[Step 6] 模型容忍度评估...
+============================================================
+模型容忍度计算 - v3_oracle_plain_single
+任务类型: regression  |  模型列表: ['rf', 'ridge']
+============================================================
+
+--- 模型: RF ---
+  P_clean  = 0.9378
+  P_dirty  = 0.8955
+  P_dc     = 0.8960
+  先验容忍度 (P_dc / P_dirty)            = 1.0006
+  后验容忍度 (P_dc-P_dirty)/(P_clean-P_dirty) = 0.0117
+
+--- 模型: RIDGE ---
+  P_clean  = 0.8908
+  P_dirty  = 0.5526
+  P_dc     = 0.5526
+  先验容忍度 (P_dc / P_dirty)            = 1.0000
+  后验容忍度 (P_dc-P_dirty)/(P_clean-P_dirty) = 0.0000
+  容忍度柱状图已保存: /Users/qianzekai/PycharmProjects/TolerDM/results/demandclean/soilmoisture/v3_oracle_plain_single/visualization/v3_oracle_plain_single_tolerance_bar.png
+
+[Step 7] Shapley 三维度分析...
+[Shapley] 维度1: 动作重要性 (精确枚举 4!=24 排列) ...
+  [错误] Shapley 分析失败: Image size of 1035x-1528794299 pixels is too large. It must be less than 2^16 in each direction.
+
+[Step 8] 训练曲线可视化...
+  [可视化] 训练曲线已保存: /Users/qianzekai/PycharmProjects/TolerDM/results/demandclean/soilmoisture/v3_oracle_plain_single/visualization/v3_oracle_plain_single_training_curves.png
+
+[Step 9] Clean4MLBaseline 统一测评...
+差异文件已保存到:
+/Users/qianzekai/PycharmProjects/TolerDM/results/demandclean/soilmoisture/v3_oracle_plain_single/evaluation/v3_oracle_plain_single_clean_vs_dirty.csv
+/Users/qianzekai/PycharmProjects/TolerDM/results/demandclean/soilmoisture/v3_oracle_plain_single/evaluation/v3_oracle_plain_single_dirty_vs_cleaned.csv
+/Users/qianzekai/PycharmProjects/TolerDM/results/demandclean/soilmoisture/v3_oracle_plain_single/evaluation/v3_oracle_plain_single_clean_vs_cleaned.csv
+修复错误数据文件已保存到: /Users/qianzekai/PycharmProjects/TolerDM/results/demandclean/soilmoisture/v3_oracle_plain_single/evaluation/v3_oracle_plain_single_repair_errors.csv
+未修复但是应该修复数据文件已保存到: /Users/qianzekai/PycharmProjects/TolerDM/results/demandclean/soilmoisture/v3_oracle_plain_single/evaluation/v3_oracle_plain_single_unrepaired.csv
+修复准确率: 0.0, 修复召回率: 0.0, F1值: 0.0
+========================================
+EDR 结果已保存到: /Users/qianzekai/PycharmProjects/TolerDM/results/demandclean/soilmoisture/v3_oracle_plain_single/evaluation/v3_oracle_plain_single_edr_evaluation.txt
+错误减少率 (EDR): -0.0018067194587529792
+========================================
+混合距离结果已保存到: /Users/qianzekai/PycharmProjects/TolerDM/results/demandclean/soilmoisture/v3_oracle_plain_single/evaluation/v3_oracle_plain_single_hybrid_distance_evaluation.txt
+混合距离 (Hybrid Distance): 0.37150847364779804
+========================================
+R-EDR 结果已保存到: /Users/qianzekai/PycharmProjects/TolerDM/results/demandclean/soilmoisture/v3_oracle_plain_single/evaluation/v3_oracle_plain_single_record_based_edr_evaluation.txt
+基于条目的错误减少率 (R-EDR): 0.0
+========================================
+RF - MSE: 2.7104, R2: 0.8108
+LR - MSE: 8.5145, R2: 0.4055
+RIDGE - MSE: 8.4941, R2: 0.4069
+LASSO - MSE: 11.3394, R2: 0.2083
+KNN - MSE: 6.8524, R2: 0.5216
+GB - MSE: 3.2092, R2: 0.7759
+
+容忍度计算结果:
+  P_do_nothing (脏数据性能): 0.6590
+  P_demand_clean (清洗后性能): 0.7624
+  P_repair_all (完全修复性能): 0.9386
+  先验容忍度 (Tolerance_prior): 1.1568
+  后验容忍度 (Tolerance_post): 0.3696
+Snoopy模块可用，正在评估数据质量上界...
+  统一测评完成，结果已保存到: /Users/qianzekai/PycharmProjects/TolerDM/results/demandclean/soilmoisture/v3_oracle_plain_single/v3_oracle_plain_single_evaluation_results.txt
+
+  [输出] 报告已保存: /Users/qianzekai/PycharmProjects/TolerDM/results/demandclean/soilmoisture/v3_oracle_plain_single/report/v3_oracle_plain_single_report.json
+
+  版本 v3_oracle_plain_single 完成! 耗时: 261.43s
+  输出目录: /Users/qianzekai/PycharmProjects/TolerDM/results/demandclean/soilmoisture/v3_oracle_plain_single
+
+  只有 1 个版本完成，跳过跨版本对比
+
+======================================================================
+全部完成! 总耗时: 261.64s
+结果目录: /Users/qianzekai/PycharmProjects/TolerDM/results/demandclean
+日志文件: /Users/qianzekai/PycharmProjects/TolerDM/logs/demandclean/soilmoisture_ep5_20260222_182118.log
+======================================================================

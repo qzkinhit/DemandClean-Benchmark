@@ -1,0 +1,38 @@
+{
+  "meta": {
+    "n_samples": 5000,
+    "n_features": 15,
+    "n_errors": 12984,
+    "task_type": "regression",
+    "model_type": "random_forest",
+    "mc_samples": 50
+  },
+  "action_shapley": {
+    "no_action": -155.52478641903542,
+    "repair_value": 515.3188428828656,
+    "delete": 219.17584231535122,
+    "replace_nearby": 181.84903962538257
+  },
+  "feature_shapley": {
+    "dteday": 0.0,
+    "season": 0.0,
+    "yr": 0.0,
+    "mnth": 0.0,
+    "hr": 0.0,
+    "holiday": 0.0,
+    "weekday": 0.0,
+    "workingday": 0.0,
+    "weathersit": 0.0,
+    "temp": 0.0,
+    "atemp": 0.0,
+    "hum": 0.0,
+    "windspeed": 0.0,
+    "casual": 0.0,
+    "registered": 0.0
+  },
+  "feature_shapley_skipped": true,
+  "error_type_shapley": {
+    "semantic": 157.4598527083395,
+    "syntactic": 721.5807881991838
+  }
+}

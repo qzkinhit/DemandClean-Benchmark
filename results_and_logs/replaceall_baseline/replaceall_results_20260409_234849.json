@@ -1,0 +1,86 @@
+[
+  {
+    "dataset": "breast_cancer",
+    "task_type": "classification",
+    "n_errors": 2244,
+    "n_train": 419,
+    "n_test": 140,
+    "authenticity": 0.562185096791302,
+    "elapsed_time": 1.98,
+    "truth_cost": 0,
+    "replaceall": {
+      "rf_accuracy": 0.9785714285714285,
+      "rf_f1": 0.9783123280660226,
+      "lr_accuracy": 0.9785714285714285,
+      "lr_f1": 0.9783123280660226
+    },
+    "nofix": {
+      "rf_accuracy": 0.9928571428571429,
+      "rf_f1": 0.992829703201893,
+      "lr_accuracy": 0.9571428571428572,
+      "lr_f1": 0.9560295385538106
+    },
+    "fullfix": {
+      "rf_accuracy": 0.9928571428571429,
+      "rf_f1": 0.992829703201893,
+      "lr_accuracy": 0.9857142857142858,
+      "lr_f1": 0.9856018568889855
+    }
+  },
+  {
+    "dataset": "soilmoisture",
+    "task_type": "regression",
+    "n_errors": 15989,
+    "n_train": 407,
+    "n_test": 136,
+    "authenticity": 0.6906691946062025,
+    "elapsed_time": 69.45,
+    "truth_cost": 0,
+    "replaceall": {
+      "rf_mse": 1.2276097733823517,
+      "rf_r2": 0.9173750657994586,
+      "ridge_mse": 3.019948480288797,
+      "ridge_r2": 0.7967407478474267
+    },
+    "nofix": {
+      "rf_mse": 1.661853298897057,
+      "rf_r2": 0.8881480724171823,
+      "ridge_mse": 5.992064959973379,
+      "ridge_r2": 0.5967008541492215
+    },
+    "fullfix": {
+      "rf_mse": 0.7591868189705887,
+      "rf_r2": 0.9489025239750791,
+      "ridge_mse": 2.153693494615798,
+      "ridge_r2": 0.855044504256044
+    }
+  },
+  {
+    "dataset": "bike",
+    "task_type": "regression",
+    "n_errors": 113428,
+    "n_train": 10427,
+    "n_test": 3476,
+    "authenticity": 0.3729484351523289,
+    "elapsed_time": 445.06,
+    "truth_cost": 0,
+    "replaceall": {
+      "rf_mse": 1900.5067035960876,
+      "rf_r2": 0.9395228332670609,
+      "ridge_mse": 1416.2780325294295,
+      "ridge_r2": 0.9549317650122402
+    },
+    "nofix": {
+      "rf_mse": 110.91921521864211,
+      "rf_r2": 0.9964703729484502,
+      "ridge_mse": 4421.983382690743,
+      "ridge_r2": 0.8592854075077703
+    },
+    "fullfix": {
+      "rf_mse": 7.148902215189874,
+      "rf_r2": 0.9997725104834372,
+      "ridge_mse": 0.00100244426911542,
+      "ridge_r2": 0.9999999681006181
+    }
+  }
+]

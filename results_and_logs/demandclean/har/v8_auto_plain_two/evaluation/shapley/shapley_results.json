@@ -1,0 +1,27 @@
+{
+  "meta": {
+    "n_samples": 5000,
+    "n_features": 3,
+    "n_errors": 2972,
+    "task_type": "clustering",
+    "model_type": "kmeans",
+    "mc_samples": 50
+  },
+  "action_shapley": {
+    "no_action": -0.0030119674335260618,
+    "repair_value": 0.03136982810581038,
+    "delete": -0.041748017008224385,
+    "replace_nearby": 0.015148251578432886
+  },
+  "feature_shapley": {
+    "x": 0.0,
+    "y": 0.0,
+    "z": 0.0
+  },
+  "feature_shapley_skipped": true,
+  "error_type_shapley": {
+    "missing": 0.008248575137516534,
+    "syntactic": 0.21492344586039502,
+    "label_noise": 0.0015640264244994873
+  }
+}

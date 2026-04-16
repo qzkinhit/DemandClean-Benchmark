@@ -1,0 +1,272 @@
+{
+  "version_name": "v6_auto_dueling_two",
+  "dataset": "smartfactory",
+  "task_type": "classification",
+  "model_type": "random_forest",
+  "detector_mode": "auto",
+  "agent_type": "dueling_two_stage",
+  "inference_mode": "two_phase",
+  "n_episodes": 400,
+  "data_shape": [
+    23645,
+    18
+  ],
+  "keep_mask": "[ True False  True ...  True  True  True]",
+  "ground_truth_used": 0,
+  "cleaned_shape": [
+    22883,
+    18
+  ],
+  "detector_accuracy": {
+    "overall": {
+      "precision": 0.9607205742922931,
+      "recall": 1.0,
+      "f1": 0.9799668416689693,
+      "tp": 7093,
+      "fp": 290,
+      "fn": 0,
+      "gt_count": 7093,
+      "det_count": 7383
+    },
+    "missing": {
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0,
+      "tp": 7093,
+      "fp": 0,
+      "fn": 0,
+      "gt_count": 7093,
+      "det_count": 7093
+    },
+    "syntactic": {
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0,
+      "tp": 0,
+      "fp": 290,
+      "fn": 0,
+      "gt_count": 0,
+      "det_count": 290
+    },
+    "semantic": {
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0,
+      "tp": 0,
+      "fp": 0,
+      "fn": 0,
+      "gt_count": 0,
+      "det_count": 0
+    },
+    "value_error_combined": {
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0,
+      "tp": 0,
+      "fp": 290,
+      "fn": 0,
+      "gt_count": 0,
+      "det_count": 290
+    },
+    "ground_truth_total": 7093,
+    "detected_total": 7383
+  },
+  "baseline_results": {
+    "NoFix": {
+      "n_samples": 23645,
+      "rf_accuracy": 0.9706,
+      "rf_f1": 0.9704,
+      "lr_accuracy": 0.7701,
+      "lr_f1": 0.675,
+      "auth": 0.7003,
+      "div": 0.0,
+      "cost": 0
+    },
+    "DeleteAll": {
+      "n_samples": 16552,
+      "rf_accuracy": 0.9622,
+      "rf_f1": 0.9618,
+      "lr_accuracy": 0.7514,
+      "lr_f1": 0.652,
+      "auth": 0.0004,
+      "div": 0.7,
+      "cost": 0
+    },
+    "DeleteFix": {
+      "n_samples": 16342,
+      "rf_accuracy": 0.9673,
+      "rf_f1": 0.9669,
+      "lr_accuracy": 0.7611,
+      "lr_f1": 0.6662,
+      "auth": 0.0004,
+      "div": 0.0,
+      "cost": 7303
+    },
+    "ReplaceAll": {
+      "n_samples": 23645,
+      "rf_accuracy": 0.9706,
+      "rf_f1": 0.9704,
+      "lr_accuracy": 0.7701,
+      "lr_f1": 0.675,
+      "auth": 0.7003,
+      "div": 0.0,
+      "cost": 0
+    },
+    "DemandClean": {
+      "n_samples": 22883,
+      "rf_accuracy": 0.9718,
+      "rf_f1": 0.9715,
+      "lr_accuracy": 0.7619,
+      "lr_f1": 0.6682,
+      "auth": 0.0006,
+      "div": 0.0,
+      "cost": 0
+    },
+    "FullFix": {
+      "n_samples": 23645,
+      "rf_accuracy": 0.9808,
+      "rf_f1": 0.9808,
+      "lr_accuracy": 0.7739,
+      "lr_f1": 0.6818,
+      "auth": 1.0,
+      "div": 0.0,
+      "cost": 23645
+    }
+  },
+  "tolerance_results": {
+    "rf": {
+      "P_clean": 0.980757031084796,
+      "P_dirty": 0.9775851131317403,
+      "P_dc": 0.6982448720659759,
+      "tolerance_prior": 0.7142548128920614,
+      "tolerance_post": -88.066666666667
+    },
+    "lr": {
+      "P_clean": 0.7739479805455699,
+      "P_dirty": 0.771198984986255,
+      "P_dc": 0.7714104461831254,
+      "tolerance_prior": 1.0002741979709349,
+      "tolerance_post": 0.07692307692305829
+    }
+  },
+  "shapley_results": {
+    "meta": {
+      "n_samples": 5000,
+      "n_features": 18,
+      "n_errors": 1562,
+      "task_type": "classification",
+      "model_type": "random_forest",
+      "mc_samples": 50
+    },
+    "action_shapley": {
+      "no_action": 0.0016245446265937824,
+      "repair_value": -0.001646087291579094,
+      "delete": 0.017150535939470374,
+      "replace_nearby": -0.005513608659100481
+    },
+    "feature_shapley": {
+      "i_w_blo_weg": 0.0,
+      "o_w_blo_power": 0.0,
+      "o_w_blo_voltage": 0.0,
+      "i_w_bhl_weg": 0.0,
+      "o_w_bhl_power": 0.0,
+      "o_w_bhl_voltage": 0.0,
+      "i_w_bhr_weg": 0.0,
+      "o_w_bhr_power": 0.0,
+      "o_w_bhr_voltage": 0.0,
+      "i_w_bru_weg": 0.0,
+      "o_w_bru_power": 0.0,
+      "o_w_bru_voltage": 0.0,
+      "i_w_hr_weg": 0.0,
+      "o_w_hr_power": 0.0,
+      "o_w_hr_voltage": 0.0,
+      "i_w_hl_weg": 0.0,
+      "o_w_hl_power": 0.0,
+      "o_w_hl_voltage": 0.0
+    },
+    "feature_shapley_skipped": true,
+    "error_type_shapley": {
+      "missing": 0.011066571212270893,
+      "syntactic": -0.005605032750732375
+    },
+    "report_text": "# Shapley Value Analysis Report\n\n- 数据规模: 5000 行 × 18 列\n- 错误总数: 1562\n- 任务类型: classification (random_forest)\n- MC 采样次数: 50\n\n## 维度 1: 动作重要性 (Action Importance)\n\n| 排名 | 动作 | Shapley 值 | 占比 | 方向 |\n|------|------|-----------|------|------|\n| 1 | delete | +0.017151 | 66.1% | ↑ 正贡献 |\n| 2 | no_action | +0.001625 | 6.3% | ↑ 正贡献 |\n| 3 | repair_value | -0.001646 | 6.3% | ↓ 负贡献 |\n| 4 | replace_nearby | -0.005514 | 21.3% | ↓ 负贡献 |\n\n**结论**: 最有效的清洗动作是 **delete**\n（repair_value, replace_nearby 对性能有负面影响，建议减少使用）\n\n## 维度 2: 特征重要性 (Feature Importance)\n\n| 排名 | 特征 | Shapley 值 | 占比 | 清洗价值 |\n|------|------|-----------|------|---------|\n| 1 | i_w_blo_weg | +0.000000 | 0.0% | — 可忽略 |\n| 2 | o_w_blo_power | +0.000000 | 0.0% | — 可忽略 |\n| 3 | o_w_blo_voltage | +0.000000 | 0.0% | — 可忽略 |\n| 4 | i_w_bhl_weg | +0.000000 | 0.0% | — 可忽略 |\n| 5 | o_w_bhl_power | +0.000000 | 0.0% | — 可忽略 |\n| 6 | o_w_bhl_voltage | +0.000000 | 0.0% | — 可忽略 |\n| 7 | i_w_bhr_weg | +0.000000 | 0.0% | — 可忽略 |\n| 8 | o_w_bhr_power | +0.000000 | 0.0% | — 可忽略 |\n| 9 | o_w_bhr_voltage | +0.000000 | 0.0% | — 可忽略 |\n| 10 | i_w_bru_weg | +0.000000 | 0.0% | — 可忽略 |\n| 11 | o_w_bru_power | +0.000000 | 0.0% | — 可忽略 |\n| 12 | o_w_bru_voltage | +0.000000 | 0.0% | — 可忽略 |\n| 13 | i_w_hr_weg | +0.000000 | 0.0% | — 可忽略 |\n| 14 | o_w_hr_power | +0.000000 | 0.0% | — 可忽略 |\n| 15 | o_w_hr_voltage | +0.000000 | 0.0% | — 可忽略 |\n| 16 | i_w_hl_weg | +0.000000 | 0.0% | — 可忽略 |\n| 17 | o_w_hl_power | +0.000000 | 0.0% | — 可忽略 |\n| 18 | o_w_hl_voltage | +0.000000 | 0.0% | — 可忽略 |\n\n**结论**: \n- 清洗价值极低的特征: i_w_blo_weg, o_w_blo_power, o_w_blo_voltage（清洗它们几乎不影响性能）\n\n## 维度 3: 错误类型重要性 (Error Type Importance)\n\n| 排名 | 错误类型 | Shapley 值 | 占比 | 优先级 |\n|------|---------|-----------|------|--------|\n| 1 | missing | +0.011067 | 66.4% | 🔴 高 |\n| 2 | syntactic | -0.005605 | 33.6% | 🟡 中 |\n\n**结论**: 对下游性能影响最大的错误类型是 **missing**，检测器应优先识别此类错误。\n\n## 综合清洗建议\n\n"
+  },
+  "getscoreml_results": {
+    "task_name": "v6_auto_dueling_two",
+    "task_type": "classification",
+    "total_records": 23645,
+    "total_cells": 472900,
+    "cleaned_rows": 22883,
+    "accuracy": 0.0,
+    "precision": 0.0,
+    "recall": 0.0,
+    "f1_score": 0.0,
+    "edr": -7.065779409515068,
+    "hybrid_distance": 0.05641137012273505,
+    "r_edr": -2.4933455713630104,
+    "ml_rf_accuracy": 0.9718155997378195,
+    "ml_rf_f1": 0.9715180343043253,
+    "ml_rf_precision": 0.9717401417122317,
+    "ml_rf_recall": 0.9718155997378195,
+    "ml_lr_accuracy": 0.7618527419707232,
+    "ml_lr_f1": 0.6682237770732677,
+    "ml_lr_precision": 0.6784497766994081,
+    "ml_lr_recall": 0.7618527419707232,
+    "ml_svm_accuracy": 0.7644745466462749,
+    "ml_svm_f1": 0.6628741565675623,
+    "ml_svm_precision": 0.8199710359829558,
+    "ml_svm_recall": 0.7644745466462749,
+    "ml_knn_accuracy": 0.8066419051780642,
+    "ml_knn_f1": 0.7974568871191559,
+    "ml_knn_precision": 0.7941338960025056,
+    "ml_knn_recall": 0.8066419051780642,
+    "ml_dt_accuracy": 0.952152064671182,
+    "ml_dt_f1": 0.9522053771198595,
+    "ml_dt_precision": 0.9522646020193375,
+    "ml_dt_recall": 0.952152064671182,
+    "ml_gb_accuracy": 0.7913480445706795,
+    "ml_gb_f1": 0.7283320380392034,
+    "ml_gb_precision": 0.8040227372879671,
+    "ml_gb_recall": 0.7913480445706795,
+    "tolerance_P_do_nothing": 0.7483611757242546,
+    "tolerance_P_demand_clean": 0.9674459252785668,
+    "tolerance_P_repair_all": 0.9816028758722775,
+    "tolerance_tolerance_prior": 1.2927526930325917,
+    "tolerance_tolerance_post": 0.9393035182614162,
+    "snoopy_snoopy_available": true,
+    "snoopy_upper_bound_dirty": 0.7222668640304504,
+    "snoopy_upper_bound_cleaned": 0.7157254996478287,
+    "snoopy_upper_bound_clean": 0.7009938676252907,
+    "snoopy_upper_bound_improvement": 0.3074961447854648,
+    "ideal_total_changes": 75609,
+    "ideal_correct_repairs": 0,
+    "ideal_wrong_repairs": 75609,
+    "ideal_deleted_rows": 762,
+    "ideal_ideal_min_ground_truth_cost": 0,
+    "ideal_repair_accuracy": 0.0,
+    "method_type": 2,
+    "ground_truth_cost": 0,
+    "cost_ratio": 0.0,
+    "total_samples": 23645,
+    "labeled_samples": 0,
+    "validation_samples": 0
+  },
+  "raha_cost": {
+    "n_col_chunks": 1,
+    "n_row_chunks": 2,
+    "labeling_budget": 20,
+    "raha_total_cost": 40,
+    "total_labeled_rows": 0
+  },
+  "ground_truth_cost_summary": {
+    "raha_detection_cost": 40,
+    "agent_repair_cost": 0,
+    "total_cost": 40,
+    "total_data_cells": 425610,
+    "cost_ratio": 9.4e-05,
+    "apply_raha_truth": true,
+    "count_raha_cost": true
+  },
+  "elapsed_time": 4031.99,
+  "vis_time": 89.84
+}

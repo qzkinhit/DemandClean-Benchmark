@@ -1,0 +1,21 @@
+Attribute: index, MSE: nan, Jaccard: 0.0
+检查你指定的属性 Clump Thickness 是否为数值型！
+Attribute: Clump Thickness, MSE: nan, Jaccard: 0.2520378051063161
+检查你指定的属性 Uniformity of Cell Size 是否为数值型！
+Attribute: Uniformity of Cell Size, MSE: nan, Jaccard: 0.4509870963298972
+检查你指定的属性 Uniformity of Cell Shape 是否为数值型！
+Attribute: Uniformity of Cell Shape, MSE: nan, Jaccard: 0.4251983720443473
+检查你指定的属性 Marginal Adhesion 是否为数值型！
+Attribute: Marginal Adhesion, MSE: nan, Jaccard: 0.07124890979606224
+检查你指定的属性 Single Epithelial Cell Size 是否为数值型！
+Attribute: Single Epithelial Cell Size, MSE: nan, Jaccard: 0.19285631248546842
+检查你指定的属性 Bare Nuclei 是否为数值型！
+Attribute: Bare Nuclei, MSE: nan, Jaccard: 0.3376320058683072
+检查你指定的属性 Bland Chromatin 是否为数值型！
+Attribute: Bland Chromatin, MSE: nan, Jaccard: 0.11602639296187667
+检查你指定的属性 Normal Nucleoli 是否为数值型！
+Attribute: Normal Nucleoli, MSE: nan, Jaccard: 0.27626568494165626
+检查你指定的属性 Mitoses 是否为数值型！
+Attribute: Mitoses, MSE: nan, Jaccard: 0.13911712833281464
+Attribute: class, MSE: nan, Jaccard: 0.02412456562416465
+加权混合距离: 0.10388610334049594

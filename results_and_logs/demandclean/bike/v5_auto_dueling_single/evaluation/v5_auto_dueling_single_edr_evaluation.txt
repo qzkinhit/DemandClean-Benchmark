@@ -1,0 +1,71 @@
+Attribute: index
+Distance (Dirty to Clean): 0
+Distance (Repaired to Clean): 0
+========================================
+Attribute: dteday
+Distance (Dirty to Clean): 6752
+Distance (Repaired to Clean): 6720
+========================================
+Attribute: season
+Distance (Dirty to Clean): 4308
+Distance (Repaired to Clean): 4376
+========================================
+Attribute: yr
+Distance (Dirty to Clean): 491
+Distance (Repaired to Clean): 187
+========================================
+Attribute: mnth
+Distance (Dirty to Clean): 4339
+Distance (Repaired to Clean): 4678
+========================================
+Attribute: hr
+Distance (Dirty to Clean): 483
+Distance (Repaired to Clean): 827
+========================================
+Attribute: holiday
+Distance (Dirty to Clean): 4393
+Distance (Repaired to Clean): 3656
+========================================
+Attribute: weekday
+Distance (Dirty to Clean): 482
+Distance (Repaired to Clean): 369
+========================================
+Attribute: workingday
+Distance (Dirty to Clean): 762
+Distance (Repaired to Clean): 138
+========================================
+Attribute: weathersit
+Distance (Dirty to Clean): 462
+Distance (Repaired to Clean): 269
+========================================
+Attribute: temp
+Distance (Dirty to Clean): 508
+Distance (Repaired to Clean): 872
+========================================
+Attribute: atemp
+Distance (Dirty to Clean): 526
+Distance (Repaired to Clean): 579
+========================================
+Attribute: hum
+Distance (Dirty to Clean): 467
+Distance (Repaired to Clean): 397
+========================================
+Attribute: windspeed
+Distance (Dirty to Clean): 474
+Distance (Repaired to Clean): 576
+========================================
+Attribute: casual
+Distance (Dirty to Clean): 509
+Distance (Repaired to Clean): 320
+========================================
+Attribute: registered
+Distance (Dirty to Clean): 515
+Distance (Repaired to Clean): 597
+========================================
+Attribute: cnt
+Distance (Dirty to Clean): 0
+Distance (Repaired to Clean): 0
+========================================
+总的脏数据到干净数据距离: 25471
+总的修复后数据到干净数据距离: 24561
+错误减少率 (EDR): 0.03572690510776962

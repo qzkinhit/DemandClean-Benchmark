@@ -1,0 +1,125 @@
+DemandClean 结果摘要 - v3_oracle_plain_single
+============================================================
+
+数据集: har
+检测器: oracle
+Agent: single_stage
+推理模式: single_phase
+任务: clustering (kmeans)
+训练轮数: 50
+执行时间: 5979.68 秒
+数据维度: (70000, 3) -> (46799, 3)
+真值成本: 5077
+
+Baseline 对比:
+------------------------------------------------------------
+  NoFix: {'n_samples': 67248, 'kmeans_silhouette': 0.51, 'kmeans_ari': 0.6685}
+  DeleteAll: {'n_samples': 60949, 'kmeans_silhouette': 0.5222, 'kmeans_ari': 0.6679}
+  DeleteFix: {'n_samples': 37361, 'kmeans_silhouette': 0.9085, 'kmeans_ari': 1.0}
+  ReplaceAll: {'n_samples': 67248, 'kmeans_silhouette': 0.51, 'kmeans_ari': 0.6685}
+  DemandClean: {'n_samples': 46382, 'kmeans_silhouette': 0.7868, 'kmeans_ari': 0.9721}
+  FullFix: {'n_samples': 69335, 'kmeans_silhouette': 0.9096, 'kmeans_ari': 1.0}
+
+模型容忍度:
+------------------------------------------------------------
+  kmeans: {'P_clean': 0.9089880051537449, 'P_dirty': 0.5105479451261414, 'P_dc': 0.7553152871240958, 'tolerance_prior': 1.479420873856381, 'tolerance_post': 0.6143140877475953}
+
+检测器准确率:
+------------------------------------------------------------
+  overall: {'precision': 1.0, 'recall': 1.0, 'f1': 1.0, 'tp': 37035, 'fp': 0, 'fn': 0, 'gt_count': 37035, 'det_count': 37035}
+  missing: {'precision': 1.0, 'recall': 1.0, 'f1': 1.0, 'tp': 6360, 'fp': 0, 'fn': 0, 'gt_count': 6360, 'det_count': 6360}
+  syntactic: {'precision': 1.0, 'recall': 0.45555012224938873, 'f1': 0.6259490694080494, 'tp': 13974, 'fp': 0, 'fn': 16701, 'gt_count': 30675, 'det_count': 13974}
+  semantic: {'precision': 1.0, 'recall': 0.5444498777506113, 'f1': 0.7050405268490375, 'tp': 16701, 'fp': 0, 'fn': 13974, 'gt_count': 30675, 'det_count': 16701}
+  value_error_combined: {'precision': 1.0, 'recall': 1.0, 'f1': 1.0, 'tp': 30675, 'fp': 0, 'fn': 0, 'gt_count': 30675, 'det_count': 30675}
+  ground_truth_total: 37035
+  detected_total: 37035
+
+Clean4MLBaseline 统一测评:
+------------------------------------------------------------
+  accuracy: 0.11493795005362341
+  recall: 0.3872599628329548
+  f1_score: 0.17726424230302132
+  edr: -1.9820359281437125
+  hybrid_distance: 0.12856122552076193
+  r_edr: -1.7263506063947078
+
+  下游任务性能:
+    ml_kmeans_silhouette: 0.8033033393617741
+    ml_kmeans_ari: 0.9101319843238301
+    ml_agglomerative_silhouette: 0.7875693414521554
+    ml_agglomerative_ari: 0.8356104224746651
+    ml_spectral_silhouette: 0.7877005430138238
+    ml_spectral_ari: 0.9305850161575756
+
+  容忍度:
+    tolerance_P_do_nothing: 0.6135004124445833
+    tolerance_P_demand_clean: 0.7831695978886187
+    tolerance_P_repair_all: 0.6769650700417302
+    tolerance_tolerance_prior: 1.276559203551247
+    tolerance_tolerance_post: 2.6734436435636417
+
+  Snoopy 上界:
+    snoopy_snoopy_available: True
+    snoopy_upper_bound_dirty: 0.6135004124445833
+    snoopy_upper_bound_cleaned: 0.7831695978886187
+    snoopy_upper_bound_clean: 0.6769650700417302
+    snoopy_upper_bound_improvement: 2.6734436435636417
+
+  真值成本:
+    method_type: 1
+    ground_truth_cost: 5077
+    ideal_total_changes: 32635
+    ideal_correct_repairs: 3751
+    ideal_wrong_repairs: 28884
+    ideal_deleted_rows: 23201
+    ideal_ideal_min_ground_truth_cost: 3751
+    ideal_repair_accuracy: 0.11493795005362341
+
+============================================================
+Shapley 贡献分析:
+============================================================
+# Shapley Value Analysis Report
+
+- 数据规模: 5000 行 × 3 列
+- 错误总数: 2792
+- 任务类型: clustering (kmeans)
+- MC 采样次数: 50
+
+## 维度 1: 动作重要性 (Action Importance)
+
+| 排名 | 动作 | Shapley 值 | 占比 | 方向 |
+|------|------|-----------|------|------|
+| 1 | delete | +0.227969 | 95.0% | ↑ 正贡献 |
+| 2 | repair_value | +0.005520 | 2.3% | ↑ 正贡献 |
+| 3 | no_action | +0.004323 | 1.8% | ↑ 正贡献 |
+| 4 | replace_nearby | -0.002279 | 0.9% | ↓ 负贡献 |
+
+**结论**: 最有效的清洗动作是 **delete**
+（replace_nearby 对性能有负面影响，建议减少使用）
+
+## 维度 2: 特征重要性 (Feature Importance)
+
+| 排名 | 特征 | Shapley 值 | 占比 | 清洗价值 |
+|------|------|-----------|------|---------|
+| 1 | z | +0.089132 | 38.5% | ★ 高价值 |
+| 2 | y | +0.089054 | 38.4% | ★ 高价值 |
+| 3 | x | +0.053516 | 23.1% | ★ 高价值 |
+
+**结论**: 
+- 最值得清洗的特征: **z, y, x**（优先投入清洗预算）
+
+## 维度 3: 错误类型重要性 (Error Type Importance)
+
+| 排名 | 错误类型 | Shapley 值 | 占比 | 优先级 |
+|------|---------|-----------|------|--------|
+| 1 | syntactic | +0.102044 | 46.9% | 🔴 高 |
+| 2 | semantic | +0.080762 | 37.1% | 🟡 中 |
+| 3 | missing | +0.032194 | 14.8% | 🟢 低 |
+| 4 | label_noise | +0.002619 | 1.2% | 🟢 低 |
+
+**结论**: 对下游性能影响最大的错误类型是 **syntactic**，检测器应优先识别此类错误。
+
+## 综合清洗建议
+
+在有限的真值预算下，建议优先对 **z, y, x** 列中的 **syntactic** 类型错误执行 **delete** 操作，以最大化下游 clustering 任务性能。
+

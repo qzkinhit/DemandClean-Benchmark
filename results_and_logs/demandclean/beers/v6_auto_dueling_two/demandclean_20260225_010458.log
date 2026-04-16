@@ -1,0 +1,40 @@
+[2026-02-25 01:04:58,352] INFO - demandclean: ==================================================
+[2026-02-25 01:04:58,352] INFO - demandclean: DemandClean 训练开始
+[2026-02-25 01:04:58,352] INFO - demandclean:   检测器模式: auto
+[2026-02-25 01:04:58,352] INFO - demandclean:   训练模式: clean_base
+[2026-02-25 01:04:58,352] INFO - demandclean:   Agent类型: dueling_two_stage
+[2026-02-25 01:04:58,352] INFO - demandclean:   推理模式: two_phase
+[2026-02-25 01:04:58,352] INFO - demandclean:   FD规则: 4
+[2026-02-25 01:04:58,352] INFO - demandclean:   丰富规则: 有
+[2026-02-25 01:04:58,352] INFO - demandclean: ==================================================
+[2026-02-25 01:04:58,352] INFO - demandclean: 
+[Step 1] 初始化错误检测器...
+[2026-02-25 01:04:58,353] INFO - demandclean: 
+[Step 1.5] 运行 RAHA 检测获取标注行...
+[2026-02-25 01:05:27,923] INFO - demandclean: 
+[Step 2] 训练 DQN Agent...
+[2026-02-25 01:05:27,924] INFO - demandclean: 开始训练 (dueling_two_stage Agent, mode=clean_base)
+[2026-02-25 01:05:27,924] INFO - demandclean:   任务类型: classification
+[2026-02-25 01:05:27,924] INFO - demandclean:   模型类型: random_forest
+[2026-02-25 01:05:27,924] INFO - demandclean:   原始数据: 2410 行
+[2026-02-25 01:05:27,924] INFO - demandclean:   基准数据: 1326 行
+[2026-02-25 01:05:27,924] INFO - demandclean:   标签注入: 检测到 78 个标签错误, rate=0.032, symmetric=True
+[2026-02-25 01:05:27,924] INFO - demandclean:   自适应注入比例范围 (基于检测结果):
+[2026-02-25 01:05:27,924] INFO - demandclean:     missing: (0.0496, 0.0744)
+[2026-02-25 01:05:27,924] INFO - demandclean:     semantic: (0.0075, 0.0125)
+[2026-02-25 01:05:27,924] INFO - demandclean:     syntactic: (0.1284, 0.1926)
+[2026-02-25 01:05:27,925] INFO - demandclean:     label: (0.0259, 0.0388)
+[2026-02-25 01:05:28,576] INFO - demandclean:   ErrorInjector: rich_rules=True, domain=3, cfd=0, fd=4
+[2026-02-25 01:05:28,576] INFO - demandclean:   开始训练 DQN (3 episodes, 起始轮=0)...
+[2026-02-25 01:05:29,406] INFO - demandclean: 
+已恢复最佳模型权重 (Episode 3, Score=0.0000, Cost=52)
+[2026-02-25 01:05:29,406] INFO - demandclean: 
+训练完成! 最佳分数: 0.0000 (共 3 episodes)
+[2026-02-25 01:05:29,406] INFO - demandclean:   最佳动作分布: {'no_action': 106, 'repair_value': 52, 'delete': 106, 'replace_nearby': 62}
+[2026-02-25 01:05:29,406] INFO - demandclean: 
+训练完成!
+[2026-02-25 01:05:29,412] INFO - demandclean: 模型已保存: /Users/qianzekai/PycharmProjects/TolerDM/results/demandclean/beers/v6_auto_dueling_two/model/v6_auto_dueling_two_agent.pt
+[2026-02-25 01:05:29,412] INFO - demandclean: 
+==================================================
+[2026-02-25 01:05:29,412] INFO - demandclean: 两阶段推理 - 第一阶段 (Plan)
+[2026-02-25 01:05:29,412] INFO - demandclean: ==================================================

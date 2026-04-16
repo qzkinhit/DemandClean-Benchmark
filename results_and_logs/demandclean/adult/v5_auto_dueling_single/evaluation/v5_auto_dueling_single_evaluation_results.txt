@@ -1,0 +1,58 @@
+Clean4MLBaseline 统一测评报告
+任务名称: v5_auto_dueling_single
+======================================================================
+
+[传统清洗指标]
+  precision: 0.00010764069535889201
+  accuracy: 0.00010764069535889201
+  recall: 0.017475728155339806
+  f1_score: 0.00021396349423345246
+  edr: -162.31747572815533
+  hybrid_distance: 0.24394636722388618
+  r_edr: -25.342718446601943
+
+[下游任务性能]
+  ml_rf_accuracy: 0.8527363184079602
+  ml_rf_f1: 0.8512066642156196
+  ml_rf_precision: 0.8501439574197523
+  ml_rf_recall: 0.8527363184079602
+  ml_lr_accuracy: 0.820563847429519
+  ml_lr_f1: 0.8087376127365885
+  ml_lr_precision: 0.8100175694292423
+  ml_lr_recall: 0.820563847429519
+  ml_svm_accuracy: 0.8482034273079049
+  ml_svm_f1: 0.8414872174778271
+  ml_svm_precision: 0.8417721076873212
+  ml_svm_recall: 0.8482034273079049
+  ml_knn_accuracy: 0.8187949143173023
+  ml_knn_f1: 0.817835576138299
+  ml_knn_precision: 0.816992168270006
+  ml_knn_recall: 0.8187949143173023
+  ml_dt_accuracy: 0.7724709784411277
+  ml_dt_f1: 0.7795417815106792
+  ml_dt_precision: 0.7917641416233595
+  ml_dt_recall: 0.7724709784411277
+  ml_gb_accuracy: 0.8689883913764511
+  ml_gb_f1: 0.8648634199638964
+  ml_gb_precision: 0.8647029522183621
+  ml_gb_recall: 0.8689883913764511
+
+[模型容忍度]
+  tolerance_P_do_nothing: 0.8518518518518519
+  tolerance_P_demand_clean: 0.8527363184079602
+  tolerance_P_repair_all: 0.8564953012714207
+  tolerance_tolerance_prior: 1.0010382868267358
+  tolerance_tolerance_post: 0.19047619047617909
+
+[Snoopy上界评估]
+  snoopy_snoopy_available: True
+  snoopy_upper_bound_dirty: 0.8143957962029418
+  snoopy_upper_bound_cleaned: 0.8126267408367779
+  snoopy_upper_bound_clean: 0.8499982307137097
+  snoopy_upper_bound_improvement: -0.0496891684648376
+
+[真值使用成本]
+  方法类型: Type 1
+  实际真值使用: 857
+  理想最小成本: 0
+  修复准确率: 0.0000

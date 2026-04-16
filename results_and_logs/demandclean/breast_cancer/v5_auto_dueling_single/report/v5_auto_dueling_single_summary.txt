@@ -1,0 +1,174 @@
+DemandClean 结果摘要 - v5_auto_dueling_single
+============================================================
+
+数据集: breast_cancer
+检测器: auto
+Agent: dueling_two_stage
+推理模式: single_phase
+任务: classification (random_forest)
+训练轮数: 300
+执行时间: 88.11 秒
+可视化耗时: 163.70 秒
+数据维度: (419, 9) -> (357, 9)
+真值成本: 41
+
+步骤计时:
+------------------------------------------------------------
+  Step 1 初始化: 0.00s
+  Step 2 训练: 76.02s
+  Step 3 推理: 8.52s
+  Step 4 检测器评估: 0.01s
+  Step 5 Baseline评估: 0.84s
+  Step 6 容忍度评估: 0.66s
+  Step 7 Shapley分析: 162.73s
+  Step 8 训练曲线: 0.74s
+  Step 9 统一测评: 2.28s
+  Step 10 成本汇总: 0.00s
+
+Baseline 对比:
+------------------------------------------------------------
+  NoFix: {'n_samples': 419, 'n_test': 140, 'rf_accuracy': 0.9929, 'rf_f1': 0.9928, 'lr_accuracy': 0.9571, 'lr_f1': 0.956, 'auth': 0.42, 'div': 0.9029, 'cost': 0}
+  DeleteAll: {'n_samples': 280, 'n_test': 140, 'rf_accuracy': 1.0, 'rf_f1': 1.0, 'lr_accuracy': 0.9571, 'lr_f1': 0.956, 'auth': 0.025, 'div': 0.6683, 'cost': 0}
+  DeleteFix: {'n_samples': 164, 'n_test': 140, 'rf_accuracy': 0.9857, 'rf_f1': 0.9858, 'lr_accuracy': 0.9786, 'lr_f1': 0.9783, 'auth': 0.0061, 'div': 0.0007, 'cost': 255}
+  ReplaceAll: {'n_samples': 419, 'n_test': 140, 'rf_accuracy': 0.9857, 'rf_f1': 0.9856, 'lr_accuracy': 0.9857, 'lr_f1': 0.9856, 'auth': 0.4248, 'div': 0.0, 'cost': 0}
+  DemandClean: {'n_samples': 357, 'n_test': 140, 'rf_accuracy': 0.9929, 'rf_f1': 0.9928, 'lr_accuracy': 0.9857, 'lr_f1': 0.9857, 'auth': 0.0084, 'div': 0.0435, 'cost': 41}
+  FullFix: {'n_samples': 419, 'n_test': 140, 'rf_accuracy': 0.9929, 'rf_f1': 0.9928, 'lr_accuracy': 0.9857, 'lr_f1': 0.9856, 'auth': 1.0, 'div': 0.0, 'cost': 419}
+
+模型容忍度:
+------------------------------------------------------------
+  rf: {'P_clean': 1.0, 'P_dirty': 1.0, 'P_dc': 0.6785714285714286, 'tolerance_prior': 0.6785714285714286, 'tolerance_post': 1.0}
+  lr: {'P_clean': 1.0, 'P_dirty': 0.9880952380952381, 'P_dc': 0.7142857142857143, 'tolerance_prior': 0.7228915662650602, 'tolerance_post': -23.000000000000085}
+
+检测器准确率:
+------------------------------------------------------------
+  overall: {'precision': 0.6738544474393531, 'recall': 0.7763975155279503, 'f1': 0.7215007215007214, 'tp': 250, 'fp': 121, 'fn': 72, 'gt_count': 322, 'det_count': 371}
+  missing: {'precision': 1.0, 'recall': 1.0, 'f1': 1.0, 'tp': 144, 'fp': 0, 'fn': 0, 'gt_count': 144, 'det_count': 144}
+  syntactic: {'precision': 0.5534591194968553, 'recall': 0.4943820224719101, 'f1': 0.5222551928783382, 'tp': 88, 'fp': 71, 'fn': 90, 'gt_count': 178, 'det_count': 159}
+  semantic: {'precision': 0.2647058823529412, 'recall': 0.10112359550561797, 'f1': 0.14634146341463414, 'tp': 18, 'fp': 50, 'fn': 160, 'gt_count': 178, 'det_count': 68}
+  value_error_combined: {'precision': 0.4669603524229075, 'recall': 0.5955056179775281, 'f1': 0.5234567901234569, 'tp': 106, 'fp': 121, 'fn': 72, 'gt_count': 178, 'det_count': 227}
+  ground_truth_total: 322
+  detected_total: 371
+
+Clean4MLBaseline 统一测评:
+------------------------------------------------------------
+  accuracy: 0.34782608695652173
+  recall: 0.2845849802371542
+  f1_score: 0.3130434782113696
+  edr: 0.17391304347826086
+  hybrid_distance: 0.10388610334049594
+  r_edr: 0.17676767676767677
+
+  下游任务性能:
+    ml_rf_accuracy: 0.9928571428571429
+    ml_rf_f1: 0.992829703201893
+    ml_rf_precision: 0.992927864214993
+    ml_rf_recall: 0.9928571428571429
+    ml_lr_accuracy: 0.9857142857142858
+    ml_lr_f1: 0.9857142857142858
+    ml_lr_precision: 0.9857142857142858
+    ml_lr_recall: 0.9857142857142858
+    ml_svm_accuracy: 0.9928571428571429
+    ml_svm_f1: 0.992829703201893
+    ml_svm_precision: 0.992927864214993
+    ml_svm_recall: 0.9928571428571429
+    ml_knn_accuracy: 0.9928571428571429
+    ml_knn_f1: 0.992829703201893
+    ml_knn_precision: 0.992927864214993
+    ml_knn_recall: 0.9928571428571429
+    ml_dt_accuracy: 0.9857142857142858
+    ml_dt_f1: 0.9857142857142858
+    ml_dt_precision: 0.9857142857142858
+    ml_dt_recall: 0.9857142857142858
+    ml_gb_accuracy: 0.9928571428571429
+    ml_gb_f1: 0.992829703201893
+    ml_gb_precision: 0.992927864214993
+    ml_gb_recall: 0.9928571428571429
+
+  容忍度:
+    tolerance_P_do_nothing: 0.9928571428571429
+    tolerance_P_demand_clean: 0.9928571428571429
+    tolerance_P_repair_all: 0.9928571428571429
+    tolerance_tolerance_prior: 1.0
+    tolerance_tolerance_post: 0
+
+  Snoopy 上界:
+    snoopy_snoopy_available: True
+    snoopy_upper_bound_dirty: 0.9450659781985082
+    snoopy_upper_bound_cleaned: 0.9692097026604068
+    snoopy_upper_bound_clean: 0.9569994262765347
+    snoopy_upper_bound_improvement: 2.0231976796677467
+
+  真值成本:
+    method_type: 1
+    ground_truth_cost: 41
+    ideal_total_changes: 1877
+    ideal_correct_repairs: 0
+    ideal_wrong_repairs: 1877
+    ideal_deleted_rows: 62
+    ideal_ideal_min_ground_truth_cost: 0
+    ideal_repair_accuracy: 0.0
+
+============================================================
+Shapley 贡献分析:
+============================================================
+# Shapley Value Analysis Report
+
+- 数据规模: 419 行 × 9 列
+- 错误总数: 374
+- 任务类型: classification (random_forest)
+- MC 采样次数: 200
+
+## 维度 1: 动作重要性 (Action Importance)
+
+| 排名 | 动作 | Shapley 值 | 占比 | 方向 |
+|------|------|-----------|------|------|
+| 1 | replace_nearby | +0.089019 | 7.6% | ↑ 正贡献 |
+| 2 | no_action | -0.081172 | 7.0% | ↓ 负贡献 |
+| 3 | delete | -0.260501 | 22.3% | ↓ 负贡献 |
+| 4 | repair_value | -0.735298 | 63.1% | ↓ 负贡献 |
+
+**结论**: 最有效的清洗动作是 **replace_nearby**
+（no_action, delete, repair_value 对性能有负面影响，建议减少使用）
+
+## 维度 2: 特征重要性 (Feature Importance)
+
+| 排名 | 特征 | Shapley 值 | 占比 | 清洗价值 |
+|------|------|-----------|------|---------|
+| 1 | Clump Thickness | +0.000000 | 0.0% | — 可忽略 |
+| 2 | Uniformity of Cell Size | +0.000000 | 0.0% | — 可忽略 |
+| 3 | Uniformity of Cell Shape | +0.000000 | 0.0% | — 可忽略 |
+| 4 | Marginal Adhesion | +0.000000 | 0.0% | — 可忽略 |
+| 5 | Single Epithelial Cell Size | +0.000000 | 0.0% | — 可忽略 |
+| 6 | Bare Nuclei | +0.000000 | 0.0% | — 可忽略 |
+| 7 | Bland Chromatin | +0.000000 | 0.0% | — 可忽略 |
+| 8 | Normal Nucleoli | +0.000000 | 0.0% | — 可忽略 |
+| 9 | Mitoses | +0.000000 | 0.0% | — 可忽略 |
+
+**结论**: 
+- 清洗价值极低的特征: Clump Thickness, Uniformity of Cell Size, Uniformity of Cell Shape（清洗它们几乎不影响性能）
+
+## 维度 3: 错误类型重要性 (Error Type Importance)
+
+| 排名 | 错误类型 | Shapley 值 | 占比 | 优先级 |
+|------|---------|-----------|------|--------|
+| 1 | syntactic | +0.053439 | 4.9% | 🟢 低 |
+| 2 | semantic | -0.213044 | 19.5% | 🟢 低 |
+| 3 | missing | -0.412055 | 37.6% | 🟡 中 |
+| 4 | label_noise | -0.416292 | 38.0% | 🟡 中 |
+
+**结论**: 对下游性能影响最大的错误类型是 **syntactic**，检测器应优先识别此类错误。
+
+## 综合清洗建议
+
+
+
+============================================================
+真值使用成本汇总:
+============================================================
+  RAHA 检测成本: 20
+  Agent 修复成本: 41
+  总成本: 61
+  总数据单元: 3771
+  成本率: 1.6176%
+  apply_raha_truth: True
+  count_raha_cost: True

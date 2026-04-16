@@ -1,0 +1,32 @@
+{
+  "meta": {
+    "n_samples": 1446,
+    "n_features": 8,
+    "n_errors": 2722,
+    "task_type": "classification",
+    "model_type": "random_forest",
+    "mc_samples": 200
+  },
+  "action_shapley": {
+    "no_action": 0.0,
+    "repair_value": 0.0,
+    "delete": 0.0,
+    "replace_nearby": 0.0
+  },
+  "feature_shapley": {
+    "beer_name": 0.0,
+    "ounces": 0.0,
+    "abv": 0.0,
+    "ibu": 0.0,
+    "brewery_id": 0.0,
+    "brewery_name": 0.0,
+    "city": 0.0,
+    "state": 0.0
+  },
+  "feature_shapley_skipped": true,
+  "error_type_shapley": {
+    "missing": 0.0,
+    "semantic": 0.0,
+    "syntactic": 0.0
+  }
+}

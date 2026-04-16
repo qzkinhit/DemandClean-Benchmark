@@ -1,0 +1,64 @@
+[02:42:09] INFO: ==================================================
+[02:42:09] INFO: DemandClean 训练开始
+[02:42:09] INFO:   检测器模式: auto
+[02:42:09] INFO:   训练模式: clean_base
+[02:42:09] INFO:   Agent类型: dueling_two_stage
+[02:42:09] INFO:   推理模式: single_phase
+[02:42:09] INFO:   FD规则: 4
+[02:42:09] INFO:   丰富规则: 有
+[02:42:09] INFO: ==================================================
+[02:42:09] INFO: 
+[Step 1] 初始化错误检测器...
+[02:42:09] INFO: 
+[Step 1.5] 运行 RAHA 检测获取标注行...
+[02:45:19] INFO:   [预修复] 利用 RAHA 标注行修复 36 个特征单元格 + 0 个标签
+[02:45:19] INFO:   标注行: [56, 76, 77, 179, 335, 362, 465, 490, 624, 639]... (共 20 行)
+[02:45:19] INFO: 
+[Step 2] 训练 DQN Agent...
+[02:45:19] INFO: 开始训练 (dueling_two_stage Agent, mode=clean_base)
+[02:45:19] INFO:   任务类型: classification
+[02:45:19] INFO:   模型类型: random_forest
+[02:45:19] INFO:   原始数据: 1446 行
+[02:45:56] INFO:   Clean Base 自动选择 (5-fold CV, 样本保留率加权):
+[02:45:56] INFO:     DeleteFix: 289 行, CV=0.3320, 权重=0.447, 加权=0.1484
+[02:45:56] INFO:     VE-Fill:   1446 行, CV=0.0000, 权重=1.000, 加权=0.0000
+[02:45:56] INFO:     → 选择 DeleteFix (289 行)
+[02:45:56] INFO:   标签注入: 检测器未发现标签错误，不注入
+[02:45:56] INFO:   自适应注入比例范围 (基于检测结果):
+[02:45:56] INFO:     missing: (0.1804, 0.2705)
+[02:45:56] INFO:     semantic: (0.0050, 0.0100)
+[02:45:56] INFO:     syntactic: (0.0050, 0.0100)
+[02:45:56] INFO:     label: 不注入
+[02:46:01] INFO:   ErrorInjector: rich_rules=True, domain=3, cfd=0, fd=4
+[02:46:01] INFO:   Oracle 模式: reward 使用干净验证集 (482 行)
+[02:46:01] INFO:   开始训练 DQN (400 episodes, 起始轮=0)...
+[02:48:13] INFO:   Episode 50/400: Score=0.2054, Best=0.2386, Eps=0.778
+[02:48:13] INFO:     Actions: {'no_action': 24, 'repair_value': 5, 'delete': 38, 'replace_nearby': 12}
+[02:50:02] INFO:   Episode 100/400: Score=0.2241, Best=0.2490, Eps=0.606
+[02:50:02] INFO:     Actions: {'no_action': 12, 'repair_value': 3, 'delete': 50, 'replace_nearby': 8}
+[02:51:46] INFO:   Episode 150/400: Score=0.2095, Best=0.2490, Eps=0.471
+[02:51:46] INFO:     Actions: {'no_action': 10, 'repair_value': 5, 'delete': 35, 'replace_nearby': 21}
+[02:53:31] INFO:   Episode 200/400: Score=0.2220, Best=0.2490, Eps=0.367
+[02:53:31] INFO:     Actions: {'no_action': 17, 'repair_value': 31, 'delete': 23, 'replace_nearby': 6}
+[02:55:23] INFO:   Episode 250/400: Score=0.2137, Best=0.2490, Eps=0.286
+[02:55:23] INFO:     Actions: {'no_action': 14, 'repair_value': 7, 'delete': 8, 'replace_nearby': 34}
+[02:57:14] INFO:   Episode 300/400: Score=0.2116, Best=0.2490, Eps=0.222
+[02:57:14] INFO:     Actions: {'no_action': 4, 'repair_value': 1, 'delete': 31, 'replace_nearby': 17}
+[02:58:53] INFO:   Episode 350/400: Score=0.2220, Best=0.2490, Eps=0.173
+[02:58:53] INFO:     Actions: {'no_action': 5, 'repair_value': 0, 'delete': 46, 'replace_nearby': 8}
+[03:00:31] INFO:   Episode 400/400: Score=0.2158, Best=0.2510, Eps=0.135
+[03:00:31] INFO:     Actions: {'no_action': 2, 'repair_value': 1, 'delete': 42, 'replace_nearby': 23}
+[03:00:31] INFO: 
+已恢复最佳模型权重 (Episode 356, Score=0.2510, Cost=46)
+[03:00:31] INFO: 
+训练完成! 最佳分数: 0.2510 (共 400 episodes)
+[03:00:31] INFO:   最佳动作分布: {'no_action': 3, 'repair_value': 46, 'delete': 3, 'replace_nearby': 3}
+[03:00:31] INFO: 
+训练完成!
+[03:00:31] INFO: 模型已保存: /Users/qianzekai/PycharmProjects/TolerDM/results/demandclean/beers/v5_auto_dueling_single/model/v5_auto_dueling_single_agent.pt
+[03:00:31] INFO: 
+==================================================
+[03:00:31] INFO: 单阶段推理
+[03:00:31] INFO: ==================================================
+[03:00:31] INFO:   [预修复] 利用 RAHA 标注行修复 36 个特征单元格 + 0 个标签
+[03:00:31] INFO:   移除已修复错误: missing=34, syntactic=2

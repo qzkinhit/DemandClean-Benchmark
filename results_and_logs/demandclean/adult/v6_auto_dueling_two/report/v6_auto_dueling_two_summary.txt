@@ -1,0 +1,162 @@
+DemandClean 结果摘要 - v6_auto_dueling_two
+============================================================
+
+数据集: adult
+检测器: auto
+Agent: dueling_two_stage
+推理模式: two_phase
+任务: classification (random_forest)
+训练轮数: 400
+执行时间: 21499.78 秒
+数据维度: (45222, 14) -> (45222, 14)
+真值成本: 7176
+
+Baseline 对比:
+------------------------------------------------------------
+  NoFix: {'n_samples': 45222, 'rf_accuracy': 0.8165, 'rf_f1': 0.8095, 'lr_accuracy': 0.7886, 'lr_f1': 0.7685, 'auth': 1.0, 'div': 1.0, 'cost': 0}
+  DeleteAll: {'n_samples': 45222, 'rf_accuracy': 0.8165, 'rf_f1': 0.8095, 'lr_accuracy': 0.7886, 'lr_f1': 0.7685, 'auth': 1.0, 'div': 1.0, 'cost': 0}
+  DeleteFix: {'n_samples': 38046, 'rf_accuracy': 0.9064, 'rf_f1': 0.8998, 'lr_accuracy': 0.8929, 'lr_f1': 0.8769, 'auth': 0.0001, 'div': 0.8413, 'cost': 7176}
+  ReplaceAll: {'n_samples': 45222, 'rf_accuracy': 0.8165, 'rf_f1': 0.8095, 'lr_accuracy': 0.7886, 'lr_f1': 0.7685, 'auth': 1.0, 'div': 1.0, 'cost': 0}
+  DemandClean: {'n_samples': 45222, 'rf_accuracy': 0.8462, 'rf_f1': 0.8421, 'lr_accuracy': 0.8143, 'lr_f1': 0.7986, 'auth': 1.0, 'div': 1.0, 'cost': 7176}
+  FullFix: {'n_samples': 45222, 'rf_accuracy': 0.8551, 'rf_f1': 0.851, 'lr_accuracy': 0.8211, 'lr_f1': 0.8057, 'auth': 1.0, 'div': 1.0, 'cost': 45222}
+
+模型容忍度:
+------------------------------------------------------------
+  rf: {'P_clean': 0.8550580431177446, 'P_dirty': 0.8550580431177446, 'P_dc': 0.8550580431177446, 'tolerance_prior': 1.0, 'tolerance_post': 1.0}
+  lr: {'P_clean': 0.8211166390270868, 'P_dirty': 0.8211166390270868, 'P_dc': 0.8211166390270868, 'tolerance_prior': 1.0, 'tolerance_post': 1.0}
+
+检测器准确率:
+------------------------------------------------------------
+  overall: {'precision': 0.0, 'recall': 0.0, 'f1': 0.0, 'tp': 0, 'fp': 0, 'fn': 0, 'gt_count': 0, 'det_count': 0}
+  missing: {'precision': 0.0, 'recall': 0.0, 'f1': 0.0, 'tp': 0, 'fp': 0, 'fn': 0, 'gt_count': 0, 'det_count': 0}
+  syntactic: {'precision': 0.0, 'recall': 0.0, 'f1': 0.0, 'tp': 0, 'fp': 0, 'fn': 0, 'gt_count': 0, 'det_count': 0}
+  semantic: {'precision': 0.0, 'recall': 0.0, 'f1': 0.0, 'tp': 0, 'fp': 0, 'fn': 0, 'gt_count': 0, 'det_count': 0}
+  value_error_combined: {'precision': 0.0, 'recall': 0.0, 'f1': 0.0, 'tp': 0, 'fp': 0, 'fn': 0, 'gt_count': 0, 'det_count': 0}
+  ground_truth_total: 0
+  detected_total: 0
+
+Clean4MLBaseline 统一测评:
+------------------------------------------------------------
+  accuracy: 0.37557471264367814
+  recall: 0.7683715461493239
+  f1_score: 0.5045358038547564
+  edr: -0.5091122868900647
+  hybrid_distance: 0.008957019995301081
+  r_edr: -0.4861845972957084
+
+  下游任务性能:
+    ml_rf_accuracy: 0.8527363184079602
+    ml_rf_f1: 0.8496824460446677
+    ml_rf_precision: 0.8482174626796234
+    ml_rf_recall: 0.8527363184079602
+    ml_lr_accuracy: 0.8216694306246545
+    ml_lr_f1: 0.8076560118142831
+    ml_lr_precision: 0.8099512241353105
+    ml_lr_recall: 0.8216694306246545
+    ml_svm_accuracy: 0.8499723604201216
+    ml_svm_f1: 0.8421541315587368
+    ml_svm_precision: 0.8429725742031733
+    ml_svm_recall: 0.8499723604201216
+    ml_knn_accuracy: 0.8249861802100608
+    ml_knn_f1: 0.8225938119306082
+    ml_knn_precision: 0.8208707024461653
+    ml_knn_recall: 0.8249861802100608
+    ml_dt_accuracy: 0.8016583747927032
+    ml_dt_f1: 0.8042289325435472
+    ml_dt_precision: 0.8074901958389576
+    ml_dt_recall: 0.8016583747927032
+    ml_gb_accuracy: 0.867551133222775
+    ml_gb_f1: 0.8612910415924157
+    ml_gb_precision: 0.8626376358396913
+    ml_gb_recall: 0.867551133222775
+
+  容忍度:
+    tolerance_P_do_nothing: 0.8505086245024326
+    tolerance_P_demand_clean: 0.8532728881026095
+    tolerance_P_repair_all: 0.8542680229986731
+    tolerance_tolerance_prior: 1.0032501300052001
+    tolerance_tolerance_post: 0.735294117647071
+
+  Snoopy 上界:
+    snoopy_snoopy_available: True
+    snoopy_upper_bound_dirty: 0.8184291476911966
+    snoopy_upper_bound_cleaned: 0.8449648020157701
+    snoopy_upper_bound_clean: 0.8523286315486308
+    snoopy_upper_bound_improvement: 0.782774582532594
+
+  真值成本:
+    method_type: 2
+    ground_truth_cost: 0
+    ideal_total_changes: 316554
+    ideal_correct_repairs: 0
+    ideal_wrong_repairs: 316554
+    ideal_deleted_rows: 0
+    ideal_ideal_min_ground_truth_cost: 0
+    ideal_repair_accuracy: 0.0
+
+============================================================
+Shapley 贡献分析:
+============================================================
+# Shapley Value Analysis Report
+
+- 数据规模: 5000 行 × 14 列
+- 错误总数: 793
+- 任务类型: classification (random_forest)
+- MC 采样次数: 50
+
+## 维度 1: 动作重要性 (Action Importance)
+
+| 排名 | 动作 | Shapley 值 | 占比 | 方向 |
+|------|------|-----------|------|------|
+| 1 | replace_nearby | +0.047417 | 5.5% | ↑ 正贡献 |
+| 2 | no_action | -0.001083 | 0.1% | ↓ 负贡献 |
+| 3 | delete | -0.001250 | 0.1% | ↓ 负贡献 |
+| 4 | repair_value | -0.820083 | 94.3% | ↓ 负贡献 |
+
+**结论**: 最有效的清洗动作是 **replace_nearby**
+（no_action, delete, repair_value 对性能有负面影响，建议减少使用）
+
+## 维度 2: 特征重要性 (Feature Importance)
+
+| 排名 | 特征 | Shapley 值 | 占比 | 清洗价值 |
+|------|------|-----------|------|---------|
+| 1 | age | +0.000000 | 0.0% | — 可忽略 |
+| 2 | workclass | +0.000000 | 0.0% | — 可忽略 |
+| 3 | fnlwgt | +0.000000 | 0.0% | — 可忽略 |
+| 4 | education | +0.000000 | 0.0% | — 可忽略 |
+| 5 | educational_num | +0.000000 | 0.0% | — 可忽略 |
+| 6 | marital_status | +0.000000 | 0.0% | — 可忽略 |
+| 7 | occupation | +0.000000 | 0.0% | — 可忽略 |
+| 8 | relationship | +0.000000 | 0.0% | — 可忽略 |
+| 9 | race | +0.000000 | 0.0% | — 可忽略 |
+| 10 | gender | +0.000000 | 0.0% | — 可忽略 |
+| 11 | capital_gain | +0.000000 | 0.0% | — 可忽略 |
+| 12 | capital_loss | +0.000000 | 0.0% | — 可忽略 |
+| 13 | hours_per_week | +0.000000 | 0.0% | — 可忽略 |
+| 14 | native_country | +0.000000 | 0.0% | — 可忽略 |
+
+**结论**: 
+- 清洗价值极低的特征: age, workclass, fnlwgt（清洗它们几乎不影响性能）
+
+## 维度 3: 错误类型重要性 (Error Type Importance)
+
+| 排名 | 错误类型 | Shapley 值 | 占比 | 优先级 |
+|------|---------|-----------|------|--------|
+| 1 | label_noise | -0.775000 | 100.0% | 🔴 高 |
+
+**结论**: 对下游性能影响最大的错误类型是 **label_noise**，检测器应优先识别此类错误。
+
+## 综合清洗建议
+
+
+
+============================================================
+真值使用成本汇总:
+============================================================
+  RAHA 检测成本: 60
+  Agent 修复成本: 7176
+  总成本: 7236
+  总数据单元: 633108
+  成本率: 1.1429%
+  apply_raha_truth: True
+  count_raha_cost: True

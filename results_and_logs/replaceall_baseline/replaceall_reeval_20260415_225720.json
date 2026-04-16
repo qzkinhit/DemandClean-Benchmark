@@ -1,0 +1,97 @@
+[
+  {
+    "dataset": "har",
+    "task_type": "clustering",
+    "elapsed_time": 10.04,
+    "truth_cost": 0,
+    "ml_results": {
+      "kmeans": {
+        "silhouette": 0.49094983112685886,
+        "ari": 0.6477855509688378
+      }
+    },
+    "P_do_nothing": 0.5238125895953722,
+    "P_demand_clean": 0.49094983112685886,
+    "P_repair_all": 0.6875855528743094,
+    "upper_bound_dirty": 0.5238125895953722,
+    "upper_bound_cleaned": 0.49094983112685886,
+    "upper_bound_clean": 0.6875855528743094,
+    "upper_bound_improvement": -0.2006604619624652
+  },
+  {
+    "dataset": "nasa",
+    "task_type": "regression",
+    "elapsed_time": 2.05,
+    "truth_cost": 0,
+    "ml_results": {
+      "rf": {
+        "mse": 19.604847039764003,
+        "r2": 0.5875634990124914
+      }
+    },
+    "P_do_nothing": 0.6058186856035939,
+    "P_demand_clean": 0.5875634990124914,
+    "P_repair_all": 0.680036678206931,
+    "upper_bound_dirty": 62.80660193644426,
+    "upper_bound_cleaned": 61.169184464609785,
+    "upper_bound_clean": 61.094628209220716,
+    "upper_bound_improvement": 0.9564501170762804
+  },
+  {
+    "dataset": "beers",
+    "task_type": "classification",
+    "elapsed_time": 3.1,
+    "truth_cost": 0,
+    "ml_results": {
+      "rf": {
+        "accuracy": 0.3029045643153527,
+        "f1": 0.26976105762789554
+      }
+    },
+    "P_do_nothing": 0.22821576763485477,
+    "P_demand_clean": 0.3029045643153527,
+    "P_repair_all": 0.2946058091286307,
+    "upper_bound_dirty": 0.1950207468879668,
+    "upper_bound_cleaned": 0.21618257261410787,
+    "upper_bound_clean": 0.22157676348547714,
+    "upper_bound_improvement": 0.7968750000000004
+  },
+  {
+    "dataset": "adult",
+    "task_type": "classification",
+    "elapsed_time": 47.79,
+    "truth_cost": 0,
+    "ml_results": {
+      "rf": {
+        "accuracy": 0.8518518518518519,
+        "f1": 0.8502176697203637
+      }
+    },
+    "P_do_nothing": 0.8518518518518519,
+    "P_demand_clean": 0.8518518518518519,
+    "P_repair_all": 0.8564953012714207,
+    "upper_bound_dirty": 0.8185176041264022,
+    "upper_bound_cleaned": 0.8185176041264022,
+    "upper_bound_clean": 0.852085376351815,
+    "upper_bound_improvement": 0.0
+  },
+  {
+    "dataset": "breast_cancer",
+    "task_type": "classification",
+    "elapsed_time": 1.32,
+    "truth_cost": 0,
+    "ml_results": {
+      "rf": {
+        "accuracy": 0.9928571428571429,
+        "f1": 0.992829703201893
+      }
+    },
+    "P_do_nothing": 0.9928571428571429,
+    "P_demand_clean": 0.9928571428571429,
+    "P_repair_all": 0.9928571428571429,
+    "upper_bound_dirty": 0.9385097636176774,
+    "upper_bound_cleaned": 0.9456526207605345,
+    "upper_bound_clean": 0.9642754367934223,
+    "upper_bound_improvement": 0.2772237734343844
+  }
+]

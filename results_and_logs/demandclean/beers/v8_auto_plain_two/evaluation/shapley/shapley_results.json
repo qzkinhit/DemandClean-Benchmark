@@ -1,0 +1,33 @@
+{
+  "meta": {
+    "n_samples": 2410,
+    "n_features": 8,
+    "n_errors": 4572,
+    "task_type": "classification",
+    "model_type": "random_forest",
+    "mc_samples": 200
+  },
+  "action_shapley": {
+    "no_action": -0.014352589001266902,
+    "repair_value": -0.03060747903513934,
+    "delete": 0.38017549291276387,
+    "replace_nearby": -0.074798758209691
+  },
+  "feature_shapley": {
+    "beer_name": 0.0,
+    "ounces": 0.0,
+    "abv": 0.0,
+    "ibu": 0.0,
+    "brewery_id": 0.0,
+    "brewery_name": 0.0,
+    "city": 0.0,
+    "state": 0.0
+  },
+  "feature_shapley_skipped": true,
+  "error_type_shapley": {
+    "missing": 0.14117597029622406,
+    "semantic": -0.02350789842556601,
+    "syntactic": -0.01171627634602257,
+    "label_noise": 0.16488153780869788
+  }
+}

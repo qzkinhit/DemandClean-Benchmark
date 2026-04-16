@@ -1,0 +1,130 @@
+[日志] 完整输出将保存到: /Users/qianzekai/PycharmProjects/TolerDM/logs/demandclean/mercedes_ep5_20260222_233106.log
+======================================================================
+DemandClean 统一运行脚本
+======================================================================
+数据集: ['mercedes']
+启用版本: ['v3_oracle_plain_single']
+训练轮数: 5
+详细输出: False
+======================================================================
+
+######################################################################
+# 数据集: mercedes
+######################################################################
+  数据集: mercedes
+  脏数据: (4209, 376), 干净数据: (4209, 376)
+  特征列: 376, 标签列: y
+  FD规则: 0 条
+
+======================================================================
+版本: v3_oracle_plain_single
+数据集: mercedes | 任务: regression | 模型: ridge
+检测器: oracle | Agent: single_stage | 推理: single_phase
+训练轮数: 5 | 输出目录: /Users/qianzekai/PycharmProjects/TolerDM/results/demandclean/mercedes/v3_oracle_plain_single
+======================================================================
+
+[Step 1] 创建 DemandClean 实例...
+
+[Step 2] 训练 (5 episodes)...
+  模型已保存: /Users/qianzekai/PycharmProjects/TolerDM/results/demandclean/mercedes/v3_oracle_plain_single/model/v3_oracle_plain_single_agent.pt
+  训练历史已保存: /Users/qianzekai/PycharmProjects/TolerDM/results/demandclean/mercedes/v3_oracle_plain_single/report/v3_oracle_plain_single_history.json
+
+[Step 3] 推理 (模式: single_phase)...
+  真值使用: 301127
+  动作分布: {'no_action': 0, 'repair_value': 301127, 'delete': 0, 'replace_nearby': 0}
+  清洗后数据已保存: /Users/qianzekai/PycharmProjects/TolerDM/results/demandclean/mercedes/v3_oracle_plain_single/data/v3_oracle_plain_single_cleaned.csv
+  原始格式清洗数据已保存: /Users/qianzekai/PycharmProjects/TolerDM/results/demandclean/mercedes/v3_oracle_plain_single/data/v3_oracle_plain_single_cleaned_original.csv
+
+[Step 4] 检测器准确率评估...
+
+[Step 5] Baseline 评估与可视化...
+  DeleteFix: 删除 3368 行, 保留 841 行
+
+============================================================
+Baseline 对比评估 - v3_oracle_plain_single
+============================================================
+  NoFix          : rf_mse=76.7706 | rf_r2=0.5068 | ridge_mse=105.0579 | ridge_r2=0.325
+  DeleteAll      : rf_mse=61.6647 | rf_r2=0.5436 | ridge_mse=91.987 | ridge_r2=0.3192
+  DeleteFix      : rf_mse=66.2168 | rf_r2=0.5873 | ridge_mse=202.1382 | ridge_r2=-0.2598
+  ReplaceAll     : rf_mse=76.7706 | rf_r2=0.5068 | ridge_mse=105.0579 | ridge_r2=0.325
+  DemandClean    : rf_mse=81.419 | rf_r2=0.4769 | ridge_mse=69.4854 | ridge_r2=0.5536
+  FullFix        : rf_mse=81.419 | rf_r2=0.4769 | ridge_mse=69.4854 | ridge_r2=0.5536
+  [可视化] Baseline 对比图已保存: /Users/qianzekai/PycharmProjects/TolerDM/results/demandclean/mercedes/v3_oracle_plain_single/visualization/v3_oracle_plain_single_baseline_comparison.png
+
+[Step 6] 模型容忍度评估...
+============================================================
+模型容忍度计算 - v3_oracle_plain_single
+任务类型: regression  |  模型列表: ['rf', 'ridge']
+============================================================
+
+--- 模型: RF ---
+  P_clean  = 0.4769
+  P_dirty  = 0.4965
+  P_dc     = 0.4769
+  先验容忍度 (P_dc / P_dirty)            = 0.9606
+  后验容忍度 (P_dc-P_dirty)/(P_clean-P_dirty) = 1.0000
+
+--- 模型: RIDGE ---
+  P_clean  = 0.5535
+  P_dirty  = 0.4867
+  P_dc     = 0.5535
+  先验容忍度 (P_dc / P_dirty)            = 1.1371
+  后验容忍度 (P_dc-P_dirty)/(P_clean-P_dirty) = 1.0000
+  容忍度柱状图已保存: /Users/qianzekai/PycharmProjects/TolerDM/results/demandclean/mercedes/v3_oracle_plain_single/visualization/v3_oracle_plain_single_tolerance_bar.png
+
+[Step 7] Shapley 三维度分析...
+[Shapley] 维度1: 动作重要性 (精确枚举 4!=24 排列) ...
+[Shapley] 图表已保存: /Users/qianzekai/PycharmProjects/TolerDM/results/demandclean/mercedes/v3_oracle_plain_single/evaluation/shapley/shapley_action_importance.png
+[Shapley] 维度2: 跳过特征 Shapley（计算量过大，仅保留维度1和维度3）
+[Shapley] 维度3: 错误类型重要性 (精确枚举 3!=6 排列) ...
+[Shapley] 图表已保存: /Users/qianzekai/PycharmProjects/TolerDM/results/demandclean/mercedes/v3_oracle_plain_single/evaluation/shapley/shapley_error_type_importance.png
+
+[Step 8] 训练曲线可视化...
+  [可视化] 训练曲线已保存: /Users/qianzekai/PycharmProjects/TolerDM/results/demandclean/mercedes/v3_oracle_plain_single/visualization/v3_oracle_plain_single_training_curves.png
+
+[Step 9] Clean4MLBaseline 统一测评...
+差异文件已保存到:
+/Users/qianzekai/PycharmProjects/TolerDM/results/demandclean/mercedes/v3_oracle_plain_single/evaluation/v3_oracle_plain_single_clean_vs_dirty.csv
+/Users/qianzekai/PycharmProjects/TolerDM/results/demandclean/mercedes/v3_oracle_plain_single/evaluation/v3_oracle_plain_single_dirty_vs_cleaned.csv
+/Users/qianzekai/PycharmProjects/TolerDM/results/demandclean/mercedes/v3_oracle_plain_single/evaluation/v3_oracle_plain_single_clean_vs_cleaned.csv
+修复错误数据文件已保存到: /Users/qianzekai/PycharmProjects/TolerDM/results/demandclean/mercedes/v3_oracle_plain_single/evaluation/v3_oracle_plain_single_repair_errors.csv
+未修复但是应该修复数据文件已保存到: /Users/qianzekai/PycharmProjects/TolerDM/results/demandclean/mercedes/v3_oracle_plain_single/evaluation/v3_oracle_plain_single_unrepaired.csv
+修复准确率: 0.826974486378806, 修复召回率: 0.9594954952561544, F1值: 0.8883197618597953
+========================================
+EDR 结果已保存到: /Users/qianzekai/PycharmProjects/TolerDM/results/demandclean/mercedes/v3_oracle_plain_single/evaluation/v3_oracle_plain_single_edr_evaluation.txt
+错误减少率 (EDR): 0.799247493582442
+========================================
+混合距离结果已保存到: /Users/qianzekai/PycharmProjects/TolerDM/results/demandclean/mercedes/v3_oracle_plain_single/evaluation/v3_oracle_plain_single_hybrid_distance_evaluation.txt
+混合距离 (Hybrid Distance): 0.04056437389770726
+========================================
+R-EDR 结果已保存到: /Users/qianzekai/PycharmProjects/TolerDM/results/demandclean/mercedes/v3_oracle_plain_single/evaluation/v3_oracle_plain_single_record_based_edr_evaluation.txt
+基于条目的错误减少率 (R-EDR): 0.0
+========================================
+RF - MSE: 81.4190, R2: 0.4769
+LR - MSE: 40131165440418979429172117504.0000, R2: -257829624168733250991161344.0000
+RIDGE - MSE: 69.4858, R2: 0.5536
+LASSO - MSE: 68.5570, R2: 0.5595
+KNN - MSE: 93.8711, R2: 0.3969
+GB - MSE: 64.5540, R2: 0.5853
+
+容忍度计算结果:
+  P_do_nothing (脏数据性能): 0.5494
+  P_demand_clean (清洗后性能): 0.4922
+  P_repair_all (完全修复性能): 0.4922
+  先验容忍度 (Tolerance_prior): 0.8959
+  后验容忍度 (Tolerance_post): 1.0000
+Snoopy模块可用，正在评估数据质量上界...
+  统一测评完成，结果已保存到: /Users/qianzekai/PycharmProjects/TolerDM/results/demandclean/mercedes/v3_oracle_plain_single/v3_oracle_plain_single_evaluation_results.txt
+
+  [输出] 报告已保存: /Users/qianzekai/PycharmProjects/TolerDM/results/demandclean/mercedes/v3_oracle_plain_single/report/v3_oracle_plain_single_report.json
+
+  版本 v3_oracle_plain_single 完成! 耗时: 10439.65s
+  输出目录: /Users/qianzekai/PycharmProjects/TolerDM/results/demandclean/mercedes/v3_oracle_plain_single
+
+  只有 1 个版本完成，跳过跨版本对比
+
+======================================================================
+全部完成! 总耗时: 10441.46s
+结果目录: /Users/qianzekai/PycharmProjects/TolerDM/results/demandclean
+日志文件: /Users/qianzekai/PycharmProjects/TolerDM/logs/demandclean/mercedes_ep5_20260222_233106.log
+======================================================================

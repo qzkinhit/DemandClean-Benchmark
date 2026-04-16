@@ -1,0 +1,204 @@
+[日志] 完整输出将保存到: /Users/qianzekai/PycharmProjects/TolerDM/logs/demandclean/mercedes_v5_ep200_20260416_032614.log
+======================================================================
+DemandClean 统一运行脚本
+======================================================================
+数据集: ['mercedes']
+启用版本: ['v5_auto_dueling_single']
+训练轮数: 200
+详细输出: False
+Oracle 模式: 启用 (三路划分 60/20/20, --no-oracle 关闭)
+修复率控制: min=None, max=1.0
+======================================================================
+
+######################################################################
+# 数据集: mercedes
+######################################################################
+
+  60/20/20 划分: train=2525, val=842, test=842
+  60% 子集 CSV: /Users/qianzekai/PycharmProjects/TolerDM/results/demandclean/mercedes/dirty_train_60pct.csv
+  数据集: mercedes
+  脏数据: (2525, 376)
+  特征列: 376, 标签列: y
+  分类列: {'X5', 'X8', 'X3', 'X6', 'X0', 'X4', 'X1', 'X2'}
+  LE fit: 仅 dirty (2525 行)
+  SS fit: 仅 dirty (2525 行)
+  FD规则: 0 条
+  编码完成: X_dirty_train=(2525, 376), X_clean_train=(2525, 376), X_clean_val=(842, 376), X_clean_test=(842, 376)
+
+======================================================================
+版本: v5_auto_dueling_single
+数据集: mercedes | 任务: regression | 模型: ridge
+检测器: auto | Agent: dueling_two_stage | 推理: single_phase
+训练轮数: 200 | 输出目录: /Users/qianzekai/PycharmProjects/TolerDM/results/demandclean/mercedes/v5_auto_dueling_single_tuned
+======================================================================
+
+[Step 1] 创建 DemandClean 实例...
+  [计时] Step 1 (初始化): 0.00s
+
+[Step 2] 训练 (200 episodes)...
+  RAHA 检测结果: 4975 个单元格
+  Precision=1.0000  Recall=0.9952  F1=0.9976
+  RAHA 标注行数: 20 (labeling_budget=20)
+  RAHA 检测结果: 10279 个单元格
+  Precision=1.0000  Recall=1.0000  F1=1.0000
+  RAHA 标注行数: 20 (labeling_budget=20)
+  RAHA 检测结果: 10051 个单元格
+  Precision=1.0000  Recall=0.9994  F1=0.9997
+  RAHA 标注行数: 20 (labeling_budget=20)
+  RAHA 检测结果: 10179 个单元格
+  Precision=1.0000  Recall=0.9992  F1=0.9996
+  RAHA 标注行数: 20 (labeling_budget=20)
+  RAHA 检测结果: 9773 个单元格
+  Precision=1.0000  Recall=0.9990  F1=0.9995
+  RAHA 标注行数: 20 (labeling_budget=20)
+  RAHA 检测结果: 9664 个单元格
+  Precision=1.0000  Recall=0.9996  F1=0.9998
+  RAHA 标注行数: 20 (labeling_budget=20)
+  RAHA 检测结果: 10081 个单元格
+  Precision=1.0000  Recall=1.0000  F1=1.0000
+  RAHA 标注行数: 20 (labeling_budget=20)
+  RAHA 检测结果: 10051 个单元格
+  Precision=1.0000  Recall=0.9995  F1=0.9998
+  RAHA 标注行数: 20 (labeling_budget=20)
+  RAHA 检测结果: 10199 个单元格
+  Precision=1.0000  Recall=0.9987  F1=0.9994
+  RAHA 标注行数: 20 (labeling_budget=20)
+  RAHA 检测结果: 10283 个单元格
+  Precision=1.0000  Recall=0.9994  F1=0.9997
+  RAHA 标注行数: 20 (labeling_budget=20)
+  RAHA 检测结果: 9974 个单元格
+  Precision=1.0000  Recall=0.9996  F1=0.9998
+  RAHA 标注行数: 20 (labeling_budget=20)
+  RAHA 检测结果: 9116 个单元格
+  Precision=1.0000  Recall=0.9997  F1=0.9998
+  RAHA 标注行数: 20 (labeling_budget=20)
+  RAHA 检测结果: 10083 个单元格
+  Precision=1.0000  Recall=0.9994  F1=0.9997
+  RAHA 标注行数: 20 (labeling_budget=20)
+  RAHA 检测结果: 9528 个单元格
+  Precision=0.9999  Recall=0.9990  F1=0.9994
+  RAHA 标注行数: 20 (labeling_budget=20)
+  RAHA 检测结果: 8083 个单元格
+  Precision=1.0000  Recall=0.9989  F1=0.9994
+  RAHA 标注行数: 20 (labeling_budget=20)
+  RAHA 检测结果: 10216 个单元格
+  Precision=1.0000  Recall=0.9986  F1=0.9993
+  RAHA 标注行数: 20 (labeling_budget=20)
+  RAHA 检测结果: 9150 个单元格
+  Precision=1.0000  Recall=0.9995  F1=0.9997
+  RAHA 标注行数: 20 (labeling_budget=20)
+  RAHA 检测结果: 10094 个单元格
+  Precision=1.0000  Recall=0.9996  F1=0.9998
+  RAHA 标注行数: 20 (labeling_budget=20)
+  RAHA 检测结果: 8667 个单元格
+  Precision=1.0000  Recall=0.9993  F1=0.9997
+  RAHA 标注行数: 20 (labeling_budget=20)
+  模型已保存: /Users/qianzekai/PycharmProjects/TolerDM/results/demandclean/mercedes/v5_auto_dueling_single_tuned/model/v5_auto_dueling_single_agent.pt
+  训练历史已保存: /Users/qianzekai/PycharmProjects/TolerDM/results/demandclean/mercedes/v5_auto_dueling_single_tuned/report/v5_auto_dueling_single_history.json
+  [计时] Step 2 (训练): 5373.70s
+
+[Step 3] 推理 (模式: single_phase)...
+  真值使用: 374
+  动作分布: {'no_action': 79630, 'repair_value': 374, 'delete': 551, 'replace_nearby': 47013}
+  清洗后数据已保存: /Users/qianzekai/PycharmProjects/TolerDM/results/demandclean/mercedes/v5_auto_dueling_single_tuned/data/v5_auto_dueling_single_cleaned.csv
+  原始格式清洗数据已保存: /Users/qianzekai/PycharmProjects/TolerDM/results/demandclean/mercedes/v5_auto_dueling_single_tuned/data/v5_auto_dueling_single_cleaned_original.csv
+  编码版本已保存: /Users/qianzekai/PycharmProjects/TolerDM/results/demandclean/mercedes/v5_auto_dueling_single_tuned/data/v5_auto_dueling_single_cleaned_encoded.npz
+  [计时] Step 3 (推理): 802.31s
+
+[Step 4] 检测器准确率评估...
+  [计时] Step 4 (检测器评估): 1.38s
+
+[Step 5] Baseline 评估与可视化...
+  ReplaceAll VE: ValueEstimator(CAT=8 cols)
+  ReplaceAll VE 估值: 180583 个错误, 1034.7s
+  DeleteFix: 删除 2020 行, 保留 505 行
+  统一测试集 (Oracle): 842 行
+
+============================================================
+Baseline 对比评估 - v5_auto_dueling_single
+============================================================
+  NoFix          : rf_mse=120.9717 | rf_r2=0.36 | ridge_mse=122.8688 | ridge_r2=0.3499 | 21.5s
+  DeleteAll      : rf_mse=119.6302 | rf_r2=0.3671 | ridge_mse=126.9133 | ridge_r2=0.3285 | 11.1s
+  DeleteFix      : rf_mse=118.7777 | rf_r2=0.3716 | ridge_mse=165.4545 | ridge_r2=0.1246 | 1.9s
+  ReplaceAll     : rf_mse=117.7439 | rf_r2=0.3771 | ridge_mse=120.4184 | ridge_r2=0.3629 | 17.2s
+  DemandClean    : rf_mse=112.7878 | rf_r2=0.4033 | ridge_mse=123.2041 | ridge_r2=0.3482 | 9.0s
+  FullFix        : rf_mse=114.6009 | rf_r2=0.3937 | ridge_mse=111.1131 | ridge_r2=0.4121 | 2.8s
+  [可视化] Baseline 对比图已保存: /Users/qianzekai/PycharmProjects/TolerDM/results/demandclean/mercedes/v5_auto_dueling_single_tuned/visualization/v5_auto_dueling_single_baseline_comparison.png
+  [计时] Step 5 (Baseline评估): 1099.02s
+
+[Step 6] 模型容忍度评估...
+============================================================
+模型容忍度计算 - v5_auto_dueling_single
+任务类型: regression  |  模型列表: ['rf', 'ridge']
+============================================================
+
+--- 模型: RF ---
+  P_clean  = 0.4462
+  P_dirty  = 0.4250
+  P_dc     = 0.2229
+  先验容忍度 (P_dc / P_dirty)            = 0.5245
+  后验容忍度 (P_dc-P_dirty)/(P_clean-P_dirty) = -9.5181
+
+--- 模型: RIDGE ---
+  P_clean  = 0.4397
+  P_dirty  = 0.4395
+  P_dc     = 0.2456
+  先验容忍度 (P_dc / P_dirty)            = 0.5589
+  后验容忍度 (P_dc-P_dirty)/(P_clean-P_dirty) = -881.7476
+  容忍度柱状图已保存: /Users/qianzekai/PycharmProjects/TolerDM/results/demandclean/mercedes/v5_auto_dueling_single_tuned/visualization/v5_auto_dueling_single_tolerance_bar.png
+  [计时] Step 6 (容忍度评估): 24.43s
+
+[Step 7] Shapley 三维度分析...
+[Shapley] 错误数量采样: 180583 -> 49999 条（按类型分层）
+[Shapley] 维度1: 动作重要性 (精确枚举 4!=24 排列) ...
+[Shapley] 图表已保存: /Users/qianzekai/PycharmProjects/TolerDM/results/demandclean/mercedes/v5_auto_dueling_single_tuned/evaluation/shapley/shapley_action_importance.png
+[Shapley] 维度2: 跳过特征 Shapley（计算量过大，仅保留维度1和维度3）
+[Shapley] 维度3: 错误类型重要性 (精确枚举 2!=2 排列) ...
+[Shapley] 图表已保存: /Users/qianzekai/PycharmProjects/TolerDM/results/demandclean/mercedes/v5_auto_dueling_single_tuned/evaluation/shapley/shapley_error_type_importance.png
+  [计时] Step 7 (Shapley分析): 6383.95s
+
+[Step 8] 训练曲线可视化...
+  [错误] 训练曲线绘制失败: [Errno 2] No such file or directory: '/Users/qianzekai/PycharmProjects/TolerDM/results/demandclean/mercedes/v5_auto_dueling_single_tuned/visualization/v5_auto_dueling_single_training_curves.png'
+  [计时] Step 8 (训练曲线): 1.33s
+
+[Step 9] Clean4MLBaseline 统一测评...
+  [跳过] 原始格式 CSV 不可用，无法进行统一测评
+  [计时] Step 9 (统一测评): 0.00s
+
+[Step 10] 真值成本汇总...
+  RAHA 检测成本: 380
+  Agent 修复成本: 374
+  总成本: 754 / 949400 cells = 0.0794%
+  [计时] Step 10 (成本汇总): 0.00s
+
+──────────────────────────────────────────────────
+  步骤计时汇总
+──────────────────────────────────────────────────
+  Step 1 初始化         │     0.00s
+  Step 2 训练          │  5373.70s
+  Step 3 推理          │   802.31s
+  Step 4 检测器评估       │     1.38s
+  Step 5 Baseline评估  │  1099.02s
+  Step 6 容忍度评估       │    24.43s
+  Step 7 Shapley分析   │  6383.95s
+  Step 8 训练曲线        │     1.33s
+  Step 9 统一测评        │     0.00s
+  Step 10 成本汇总        │     0.00s
+──────────────────────────────────────────────────
+  总计(含可视化)       │ 13686.12s
+  可视化耗时           │  6385.50s
+  净耗时(扣可视化)     │  7300.63s
+──────────────────────────────────────────────────
+  [警告] 报告保存失败: [Errno 2] No such file or directory: '/Users/qianzekai/PycharmProjects/TolerDM/results/demandclean/mercedes/v5_auto_dueling_single_tuned/report/v5_auto_dueling_single_report.json'
+  [警告] 摘要保存失败: [Errno 2] No such file or directory: '/Users/qianzekai/PycharmProjects/TolerDM/results/demandclean/mercedes/v5_auto_dueling_single_tuned/report/v5_auto_dueling_single_summary.txt'
+
+  版本 v5_auto_dueling_single 完成! 耗时: 7300.63s
+  输出目录: /Users/qianzekai/PycharmProjects/TolerDM/results/demandclean/mercedes/v5_auto_dueling_single_tuned
+
+  只有 1 个版本完成，跳过跨版本对比
+
+======================================================================
+全部完成! 总耗时: 13687.54s
+结果目录: /Users/qianzekai/PycharmProjects/TolerDM/results/demandclean
+日志文件: /Users/qianzekai/PycharmProjects/TolerDM/logs/demandclean/mercedes_v5_ep200_20260416_032614.log
+======================================================================

@@ -1,0 +1,28 @@
+{
+  "meta": {
+    "n_samples": 1503,
+    "n_features": 5,
+    "n_errors": 1230,
+    "task_type": "regression",
+    "model_type": "ridge",
+    "mc_samples": 200
+  },
+  "action_shapley": {
+    "no_action": 0.0,
+    "repair_value": 5.860050338963404,
+    "delete": 0.0,
+    "replace_nearby": 0.0
+  },
+  "feature_shapley": {
+    "frequency": 0.0427575553732532,
+    "angle": -0.0315910686344062,
+    "chord_length": 2.8312975643660176,
+    "velocity": 0.2499318824888268,
+    "thickness": 2.7676544053697096
+  },
+  "error_type_shapley": {
+    "missing": 0.0099807061242115,
+    "semantic": 0.5487452721759437,
+    "syntactic": 5.301324360663249
+  }
+}

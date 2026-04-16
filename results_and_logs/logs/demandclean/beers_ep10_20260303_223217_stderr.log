@@ -1,0 +1,74 @@
+[22:32:34] INFO: ==================================================
+[22:32:34] INFO: DemandClean 训练开始
+[22:32:34] INFO:   检测器模式: auto
+[22:32:34] INFO:   训练模式: clean_base
+[22:32:34] INFO:   Agent类型: dueling_two_stage
+[22:32:34] INFO:   推理模式: single_phase
+[22:32:34] INFO:   FD规则: 4
+[22:32:34] INFO:   丰富规则: 有
+[22:32:34] INFO: ==================================================
+[22:32:34] INFO: 
+[Step 1] 初始化错误检测器...
+[22:32:34] INFO: 
+[Step 1.5] 运行 RAHA 检测获取标注行...
+[22:35:24] INFO:   [预修复] 利用 RAHA 标注行修复 48 个特征单元格 + 0 个标签
+[22:35:24] INFO:   标注行: [58, 72, 226, 332, 429, 555, 704, 718, 785, 807]... (共 20 行)
+[22:35:24] INFO: 
+[Step 1.8] 加载续训模型: /Users/qianzekai/PycharmProjects/TolerDM/results/demandclean/beers/v5_auto_dueling_single/model/v5_auto_dueling_single_agent.pt
+[22:35:28] INFO:   已训练 1210 episodes, best_score=0.2448, epsilon=0.0997
+[22:35:28] INFO: 
+[Step 2] 训练 DQN Agent...
+[22:35:28] INFO: 续训 (dueling_two_stage Agent, mode=clean_base)
+[22:35:28] INFO:   任务类型: classification
+[22:35:28] INFO:   模型类型: random_forest
+[22:35:28] INFO:   原始数据: 1446 行
+[22:35:28] INFO:   续训起始轮: 1210
+[22:35:55] INFO:   Clean Base 自动选择 (5-fold CV, 样本保留率加权):
+[22:35:55] INFO:     DeleteFix: 289 行, CV=0.2944, 权重=0.447, 加权=0.1316
+[22:35:55] INFO:     VE-Fill:   1446 行, CV=0.0000, 权重=1.000, 加权=0.0000
+[22:35:55] INFO:     → 选择 DeleteFix (289 行)
+[22:35:55] INFO:   标签注入: 检测器未发现标签错误，不注入
+[22:35:55] INFO:   自适应注入比例范围 (基于检测结果):
+[22:35:55] INFO:     missing: (0.1804, 0.2705)
+[22:35:55] INFO:     semantic: (0.0050, 0.0100)
+[22:35:55] INFO:     syntactic: (0.0050, 0.0100)
+[22:35:55] INFO:     label: 不注入
+[22:35:55] INFO:   ErrorInjector: rich_rules=True, domain=3, cfd=0, fd=4
+[22:35:55] INFO:   Oracle 模式: reward 使用干净验证集 (482 行)
+[22:35:55] INFO:   开始训练 DQN (10 episodes, 起始轮=1210)...
+[22:36:11] INFO: 
+已恢复最佳模型权重 (Episode 1214, Score=0.2324, Cost=0)
+[22:36:11] INFO: 
+训练完成! 最佳分数: 0.2324 (共 1220 episodes)
+[22:36:11] INFO:   最佳动作分布: {'no_action': 39, 'repair_value': 0, 'delete': 13, 'replace_nearby': 10}
+[22:36:11] INFO: 
+训练完成!
+[22:36:11] INFO: 模型已保存: /Users/qianzekai/PycharmProjects/TolerDM/results/demandclean/beers/v5_auto_dueling_single/model/v5_auto_dueling_single_agent.pt
+[22:36:11] INFO: 
+==================================================
+[22:36:11] INFO: 单阶段推理
+[22:36:11] INFO: ==================================================
+[22:36:11] INFO:   [预修复] 利用 RAHA 标注行修复 48 个特征单元格 + 0 个标签
+[22:36:11] INFO:   移除已修复错误: missing=44, syntactic=4
+Traceback (most recent call last):
+  File "/Users/qianzekai/PycharmProjects/TolerDM/run_demandclean/run_demandclean_base.py", line 1957, in run_version
+    getscoreml_results = run_all_evaluation(
+  File "/Users/qianzekai/PycharmProjects/TolerDM/tools/getScoreML.py", line 1375, in run_all_evaluation
+    ml_results = evaluate_downstream_task(
+  File "/Users/qianzekai/PycharmProjects/TolerDM/tools/getScoreML.py", line 284, in evaluate_downstream_task
+    model_results = evaluate_classification(
+  File "/Users/qianzekai/PycharmProjects/TolerDM/tools/getScoreML.py", line 157, in evaluate_classification
+    model.fit(X_train, y_train)
+  File "/Users/qianzekai/PycharmProjects/TolerDM/TolerRL/lib/python3.9/site-packages/sklearn/ensemble/_forest.py", line 327, in fit
+    X, y = self._validate_data(
+  File "/Users/qianzekai/PycharmProjects/TolerDM/TolerRL/lib/python3.9/site-packages/sklearn/base.py", line 581, in _validate_data
+    X, y = check_X_y(X, y, **check_params)
+  File "/Users/qianzekai/PycharmProjects/TolerDM/TolerRL/lib/python3.9/site-packages/sklearn/utils/validation.py", line 979, in check_X_y
+    y = _check_y(y, multi_output=multi_output, y_numeric=y_numeric)
+  File "/Users/qianzekai/PycharmProjects/TolerDM/TolerRL/lib/python3.9/site-packages/sklearn/utils/validation.py", line 989, in _check_y
+    y = check_array(
+  File "/Users/qianzekai/PycharmProjects/TolerDM/TolerRL/lib/python3.9/site-packages/sklearn/utils/validation.py", line 800, in check_array
+    _assert_all_finite(array, allow_nan=force_all_finite == "allow-nan")
+  File "/Users/qianzekai/PycharmProjects/TolerDM/TolerRL/lib/python3.9/site-packages/sklearn/utils/validation.py", line 114, in _assert_all_finite
+    raise ValueError(
+ValueError: Input contains NaN, infinity or a value too large for dtype('float64').

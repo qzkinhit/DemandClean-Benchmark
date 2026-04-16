@@ -1,0 +1,192 @@
+[日志] 完整输出将保存到: /Users/qianzekai/PycharmProjects/TolerDM/logs/demandclean/beers_ep10_20260304_021145.log
+======================================================================
+DemandClean 统一运行脚本
+======================================================================
+数据集: ['beers']
+启用版本: ['v5_auto_dueling_single']
+训练轮数: 10
+详细输出: True
+Oracle 模式: 启用 (三路划分 60/20/20, --no-oracle 关闭)
+======================================================================
+
+######################################################################
+# 数据集: beers
+######################################################################
+
+  60/20/20 划分: train=1446, val=482, test=482
+  60% 子集 CSV: /Users/qianzekai/PycharmProjects/TolerDM/results/demandclean/beers/dirty_train_60pct.csv
+  数据集: beers
+  脏数据: (1446, 8)
+  特征列: 8, 标签列: style
+  分类列: {'city', 'state', 'beer_name', 'brewery_name'}
+  LE fit: 仅 dirty (1446 行)
+  SS fit: 仅 dirty (1446 行)
+  FD规则: 0 条
+  编码完成: X_dirty_train=(1446, 8), X_clean_train=(1446, 8), X_clean_val=(482, 8), X_clean_test=(482, 8)
+
+======================================================================
+版本: v5_auto_dueling_single
+数据集: beers | 任务: classification | 模型: random_forest
+检测器: auto | Agent: dueling_two_stage | 推理: single_phase
+训练轮数: 10 | 输出目录: /Users/qianzekai/PycharmProjects/TolerDM/results/demandclean/beers/v5_auto_dueling_single
+======================================================================
+
+[visualize_only] 跳过训练和推理，从已有结果加载...
+  已加载清洗结果: /Users/qianzekai/PycharmProjects/TolerDM/results/demandclean/beers/v5_auto_dueling_single/data/v5_auto_dueling_single_cleaned.csv (1446 行)
+  已加载训练历史: 400 episodes
+  已加载旧报告: /Users/qianzekai/PycharmProjects/TolerDM/results/demandclean/beers/v5_auto_dueling_single/report/v5_auto_dueling_single_report.json
+
+[Step 5] Baseline 评估与可视化...
+  统一测试集 (Oracle): 479 行
+
+============================================================
+Baseline 对比评估 - v5_auto_dueling_single
+============================================================
+  NoFix          : rf_accuracy=0.3152 | rf_f1=0.2574 | lr_accuracy=0.2255 | lr_f1=0.1259
+  DeleteAll: 数据不足(0行)，跳过
+  ReplaceAll     : rf_accuracy=0.3152 | rf_f1=0.2574 | lr_accuracy=0.2255 | lr_f1=0.1259
+  DemandClean    : rf_accuracy=0.3486 | rf_f1=0.281 | lr_accuracy=0.2317 | lr_f1=0.1352
+  FullFix        : rf_accuracy=0.3549 | rf_f1=0.2948 | lr_accuracy=0.2276 | lr_f1=0.1346
+  [可视化] Baseline 对比图已保存: /Users/qianzekai/PycharmProjects/TolerDM/results/demandclean/beers/v5_auto_dueling_single/visualization/v5_auto_dueling_single_baseline_comparison.png
+  [计时] Step 5 (Baseline评估): 951.10s
+
+[Step 6] 模型容忍度评估...
+============================================================
+模型容忍度计算 - v5_auto_dueling_single
+任务类型: classification  |  模型列表: ['rf', 'lr']
+============================================================
+
+--- 模型: RF ---
+  P_clean  = 0.3333
+  P_dirty  = 0.2812
+  P_dc     = 0.3229
+  先验容忍度 (P_dc / P_dirty)            = 1.1481
+  后验容忍度 (P_dc-P_dirty)/(P_clean-P_dirty) = 0.8000
+
+--- 模型: LR ---
+  P_clean  = 0.1979
+  P_dirty  = 0.1840
+  P_dc     = 0.1944
+  先验容忍度 (P_dc / P_dirty)            = 1.0566
+  后验容忍度 (P_dc-P_dirty)/(P_clean-P_dirty) = 0.7500
+  容忍度柱状图已保存: /Users/qianzekai/PycharmProjects/TolerDM/results/demandclean/beers/v5_auto_dueling_single/visualization/v5_auto_dueling_single_tolerance_bar.png
+  [计时] Step 6 (容忍度评估): 751.96s
+
+[Step 7] Shapley 三维度分析...
+  [跳过] 无可用错误列表或 Agent 未就绪
+  [计时] Step 7 (Shapley分析): 0.00s
+
+[Step 8] 训练曲线可视化...
+  [可视化] 训练曲线已保存: /Users/qianzekai/PycharmProjects/TolerDM/results/demandclean/beers/v5_auto_dueling_single/visualization/v5_auto_dueling_single_training_curves.png
+  [计时] Step 8 (训练曲线): 6.80s
+
+[Step 9] Clean4MLBaseline 统一测评...
+  使用编码版本: /Users/qianzekai/PycharmProjects/TolerDM/results/demandclean/beers/v5_auto_dueling_single/data/v5_auto_dueling_single_cleaned_encoded.npz
+======================================================================
+Clean4MLBaseline 统一测评 - v5_auto_dueling_single
+======================================================================
+
+[1/5] 传统清洗指标
+--------------------------------------------------
+差异文件已保存到:
+/Users/qianzekai/PycharmProjects/TolerDM/results/demandclean/beers/v5_auto_dueling_single/evaluation/v5_auto_dueling_single_clean_vs_dirty.csv
+/Users/qianzekai/PycharmProjects/TolerDM/results/demandclean/beers/v5_auto_dueling_single/evaluation/v5_auto_dueling_single_dirty_vs_cleaned.csv
+/Users/qianzekai/PycharmProjects/TolerDM/results/demandclean/beers/v5_auto_dueling_single/evaluation/v5_auto_dueling_single_clean_vs_cleaned.csv
+修复错误数据文件已保存到: /Users/qianzekai/PycharmProjects/TolerDM/results/demandclean/beers/v5_auto_dueling_single/evaluation/v5_auto_dueling_single_repair_errors.csv
+未修复但是应该修复数据文件已保存到: /Users/qianzekai/PycharmProjects/TolerDM/results/demandclean/beers/v5_auto_dueling_single/evaluation/v5_auto_dueling_single_unrepaired.csv
+修复准确率: 0.20904891626199218, 修复召回率: 0.8694581280788177, F1值: 0.3370571946598583
+========================================
+EDR 结果已保存到: /Users/qianzekai/PycharmProjects/TolerDM/results/demandclean/beers/v5_auto_dueling_single/evaluation/v5_auto_dueling_single_edr_evaluation.txt
+错误减少率 (EDR): -2.2911330049261083
+========================================
+混合距离结果已保存到: /Users/qianzekai/PycharmProjects/TolerDM/results/demandclean/beers/v5_auto_dueling_single/evaluation/v5_auto_dueling_single_hybrid_distance_evaluation.txt
+混合距离 (Hybrid Distance): 0.20972894798795647
+========================================
+R-EDR 结果已保存到: /Users/qianzekai/PycharmProjects/TolerDM/results/demandclean/beers/v5_auto_dueling_single/evaluation/v5_auto_dueling_single_record_based_edr_evaluation.txt
+基于条目的错误减少率 (R-EDR): 0.0
+========================================
+
+[2/5] 下游任务性能 (classification)
+--------------------------------------------------
+  [下游任务] 使用编码版本（跳过 CSV preprocess）
+  Oracle 模式: train=1442, test=479
+RF - Accuracy: 0.3486, F1: 0.2810, Precision: 0.2654, Recall: 0.3486
+LR - Accuracy: 0.2317, F1: 0.1350, Precision: 0.1353, Recall: 0.2317
+SVM - Accuracy: 0.1858, F1: 0.0582, Precision: 0.0345, Recall: 0.1858
+KNN - Accuracy: 0.1733, F1: 0.1428, Precision: 0.1339, Recall: 0.1733
+DT - Accuracy: 0.2568, F1: 0.2498, Precision: 0.2596, Recall: 0.2568
+GB - Accuracy: 0.3194, F1: 0.2717, Precision: 0.2489, Recall: 0.3194
+
+[3/5] 模型容忍度
+--------------------------------------------------
+  [容忍度] 使用编码版本（跳过 CSV preprocess）
+  Oracle 模式: train dirty=1442, cleaned=1442, clean=1440, test=479
+
+容忍度计算结果:
+  P_do_nothing (脏数据性能): 0.3152
+  P_demand_clean (清洗后性能): 0.3486
+  P_repair_all (完全修复性能): 0.3549
+  先验容忍度 (Tolerance_prior): 1.1060
+  后验容忍度 (Tolerance_post): 0.8421
+
+[4/5] Snoopy上界评估
+--------------------------------------------------
+  [Snoopy] 使用编码版本（跳过 CSV preprocess）
+使用编码数据评估数据质量上界...
+  脏数据上界: 0.2677
+  清洗后上界: 0.3273
+  干净数据上界: 0.3368
+  上界提升比例: 0.8630
+
+[5/5] 真值使用成本
+--------------------------------------------------
+  方法类型: Type 1 (全自动)
+  实际真值使用: 0
+  理想最小成本: 330
+  总修改单元格: 10590
+  正确修复: 330
+  错误修复: 10260
+
+======================================================================
+测评完成，结果已保存到: /Users/qianzekai/PycharmProjects/TolerDM/results/demandclean/beers/v5_auto_dueling_single/evaluation/v5_auto_dueling_single_evaluation_results.txt
+======================================================================
+  统一测评完成，结果已保存到: /Users/qianzekai/PycharmProjects/TolerDM/results/demandclean/beers/v5_auto_dueling_single/v5_auto_dueling_single_evaluation_results.txt
+  [计时] Step 9 (统一测评): 698.33s
+
+[Step 10] 真值成本汇总...
+  RAHA 检测成本: 20
+  Agent 修复成本: 0
+  总成本: 20 / 11568 cells = 0.1729%
+  [计时] Step 10 (成本汇总): 0.00s
+
+──────────────────────────────────────────────────
+  步骤计时汇总
+──────────────────────────────────────────────────
+  Step 1 初始化         │     0.00s
+  Step 2 训练          │     0.00s
+  Step 3 推理          │     0.00s
+  Step 4 检测器评估       │     0.00s
+  Step 5 Baseline评估  │   951.10s
+  Step 6 容忍度评估       │   751.96s
+  Step 7 Shapley分析   │     0.00s
+  Step 8 训练曲线        │     6.80s
+  Step 9 统一测评        │   698.33s
+  Step 10 成本汇总        │     0.00s
+──────────────────────────────────────────────────
+  总计(含可视化)       │  2408.21s
+  可视化耗时           │     7.81s
+  净耗时(扣可视化)     │  2400.40s
+──────────────────────────────────────────────────
+
+  [输出] 报告已保存: /Users/qianzekai/PycharmProjects/TolerDM/results/demandclean/beers/v5_auto_dueling_single/report/v5_auto_dueling_single_report.json
+
+  版本 v5_auto_dueling_single 完成! 耗时: 2400.40s
+  输出目录: /Users/qianzekai/PycharmProjects/TolerDM/results/demandclean/beers/v5_auto_dueling_single
+
+  只有 1 个版本完成，跳过跨版本对比
+
+======================================================================
+全部完成! 总耗时: 2422.54s
+结果目录: /Users/qianzekai/PycharmProjects/TolerDM/results/demandclean
+日志文件: /Users/qianzekai/PycharmProjects/TolerDM/logs/demandclean/beers_ep10_20260304_021145.log
+======================================================================

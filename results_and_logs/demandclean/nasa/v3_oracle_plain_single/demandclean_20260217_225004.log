@@ -1,0 +1,29 @@
+[2026-02-17 22:50:04,350] INFO - demandclean: ==================================================
+[2026-02-17 22:50:04,352] INFO - demandclean: DemandClean 训练开始
+[2026-02-17 22:50:04,352] INFO - demandclean:   检测器模式: oracle
+[2026-02-17 22:50:04,352] INFO - demandclean:   Agent类型: single
+[2026-02-17 22:50:04,352] INFO - demandclean:   推理模式: single_phase
+[2026-02-17 22:50:04,352] INFO - demandclean:   FD规则: 0
+[2026-02-17 22:50:04,353] INFO - demandclean: ==================================================
+[2026-02-17 22:50:04,353] INFO - demandclean: 
+[Step 1] 初始化错误检测器...
+[2026-02-17 22:50:04,353] INFO - demandclean: 
+[Step 2] 训练 DQN Agent...
+[2026-02-17 22:50:04,353] INFO - demandclean: 开始训练 (single Agent)
+[2026-02-17 22:50:04,353] INFO - demandclean:   任务类型: regression
+[2026-02-17 22:50:04,353] INFO - demandclean:   模型类型: ridge
+[2026-02-17 22:50:04,354] INFO - demandclean:   原始数据: 1503 行
+[2026-02-17 22:50:04,354] INFO - demandclean:   基准数据: 1473 行
+[2026-02-17 22:50:04,359] INFO - demandclean:   开始训练 DQN...
+[2026-02-17 22:50:05,743] INFO - demandclean: 
+已恢复最佳模型权重 (Episode 3, Score=-45.3008, Cost=97)
+[2026-02-17 22:50:05,743] INFO - demandclean: 
+训练完成! 最佳分数: -45.3008
+[2026-02-17 22:50:05,744] INFO - demandclean:   最佳动作分布: {'no_action': 88, 'repair_value': 97, 'delete': 86, 'replace_nearby': 87}
+[2026-02-17 22:50:05,744] INFO - demandclean: 
+训练完成!
+[2026-02-17 22:50:05,746] INFO - demandclean: 模型已保存: /Users/qianzekai/PycharmProjects/TolerDM/results/demandclean/nasa/v3_oracle_plain_single/v3_oracle_plain_single_agent.pt
+[2026-02-17 22:50:05,748] INFO - demandclean: 
+==================================================
+[2026-02-17 22:50:05,748] INFO - demandclean: 单阶段推理
+[2026-02-17 22:50:05,748] INFO - demandclean: ==================================================

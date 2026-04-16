@@ -1,0 +1,171 @@
+DemandClean 结果摘要 - v5_auto_dueling_single
+============================================================
+
+数据集: beers
+检测器: auto
+Agent: dueling_two_stage
+推理模式: single_phase
+任务: classification (random_forest)
+训练轮数: 300
+执行时间: 165.55 秒
+可视化耗时: 51.33 秒
+数据维度: (1446, 8) -> (1446, 8)
+真值成本: 0
+
+步骤计时:
+------------------------------------------------------------
+  Step 1 初始化: 0.00s
+  Step 2 训练: 91.91s
+  Step 3 推理: 10.77s
+  Step 4 检测器评估: 0.01s
+  Step 5 Baseline评估: 19.55s
+  Step 6 容忍度评估: 10.10s
+  Step 7 Shapley分析: 50.61s
+  Step 8 训练曲线: 0.57s
+  Step 9 统一测评: 33.36s
+  Step 10 成本汇总: 0.00s
+
+Baseline 对比:
+------------------------------------------------------------
+  NoFix: {'n_samples': 1442, 'n_test': 479, 'rf_accuracy': 0.3152, 'rf_f1': 0.2574, 'lr_accuracy': 0.2255, 'lr_f1': 0.1259, 'auth': 0.0, 'div': 0.0, 'cost': 0}
+  DeleteAll: {}
+  DeleteFix: {'n_samples': 287, 'n_test': 479, 'rf_accuracy': 0.3027, 'rf_f1': 0.2308, 'lr_accuracy': 0.2192, 'lr_f1': 0.1249, 'auth': 0.0, 'div': 0.0, 'cost': 1446}
+  ReplaceAll: {'n_samples': 1442, 'n_test': 479, 'rf_accuracy': 0.3424, 'rf_f1': 0.2751, 'lr_accuracy': 0.2234, 'lr_f1': 0.1284, 'auth': 0.1172, 'div': 0.0, 'cost': 0}
+  DemandClean: {'n_samples': 1442, 'n_test': 479, 'rf_accuracy': 0.3403, 'rf_f1': 0.2715, 'lr_accuracy': 0.2255, 'lr_f1': 0.125, 'auth': 0.12, 'div': 0.0, 'cost': 0}
+  FullFix: {'n_samples': 1440, 'n_test': 479, 'rf_accuracy': 0.3549, 'rf_f1': 0.2948, 'lr_accuracy': 0.2276, 'lr_f1': 0.1346, 'auth': 0.2104, 'div': 0.0, 'cost': 1446}
+
+模型容忍度:
+------------------------------------------------------------
+  rf: {'P_clean': 0.3333333333333333, 'P_dirty': 0.28125, 'P_dc': 0.3298611111111111, 'tolerance_prior': 1.1728395061728394, 'tolerance_post': 0.9333333333333336}
+  lr: {'P_clean': 0.19791666666666666, 'P_dirty': 0.1840277777777778, 'P_dc': 0.1840277777777778, 'tolerance_prior': 1.0, 'tolerance_post': 0.0}
+
+检测器准确率:
+------------------------------------------------------------
+  overall: {'precision': 0.9842027920646583, 'recall': 0.9996268656716418, 'f1': 0.9918548685671973, 'tp': 2679, 'fp': 43, 'fn': 1, 'gt_count': 2680, 'det_count': 2722}
+  missing: {'precision': 1.0, 'recall': 1.0, 'f1': 1.0, 'tp': 2608, 'fp': 0, 'fn': 0, 'gt_count': 2608, 'det_count': 2608}
+  syntactic: {'precision': 0.8987341772151899, 'recall': 0.9861111111111112, 'f1': 0.9403973509933775, 'tp': 71, 'fp': 8, 'fn': 1, 'gt_count': 72, 'det_count': 79}
+  semantic: {'precision': 0.0, 'recall': 0.0, 'f1': 0.0, 'tp': 0, 'fp': 35, 'fn': 72, 'gt_count': 72, 'det_count': 35}
+  value_error_combined: {'precision': 0.6228070175438597, 'recall': 0.9861111111111112, 'f1': 0.7634408602150538, 'tp': 71, 'fp': 43, 'fn': 1, 'gt_count': 72, 'det_count': 114}
+  ground_truth_total: 2680
+  detected_total: 2722
+
+Clean4MLBaseline 统一测评:
+------------------------------------------------------------
+  accuracy: 0.18476844723439537
+  recall: 0.7684729064039408
+  f1_score: 0.2979089085909191
+  edr: -2.392118226600985
+  hybrid_distance: 0.2052006757991215
+  r_edr: 0.0
+
+  下游任务性能:
+    ml_rf_accuracy: 0.34029227557411273
+    ml_rf_f1: 0.2714925819087075
+    ml_rf_precision: 0.2778979080939023
+    ml_rf_recall: 0.34029227557411273
+    ml_lr_accuracy: 0.2254697286012526
+    ml_lr_f1: 0.12497251573767398
+    ml_lr_precision: 0.12692643144903673
+    ml_lr_recall: 0.2254697286012526
+    ml_svm_accuracy: 0.18580375782881003
+    ml_svm_f1: 0.0582272339674792
+    ml_svm_precision: 0.034523036423307084
+    ml_svm_recall: 0.18580375782881003
+    ml_knn_accuracy: 0.1732776617954071
+    ml_knn_f1: 0.141502466808866
+    ml_knn_precision: 0.13622169430246603
+    ml_knn_recall: 0.1732776617954071
+    ml_dt_accuracy: 0.24425887265135698
+    ml_dt_f1: 0.23627070004285408
+    ml_dt_precision: 0.25485009632846095
+    ml_dt_recall: 0.24425887265135698
+    ml_gb_accuracy: 0.302713987473904
+    ml_gb_f1: 0.25215311891048753
+    ml_gb_precision: 0.24267996014299395
+    ml_gb_recall: 0.302713987473904
+
+  容忍度:
+    tolerance_P_do_nothing: 0.31524008350730687
+    tolerance_P_demand_clean: 0.34029227557411273
+    tolerance_P_repair_all: 0.35490605427974947
+    tolerance_tolerance_prior: 1.0794701986754969
+    tolerance_tolerance_post: 0.6315789473684214
+
+  Snoopy 上界:
+    snoopy_snoopy_available: True
+    snoopy_upper_bound_dirty: 0.267711937716263
+    snoopy_upper_bound_cleaned: 0.32457708573625527
+    snoopy_upper_bound_clean: 0.3368055555555555
+    snoopy_upper_bound_improvement: 0.8230159282186826
+
+  真值成本:
+    method_type: 1
+    ground_truth_cost: 0
+    ideal_total_changes: 10590
+    ideal_correct_repairs: 125
+    ideal_wrong_repairs: 10465
+    ideal_deleted_rows: 0
+    ideal_ideal_min_ground_truth_cost: 125
+    ideal_repair_accuracy: 0.011803588290840416
+
+============================================================
+Shapley 贡献分析:
+============================================================
+# Shapley Value Analysis Report
+
+- 数据规模: 1446 行 × 8 列
+- 错误总数: 2722
+- 任务类型: classification (random_forest)
+- MC 采样次数: 200
+
+## 维度 1: 动作重要性 (Action Importance)
+
+| 排名 | 动作 | Shapley 值 | 占比 | 方向 |
+|------|------|-----------|------|------|
+| 1 | no_action | +0.000000 | 0.0% | — 无影响 |
+| 2 | repair_value | +0.000000 | 0.0% | — 无影响 |
+| 3 | delete | +0.000000 | 0.0% | — 无影响 |
+| 4 | replace_nearby | +0.000000 | 0.0% | — 无影响 |
+
+**结论**: 最有效的清洗动作是 **no_action**
+
+## 维度 2: 特征重要性 (Feature Importance)
+
+| 排名 | 特征 | Shapley 值 | 占比 | 清洗价值 |
+|------|------|-----------|------|---------|
+| 1 | beer_name | +0.000000 | 0.0% | — 可忽略 |
+| 2 | ounces | +0.000000 | 0.0% | — 可忽略 |
+| 3 | abv | +0.000000 | 0.0% | — 可忽略 |
+| 4 | ibu | +0.000000 | 0.0% | — 可忽略 |
+| 5 | brewery_id | +0.000000 | 0.0% | — 可忽略 |
+| 6 | brewery_name | +0.000000 | 0.0% | — 可忽略 |
+| 7 | city | +0.000000 | 0.0% | — 可忽略 |
+| 8 | state | +0.000000 | 0.0% | — 可忽略 |
+
+**结论**: 
+- 清洗价值极低的特征: beer_name, ounces, abv（清洗它们几乎不影响性能）
+
+## 维度 3: 错误类型重要性 (Error Type Importance)
+
+| 排名 | 错误类型 | Shapley 值 | 占比 | 优先级 |
+|------|---------|-----------|------|--------|
+| 1 | missing | +0.000000 | 0.0% | 🟢 低 |
+| 2 | semantic | +0.000000 | 0.0% | 🟢 低 |
+| 3 | syntactic | +0.000000 | 0.0% | 🟢 低 |
+
+**结论**: 对下游性能影响最大的错误类型是 **missing**，检测器应优先识别此类错误。
+
+## 综合清洗建议
+
+
+
+============================================================
+真值使用成本汇总:
+============================================================
+  RAHA 检测成本: 20
+  Agent 修复成本: 0
+  总成本: 20
+  总数据单元: 11568
+  成本率: 0.1729%
+  apply_raha_truth: True
+  count_raha_cost: True

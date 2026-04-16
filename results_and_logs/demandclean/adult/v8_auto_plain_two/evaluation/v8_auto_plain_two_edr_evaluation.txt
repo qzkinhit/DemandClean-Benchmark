@@ -1,0 +1,67 @@
+Attribute: index
+Distance (Dirty to Clean): 0
+Distance (Repaired to Clean): 0
+========================================
+Attribute: age
+Distance (Dirty to Clean): 0
+Distance (Repaired to Clean): 0
+========================================
+Attribute: workclass
+Distance (Dirty to Clean): 0
+Distance (Repaired to Clean): 0
+========================================
+Attribute: fnlwgt
+Distance (Dirty to Clean): 0
+Distance (Repaired to Clean): 772
+========================================
+Attribute: education
+Distance (Dirty to Clean): 0
+Distance (Repaired to Clean): 0
+========================================
+Attribute: educational_num
+Distance (Dirty to Clean): 0
+Distance (Repaired to Clean): 0
+========================================
+Attribute: marital_status
+Distance (Dirty to Clean): 0
+Distance (Repaired to Clean): 0
+========================================
+Attribute: occupation
+Distance (Dirty to Clean): 0
+Distance (Repaired to Clean): 0
+========================================
+Attribute: relationship
+Distance (Dirty to Clean): 0
+Distance (Repaired to Clean): 0
+========================================
+Attribute: race
+Distance (Dirty to Clean): 0
+Distance (Repaired to Clean): 0
+========================================
+Attribute: gender
+Distance (Dirty to Clean): 0
+Distance (Repaired to Clean): 0
+========================================
+Attribute: capital_gain
+Distance (Dirty to Clean): 0
+Distance (Repaired to Clean): 8
+========================================
+Attribute: capital_loss
+Distance (Dirty to Clean): 0
+Distance (Repaired to Clean): 580
+========================================
+Attribute: hours_per_week
+Distance (Dirty to Clean): 0
+Distance (Repaired to Clean): 813
+========================================
+Attribute: native_country
+Distance (Dirty to Clean): 0
+Distance (Repaired to Clean): 0
+========================================
+Attribute: income
+Distance (Dirty to Clean): 1701
+Distance (Repaired to Clean): 1701
+========================================
+总的脏数据到干净数据距离: 1701
+总的修复后数据到干净数据距离: 3874
+错误减少率 (EDR): -1.2774838330393885

@@ -1,0 +1,52 @@
+[2026-03-03 20:36:25,233] INFO - demandclean: ==================================================
+[2026-03-03 20:36:25,233] INFO - demandclean: DemandClean 训练开始
+[2026-03-03 20:36:25,233] INFO - demandclean:   检测器模式: auto
+[2026-03-03 20:36:25,233] INFO - demandclean:   训练模式: clean_base
+[2026-03-03 20:36:25,233] INFO - demandclean:   Agent类型: dueling_two_stage
+[2026-03-03 20:36:25,233] INFO - demandclean:   推理模式: single_phase
+[2026-03-03 20:36:25,233] INFO - demandclean:   FD规则: 4
+[2026-03-03 20:36:25,233] INFO - demandclean:   丰富规则: 有
+[2026-03-03 20:36:25,234] INFO - demandclean: ==================================================
+[2026-03-03 20:36:25,234] INFO - demandclean: 
+[Step 1] 初始化错误检测器...
+[2026-03-03 20:36:25,234] INFO - demandclean: 
+[Step 1.5] 运行 RAHA 检测获取标注行...
+[2026-03-03 20:38:58,104] INFO - demandclean:   [预修复] 利用 RAHA 标注行修复 39 个特征单元格 + 0 个标签
+[2026-03-03 20:38:58,104] INFO - demandclean:   标注行: [74, 144, 197, 313, 330, 347, 369, 502, 625, 658]... (共 20 行)
+[2026-03-03 20:38:58,105] INFO - demandclean: 
+[Step 1.8] 加载续训模型: /Users/qianzekai/PycharmProjects/TolerDM/results/demandclean/beers/v5_auto_dueling_single/model/v5_auto_dueling_single_agent.pt
+[2026-03-03 20:39:01,799] INFO - demandclean:   已训练 800 episodes, best_score=0.2510, epsilon=0.0997
+[2026-03-03 20:39:01,799] INFO - demandclean: 
+[Step 2] 训练 DQN Agent...
+[2026-03-03 20:39:01,800] INFO - demandclean: 续训 (dueling_two_stage Agent, mode=clean_base)
+[2026-03-03 20:39:01,800] INFO - demandclean:   任务类型: classification
+[2026-03-03 20:39:01,800] INFO - demandclean:   模型类型: random_forest
+[2026-03-03 20:39:01,800] INFO - demandclean:   原始数据: 1446 行
+[2026-03-03 20:39:01,800] INFO - demandclean:   续训起始轮: 800
+[2026-03-03 20:39:32,264] INFO - demandclean:   Clean Base 自动选择 (5-fold CV, 样本保留率加权):
+[2026-03-03 20:39:32,265] INFO - demandclean:     DeleteFix: 289 行, CV=0.2803, 权重=0.447, 加权=0.1253
+[2026-03-03 20:39:32,265] INFO - demandclean:     VE-Fill:   1446 行, CV=0.0000, 权重=1.000, 加权=0.0000
+[2026-03-03 20:39:32,265] INFO - demandclean:     → 选择 DeleteFix (289 行)
+[2026-03-03 20:39:32,265] INFO - demandclean:   标签注入: 检测器未发现标签错误，不注入
+[2026-03-03 20:39:32,265] INFO - demandclean:   自适应注入比例范围 (基于检测结果):
+[2026-03-03 20:39:32,266] INFO - demandclean:     missing: (0.1804, 0.2705)
+[2026-03-03 20:39:32,266] INFO - demandclean:     semantic: (0.0068, 0.0118)
+[2026-03-03 20:39:32,266] INFO - demandclean:     syntactic: (0.0050, 0.0100)
+[2026-03-03 20:39:32,266] INFO - demandclean:     label: 不注入
+[2026-03-03 20:39:32,277] INFO - demandclean:   ErrorInjector: rich_rules=True, domain=3, cfd=0, fd=4
+[2026-03-03 20:39:32,277] INFO - demandclean:   Oracle 模式: reward 使用干净验证集 (482 行)
+[2026-03-03 20:39:32,278] INFO - demandclean:   开始训练 DQN (10 episodes, 起始轮=800)...
+[2026-03-03 20:39:54,930] INFO - demandclean: 
+已恢复最佳模型权重 (Episode 803, Score=0.2386, Cost=9)
+[2026-03-03 20:39:54,931] INFO - demandclean: 
+训练完成! 最佳分数: 0.2386 (共 810 episodes)
+[2026-03-03 20:39:54,931] INFO - demandclean:   最佳动作分布: {'no_action': 9, 'repair_value': 9, 'delete': 6, 'replace_nearby': 50}
+[2026-03-03 20:39:54,931] INFO - demandclean: 
+训练完成!
+[2026-03-03 20:39:54,938] INFO - demandclean: 模型已保存: /Users/qianzekai/PycharmProjects/TolerDM/results/demandclean/beers/v5_auto_dueling_single/model/v5_auto_dueling_single_agent.pt
+[2026-03-03 20:39:55,001] INFO - demandclean: 
+==================================================
+[2026-03-03 20:39:55,065] INFO - demandclean: 单阶段推理
+[2026-03-03 20:39:55,065] INFO - demandclean: ==================================================
+[2026-03-03 20:39:55,067] INFO - demandclean:   [预修复] 利用 RAHA 标注行修复 39 个特征单元格 + 0 个标签
+[2026-03-03 20:39:55,067] INFO - demandclean:   移除已修复错误: missing=36, syntactic=3

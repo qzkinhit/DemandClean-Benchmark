@@ -1,0 +1,187 @@
+[日志] 完整输出将保存到: /Users/qianzekai/PycharmProjects/TolerDM/logs/demandclean/bike_v5_ep300_20260412_023937.log
+======================================================================
+DemandClean 统一运行脚本
+======================================================================
+数据集: ['bike']
+启用版本: ['v5_auto_dueling_single']
+训练轮数: 300
+详细输出: False
+Oracle 模式: 启用 (三路划分 60/20/20, --no-oracle 关闭)
+======================================================================
+
+######################################################################
+# 数据集: bike
+######################################################################
+
+  60/20/20 划分: train=10427, val=3476, test=3476
+  60% 子集 CSV: /Users/qianzekai/PycharmProjects/TolerDM/results/demandclean/bike/dirty_train_60pct.csv
+  数据集: bike
+  脏数据: (10427, 15)
+  特征列: 15, 标签列: cnt
+  分类列: (无)
+  LE fit: 仅 dirty (10427 行)
+  SS fit: 仅 dirty (10427 行)
+  FD规则: 0 条
+  编码完成: X_dirty_train=(10427, 15), X_clean_train=(10427, 15), X_clean_val=(3476, 15), X_clean_test=(3476, 15)
+
+======================================================================
+版本: v5_auto_dueling_single
+数据集: bike | 任务: regression | 模型: random_forest
+检测器: auto | Agent: dueling_two_stage | 推理: single_phase
+训练轮数: 300 | 输出目录: /Users/qianzekai/PycharmProjects/TolerDM/results/demandclean/bike/v5_auto_dueling_single
+======================================================================
+
+[Step 1] 创建 DemandClean 实例...
+  [计时] Step 1 (初始化): 0.00s
+
+[Step 2] 训练 (300 episodes)...
+  RAHA 检测结果: 25204 个单元格
+  Precision=0.9514  Recall=0.9578  F1=0.9546
+  RAHA 标注行数: 20 (labeling_budget=20)
+  RAHA 检测结果: 1464 个单元格
+  Precision=0.9802  Recall=0.9689  F1=0.9745
+  RAHA 标注行数: 20 (labeling_budget=20)
+  模型已保存: /Users/qianzekai/PycharmProjects/TolerDM/results/demandclean/bike/v5_auto_dueling_single/model/v5_auto_dueling_single_agent.pt
+  训练历史已保存: /Users/qianzekai/PycharmProjects/TolerDM/results/demandclean/bike/v5_auto_dueling_single/report/v5_auto_dueling_single_history.json
+  [计时] Step 2 (训练): 4571.30s
+
+[Step 3] 推理 (模式: single_phase)...
+  真值使用: 0
+  动作分布: {'no_action': 3511, 'repair_value': 0, 'delete': 8341, 'replace_nearby': 1839}
+  清洗后数据已保存: /Users/qianzekai/PycharmProjects/TolerDM/results/demandclean/bike/v5_auto_dueling_single/data/v5_auto_dueling_single_cleaned.csv
+  原始格式清洗数据已保存: /Users/qianzekai/PycharmProjects/TolerDM/results/demandclean/bike/v5_auto_dueling_single/data/v5_auto_dueling_single_cleaned_original.csv
+  编码版本已保存: /Users/qianzekai/PycharmProjects/TolerDM/results/demandclean/bike/v5_auto_dueling_single/data/v5_auto_dueling_single_cleaned_encoded.npz
+  [计时] Step 3 (推理): 200.28s
+
+[Step 4] 检测器准确率评估...
+  [计时] Step 4 (检测器评估): 0.19s
+
+[Step 5] Baseline 评估与可视化...
+  ReplaceAll VE: ValueEstimator(DC=9 rules (2 target cols), DOMAIN=15 cols)
+  ReplaceAll VE 估值: 27679 个错误, 26.2s
+  DeleteFix: 删除 8342 行, 保留 2085 行
+  统一测试集 (Oracle): 3476 行
+
+============================================================
+Baseline 对比评估 - v5_auto_dueling_single
+============================================================
+  NoFix          : rf_mse=110.9192 | rf_r2=0.9965 | ridge_mse=4421.611 | ridge_r2=0.8593 | 3.4s
+  DeleteAll      : rf_mse=110.9192 | rf_r2=0.9965 | ridge_mse=4421.611 | ridge_r2=0.8593 | 3.5s
+  DeleteFix      : rf_mse=176.0828 | rf_r2=0.9944 | ridge_mse=1317.1136 | ridge_r2=0.9581 | 0.6s
+  ReplaceAll     : rf_mse=90.9154 | rf_r2=0.9971 | ridge_mse=1.244 | ridge_r2=1.0 | 3.3s
+  DemandClean    : rf_mse=163.4416 | rf_r2=0.9948 | ridge_mse=1592.6323 | ridge_r2=0.9493 | 0.7s
+  FullFix        : rf_mse=7.1489 | rf_r2=0.9998 | ridge_mse=0.0014 | ridge_r2=1.0 | 2.8s
+  [可视化] Baseline 对比图已保存: /Users/qianzekai/PycharmProjects/TolerDM/results/demandclean/bike/v5_auto_dueling_single/visualization/v5_auto_dueling_single_baseline_comparison.png
+  [计时] Step 5 (Baseline评估): 41.24s
+
+[Step 6] 模型容忍度评估...
+============================================================
+模型容忍度计算 - v5_auto_dueling_single
+任务类型: regression  |  模型列表: ['rf', 'ridge']
+============================================================
+
+--- 模型: RF ---
+  P_clean  = 0.9997
+  P_dirty  = 0.9967
+  P_dc     = -0.1798
+  先验容忍度 (P_dc / P_dirty)            = -0.1804
+  后验容忍度 (P_dc-P_dirty)/(P_clean-P_dirty) = -391.7010
+
+--- 模型: RIDGE ---
+  P_clean  = 1.0000
+  P_dirty  = 0.8561
+  P_dc     = -0.0225
+  先验容忍度 (P_dc / P_dirty)            = -0.0263
+  后验容忍度 (P_dc-P_dirty)/(P_clean-P_dirty) = -6.1039
+  容忍度柱状图已保存: /Users/qianzekai/PycharmProjects/TolerDM/results/demandclean/bike/v5_auto_dueling_single/visualization/v5_auto_dueling_single_tolerance_bar.png
+  [计时] Step 6 (容忍度评估): 5.95s
+
+[Step 7] Shapley 三维度分析...
+[Shapley] 维度1: 动作重要性 (精确枚举 4!=24 排列) ...
+[Shapley] 图表已保存: /Users/qianzekai/PycharmProjects/TolerDM/results/demandclean/bike/v5_auto_dueling_single/evaluation/shapley/shapley_action_importance.png
+[Shapley] 维度2: 跳过特征 Shapley（计算量过大，仅保留维度1和维度3）
+[Shapley] 维度3: 错误类型重要性 (精确枚举 2!=2 排列) ...
+[Shapley] 图表已保存: /Users/qianzekai/PycharmProjects/TolerDM/results/demandclean/bike/v5_auto_dueling_single/evaluation/shapley/shapley_error_type_importance.png
+  [计时] Step 7 (Shapley分析): 2403.33s
+
+[Step 8] 训练曲线可视化...
+  [可视化] 训练曲线已保存: /Users/qianzekai/PycharmProjects/TolerDM/results/demandclean/bike/v5_auto_dueling_single/visualization/v5_auto_dueling_single_training_curves.png
+  [计时] Step 8 (训练曲线): 0.49s
+
+[Step 9] Clean4MLBaseline 统一测评...
+差异文件已保存到:
+/Users/qianzekai/PycharmProjects/TolerDM/results/demandclean/bike/v5_auto_dueling_single/evaluation/v5_auto_dueling_single_clean_vs_dirty.csv
+/Users/qianzekai/PycharmProjects/TolerDM/results/demandclean/bike/v5_auto_dueling_single/evaluation/v5_auto_dueling_single_dirty_vs_cleaned.csv
+/Users/qianzekai/PycharmProjects/TolerDM/results/demandclean/bike/v5_auto_dueling_single/evaluation/v5_auto_dueling_single_clean_vs_cleaned.csv
+修复错误数据文件已保存到: /Users/qianzekai/PycharmProjects/TolerDM/results/demandclean/bike/v5_auto_dueling_single/evaluation/v5_auto_dueling_single_repair_errors.csv
+未修复但是应该修复数据文件已保存到: /Users/qianzekai/PycharmProjects/TolerDM/results/demandclean/bike/v5_auto_dueling_single/evaluation/v5_auto_dueling_single_unrepaired.csv
+修复准确率: 0.17530864197530865, 修复召回率: 0.0613126079447323, F1值: 0.0908509276647399
+========================================
+EDR 结果已保存到: /Users/qianzekai/PycharmProjects/TolerDM/results/demandclean/bike/v5_auto_dueling_single/evaluation/v5_auto_dueling_single_edr_evaluation.txt
+错误减少率 (EDR): -0.07196315486470926
+========================================
+混合距离结果已保存到: /Users/qianzekai/PycharmProjects/TolerDM/results/demandclean/bike/v5_auto_dueling_single/evaluation/v5_auto_dueling_single_hybrid_distance_evaluation.txt
+混合距离 (Hybrid Distance): 0.3140580775184334
+========================================
+R-EDR 结果已保存到: /Users/qianzekai/PycharmProjects/TolerDM/results/demandclean/bike/v5_auto_dueling_single/evaluation/v5_auto_dueling_single_record_based_edr_evaluation.txt
+基于条目的错误减少率 (R-EDR): -0.03970917225950783
+========================================
+  [下游任务] 使用编码版本（跳过 CSV preprocess）
+  Oracle 模式: train=2086, test=3476
+RF - MSE: 163.4416, R2: 0.9948
+LR - MSE: 1587.2412, R2: 0.9495
+RIDGE - MSE: 1592.6323, R2: 0.9493
+LASSO - MSE: 1587.7078, R2: 0.9495
+KNN - MSE: 2988.4862, R2: 0.9049
+GB - MSE: 294.6159, R2: 0.9906
+  [容忍度] 使用编码版本（跳过 CSV preprocess）
+  Oracle 模式: train dirty=10427, cleaned=2086, clean=10427, test=3476
+
+容忍度计算结果:
+  P_do_nothing (脏数据性能): 0.9965
+  P_demand_clean (清洗后性能): 0.9948
+  P_repair_all (完全修复性能): 0.9998
+  先验容忍度 (Tolerance_prior): 0.9983
+  后验容忍度 (Tolerance_post): -0.5061
+  [Snoopy] 使用编码版本（跳过 CSV preprocess）
+使用编码数据评估数据质量上界...
+  统一测评完成，结果已保存到: /Users/qianzekai/PycharmProjects/TolerDM/results/demandclean/bike/v5_auto_dueling_single/v5_auto_dueling_single_evaluation_results.txt
+  [计时] Step 9 (统一测评): 39.52s
+
+[Step 10] 真值成本汇总...
+  RAHA 检测成本: 40
+  Agent 修复成本: 0
+  总成本: 40 / 156405 cells = 0.0256%
+  [计时] Step 10 (成本汇总): 0.00s
+
+──────────────────────────────────────────────────
+  步骤计时汇总
+──────────────────────────────────────────────────
+  Step 1 初始化         │     0.00s
+  Step 2 训练          │  4571.30s
+  Step 3 推理          │   200.28s
+  Step 4 检测器评估       │     0.19s
+  Step 5 Baseline评估  │    41.24s
+  Step 6 容忍度评估       │     5.95s
+  Step 7 Shapley分析   │  2403.33s
+  Step 8 训练曲线        │     0.49s
+  Step 9 统一测评        │    39.52s
+  Step 10 成本汇总        │     0.00s
+──────────────────────────────────────────────────
+  总计(含可视化)       │  7262.30s
+  可视化耗时           │  2403.92s
+  净耗时(扣可视化)     │  4858.39s
+──────────────────────────────────────────────────
+
+  [输出] 报告已保存: /Users/qianzekai/PycharmProjects/TolerDM/results/demandclean/bike/v5_auto_dueling_single/report/v5_auto_dueling_single_report.json
+
+  版本 v5_auto_dueling_single 完成! 耗时: 4858.39s
+  输出目录: /Users/qianzekai/PycharmProjects/TolerDM/results/demandclean/bike/v5_auto_dueling_single
+
+  只有 1 个版本完成，跳过跨版本对比
+
+======================================================================
+全部完成! 总耗时: 7262.43s
+结果目录: /Users/qianzekai/PycharmProjects/TolerDM/results/demandclean
+日志文件: /Users/qianzekai/PycharmProjects/TolerDM/logs/demandclean/bike_v5_ep300_20260412_023937.log
+======================================================================

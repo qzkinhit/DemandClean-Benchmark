@@ -1,0 +1,5 @@
+[2026-04-14 09:27:47,574] INFO - demandclean:   Clean Base 自动选择 (5-fold CV, 样本保留率加权):
+[2026-04-14 09:27:47,574] INFO - demandclean:     DeleteFix: 23332 行, CV=0.8877, 权重=0.927, 加权=0.8232
+[2026-04-14 09:27:47,574] INFO - demandclean:     VE-Fill:   27133 行, CV=0.8733, 权重=1.000, 加权=0.8733
+[2026-04-14 09:27:47,574] INFO - demandclean:     → 选择 VE-Fill (27133 行)
+[2026-04-14 12:53:45,376] INFO - demandclean: 模型已保存: /Users/qianzekai/PycharmProjects/TolerDM/results/demandclean/adult/v5_auto_dueling_single/model/v5_auto_dueling_single_agent.pt

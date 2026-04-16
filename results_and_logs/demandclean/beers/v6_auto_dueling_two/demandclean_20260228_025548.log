@@ -1,0 +1,58 @@
+[2026-02-28 02:55:48,230] INFO - demandclean: ==================================================
+[2026-02-28 02:55:48,230] INFO - demandclean: DemandClean 训练开始
+[2026-02-28 02:55:48,230] INFO - demandclean:   检测器模式: auto
+[2026-02-28 02:55:48,230] INFO - demandclean:   训练模式: clean_base
+[2026-02-28 02:55:48,231] INFO - demandclean:   Agent类型: dueling_two_stage
+[2026-02-28 02:55:48,231] INFO - demandclean:   推理模式: two_phase
+[2026-02-28 02:55:48,231] INFO - demandclean:   FD规则: 4
+[2026-02-28 02:55:48,231] INFO - demandclean:   丰富规则: 有
+[2026-02-28 02:55:48,231] INFO - demandclean: ==================================================
+[2026-02-28 02:55:48,231] INFO - demandclean: 
+[Step 1] 初始化错误检测器...
+[2026-02-28 02:55:48,231] INFO - demandclean: 
+[Step 1.5] 运行 RAHA 检测获取标注行...
+[2026-02-28 03:00:50,578] INFO - demandclean:   [预修复] 利用 RAHA 标注行修复 43 个特征单元格 + 1 个标签
+[2026-02-28 03:00:50,580] INFO - demandclean:   标注行: [17, 326, 335, 367, 470, 478, 585, 651, 691, 1051]... (共 20 行)
+[2026-02-28 03:00:50,580] INFO - demandclean: 
+[Step 2] 训练 DQN Agent...
+[2026-02-28 03:00:50,580] INFO - demandclean: 开始训练 (dueling_two_stage Agent, mode=clean_base)
+[2026-02-28 03:00:50,580] INFO - demandclean:   任务类型: classification
+[2026-02-28 03:00:50,580] INFO - demandclean:   模型类型: random_forest
+[2026-02-28 03:00:50,581] INFO - demandclean:   原始数据: 2410 行
+[2026-02-28 03:00:50,786] INFO - demandclean:   基准数据: 482 行 (DeleteFix 策略: 删除 1928 错误行, 填充 481 个残余 NaN)
+[2026-02-28 03:00:50,787] INFO - demandclean:   标签注入: 检测到 16 个标签错误, rate=0.007, symmetric=True
+[2026-02-28 03:00:50,787] INFO - demandclean:   自适应注入比例范围 (基于检测结果):
+[2026-02-28 03:00:50,787] INFO - demandclean:     missing: (0.1784, 0.2676)
+[2026-02-28 03:00:50,787] INFO - demandclean:     semantic: (0.0071, 0.0121)
+[2026-02-28 03:00:50,787] INFO - demandclean:     syntactic: (0.0050, 0.0100)
+[2026-02-28 03:00:50,787] INFO - demandclean:     label: (0.0053, 0.0103)
+[2026-02-28 03:00:54,585] INFO - demandclean:   ErrorInjector: rich_rules=True, domain=3, cfd=0, fd=4
+[2026-02-28 03:00:54,585] INFO - demandclean:   开始训练 DQN (400 episodes, 起始轮=0)...
+[2026-02-28 03:05:39,516] INFO - demandclean:   Episode 50/400: Score=0.7884, Best=0.8071, Eps=0.778
+[2026-02-28 03:05:39,518] INFO - demandclean:     Actions: {'no_action': 48, 'repair_value': 15, 'delete': 36, 'replace_nearby': 20}
+[2026-02-28 03:10:45,134] INFO - demandclean:   Episode 100/400: Score=0.7095, Best=0.8071, Eps=0.606
+[2026-02-28 03:10:45,136] INFO - demandclean:     Actions: {'no_action': 50, 'repair_value': 8, 'delete': 35, 'replace_nearby': 16}
+[2026-02-28 03:16:33,927] INFO - demandclean:   Episode 150/400: Score=0.7510, Best=0.8091, Eps=0.471
+[2026-02-28 03:16:33,929] INFO - demandclean:     Actions: {'no_action': 39, 'repair_value': 5, 'delete': 53, 'replace_nearby': 11}
+[2026-02-28 03:21:43,129] INFO - demandclean:   Episode 200/400: Score=0.7075, Best=0.8091, Eps=0.367
+[2026-02-28 03:21:43,131] INFO - demandclean:     Actions: {'no_action': 95, 'repair_value': 2, 'delete': 22, 'replace_nearby': 5}
+[2026-02-28 03:25:44,896] INFO - demandclean:   Episode 250/400: Score=0.7220, Best=0.8091, Eps=0.286
+[2026-02-28 03:25:44,920] INFO - demandclean:     Actions: {'no_action': 76, 'repair_value': 7, 'delete': 22, 'replace_nearby': 23}
+[2026-02-28 03:29:33,496] INFO - demandclean:   Episode 300/400: Score=0.8071, Best=0.8091, Eps=0.222
+[2026-02-28 03:29:33,497] INFO - demandclean:     Actions: {'no_action': 84, 'repair_value': 0, 'delete': 30, 'replace_nearby': 7}
+[2026-02-28 03:33:19,819] INFO - demandclean:   Episode 350/400: Score=0.7552, Best=0.8091, Eps=0.173
+[2026-02-28 03:33:19,834] INFO - demandclean:     Actions: {'no_action': 107, 'repair_value': 0, 'delete': 9, 'replace_nearby': 6}
+[2026-02-28 03:36:51,150] INFO - demandclean:   Episode 400/400: Score=0.7573, Best=0.8091, Eps=0.135
+[2026-02-28 03:36:51,151] INFO - demandclean:     Actions: {'no_action': 75, 'repair_value': 1, 'delete': 32, 'replace_nearby': 11}
+[2026-02-28 03:36:51,152] INFO - demandclean: 
+已恢复最佳模型权重 (Episode 126, Score=0.8091, Cost=6)
+[2026-02-28 03:36:51,152] INFO - demandclean: 
+训练完成! 最佳分数: 0.8091 (共 400 episodes)
+[2026-02-28 03:36:51,152] INFO - demandclean:   最佳动作分布: {'no_action': 61, 'repair_value': 6, 'delete': 27, 'replace_nearby': 12}
+[2026-02-28 03:36:51,153] INFO - demandclean: 
+训练完成!
+[2026-02-28 03:36:51,162] INFO - demandclean: 模型已保存: /Users/qianzekai/PycharmProjects/TolerDM/results/demandclean/beers/v6_auto_dueling_two/model/v6_auto_dueling_two_agent.pt
+[2026-02-28 03:36:51,177] INFO - demandclean: 
+==================================================
+[2026-02-28 03:36:51,177] INFO - demandclean: 两阶段推理 - 第一阶段 (Plan)
+[2026-02-28 03:36:51,177] INFO - demandclean: ==================================================

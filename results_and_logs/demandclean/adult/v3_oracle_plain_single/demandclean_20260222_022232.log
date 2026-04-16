@@ -1,0 +1,34 @@
+[2026-02-22 02:22:32,726] INFO - demandclean: ==================================================
+[2026-02-22 02:22:32,726] INFO - demandclean: DemandClean 训练开始
+[2026-02-22 02:22:32,726] INFO - demandclean:   检测器模式: oracle
+[2026-02-22 02:22:32,726] INFO - demandclean:   训练模式: clean_base
+[2026-02-22 02:22:32,726] INFO - demandclean:   Agent类型: single
+[2026-02-22 02:22:32,726] INFO - demandclean:   推理模式: single_phase
+[2026-02-22 02:22:32,726] INFO - demandclean:   FD规则: 1
+[2026-02-22 02:22:32,726] INFO - demandclean:   丰富规则: 有
+[2026-02-22 02:22:32,726] INFO - demandclean: ==================================================
+[2026-02-22 02:22:32,726] INFO - demandclean: 
+[Step 1] 初始化错误检测器...
+[2026-02-22 02:22:32,726] INFO - demandclean: 
+[Step 2] 训练 DQN Agent...
+[2026-02-22 02:22:32,726] INFO - demandclean: 开始训练 (single Agent, mode=clean_base)
+[2026-02-22 02:22:32,726] INFO - demandclean:   任务类型: classification
+[2026-02-22 02:22:32,726] INFO - demandclean:   模型类型: random_forest
+[2026-02-22 02:22:32,726] INFO - demandclean:   原始数据: 45222 行
+[2026-02-22 02:22:32,729] INFO - demandclean:   基准数据: 45222 行
+[2026-02-22 02:22:33,667] INFO - demandclean:   ErrorInjector: rich_rules=True, domain=5, cfd=0, fd=1
+[2026-02-22 02:22:33,667] INFO - demandclean:   开始训练 DQN (50 episodes)...
+[2026-02-22 03:36:42,920] INFO - demandclean:   Episode 50/50: Score=0.9886, Best=0.9917, Eps=0.778
+[2026-02-22 03:36:42,921] INFO - demandclean:     Actions: {'no_action': 2371, 'repair_value': 2415, 'delete': 2311, 'replace_nearby': 4884}
+[2026-02-22 03:36:42,921] INFO - demandclean: 
+已恢复最佳模型权重 (Episode 42, Score=0.9917, Cost=2217)
+[2026-02-22 03:36:42,921] INFO - demandclean: 
+训练完成! 最佳分数: 0.9917
+[2026-02-22 03:36:42,921] INFO - demandclean:   最佳动作分布: {'no_action': 2034, 'repair_value': 2217, 'delete': 2096, 'replace_nearby': 3704}
+[2026-02-22 03:36:42,925] INFO - demandclean: 
+训练完成!
+[2026-02-22 03:36:42,936] INFO - demandclean: 模型已保存: /Users/qianzekai/PycharmProjects/TolerDM/results/demandclean/adult/v3_oracle_plain_single/model/v3_oracle_plain_single_agent.pt
+[2026-02-22 03:36:42,937] INFO - demandclean: 
+==================================================
+[2026-02-22 03:36:42,937] INFO - demandclean: 单阶段推理
+[2026-02-22 03:36:42,937] INFO - demandclean: ==================================================

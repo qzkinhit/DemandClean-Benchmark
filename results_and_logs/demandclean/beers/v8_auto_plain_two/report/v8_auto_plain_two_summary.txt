@@ -1,0 +1,159 @@
+DemandClean 结果摘要 - v8_auto_plain_two
+============================================================
+
+数据集: beers
+检测器: auto
+Agent: single_stage
+推理模式: two_phase
+任务: classification (random_forest)
+训练轮数: 5
+执行时间: 491.82 秒
+数据维度: (2410, 8) -> (482, 8)
+真值成本: 0
+
+Baseline 对比:
+------------------------------------------------------------
+  NoFix: {'n_samples': 2406, 'rf_accuracy': 0.3091, 'rf_f1': 0.2833, 'lr_accuracy': 0.2178, 'lr_f1': 0.1182, 'auth': 0.0, 'div': 0.0, 'cost': 0}
+  DeleteAll: {}
+  DeleteFix: {'n_samples': 482, 'rf_accuracy': 0.4021, 'rf_f1': 0.3548, 'lr_accuracy': 0.3299, 'lr_f1': 0.2892, 'auth': 0.0, 'div': 0.0, 'cost': 2410}
+  ReplaceAll: {'n_samples': 2406, 'rf_accuracy': 0.3091, 'rf_f1': 0.2833, 'lr_accuracy': 0.2178, 'lr_f1': 0.1182, 'auth': 0.0, 'div': 0.0, 'cost': 0}
+  DemandClean: {'n_samples': 482, 'rf_accuracy': 0.3608, 'rf_f1': 0.307, 'lr_accuracy': 0.268, 'lr_f1': 0.1746, 'auth': 0.0, 'div': 0.0, 'cost': 0}
+  FullFix: {'n_samples': 2406, 'rf_accuracy': 0.3734, 'rf_f1': 0.3407, 'lr_accuracy': 0.2178, 'lr_f1': 0.1225, 'auth': 0.2544, 'div': 0.0, 'cost': 2410}
+
+模型容忍度:
+------------------------------------------------------------
+  rf: {'P_clean': 0.3775933609958506, 'P_dirty': 0.34647302904564314, 'P_dc': 0.058091286307053944, 'tolerance_prior': 0.16766467065868265, 'tolerance_post': -9.266666666666666}
+  lr: {'P_clean': 0.2053941908713693, 'P_dirty': 0.1970954356846473, 'P_dc': 0.16804979253112035, 'tolerance_prior': 0.8526315789473685, 'tolerance_post': -3.4999999999999982}
+
+检测器准确率:
+------------------------------------------------------------
+  overall: {'precision': 0.9859437751004017, 'recall': 0.9981929071606054, 'f1': 0.9920305309237849, 'tp': 4419, 'fp': 63, 'fn': 8, 'gt_count': 4427, 'det_count': 4482}
+  missing: {'precision': 1.0, 'recall': 1.0, 'f1': 1.0, 'tp': 4299, 'fp': 0, 'fn': 0, 'gt_count': 4299, 'det_count': 4299}
+  syntactic: {'precision': 0.9634146341463414, 'recall': 0.6171875, 'f1': 0.7523809523809524, 'tp': 79, 'fp': 3, 'fn': 49, 'gt_count': 128, 'det_count': 82}
+  semantic: {'precision': 0.40594059405940597, 'recall': 0.3203125, 'f1': 0.35807860262008734, 'tp': 41, 'fp': 60, 'fn': 87, 'gt_count': 128, 'det_count': 101}
+  value_error_combined: {'precision': 0.6557377049180327, 'recall': 0.9375, 'f1': 0.7717041800643086, 'tp': 120, 'fp': 63, 'fn': 8, 'gt_count': 128, 'det_count': 183}
+  ground_truth_total: 4427
+  detected_total: 4482
+
+Clean4MLBaseline 统一测评:
+------------------------------------------------------------
+  accuracy: 0.0
+  recall: 0.0
+  f1_score: 0.0
+  edr: -0.31130690161527164
+  hybrid_distance: 0.07874378304479088
+  r_edr: 0.0
+
+  下游任务性能:
+    ml_rf_accuracy: 0.36082474226804123
+    ml_rf_f1: 0.3081172226846812
+    ml_rf_precision: 0.2824081416864922
+    ml_rf_recall: 0.36082474226804123
+    ml_lr_accuracy: 0.26804123711340205
+    ml_lr_f1: 0.1734111249575167
+    ml_lr_precision: 0.1412459247510794
+    ml_lr_recall: 0.26804123711340205
+    ml_svm_accuracy: 0.26804123711340205
+    ml_svm_f1: 0.14374457157962314
+    ml_svm_precision: 0.10302599403203741
+    ml_svm_recall: 0.26804123711340205
+    ml_knn_accuracy: 0.23711340206185566
+    ml_knn_f1: 0.1771309819718605
+    ml_knn_precision: 0.14839413164155432
+    ml_knn_recall: 0.23711340206185566
+    ml_dt_accuracy: 0.29896907216494845
+    ml_dt_f1: 0.27085016930377753
+    ml_dt_precision: 0.27967599410898375
+    ml_dt_recall: 0.29896907216494845
+    ml_gb_accuracy: 0.30927835051546393
+    ml_gb_f1: 0.2821474058587461
+    ml_gb_precision: 0.2863507566166275
+    ml_gb_recall: 0.30927835051546393
+
+  容忍度:
+    tolerance_P_do_nothing: 0.3796680497925311
+    tolerance_P_demand_clean: 0.27835051546391754
+    tolerance_P_repair_all: 0.38589211618257263
+    tolerance_tolerance_prior: 0.7331417948284604
+    tolerance_tolerance_post: -16.278350515463824
+
+  Snoopy 上界:
+    snoopy_snoopy_available: True
+    snoopy_upper_bound_dirty: 0.2605809128630705
+    snoopy_upper_bound_cleaned: 0.3048969072164948
+    snoopy_upper_bound_clean: 0.25809128630705397
+    snoopy_upper_bound_improvement: -17.800257731959228
+
+  真值成本:
+    method_type: 2
+    ground_truth_cost: 0
+    ideal_total_changes: 1629
+    ideal_correct_repairs: 0
+    ideal_wrong_repairs: 1629
+    ideal_deleted_rows: 1928
+    ideal_ideal_min_ground_truth_cost: 0
+    ideal_repair_accuracy: 0.0
+
+============================================================
+Shapley 贡献分析:
+============================================================
+# Shapley Value Analysis Report
+
+- 数据规模: 2410 行 × 8 列
+- 错误总数: 4572
+- 任务类型: classification (random_forest)
+- MC 采样次数: 200
+
+## 维度 1: 动作重要性 (Action Importance)
+
+| 排名 | 动作 | Shapley 值 | 占比 | 方向 |
+|------|------|-----------|------|------|
+| 1 | delete | +0.380175 | 76.0% | ↑ 正贡献 |
+| 2 | no_action | -0.014353 | 2.9% | ↓ 负贡献 |
+| 3 | repair_value | -0.030607 | 6.1% | ↓ 负贡献 |
+| 4 | replace_nearby | -0.074799 | 15.0% | ↓ 负贡献 |
+
+**结论**: 最有效的清洗动作是 **delete**
+（no_action, repair_value, replace_nearby 对性能有负面影响，建议减少使用）
+
+## 维度 2: 特征重要性 (Feature Importance)
+
+| 排名 | 特征 | Shapley 值 | 占比 | 清洗价值 |
+|------|------|-----------|------|---------|
+| 1 | beer_name | +0.000000 | 0.0% | — 可忽略 |
+| 2 | ounces | +0.000000 | 0.0% | — 可忽略 |
+| 3 | abv | +0.000000 | 0.0% | — 可忽略 |
+| 4 | ibu | +0.000000 | 0.0% | — 可忽略 |
+| 5 | brewery_id | +0.000000 | 0.0% | — 可忽略 |
+| 6 | brewery_name | +0.000000 | 0.0% | — 可忽略 |
+| 7 | city | +0.000000 | 0.0% | — 可忽略 |
+| 8 | state | +0.000000 | 0.0% | — 可忽略 |
+
+**结论**: 
+- 清洗价值极低的特征: beer_name, ounces, abv（清洗它们几乎不影响性能）
+
+## 维度 3: 错误类型重要性 (Error Type Importance)
+
+| 排名 | 错误类型 | Shapley 值 | 占比 | 优先级 |
+|------|---------|-----------|------|--------|
+| 1 | label_noise | +0.164882 | 48.3% | 🔴 高 |
+| 2 | missing | +0.141176 | 41.4% | 🔴 高 |
+| 3 | syntactic | -0.011716 | 3.4% | 🟢 低 |
+| 4 | semantic | -0.023508 | 6.9% | 🟢 低 |
+
+**结论**: 对下游性能影响最大的错误类型是 **label_noise**，检测器应优先识别此类错误。
+
+## 综合清洗建议
+
+
+
+============================================================
+真值使用成本汇总:
+============================================================
+  RAHA 检测成本: 20
+  Agent 修复成本: 0
+  总成本: 20
+  总数据单元: 19280
+  成本率: 0.1037%
+  apply_raha_truth: True
+  count_raha_cost: True

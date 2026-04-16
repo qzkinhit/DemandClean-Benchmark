@@ -1,0 +1,283 @@
+{
+  "version_name": "v3_oracle_plain_single",
+  "dataset": "breast_cancer",
+  "task_type": "classification",
+  "model_type": "random_forest",
+  "detector_mode": "oracle",
+  "agent_type": "single_stage",
+  "inference_mode": "single_phase",
+  "n_episodes": 5,
+  "data_shape": [
+    419,
+    9
+  ],
+  "action_counts": {
+    "no_action": 224,
+    "repair_value": 104,
+    "delete": 0,
+    "replace_nearby": 0
+  },
+  "keep_mask": "[ True  True  True  True  True  True  True  True  True  True  True  True\n  True  True  True  True  True  True  True  True  True  True  True  True\n  True  True  True  True  True  True  True  True  True  True  True  True\n  True  True  True  True  True  True  True  True  True  True  True  True\n  True  True  True  True  True  True  True  True  True  True  True  True\n  True  True  True  True  True  True  True  True  True  True  True  True\n  True  True  True  True  True  True  True  True  True  True  True  True\n  True  True  True  True  True  True  True  True  True  True  True  True\n  True  True  True  True  True  True  True  True  True  True  True  True\n  True  True  True  True  True  True  True  True  True  True  True  True\n  True  True  True  True  True  True  True  True  True  True  True  True\n  True  True  True  True  True  True  True  True  True  True  True  True\n  True  True  True  True  True  True  True  True  True  True  True  True\n  True  True  True  True  True  True  True  True  True  True  True  True\n  True  True  True  True  True  True  True  True  True  True  True  True\n  True  True  True  True  True  True  True  True  True  True  True  True\n  True  True  True  True  True  True  True  True  True  True  True  True\n  True  True  True  True  True  True  True  True  True  True  True  True\n  True  True  True  True  True  True  True  True  True  True  True  True\n  True  True  True  True  True  True  True  True  True  True  True  True\n  True  True  True  True  True  True  True  True  True  True  True  True\n  True  True  True  True  True  True  True  True  True  True  True  True\n  True  True  True  True  True  True  True  True  True  True  True  True\n  True  True  True  True  True  True  True  True  True  True  True  True\n  True  True  True  True  True  True  True  True  True  True  True  True\n  True  True  True  True  True  True  True  True  True  True  True  True\n  True  True  True  True  True  True  True  True  True  True  True  True\n  True  True  True  True  True  True  True  True  True  True  True  True\n  True  True  True  True  True  True  True  True  True  True  True  True\n  True  True  True  True  True  True  True  True  True  True  True  True\n  True  True  True  True  True  True  True  True  True  True  True  True\n  True  True  True  True  True  True  True  True  True  True  True  True\n  True  True  True  True  True  True  True  True  True  True  True  True\n  True  True  True  True  True  True  True  True  True  True  True  True\n  True  True  True  True  True  True  True  True  True  True  True]",
+  "ground_truth_used": 104,
+  "cleaned_shape": [
+    419,
+    9
+  ],
+  "detector_accuracy": {
+    "overall": {
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0,
+      "tp": 322,
+      "fp": 0,
+      "fn": 0,
+      "gt_count": 322,
+      "det_count": 322
+    },
+    "missing": {
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0,
+      "tp": 144,
+      "fp": 0,
+      "fn": 0,
+      "gt_count": 144,
+      "det_count": 144
+    },
+    "syntactic": {
+      "precision": 1.0,
+      "recall": 0.47191011235955055,
+      "f1": 0.6412213740458015,
+      "tp": 84,
+      "fp": 0,
+      "fn": 94,
+      "gt_count": 178,
+      "det_count": 84
+    },
+    "semantic": {
+      "precision": 1.0,
+      "recall": 0.5280898876404494,
+      "f1": 0.6911764705882353,
+      "tp": 94,
+      "fp": 0,
+      "fn": 84,
+      "gt_count": 178,
+      "det_count": 94
+    },
+    "value_error_combined": {
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0,
+      "tp": 178,
+      "fp": 0,
+      "fn": 0,
+      "gt_count": 178,
+      "det_count": 178
+    },
+    "ground_truth_total": 322,
+    "detected_total": 322
+  },
+  "baseline_results": {
+    "NoFix": {
+      "n_samples": 419,
+      "n_test": 140,
+      "rf_accuracy": 0.9929,
+      "rf_f1": 0.9928,
+      "lr_accuracy": 0.9571,
+      "lr_f1": 0.956,
+      "auth": 0.42,
+      "div": 0.9029,
+      "cost": 0
+    },
+    "DeleteAll": {
+      "n_samples": 280,
+      "n_test": 140,
+      "rf_accuracy": 1.0,
+      "rf_f1": 1.0,
+      "lr_accuracy": 0.9571,
+      "lr_f1": 0.956,
+      "auth": 0.025,
+      "div": 0.6683,
+      "cost": 0
+    },
+    "DeleteFix": {
+      "n_samples": 171,
+      "n_test": 140,
+      "rf_accuracy": 0.9929,
+      "rf_f1": 0.9928,
+      "lr_accuracy": 0.9857,
+      "lr_f1": 0.9856,
+      "auth": 0.0234,
+      "div": 0.0,
+      "cost": 248
+    },
+    "ReplaceAll": {
+      "n_samples": 419,
+      "n_test": 140,
+      "rf_accuracy": 0.9929,
+      "rf_f1": 0.9928,
+      "lr_accuracy": 0.9571,
+      "lr_f1": 0.956,
+      "auth": 0.42,
+      "div": 0.9029,
+      "cost": 0
+    },
+    "DemandClean": {
+      "n_samples": 419,
+      "n_test": 140,
+      "rf_accuracy": 0.9857,
+      "rf_f1": 0.9856,
+      "lr_accuracy": 0.9929,
+      "lr_f1": 0.9928,
+      "auth": 0.5632,
+      "div": 0.3036,
+      "cost": 104
+    },
+    "FullFix": {
+      "n_samples": 419,
+      "n_test": 140,
+      "rf_accuracy": 0.9929,
+      "rf_f1": 0.9928,
+      "lr_accuracy": 0.9857,
+      "lr_f1": 0.9856,
+      "auth": 1.0,
+      "div": 0.0,
+      "cost": 419
+    }
+  },
+  "tolerance_results": {
+    "rf": {
+      "P_clean": 1.0,
+      "P_dirty": 1.0,
+      "P_dc": 1.0,
+      "tolerance_prior": 1.0,
+      "tolerance_post": 1.0
+    },
+    "lr": {
+      "P_clean": 1.0,
+      "P_dirty": 0.9880952380952381,
+      "P_dc": 1.0,
+      "tolerance_prior": 1.0120481927710843,
+      "tolerance_post": 1.0
+    }
+  },
+  "shapley_results": {
+    "meta": {
+      "n_samples": 419,
+      "n_features": 9,
+      "n_errors": 328,
+      "task_type": "classification",
+      "model_type": "random_forest",
+      "mc_samples": 200
+    },
+    "action_shapley": {
+      "no_action": 0.0010040160642570313,
+      "repair_value": 0.011044176706827344,
+      "delete": 0.0010040160642570313,
+      "replace_nearby": -0.0010040160642570313
+    },
+    "feature_shapley": {
+      "Clump Thickness": 0.0,
+      "Uniformity of Cell Size": 0.0,
+      "Uniformity of Cell Shape": 0.0,
+      "Marginal Adhesion": 0.0,
+      "Single Epithelial Cell Size": 0.0,
+      "Bare Nuclei": 0.0,
+      "Bland Chromatin": 0.0,
+      "Normal Nucleoli": 0.0,
+      "Mitoses": 0.0
+    },
+    "feature_shapley_skipped": true,
+    "error_type_shapley": {
+      "missing": 0.0,
+      "semantic": 1.850371707708594e-17,
+      "syntactic": 0.0,
+      "label_noise": 0.012048192771084357
+    },
+    "report_text": "# Shapley Value Analysis Report\n\n- 数据规模: 419 行 × 9 列\n- 错误总数: 328\n- 任务类型: classification (random_forest)\n- MC 采样次数: 200\n\n## 维度 1: 动作重要性 (Action Importance)\n\n| 排名 | 动作 | Shapley 值 | 占比 | 方向 |\n|------|------|-----------|------|------|\n| 1 | repair_value | +0.011044 | 78.6% | ↑ 正贡献 |\n| 2 | no_action | +0.001004 | 7.1% | ↑ 正贡献 |\n| 3 | delete | +0.001004 | 7.1% | ↑ 正贡献 |\n| 4 | replace_nearby | -0.001004 | 7.1% | ↓ 负贡献 |\n\n**结论**: 最有效的清洗动作是 **repair_value**\n（replace_nearby 对性能有负面影响，建议减少使用）\n\n## 维度 2: 特征重要性 (Feature Importance)\n\n| 排名 | 特征 | Shapley 值 | 占比 | 清洗价值 |\n|------|------|-----------|------|---------|\n| 1 | Clump Thickness | +0.000000 | 0.0% | — 可忽略 |\n| 2 | Uniformity of Cell Size | +0.000000 | 0.0% | — 可忽略 |\n| 3 | Uniformity of Cell Shape | +0.000000 | 0.0% | — 可忽略 |\n| 4 | Marginal Adhesion | +0.000000 | 0.0% | — 可忽略 |\n| 5 | Single Epithelial Cell Size | +0.000000 | 0.0% | — 可忽略 |\n| 6 | Bare Nuclei | +0.000000 | 0.0% | — 可忽略 |\n| 7 | Bland Chromatin | +0.000000 | 0.0% | — 可忽略 |\n| 8 | Normal Nucleoli | +0.000000 | 0.0% | — 可忽略 |\n| 9 | Mitoses | +0.000000 | 0.0% | — 可忽略 |\n\n**结论**: \n- 清洗价值极低的特征: Clump Thickness, Uniformity of Cell Size, Uniformity of Cell Shape（清洗它们几乎不影响性能）\n\n## 维度 3: 错误类型重要性 (Error Type Importance)\n\n| 排名 | 错误类型 | Shapley 值 | 占比 | 优先级 |\n|------|---------|-----------|------|--------|\n| 1 | label_noise | +0.012048 | 100.0% | 🔴 高 |\n| 2 | semantic | +0.000000 | 0.0% | 🟢 低 |\n| 3 | missing | +0.000000 | 0.0% | 🟢 低 |\n| 4 | syntactic | +0.000000 | 0.0% | 🟢 低 |\n\n**结论**: 对下游性能影响最大的错误类型是 **label_noise**，检测器应优先识别此类错误。\n\n## 综合清洗建议\n\n"
+  },
+  "getscoreml_results": {
+    "task_name": "v3_oracle_plain_single",
+    "task_type": "classification",
+    "total_records": 419,
+    "total_cells": 4609,
+    "cleaned_rows": 419,
+    "accuracy": 0.5238095238095238,
+    "precision": 0.5238095238095238,
+    "recall": 0.3734567901234568,
+    "f1_score": 0.43603603598743995,
+    "edr": 0.3611111111111111,
+    "hybrid_distance": 0.20558414691836385,
+    "r_edr": 0.2620967741935484,
+    "ml_rf_accuracy": 1.0,
+    "ml_rf_f1": 1.0,
+    "ml_rf_precision": 1.0,
+    "ml_rf_recall": 1.0,
+    "ml_lr_accuracy": 0.9642857142857143,
+    "ml_lr_f1": 0.9647856568210551,
+    "ml_lr_precision": 0.9679802955665024,
+    "ml_lr_recall": 0.9642857142857143,
+    "ml_svm_accuracy": 0.9880952380952381,
+    "ml_svm_f1": 0.9881557873354426,
+    "ml_svm_precision": 0.9885361552028219,
+    "ml_svm_recall": 0.9880952380952381,
+    "ml_knn_accuracy": 0.9761904761904762,
+    "ml_knn_f1": 0.9761904761904762,
+    "ml_knn_precision": 0.9761904761904762,
+    "ml_knn_recall": 0.9761904761904762,
+    "ml_dt_accuracy": 0.9642857142857143,
+    "ml_dt_f1": 0.9636425998971015,
+    "ml_dt_precision": 0.9660421545667446,
+    "ml_dt_recall": 0.9642857142857143,
+    "ml_gb_accuracy": 1.0,
+    "ml_gb_f1": 1.0,
+    "ml_gb_precision": 1.0,
+    "ml_gb_recall": 1.0,
+    "tolerance_P_do_nothing": 1.0,
+    "tolerance_P_demand_clean": 1.0,
+    "tolerance_P_repair_all": 1.0,
+    "tolerance_tolerance_prior": 1.0,
+    "tolerance_tolerance_post": 0,
+    "snoopy_snoopy_available": true,
+    "snoopy_upper_bound_dirty": 0.9164371772805507,
+    "snoopy_upper_bound_cleaned": 0.9474182444061962,
+    "snoopy_upper_bound_clean": 0.9546184738955823,
+    "snoopy_upper_bound_improvement": 0.8114199849737033,
+    "ideal_total_changes": 2211,
+    "ideal_correct_repairs": 0,
+    "ideal_wrong_repairs": 2211,
+    "ideal_deleted_rows": 0,
+    "ideal_ideal_min_ground_truth_cost": 0,
+    "ideal_repair_accuracy": 0.0,
+    "method_type": 1,
+    "ground_truth_cost": 104,
+    "cost_ratio": 0.24821002386634844,
+    "total_samples": 419,
+    "labeled_samples": 104,
+    "validation_samples": 0
+  },
+  "raha_cost": {},
+  "ground_truth_cost_summary": {
+    "raha_detection_cost": 0,
+    "agent_repair_cost": 104,
+    "total_cost": 104,
+    "total_data_cells": 3771,
+    "cost_ratio": 0.027579,
+    "apply_raha_truth": true,
+    "count_raha_cost": true
+  },
+  "elapsed_time": 108.38,
+  "vis_time": 1195.81,
+  "step_times": {
+    "step1_init": 0.0,
+    "step2_train": 12.48,
+    "step3_infer": 51.91,
+    "step4_detect_eval": 0.01,
+    "step5_baseline": 4.5,
+    "step6_tolerance": 3.15,
+    "step7_shapley": 1188.65,
+    "step8_vis": 6.31,
+    "step9_ml_eval": 37.17,
+    "step10_cost": 0.0
+  }
+}

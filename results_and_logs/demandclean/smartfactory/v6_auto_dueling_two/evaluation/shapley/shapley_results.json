@@ -1,0 +1,41 @@
+{
+  "meta": {
+    "n_samples": 5000,
+    "n_features": 18,
+    "n_errors": 1562,
+    "task_type": "classification",
+    "model_type": "random_forest",
+    "mc_samples": 50
+  },
+  "action_shapley": {
+    "no_action": 0.0016245446265937824,
+    "repair_value": -0.001646087291579094,
+    "delete": 0.017150535939470374,
+    "replace_nearby": -0.005513608659100481
+  },
+  "feature_shapley": {
+    "i_w_blo_weg": 0.0,
+    "o_w_blo_power": 0.0,
+    "o_w_blo_voltage": 0.0,
+    "i_w_bhl_weg": 0.0,
+    "o_w_bhl_power": 0.0,
+    "o_w_bhl_voltage": 0.0,
+    "i_w_bhr_weg": 0.0,
+    "o_w_bhr_power": 0.0,
+    "o_w_bhr_voltage": 0.0,
+    "i_w_bru_weg": 0.0,
+    "o_w_bru_power": 0.0,
+    "o_w_bru_voltage": 0.0,
+    "i_w_hr_weg": 0.0,
+    "o_w_hr_power": 0.0,
+    "o_w_hr_voltage": 0.0,
+    "i_w_hl_weg": 0.0,
+    "o_w_hl_power": 0.0,
+    "o_w_hl_voltage": 0.0
+  },
+  "feature_shapley_skipped": true,
+  "error_type_shapley": {
+    "missing": 0.011066571212270893,
+    "syntactic": -0.005605032750732375
+  }
+}

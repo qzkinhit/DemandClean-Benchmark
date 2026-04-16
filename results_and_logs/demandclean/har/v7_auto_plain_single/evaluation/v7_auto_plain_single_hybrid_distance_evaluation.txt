@@ -1,0 +1,6 @@
+Attribute: index, MSE: nan, Jaccard: 0.0
+Attribute: x, MSE: 0.009138585108103742, Jaccard: 0.9246544357578487
+Attribute: y, MSE: 0.003470846350655723, Jaccard: 0.9427392574002912
+Attribute: z, MSE: 0.005242753662353837, Jaccard: 0.9011201074820495
+Attribute: gt, MSE: nan, Jaccard: 0.015370386257140711
+加权混合距离: 0.28017363720184435

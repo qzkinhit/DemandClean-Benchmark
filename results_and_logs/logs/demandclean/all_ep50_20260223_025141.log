@@ -1,0 +1,57 @@
+[日志] 完整输出将保存到: /Users/qianzekai/PycharmProjects/TolerDM/logs/demandclean/all_ep50_20260223_025141.log
+======================================================================
+DemandClean 统一运行脚本
+======================================================================
+数据集: ['beers', 'adult', 'bike', 'breast_cancer', 'har', 'mercedes', 'nasa', 'smartfactory', 'soilmoisture']
+启用版本: ['v6_auto_dueling_two']
+训练轮数: 50
+详细输出: False
+======================================================================
+
+######################################################################
+# 数据集: beers
+######################################################################
+  数据集: beers
+  脏数据: (2410, 8), 干净数据: (2410, 8)
+  特征列: 8, 标签列: style
+  FD规则: 0 条
+
+======================================================================
+版本: v6_auto_dueling_two
+数据集: beers | 任务: classification | 模型: xgboost
+检测器: auto | Agent: dueling_two_stage | 推理: two_phase
+训练轮数: 50 | 输出目录: /Users/qianzekai/PycharmProjects/TolerDM/results/demandclean/beers/v6_auto_dueling_two
+======================================================================
+
+[Step 1] 创建 DemandClean 实例...
+
+[Step 2] 训练 (50 episodes)...
+  模型已保存: /Users/qianzekai/PycharmProjects/TolerDM/results/demandclean/beers/v6_auto_dueling_two/model/v6_auto_dueling_two_agent.pt
+  训练历史已保存: /Users/qianzekai/PycharmProjects/TolerDM/results/demandclean/beers/v6_auto_dueling_two/report/v6_auto_dueling_two_history.json
+
+[Step 3] 推理 (模式: two_phase)...
+  修复计划: 需要 0 个真值
+
+[错误] 版本 v6_auto_dueling_two 运行失败，已跳过:
+  execute() got an unexpected keyword argument 'y_dirty'
+
+  没有版本完成，跳过跨版本对比
+
+######################################################################
+# 数据集: adult
+######################################################################
+  数据集: adult
+  脏数据: (45222, 14), 干净数据: (45222, 14)
+  特征列: 14, 标签列: income
+  FD规则: 0 条
+
+======================================================================
+版本: v6_auto_dueling_two
+数据集: adult | 任务: classification | 模型: random_forest
+检测器: auto | Agent: dueling_two_stage | 推理: two_phase
+训练轮数: 50 | 输出目录: /Users/qianzekai/PycharmProjects/TolerDM/results/demandclean/adult/v6_auto_dueling_two
+======================================================================
+
+[Step 1] 创建 DemandClean 实例...
+
+[Step 2] 训练 (50 episodes)...

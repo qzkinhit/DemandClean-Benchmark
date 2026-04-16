@@ -1,0 +1,29 @@
+[2026-02-17 03:47:27,204] INFO - demandclean: ==================================================
+[2026-02-17 03:47:27,204] INFO - demandclean: DemandClean 训练开始
+[2026-02-17 03:47:27,204] INFO - demandclean:   检测器模式: oracle
+[2026-02-17 03:47:27,204] INFO - demandclean:   Agent类型: single
+[2026-02-17 03:47:27,204] INFO - demandclean:   推理模式: single_phase
+[2026-02-17 03:47:27,204] INFO - demandclean:   FD规则: 0
+[2026-02-17 03:47:27,204] INFO - demandclean: ==================================================
+[2026-02-17 03:47:27,204] INFO - demandclean: 
+[Step 1] 初始化错误检测器...
+[2026-02-17 03:47:27,204] INFO - demandclean: 
+[Step 2] 训练 DQN Agent...
+[2026-02-17 03:47:27,204] INFO - demandclean: 开始训练 (single Agent)
+[2026-02-17 03:47:27,204] INFO - demandclean:   任务类型: classification
+[2026-02-17 03:47:27,204] INFO - demandclean:   模型类型: random_forest
+[2026-02-17 03:47:27,204] INFO - demandclean:   原始数据: 699 行
+[2026-02-17 03:47:27,204] INFO - demandclean:   基准数据: 489 行
+[2026-02-17 03:47:27,207] INFO - demandclean:   开始训练 DQN...
+[2026-02-17 03:47:33,869] INFO - demandclean: 
+已恢复最佳模型权重 (Episode 1, Score=0.9959, Cost=37)
+[2026-02-17 03:47:33,870] INFO - demandclean: 
+训练完成! 最佳分数: 0.9959
+[2026-02-17 03:47:33,870] INFO - demandclean:   最佳动作分布: {'no_action': 51, 'repair_value': 37, 'delete': 39, 'replace_nearby': 38}
+[2026-02-17 03:47:33,870] INFO - demandclean: 
+训练完成!
+[2026-02-17 03:47:33,872] INFO - demandclean: 模型已保存: /Users/qianzekai/PycharmProjects/TolerDM/results/demandclean/breast_cancer/v3_oracle_plain_single/v3_oracle_plain_single_agent.pt
+[2026-02-17 03:47:33,872] INFO - demandclean: 
+==================================================
+[2026-02-17 03:47:33,872] INFO - demandclean: 单阶段推理
+[2026-02-17 03:47:33,872] INFO - demandclean: ==================================================

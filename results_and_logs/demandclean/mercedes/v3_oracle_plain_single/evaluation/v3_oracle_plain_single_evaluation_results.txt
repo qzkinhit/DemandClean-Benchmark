@@ -1,0 +1,46 @@
+Clean4MLBaseline 统一测评报告
+任务名称: v3_oracle_plain_single
+======================================================================
+
+[传统清洗指标]
+  precision: 0.826974486378806
+  accuracy: 0.826974486378806
+  recall: 0.9594954952561544
+  f1_score: 0.8883197618597953
+  edr: 0.799247493582442
+  hybrid_distance: 0.04056437389770726
+  r_edr: 0.0
+
+[下游任务性能]
+  ml_rf_mse: 81.4189621948221
+  ml_rf_r2: 0.4769097734262032
+  ml_lr_mse: 4.013116544041898e+28
+  ml_lr_r2: -2.5782962416873325e+26
+  ml_ridge_mse: 69.48580973480054
+  ml_ridge_r2: 0.5535763785484349
+  ml_lasso_mse: 68.55702255257913
+  ml_lasso_r2: 0.5595435326915263
+  ml_knn_mse: 93.871102608076
+  ml_knn_r2: 0.3969088402957641
+  ml_gb_mse: 64.55397003611489
+  ml_gb_r2: 0.5852618370198669
+
+[模型容忍度]
+  tolerance_P_do_nothing: 0.5493791207518035
+  tolerance_P_demand_clean: 0.49220883372505886
+  tolerance_P_repair_all: 0.49220883372505886
+  tolerance_tolerance_prior: 0.8959365493386254
+  tolerance_tolerance_post: 1.0
+
+[Snoopy上界评估]
+  snoopy_snoopy_available: True
+  snoopy_upper_bound_dirty: 82.43558994258044
+  snoopy_upper_bound_cleaned: 82.61599756727463
+  snoopy_upper_bound_clean: 82.61599756727463
+  snoopy_upper_bound_improvement: 1.0
+
+[真值使用成本]
+  方法类型: Type 1
+  实际真值使用: 301127
+  理想最小成本: 36
+  修复准确率: 0.0001

@@ -1,0 +1,47 @@
+[05:35:44] INFO: ==================================================
+[05:35:44] INFO: DemandClean 训练开始
+[05:35:44] INFO:   检测器模式: auto
+[05:35:44] INFO:   训练模式: clean_base
+[05:35:44] INFO:   Agent类型: dueling_two_stage
+[05:35:44] INFO:   推理模式: single_phase
+[05:35:44] INFO:   FD规则: 4
+[05:35:44] INFO:   丰富规则: 有
+[05:35:44] INFO: ==================================================
+[05:35:44] INFO: 
+[Step 1] 初始化错误检测器...
+[05:35:44] INFO: 
+[Step 1.5] 运行 RAHA 检测获取标注行...
+[05:39:19] INFO:   [预修复] 利用 RAHA 标注行修复 44 个特征单元格 + 2 个标签
+[05:39:19] INFO:   标注行: [17, 61, 671, 750, 751, 1006, 1051, 1136, 1185, 1212]... (共 20 行)
+[05:39:19] INFO: 
+[Step 2] 训练 DQN Agent...
+[05:39:19] INFO: 开始训练 (dueling_two_stage Agent, mode=clean_base)
+[05:39:19] INFO:   任务类型: classification
+[05:39:19] INFO:   模型类型: random_forest
+[05:39:19] INFO:   原始数据: 2410 行
+[05:40:17] INFO:   Clean Base 自动选择 (5-fold CV, 样本保留率加权):
+[05:40:17] INFO:     DeleteFix: 482 行, CV=0.3526, 权重=0.447, 加权=0.1577
+[05:40:17] INFO:     VE-Fill:   2410 行, CV=0.2743, 权重=1.000, 加权=0.2743
+[05:40:17] INFO:     → 选择 VE-Fill (2410 行)
+[05:40:17] INFO:   标签注入: 检测到 20 个标签错误, rate=0.008, symmetric=True
+[05:40:17] INFO:   自适应注入比例范围 (基于检测结果):
+[05:40:17] INFO:     missing: (0.1784, 0.2676)
+[05:40:17] INFO:     semantic: (0.0071, 0.0121)
+[05:40:17] INFO:     syntactic: (0.0050, 0.0100)
+[05:40:17] INFO:     label: (0.0066, 0.0116)
+[05:40:20] INFO:   ErrorInjector: rich_rules=True, domain=3, cfd=0, fd=4
+[05:40:20] INFO:   开始训练 DQN (10 episodes, 起始轮=0)...
+[05:48:41] INFO: 
+已恢复最佳模型权重 (Episode 5, Score=0.4651, Cost=84)
+[05:48:41] INFO: 
+训练完成! 最佳分数: 0.4651 (共 10 episodes)
+[05:48:41] INFO:   最佳动作分布: {'no_action': 212, 'repair_value': 84, 'delete': 174, 'replace_nearby': 101}
+[05:48:41] INFO: 
+训练完成!
+[05:48:41] INFO: 模型已保存: /Users/qianzekai/PycharmProjects/TolerDM/results/demandclean/beers/v5_auto_dueling_single/model/v5_auto_dueling_single_agent.pt
+[05:48:41] INFO: 
+==================================================
+[05:48:41] INFO: 单阶段推理
+[05:48:41] INFO: ==================================================
+[05:48:41] INFO:   [预修复] 利用 RAHA 标注行修复 44 个特征单元格 + 2 个标签
+[05:48:41] INFO:   移除已修复错误: missing=41, syntactic=3, label_noise=2

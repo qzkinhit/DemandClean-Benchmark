@@ -1,0 +1,43 @@
+[01:22:33] INFO: ==================================================
+[01:22:33] INFO: DemandClean 训练开始
+[01:22:33] INFO:   检测器模式: oracle
+[01:22:33] INFO:   训练模式: self_supervised
+[01:22:33] INFO:   Agent类型: single
+[01:22:33] INFO:   推理模式: single_phase
+[01:22:33] INFO:   FD规则: 4
+[01:22:33] INFO:   丰富规则: 有
+[01:22:33] INFO: ==================================================
+[01:22:33] INFO: 
+[Step 1] 初始化错误检测器...
+[01:22:33] INFO: 
+[Step 1.5] self_supervised 模式: 运行检测器获取错误分布...
+[01:22:33] INFO: 
+[Step 2] 训练 DQN Agent...
+[01:22:33] INFO: 开始训练 (single Agent, mode=self_supervised)
+[01:22:33] INFO:   任务类型: classification
+[01:22:33] INFO:   模型类型: random_forest
+[01:22:33] INFO:   原始数据: 2410 行
+[01:22:37] INFO:   固定错误列表: {0: 1196, 1: 3229, 3: 2} (0=missing, 1=semantic, 2=syntactic, 3=label)
+[01:22:37] INFO:   值估计器: ValueEstimator(FD=4 rules (3 RHS cols), DOMAIN=2 cols)
+[01:22:37] INFO:   标签注入: 检测到 2 个标签错误, rate=0.001, symmetric=True
+[01:22:37] INFO:   自适应注入比例范围 (基于检测结果):
+[01:22:37] INFO:     missing: (0.0496, 0.0744)
+[01:22:37] INFO:     semantic: (0.1340, 0.2010)
+[01:22:37] INFO:     syntactic: 不注入
+[01:22:37] INFO:     label: (0.0050, 0.0100)
+[01:22:38] INFO:   固定错误列表: 4427 个, 检测位置: 4425 个
+[01:22:38] INFO:   开始训练 DQN (3 episodes, 起始轮=0)...
+[01:22:45] INFO: 
+已恢复最佳模型权重 (Episode 3, Score=0.0000, Cost=1025)
+[01:22:45] INFO: 
+训练完成! 最佳分数: 0.0000 (共 3 episodes)
+[01:22:45] INFO:   最佳动作分布: {'no_action': 1033, 'repair_value': 1025, 'delete': 1073, 'replace_nearby': 992}
+[01:22:45] INFO: 
+训练完成!
+[01:22:45] INFO: 模型已保存: /Users/qianzekai/PycharmProjects/TolerDM/results/demandclean/beers/v3_oracle_plain_single/model/v3_oracle_plain_single_agent.pt
+[01:22:45] INFO: 
+==================================================
+[01:22:45] INFO: 单阶段推理
+[01:22:45] INFO: ==================================================
+[1;34m[01:23:27][0m[1;33m WARNING Snoopy may use all CPU cores! Set env. variable 'SNOOPY_LIMIT_CPU' to 'y' to limit CPU usage. [0m[1;34m(__init__ -> _init_tf_pytorch on MainThread)[0m
+[1;34m[01:23:27][0m[2;37m DEBUG   TensorFlow sees: 1 Physical GPUs, 1 Logical GPUs [0m[1;34m(__init__ -> _init_tf_pytorch on MainThread)[0m

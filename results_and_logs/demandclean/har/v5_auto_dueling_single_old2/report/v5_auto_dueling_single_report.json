@@ -1,0 +1,242 @@
+{
+  "version_name": "v5_auto_dueling_single",
+  "dataset": "har",
+  "task_type": "clustering",
+  "model_type": "kmeans",
+  "detector_mode": "auto",
+  "agent_type": "dueling_two_stage",
+  "inference_mode": "single_phase",
+  "n_episodes": 300,
+  "data_shape": [
+    42000,
+    3
+  ],
+  "action_counts": {
+    "no_action": 24995,
+    "repair_value": 0,
+    "delete": 0,
+    "replace_nearby": 0
+  },
+  "keep_mask": "[ True  True  True ...  True  True  True]",
+  "ground_truth_used": 0,
+  "cleaned_shape": [
+    42000,
+    3
+  ],
+  "detector_accuracy": {
+    "overall": {
+      "precision": 0.8777984688599214,
+      "recall": 0.9518510208660534,
+      "f1": 0.9133261571582347,
+      "tp": 21212,
+      "fp": 2953,
+      "fn": 1073,
+      "gt_count": 22285,
+      "det_count": 24165
+    },
+    "missing": {
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0,
+      "tp": 3807,
+      "fp": 0,
+      "fn": 0,
+      "gt_count": 3807,
+      "det_count": 3807
+    },
+    "syntactic": {
+      "precision": 0.8549464583947343,
+      "recall": 0.9419309449074575,
+      "f1": 0.896333299000927,
+      "tp": 17405,
+      "fp": 2953,
+      "fn": 1073,
+      "gt_count": 18478,
+      "det_count": 20358
+    },
+    "semantic": {
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0,
+      "tp": 0,
+      "fp": 0,
+      "fn": 18478,
+      "gt_count": 18478,
+      "det_count": 0
+    },
+    "value_error_combined": {
+      "precision": 0.8549464583947343,
+      "recall": 0.9419309449074575,
+      "f1": 0.896333299000927,
+      "tp": 17405,
+      "fp": 2953,
+      "fn": 1073,
+      "gt_count": 18478,
+      "det_count": 20358
+    },
+    "ground_truth_total": 22285,
+    "detected_total": 24165
+  },
+  "baseline_results": {
+    "NoFix": {
+      "n_samples": 40368,
+      "n_test": 13863,
+      "kmeans_silhouette": 0.5095,
+      "kmeans_ari": 0.6652,
+      "auth": 0.0021,
+      "div": 0.9189,
+      "cost": 0
+    },
+    "DeleteAll": {
+      "n_samples": 36598,
+      "n_test": 13863,
+      "kmeans_silhouette": 0.5216,
+      "kmeans_ari": 0.6628,
+      "auth": 0.0018,
+      "div": 0.8698,
+      "cost": 0
+    },
+    "DeleteFix": {
+      "n_samples": 21723,
+      "n_test": 13863,
+      "kmeans_silhouette": 0.8814,
+      "kmeans_ari": 0.9727,
+      "auth": 0.0027,
+      "div": 0.0036,
+      "cost": 20277
+    },
+    "ReplaceAll": {
+      "n_samples": 41250,
+      "n_test": 13863,
+      "kmeans_silhouette": 0.8338,
+      "kmeans_ari": 0.9525,
+      "auth": 0.0032,
+      "div": 0.0189,
+      "cost": 0
+    },
+    "DemandClean": {
+      "n_samples": 40369,
+      "n_test": 13863,
+      "kmeans_silhouette": 0.5342,
+      "kmeans_ari": 0.6702,
+      "auth": 0.002,
+      "div": 0.9315,
+      "cost": 0
+    },
+    "FullFix": {
+      "n_samples": 41603,
+      "n_test": 13863,
+      "kmeans_silhouette": 0.9098,
+      "kmeans_ari": 1.0,
+      "auth": 0.003,
+      "div": 0.0,
+      "cost": 42000
+    }
+  },
+  "tolerance_results": {
+    "kmeans": {
+      "P_clean": 0.908115002974492,
+      "P_dirty": 0.5083407341202025,
+      "P_dc": 0.5274586707115358,
+      "tolerance_prior": 1.0376085080500606,
+      "tolerance_post": 0.04782182866877173
+    }
+  },
+  "shapley_results": {
+    "meta": {
+      "n_samples": 5000,
+      "n_features": 3,
+      "n_errors": 2987,
+      "task_type": "clustering",
+      "model_type": "kmeans",
+      "mc_samples": 50
+    },
+    "action_shapley": {
+      "no_action": -0.0012139648907761036,
+      "repair_value": -0.0012139648907761036,
+      "delete": -0.0012139648907761036,
+      "replace_nearby": -0.0012139648907761036
+    },
+    "feature_shapley": {
+      "x": 0.0,
+      "y": 0.0,
+      "z": 0.0
+    },
+    "feature_shapley_skipped": true,
+    "error_type_shapley": {
+      "missing": -0.001618619854368138,
+      "syntactic": -0.001618619854368138,
+      "label_noise": -0.001618619854368138
+    },
+    "report_text": "# Shapley Value Analysis Report\n\n- 数据规模: 5000 行 × 3 列\n- 错误总数: 2987\n- 任务类型: clustering (kmeans)\n- MC 采样次数: 50\n\n## 维度 1: 动作重要性 (Action Importance)\n\n| 排名 | 动作 | Shapley 值 | 占比 | 方向 |\n|------|------|-----------|------|------|\n| 1 | no_action | -0.001214 | 25.0% | ↓ 负贡献 |\n| 2 | repair_value | -0.001214 | 25.0% | ↓ 负贡献 |\n| 3 | delete | -0.001214 | 25.0% | ↓ 负贡献 |\n| 4 | replace_nearby | -0.001214 | 25.0% | ↓ 负贡献 |\n\n**结论**: 最有效的清洗动作是 **no_action**\n（no_action, repair_value, delete, replace_nearby 对性能有负面影响，建议减少使用）\n\n## 维度 2: 特征重要性 (Feature Importance)\n\n| 排名 | 特征 | Shapley 值 | 占比 | 清洗价值 |\n|------|------|-----------|------|---------|\n| 1 | x | +0.000000 | 0.0% | — 可忽略 |\n| 2 | y | +0.000000 | 0.0% | — 可忽略 |\n| 3 | z | +0.000000 | 0.0% | — 可忽略 |\n\n**结论**: \n- 清洗价值极低的特征: x, y, z（清洗它们几乎不影响性能）\n\n## 维度 3: 错误类型重要性 (Error Type Importance)\n\n| 排名 | 错误类型 | Shapley 值 | 占比 | 优先级 |\n|------|---------|-----------|------|--------|\n| 1 | missing | -0.001619 | 33.3% | 🟡 中 |\n| 2 | syntactic | -0.001619 | 33.3% | 🟡 中 |\n| 3 | label_noise | -0.001619 | 33.3% | 🟡 中 |\n\n**结论**: 对下游性能影响最大的错误类型是 **missing**，检测器应优先识别此类错误。\n\n## 综合清洗建议\n\n"
+  },
+  "getscoreml_results": {
+    "task_name": "v5_auto_dueling_single",
+    "task_type": "clustering",
+    "total_records": 42000,
+    "total_cells": 210000,
+    "cleaned_rows": 42000,
+    "accuracy": 0.02046783625730994,
+    "precision": 0.02046783625730994,
+    "recall": 0.024404761904761905,
+    "f1_score": 0.022263594706416215,
+    "edr": -0.8298469387755102,
+    "hybrid_distance": 0.3356799486929204,
+    "r_edr": -0.6132143593975655,
+    "tolerance_P_do_nothing": 0.509544946049568,
+    "tolerance_P_demand_clean": 0.5341558475441163,
+    "tolerance_P_repair_all": 0.909810248338127,
+    "tolerance_tolerance_prior": 1.048299765673967,
+    "tolerance_tolerance_post": 0.061486472481708604,
+    "snoopy_snoopy_available": true,
+    "snoopy_upper_bound_dirty": 0.509544946049568,
+    "snoopy_upper_bound_cleaned": 0.5341558475441163,
+    "snoopy_upper_bound_clean": 0.909810248338127,
+    "snoopy_upper_bound_improvement": 0.061486472481708604,
+    "ideal_total_changes": 28044,
+    "ideal_correct_repairs": 574,
+    "ideal_wrong_repairs": 27470,
+    "ideal_deleted_rows": 0,
+    "ideal_ideal_min_ground_truth_cost": 574,
+    "ideal_repair_accuracy": 0.02046783625730994,
+    "method_type": 1,
+    "ground_truth_cost": 0,
+    "cost_ratio": 0.0,
+    "total_samples": 42000,
+    "labeled_samples": 0,
+    "validation_samples": 0
+  },
+  "raha_cost": {
+    "n_col_chunks": 1,
+    "n_row_chunks": 4,
+    "labeling_budget": 20,
+    "raha_total_cost": 80,
+    "grouping_key": [
+      "z"
+    ],
+    "total_labeled_rows": 80
+  },
+  "ground_truth_cost_summary": {
+    "raha_detection_cost": 80,
+    "agent_repair_cost": 0,
+    "total_cost": 80,
+    "total_data_cells": 126000,
+    "cost_ratio": 0.000635,
+    "apply_raha_truth": true,
+    "count_raha_cost": true
+  },
+  "elapsed_time": 41591.6,
+  "vis_time": 3716.93,
+  "step_times": {
+    "step1_init": 0.0,
+    "step2_train": 40861.42,
+    "step3_infer": 412.28,
+    "step4_detect_eval": 0.21,
+    "step5_baseline": 117.25,
+    "step6_tolerance": 32.58,
+    "step7_shapley": 3716.35,
+    "step8_vis": 0.57,
+    "step9_ml_eval": 167.87,
+    "step10_cost": 0.0
+  }
+}

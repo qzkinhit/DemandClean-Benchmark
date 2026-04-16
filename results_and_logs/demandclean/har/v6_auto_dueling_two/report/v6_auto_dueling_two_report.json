@@ -1,0 +1,222 @@
+{
+  "version_name": "v6_auto_dueling_two",
+  "dataset": "har",
+  "task_type": "clustering",
+  "model_type": "kmeans",
+  "detector_mode": "auto",
+  "agent_type": "dueling_two_stage",
+  "inference_mode": "two_phase",
+  "n_episodes": 400,
+  "data_shape": [
+    70000,
+    3
+  ],
+  "keep_mask": "[False  True  True ...  True False False]",
+  "ground_truth_used": 0,
+  "cleaned_shape": [
+    35134,
+    3
+  ],
+  "detector_accuracy": {
+    "overall": {
+      "precision": 0.846481616751887,
+      "recall": 0.9387066288645876,
+      "f1": 0.8902118942449267,
+      "tp": 34765,
+      "fp": 6305,
+      "fn": 2270,
+      "gt_count": 37035,
+      "det_count": 41070
+    },
+    "missing": {
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0,
+      "tp": 6360,
+      "fp": 0,
+      "fn": 0,
+      "gt_count": 6360,
+      "det_count": 6360
+    },
+    "syntactic": {
+      "precision": 0.8047806297798558,
+      "recall": 0.8473349633251833,
+      "f1": 0.8255097503652418,
+      "tp": 25992,
+      "fp": 6305,
+      "fn": 4683,
+      "gt_count": 30675,
+      "det_count": 32297
+    },
+    "semantic": {
+      "precision": 1.0,
+      "recall": 0.07866340668296659,
+      "f1": 0.14585348162475822,
+      "tp": 2413,
+      "fp": 0,
+      "fn": 28262,
+      "gt_count": 30675,
+      "det_count": 2413
+    },
+    "value_error_combined": {
+      "precision": 0.8183520599250936,
+      "recall": 0.92599837000815,
+      "f1": 0.8688537126252199,
+      "tp": 28405,
+      "fp": 6305,
+      "fn": 2270,
+      "gt_count": 30675,
+      "det_count": 34710
+    },
+    "ground_truth_total": 37035,
+    "detected_total": 41070
+  },
+  "baseline_results": {
+    "NoFix": {
+      "n_samples": 67248,
+      "kmeans_silhouette": 0.51,
+      "kmeans_ari": 0.6685,
+      "auth": 0.0014,
+      "div": 0.9158,
+      "cost": 0
+    },
+    "DeleteAll": {
+      "n_samples": 60949,
+      "kmeans_silhouette": 0.5222,
+      "kmeans_ari": 0.6679,
+      "auth": 0.0013,
+      "div": 0.8683,
+      "cost": 0
+    },
+    "DeleteFix": {
+      "n_samples": 35134,
+      "kmeans_silhouette": 0.8742,
+      "kmeans_ari": 0.9657,
+      "auth": 0.0003,
+      "div": 0.0003,
+      "cost": 34866
+    },
+    "ReplaceAll": {
+      "n_samples": 67248,
+      "kmeans_silhouette": 0.51,
+      "kmeans_ari": 0.6685,
+      "auth": 0.0014,
+      "div": 0.9158,
+      "cost": 0
+    },
+    "DemandClean": {
+      "n_samples": 35134,
+      "kmeans_silhouette": 0.8742,
+      "kmeans_ari": 0.9657,
+      "auth": 0.0003,
+      "div": 0.0003,
+      "cost": 0
+    },
+    "FullFix": {
+      "n_samples": 69335,
+      "kmeans_silhouette": 0.9096,
+      "kmeans_ari": 1.0,
+      "auth": 0.5806,
+      "div": 0.0,
+      "cost": 70000
+    }
+  },
+  "tolerance_results": {
+    "kmeans": {
+      "P_clean": 0.9089880051537449,
+      "P_dirty": 0.5105479451261414,
+      "P_dc": 0.8709183389921054,
+      "tolerance_prior": 1.7058502483580205,
+      "tolerance_post": 0.9044532164787795
+    }
+  },
+  "shapley_results": {
+    "meta": {
+      "n_samples": 5000,
+      "n_features": 3,
+      "n_errors": 3130,
+      "task_type": "clustering",
+      "model_type": "kmeans",
+      "mc_samples": 50
+    },
+    "action_shapley": {
+      "no_action": -0.005408487845613523,
+      "repair_value": 0.01801710205039227,
+      "delete": 0.30086479724354537,
+      "replace_nearby": 0.0026355902970146747
+    },
+    "feature_shapley": {
+      "x": 0.0,
+      "y": 0.0,
+      "z": 0.0
+    },
+    "feature_shapley_skipped": true,
+    "error_type_shapley": {
+      "missing": 0.026460154563944044,
+      "semantic": 0.02026907336678488,
+      "syntactic": 0.26610689066187954,
+      "label_noise": -0.004864286245905282
+    },
+    "report_text": "# Shapley Value Analysis Report\n\n- 数据规模: 5000 行 × 3 列\n- 错误总数: 3130\n- 任务类型: clustering (kmeans)\n- MC 采样次数: 50\n\n## 维度 1: 动作重要性 (Action Importance)\n\n| 排名 | 动作 | Shapley 值 | 占比 | 方向 |\n|------|------|-----------|------|------|\n| 1 | delete | +0.300865 | 92.0% | ↑ 正贡献 |\n| 2 | repair_value | +0.018017 | 5.5% | ↑ 正贡献 |\n| 3 | replace_nearby | +0.002636 | 0.8% | ↑ 正贡献 |\n| 4 | no_action | -0.005408 | 1.7% | ↓ 负贡献 |\n\n**结论**: 最有效的清洗动作是 **delete**\n（no_action 对性能有负面影响，建议减少使用）\n\n## 维度 2: 特征重要性 (Feature Importance)\n\n| 排名 | 特征 | Shapley 值 | 占比 | 清洗价值 |\n|------|------|-----------|------|---------|\n| 1 | x | +0.000000 | 0.0% | — 可忽略 |\n| 2 | y | +0.000000 | 0.0% | — 可忽略 |\n| 3 | z | +0.000000 | 0.0% | — 可忽略 |\n\n**结论**: \n- 清洗价值极低的特征: x, y, z（清洗它们几乎不影响性能）\n\n## 维度 3: 错误类型重要性 (Error Type Importance)\n\n| 排名 | 错误类型 | Shapley 值 | 占比 | 优先级 |\n|------|---------|-----------|------|--------|\n| 1 | syntactic | +0.266107 | 83.8% | 🔴 高 |\n| 2 | missing | +0.026460 | 8.3% | 🟢 低 |\n| 3 | semantic | +0.020269 | 6.4% | 🟢 低 |\n| 4 | label_noise | -0.004864 | 1.5% | 🟢 低 |\n\n**结论**: 对下游性能影响最大的错误类型是 **syntactic**，检测器应优先识别此类错误。\n\n## 综合清洗建议\n\n"
+  },
+  "getscoreml_results": {
+    "task_name": "v6_auto_dueling_two",
+    "task_type": "clustering",
+    "total_records": 70000,
+    "total_cells": 350000,
+    "cleaned_rows": 35134,
+    "accuracy": 0.0,
+    "precision": 0.0,
+    "recall": 0.0,
+    "f1_score": 0.0,
+    "edr": -12.417112299465241,
+    "hybrid_distance": 0.13581533944571805,
+    "r_edr": -10.61820652173913,
+    "ml_kmeans_silhouette": 0.8742009164983335,
+    "ml_kmeans_ari": 0.965652781304814,
+    "ml_agglomerative_silhouette": 0.8719398581311302,
+    "ml_agglomerative_ari": 0.9961282578302564,
+    "ml_spectral_silhouette": 0.36679332814427723,
+    "ml_spectral_ari": 0.00621571211679368,
+    "tolerance_P_do_nothing": 0.6135004124445833,
+    "tolerance_P_demand_clean": 0.8742009164983335,
+    "tolerance_P_repair_all": 0.6769650700417302,
+    "tolerance_tolerance_prior": 1.4249394112303044,
+    "tolerance_tolerance_post": 4.107806043933815,
+    "snoopy_snoopy_available": true,
+    "snoopy_upper_bound_dirty": 0.6135004124445833,
+    "snoopy_upper_bound_cleaned": 0.8742009164983335,
+    "snoopy_upper_bound_clean": 0.6769650700417302,
+    "snoopy_upper_bound_improvement": 4.107806043933815,
+    "ideal_total_changes": 18847,
+    "ideal_correct_repairs": 0,
+    "ideal_wrong_repairs": 18847,
+    "ideal_deleted_rows": 34866,
+    "ideal_ideal_min_ground_truth_cost": 0,
+    "ideal_repair_accuracy": 0.0,
+    "method_type": 2,
+    "ground_truth_cost": 0,
+    "cost_ratio": 0.0,
+    "total_samples": 70000,
+    "labeled_samples": 0,
+    "validation_samples": 0
+  },
+  "raha_cost": {
+    "n_col_chunks": 1,
+    "n_row_chunks": 4,
+    "labeling_budget": 20,
+    "raha_total_cost": 80,
+    "total_labeled_rows": 0
+  },
+  "ground_truth_cost_summary": {
+    "raha_detection_cost": 80,
+    "agent_repair_cost": 0,
+    "total_cost": 80,
+    "total_data_cells": 210000,
+    "cost_ratio": 0.000381,
+    "apply_raha_truth": true,
+    "count_raha_cost": true
+  },
+  "elapsed_time": 27612.83,
+  "vis_time": 140.39
+}

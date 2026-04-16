@@ -1,0 +1,157 @@
+DemandClean 结果摘要 - v5_auto_dueling_single
+============================================================
+
+数据集: nasa
+检测器: auto
+Agent: dueling_two_stage
+推理模式: single_phase
+任务: regression (ridge)
+训练轮数: 200
+执行时间: 88.97 秒
+可视化耗时: 35.75 秒
+数据维度: (901, 5) -> (800, 5)
+真值成本: 113
+
+步骤计时:
+------------------------------------------------------------
+  Step 1 初始化: 0.00s
+  Step 2 训练: 77.01s
+  Step 3 推理: 1.47s
+  Step 4 检测器评估: 0.01s
+  Step 5 Baseline评估: 4.69s
+  Step 6 容忍度评估: 1.15s
+  Step 7 Shapley分析: 34.06s
+  Step 8 训练曲线: 1.45s
+  Step 9 统一测评: 4.89s
+  Step 10 成本汇总: 0.00s
+
+Baseline 对比:
+------------------------------------------------------------
+  NoFix: {'n_samples': 901, 'n_test': 301, 'rf_mse': 17.8841, 'rf_r2': 0.6238, 'ridge_mse': 47.5844, 'ridge_r2': -0.0011, 'auth': 0.6459, 'div': 0.7391, 'cost': 0}
+  DeleteAll: {'n_samples': 665, 'n_test': 301, 'rf_mse': 17.9882, 'rf_r2': 0.6216, 'ridge_mse': 47.7018, 'ridge_r2': -0.0035, 'auth': 0.4767, 'div': 0.7381, 'cost': 0}
+  DeleteFix: {'n_samples': 439, 'n_test': 301, 'rf_mse': 21.649, 'rf_r2': 0.5446, 'ridge_mse': 47.4124, 'ridge_r2': 0.0026, 'auth': 0.533, 'div': 0.0, 'cost': 462}
+  ReplaceAll: {'n_samples': 901, 'n_test': 301, 'rf_mse': 19.7347, 'rf_r2': 0.5848, 'ridge_mse': 47.3134, 'ridge_r2': 0.0046, 'auth': 0.7081, 'div': 0.0034, 'cost': 0}
+  DemandClean: {'n_samples': 800, 'n_test': 301, 'rf_mse': 18.4189, 'rf_r2': 0.6125, 'ridge_mse': 47.6383, 'ridge_r2': -0.0022, 'auth': 0.4425, 'div': 0.431, 'cost': 113}
+  FullFix: {'n_samples': 901, 'n_test': 301, 'rf_mse': 15.2092, 'rf_r2': 0.68, 'ridge_mse': 47.3639, 'ridge_r2': 0.0036, 'auth': 1.0, 'div': 0.0, 'cost': 901}
+
+模型容忍度:
+------------------------------------------------------------
+  rf: {'P_clean': 0.6791534862086115, 'P_dirty': 0.5719498528481834, 'P_dc': -0.2798536085704506, 'tolerance_prior': -0.4892974570704786, 'tolerance_post': -7.94565850725223}
+  ridge: {'P_clean': 0.002334946505679336, 'P_dirty': -0.0012476735822752882, 'P_dc': -0.0007152339475555713, 'tolerance_prior': 0.5732540607706489, 'tolerance_post': 0.14861738661876797}
+
+检测器准确率:
+------------------------------------------------------------
+  overall: {'precision': 0.946058091286307, 'recall': 1.0, 'f1': 0.9722814498933902, 'tp': 456, 'fp': 26, 'fn': 0, 'gt_count': 456, 'det_count': 482}
+  missing: {'precision': 1.0, 'recall': 1.0, 'f1': 1.0, 'tp': 236, 'fp': 0, 'fn': 0, 'gt_count': 236, 'det_count': 236}
+  syntactic: {'precision': 0.9864253393665159, 'recall': 0.990909090909091, 'f1': 0.9886621315192745, 'tp': 218, 'fp': 3, 'fn': 2, 'gt_count': 220, 'det_count': 221}
+  semantic: {'precision': 0.08, 'recall': 0.00909090909090909, 'f1': 0.016326530612244896, 'tp': 2, 'fp': 23, 'fn': 218, 'gt_count': 220, 'det_count': 25}
+  value_error_combined: {'precision': 0.8943089430894309, 'recall': 1.0, 'f1': 0.944206008583691, 'tp': 220, 'fp': 26, 'fn': 0, 'gt_count': 220, 'det_count': 246}
+  ground_truth_total: 456
+  detected_total: 482
+
+Clean4MLBaseline 统一测评:
+------------------------------------------------------------
+  accuracy: 0.028452200303490136
+  recall: 0.20833333333333334
+  f1_score: 0.05006675565308796
+  edr: -6.322222222222222
+  hybrid_distance: 0.3106486936923436
+  r_edr: -1.2222222222222223
+
+  下游任务性能:
+    ml_rf_mse: 18.41888399539406
+    ml_rf_r2: 0.6125131682105389
+    ml_lr_mse: 47.63831310785044
+    ml_lr_r2: -0.002189873315416202
+    ml_ridge_mse: 47.638288885033596
+    ml_ridge_r2: -0.0021893637284857714
+    ml_lasso_mse: 47.62901277460995
+    ml_lasso_r2: -0.001994217777173679
+    ml_knn_mse: 35.25513456770762
+    ml_knn_r2: 0.25832094922970006
+    ml_gb_mse: 20.954194178334184
+    ml_gb_r2: 0.5591766408380503
+
+  容忍度:
+    tolerance_P_do_nothing: 0.6237630590001768
+    tolerance_P_demand_clean: 0.6125131682105389
+    tolerance_P_repair_all: 0.680036678206931
+    tolerance_tolerance_prior: 0.9819644805390203
+    tolerance_tolerance_post: -0.19991411514345306
+
+  Snoopy 上界:
+    snoopy_snoopy_available: True
+    snoopy_upper_bound_dirty: 28.88795953614174
+    snoopy_upper_bound_cleaned: 23.474268642026868
+    snoopy_upper_bound_clean: 17.223797781209107
+    snoopy_upper_bound_improvement: 0.4641302999613742
+
+  真值成本:
+    method_type: 1
+    ground_truth_cost: 113
+    ideal_total_changes: 3692
+    ideal_correct_repairs: 1056
+    ideal_wrong_repairs: 2636
+    ideal_deleted_rows: 101
+    ideal_ideal_min_ground_truth_cost: 1056
+    ideal_repair_accuracy: 0.28602383531960995
+
+============================================================
+Shapley 贡献分析:
+============================================================
+# Shapley Value Analysis Report
+
+- 数据规模: 901 行 × 5 列
+- 错误总数: 482
+- 任务类型: regression (ridge)
+- MC 采样次数: 200
+
+## 维度 1: 动作重要性 (Action Importance)
+
+| 排名 | 动作 | Shapley 值 | 占比 | 方向 |
+|------|------|-----------|------|------|
+| 1 | replace_nearby | +2.750892 | 20.6% | ↑ 正贡献 |
+| 2 | no_action | +0.114794 | 0.9% | ↑ 正贡献 |
+| 3 | delete | -4.191287 | 31.4% | ↓ 负贡献 |
+| 4 | repair_value | -6.311068 | 47.2% | ↓ 负贡献 |
+
+**结论**: 最有效的清洗动作是 **replace_nearby**
+（delete, repair_value 对性能有负面影响，建议减少使用）
+
+## 维度 2: 特征重要性 (Feature Importance)
+
+| 排名 | 特征 | Shapley 值 | 占比 | 清洗价值 |
+|------|------|-----------|------|---------|
+| 1 | frequency | +0.000000 | 0.0% | — 可忽略 |
+| 2 | angle | +0.000000 | 0.0% | — 可忽略 |
+| 3 | chord_length | +0.000000 | 0.0% | — 可忽略 |
+| 4 | velocity | +0.000000 | 0.0% | — 可忽略 |
+| 5 | thickness | +0.000000 | 0.0% | — 可忽略 |
+
+**结论**: 
+- 清洗价值极低的特征: frequency, angle, chord_length（清洗它们几乎不影响性能）
+
+## 维度 3: 错误类型重要性 (Error Type Importance)
+
+| 排名 | 错误类型 | Shapley 值 | 占比 | 优先级 |
+|------|---------|-----------|------|--------|
+| 1 | missing | +20.133447 | 27.5% | 🟡 中 |
+| 2 | semantic | +16.048563 | 21.9% | 🟡 中 |
+| 3 | syntactic | -37.152685 | 50.7% | 🔴 高 |
+
+**结论**: 对下游性能影响最大的错误类型是 **missing**，检测器应优先识别此类错误。
+
+## 综合清洗建议
+
+
+
+============================================================
+真值使用成本汇总:
+============================================================
+  RAHA 检测成本: 20
+  Agent 修复成本: 113
+  总成本: 133
+  总数据单元: 4505
+  成本率: 2.9523%
+  apply_raha_truth: True
+  count_raha_cost: True

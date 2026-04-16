@@ -1,0 +1,33 @@
+Attribute: index, MSE: nan, Jaccard: 0.0
+检查你指定的属性 dteday 是否为数值型！
+Attribute: dteday, MSE: nan, Jaccard: 0.7908868415693733
+检查你指定的属性 season 是否为数值型！
+Attribute: season, MSE: nan, Jaccard: 0.9896989343949597
+检查你指定的属性 yr 是否为数值型！
+Attribute: yr, MSE: nan, Jaccard: 0.9768986274952847
+检查你指定的属性 mnth 是否为数值型！
+Attribute: mnth, MSE: nan, Jaccard: 0.9493835060814438
+检查你指定的属性 hr 是否为数值型！
+Attribute: hr, MSE: nan, Jaccard: 0.8245058565417311
+检查你指定的属性 holiday 是否为数值型！
+Attribute: holiday, MSE: nan, Jaccard: 0.9966846642038458
+检查你指定的属性 weekday 是否为数值型！
+Attribute: weekday, MSE: nan, Jaccard: 0.9345229919588695
+检查你指定的属性 workingday 是否为数值型！
+Attribute: workingday, MSE: nan, Jaccard: 0.9855870493073123
+检查你指定的属性 weathersit 是否为数值型！
+Attribute: weathersit, MSE: nan, Jaccard: 0.975494629937871
+检查你指定的属性 temp 是否为数值型！
+Attribute: temp, MSE: nan, Jaccard: 0.7503426386507467
+检查你指定的属性 atemp 是否为数值型！
+Attribute: atemp, MSE: nan, Jaccard: 0.7384232982002519
+检查你指定的属性 hum 是否为数值型！
+Attribute: hum, MSE: nan, Jaccard: 0.6470596300189853
+检查你指定的属性 windspeed 是否为数值型！
+Attribute: windspeed, MSE: nan, Jaccard: 0.8719127090149902
+检查你指定的属性 casual 是否为数值型！
+Attribute: casual, MSE: nan, Jaccard: 0.4135028037124612
+检查你指定的属性 registered 是否为数值型！
+Attribute: registered, MSE: nan, Jaccard: 0.26956170110259736
+Attribute: cnt, MSE: nan, Jaccard: 0.0
+加权混合距离: 0.356307820064433

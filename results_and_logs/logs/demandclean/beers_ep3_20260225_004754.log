@@ -1,0 +1,454 @@
+[日志] 完整输出将保存到: /Users/qianzekai/PycharmProjects/TolerDM/logs/demandclean/beers_ep3_20260225_004754.log
+======================================================================
+DemandClean 统一运行脚本
+======================================================================
+数据集: ['beers']
+启用版本: ['v5_auto_dueling_single']
+训练轮数: 3
+详细输出: True
+======================================================================
+
+######################################################################
+# 数据集: beers
+######################################################################
+  数据集: beers
+  脏数据: (2410, 8), 干净数据: (2410, 8)
+  特征列: 8, 标签列: style
+  FD规则: 0 条
+
+======================================================================
+版本: v5_auto_dueling_single
+数据集: beers | 任务: classification | 模型: random_forest
+检测器: auto | Agent: dueling_two_stage | 推理: single_phase
+训练轮数: 3 | 输出目录: /Users/qianzekai/PycharmProjects/TolerDM/results/demandclean/beers/v5_auto_dueling_single
+======================================================================
+
+[Step 1] 创建 DemandClean 实例...
+
+[Step 2] 训练 (3 episodes)...
+
+[AutoDetector] 初始化
+  RAHA 来源: pip:raha
+  RAHA 可用: True
+  CSV 路径: /Users/qianzekai/PycharmProjects/TolerDM/data/beers/dirty_index.csv
+  FD 规则: 4 条
+  规则文件: /Users/qianzekai/PycharmProjects/TolerDM/data/beers/rules.txt
+  规则摘要: ParsedRules(DOMAIN=4, FD=4, STAT=1)
+  缺失值: 1196 个
+  标签缺失(NaN): 4 个
+
+[检测] 在原始 CSV 上运行 RAHA (labeling_budget=20)...
+  [RAHA] 数据规模: 2410 行 × 11 列
+------------------------------------------------------------------------
+---------------------Initializing the Dataset Object--------------------
+------------------------------------------------------------------------
+------------------------------------------------------------------------
+-------------------Running Error Detection Strategies-------------------
+------------------------------------------------------------------------
+547 strategy profiles are collected.
+------------------------------------------------------------------------
+-----------------------Generating Feature Vectors-----------------------
+------------------------------------------------------------------------
+43 Features are generated for column 0.
+43 Features are generated for column 1.
+129 Features are generated for column 2.
+105 Features are generated for column 3.
+70 Features are generated for column 4.
+58 Features are generated for column 5.
+51 Features are generated for column 6.
+72 Features are generated for column 7.
+104 Features are generated for column 8.
+106 Features are generated for column 9.
+76 Features are generated for column 10.
+------------------------------------------------------------------------
+---------------Building the Hierarchical Clustering Model---------------
+------------------------------------------------------------------------
+A hierarchical clustering model is built for column 0.
+A hierarchical clustering model is built for column 1.
+A hierarchical clustering model is built for column 2.
+A hierarchical clustering model is built for column 3.
+A hierarchical clustering model is built for column 4.
+A hierarchical clustering model is built for column 5.
+A hierarchical clustering model is built for column 6.
+A hierarchical clustering model is built for column 7.
+A hierarchical clustering model is built for column 8.
+A hierarchical clustering model is built for column 9.
+A hierarchical clustering model is built for column 10.
+------------------------------------------------------------------------
+-------------Iterative Clustering-Based Sampling and Labeling-----------
+------------------------------------------------------------------------
+Tuple 1265 is sampled.
+Tuple 1265 is labeled.
+------------------------------------------------------------------------
+Tuple 1554 is sampled.
+Tuple 1554 is labeled.
+------------------------------------------------------------------------
+Tuple 918 is sampled.
+Tuple 918 is labeled.
+------------------------------------------------------------------------
+Tuple 1787 is sampled.
+Tuple 1787 is labeled.
+------------------------------------------------------------------------
+Tuple 1654 is sampled.
+Tuple 1654 is labeled.
+------------------------------------------------------------------------
+Tuple 90 is sampled.
+Tuple 90 is labeled.
+------------------------------------------------------------------------
+Tuple 976 is sampled.
+Tuple 976 is labeled.
+------------------------------------------------------------------------
+Tuple 1805 is sampled.
+Tuple 1805 is labeled.
+------------------------------------------------------------------------
+Tuple 1838 is sampled.
+Tuple 1838 is labeled.
+------------------------------------------------------------------------
+Tuple 384 is sampled.
+Tuple 384 is labeled.
+------------------------------------------------------------------------
+Tuple 1839 is sampled.
+Tuple 1839 is labeled.
+------------------------------------------------------------------------
+Tuple 754 is sampled.
+Tuple 754 is labeled.
+------------------------------------------------------------------------
+Tuple 1485 is sampled.
+Tuple 1485 is labeled.
+------------------------------------------------------------------------
+Tuple 2391 is sampled.
+Tuple 2391 is labeled.
+------------------------------------------------------------------------
+Tuple 851 is sampled.
+Tuple 851 is labeled.
+------------------------------------------------------------------------
+Tuple 1170 is sampled.
+Tuple 1170 is labeled.
+------------------------------------------------------------------------
+Tuple 2084 is sampled.
+Tuple 2084 is labeled.
+------------------------------------------------------------------------
+Tuple 712 is sampled.
+Tuple 712 is labeled.
+------------------------------------------------------------------------
+Tuple 1145 is sampled.
+Tuple 1145 is labeled.
+------------------------------------------------------------------------
+Tuple 1000 is sampled.
+Tuple 1000 is labeled.
+------------------------------------------------------------------------
+------------------------------------------------------------------------
+--------------Propagating User Labels Through the Clusters--------------
+------------------------------------------------------------------------
+The number of labeled data cells increased from 220 to 24647.
+------------------------------------------------------------------------
+---------------Training and Testing Classification Models---------------
+------------------------------------------------------------------------
+A classifier is trained and applied on column 0.
+A classifier is trained and applied on column 1.
+A classifier is trained and applied on column 2.
+A classifier is trained and applied on column 3.
+A classifier is trained and applied on column 4.
+A classifier is trained and applied on column 5.
+A classifier is trained and applied on column 6.
+A classifier is trained and applied on column 7.
+A classifier is trained and applied on column 8.
+A classifier is trained and applied on column 9.
+A classifier is trained and applied on column 10.
+  RAHA 标签错误: 5 行
+  句法错误(RAHA): 3151 个
+  FD 规则检测: 125 个语义错误
+  DOMAIN 规则检测: 4 个语义错误 (特征列)
+  DOMAIN 规则检测: 78 个标签错误
+  语义错误: 129 个 (FD+DOMAIN)
+  标签噪声: 78 个 (NaN=4, 规则=74)
+
+  检测总结: 4554 个错误 (缺失=1196, 句法=3151, 语义=129, 标签噪声=78)
+  模型已保存: /Users/qianzekai/PycharmProjects/TolerDM/results/demandclean/beers/v5_auto_dueling_single/model/v5_auto_dueling_single_agent.pt
+  训练历史已保存: /Users/qianzekai/PycharmProjects/TolerDM/results/demandclean/beers/v5_auto_dueling_single/report/v5_auto_dueling_single_history.json
+
+[Step 3] 推理 (模式: single_phase)...
+  缺失值: 1196 个
+  标签缺失(NaN): 4 个
+  [RAHA] 使用缓存结果: 3283 个单元格
+  RAHA 标签错误: 5 行
+  句法错误(RAHA): 3151 个
+  FD 规则检测: 125 个语义错误
+  DOMAIN 规则检测: 4 个语义错误 (特征列)
+  DOMAIN 规则检测: 78 个标签错误
+  语义错误: 129 个 (FD+DOMAIN)
+  标签噪声: 78 个 (NaN=4, 规则=74)
+
+  检测总结: 4554 个错误 (缺失=1196, 句法=3151, 语义=129, 标签噪声=78)
+
+============================================================
+单阶段推理
+============================================================
+  算法: Dueling Double DQN (Two Stage)
+  任务类型: classification
+  下游模型: random_forest
+  检测到的错误: 4554 个 (missing=1196, semantic=129, syntactic=3151, label=78)
+
+  推理进度: [====================] 4554/4554
+
+  动作分布 (共 4554 个错误):
+    no_action         4554 (100.0%) ████████████████████████████████████████
+    repair_value         0 (  0.0%) 
+    delete               0 (  0.0%) 
+    replace_nearby       0 (  0.0%) 
+  真值使用: 0
+  动作分布: {'no_action': 4554, 'repair_value': 0, 'delete': 0, 'replace_nearby': 0}
+  清洗后数据已保存: /Users/qianzekai/PycharmProjects/TolerDM/results/demandclean/beers/v5_auto_dueling_single/data/v5_auto_dueling_single_cleaned.csv
+  原始格式清洗数据已保存: /Users/qianzekai/PycharmProjects/TolerDM/results/demandclean/beers/v5_auto_dueling_single/data/v5_auto_dueling_single_cleaned_original.csv
+
+[Step 4] 检测器准确率评估...
+  缺失值: 1196 个
+  标签缺失(NaN): 4 个
+  [RAHA] 使用缓存结果: 3283 个单元格
+  RAHA 标签错误: 5 行
+  句法错误(RAHA): 3151 个
+  FD 规则检测: 125 个语义错误
+  DOMAIN 规则检测: 4 个语义错误 (特征列)
+  DOMAIN 规则检测: 78 个标签错误
+  语义错误: 129 个 (FD+DOMAIN)
+  标签噪声: 78 个 (NaN=4, 规则=74)
+
+  检测总结: 4554 个错误 (缺失=1196, 句法=3151, 语义=129, 标签噪声=78)
+
+============================================================
+检测器准确率评估
+============================================================
+真实错误总数: 4425 (缺失: 1196, 值错误: 3229)
+检测报告总数: 4476 (missing: 1196, syntactic: 3151, semantic: 129)
+------------------------------------------------------------
+
+  [总体]
+    Precision = 0.9866  |  Recall = 0.9980  |  F1 = 0.9922
+    TP=4416  FP=60  FN=9  (GT=4425, Det=4476)
+
+  [缺失值 (missing)]
+    Precision = 1.0000  |  Recall = 1.0000  |  F1 = 1.0000
+    TP=1196  FP=0  FN=0  (GT=1196, Det=1196)
+
+  [句法错误 (syntactic)]
+    Precision = 1.0000  |  Recall = 0.9758  |  F1 = 0.9878
+    TP=3151  FP=0  FN=78  (GT=3229, Det=3151)
+
+  [语义错误 (semantic)]
+    Precision = 0.5349  |  Recall = 0.0214  |  F1 = 0.0411
+    TP=69  FP=60  FN=3160  (GT=3229, Det=129)
+
+  [值错误合并 (syntactic+semantic)]
+    Precision = 0.9817  |  Recall = 0.9972  |  F1 = 0.9894
+    TP=3220  FP=60  FN=9  (GT=3229, Det=3280)
+
+[Step 5] Baseline 评估与可视化...
+  DeleteFix: 删除 1928 行, 保留 482 行
+
+============================================================
+Baseline 对比评估 - v5_auto_dueling_single
+============================================================
+  NoFix          : rf_accuracy=0.3693 | rf_f1=0.3307 | lr_accuracy=0.2635 | lr_f1=0.1761
+  DeleteAll      : rf_accuracy=0.4528 | rf_f1=0.3939 | lr_accuracy=0.3283 | lr_f1=0.2568
+  DeleteFix      : rf_accuracy=0.3814 | rf_f1=0.337 | lr_accuracy=0.2784 | lr_f1=0.2422
+  ReplaceAll     : rf_accuracy=0.3693 | rf_f1=0.3307 | lr_accuracy=0.2635 | lr_f1=0.1761
+  DemandClean    : rf_accuracy=0.3714 | rf_f1=0.3324 | lr_accuracy=0.2635 | lr_f1=0.1761
+  FullFix        : rf_accuracy=0.3734 | rf_f1=0.3361 | lr_accuracy=0.2635 | lr_f1=0.1749
+  [可视化] Baseline 对比图已保存: /Users/qianzekai/PycharmProjects/TolerDM/results/demandclean/beers/v5_auto_dueling_single/visualization/v5_auto_dueling_single_baseline_comparison.png
+
+[Step 6] 模型容忍度评估...
+============================================================
+模型容忍度计算 - v5_auto_dueling_single
+任务类型: classification  |  模型列表: ['rf', 'lr']
+============================================================
+
+--- 模型: RF ---
+  P_clean  = 0.3817
+  P_dirty  = 0.3838
+  P_dc     = 0.3838
+  先验容忍度 (P_dc / P_dirty)            = 1.0000
+  后验容忍度 (P_dc-P_dirty)/(P_clean-P_dirty) = -0.0000
+
+--- 模型: LR ---
+  P_clean  = 0.2718
+  P_dirty  = 0.2801
+  P_dc     = 0.2801
+  先验容忍度 (P_dc / P_dirty)            = 1.0000
+  后验容忍度 (P_dc-P_dirty)/(P_clean-P_dirty) = -0.0000
+  容忍度柱状图已保存: /Users/qianzekai/PycharmProjects/TolerDM/results/demandclean/beers/v5_auto_dueling_single/visualization/v5_auto_dueling_single_tolerance_bar.png
+
+[Step 7] Shapley 三维度分析...
+============================================================
+DemandClean - 三维度 Shapley 分析
+============================================================
+  数据: 2410 行 x 8 列
+  错误数: 4554
+  错误分布: {'missing': 1196, 'semantic': 129, 'syntactic': 3151, 'unknown': 78}
+  输出目录: /Users/qianzekai/PycharmProjects/TolerDM/results/demandclean/beers/v5_auto_dueling_single/evaluation/shapley
+
+[Shapley] 维度1: 动作重要性 (精确枚举 4!=24 排列) ...
+[Shapley] 图表已保存: /Users/qianzekai/PycharmProjects/TolerDM/results/demandclean/beers/v5_auto_dueling_single/evaluation/shapley/shapley_action_importance.png
+  动作重要性 Shapley 值:
+    no_action           : +0.000000
+    repair_value        : +0.000000
+    delete              : +0.000000
+    replace_nearby      : +0.000000
+
+[Shapley] 维度2: 跳过特征 Shapley（计算量过大，仅保留维度1和维度3）
+[Shapley] 维度3: 错误类型重要性 (精确枚举 4!=24 排列) ...
+[Shapley] 图表已保存: /Users/qianzekai/PycharmProjects/TolerDM/results/demandclean/beers/v5_auto_dueling_single/evaluation/shapley/shapley_error_type_importance.png
+  错误类型重要性 Shapley 值:
+    missing             : +0.000000
+    semantic            : +0.000000
+    syntactic           : +0.000000
+    label_noise         : +0.000000
+
+[Shapley] JSON 结果已保存: /Users/qianzekai/PycharmProjects/TolerDM/results/demandclean/beers/v5_auto_dueling_single/evaluation/shapley/shapley_results.json
+[Shapley] Markdown 报告已保存: /Users/qianzekai/PycharmProjects/TolerDM/results/demandclean/beers/v5_auto_dueling_single/evaluation/shapley/shapley_report.md
+
+============================================================
+Shapley 分析完成!
+============================================================
+# Shapley Value Analysis Report
+
+- 数据规模: 2410 行 × 8 列
+- 错误总数: 4554
+- 任务类型: classification (random_forest)
+- MC 采样次数: 200
+
+## 维度 1: 动作重要性 (Action Importance)
+
+| 排名 | 动作 | Shapley 值 | 占比 | 方向 |
+|------|------|-----------|------|------|
+| 1 | no_action | +0.000000 | 0.0% | — 无影响 |
+| 2 | repair_value | +0.000000 | 0.0% | — 无影响 |
+| 3 | delete | +0.000000 | 0.0% | — 无影响 |
+| 4 | replace_nearby | +0.000000 | 0.0% | — 无影响 |
+
+**结论**: 最有效的清洗动作是 **no_action**
+
+## 维度 2: 特征重要性 (Feature Importance)
+
+| 排名 | 特征 | Shapley 值 | 占比 | 清洗价值 |
+|------|------|-----------|------|---------|
+| 1 | beer_name | +0.000000 | 0.0% | — 可忽略 |
+| 2 | ounces | +0.000000 | 0.0% | — 可忽略 |
+| 3 | abv | +0.000000 | 0.0% | — 可忽略 |
+| 4 | ibu | +0.000000 | 0.0% | — 可忽略 |
+| 5 | brewery_id | +0.000000 | 0.0% | — 可忽略 |
+| 6 | brewery_name | +0.000000 | 0.0% | — 可忽略 |
+| 7 | city | +0.000000 | 0.0% | — 可忽略 |
+| 8 | state | +0.000000 | 0.0% | — 可忽略 |
+
+**结论**: 
+- 清洗价值极低的特征: beer_name, ounces, abv（清洗它们几乎不影响性能）
+
+## 维度 3: 错误类型重要性 (Error Type Importance)
+
+| 排名 | 错误类型 | Shapley 值 | 占比 | 优先级 |
+|------|---------|-----------|------|--------|
+| 1 | missing | +0.000000 | 0.0% | 🟢 低 |
+| 2 | semantic | +0.000000 | 0.0% | 🟢 低 |
+| 3 | syntactic | +0.000000 | 0.0% | 🟢 低 |
+| 4 | label_noise | +0.000000 | 0.0% | 🟢 低 |
+
+**结论**: 对下游性能影响最大的错误类型是 **missing**，检测器应优先识别此类错误。
+
+## 综合清洗建议
+
+
+
+  输出文件:
+    /Users/qianzekai/PycharmProjects/TolerDM/results/demandclean/beers/v5_auto_dueling_single/evaluation/shapley/shapley_action_importance.png
+    /Users/qianzekai/PycharmProjects/TolerDM/results/demandclean/beers/v5_auto_dueling_single/evaluation/shapley/shapley_feature_importance.png
+    /Users/qianzekai/PycharmProjects/TolerDM/results/demandclean/beers/v5_auto_dueling_single/evaluation/shapley/shapley_error_type_importance.png
+    /Users/qianzekai/PycharmProjects/TolerDM/results/demandclean/beers/v5_auto_dueling_single/evaluation/shapley/shapley_results.json
+    /Users/qianzekai/PycharmProjects/TolerDM/results/demandclean/beers/v5_auto_dueling_single/evaluation/shapley/shapley_report.md
+============================================================
+
+[Step 8] 训练曲线可视化...
+  [可视化] 训练曲线已保存: /Users/qianzekai/PycharmProjects/TolerDM/results/demandclean/beers/v5_auto_dueling_single/visualization/v5_auto_dueling_single_training_curves.png
+
+[Step 9] Clean4MLBaseline 统一测评...
+======================================================================
+Clean4MLBaseline 统一测评 - v5_auto_dueling_single
+======================================================================
+
+[1/5] 传统清洗指标
+--------------------------------------------------
+差异文件已保存到:
+/Users/qianzekai/PycharmProjects/TolerDM/results/demandclean/beers/v5_auto_dueling_single/evaluation/v5_auto_dueling_single_clean_vs_dirty.csv
+/Users/qianzekai/PycharmProjects/TolerDM/results/demandclean/beers/v5_auto_dueling_single/evaluation/v5_auto_dueling_single_dirty_vs_cleaned.csv
+/Users/qianzekai/PycharmProjects/TolerDM/results/demandclean/beers/v5_auto_dueling_single/evaluation/v5_auto_dueling_single_clean_vs_cleaned.csv
+修复错误数据文件已保存到: /Users/qianzekai/PycharmProjects/TolerDM/results/demandclean/beers/v5_auto_dueling_single/evaluation/v5_auto_dueling_single_repair_errors.csv
+未修复但是应该修复数据文件已保存到: /Users/qianzekai/PycharmProjects/TolerDM/results/demandclean/beers/v5_auto_dueling_single/evaluation/v5_auto_dueling_single_unrepaired.csv
+修复准确率: 0.00234009360374415, 修复召回率: 0.0008933889219773674, F1值: 0.0012931034082848182
+========================================
+EDR 结果已保存到: /Users/qianzekai/PycharmProjects/TolerDM/results/demandclean/beers/v5_auto_dueling_single/evaluation/v5_auto_dueling_single_edr_evaluation.txt
+错误减少率 (EDR): -0.3430613460393091
+========================================
+混合距离结果已保存到: /Users/qianzekai/PycharmProjects/TolerDM/results/demandclean/beers/v5_auto_dueling_single/evaluation/v5_auto_dueling_single_hybrid_distance_evaluation.txt
+混合距离 (Hybrid Distance): 0.07951676408844303
+========================================
+R-EDR 结果已保存到: /Users/qianzekai/PycharmProjects/TolerDM/results/demandclean/beers/v5_auto_dueling_single/evaluation/v5_auto_dueling_single_record_based_edr_evaluation.txt
+基于条目的错误减少率 (R-EDR): 0.0
+========================================
+
+[2/5] 下游任务性能 (classification)
+--------------------------------------------------
+RF - Accuracy: 0.0021, F1: 0.0005, Precision: 0.0003, Recall: 0.0021
+LR - Accuracy: 0.0104, F1: 0.0078, Precision: 0.0134, Recall: 0.0104
+SVM - Accuracy: 0.0062, F1: 0.0018, Precision: 0.0011, Recall: 0.0062
+KNN - Accuracy: 0.0083, F1: 0.0095, Precision: 0.0166, Recall: 0.0083
+DT - Accuracy: 0.0062, F1: 0.0047, Precision: 0.0047, Recall: 0.0062
+GB - Accuracy: 0.0124, F1: 0.0078, Precision: 0.0087, Recall: 0.0124
+
+[3/5] 模型容忍度
+--------------------------------------------------
+
+容忍度计算结果:
+  P_do_nothing (脏数据性能): 0.3797
+  P_demand_clean (清洗后性能): 0.0021
+  P_repair_all (完全修复性能): 0.3859
+  先验容忍度 (Tolerance_prior): 0.0055
+  后验容忍度 (Tolerance_post): -60.6667
+
+[4/5] Snoopy上界评估
+--------------------------------------------------
+Snoopy模块可用，正在评估数据质量上界...
+  脏数据上界: 0.2606
+  清洗后上界: 0.2598
+  干净数据上界: 0.2581
+  上界提升比例: 0.3333
+
+[5/5] 真值使用成本
+--------------------------------------------------
+  方法类型: Type 1 (全自动)
+  实际真值使用: 0
+  理想最小成本: 3
+  总修改单元格: 2606
+  正确修复: 3
+  错误修复: 2603
+
+======================================================================
+测评完成，结果已保存到: /Users/qianzekai/PycharmProjects/TolerDM/results/demandclean/beers/v5_auto_dueling_single/evaluation/v5_auto_dueling_single_evaluation_results.txt
+======================================================================
+  统一测评完成，结果已保存到: /Users/qianzekai/PycharmProjects/TolerDM/results/demandclean/beers/v5_auto_dueling_single/v5_auto_dueling_single_evaluation_results.txt
+
+[Step 10] 真值成本汇总...
+  RAHA 检测成本: 20
+  Agent 修复成本: 0
+  总成本: 20 / 19280 cells = 0.1037%
+
+  [输出] 报告已保存: /Users/qianzekai/PycharmProjects/TolerDM/results/demandclean/beers/v5_auto_dueling_single/report/v5_auto_dueling_single_report.json
+
+  版本 v5_auto_dueling_single 完成! 耗时: 84.44s
+  输出目录: /Users/qianzekai/PycharmProjects/TolerDM/results/demandclean/beers/v5_auto_dueling_single
+
+  只有 1 个版本完成，跳过跨版本对比
+
+======================================================================
+全部完成! 总耗时: 109.19s
+结果目录: /Users/qianzekai/PycharmProjects/TolerDM/results/demandclean
+日志文件: /Users/qianzekai/PycharmProjects/TolerDM/logs/demandclean/beers_ep3_20260225_004754.log
+======================================================================

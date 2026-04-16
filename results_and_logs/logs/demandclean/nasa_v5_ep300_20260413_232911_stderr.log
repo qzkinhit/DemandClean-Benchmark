@@ -1,0 +1,5 @@
+[23:29:44] INFO:   Clean Base 自动选择 (5-fold CV, 样本保留率加权):
+[23:29:44] INFO:     DeleteFix: 439 行, CV=0.0381, 权重=0.698, 加权=0.0266
+[23:29:44] INFO:     VE-Fill:   901 行, CV=0.0328, 权重=1.000, 加权=0.0328
+[23:29:44] INFO:     → 选择 VE-Fill (901 行)
+[23:33:26] INFO: 模型已保存: /Users/qianzekai/PycharmProjects/TolerDM/results/demandclean/nasa/v5_auto_dueling_single_t07/model/v5_auto_dueling_single_agent.pt

@@ -1,0 +1,21 @@
+Attribute: index, MSE: nan, Jaccard: 0.0
+Attribute: i_w_blo_weg, MSE: 5.180237226107502e-06, Jaccard: 0.3290688502232363
+Attribute: o_w_blo_power, MSE: 4.755732054784421e-06, Jaccard: 0.21397548933843158
+Attribute: o_w_blo_voltage, MSE: 9.98911239635704e-06, Jaccard: 0.6649499109045722
+Attribute: i_w_bhl_weg, MSE: 1.90971900063676e-06, Jaccard: 0.2355034793551265
+Attribute: o_w_bhl_power, MSE: 6.589644074965666e-06, Jaccard: 0.247329150841605
+Attribute: o_w_bhl_voltage, MSE: 1.955801088310944e-06, Jaccard: 0.7969015541953215
+Attribute: i_w_bhr_weg, MSE: 4.867247187439043e-05, Jaccard: 0.34540640802312306
+Attribute: o_w_bhr_power, MSE: 6.425315237178902e-06, Jaccard: 0.19781867091290606
+Attribute: o_w_bhr_voltage, MSE: 2.785101123547246e-07, Jaccard: 0.7047441696027761
+Attribute: i_w_bru_weg, MSE: 2.4714712001239236e-06, Jaccard: 0.3154163735278426
+Attribute: o_w_bru_power, MSE: 3.796058378120323e-06, Jaccard: 0.21351988966451074
+Attribute: o_w_bru_voltage, MSE: 5.315814387123412e-07, Jaccard: 0.7888606524861939
+Attribute: i_w_hr_weg, MSE: 1.407975690244285e-05, Jaccard: 0.1276283091181626
+Attribute: o_w_hr_power, MSE: 6.491074151711372e-05, Jaccard: 0.19615782432730333
+Attribute: o_w_hr_voltage, MSE: 2.9222580495075673e-07, Jaccard: 0.44692634191982883
+Attribute: i_w_hl_weg, MSE: 7.254428067337852e-07, Jaccard: 0.15464966108340805
+Attribute: o_w_hl_power, MSE: 0.00012311564737788928, Jaccard: 0.18143510845840882
+Attribute: o_w_hl_voltage, MSE: 1.1813041526438688e-06, Jaccard: 0.4672095095748887
+Attribute: labels, MSE: nan, Jaccard: 0.0
+加权混合距离: 0.16569495535825723

@@ -1,0 +1,48 @@
+[日志] 完整输出将保存到: /Users/qianzekai/PycharmProjects/TolerDM/logs/demandclean/beers_ep10_20260304_010401.log
+======================================================================
+DemandClean 统一运行脚本
+======================================================================
+数据集: ['beers']
+启用版本: ['v5_auto_dueling_single']
+训练轮数: 10
+详细输出: True
+Oracle 模式: 启用 (三路划分 60/20/20, --no-oracle 关闭)
+======================================================================
+
+######################################################################
+# 数据集: beers
+######################################################################
+
+  60/20/20 划分: train=1446, val=482, test=482
+  60% 子集 CSV: /Users/qianzekai/PycharmProjects/TolerDM/results/demandclean/beers/dirty_train_60pct.csv
+  数据集: beers
+  脏数据: (1446, 8)
+  特征列: 8, 标签列: style
+  分类列: {'brewery_name', 'beer_name', 'state', 'city'}
+  LE fit: 仅 dirty (1446 行)
+  SS fit: 仅 dirty (1446 行)
+  FD规则: 0 条
+  编码完成: X_dirty_train=(1446, 8), X_clean_train=(1446, 8), X_clean_val=(482, 8), X_clean_test=(482, 8)
+
+======================================================================
+版本: v5_auto_dueling_single
+数据集: beers | 任务: classification | 模型: random_forest
+检测器: auto | Agent: dueling_two_stage | 推理: single_phase
+训练轮数: 10 | 输出目录: /Users/qianzekai/PycharmProjects/TolerDM/results/demandclean/beers/v5_auto_dueling_single
+======================================================================
+
+[visualize_only] 跳过训练和推理，从已有结果加载...
+  已加载清洗结果: /Users/qianzekai/PycharmProjects/TolerDM/results/demandclean/beers/v5_auto_dueling_single/data/v5_auto_dueling_single_cleaned.csv (1446 行)
+  已加载训练历史: 400 episodes
+  已加载旧报告: /Users/qianzekai/PycharmProjects/TolerDM/results/demandclean/beers/v5_auto_dueling_single/report/v5_auto_dueling_single_report.json
+
+[Step 5] Baseline 评估与可视化...
+  统一测试集 (Oracle): 479 行
+
+============================================================
+Baseline 对比评估 - v5_auto_dueling_single
+============================================================
+  NoFix          : rf_accuracy=0.3152 | rf_f1=0.2574 | lr_accuracy=0.2255 | lr_f1=0.1259
+  DeleteAll: 数据不足(0行)，跳过
+  ReplaceAll     : rf_accuracy=0.3152 | rf_f1=0.2574 | lr_accuracy=0.2255 | lr_f1=0.1259
+  DemandClean    : rf_accuracy=0.3486 | rf_f1=0.281 | lr_accuracy=0.2317 | lr_f1=0.1352

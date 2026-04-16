@@ -1,0 +1,122 @@
+[日志] 完整输出将保存到: /Users/qianzekai/PycharmProjects/TolerDM/logs/demandclean/beers_ep300_20260223_224738.log
+======================================================================
+DemandClean 统一运行脚本
+======================================================================
+数据集: ['beers']
+启用版本: ['v3_oracle_plain_single']
+训练轮数: 300
+详细输出: False
+======================================================================
+
+######################################################################
+# 数据集: beers
+######################################################################
+  数据集: beers
+  脏数据: (2410, 8), 干净数据: (2410, 8)
+  特征列: 8, 标签列: style
+  FD规则: 0 条
+
+======================================================================
+版本: v3_oracle_plain_single
+数据集: beers | 任务: classification | 模型: xgboost
+检测器: oracle | Agent: single_stage | 推理: single_phase
+训练轮数: 300 | 输出目录: /Users/qianzekai/PycharmProjects/TolerDM/results/demandclean/beers/v3_oracle_plain_single
+======================================================================
+
+[visualize_only] 跳过训练和推理，从已有结果加载...
+  已加载清洗结果: /Users/qianzekai/PycharmProjects/TolerDM/results/demandclean/beers/v3_oracle_plain_single/data/v3_oracle_plain_single_cleaned.csv (2410 行)
+  已加载训练历史: 15 episodes
+  已加载旧报告: /Users/qianzekai/PycharmProjects/TolerDM/results/demandclean/beers/v3_oracle_plain_single/report/v3_oracle_plain_single_report.json
+
+[Step 5] Baseline 评估与可视化...
+
+============================================================
+Baseline 对比评估 - v3_oracle_plain_single
+============================================================
+  NoFix          : rf_accuracy=0.3693 | rf_f1=0.3307 | lr_accuracy=0.2635 | lr_f1=0.1761
+  DeleteAll      : rf_accuracy=0.4528 | rf_f1=0.3939 | lr_accuracy=0.3283 | lr_f1=0.2568
+  ReplaceAll     : rf_accuracy=0.3693 | rf_f1=0.3307 | lr_accuracy=0.2635 | lr_f1=0.1761
+  DemandClean    : rf_accuracy=0.3734 | rf_f1=0.3361 | lr_accuracy=0.2635 | lr_f1=0.1749
+  FullFix        : rf_accuracy=0.3734 | rf_f1=0.3361 | lr_accuracy=0.2635 | lr_f1=0.1749
+  决策边界对比图已保存: v3_oracle_plain_single_boundary_comparison.png
+  独立边界图已保存: v3_oracle_plain_single_*_boundary.png
+  [可视化] Baseline 对比图已保存: /Users/qianzekai/PycharmProjects/TolerDM/results/demandclean/beers/v3_oracle_plain_single/visualization/v3_oracle_plain_single_baseline_comparison.png
+
+[Step 6] 模型容忍度评估...
+============================================================
+模型容忍度计算 - v3_oracle_plain_single
+任务类型: classification  |  模型列表: ['rf', 'lr']
+============================================================
+
+--- 模型: RF ---
+  P_clean  = 0.3817
+  P_dirty  = 0.3838
+  P_dc     = 0.3817
+  先验容忍度 (P_dc / P_dirty)            = 0.9946
+  后验容忍度 (P_dc-P_dirty)/(P_clean-P_dirty) = 1.0000
+
+--- 模型: LR ---
+  P_clean  = 0.2718
+  P_dirty  = 0.2801
+  P_dc     = 0.2718
+  先验容忍度 (P_dc / P_dirty)            = 0.9704
+  后验容忍度 (P_dc-P_dirty)/(P_clean-P_dirty) = 1.0000
+  容忍度柱状图已保存: /Users/qianzekai/PycharmProjects/TolerDM/results/demandclean/beers/v3_oracle_plain_single/visualization/v3_oracle_plain_single_tolerance_bar.png
+
+[Step 7] Shapley 三维度分析...
+  [跳过] 无可用错误列表或 Agent 未就绪
+
+[Step 8] 训练曲线可视化...
+  [可视化] 训练曲线已保存: /Users/qianzekai/PycharmProjects/TolerDM/results/demandclean/beers/v3_oracle_plain_single/visualization/v3_oracle_plain_single_training_curves.png
+
+[Step 9] Clean4MLBaseline 统一测评...
+差异文件已保存到:
+/Users/qianzekai/PycharmProjects/TolerDM/results/demandclean/beers/v3_oracle_plain_single/evaluation/v3_oracle_plain_single_clean_vs_dirty.csv
+/Users/qianzekai/PycharmProjects/TolerDM/results/demandclean/beers/v3_oracle_plain_single/evaluation/v3_oracle_plain_single_dirty_vs_cleaned.csv
+/Users/qianzekai/PycharmProjects/TolerDM/results/demandclean/beers/v3_oracle_plain_single/evaluation/v3_oracle_plain_single_clean_vs_cleaned.csv
+修复错误数据文件已保存到: /Users/qianzekai/PycharmProjects/TolerDM/results/demandclean/beers/v3_oracle_plain_single/evaluation/v3_oracle_plain_single_repair_errors.csv
+未修复但是应该修复数据文件已保存到: /Users/qianzekai/PycharmProjects/TolerDM/results/demandclean/beers/v3_oracle_plain_single/evaluation/v3_oracle_plain_single_unrepaired.csv
+修复准确率: 0.7440726789275427, 修复召回率: 1.0, F1值: 0.8532587980707566
+========================================
+EDR 结果已保存到: /Users/qianzekai/PycharmProjects/TolerDM/results/demandclean/beers/v3_oracle_plain_single/evaluation/v3_oracle_plain_single_edr_evaluation.txt
+错误减少率 (EDR): 0.6560452650387135
+========================================
+混合距离结果已保存到: /Users/qianzekai/PycharmProjects/TolerDM/results/demandclean/beers/v3_oracle_plain_single/evaluation/v3_oracle_plain_single_hybrid_distance_evaluation.txt
+混合距离 (Hybrid Distance): 0.0008264462809917358
+========================================
+R-EDR 结果已保存到: /Users/qianzekai/PycharmProjects/TolerDM/results/demandclean/beers/v3_oracle_plain_single/evaluation/v3_oracle_plain_single_record_based_edr_evaluation.txt
+基于条目的错误减少率 (R-EDR): 0.5477178423236515
+========================================
+RF - Accuracy: 0.3880, F1: 0.3476, Precision: 0.3505, Recall: 0.3880
+LR - Accuracy: 0.2199, F1: 0.1273, Precision: 0.1330, Recall: 0.2199
+SVM - Accuracy: 0.2220, F1: 0.1460, Precision: 0.1560, Recall: 0.2220
+KNN - Accuracy: 0.1784, F1: 0.1492, Precision: 0.1400, Recall: 0.1784
+DT - Accuracy: 0.3320, F1: 0.3239, Precision: 0.3320, Recall: 0.3320
+GB - Accuracy: 0.3444, F1: 0.3185, Precision: 0.3247, Recall: 0.3444
+
+容忍度计算结果:
+  P_do_nothing (脏数据性能): 0.3797
+  P_demand_clean (清洗后性能): 0.1058
+  P_repair_all (完全修复性能): 0.3859
+  先验容忍度 (Tolerance_prior): 0.2787
+  后验容忍度 (Tolerance_post): -44.0000
+Snoopy模块可用，正在评估数据质量上界...
+  统一测评完成，结果已保存到: /Users/qianzekai/PycharmProjects/TolerDM/results/demandclean/beers/v3_oracle_plain_single/v3_oracle_plain_single_evaluation_results.txt
+
+[Step 10] 真值成本汇总...
+  RAHA 检测成本: 0
+  Agent 修复成本: 4427
+  总成本: 4427 / 19280 cells = 22.9616%
+
+  [输出] 报告已保存: /Users/qianzekai/PycharmProjects/TolerDM/results/demandclean/beers/v3_oracle_plain_single/report/v3_oracle_plain_single_report.json
+
+  版本 v3_oracle_plain_single 完成! 耗时: 65.57s
+  输出目录: /Users/qianzekai/PycharmProjects/TolerDM/results/demandclean/beers/v3_oracle_plain_single
+
+  只有 1 个版本完成，跳过跨版本对比
+
+======================================================================
+全部完成! 总耗时: 207.59s
+结果目录: /Users/qianzekai/PycharmProjects/TolerDM/results/demandclean
+日志文件: /Users/qianzekai/PycharmProjects/TolerDM/logs/demandclean/beers_ep300_20260223_224738.log
+======================================================================

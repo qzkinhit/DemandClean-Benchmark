@@ -1,0 +1,13 @@
+Attribute: index, MSE: nan, Jaccard: 0.0
+Attribute: Clump Thickness, MSE: 1.1557205574707563, Jaccard: 0.5091873531021605
+Attribute: Uniformity of Cell Size, MSE: 0.25884649851002955, Jaccard: 0.4612729268490432
+Attribute: Uniformity of Cell Shape, MSE: 0.04450217350342552, Jaccard: 0.47448609076077986
+Attribute: Marginal Adhesion, MSE: 0.15896166651934351, Jaccard: 0.21811184505150027
+Attribute: Single Epithelial Cell Size, MSE: 0.03936474262647692, Jaccard: 0.19061946721521206
+检查你指定的属性 Bare Nuclei 是否为数值型！
+Attribute: Bare Nuclei, MSE: nan, Jaccard: 0.30593852184501835
+Attribute: Bland Chromatin, MSE: 0.18023512772916114, Jaccard: 0.2423857335930345
+Attribute: Normal Nucleoli, MSE: 0.006835793629747489, Jaccard: 0.15390941345161202
+Attribute: Mitoses, MSE: 0.003241109048587172, Jaccard: 0.11923221129811701
+Attribute: class, MSE: nan, Jaccard: 0.0
+加权混合距离: 0.20558414691836385

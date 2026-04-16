@@ -1,0 +1,9 @@
+Attribute: index, MSE: nan, Jaccard: 0.0
+检查你指定的属性 x 是否为数值型！
+Attribute: x, MSE: nan, Jaccard: 0.908167367395413
+检查你指定的属性 y 是否为数值型！
+Attribute: y, MSE: nan, Jaccard: 0.7966073891553724
+检查你指定的属性 z 是否为数值型！
+Attribute: z, MSE: nan, Jaccard: 0.4668851898457663
+Attribute: gt, MSE: nan, Jaccard: 0.012325920814062696
+加权混合距离: 0.21839858672106144

@@ -1,0 +1,20 @@
+[2026-02-22 12:44:51,487] INFO - demandclean: ==================================================
+[2026-02-22 12:44:51,487] INFO - demandclean: DemandClean 训练开始
+[2026-02-22 12:44:51,487] INFO - demandclean:   检测器模式: oracle
+[2026-02-22 12:44:51,487] INFO - demandclean:   训练模式: clean_base
+[2026-02-22 12:44:51,487] INFO - demandclean:   Agent类型: single
+[2026-02-22 12:44:51,487] INFO - demandclean:   推理模式: single_phase
+[2026-02-22 12:44:51,487] INFO - demandclean:   FD规则: 1
+[2026-02-22 12:44:51,487] INFO - demandclean:   丰富规则: 有
+[2026-02-22 12:44:51,488] INFO - demandclean: ==================================================
+[2026-02-22 12:44:51,488] INFO - demandclean: 
+[Step 1] 初始化错误检测器...
+[2026-02-22 12:44:51,488] INFO - demandclean: 
+[Step 2] 训练 DQN Agent...
+[2026-02-22 12:44:51,488] INFO - demandclean: 开始训练 (single Agent, mode=clean_base)
+[2026-02-22 12:44:51,488] INFO - demandclean:   任务类型: clustering
+[2026-02-22 12:44:51,488] INFO - demandclean:   模型类型: kmeans
+[2026-02-22 12:44:51,488] INFO - demandclean:   原始数据: 70000 行
+[2026-02-22 12:44:51,491] INFO - demandclean:   基准数据: 63640 行
+[2026-02-22 12:44:52,570] INFO - demandclean:   ErrorInjector: rich_rules=True, domain=3, cfd=0, fd=0
+[2026-02-22 12:44:52,570] INFO - demandclean:   开始训练 DQN (3 episodes)...

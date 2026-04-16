@@ -1,0 +1,4475 @@
+Record 422
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 124
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 2979
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 1812
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 1245
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 820
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 1404
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 1383
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 101
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 3818
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 1576
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 1639
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 1284
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 4002
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 3294
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 3795
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 1104
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 1953
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 4045
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 1518
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 3463
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 3204
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 1353
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 3982
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 3593
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 3338
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 983
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 457
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 3791
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 3213
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 3201
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 3066
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 382
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 4037
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 2412
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 2651
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 1491
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 1850
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 1011
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 1875
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 4206
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 663
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 1992
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 3345
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 3930
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 2081
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 3242
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 3390
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 3444
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 2496
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 1951
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 2776
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 846
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 543
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 3222
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 92
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 2607
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 2760
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 2128
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 1197
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 1938
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 1103
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 2898
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 2340
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 2443
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 2098
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 2335
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 4098
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 3455
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 3517
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 1049
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 3067
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 1979
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 899
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 1460
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 1899
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 238
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 3027
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 3696
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 1134
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 2821
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 2953
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 164
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 2488
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 3940
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 253
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 2485
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 2319
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 2592
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 4039
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 2382
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 931
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 3650
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 2578
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 3298
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 1699
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 3232
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 2577
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 1924
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 3433
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 2416
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 2415
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 1091
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 3454
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 1486
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 3741
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 3154
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 1182
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 1453
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 594
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 678
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 42
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 3424
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 3225
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 2438
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 3152
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 244
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 1125
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 1340
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 2305
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 2310
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 3807
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 1443
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 262
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 1872
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 3236
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 3599
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 1690
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 2919
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 1726
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 2881
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 835
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 3327
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 1963
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 3255
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 2768
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 341
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 361
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 1602
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 749
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 114
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 3824
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 481
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 2070
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 2122
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 3979
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 2408
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 3199
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 4157
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 3776
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 784
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 3723
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 2495
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 2830
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 1767
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 3472
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 3591
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 3794
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 2988
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 3174
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 2845
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 2410
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 3055
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 2624
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 1272
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 3509
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 2196
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 1128
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 627
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 348
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 1303
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 2755
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 1566
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 3699
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 4129
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 980
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 3214
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 1424
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 3739
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 2160
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 912
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 2705
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 633
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 670
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 446
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 618
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 2284
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 2615
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 2356
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 1327
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 287
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 3219
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 3126
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 3685
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 2789
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 1466
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 4183
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 1973
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 2294
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 116
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 3578
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 1495
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 354
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 1954
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 1233
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 614
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 2950
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 2695
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 2548
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 4028
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 1862
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 3828
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 4076
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 58
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 2213
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 1836
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 2355
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 3156
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 4159
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 1736
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 1254
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 3621
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 3001
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 2536
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 3124
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 3101
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 3014
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 2241
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 1666
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 2930
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 561
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 2859
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 3062
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 425
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 1094
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 2751
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 1377
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 648
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 73
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 1923
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 2460
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 2252
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 1765
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 744
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 3253
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 1006
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 621
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 1946
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 288
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 554
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 1126
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 1242
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 3663
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 1555
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 3851
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 2452
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 2765
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 999
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 2286
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 2544
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 2882
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 2228
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 1398
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 1578
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 2818
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 2750
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 1621
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 3966
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 1827
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 2346
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 4200
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 2523
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 2973
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 441
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 509
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 1101
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 590
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 2171
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 650
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 1547
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 3951
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 4166
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 3861
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 419
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 4108
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 3695
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 1456
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 2964
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 661
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 631
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 673
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 1250
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 3931
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 483
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 1585
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 2421
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 3705
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 2322
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 1463
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 3002
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 3440
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 2790
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 2583
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 857
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 1226
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 1191
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 2378
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 3567
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 531
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 50
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 3336
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 2270
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 859
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 2087
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 1073
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 720
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 152
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 2352
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 3234
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 1661
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 1657
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 4173
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 2657
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 3064
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 4187
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 2358
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 3207
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 2923
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 3476
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 3195
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 3908
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 2965
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 1942
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 2308
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 2454
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 2078
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 3079
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 1386
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 4208
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 1400
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 1196
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 4084
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 2719
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 1799
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 1910
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 1476
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 2285
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 3800
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 2526
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 298
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 2380
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 1962
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 1265
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 2261
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 959
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 1607
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 2248
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 909
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 3094
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 1610
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 2616
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 1375
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 1287
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 350
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 3515
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 1682
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 3934
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 3624
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 1672
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 1180
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 2985
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 3418
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 2576
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 1917
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 1358
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 1826
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 787
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 3895
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 141
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 789
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 324
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 2921
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 715
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 3493
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 4000
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 3385
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 3655
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 2326
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 407
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 1005
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 891
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 2447
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 2797
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 3258
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 2359
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 304
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 3534
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 2667
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 665
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 1178
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 1948
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 3261
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 3183
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 962
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 2010
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 2367
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 2759
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 305
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 3637
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 3926
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 917
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 2649
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 1625
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 3340
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 822
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 3772
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 4093
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 3503
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 3556
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 1001
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 19
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 1638
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 1668
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 494
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 3877
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 2654
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 2656
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 2900
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 2660
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 1010
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 3759
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 3956
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 1678
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 2000
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 1311
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 1988
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 2605
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 345
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 2926
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 987
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 3898
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 3480
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 3968
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 1143
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 1199
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 86
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 1519
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 2969
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 1382
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 3080
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 1015
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 129
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 1365
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 2585
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 2217
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 4056
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 1360
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 308
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 4029
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 1318
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 3181
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 3112
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 1209
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 3496
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 3162
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 3259
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 1240
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 276
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 1230
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 3590
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 2878
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 2260
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 2993
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 1059
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 2167
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 282
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 2546
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 1317
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 969
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 2782
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 2246
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 620
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 2300
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 1743
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 3555
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 1848
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 1580
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 1656
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 1308
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 2004
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 576
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 1707
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 2663
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 3321
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 3205
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 862
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 1802
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 1629
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 1994
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 270
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 630
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 301
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 1473
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 2047
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 3950
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 2678
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 2114
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 3939
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 2726
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 3769
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 3451
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 2009
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 504
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 3522
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 2986
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 381
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 3026
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 1526
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 2296
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 375
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 2320
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 3188
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 940
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 2982
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 2148
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 2715
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 2069
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 2655
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 1270
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 186
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 2716
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 2424
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 1798
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 1442
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 1536
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 1274
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 608
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 1713
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 3941
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 956
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 2407
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 3942
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 2072
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 3642
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 1978
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 159
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 1749
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 4048
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 903
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 353
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 1231
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 3784
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 2141
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 445
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 4162
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 1738
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 4192
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 312
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 549
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 3135
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 695
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 1928
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 3330
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 750
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 2311
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 1267
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 2339
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 2801
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 3050
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 971
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 14
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 874
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 809
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 515
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 410
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 2426
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 3410
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 208
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 2291
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 459
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 2474
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 2611
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 3335
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 2666
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 2867
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 1884
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 1714
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 3664
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 3703
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 553
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 4022
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 2271
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 3949
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 1926
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 635
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 3988
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 317
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 3829
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 428
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 2465
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 106
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 143
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 2170
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 3413
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 2242
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 3960
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 2164
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 1950
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 3856
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 2273
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 4038
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 2974
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 4171
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 1952
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 3168
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 2484
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 1110
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 4191
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 1577
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 2808
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 214
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 779
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 2044
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 3611
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 2499
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 3587
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 1568
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 3281
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 3849
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 4165
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 3919
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 1344
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 2014
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 274
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 1088
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 584
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 1368
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 3825
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 2922
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 3961
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 2835
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 2520
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 1764
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 3266
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 1260
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 2254
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 527
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 378
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 2717
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 3876
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 349
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 2247
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 3538
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 1710
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 1051
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 591
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 3752
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 1084
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 3796
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 1295
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 1810
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 792
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 793
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 3031
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 2773
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 1531
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 3166
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 3438
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 84
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 3407
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 2351
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 21
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 2437
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 1563
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 974
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 1711
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 2823
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 1099
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 2978
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 887
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 2623
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 3348
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 3658
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 1454
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 2816
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 2127
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 907
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 2604
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 3928
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 948
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 2708
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 2887
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 716
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 3803
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 3707
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 2258
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 3193
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 886
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 2670
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 3595
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 3103
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 1266
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 484
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 3245
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 3756
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 278
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 2085
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 2383
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 572
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 1436
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 994
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 2459
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 4125
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 586
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 1350
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 1008
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 675
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 2413
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 448
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 2475
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 2065
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 3435
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 3132
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 1691
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 4005
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 1248
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 1986
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 295
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 2013
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 589
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 2404
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 2130
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 3320
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 1055
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 3612
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 4001
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 2795
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 4153
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 1717
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 2936
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 3913
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 2140
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 2384
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 2665
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 2700
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 2727
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 2088
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 1890
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 1592
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 2397
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 2272
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 4078
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 796
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 3585
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 454
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 3623
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 1275
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 2376
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 975
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 4176
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 1419
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 40
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 2799
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 1356
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 3117
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 3902
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 1641
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 1291
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 580
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 3760
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 2031
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 893
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 3
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 1597
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 1777
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 1914
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 1912
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 3873
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 3929
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 3859
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 825
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 3882
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 1390
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 3553
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 2707
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 2274
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 1086
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 3957
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 1326
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 1464
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 2659
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 2684
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 2109
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 3467
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 4170
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 2235
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 964
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 399
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 705
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 4094
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 146
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 2956
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 2034
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 3308
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 1166
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 2051
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 3822
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 2620
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 2425
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 1772
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 748
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 477
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 2749
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 814
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 3662
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 1805
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 251
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 2462
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 546
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 311
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 1132
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 1450
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 3806
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 4007
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 3852
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 3481
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 1195
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 2679
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 2420
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 727
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 1522
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 137
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 629
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 335
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 391
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 3318
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 1040
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 1562
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 3638
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 1113
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 2880
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 2422
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 1509
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 1751
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 339
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 216
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 1342
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 3631
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 4053
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 3762
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 2572
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 108
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 3028
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 2883
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 3362
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 3722
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 1041
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 3012
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 2249
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 3190
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 406
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 2837
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 3033
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 149
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 1387
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 1600
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 3239
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 455
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 2041
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 731
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 4062
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 3945
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 1623
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 588
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 1402
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 3406
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 1380
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 3108
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 2658
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 3381
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 2052
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 237
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 3836
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 2680
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 2762
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 4027
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 905
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 1280
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 3888
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 3428
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 3819
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 1940
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 3423
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 3592
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 3970
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 944
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 2517
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 1288
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 328
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 2008
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 833
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 3491
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 2210
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 3333
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 55
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 1921
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 2162
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 769
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 3812
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 1087
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 849
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 662
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 3633
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 3367
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 3307
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 876
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 3896
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 3616
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 3004
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 1935
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 2419
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 2873
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 3486
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 3053
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 1431
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 3533
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 828
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 3672
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 3975
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 11
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 2675
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 95
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 130
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 1933
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 2244
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 2036
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 3134
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 1472
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 821
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 1998
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 4116
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 2848
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 2450
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 3289
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 2966
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 4169
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 2220
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 1918
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 654
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 113
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 1630
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 2929
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 646
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 1247
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 1527
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 4023
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 2325
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 1306
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 2740
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 1494
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 111
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 2193
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 537
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 2134
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 2076
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 1655
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 1775
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 28
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 474
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 107
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 1080
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 3145
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 1490
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 4019
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 667
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 360
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 3322
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 2159
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 2174
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 1876
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 2232
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 797
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 2181
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 1020
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 1332
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 435
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 1849
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 674
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 2202
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 3483
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 2725
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 1894
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 3498
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 689
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 2875
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 2872
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 709
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 256
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 2550
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 2780
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 2746
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 3622
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 3020
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 2784
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 1036
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 3790
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 1253
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 934
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 3693
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 173
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 91
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 1206
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 3736
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 1828
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 2387
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 3634
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 2157
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 3223
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 3141
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 885
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 3456
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 2783
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 2503
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 265
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 3091
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 3604
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 873
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 2144
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 1626
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 90
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 2445
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 1441
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 1569
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 2738
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 3547
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 2208
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 3088
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 1349
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 3295
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 1636
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 2389
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 2480
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 1228
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 1774
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 2838
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 581
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 634
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 3734
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 2704
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 2871
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 3052
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 2661
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 3414
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 1983
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 3426
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 2876
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 2456
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 1891
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 538
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 4152
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 3465
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 626
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 570
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 3328
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 607
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 181
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 4012
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 3907
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 1505
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 2278
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 254
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 628
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 2200
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 3063
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 3109
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 3724
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 2302
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 263
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 1439
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 2977
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 1844
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 1735
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 3220
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 1795
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 3583
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 203
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 1760
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 2268
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 3185
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 4110
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 3899
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 684
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 4178
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 318
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 649
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 3431
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 1401
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 1530
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 4150
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 3628
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 3061
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 2626
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 2691
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 3562
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 2696
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 2569
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 1077
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 776
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 2557
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 2613
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 2889
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 1529
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 1900
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 2748
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 1083
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 2434
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 770
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+Record 3773
+Distance (Dirty to Clean): 1
+Distance (Repaired to Clean): 1
+========================================
+总的脏数据到干净数据距离: 1118
+总的修复后数据到干净数据距离: 1118
+基于条目的错误减少率 (R-EDR): 0.0

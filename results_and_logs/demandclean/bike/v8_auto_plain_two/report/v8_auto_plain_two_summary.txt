@@ -1,0 +1,152 @@
+DemandClean 结果摘要 - v8_auto_plain_two
+============================================================
+
+数据集: bike
+检测器: auto
+Agent: single_stage
+推理模式: two_phase
+任务: regression (random_forest)
+训练轮数: 5
+执行时间: 2848.52 秒
+数据维度: (17379, 15) -> (17379, 15)
+真值成本: 0
+
+Baseline 对比:
+------------------------------------------------------------
+  NoFix: {'n_samples': 17379, 'rf_mse': 1367.0748, 'rf_r2': 0.9568, 'ridge_mse': 10665.7166, 'ridge_r2': 0.6632, 'auth': 0.0601, 'div': 1.0, 'cost': 0}
+  DeleteAll: {'n_samples': 17379, 'rf_mse': 1367.0748, 'rf_r2': 0.9568, 'ridge_mse': 10665.7166, 'ridge_r2': 0.6632, 'auth': 0.0601, 'div': 1.0, 'cost': 0}
+  DeleteFix: {'n_samples': 3475, 'rf_mse': 1090.5795, 'rf_r2': 0.9718, 'ridge_mse': 7777.6369, 'ridge_r2': 0.799, 'auth': 0.0, 'div': 0.0898, 'cost': 17050}
+  ReplaceAll: {'n_samples': 17379, 'rf_mse': 1367.0748, 'rf_r2': 0.9568, 'ridge_mse': 10665.7166, 'ridge_r2': 0.6632, 'auth': 0.0601, 'div': 1.0, 'cost': 0}
+  DemandClean: {'n_samples': 17379, 'rf_mse': 1367.0748, 'rf_r2': 0.9568, 'ridge_mse': 10665.7166, 'ridge_r2': 0.6632, 'auth': 0.0601, 'div': 1.0, 'cost': 0}
+  FullFix: {'n_samples': 17379, 'rf_mse': 7.8822, 'rf_r2': 0.9998, 'ridge_mse': 0.0005, 'ridge_r2': 1.0, 'auth': 1.0, 'div': 0.0, 'cost': 17379}
+
+模型容忍度:
+------------------------------------------------------------
+  rf: {'P_clean': 0.999751079259228, 'P_dirty': 0.9966568486336325, 'P_dc': 0.9966568486336325, 'tolerance_prior': 1.0, 'tolerance_post': 0.0}
+  ridge: {'P_clean': 0.9999999851832395, 'P_dirty': 0.8565091903444065, 'P_dc': 0.8565091903444065, 'tolerance_prior': 1.0, 'tolerance_post': 0.0}
+
+检测器准确率:
+------------------------------------------------------------
+  overall: {'precision': 0.8808437153077587, 'recall': 0.966654634058298, 'f1': 0.9217563410279026, 'tp': 42846, 'fp': 5796, 'fn': 1478, 'gt_count': 44324, 'det_count': 48642}
+  missing: {'precision': 0.0, 'recall': 0.0, 'f1': 0.0, 'tp': 0, 'fp': 0, 'fn': 0, 'gt_count': 0, 'det_count': 0}
+  syntactic: {'precision': 0.9712370392707198, 'recall': 0.9446575218843065, 'f1': 0.9577629095899812, 'tp': 41871, 'fp': 1240, 'fn': 2453, 'gt_count': 44324, 'det_count': 43111}
+  semantic: {'precision': 0.17627915386006146, 'recall': 0.02199711217399152, 'f1': 0.03911342894393742, 'tp': 975, 'fp': 4556, 'fn': 43349, 'gt_count': 44324, 'det_count': 5531}
+  value_error_combined: {'precision': 0.8808437153077587, 'recall': 0.966654634058298, 'f1': 0.9217563410279026, 'tp': 42846, 'fp': 5796, 'fn': 1478, 'gt_count': 44324, 'det_count': 48642}
+  ground_truth_total: 44324
+  detected_total: 48642
+
+Clean4MLBaseline 统一测评:
+------------------------------------------------------------
+  accuracy: 0.0
+  recall: 0.0
+  f1_score: 0.0
+  edr: -0.29347531811208377
+  hybrid_distance: 70.58577232370533
+  r_edr: -0.02834319526627219
+
+  下游任务性能:
+    ml_rf_mse: 1367.0747705408517
+    ml_rf_r2: 0.9568275063281138
+    ml_lr_mse: 10663.949811963577
+    ml_lr_r2: 0.6632303399234212
+    ml_ridge_mse: 10665.716568047601
+    ml_ridge_r2: 0.6631745454142246
+    ml_lasso_mse: 10653.582294192285
+    ml_lasso_r2: 0.663557748200583
+    ml_knn_mse: 5885.947088607594
+    ml_knn_r2: 0.8141206180438578
+    ml_gb_mse: 1752.6227869184922
+    ml_gb_r2: 0.9446518231424116
+
+  容忍度:
+    tolerance_P_do_nothing: 0.8733199466198254
+    tolerance_P_demand_clean: 0.8733199466198254
+    tolerance_P_repair_all: 0.999752558192177
+    tolerance_tolerance_prior: 1.0
+    tolerance_tolerance_post: 0.0
+
+  Snoopy 上界:
+    snoopy_snoopy_available: True
+    snoopy_upper_bound_dirty: 1825.2803032229554
+    snoopy_upper_bound_cleaned: 1825.2803032229554
+    snoopy_upper_bound_clean: 25.4989040055832
+    snoopy_upper_bound_improvement: -0.0
+
+  真值成本:
+    method_type: 2
+    ground_truth_cost: 0
+    ideal_total_changes: 16757
+    ideal_correct_repairs: 0
+    ideal_wrong_repairs: 16757
+    ideal_deleted_rows: 0
+    ideal_ideal_min_ground_truth_cost: 0
+    ideal_repair_accuracy: 0.0
+
+============================================================
+Shapley 贡献分析:
+============================================================
+# Shapley Value Analysis Report
+
+- 数据规模: 5005 行 × 15 列
+- 错误总数: 14009
+- 任务类型: regression (random_forest)
+- MC 采样次数: 50
+
+## 维度 1: 动作重要性 (Action Importance)
+
+| 排名 | 动作 | Shapley 值 | 占比 | 方向 |
+|------|------|-----------|------|------|
+| 1 | replace_nearby | +670.952396 | 87.2% | ↑ 正贡献 |
+| 2 | delete | +49.788344 | 6.5% | ↑ 正贡献 |
+| 3 | repair_value | -15.014947 | 2.0% | ↓ 负贡献 |
+| 4 | no_action | -33.584003 | 4.4% | ↓ 负贡献 |
+
+**结论**: 最有效的清洗动作是 **replace_nearby**
+（repair_value, no_action 对性能有负面影响，建议减少使用）
+
+## 维度 2: 特征重要性 (Feature Importance)
+
+| 排名 | 特征 | Shapley 值 | 占比 | 清洗价值 |
+|------|------|-----------|------|---------|
+| 1 | dteday | +0.000000 | 0.0% | — 可忽略 |
+| 2 | season | +0.000000 | 0.0% | — 可忽略 |
+| 3 | yr | +0.000000 | 0.0% | — 可忽略 |
+| 4 | mnth | +0.000000 | 0.0% | — 可忽略 |
+| 5 | hr | +0.000000 | 0.0% | — 可忽略 |
+| 6 | holiday | +0.000000 | 0.0% | — 可忽略 |
+| 7 | weekday | +0.000000 | 0.0% | — 可忽略 |
+| 8 | workingday | +0.000000 | 0.0% | — 可忽略 |
+| 9 | weathersit | +0.000000 | 0.0% | — 可忽略 |
+| 10 | temp | +0.000000 | 0.0% | — 可忽略 |
+| 11 | atemp | +0.000000 | 0.0% | — 可忽略 |
+| 12 | hum | +0.000000 | 0.0% | — 可忽略 |
+| 13 | windspeed | +0.000000 | 0.0% | — 可忽略 |
+| 14 | casual | +0.000000 | 0.0% | — 可忽略 |
+| 15 | registered | +0.000000 | 0.0% | — 可忽略 |
+
+**结论**: 
+- 清洗价值极低的特征: dteday, season, yr（清洗它们几乎不影响性能）
+
+## 维度 3: 错误类型重要性 (Error Type Importance)
+
+| 排名 | 错误类型 | Shapley 值 | 占比 | 优先级 |
+|------|---------|-----------|------|--------|
+| 1 | syntactic | +601.835061 | 86.8% | 🔴 高 |
+| 2 | semantic | +91.556010 | 13.2% | 🟢 低 |
+
+**结论**: 对下游性能影响最大的错误类型是 **syntactic**，检测器应优先识别此类错误。
+
+## 综合清洗建议
+
+
+
+============================================================
+真值使用成本汇总:
+============================================================
+  RAHA 检测成本: 20
+  Agent 修复成本: 0
+  总成本: 20
+  总数据单元: 260685
+  成本率: 0.0077%
+  apply_raha_truth: True
+  count_raha_cost: True

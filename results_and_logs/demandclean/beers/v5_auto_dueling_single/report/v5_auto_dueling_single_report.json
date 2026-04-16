@@ -1,0 +1,277 @@
+{
+  "version_name": "v5_auto_dueling_single",
+  "dataset": "beers",
+  "task_type": "classification",
+  "model_type": "random_forest",
+  "detector_mode": "auto",
+  "agent_type": "dueling_two_stage",
+  "inference_mode": "single_phase",
+  "n_episodes": 300,
+  "data_shape": [
+    1446,
+    8
+  ],
+  "action_counts": {
+    "no_action": 0,
+    "repair_value": 5,
+    "delete": 129,
+    "replace_nearby": 2511
+  },
+  "keep_mask": "[False  True  True ...  True  True  True]",
+  "ground_truth_used": 5,
+  "cleaned_shape": [
+    1317,
+    8
+  ],
+  "detector_accuracy": {
+    "overall": {
+      "precision": 0.9838354151359294,
+      "recall": 0.9992537313432835,
+      "f1": 0.9914846353202518,
+      "tp": 2678,
+      "fp": 44,
+      "fn": 2,
+      "gt_count": 2680,
+      "det_count": 2722
+    },
+    "missing": {
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0,
+      "tp": 2608,
+      "fp": 0,
+      "fn": 0,
+      "gt_count": 2608,
+      "det_count": 2608
+    },
+    "syntactic": {
+      "precision": 0.8974358974358975,
+      "recall": 0.9722222222222222,
+      "f1": 0.9333333333333333,
+      "tp": 70,
+      "fp": 8,
+      "fn": 2,
+      "gt_count": 72,
+      "det_count": 78
+    },
+    "semantic": {
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0,
+      "tp": 0,
+      "fp": 36,
+      "fn": 72,
+      "gt_count": 72,
+      "det_count": 36
+    },
+    "value_error_combined": {
+      "precision": 0.6140350877192983,
+      "recall": 0.9722222222222222,
+      "f1": 0.7526881720430108,
+      "tp": 70,
+      "fp": 44,
+      "fn": 2,
+      "gt_count": 72,
+      "det_count": 114
+    },
+    "ground_truth_total": 2680,
+    "detected_total": 2722
+  },
+  "baseline_results": {
+    "NoFix": {
+      "n_samples": 1442,
+      "n_test": 479,
+      "rf_accuracy": 0.3152,
+      "rf_f1": 0.2574,
+      "lr_accuracy": 0.2255,
+      "lr_f1": 0.1259,
+      "auth": 0.0,
+      "div": 0.0,
+      "cost": 0
+    },
+    "DeleteAll": {},
+    "DeleteFix": {
+      "n_samples": 287,
+      "n_test": 479,
+      "rf_accuracy": 0.3027,
+      "rf_f1": 0.2308,
+      "lr_accuracy": 0.2192,
+      "lr_f1": 0.1249,
+      "auth": 0.0,
+      "div": 0.0,
+      "cost": 1446
+    },
+    "ReplaceAll": {
+      "n_samples": 1442,
+      "n_test": 479,
+      "rf_accuracy": 0.3507,
+      "rf_f1": 0.2838,
+      "lr_accuracy": 0.2234,
+      "lr_f1": 0.1285,
+      "auth": 0.1172,
+      "div": 0.0,
+      "cost": 0
+    },
+    "DemandClean": {
+      "n_samples": 1313,
+      "n_test": 479,
+      "rf_accuracy": 0.3445,
+      "rf_f1": 0.2774,
+      "lr_accuracy": 0.2317,
+      "lr_f1": 0.1341,
+      "auth": 0.0,
+      "div": 0.0,
+      "cost": 5
+    },
+    "FullFix": {
+      "n_samples": 1440,
+      "n_test": 479,
+      "rf_accuracy": 0.3549,
+      "rf_f1": 0.2948,
+      "lr_accuracy": 0.2276,
+      "lr_f1": 0.1346,
+      "auth": 0.2104,
+      "div": 0.0,
+      "cost": 1446
+    }
+  },
+  "tolerance_results": {
+    "rf": {
+      "P_clean": 0.3333333333333333,
+      "P_dirty": 0.28125,
+      "P_dc": 0.09027777777777778,
+      "tolerance_prior": 0.32098765432098764,
+      "tolerance_post": -3.666666666666668
+    },
+    "lr": {
+      "P_clean": 0.19791666666666666,
+      "P_dirty": 0.1840277777777778,
+      "P_dc": 0.1701388888888889,
+      "tolerance_prior": 0.9245283018867925,
+      "tolerance_post": -1.000000000000002
+    }
+  },
+  "shapley_results": {
+    "meta": {
+      "n_samples": 1446,
+      "n_features": 8,
+      "n_errors": 2722,
+      "task_type": "classification",
+      "model_type": "random_forest",
+      "mc_samples": 200
+    },
+    "action_shapley": {
+      "no_action": 0.0,
+      "repair_value": 0.0,
+      "delete": 0.0,
+      "replace_nearby": 0.0
+    },
+    "feature_shapley": {
+      "beer_name": 0.0,
+      "ounces": 0.0,
+      "abv": 0.0,
+      "ibu": 0.0,
+      "brewery_id": 0.0,
+      "brewery_name": 0.0,
+      "city": 0.0,
+      "state": 0.0
+    },
+    "feature_shapley_skipped": true,
+    "error_type_shapley": {
+      "missing": 0.0,
+      "semantic": 0.0,
+      "syntactic": 0.0
+    },
+    "report_text": "# Shapley Value Analysis Report\n\n- 数据规模: 1446 行 × 8 列\n- 错误总数: 2722\n- 任务类型: classification (random_forest)\n- MC 采样次数: 200\n\n## 维度 1: 动作重要性 (Action Importance)\n\n| 排名 | 动作 | Shapley 值 | 占比 | 方向 |\n|------|------|-----------|------|------|\n| 1 | no_action | +0.000000 | 0.0% | — 无影响 |\n| 2 | repair_value | +0.000000 | 0.0% | — 无影响 |\n| 3 | delete | +0.000000 | 0.0% | — 无影响 |\n| 4 | replace_nearby | +0.000000 | 0.0% | — 无影响 |\n\n**结论**: 最有效的清洗动作是 **no_action**\n\n## 维度 2: 特征重要性 (Feature Importance)\n\n| 排名 | 特征 | Shapley 值 | 占比 | 清洗价值 |\n|------|------|-----------|------|---------|\n| 1 | beer_name | +0.000000 | 0.0% | — 可忽略 |\n| 2 | ounces | +0.000000 | 0.0% | — 可忽略 |\n| 3 | abv | +0.000000 | 0.0% | — 可忽略 |\n| 4 | ibu | +0.000000 | 0.0% | — 可忽略 |\n| 5 | brewery_id | +0.000000 | 0.0% | — 可忽略 |\n| 6 | brewery_name | +0.000000 | 0.0% | — 可忽略 |\n| 7 | city | +0.000000 | 0.0% | — 可忽略 |\n| 8 | state | +0.000000 | 0.0% | — 可忽略 |\n\n**结论**: \n- 清洗价值极低的特征: beer_name, ounces, abv（清洗它们几乎不影响性能）\n\n## 维度 3: 错误类型重要性 (Error Type Importance)\n\n| 排名 | 错误类型 | Shapley 值 | 占比 | 优先级 |\n|------|---------|-----------|------|--------|\n| 1 | missing | +0.000000 | 0.0% | 🟢 低 |\n| 2 | semantic | +0.000000 | 0.0% | 🟢 低 |\n| 3 | syntactic | +0.000000 | 0.0% | 🟢 低 |\n\n**结论**: 对下游性能影响最大的错误类型是 **missing**，检测器应优先识别此类错误。\n\n## 综合清洗建议\n\n"
+  },
+  "getscoreml_results": {
+    "task_name": "v5_auto_dueling_single",
+    "task_type": "classification",
+    "total_records": 1446,
+    "total_cells": 15906,
+    "cleaned_rows": 1317,
+    "accuracy": 0.1844432882414152,
+    "precision": 0.1844432882414152,
+    "recall": 0.7677314564158094,
+    "f1_score": 0.29743051910877355,
+    "edr": -2.3963183540877098,
+    "hybrid_distance": 0.20432860623794352,
+    "r_edr": 0.0,
+    "ml_rf_accuracy": 0.3444676409185804,
+    "ml_rf_f1": 0.27735619292389485,
+    "ml_rf_precision": 0.26185213807330276,
+    "ml_rf_recall": 0.3444676409185804,
+    "ml_lr_accuracy": 0.23173277661795408,
+    "ml_lr_f1": 0.13408565051480545,
+    "ml_lr_precision": 0.13438874278122712,
+    "ml_lr_recall": 0.23173277661795408,
+    "ml_svm_accuracy": 0.18580375782881003,
+    "ml_svm_f1": 0.0582272339674792,
+    "ml_svm_precision": 0.034523036423307084,
+    "ml_svm_recall": 0.18580375782881003,
+    "ml_knn_accuracy": 0.17536534446764093,
+    "ml_knn_f1": 0.13566322932440358,
+    "ml_knn_precision": 0.11631136700705656,
+    "ml_knn_recall": 0.17536534446764093,
+    "ml_dt_accuracy": 0.2546972860125261,
+    "ml_dt_f1": 0.24553695243034204,
+    "ml_dt_precision": 0.24543287865941255,
+    "ml_dt_recall": 0.2546972860125261,
+    "ml_gb_accuracy": 0.31941544885177453,
+    "ml_gb_f1": 0.2675083649069684,
+    "ml_gb_precision": 0.2492210067306041,
+    "ml_gb_recall": 0.31941544885177453,
+    "tolerance_P_do_nothing": 0.31524008350730687,
+    "tolerance_P_demand_clean": 0.3444676409185804,
+    "tolerance_P_repair_all": 0.35490605427974947,
+    "tolerance_tolerance_prior": 1.0927152317880797,
+    "tolerance_tolerance_post": 0.7368421052631587,
+    "snoopy_snoopy_available": true,
+    "snoopy_upper_bound_dirty": 0.267711937716263,
+    "snoopy_upper_bound_cleaned": 0.3175775694424288,
+    "snoopy_upper_bound_clean": 0.3368055555555555,
+    "snoopy_upper_bound_improvement": 0.7217111114683586,
+    "ideal_total_changes": 9640,
+    "ideal_correct_repairs": 110,
+    "ideal_wrong_repairs": 9530,
+    "ideal_deleted_rows": 129,
+    "ideal_ideal_min_ground_truth_cost": 110,
+    "ideal_repair_accuracy": 0.011410788381742738,
+    "method_type": 1,
+    "ground_truth_cost": 5,
+    "cost_ratio": 0.003457814661134163,
+    "total_samples": 1446,
+    "labeled_samples": 5,
+    "validation_samples": 0
+  },
+  "raha_cost": {
+    "n_col_chunks": 1,
+    "n_row_chunks": 1,
+    "labeling_budget": 20,
+    "raha_total_cost": 20,
+    "total_labeled_rows": 20
+  },
+  "ground_truth_cost_summary": {
+    "raha_detection_cost": 20,
+    "agent_repair_cost": 5,
+    "total_cost": 25,
+    "total_data_cells": 11568,
+    "cost_ratio": 0.002161,
+    "apply_raha_truth": true,
+    "count_raha_cost": true
+  },
+  "elapsed_time": 273.98,
+  "vis_time": 61.67,
+  "step_times": {
+    "step1_init": 0.0,
+    "step2_train": 125.84,
+    "step3_infer": 14.23,
+    "step4_detect_eval": 0.02,
+    "step5_baseline": 52.42,
+    "step6_tolerance": 29.11,
+    "step7_shapley": 60.83,
+    "step8_vis": 0.66,
+    "step9_ml_eval": 52.54,
+    "step10_cost": 0.0
+  }
+}

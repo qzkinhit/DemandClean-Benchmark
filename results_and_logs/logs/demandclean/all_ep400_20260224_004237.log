@@ -1,0 +1,1121 @@
+[日志] 完整输出将保存到: /Users/qianzekai/PycharmProjects/TolerDM/logs/demandclean/all_ep400_20260224_004237.log
+======================================================================
+DemandClean 统一运行脚本
+======================================================================
+数据集: ['beers', 'adult', 'bike', 'breast_cancer', 'har', 'mercedes', 'nasa', 'smartfactory', 'soilmoisture']
+启用版本: ['v6_auto_dueling_two']
+训练轮数: 400
+详细输出: False
+======================================================================
+
+######################################################################
+# 数据集: beers
+######################################################################
+  数据集: beers
+  脏数据: (2410, 8), 干净数据: (2410, 8)
+  特征列: 8, 标签列: style
+  FD规则: 0 条
+
+======================================================================
+版本: v6_auto_dueling_two
+数据集: beers | 任务: classification | 模型: random_forest
+检测器: auto | Agent: dueling_two_stage | 推理: two_phase
+训练轮数: 400 | 输出目录: /Users/qianzekai/PycharmProjects/TolerDM/results/demandclean/beers/v6_auto_dueling_two
+======================================================================
+
+[Step 1] 创建 DemandClean 实例...
+
+[Step 2] 训练 (400 episodes)...
+  模型已保存: /Users/qianzekai/PycharmProjects/TolerDM/results/demandclean/beers/v6_auto_dueling_two/model/v6_auto_dueling_two_agent.pt
+  训练历史已保存: /Users/qianzekai/PycharmProjects/TolerDM/results/demandclean/beers/v6_auto_dueling_two/report/v6_auto_dueling_two_history.json
+
+[Step 3] 推理 (模式: two_phase)...
+  修复计划: 需要 0 个真值
+  真值使用: 0
+  清洗后数据已保存: /Users/qianzekai/PycharmProjects/TolerDM/results/demandclean/beers/v6_auto_dueling_two/data/v6_auto_dueling_two_cleaned.csv
+  原始格式清洗数据已保存: /Users/qianzekai/PycharmProjects/TolerDM/results/demandclean/beers/v6_auto_dueling_two/data/v6_auto_dueling_two_cleaned_original.csv
+
+[Step 4] 检测器准确率评估...
+
+[Step 5] Baseline 评估与可视化...
+  DeleteFix: 删除 1928 行, 保留 482 行
+
+============================================================
+Baseline 对比评估 - v6_auto_dueling_two
+============================================================
+  NoFix          : rf_accuracy=0.3693 | rf_f1=0.3307 | lr_accuracy=0.2635 | lr_f1=0.1761
+  DeleteAll      : rf_accuracy=0.4528 | rf_f1=0.3939 | lr_accuracy=0.3283 | lr_f1=0.2568
+  DeleteFix      : rf_accuracy=0.4124 | rf_f1=0.374 | lr_accuracy=0.3608 | lr_f1=0.32
+  ReplaceAll     : rf_accuracy=0.3693 | rf_f1=0.3307 | lr_accuracy=0.2635 | lr_f1=0.1761
+  DemandClean    : rf_accuracy=0.4393 | rf_f1=0.3841 | lr_accuracy=0.3468 | lr_f1=0.3047
+  FullFix        : rf_accuracy=0.3734 | rf_f1=0.3361 | lr_accuracy=0.2635 | lr_f1=0.1749
+  [可视化] Baseline 对比图已保存: /Users/qianzekai/PycharmProjects/TolerDM/results/demandclean/beers/v6_auto_dueling_two/visualization/v6_auto_dueling_two_baseline_comparison.png
+
+[Step 6] 模型容忍度评估...
+============================================================
+模型容忍度计算 - v6_auto_dueling_two
+任务类型: classification  |  模型列表: ['rf', 'lr']
+============================================================
+
+--- 模型: RF ---
+  P_clean  = 0.3817
+  P_dirty  = 0.3838
+  P_dc     = 0.1037
+  先验容忍度 (P_dc / P_dirty)            = 0.2703
+  后验容忍度 (P_dc-P_dirty)/(P_clean-P_dirty) = 135.0000
+
+--- 模型: LR ---
+  P_clean  = 0.2718
+  P_dirty  = 0.2801
+  P_dc     = 0.1203
+  先验容忍度 (P_dc / P_dirty)            = 0.4296
+  后验容忍度 (P_dc-P_dirty)/(P_clean-P_dirty) = 19.2500
+  容忍度柱状图已保存: /Users/qianzekai/PycharmProjects/TolerDM/results/demandclean/beers/v6_auto_dueling_two/visualization/v6_auto_dueling_two_tolerance_bar.png
+
+[Step 7] Shapley 三维度分析...
+[Shapley] 维度1: 动作重要性 (精确枚举 4!=24 排列) ...
+[Shapley] 图表已保存: /Users/qianzekai/PycharmProjects/TolerDM/results/demandclean/beers/v6_auto_dueling_two/evaluation/shapley/shapley_action_importance.png
+[Shapley] 维度2: 跳过特征 Shapley（计算量过大，仅保留维度1和维度3）
+[Shapley] 维度3: 错误类型重要性 (精确枚举 4!=24 排列) ...
+[Shapley] 图表已保存: /Users/qianzekai/PycharmProjects/TolerDM/results/demandclean/beers/v6_auto_dueling_two/evaluation/shapley/shapley_error_type_importance.png
+
+[Step 8] 训练曲线可视化...
+  [可视化] 训练曲线已保存: /Users/qianzekai/PycharmProjects/TolerDM/results/demandclean/beers/v6_auto_dueling_two/visualization/v6_auto_dueling_two_training_curves.png
+
+[Step 9] Clean4MLBaseline 统一测评...
+差异文件已保存到:
+/Users/qianzekai/PycharmProjects/TolerDM/results/demandclean/beers/v6_auto_dueling_two/evaluation/v6_auto_dueling_two_clean_vs_dirty.csv
+/Users/qianzekai/PycharmProjects/TolerDM/results/demandclean/beers/v6_auto_dueling_two/evaluation/v6_auto_dueling_two_dirty_vs_cleaned.csv
+/Users/qianzekai/PycharmProjects/TolerDM/results/demandclean/beers/v6_auto_dueling_two/evaluation/v6_auto_dueling_two_clean_vs_cleaned.csv
+修复错误数据文件已保存到: /Users/qianzekai/PycharmProjects/TolerDM/results/demandclean/beers/v6_auto_dueling_two/evaluation/v6_auto_dueling_two_repair_errors.csv
+未修复但是应该修复数据文件已保存到: /Users/qianzekai/PycharmProjects/TolerDM/results/demandclean/beers/v6_auto_dueling_two/evaluation/v6_auto_dueling_two_unrepaired.csv
+修复准确率: 0.0, 修复召回率: 0.0, F1值: 0.0
+========================================
+EDR 结果已保存到: /Users/qianzekai/PycharmProjects/TolerDM/results/demandclean/beers/v6_auto_dueling_two/evaluation/v6_auto_dueling_two_edr_evaluation.txt
+错误减少率 (EDR): -0.05565371024734982
+========================================
+混合距离结果已保存到: /Users/qianzekai/PycharmProjects/TolerDM/results/demandclean/beers/v6_auto_dueling_two/evaluation/v6_auto_dueling_two_hybrid_distance_evaluation.txt
+混合距离 (Hybrid Distance): 0.06499433470012973
+========================================
+R-EDR 结果已保存到: /Users/qianzekai/PycharmProjects/TolerDM/results/demandclean/beers/v6_auto_dueling_two/evaluation/v6_auto_dueling_two_record_based_edr_evaluation.txt
+基于条目的错误减少率 (R-EDR): 0.0
+========================================
+警告: 清洗后数据行数(861)与干净数据行数(2410)不一致
+将使用清洗后数据自身进行评估（行对齐）
+通过索引对齐，使用 861 行数据进行评估
+RF - Accuracy: 0.4335, F1: 0.3789, Precision: 0.3483, Recall: 0.4335
+LR - Accuracy: 0.3179, F1: 0.2763, Precision: 0.2675, Recall: 0.3179
+SVM - Accuracy: 0.3931, F1: 0.3162, Precision: 0.2826, Recall: 0.3931
+KNN - Accuracy: 0.2890, F1: 0.2579, Precision: 0.2473, Recall: 0.2890
+DT - Accuracy: 0.3353, F1: 0.3287, Precision: 0.3516, Recall: 0.3353
+GB - Accuracy: 0.3988, F1: 0.3713, Precision: 0.3835, Recall: 0.3988
+
+容忍度计算结果:
+  P_do_nothing (脏数据性能): 0.3797
+  P_demand_clean (清洗后性能): 0.4566
+  P_repair_all (完全修复性能): 0.3859
+  先验容忍度 (Tolerance_prior): 1.2028
+  后验容忍度 (Tolerance_post): 12.3680
+Snoopy模块可用，正在评估数据质量上界...
+  统一测评完成，结果已保存到: /Users/qianzekai/PycharmProjects/TolerDM/results/demandclean/beers/v6_auto_dueling_two/v6_auto_dueling_two_evaluation_results.txt
+
+[Step 10] 真值成本汇总...
+  RAHA 检测成本: 20
+  Agent 修复成本: 0
+  总成本: 20 / 19280 cells = 0.1037%
+
+  [输出] 报告已保存: /Users/qianzekai/PycharmProjects/TolerDM/results/demandclean/beers/v6_auto_dueling_two/report/v6_auto_dueling_two_report.json
+
+  版本 v6_auto_dueling_two 完成! 耗时: 251.61s
+  输出目录: /Users/qianzekai/PycharmProjects/TolerDM/results/demandclean/beers/v6_auto_dueling_two
+
+  只有 1 个版本完成，跳过跨版本对比
+
+######################################################################
+# 数据集: adult
+######################################################################
+  数据集: adult
+  脏数据: (45222, 14), 干净数据: (45222, 14)
+  特征列: 14, 标签列: income
+  FD规则: 0 条
+
+======================================================================
+版本: v6_auto_dueling_two
+数据集: adult | 任务: classification | 模型: random_forest
+检测器: auto | Agent: dueling_two_stage | 推理: two_phase
+训练轮数: 400 | 输出目录: /Users/qianzekai/PycharmProjects/TolerDM/results/demandclean/adult/v6_auto_dueling_two
+======================================================================
+
+[Step 1] 创建 DemandClean 实例...
+
+[Step 2] 训练 (400 episodes)...
+  模型已保存: /Users/qianzekai/PycharmProjects/TolerDM/results/demandclean/adult/v6_auto_dueling_two/model/v6_auto_dueling_two_agent.pt
+  训练历史已保存: /Users/qianzekai/PycharmProjects/TolerDM/results/demandclean/adult/v6_auto_dueling_two/report/v6_auto_dueling_two_history.json
+
+[Step 3] 推理 (模式: two_phase)...
+  修复计划: 需要 7176 个真值
+  真值使用: 7176
+  清洗后数据已保存: /Users/qianzekai/PycharmProjects/TolerDM/results/demandclean/adult/v6_auto_dueling_two/data/v6_auto_dueling_two_cleaned.csv
+  原始格式清洗数据已保存: /Users/qianzekai/PycharmProjects/TolerDM/results/demandclean/adult/v6_auto_dueling_two/data/v6_auto_dueling_two_cleaned_original.csv
+
+[Step 4] 检测器准确率评估...
+
+[Step 5] Baseline 评估与可视化...
+  DeleteFix: 删除 7176 行, 保留 38046 行
+
+============================================================
+Baseline 对比评估 - v6_auto_dueling_two
+============================================================
+  NoFix          : rf_accuracy=0.8165 | rf_f1=0.8095 | lr_accuracy=0.7886 | lr_f1=0.7685
+  DeleteAll      : rf_accuracy=0.8165 | rf_f1=0.8095 | lr_accuracy=0.7886 | lr_f1=0.7685
+  DeleteFix      : rf_accuracy=0.9064 | rf_f1=0.8998 | lr_accuracy=0.8929 | lr_f1=0.8769
+  ReplaceAll     : rf_accuracy=0.8165 | rf_f1=0.8095 | lr_accuracy=0.7886 | lr_f1=0.7685
+  DemandClean    : rf_accuracy=0.8462 | rf_f1=0.8421 | lr_accuracy=0.8143 | lr_f1=0.7986
+  FullFix        : rf_accuracy=0.8551 | rf_f1=0.851 | lr_accuracy=0.8211 | lr_f1=0.8057
+  [可视化] Baseline 对比图已保存: /Users/qianzekai/PycharmProjects/TolerDM/results/demandclean/adult/v6_auto_dueling_two/visualization/v6_auto_dueling_two_baseline_comparison.png
+
+[Step 6] 模型容忍度评估...
+============================================================
+模型容忍度计算 - v6_auto_dueling_two
+任务类型: classification  |  模型列表: ['rf', 'lr']
+============================================================
+
+--- 模型: RF ---
+  P_clean  = 0.8551
+  P_dirty  = 0.8551
+  P_dc     = 0.8551
+  先验容忍度 (P_dc / P_dirty)            = 1.0000
+  后验容忍度 (P_dc-P_dirty)/(P_clean-P_dirty) = 1.0000
+
+--- 模型: LR ---
+  P_clean  = 0.8211
+  P_dirty  = 0.8211
+  P_dc     = 0.8211
+  先验容忍度 (P_dc / P_dirty)            = 1.0000
+  后验容忍度 (P_dc-P_dirty)/(P_clean-P_dirty) = 1.0000
+  容忍度柱状图已保存: /Users/qianzekai/PycharmProjects/TolerDM/results/demandclean/adult/v6_auto_dueling_two/visualization/v6_auto_dueling_two_tolerance_bar.png
+
+[Step 7] Shapley 三维度分析...
+[Shapley] 维度1: 动作重要性 (精确枚举 4!=24 排列) ...
+[Shapley] 图表已保存: /Users/qianzekai/PycharmProjects/TolerDM/results/demandclean/adult/v6_auto_dueling_two/evaluation/shapley/shapley_action_importance.png
+[Shapley] 维度2: 跳过特征 Shapley（计算量过大，仅保留维度1和维度3）
+[Shapley] 维度3: 错误类型重要性 (精确枚举 1!=1 排列) ...
+[Shapley] 图表已保存: /Users/qianzekai/PycharmProjects/TolerDM/results/demandclean/adult/v6_auto_dueling_two/evaluation/shapley/shapley_error_type_importance.png
+
+[Step 8] 训练曲线可视化...
+  [可视化] 训练曲线已保存: /Users/qianzekai/PycharmProjects/TolerDM/results/demandclean/adult/v6_auto_dueling_two/visualization/v6_auto_dueling_two_training_curves.png
+
+[Step 9] Clean4MLBaseline 统一测评...
+差异文件已保存到:
+/Users/qianzekai/PycharmProjects/TolerDM/results/demandclean/adult/v6_auto_dueling_two/evaluation/v6_auto_dueling_two_clean_vs_dirty.csv
+/Users/qianzekai/PycharmProjects/TolerDM/results/demandclean/adult/v6_auto_dueling_two/evaluation/v6_auto_dueling_two_dirty_vs_cleaned.csv
+/Users/qianzekai/PycharmProjects/TolerDM/results/demandclean/adult/v6_auto_dueling_two/evaluation/v6_auto_dueling_two_clean_vs_cleaned.csv
+修复错误数据文件已保存到: /Users/qianzekai/PycharmProjects/TolerDM/results/demandclean/adult/v6_auto_dueling_two/evaluation/v6_auto_dueling_two_repair_errors.csv
+未修复但是应该修复数据文件已保存到: /Users/qianzekai/PycharmProjects/TolerDM/results/demandclean/adult/v6_auto_dueling_two/evaluation/v6_auto_dueling_two_unrepaired.csv
+修复准确率: 0.37557471264367814, 修复召回率: 0.7683715461493239, F1值: 0.5045358038547564
+========================================
+EDR 结果已保存到: /Users/qianzekai/PycharmProjects/TolerDM/results/demandclean/adult/v6_auto_dueling_two/evaluation/v6_auto_dueling_two_edr_evaluation.txt
+错误减少率 (EDR): -0.5091122868900647
+========================================
+混合距离结果已保存到: /Users/qianzekai/PycharmProjects/TolerDM/results/demandclean/adult/v6_auto_dueling_two/evaluation/v6_auto_dueling_two_hybrid_distance_evaluation.txt
+混合距离 (Hybrid Distance): 0.008957019995301081
+========================================
+R-EDR 结果已保存到: /Users/qianzekai/PycharmProjects/TolerDM/results/demandclean/adult/v6_auto_dueling_two/evaluation/v6_auto_dueling_two_record_based_edr_evaluation.txt
+基于条目的错误减少率 (R-EDR): -0.4861845972957084
+========================================
+RF - Accuracy: 0.8527, F1: 0.8497, Precision: 0.8482, Recall: 0.8527
+LR - Accuracy: 0.8217, F1: 0.8077, Precision: 0.8100, Recall: 0.8217
+SVM - Accuracy: 0.8500, F1: 0.8422, Precision: 0.8430, Recall: 0.8500
+KNN - Accuracy: 0.8250, F1: 0.8226, Precision: 0.8209, Recall: 0.8250
+DT - Accuracy: 0.8017, F1: 0.8042, Precision: 0.8075, Recall: 0.8017
+GB - Accuracy: 0.8676, F1: 0.8613, Precision: 0.8626, Recall: 0.8676
+
+容忍度计算结果:
+  P_do_nothing (脏数据性能): 0.8505
+  P_demand_clean (清洗后性能): 0.8533
+  P_repair_all (完全修复性能): 0.8543
+  先验容忍度 (Tolerance_prior): 1.0033
+  后验容忍度 (Tolerance_post): 0.7353
+Snoopy模块可用，正在评估数据质量上界...
+  统一测评完成，结果已保存到: /Users/qianzekai/PycharmProjects/TolerDM/results/demandclean/adult/v6_auto_dueling_two/v6_auto_dueling_two_evaluation_results.txt
+
+[Step 10] 真值成本汇总...
+  RAHA 检测成本: 60
+  Agent 修复成本: 7176
+  总成本: 7236 / 633108 cells = 1.1429%
+
+  [输出] 报告已保存: /Users/qianzekai/PycharmProjects/TolerDM/results/demandclean/adult/v6_auto_dueling_two/report/v6_auto_dueling_two_report.json
+
+  版本 v6_auto_dueling_two 完成! 耗时: 21499.78s
+  输出目录: /Users/qianzekai/PycharmProjects/TolerDM/results/demandclean/adult/v6_auto_dueling_two
+
+  只有 1 个版本完成，跳过跨版本对比
+
+######################################################################
+# 数据集: bike
+######################################################################
+  数据集: bike
+  脏数据: (17379, 15), 干净数据: (17379, 15)
+  特征列: 15, 标签列: cnt
+  FD规则: 0 条
+
+======================================================================
+版本: v6_auto_dueling_two
+数据集: bike | 任务: regression | 模型: random_forest
+检测器: auto | Agent: dueling_two_stage | 推理: two_phase
+训练轮数: 400 | 输出目录: /Users/qianzekai/PycharmProjects/TolerDM/results/demandclean/bike/v6_auto_dueling_two
+======================================================================
+
+[Step 1] 创建 DemandClean 实例...
+
+[Step 2] 训练 (400 episodes)...
+  模型已保存: /Users/qianzekai/PycharmProjects/TolerDM/results/demandclean/bike/v6_auto_dueling_two/model/v6_auto_dueling_two_agent.pt
+  训练历史已保存: /Users/qianzekai/PycharmProjects/TolerDM/results/demandclean/bike/v6_auto_dueling_two/report/v6_auto_dueling_two_history.json
+
+[Step 3] 推理 (模式: two_phase)...
+  修复计划: 需要 1754 个真值
+  真值使用: 1754
+  清洗后数据已保存: /Users/qianzekai/PycharmProjects/TolerDM/results/demandclean/bike/v6_auto_dueling_two/data/v6_auto_dueling_two_cleaned.csv
+  原始格式清洗数据已保存: /Users/qianzekai/PycharmProjects/TolerDM/results/demandclean/bike/v6_auto_dueling_two/data/v6_auto_dueling_two_cleaned_original.csv
+
+[Step 4] 检测器准确率评估...
+
+[Step 5] Baseline 评估与可视化...
+  DeleteFix: 删除 13904 行, 保留 3475 行
+
+============================================================
+Baseline 对比评估 - v6_auto_dueling_two
+============================================================
+  NoFix          : rf_mse=1367.0748 | rf_r2=0.9568 | ridge_mse=10665.7166 | ridge_r2=0.6632
+  DeleteAll      : rf_mse=1367.0748 | rf_r2=0.9568 | ridge_mse=10665.7166 | ridge_r2=0.6632
+  DeleteFix      : rf_mse=1657.2131 | rf_r2=0.9588 | ridge_mse=7031.113 | ridge_r2=0.8251
+  ReplaceAll     : rf_mse=1367.0748 | rf_r2=0.9568 | ridge_mse=10665.7166 | ridge_r2=0.6632
+  DemandClean    : rf_mse=2037.2495 | rf_r2=0.9734 | ridge_mse=9815.7155 | ridge_r2=0.8718
+  FullFix        : rf_mse=7.8822 | rf_r2=0.9998 | ridge_mse=0.0005 | ridge_r2=1.0
+  [可视化] Baseline 对比图已保存: /Users/qianzekai/PycharmProjects/TolerDM/results/demandclean/bike/v6_auto_dueling_two/visualization/v6_auto_dueling_two_baseline_comparison.png
+
+[Step 6] 模型容忍度评估...
+============================================================
+模型容忍度计算 - v6_auto_dueling_two
+任务类型: regression  |  模型列表: ['rf', 'ridge']
+============================================================
+
+--- 模型: RF ---
+  P_clean  = 0.9998
+  P_dirty  = 0.9967
+  P_dc     = -0.2995
+  先验容忍度 (P_dc / P_dirty)            = -0.3005
+  后验容忍度 (P_dc-P_dirty)/(P_clean-P_dirty) = -418.8972
+
+--- 模型: RIDGE ---
+  P_clean  = 1.0000
+  P_dirty  = 0.8565
+  P_dc     = -0.1972
+  先验容忍度 (P_dc / P_dirty)            = -0.2302
+  后验容忍度 (P_dc-P_dirty)/(P_clean-P_dirty) = -7.3431
+  容忍度柱状图已保存: /Users/qianzekai/PycharmProjects/TolerDM/results/demandclean/bike/v6_auto_dueling_two/visualization/v6_auto_dueling_two_tolerance_bar.png
+
+[Step 7] Shapley 三维度分析...
+[Shapley] 维度1: 动作重要性 (精确枚举 4!=24 排列) ...
+[Shapley] 图表已保存: /Users/qianzekai/PycharmProjects/TolerDM/results/demandclean/bike/v6_auto_dueling_two/evaluation/shapley/shapley_action_importance.png
+[Shapley] 维度2: 跳过特征 Shapley（计算量过大，仅保留维度1和维度3）
+[Shapley] 维度3: 错误类型重要性 (精确枚举 2!=2 排列) ...
+[Shapley] 图表已保存: /Users/qianzekai/PycharmProjects/TolerDM/results/demandclean/bike/v6_auto_dueling_two/evaluation/shapley/shapley_error_type_importance.png
+
+[Step 8] 训练曲线可视化...
+  [可视化] 训练曲线已保存: /Users/qianzekai/PycharmProjects/TolerDM/results/demandclean/bike/v6_auto_dueling_two/visualization/v6_auto_dueling_two_training_curves.png
+
+[Step 9] Clean4MLBaseline 统一测评...
+差异文件已保存到:
+/Users/qianzekai/PycharmProjects/TolerDM/results/demandclean/bike/v6_auto_dueling_two/evaluation/v6_auto_dueling_two_clean_vs_dirty.csv
+/Users/qianzekai/PycharmProjects/TolerDM/results/demandclean/bike/v6_auto_dueling_two/evaluation/v6_auto_dueling_two_dirty_vs_cleaned.csv
+/Users/qianzekai/PycharmProjects/TolerDM/results/demandclean/bike/v6_auto_dueling_two/evaluation/v6_auto_dueling_two_clean_vs_cleaned.csv
+修复错误数据文件已保存到: /Users/qianzekai/PycharmProjects/TolerDM/results/demandclean/bike/v6_auto_dueling_two/evaluation/v6_auto_dueling_two_repair_errors.csv
+未修复但是应该修复数据文件已保存到: /Users/qianzekai/PycharmProjects/TolerDM/results/demandclean/bike/v6_auto_dueling_two/evaluation/v6_auto_dueling_two_unrepaired.csv
+修复准确率: 0.26933911159263274, 修复召回率: 0.15357054608351867, F1值: 0.1956094106076141
+========================================
+EDR 结果已保存到: /Users/qianzekai/PycharmProjects/TolerDM/results/demandclean/bike/v6_auto_dueling_two/evaluation/v6_auto_dueling_two_edr_evaluation.txt
+错误减少率 (EDR): -0.18804052384482334
+========================================
+混合距离结果已保存到: /Users/qianzekai/PycharmProjects/TolerDM/results/demandclean/bike/v6_auto_dueling_two/evaluation/v6_auto_dueling_two_hybrid_distance_evaluation.txt
+混合距离 (Hybrid Distance): 0.356307820064433
+========================================
+R-EDR 结果已保存到: /Users/qianzekai/PycharmProjects/TolerDM/results/demandclean/bike/v6_auto_dueling_two/evaluation/v6_auto_dueling_two_record_based_edr_evaluation.txt
+基于条目的错误减少率 (R-EDR): -0.0903010033444816
+========================================
+警告: 清洗后数据行数(3586)与干净数据行数(17379)不一致
+将使用清洗后数据自身进行评估（行对齐）
+通过索引对齐，使用 3586 行数据进行评估
+RF - MSE: 2037.2495, R2: 0.9734
+LR - MSE: 9810.6886, R2: 0.8719
+RIDGE - MSE: 9815.7155, R2: 0.8718
+LASSO - MSE: 9813.3891, R2: 0.8718
+KNN - MSE: 7586.8475, R2: 0.9009
+GB - MSE: 2374.7818, R2: 0.9690
+
+容忍度计算结果:
+  P_do_nothing (脏数据性能): 0.8733
+  P_demand_clean (清洗后性能): 0.9757
+  P_repair_all (完全修复性能): 0.9998
+  先验容忍度 (Tolerance_prior): 1.1173
+  后验容忍度 (Tolerance_post): 0.8099
+Snoopy模块可用，正在评估数据质量上界...
+  统一测评完成，结果已保存到: /Users/qianzekai/PycharmProjects/TolerDM/results/demandclean/bike/v6_auto_dueling_two/v6_auto_dueling_two_evaluation_results.txt
+
+[Step 10] 真值成本汇总...
+  RAHA 检测成本: 20
+  Agent 修复成本: 1754
+  总成本: 1774 / 260685 cells = 0.6805%
+
+  [输出] 报告已保存: /Users/qianzekai/PycharmProjects/TolerDM/results/demandclean/bike/v6_auto_dueling_two/report/v6_auto_dueling_two_report.json
+
+  版本 v6_auto_dueling_two 完成! 耗时: 12852.92s
+  输出目录: /Users/qianzekai/PycharmProjects/TolerDM/results/demandclean/bike/v6_auto_dueling_two
+
+  只有 1 个版本完成，跳过跨版本对比
+
+######################################################################
+# 数据集: breast_cancer
+######################################################################
+  数据集: breast_cancer
+  脏数据: (699, 9), 干净数据: (699, 9)
+  特征列: 9, 标签列: class
+  FD规则: 0 条
+
+======================================================================
+版本: v6_auto_dueling_two
+数据集: breast_cancer | 任务: classification | 模型: random_forest
+检测器: auto | Agent: dueling_two_stage | 推理: two_phase
+训练轮数: 400 | 输出目录: /Users/qianzekai/PycharmProjects/TolerDM/results/demandclean/breast_cancer/v6_auto_dueling_two
+======================================================================
+
+[Step 1] 创建 DemandClean 实例...
+
+[Step 2] 训练 (400 episodes)...
+  模型已保存: /Users/qianzekai/PycharmProjects/TolerDM/results/demandclean/breast_cancer/v6_auto_dueling_two/model/v6_auto_dueling_two_agent.pt
+  训练历史已保存: /Users/qianzekai/PycharmProjects/TolerDM/results/demandclean/breast_cancer/v6_auto_dueling_two/report/v6_auto_dueling_two_history.json
+
+[Step 3] 推理 (模式: two_phase)...
+  修复计划: 需要 1 个真值
+  真值使用: 1
+  清洗后数据已保存: /Users/qianzekai/PycharmProjects/TolerDM/results/demandclean/breast_cancer/v6_auto_dueling_two/data/v6_auto_dueling_two_cleaned.csv
+  原始格式清洗数据已保存: /Users/qianzekai/PycharmProjects/TolerDM/results/demandclean/breast_cancer/v6_auto_dueling_two/data/v6_auto_dueling_two_cleaned_original.csv
+
+[Step 4] 检测器准确率评估...
+
+[Step 5] Baseline 评估与可视化...
+  DeleteFix: 删除 381 行, 保留 318 行
+
+============================================================
+Baseline 对比评估 - v6_auto_dueling_two
+============================================================
+  NoFix          : rf_accuracy=0.9286 | rf_f1=0.9293 | lr_accuracy=0.8714 | lr_f1=0.8688
+  DeleteAll      : rf_accuracy=0.9694 | rf_f1=0.9695 | lr_accuracy=0.9184 | lr_f1=0.9177
+  DeleteFix      : rf_accuracy=0.9531 | rf_f1=0.9528 | lr_accuracy=0.9531 | lr_f1=0.9528
+  ReplaceAll     : rf_accuracy=0.9286 | rf_f1=0.9293 | lr_accuracy=0.8714 | lr_f1=0.8688
+  DemandClean    : rf_accuracy=0.9286 | rf_f1=0.9293 | lr_accuracy=0.8714 | lr_f1=0.8688
+  FullFix        : rf_accuracy=0.9643 | rf_f1=0.9646 | lr_accuracy=0.9571 | lr_f1=0.9574
+  [可视化] Baseline 对比图已保存: /Users/qianzekai/PycharmProjects/TolerDM/results/demandclean/breast_cancer/v6_auto_dueling_two/visualization/v6_auto_dueling_two_baseline_comparison.png
+
+[Step 6] 模型容忍度评估...
+============================================================
+模型容忍度计算 - v6_auto_dueling_two
+任务类型: classification  |  模型列表: ['rf', 'lr']
+============================================================
+
+--- 模型: RF ---
+  P_clean  = 0.9643
+  P_dirty  = 0.9714
+  P_dc     = 0.9714
+  先验容忍度 (P_dc / P_dirty)            = 1.0000
+  后验容忍度 (P_dc-P_dirty)/(P_clean-P_dirty) = -0.0000
+
+--- 模型: LR ---
+  P_clean  = 0.9571
+  P_dirty  = 0.9214
+  P_dc     = 0.9214
+  先验容忍度 (P_dc / P_dirty)            = 1.0000
+  后验容忍度 (P_dc-P_dirty)/(P_clean-P_dirty) = 0.0000
+  容忍度柱状图已保存: /Users/qianzekai/PycharmProjects/TolerDM/results/demandclean/breast_cancer/v6_auto_dueling_two/visualization/v6_auto_dueling_two_tolerance_bar.png
+
+[Step 7] Shapley 三维度分析...
+[Shapley] 维度1: 动作重要性 (精确枚举 4!=24 排列) ...
+[Shapley] 图表已保存: /Users/qianzekai/PycharmProjects/TolerDM/results/demandclean/breast_cancer/v6_auto_dueling_two/evaluation/shapley/shapley_action_importance.png
+[Shapley] 维度2: 跳过特征 Shapley（计算量过大，仅保留维度1和维度3）
+[Shapley] 维度3: 错误类型重要性 (精确枚举 4!=24 排列) ...
+[Shapley] 图表已保存: /Users/qianzekai/PycharmProjects/TolerDM/results/demandclean/breast_cancer/v6_auto_dueling_two/evaluation/shapley/shapley_error_type_importance.png
+
+[Step 8] 训练曲线可视化...
+  [可视化] 训练曲线已保存: /Users/qianzekai/PycharmProjects/TolerDM/results/demandclean/breast_cancer/v6_auto_dueling_two/visualization/v6_auto_dueling_two_training_curves.png
+
+[Step 9] Clean4MLBaseline 统一测评...
+差异文件已保存到:
+/Users/qianzekai/PycharmProjects/TolerDM/results/demandclean/breast_cancer/v6_auto_dueling_two/evaluation/v6_auto_dueling_two_clean_vs_dirty.csv
+/Users/qianzekai/PycharmProjects/TolerDM/results/demandclean/breast_cancer/v6_auto_dueling_two/evaluation/v6_auto_dueling_two_dirty_vs_cleaned.csv
+/Users/qianzekai/PycharmProjects/TolerDM/results/demandclean/breast_cancer/v6_auto_dueling_two/evaluation/v6_auto_dueling_two_clean_vs_cleaned.csv
+修复错误数据文件已保存到: /Users/qianzekai/PycharmProjects/TolerDM/results/demandclean/breast_cancer/v6_auto_dueling_two/evaluation/v6_auto_dueling_two_repair_errors.csv
+未修复但是应该修复数据文件已保存到: /Users/qianzekai/PycharmProjects/TolerDM/results/demandclean/breast_cancer/v6_auto_dueling_two/evaluation/v6_auto_dueling_two_unrepaired.csv
+修复准确率: 0.005509641873278237, 修复召回率: 0.003816793893129771, F1值: 0.004509582815232426
+========================================
+EDR 结果已保存到: /Users/qianzekai/PycharmProjects/TolerDM/results/demandclean/breast_cancer/v6_auto_dueling_two/evaluation/v6_auto_dueling_two_edr_evaluation.txt
+错误减少率 (EDR): -0.26145038167938933
+========================================
+混合距离结果已保存到: /Users/qianzekai/PycharmProjects/TolerDM/results/demandclean/breast_cancer/v6_auto_dueling_two/evaluation/v6_auto_dueling_two_hybrid_distance_evaluation.txt
+混合距离 (Hybrid Distance): 0.25811618360737887
+========================================
+R-EDR 结果已保存到: /Users/qianzekai/PycharmProjects/TolerDM/results/demandclean/breast_cancer/v6_auto_dueling_two/evaluation/v6_auto_dueling_two_record_based_edr_evaluation.txt
+基于条目的错误减少率 (R-EDR): -0.16791979949874686
+========================================
+RF - Accuracy: 0.9571, F1: 0.9574, Precision: 0.9581, Recall: 0.9571
+LR - Accuracy: 0.9000, F1: 0.8980, Precision: 0.8998, Recall: 0.9000
+SVM - Accuracy: 0.9429, F1: 0.9432, Precision: 0.9439, Recall: 0.9429
+KNN - Accuracy: 0.9000, F1: 0.8987, Precision: 0.8991, Recall: 0.9000
+DT - Accuracy: 0.8857, F1: 0.8850, Precision: 0.8847, Recall: 0.8857
+GB - Accuracy: 0.9643, F1: 0.9644, Precision: 0.9646, Recall: 0.9643
+
+容忍度计算结果:
+  P_do_nothing (脏数据性能): 0.9424
+  P_demand_clean (清洗后性能): 0.9784
+  P_repair_all (完全修复性能): 0.9712
+  先验容忍度 (Tolerance_prior): 1.0382
+  后验容忍度 (Tolerance_post): 1.2500
+Snoopy模块可用，正在评估数据质量上界...
+  统一测评完成，结果已保存到: /Users/qianzekai/PycharmProjects/TolerDM/results/demandclean/breast_cancer/v6_auto_dueling_two/v6_auto_dueling_two_evaluation_results.txt
+
+[Step 10] 真值成本汇总...
+  RAHA 检测成本: 20
+  Agent 修复成本: 1
+  总成本: 21 / 6291 cells = 0.3338%
+
+  [输出] 报告已保存: /Users/qianzekai/PycharmProjects/TolerDM/results/demandclean/breast_cancer/v6_auto_dueling_two/report/v6_auto_dueling_two_report.json
+
+  版本 v6_auto_dueling_two 完成! 耗时: 146.02s
+  输出目录: /Users/qianzekai/PycharmProjects/TolerDM/results/demandclean/breast_cancer/v6_auto_dueling_two
+
+  只有 1 个版本完成，跳过跨版本对比
+
+######################################################################
+# 数据集: har
+######################################################################
+  数据集: har
+  脏数据: (70000, 3), 干净数据: (70000, 3)
+  特征列: 3, 标签列: gt
+  FD规则: 0 条
+
+======================================================================
+版本: v6_auto_dueling_two
+数据集: har | 任务: clustering | 模型: kmeans
+检测器: auto | Agent: dueling_two_stage | 推理: two_phase
+训练轮数: 400 | 输出目录: /Users/qianzekai/PycharmProjects/TolerDM/results/demandclean/har/v6_auto_dueling_two
+======================================================================
+
+[Step 1] 创建 DemandClean 实例...
+
+[Step 2] 训练 (400 episodes)...
+  模型已保存: /Users/qianzekai/PycharmProjects/TolerDM/results/demandclean/har/v6_auto_dueling_two/model/v6_auto_dueling_two_agent.pt
+  训练历史已保存: /Users/qianzekai/PycharmProjects/TolerDM/results/demandclean/har/v6_auto_dueling_two/report/v6_auto_dueling_two_history.json
+
+[Step 3] 推理 (模式: two_phase)...
+  修复计划: 需要 0 个真值
+  真值使用: 0
+  清洗后数据已保存: /Users/qianzekai/PycharmProjects/TolerDM/results/demandclean/har/v6_auto_dueling_two/data/v6_auto_dueling_two_cleaned.csv
+  原始格式清洗数据已保存: /Users/qianzekai/PycharmProjects/TolerDM/results/demandclean/har/v6_auto_dueling_two/data/v6_auto_dueling_two_cleaned_original.csv
+
+[Step 4] 检测器准确率评估...
+
+[Step 5] Baseline 评估与可视化...
+  DeleteFix: 删除 34866 行, 保留 35134 行
+
+============================================================
+Baseline 对比评估 - v6_auto_dueling_two
+============================================================
+  NoFix          : kmeans_silhouette=0.51 | kmeans_ari=0.6685
+  DeleteAll      : kmeans_silhouette=0.5222 | kmeans_ari=0.6679
+  DeleteFix      : kmeans_silhouette=0.8742 | kmeans_ari=0.9657
+  ReplaceAll     : kmeans_silhouette=0.51 | kmeans_ari=0.6685
+  DemandClean    : kmeans_silhouette=0.8742 | kmeans_ari=0.9657
+  FullFix        : kmeans_silhouette=0.9096 | kmeans_ari=1.0
+
+[Step 6] 模型容忍度评估...
+============================================================
+模型容忍度计算 - v6_auto_dueling_two
+任务类型: clustering  |  模型列表: ['kmeans']
+============================================================
+
+--- 模型: KMEANS ---
+  P_clean  = 0.9090
+  P_dirty  = 0.5105
+  P_dc     = 0.8709
+  先验容忍度 (P_dc / P_dirty)            = 1.7059
+  后验容忍度 (P_dc-P_dirty)/(P_clean-P_dirty) = 0.9045
+  容忍度柱状图已保存: /Users/qianzekai/PycharmProjects/TolerDM/results/demandclean/har/v6_auto_dueling_two/visualization/v6_auto_dueling_two_tolerance_bar.png
+
+[Step 7] Shapley 三维度分析...
+[Shapley] 维度1: 动作重要性 (精确枚举 4!=24 排列) ...
+[Shapley] 图表已保存: /Users/qianzekai/PycharmProjects/TolerDM/results/demandclean/har/v6_auto_dueling_two/evaluation/shapley/shapley_action_importance.png
+[Shapley] 维度2: 跳过特征 Shapley（计算量过大，仅保留维度1和维度3）
+[Shapley] 维度3: 错误类型重要性 (精确枚举 4!=24 排列) ...
+[Shapley] 图表已保存: /Users/qianzekai/PycharmProjects/TolerDM/results/demandclean/har/v6_auto_dueling_two/evaluation/shapley/shapley_error_type_importance.png
+
+[Step 8] 训练曲线可视化...
+  [可视化] 训练曲线已保存: /Users/qianzekai/PycharmProjects/TolerDM/results/demandclean/har/v6_auto_dueling_two/visualization/v6_auto_dueling_two_training_curves.png
+
+[Step 9] Clean4MLBaseline 统一测评...
+差异文件已保存到:
+/Users/qianzekai/PycharmProjects/TolerDM/results/demandclean/har/v6_auto_dueling_two/evaluation/v6_auto_dueling_two_clean_vs_dirty.csv
+/Users/qianzekai/PycharmProjects/TolerDM/results/demandclean/har/v6_auto_dueling_two/evaluation/v6_auto_dueling_two_dirty_vs_cleaned.csv
+/Users/qianzekai/PycharmProjects/TolerDM/results/demandclean/har/v6_auto_dueling_two/evaluation/v6_auto_dueling_two_clean_vs_cleaned.csv
+修复错误数据文件已保存到: /Users/qianzekai/PycharmProjects/TolerDM/results/demandclean/har/v6_auto_dueling_two/evaluation/v6_auto_dueling_two_repair_errors.csv
+未修复但是应该修复数据文件已保存到: /Users/qianzekai/PycharmProjects/TolerDM/results/demandclean/har/v6_auto_dueling_two/evaluation/v6_auto_dueling_two_unrepaired.csv
+修复准确率: 0.0, 修复召回率: 0.0, F1值: 0.0
+========================================
+EDR 结果已保存到: /Users/qianzekai/PycharmProjects/TolerDM/results/demandclean/har/v6_auto_dueling_two/evaluation/v6_auto_dueling_two_edr_evaluation.txt
+错误减少率 (EDR): -12.417112299465241
+========================================
+混合距离结果已保存到: /Users/qianzekai/PycharmProjects/TolerDM/results/demandclean/har/v6_auto_dueling_two/evaluation/v6_auto_dueling_two_hybrid_distance_evaluation.txt
+混合距离 (Hybrid Distance): 0.13581533944571805
+========================================
+R-EDR 结果已保存到: /Users/qianzekai/PycharmProjects/TolerDM/results/demandclean/har/v6_auto_dueling_two/evaluation/v6_auto_dueling_two_record_based_edr_evaluation.txt
+基于条目的错误减少率 (R-EDR): -10.61820652173913
+========================================
+警告: 清洗后数据行数(35134)与干净数据行数(70000)不一致
+将使用清洗后数据自身进行评估（行对齐）
+通过索引对齐，使用 35134 行数据进行评估
+KMEANS - Silhouette: 0.8742, ARI: 0.9657
+AGGLOMERATIVE - Silhouette: 0.8719, ARI: 0.9961
+SPECTRAL - Silhouette: 0.3668, ARI: 0.0062
+
+容忍度计算结果:
+  P_do_nothing (脏数据性能): 0.6135
+  P_demand_clean (清洗后性能): 0.8742
+  P_repair_all (完全修复性能): 0.6770
+  先验容忍度 (Tolerance_prior): 1.4249
+  后验容忍度 (Tolerance_post): 4.1078
+Snoopy模块可用，正在评估数据质量上界...
+  统一测评完成，结果已保存到: /Users/qianzekai/PycharmProjects/TolerDM/results/demandclean/har/v6_auto_dueling_two/v6_auto_dueling_two_evaluation_results.txt
+
+[Step 10] 真值成本汇总...
+  RAHA 检测成本: 80
+  Agent 修复成本: 0
+  总成本: 80 / 210000 cells = 0.0381%
+
+  [输出] 报告已保存: /Users/qianzekai/PycharmProjects/TolerDM/results/demandclean/har/v6_auto_dueling_two/report/v6_auto_dueling_two_report.json
+
+  版本 v6_auto_dueling_two 完成! 耗时: 27612.83s
+  输出目录: /Users/qianzekai/PycharmProjects/TolerDM/results/demandclean/har/v6_auto_dueling_two
+
+  只有 1 个版本完成，跳过跨版本对比
+
+######################################################################
+# 数据集: mercedes
+######################################################################
+  数据集: mercedes
+  脏数据: (4209, 376), 干净数据: (4209, 376)
+  特征列: 376, 标签列: y
+  FD规则: 0 条
+
+======================================================================
+版本: v6_auto_dueling_two
+数据集: mercedes | 任务: regression | 模型: ridge
+检测器: auto | Agent: dueling_two_stage | 推理: two_phase
+训练轮数: 400 | 输出目录: /Users/qianzekai/PycharmProjects/TolerDM/results/demandclean/mercedes/v6_auto_dueling_two
+======================================================================
+
+[Step 1] 创建 DemandClean 实例...
+
+[Step 2] 训练 (400 episodes)...
+  模型已保存: /Users/qianzekai/PycharmProjects/TolerDM/results/demandclean/mercedes/v6_auto_dueling_two/model/v6_auto_dueling_two_agent.pt
+  训练历史已保存: /Users/qianzekai/PycharmProjects/TolerDM/results/demandclean/mercedes/v6_auto_dueling_two/report/v6_auto_dueling_two_history.json
+
+[Step 3] 推理 (模式: two_phase)...
+  修复计划: 需要 68 个真值
+  真值使用: 68
+  清洗后数据已保存: /Users/qianzekai/PycharmProjects/TolerDM/results/demandclean/mercedes/v6_auto_dueling_two/data/v6_auto_dueling_two_cleaned.csv
+  原始格式清洗数据已保存: /Users/qianzekai/PycharmProjects/TolerDM/results/demandclean/mercedes/v6_auto_dueling_two/data/v6_auto_dueling_two_cleaned_original.csv
+
+[Step 4] 检测器准确率评估...
+
+[Step 5] Baseline 评估与可视化...
+  DeleteFix: 删除 3368 行, 保留 841 行
+
+============================================================
+Baseline 对比评估 - v6_auto_dueling_two
+============================================================
+  NoFix          : rf_mse=76.7706 | rf_r2=0.5068 | ridge_mse=105.0579 | ridge_r2=0.325
+  DeleteAll      : rf_mse=61.6647 | rf_r2=0.5436 | ridge_mse=91.987 | ridge_r2=0.3192
+  DeleteFix      : rf_mse=81.8744 | rf_r2=0.5055 | ridge_mse=207.2601 | ridge_r2=-0.2517
+  ReplaceAll     : rf_mse=76.7706 | rf_r2=0.5068 | ridge_mse=105.0579 | ridge_r2=0.325
+  DemandClean    : rf_mse=80.6214 | rf_r2=0.4986 | ridge_mse=117.1516 | ridge_r2=0.2714
+  FullFix        : rf_mse=81.419 | rf_r2=0.4769 | ridge_mse=69.4854 | ridge_r2=0.5536
+  [可视化] Baseline 对比图已保存: /Users/qianzekai/PycharmProjects/TolerDM/results/demandclean/mercedes/v6_auto_dueling_two/visualization/v6_auto_dueling_two_baseline_comparison.png
+
+[Step 6] 模型容忍度评估...
+============================================================
+模型容忍度计算 - v6_auto_dueling_two
+任务类型: regression  |  模型列表: ['rf', 'ridge']
+============================================================
+
+--- 模型: RF ---
+  P_clean  = 0.4769
+  P_dirty  = 0.4965
+  P_dc     = -0.2399
+  先验容忍度 (P_dc / P_dirty)            = -0.4831
+  后验容忍度 (P_dc-P_dirty)/(P_clean-P_dirty) = 37.6669
+
+--- 模型: RIDGE ---
+  P_clean  = 0.5535
+  P_dirty  = 0.4867
+  P_dc     = -0.1579
+  先验容忍度 (P_dc / P_dirty)            = -0.3243
+  后验容忍度 (P_dc-P_dirty)/(P_clean-P_dirty) = -9.6581
+  容忍度柱状图已保存: /Users/qianzekai/PycharmProjects/TolerDM/results/demandclean/mercedes/v6_auto_dueling_two/visualization/v6_auto_dueling_two_tolerance_bar.png
+
+[Step 7] Shapley 三维度分析...
+[Shapley] 错误数量采样: 301135 -> 49999 条（按类型分层）
+[Shapley] 维度1: 动作重要性 (精确枚举 4!=24 排列) ...
+[Shapley] 图表已保存: /Users/qianzekai/PycharmProjects/TolerDM/results/demandclean/mercedes/v6_auto_dueling_two/evaluation/shapley/shapley_action_importance.png
+[Shapley] 维度2: 跳过特征 Shapley（计算量过大，仅保留维度1和维度3）
+[Shapley] 维度3: 错误类型重要性 (精确枚举 2!=2 排列) ...
+[Shapley] 图表已保存: /Users/qianzekai/PycharmProjects/TolerDM/results/demandclean/mercedes/v6_auto_dueling_two/evaluation/shapley/shapley_error_type_importance.png
+
+[Step 8] 训练曲线可视化...
+  [可视化] 训练曲线已保存: /Users/qianzekai/PycharmProjects/TolerDM/results/demandclean/mercedes/v6_auto_dueling_two/visualization/v6_auto_dueling_two_training_curves.png
+
+[Step 9] Clean4MLBaseline 统一测评...
+差异文件已保存到:
+/Users/qianzekai/PycharmProjects/TolerDM/results/demandclean/mercedes/v6_auto_dueling_two/evaluation/v6_auto_dueling_two_clean_vs_dirty.csv
+/Users/qianzekai/PycharmProjects/TolerDM/results/demandclean/mercedes/v6_auto_dueling_two/evaluation/v6_auto_dueling_two_dirty_vs_cleaned.csv
+/Users/qianzekai/PycharmProjects/TolerDM/results/demandclean/mercedes/v6_auto_dueling_two/evaluation/v6_auto_dueling_two_clean_vs_cleaned.csv
+修复错误数据文件已保存到: /Users/qianzekai/PycharmProjects/TolerDM/results/demandclean/mercedes/v6_auto_dueling_two/evaluation/v6_auto_dueling_two_repair_errors.csv
+未修复但是应该修复数据文件已保存到: /Users/qianzekai/PycharmProjects/TolerDM/results/demandclean/mercedes/v6_auto_dueling_two/evaluation/v6_auto_dueling_two_unrepaired.csv
+修复准确率: 0.00043355107231631885, 修复召回率: 0.00012013936165952505, F1值: 0.0001881431806351146
+========================================
+EDR 结果已保存到: /Users/qianzekai/PycharmProjects/TolerDM/results/demandclean/mercedes/v6_auto_dueling_two/evaluation/v6_auto_dueling_two_edr_evaluation.txt
+错误减少率 (EDR): -0.16233230547435024
+========================================
+混合距离结果已保存到: /Users/qianzekai/PycharmProjects/TolerDM/results/demandclean/mercedes/v6_auto_dueling_two/evaluation/v6_auto_dueling_two_hybrid_distance_evaluation.txt
+混合距离 (Hybrid Distance): 0.4689670220324643
+========================================
+R-EDR 结果已保存到: /Users/qianzekai/PycharmProjects/TolerDM/results/demandclean/mercedes/v6_auto_dueling_two/evaluation/v6_auto_dueling_two_record_based_edr_evaluation.txt
+基于条目的错误减少率 (R-EDR): 0.0
+========================================
+警告: 清洗后数据行数(1760)与干净数据行数(4209)不一致
+将使用清洗后数据自身进行评估（行对齐）
+通过索引对齐，使用 1760 行数据进行评估
+RF - MSE: 80.1045, R2: 0.5018
+LR - MSE: 117.3203, R2: 0.2704
+RIDGE - MSE: 117.1600, R2: 0.2713
+LASSO - MSE: 98.2071, R2: 0.3892
+KNN - MSE: 123.0711, R2: 0.2346
+GB - MSE: 125.8185, R2: 0.2175
+
+容忍度计算结果:
+  P_do_nothing (脏数据性能): 0.5494
+  P_demand_clean (清洗后性能): 0.3869
+  P_repair_all (完全修复性能): 0.4922
+  先验容忍度 (Tolerance_prior): 0.7042
+  后验容忍度 (Tolerance_post): 2.8426
+Snoopy模块可用，正在评估数据质量上界...
+  统一测评完成，结果已保存到: /Users/qianzekai/PycharmProjects/TolerDM/results/demandclean/mercedes/v6_auto_dueling_two/v6_auto_dueling_two_evaluation_results.txt
+
+[Step 10] 真值成本汇总...
+  RAHA 检测成本: 260
+  Agent 修复成本: 68
+  总成本: 328 / 1582584 cells = 0.0207%
+
+  [输出] 报告已保存: /Users/qianzekai/PycharmProjects/TolerDM/results/demandclean/mercedes/v6_auto_dueling_two/report/v6_auto_dueling_two_report.json
+
+  版本 v6_auto_dueling_two 完成! 耗时: 5892.99s
+  输出目录: /Users/qianzekai/PycharmProjects/TolerDM/results/demandclean/mercedes/v6_auto_dueling_two
+
+  只有 1 个版本完成，跳过跨版本对比
+
+######################################################################
+# 数据集: nasa
+######################################################################
+  数据集: nasa
+  脏数据: (1503, 5), 干净数据: (1503, 5)
+  特征列: 5, 标签列: sound_pressure_level
+  FD规则: 0 条
+
+======================================================================
+版本: v6_auto_dueling_two
+数据集: nasa | 任务: regression | 模型: ridge
+检测器: auto | Agent: dueling_two_stage | 推理: two_phase
+训练轮数: 400 | 输出目录: /Users/qianzekai/PycharmProjects/TolerDM/results/demandclean/nasa/v6_auto_dueling_two
+======================================================================
+
+[Step 1] 创建 DemandClean 实例...
+
+[Step 2] 训练 (400 episodes)...
+  模型已保存: /Users/qianzekai/PycharmProjects/TolerDM/results/demandclean/nasa/v6_auto_dueling_two/model/v6_auto_dueling_two_agent.pt
+  训练历史已保存: /Users/qianzekai/PycharmProjects/TolerDM/results/demandclean/nasa/v6_auto_dueling_two/report/v6_auto_dueling_two_history.json
+
+[Step 3] 推理 (模式: two_phase)...
+  修复计划: 需要 9 个真值
+  真值使用: 9
+  清洗后数据已保存: /Users/qianzekai/PycharmProjects/TolerDM/results/demandclean/nasa/v6_auto_dueling_two/data/v6_auto_dueling_two_cleaned.csv
+  原始格式清洗数据已保存: /Users/qianzekai/PycharmProjects/TolerDM/results/demandclean/nasa/v6_auto_dueling_two/data/v6_auto_dueling_two_cleaned_original.csv
+
+[Step 4] 检测器准确率评估...
+
+[Step 5] Baseline 评估与可视化...
+  DeleteFix: 删除 735 行, 保留 768 行
+
+============================================================
+Baseline 对比评估 - v6_auto_dueling_two
+============================================================
+  NoFix          : rf_mse=29.8258 | rf_r2=0.4047 | ridge_mse=46.1931 | ridge_r2=0.078
+  DeleteAll      : rf_mse=29.5505 | rf_r2=0.3448 | ridge_mse=43.1417 | ridge_r2=0.0435
+  DeleteFix      : rf_mse=23.9276 | rf_r2=0.5408 | ridge_mse=44.5679 | ridge_r2=0.1447
+  ReplaceAll     : rf_mse=29.8258 | rf_r2=0.4047 | ridge_mse=46.1931 | ridge_r2=0.078
+  DemandClean    : rf_mse=32.8311 | rf_r2=0.3268 | ridge_mse=43.7719 | ridge_r2=0.1024
+  FullFix        : rf_mse=16.7925 | rf_r2=0.6648 | ridge_mse=37.5769 | ridge_r2=0.2499
+  [可视化] Baseline 对比图已保存: /Users/qianzekai/PycharmProjects/TolerDM/results/demandclean/nasa/v6_auto_dueling_two/visualization/v6_auto_dueling_two_baseline_comparison.png
+
+[Step 6] 模型容忍度评估...
+============================================================
+模型容忍度计算 - v6_auto_dueling_two
+任务类型: regression  |  模型列表: ['rf', 'ridge']
+============================================================
+
+--- 模型: RF ---
+  P_clean  = 0.6648
+  P_dirty  = 0.5467
+  P_dc     = -0.3099
+  先验容忍度 (P_dc / P_dirty)            = -0.5668
+  后验容忍度 (P_dc-P_dirty)/(P_clean-P_dirty) = -7.2491
+
+--- 模型: RIDGE ---
+  P_clean  = 0.2499
+  P_dirty  = 0.1282
+  P_dc     = 0.0656
+  先验容忍度 (P_dc / P_dirty)            = 0.5117
+  后验容忍度 (P_dc-P_dirty)/(P_clean-P_dirty) = -0.5146
+  容忍度柱状图已保存: /Users/qianzekai/PycharmProjects/TolerDM/results/demandclean/nasa/v6_auto_dueling_two/visualization/v6_auto_dueling_two_tolerance_bar.png
+
+[Step 7] Shapley 三维度分析...
+[Shapley] 维度1: 动作重要性 (精确枚举 4!=24 排列) ...
+[Shapley] 图表已保存: /Users/qianzekai/PycharmProjects/TolerDM/results/demandclean/nasa/v6_auto_dueling_two/evaluation/shapley/shapley_action_importance.png
+[Shapley] 维度2: 跳过特征 Shapley（计算量过大，仅保留维度1和维度3）
+[Shapley] 维度3: 错误类型重要性 (精确枚举 3!=6 排列) ...
+[Shapley] 图表已保存: /Users/qianzekai/PycharmProjects/TolerDM/results/demandclean/nasa/v6_auto_dueling_two/evaluation/shapley/shapley_error_type_importance.png
+
+[Step 8] 训练曲线可视化...
+  [可视化] 训练曲线已保存: /Users/qianzekai/PycharmProjects/TolerDM/results/demandclean/nasa/v6_auto_dueling_two/visualization/v6_auto_dueling_two_training_curves.png
+
+[Step 9] Clean4MLBaseline 统一测评...
+差异文件已保存到:
+/Users/qianzekai/PycharmProjects/TolerDM/results/demandclean/nasa/v6_auto_dueling_two/evaluation/v6_auto_dueling_two_clean_vs_dirty.csv
+/Users/qianzekai/PycharmProjects/TolerDM/results/demandclean/nasa/v6_auto_dueling_two/evaluation/v6_auto_dueling_two_dirty_vs_cleaned.csv
+/Users/qianzekai/PycharmProjects/TolerDM/results/demandclean/nasa/v6_auto_dueling_two/evaluation/v6_auto_dueling_two_clean_vs_cleaned.csv
+修复错误数据文件已保存到: /Users/qianzekai/PycharmProjects/TolerDM/results/demandclean/nasa/v6_auto_dueling_two/evaluation/v6_auto_dueling_two_repair_errors.csv
+未修复但是应该修复数据文件已保存到: /Users/qianzekai/PycharmProjects/TolerDM/results/demandclean/nasa/v6_auto_dueling_two/evaluation/v6_auto_dueling_two_unrepaired.csv
+修复准确率: 0.34615384615384615, 修复召回率: 0.026865671641791045, F1值: 0.049861495831508354
+========================================
+EDR 结果已保存到: /Users/qianzekai/PycharmProjects/TolerDM/results/demandclean/nasa/v6_auto_dueling_two/evaluation/v6_auto_dueling_two_edr_evaluation.txt
+错误减少率 (EDR): 0.026865671641791045
+========================================
+混合距离结果已保存到: /Users/qianzekai/PycharmProjects/TolerDM/results/demandclean/nasa/v6_auto_dueling_two/evaluation/v6_auto_dueling_two_hybrid_distance_evaluation.txt
+混合距离 (Hybrid Distance): 0.225377769830235
+========================================
+R-EDR 结果已保存到: /Users/qianzekai/PycharmProjects/TolerDM/results/demandclean/nasa/v6_auto_dueling_two/evaluation/v6_auto_dueling_two_record_based_edr_evaluation.txt
+基于条目的错误减少率 (R-EDR): 0.026865671641791045
+========================================
+警告: 清洗后数据行数(1103)与干净数据行数(1503)不一致
+将使用清洗后数据自身进行评估（行对齐）
+通过索引对齐，使用 1103 行数据进行评估
+RF - MSE: 32.8116, R2: 0.3272
+LR - MSE: 41.4307, R2: 0.1504
+RIDGE - MSE: 41.4310, R2: 0.1504
+LASSO - MSE: 44.6505, R2: 0.0844
+KNN - MSE: 43.5699, R2: 0.1066
+GB - MSE: 30.8102, R2: 0.3682
+
+容忍度计算结果:
+  P_do_nothing (脏数据性能): -0.2851
+  P_demand_clean (清洗后性能): 0.5103
+  P_repair_all (完全修复性能): 0.9334
+  先验容忍度 (Tolerance_prior): -1.7900
+  后验容忍度 (Tolerance_post): 0.6527
+Snoopy模块可用，正在评估数据质量上界...
+  统一测评完成，结果已保存到: /Users/qianzekai/PycharmProjects/TolerDM/results/demandclean/nasa/v6_auto_dueling_two/v6_auto_dueling_two_evaluation_results.txt
+
+[Step 10] 真值成本汇总...
+  RAHA 检测成本: 20
+  Agent 修复成本: 9
+  总成本: 29 / 7515 cells = 0.3859%
+
+  [输出] 报告已保存: /Users/qianzekai/PycharmProjects/TolerDM/results/demandclean/nasa/v6_auto_dueling_two/report/v6_auto_dueling_two_report.json
+
+  版本 v6_auto_dueling_two 完成! 耗时: 40.06s
+  输出目录: /Users/qianzekai/PycharmProjects/TolerDM/results/demandclean/nasa/v6_auto_dueling_two
+
+  只有 1 个版本完成，跳过跨版本对比
+
+######################################################################
+# 数据集: smartfactory
+######################################################################
+  数据集: smartfactory
+  脏数据: (23645, 18), 干净数据: (23645, 18)
+  特征列: 18, 标签列: labels
+  FD规则: 0 条
+
+======================================================================
+版本: v6_auto_dueling_two
+数据集: smartfactory | 任务: classification | 模型: random_forest
+检测器: auto | Agent: dueling_two_stage | 推理: two_phase
+训练轮数: 400 | 输出目录: /Users/qianzekai/PycharmProjects/TolerDM/results/demandclean/smartfactory/v6_auto_dueling_two
+======================================================================
+
+[Step 1] 创建 DemandClean 实例...
+
+[Step 2] 训练 (400 episodes)...
+  模型已保存: /Users/qianzekai/PycharmProjects/TolerDM/results/demandclean/smartfactory/v6_auto_dueling_two/model/v6_auto_dueling_two_agent.pt
+  训练历史已保存: /Users/qianzekai/PycharmProjects/TolerDM/results/demandclean/smartfactory/v6_auto_dueling_two/report/v6_auto_dueling_two_history.json
+
+[Step 3] 推理 (模式: two_phase)...
+  修复计划: 需要 0 个真值
+  真值使用: 0
+  清洗后数据已保存: /Users/qianzekai/PycharmProjects/TolerDM/results/demandclean/smartfactory/v6_auto_dueling_two/data/v6_auto_dueling_two_cleaned.csv
+  原始格式清洗数据已保存: /Users/qianzekai/PycharmProjects/TolerDM/results/demandclean/smartfactory/v6_auto_dueling_two/data/v6_auto_dueling_two_cleaned_original.csv
+
+[Step 4] 检测器准确率评估...
+
+[Step 5] Baseline 评估与可视化...
+  DeleteFix: 删除 7303 行, 保留 16342 行
+
+============================================================
+Baseline 对比评估 - v6_auto_dueling_two
+============================================================
+  NoFix          : rf_accuracy=0.9706 | rf_f1=0.9704 | lr_accuracy=0.7701 | lr_f1=0.675
+  DeleteAll      : rf_accuracy=0.9622 | rf_f1=0.9618 | lr_accuracy=0.7514 | lr_f1=0.652
+  DeleteFix      : rf_accuracy=0.9673 | rf_f1=0.9669 | lr_accuracy=0.7611 | lr_f1=0.6662
+  ReplaceAll     : rf_accuracy=0.9706 | rf_f1=0.9704 | lr_accuracy=0.7701 | lr_f1=0.675
+  DemandClean    : rf_accuracy=0.9718 | rf_f1=0.9715 | lr_accuracy=0.7619 | lr_f1=0.6682
+  FullFix        : rf_accuracy=0.9808 | rf_f1=0.9808 | lr_accuracy=0.7739 | lr_f1=0.6818
+  [可视化] Baseline 对比图已保存: /Users/qianzekai/PycharmProjects/TolerDM/results/demandclean/smartfactory/v6_auto_dueling_two/visualization/v6_auto_dueling_two_baseline_comparison.png
+
+[Step 6] 模型容忍度评估...
+============================================================
+模型容忍度计算 - v6_auto_dueling_two
+任务类型: classification  |  模型列表: ['rf', 'lr']
+============================================================
+
+--- 模型: RF ---
+  P_clean  = 0.9808
+  P_dirty  = 0.9776
+  P_dc     = 0.6982
+  先验容忍度 (P_dc / P_dirty)            = 0.7143
+  后验容忍度 (P_dc-P_dirty)/(P_clean-P_dirty) = -88.0667
+
+--- 模型: LR ---
+  P_clean  = 0.7739
+  P_dirty  = 0.7712
+  P_dc     = 0.7714
+  先验容忍度 (P_dc / P_dirty)            = 1.0003
+  后验容忍度 (P_dc-P_dirty)/(P_clean-P_dirty) = 0.0769
+  容忍度柱状图已保存: /Users/qianzekai/PycharmProjects/TolerDM/results/demandclean/smartfactory/v6_auto_dueling_two/visualization/v6_auto_dueling_two_tolerance_bar.png
+
+[Step 7] Shapley 三维度分析...
+[Shapley] 维度1: 动作重要性 (精确枚举 4!=24 排列) ...
+[Shapley] 图表已保存: /Users/qianzekai/PycharmProjects/TolerDM/results/demandclean/smartfactory/v6_auto_dueling_two/evaluation/shapley/shapley_action_importance.png
+[Shapley] 维度2: 跳过特征 Shapley（计算量过大，仅保留维度1和维度3）
+[Shapley] 维度3: 错误类型重要性 (精确枚举 2!=2 排列) ...
+[Shapley] 图表已保存: /Users/qianzekai/PycharmProjects/TolerDM/results/demandclean/smartfactory/v6_auto_dueling_two/evaluation/shapley/shapley_error_type_importance.png
+
+[Step 8] 训练曲线可视化...
+  [可视化] 训练曲线已保存: /Users/qianzekai/PycharmProjects/TolerDM/results/demandclean/smartfactory/v6_auto_dueling_two/visualization/v6_auto_dueling_two_training_curves.png
+
+[Step 9] Clean4MLBaseline 统一测评...
+差异文件已保存到:
+/Users/qianzekai/PycharmProjects/TolerDM/results/demandclean/smartfactory/v6_auto_dueling_two/evaluation/v6_auto_dueling_two_clean_vs_dirty.csv
+/Users/qianzekai/PycharmProjects/TolerDM/results/demandclean/smartfactory/v6_auto_dueling_two/evaluation/v6_auto_dueling_two_dirty_vs_cleaned.csv
+/Users/qianzekai/PycharmProjects/TolerDM/results/demandclean/smartfactory/v6_auto_dueling_two/evaluation/v6_auto_dueling_two_clean_vs_cleaned.csv
+修复错误数据文件已保存到: /Users/qianzekai/PycharmProjects/TolerDM/results/demandclean/smartfactory/v6_auto_dueling_two/evaluation/v6_auto_dueling_two_repair_errors.csv
+未修复但是应该修复数据文件已保存到: /Users/qianzekai/PycharmProjects/TolerDM/results/demandclean/smartfactory/v6_auto_dueling_two/evaluation/v6_auto_dueling_two_unrepaired.csv
+修复准确率: 0.0, 修复召回率: 0.0, F1值: 0.0
+========================================
+EDR 结果已保存到: /Users/qianzekai/PycharmProjects/TolerDM/results/demandclean/smartfactory/v6_auto_dueling_two/evaluation/v6_auto_dueling_two_edr_evaluation.txt
+错误减少率 (EDR): -7.065779409515068
+========================================
+混合距离结果已保存到: /Users/qianzekai/PycharmProjects/TolerDM/results/demandclean/smartfactory/v6_auto_dueling_two/evaluation/v6_auto_dueling_two_hybrid_distance_evaluation.txt
+混合距离 (Hybrid Distance): 0.05641137012273505
+========================================
+R-EDR 结果已保存到: /Users/qianzekai/PycharmProjects/TolerDM/results/demandclean/smartfactory/v6_auto_dueling_two/evaluation/v6_auto_dueling_two_record_based_edr_evaluation.txt
+基于条目的错误减少率 (R-EDR): -2.4933455713630104
+========================================
+警告: 清洗后数据行数(22883)与干净数据行数(23645)不一致
+将使用清洗后数据自身进行评估（行对齐）
+通过索引对齐，使用 22883 行数据进行评估
+RF - Accuracy: 0.9718, F1: 0.9715, Precision: 0.9717, Recall: 0.9718
+LR - Accuracy: 0.7619, F1: 0.6682, Precision: 0.6784, Recall: 0.7619
+SVM - Accuracy: 0.7645, F1: 0.6629, Precision: 0.8200, Recall: 0.7645
+KNN - Accuracy: 0.8066, F1: 0.7975, Precision: 0.7941, Recall: 0.8066
+DT - Accuracy: 0.9522, F1: 0.9522, Precision: 0.9523, Recall: 0.9522
+GB - Accuracy: 0.7913, F1: 0.7283, Precision: 0.8040, Recall: 0.7913
+
+容忍度计算结果:
+  P_do_nothing (脏数据性能): 0.7484
+  P_demand_clean (清洗后性能): 0.9674
+  P_repair_all (完全修复性能): 0.9816
+  先验容忍度 (Tolerance_prior): 1.2928
+  后验容忍度 (Tolerance_post): 0.9393
+Snoopy模块可用，正在评估数据质量上界...
+  统一测评完成，结果已保存到: /Users/qianzekai/PycharmProjects/TolerDM/results/demandclean/smartfactory/v6_auto_dueling_two/v6_auto_dueling_two_evaluation_results.txt
+
+[Step 10] 真值成本汇总...
+  RAHA 检测成本: 40
+  Agent 修复成本: 0
+  总成本: 40 / 425610 cells = 0.0094%
+
+  [输出] 报告已保存: /Users/qianzekai/PycharmProjects/TolerDM/results/demandclean/smartfactory/v6_auto_dueling_two/report/v6_auto_dueling_two_report.json
+
+  版本 v6_auto_dueling_two 完成! 耗时: 4031.99s
+  输出目录: /Users/qianzekai/PycharmProjects/TolerDM/results/demandclean/smartfactory/v6_auto_dueling_two
+
+  只有 1 个版本完成，跳过跨版本对比
+
+######################################################################
+# 数据集: soilmoisture
+######################################################################
+  数据集: soilmoisture
+  脏数据: (679, 127), 干净数据: (679, 127)
+  特征列: 127, 标签列: soil_moisture
+  FD规则: 0 条
+
+======================================================================
+版本: v6_auto_dueling_two
+数据集: soilmoisture | 任务: regression | 模型: ridge
+检测器: auto | Agent: dueling_two_stage | 推理: two_phase
+训练轮数: 400 | 输出目录: /Users/qianzekai/PycharmProjects/TolerDM/results/demandclean/soilmoisture/v6_auto_dueling_two
+======================================================================
+
+[Step 1] 创建 DemandClean 实例...
+
+[Step 2] 训练 (400 episodes)...
+  模型已保存: /Users/qianzekai/PycharmProjects/TolerDM/results/demandclean/soilmoisture/v6_auto_dueling_two/model/v6_auto_dueling_two_agent.pt
+  训练历史已保存: /Users/qianzekai/PycharmProjects/TolerDM/results/demandclean/soilmoisture/v6_auto_dueling_two/report/v6_auto_dueling_two_history.json
+
+[Step 3] 推理 (模式: two_phase)...
+  修复计划: 需要 1013 个真值
+  真值使用: 1013
+  清洗后数据已保存: /Users/qianzekai/PycharmProjects/TolerDM/results/demandclean/soilmoisture/v6_auto_dueling_two/data/v6_auto_dueling_two_cleaned.csv
+  原始格式清洗数据已保存: /Users/qianzekai/PycharmProjects/TolerDM/results/demandclean/soilmoisture/v6_auto_dueling_two/data/v6_auto_dueling_two_cleaned_original.csv
+
+[Step 4] 检测器准确率评估...
+
+[Step 5] Baseline 评估与可视化...
+  DeleteFix: 删除 544 行, 保留 135 行
+
+============================================================
+Baseline 对比评估 - v6_auto_dueling_two
+============================================================
+  NoFix          : rf_mse=2.7104 | rf_r2=0.8108 | ridge_mse=8.4941 | ridge_r2=0.4069
+  DeleteAll      : rf_mse=3.2182 | rf_r2=0.7352 | ridge_mse=8.306 | ridge_r2=0.3166
+  DeleteFix      : rf_mse=2.4159 | rf_r2=0.7915 | ridge_mse=24.7205 | ridge_r2=-1.1339
+  ReplaceAll     : rf_mse=2.7104 | rf_r2=0.8108 | ridge_mse=8.4941 | ridge_r2=0.4069
+  DemandClean    : rf_mse=3.1568 | rf_r2=0.7954 | ridge_mse=30.4145 | ridge_r2=-0.9713
+  FullFix        : rf_mse=0.8911 | rf_r2=0.9378 | ridge_mse=1.5644 | ridge_r2=0.8908
+  [可视化] Baseline 对比图已保存: /Users/qianzekai/PycharmProjects/TolerDM/results/demandclean/soilmoisture/v6_auto_dueling_two/visualization/v6_auto_dueling_two_baseline_comparison.png
+
+[Step 6] 模型容忍度评估...
+============================================================
+模型容忍度计算 - v6_auto_dueling_two
+任务类型: regression  |  模型列表: ['rf', 'ridge']
+============================================================
+
+--- 模型: RF ---
+  P_clean  = 0.9378
+  P_dirty  = 0.8955
+  P_dc     = -1.3414
+  先验容忍度 (P_dc / P_dirty)            = -1.4980
+  后验容忍度 (P_dc-P_dirty)/(P_clean-P_dirty) = -52.8386
+
+--- 模型: RIDGE ---
+  P_clean  = 0.8908
+  P_dirty  = 0.5526
+  P_dc     = -0.3066
+  先验容忍度 (P_dc / P_dirty)            = -0.5548
+  后验容忍度 (P_dc-P_dirty)/(P_clean-P_dirty) = -2.5405
+  容忍度柱状图已保存: /Users/qianzekai/PycharmProjects/TolerDM/results/demandclean/soilmoisture/v6_auto_dueling_two/visualization/v6_auto_dueling_two_tolerance_bar.png
+
+[Step 7] Shapley 三维度分析...
+[Shapley] 错误数量采样: 55798 -> 49999 条（按类型分层）
+[Shapley] 维度1: 动作重要性 (精确枚举 4!=24 排列) ...
+[Shapley] 图表已保存: /Users/qianzekai/PycharmProjects/TolerDM/results/demandclean/soilmoisture/v6_auto_dueling_two/evaluation/shapley/shapley_action_importance.png
+[Shapley] 维度2: 跳过特征 Shapley（计算量过大，仅保留维度1和维度3）
+[Shapley] 维度3: 错误类型重要性 (精确枚举 3!=6 排列) ...
+[Shapley] 图表已保存: /Users/qianzekai/PycharmProjects/TolerDM/results/demandclean/soilmoisture/v6_auto_dueling_two/evaluation/shapley/shapley_error_type_importance.png
+
+[Step 8] 训练曲线可视化...
+  [可视化] 训练曲线已保存: /Users/qianzekai/PycharmProjects/TolerDM/results/demandclean/soilmoisture/v6_auto_dueling_two/visualization/v6_auto_dueling_two_training_curves.png
+
+[Step 9] Clean4MLBaseline 统一测评...
+差异文件已保存到:
+/Users/qianzekai/PycharmProjects/TolerDM/results/demandclean/soilmoisture/v6_auto_dueling_two/evaluation/v6_auto_dueling_two_clean_vs_dirty.csv
+/Users/qianzekai/PycharmProjects/TolerDM/results/demandclean/soilmoisture/v6_auto_dueling_two/evaluation/v6_auto_dueling_two_dirty_vs_cleaned.csv
+/Users/qianzekai/PycharmProjects/TolerDM/results/demandclean/soilmoisture/v6_auto_dueling_two/evaluation/v6_auto_dueling_two_clean_vs_cleaned.csv
+修复错误数据文件已保存到: /Users/qianzekai/PycharmProjects/TolerDM/results/demandclean/soilmoisture/v6_auto_dueling_two/evaluation/v6_auto_dueling_two_repair_errors.csv
+未修复但是应该修复数据文件已保存到: /Users/qianzekai/PycharmProjects/TolerDM/results/demandclean/soilmoisture/v6_auto_dueling_two/evaluation/v6_auto_dueling_two_unrepaired.csv
+修复准确率: 0.3567681007345226, 修复召回率: 0.06507177033492823, F1值: 0.1100679831399808
+========================================
+EDR 结果已保存到: /Users/qianzekai/PycharmProjects/TolerDM/results/demandclean/soilmoisture/v6_auto_dueling_two/evaluation/v6_auto_dueling_two_edr_evaluation.txt
+错误减少率 (EDR): 0.06334928229665072
+========================================
+混合距离结果已保存到: /Users/qianzekai/PycharmProjects/TolerDM/results/demandclean/soilmoisture/v6_auto_dueling_two/evaluation/v6_auto_dueling_two_hybrid_distance_evaluation.txt
+混合距离 (Hybrid Distance): 0.21629468400159774
+========================================
+R-EDR 结果已保存到: /Users/qianzekai/PycharmProjects/TolerDM/results/demandclean/soilmoisture/v6_auto_dueling_two/evaluation/v6_auto_dueling_two_record_based_edr_evaluation.txt
+基于条目的错误减少率 (R-EDR): 0.0
+========================================
+警告: 清洗后数据行数(136)与干净数据行数(679)不一致
+将使用清洗后数据自身进行评估（行对齐）
+通过索引对齐，使用 136 行数据进行评估
+RF - MSE: 3.1568, R2: 0.7954
+LR - MSE: 38.3880, R2: -1.4881
+RIDGE - MSE: 30.4145, R2: -0.9713
+LASSO - MSE: 10.5436, R2: 0.3166
+KNN - MSE: 3.5351, R2: 0.7709
+GB - MSE: 2.9237, R2: 0.8105
+
+容忍度计算结果:
+  P_do_nothing (脏数据性能): 0.6590
+  P_demand_clean (清洗后性能): 0.8009
+  P_repair_all (完全修复性能): 0.9386
+  先验容忍度 (Tolerance_prior): 1.2152
+  后验容忍度 (Tolerance_post): 0.5072
+Snoopy模块可用，正在评估数据质量上界...
+  统一测评完成，结果已保存到: /Users/qianzekai/PycharmProjects/TolerDM/results/demandclean/soilmoisture/v6_auto_dueling_two/v6_auto_dueling_two_evaluation_results.txt
+
+[Step 10] 真值成本汇总...
+  RAHA 检测成本: 100
+  Agent 修复成本: 1013
+  总成本: 1113 / 86233 cells = 1.2907%
+
+  [输出] 报告已保存: /Users/qianzekai/PycharmProjects/TolerDM/results/demandclean/soilmoisture/v6_auto_dueling_two/report/v6_auto_dueling_two_report.json
+
+  版本 v6_auto_dueling_two 完成! 耗时: 239.63s
+  输出目录: /Users/qianzekai/PycharmProjects/TolerDM/results/demandclean/soilmoisture/v6_auto_dueling_two
+
+  只有 1 个版本完成，跳过跨版本对比
+
+
+======================================================================
+全部完成! 总耗时: 74247.90s
+结果目录: /Users/qianzekai/PycharmProjects/TolerDM/results/demandclean
+日志文件: /Users/qianzekai/PycharmProjects/TolerDM/logs/demandclean/all_ep400_20260224_004237.log
+======================================================================
+[日志] 完整日志已保存: /Users/qianzekai/PycharmProjects/TolerDM/logs/demandclean/all_ep400_20260224_004237.log
+------------------------------------------------------------
+生成实验汇总报告...
+加载报告: datasets=['beers', 'adult', 'bike', 'breast_cancer', 'har', 'mercedes', 'nasa', 'smartfactory', 'soilmoisture'], versions=['v6']
+  成功加载 9 个报告
+  报告已生成: /Users/qianzekai/PycharmProjects/TolerDM/results/demandclean/report_20260224_212006_v6_9ds.md
+汇总报告生成成功
+============================================================
+DemandClean 测评完成
+退出码: 0
+结束时间: Tue Feb 24 21:20:06 CST 2026
+结果目录: results/demandclean/
+日志目录: logs/demandclean/

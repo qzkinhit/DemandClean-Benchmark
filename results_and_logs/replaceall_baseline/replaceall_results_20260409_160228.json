@@ -1,0 +1,30 @@
+[
+  {
+    "dataset": "adult",
+    "task_type": "classification",
+    "n_errors": 0,
+    "n_train": 27133,
+    "n_test": 9045,
+    "authenticity": 1.0,
+    "elapsed_time": 2.45,
+    "truth_cost": 0,
+    "replaceall": {
+      "rf_accuracy": 0.8518518518518519,
+      "rf_f1": 0.8502176697203637,
+      "lr_accuracy": 0.820342730790492,
+      "lr_f1": 0.8087583318987146
+    },
+    "nofix": {
+      "rf_accuracy": 0.8518518518518519,
+      "rf_f1": 0.8502176697203637,
+      "lr_accuracy": 0.820342730790492,
+      "lr_f1": 0.8087583318987146
+    },
+    "fullfix": {
+      "rf_accuracy": 0.8564953012714207,
+      "rf_f1": 0.8532328751407122,
+      "lr_accuracy": 0.8202321724709785,
+      "lr_f1": 0.8059981517025038
+    }
+  }
+]

@@ -1,0 +1,257 @@
+Attribute: index, MSE: nan, Jaccard: 0.0
+检查你指定的属性 datetime 是否为数值型！
+Attribute: datetime, MSE: nan, Jaccard: 0.4545454545454546
+检查你指定的属性 soil_temperature 是否为数值型！
+Attribute: soil_temperature, MSE: nan, Jaccard: 0.52217125382263
+检查你指定的属性 454 是否为数值型！
+Attribute: 454, MSE: nan, Jaccard: 0.49723756906077343
+检查你指定的属性 458 是否为数值型！
+Attribute: 458, MSE: nan, Jaccard: 0.5136612021857924
+检查你指定的属性 462 是否为数值型！
+Attribute: 462, MSE: nan, Jaccard: 0.5454545454545454
+检查你指定的属性 466 是否为数值型！
+Attribute: 466, MSE: nan, Jaccard: 0.5661375661375662
+检查你指定的属性 470 是否为数值型！
+Attribute: 470, MSE: nan, Jaccard: 0.4093567251461988
+检查你指定的属性 474 是否为数值型！
+Attribute: 474, MSE: nan, Jaccard: 0.5531914893617021
+检查你指定的属性 478 是否为数值型！
+Attribute: 478, MSE: nan, Jaccard: 0.4277456647398844
+检查你指定的属性 482 是否为数值型！
+Attribute: 482, MSE: nan, Jaccard: 0.41860465116279066
+检查你指定的属性 486 是否为数值型！
+Attribute: 486, MSE: nan, Jaccard: 0.4367816091954023
+检查你指定的属性 490 是否为数值型！
+Attribute: 490, MSE: nan, Jaccard: 0.4545454545454546
+检查你指定的属性 494 是否为数值型！
+Attribute: 494, MSE: nan, Jaccard: 0.4545454545454546
+检查你指定的属性 498 是否为数值型！
+Attribute: 498, MSE: nan, Jaccard: 0.4277456647398844
+检查你指定的属性 502 是否为数值型！
+Attribute: 502, MSE: nan, Jaccard: 0.5054945054945055
+检查你指定的属性 506 是否为数值型！
+Attribute: 506, MSE: nan, Jaccard: 0.4719101123595506
+检查你指定的属性 510 是否为数值型！
+Attribute: 510, MSE: nan, Jaccard: 0.4367816091954023
+检查你指定的属性 514 是否为数值型！
+Attribute: 514, MSE: nan, Jaccard: 0.3905325443786982
+检查你指定的属性 518 是否为数值型！
+Attribute: 518, MSE: nan, Jaccard: 0.44571428571428573
+检查你指定的属性 522 是否为数值型！
+Attribute: 522, MSE: nan, Jaccard: 0.5684210526315789
+检查你指定的属性 526 是否为数值型！
+Attribute: 526, MSE: nan, Jaccard: 0.46327683615819204
+检查你指定的属性 530 是否为数值型！
+Attribute: 530, MSE: nan, Jaccard: 0.5136612021857924
+检查你指定的属性 534 是否为数值型！
+Attribute: 534, MSE: nan, Jaccard: 0.41860465116279066
+检查你指定的属性 538 是否为数值型！
+Attribute: 538, MSE: nan, Jaccard: 0.41860465116279066
+检查你指定的属性 542 是否为数值型！
+Attribute: 542, MSE: nan, Jaccard: 0.5297297297297296
+检查你指定的属性 546 是否为数值型！
+Attribute: 546, MSE: nan, Jaccard: 0.5217391304347826
+检查你指定的属性 550 是否为数值型！
+Attribute: 550, MSE: nan, Jaccard: 0.5136612021857924
+检查你指定的属性 554 是否为数值型！
+Attribute: 554, MSE: nan, Jaccard: 0.4804469273743017
+检查你指定的属性 558 是否为数值型！
+Attribute: 558, MSE: nan, Jaccard: 0.4367816091954023
+检查你指定的属性 562 是否为数值型！
+Attribute: 562, MSE: nan, Jaccard: 0.5136612021857924
+检查你指定的属性 566 是否为数值型！
+Attribute: 566, MSE: nan, Jaccard: 0.4277456647398844
+检查你指定的属性 570 是否为数值型！
+Attribute: 570, MSE: nan, Jaccard: 0.41860465116279066
+检查你指定的属性 574 是否为数值型！
+Attribute: 574, MSE: nan, Jaccard: 0.4545454545454546
+检查你指定的属性 578 是否为数值型！
+Attribute: 578, MSE: nan, Jaccard: 0.4093567251461988
+检查你指定的属性 582 是否为数值型！
+Attribute: 582, MSE: nan, Jaccard: 0.46327683615819204
+检查你指定的属性 586 是否为数值型！
+Attribute: 586, MSE: nan, Jaccard: 0.5217391304347826
+检查你指定的属性 590 是否为数值型！
+Attribute: 590, MSE: nan, Jaccard: 0.4277456647398844
+检查你指定的属性 594 是否为数值型！
+Attribute: 594, MSE: nan, Jaccard: 0.44571428571428573
+检查你指定的属性 598 是否为数值型！
+Attribute: 598, MSE: nan, Jaccard: 0.4093567251461988
+检查你指定的属性 602 是否为数值型！
+Attribute: 602, MSE: nan, Jaccard: 0.4277456647398844
+检查你指定的属性 606 是否为数值型！
+Attribute: 606, MSE: nan, Jaccard: 0.46327683615819204
+检查你指定的属性 610 是否为数值型！
+Attribute: 610, MSE: nan, Jaccard: 0.4367816091954023
+检查你指定的属性 614 是否为数值型！
+Attribute: 614, MSE: nan, Jaccard: 0.38095238095238093
+检查你指定的属性 618 是否为数值型！
+Attribute: 618, MSE: nan, Jaccard: 0.42441860465116277
+检查你指定的属性 622 是否为数值型！
+Attribute: 622, MSE: nan, Jaccard: 0.35151515151515156
+检查你指定的属性 626 是否为数值型！
+Attribute: 626, MSE: nan, Jaccard: 0.3414634146341463
+检查你指定的属性 630 是否为数值型！
+Attribute: 630, MSE: nan, Jaccard: 0.31055900621118016
+检查你指定的属性 634 是否为数值型！
+Attribute: 634, MSE: nan, Jaccard: 0.31055900621118016
+检查你指定的属性 638 是否为数值型！
+Attribute: 638, MSE: nan, Jaccard: 0.4804469273743017
+检查你指定的属性 642 是否为数值型！
+Attribute: 642, MSE: nan, Jaccard: 0.3905325443786982
+检查你指定的属性 646 是否为数值型！
+Attribute: 646, MSE: nan, Jaccard: 0.38095238095238093
+检查你指定的属性 650 是否为数值型！
+Attribute: 650, MSE: nan, Jaccard: 0.4804469273743017
+检查你指定的属性 654 是否为数值型！
+Attribute: 654, MSE: nan, Jaccard: 0.4
+检查你指定的属性 658 是否为数值型！
+Attribute: 658, MSE: nan, Jaccard: 0.5376344086021505
+检查你指定的属性 662 是否为数值型！
+Attribute: 662, MSE: nan, Jaccard: 0.4277456647398844
+检查你指定的属性 666 是否为数值型！
+Attribute: 666, MSE: nan, Jaccard: 0.3614457831325302
+检查你指定的属性 670 是否为数值型！
+Attribute: 670, MSE: nan, Jaccard: 0.4277456647398844
+检查你指定的属性 674 是否为数值型！
+Attribute: 674, MSE: nan, Jaccard: 0.46327683615819204
+检查你指定的属性 678 是否为数值型！
+Attribute: 678, MSE: nan, Jaccard: 0.5217391304347826
+检查你指定的属性 682 是否为数值型！
+Attribute: 682, MSE: nan, Jaccard: 0.4719101123595506
+检查你指定的属性 686 是否为数值型！
+Attribute: 686, MSE: nan, Jaccard: 0.4367816091954023
+检查你指定的属性 690 是否为数值型！
+Attribute: 690, MSE: nan, Jaccard: 0.5297297297297296
+检查你指定的属性 694 是否为数值型！
+Attribute: 694, MSE: nan, Jaccard: 0.4277456647398844
+检查你指定的属性 698 是否为数值型！
+Attribute: 698, MSE: nan, Jaccard: 0.48888888888888893
+检查你指定的属性 702 是否为数值型！
+Attribute: 702, MSE: nan, Jaccard: 0.4277456647398844
+检查你指定的属性 706 是否为数值型！
+Attribute: 706, MSE: nan, Jaccard: 0.38095238095238093
+检查你指定的属性 710 是否为数值型！
+Attribute: 710, MSE: nan, Jaccard: 0.4545454545454546
+检查你指定的属性 714 是否为数值型！
+Attribute: 714, MSE: nan, Jaccard: 0.5136612021857924
+检查你指定的属性 718 是否为数值型！
+Attribute: 718, MSE: nan, Jaccard: 0.46327683615819204
+检查你指定的属性 722 是否为数值型！
+Attribute: 722, MSE: nan, Jaccard: 0.46327683615819204
+检查你指定的属性 726 是否为数值型！
+Attribute: 726, MSE: nan, Jaccard: 0.46327683615819204
+检查你指定的属性 730 是否为数值型！
+Attribute: 730, MSE: nan, Jaccard: 0.4719101123595506
+检查你指定的属性 734 是否为数值型！
+Attribute: 734, MSE: nan, Jaccard: 0.44571428571428573
+检查你指定的属性 738 是否为数值型！
+Attribute: 738, MSE: nan, Jaccard: 0.5217391304347826
+检查你指定的属性 742 是否为数值型！
+Attribute: 742, MSE: nan, Jaccard: 0.4719101123595506
+检查你指定的属性 746 是否为数值型！
+Attribute: 746, MSE: nan, Jaccard: 0.4719101123595506
+检查你指定的属性 750 是否为数值型！
+Attribute: 750, MSE: nan, Jaccard: 0.4804469273743017
+检查你指定的属性 754 是否为数值型！
+Attribute: 754, MSE: nan, Jaccard: 0.44571428571428573
+检查你指定的属性 758 是否为数值型！
+Attribute: 758, MSE: nan, Jaccard: 0.5054945054945055
+检查你指定的属性 762 是否为数值型！
+Attribute: 762, MSE: nan, Jaccard: 0.5376344086021505
+检查你指定的属性 766 是否为数值型！
+Attribute: 766, MSE: nan, Jaccard: 0.4804469273743017
+检查你指定的属性 770 是否为数值型！
+Attribute: 770, MSE: nan, Jaccard: 0.4804469273743017
+检查你指定的属性 774 是否为数值型！
+Attribute: 774, MSE: nan, Jaccard: 0.37125748502994016
+检查你指定的属性 778 是否为数值型！
+Attribute: 778, MSE: nan, Jaccard: 0.4545454545454546
+检查你指定的属性 782 是否为数值型！
+Attribute: 782, MSE: nan, Jaccard: 0.5054945054945055
+检查你指定的属性 786 是否为数值型！
+Attribute: 786, MSE: nan, Jaccard: 0.4
+检查你指定的属性 790 是否为数值型！
+Attribute: 790, MSE: nan, Jaccard: 0.46327683615819204
+检查你指定的属性 794 是否为数值型！
+Attribute: 794, MSE: nan, Jaccard: 0.5136612021857924
+检查你指定的属性 798 是否为数值型！
+Attribute: 798, MSE: nan, Jaccard: 0.5376344086021505
+检查你指定的属性 802 是否为数值型！
+Attribute: 802, MSE: nan, Jaccard: 0.4367816091954023
+检查你指定的属性 806 是否为数值型！
+Attribute: 806, MSE: nan, Jaccard: 0.4093567251461988
+检查你指定的属性 810 是否为数值型！
+Attribute: 810, MSE: nan, Jaccard: 0.4367816091954023
+检查你指定的属性 814 是否为数值型！
+Attribute: 814, MSE: nan, Jaccard: 0.4
+检查你指定的属性 818 是否为数值型！
+Attribute: 818, MSE: nan, Jaccard: 0.5297297297297296
+检查你指定的属性 822 是否为数值型！
+Attribute: 822, MSE: nan, Jaccard: 0.4545454545454546
+检查你指定的属性 826 是否为数值型！
+Attribute: 826, MSE: nan, Jaccard: 0.5684210526315789
+检查你指定的属性 830 是否为数值型！
+Attribute: 830, MSE: nan, Jaccard: 0.41860465116279066
+检查你指定的属性 834 是否为数值型！
+Attribute: 834, MSE: nan, Jaccard: 0.41860465116279066
+检查你指定的属性 838 是否为数值型！
+Attribute: 838, MSE: nan, Jaccard: 0.5217391304347826
+检查你指定的属性 842 是否为数值型！
+Attribute: 842, MSE: nan, Jaccard: 0.4093567251461988
+检查你指定的属性 846 是否为数值型！
+Attribute: 846, MSE: nan, Jaccard: 0.4367816091954023
+检查你指定的属性 850 是否为数值型！
+Attribute: 850, MSE: nan, Jaccard: 0.4545454545454546
+检查你指定的属性 854 是否为数值型！
+Attribute: 854, MSE: nan, Jaccard: 0.37125748502994016
+检查你指定的属性 858 是否为数值型！
+Attribute: 858, MSE: nan, Jaccard: 0.4367816091954023
+检查你指定的属性 862 是否为数值型！
+Attribute: 862, MSE: nan, Jaccard: 0.5136612021857924
+检查你指定的属性 866 是否为数值型！
+Attribute: 866, MSE: nan, Jaccard: 0.41860465116279066
+检查你指定的属性 870 是否为数值型！
+Attribute: 870, MSE: nan, Jaccard: 0.4277456647398844
+检查你指定的属性 874 是否为数值型！
+Attribute: 874, MSE: nan, Jaccard: 0.5454545454545454
+检查你指定的属性 878 是否为数值型！
+Attribute: 878, MSE: nan, Jaccard: 0.3614457831325302
+检查你指定的属性 882 是否为数值型！
+Attribute: 882, MSE: nan, Jaccard: 0.37125748502994016
+检查你指定的属性 886 是否为数值型！
+Attribute: 886, MSE: nan, Jaccard: 0.3312883435582822
+检查你指定的属性 890 是否为数值型！
+Attribute: 890, MSE: nan, Jaccard: 0.41860465116279066
+检查你指定的属性 894 是否为数值型！
+Attribute: 894, MSE: nan, Jaccard: 0.35151515151515156
+检查你指定的属性 898 是否为数值型！
+Attribute: 898, MSE: nan, Jaccard: 0.3614457831325302
+检查你指定的属性 902 是否为数值型！
+Attribute: 902, MSE: nan, Jaccard: 0.23376623376623373
+检查你指定的属性 906 是否为数值型！
+Attribute: 906, MSE: nan, Jaccard: 0.31055900621118016
+检查你指定的属性 910 是否为数值型！
+Attribute: 910, MSE: nan, Jaccard: 0.32098765432098764
+检查你指定的属性 914 是否为数值型！
+Attribute: 914, MSE: nan, Jaccard: 0.46327683615819204
+检查你指定的属性 918 是否为数值型！
+Attribute: 918, MSE: nan, Jaccard: 0.35151515151515156
+检查你指定的属性 922 是否为数值型！
+Attribute: 922, MSE: nan, Jaccard: 0.30000000000000004
+检查你指定的属性 926 是否为数值型！
+Attribute: 926, MSE: nan, Jaccard: 0.31055900621118016
+检查你指定的属性 930 是否为数值型！
+Attribute: 930, MSE: nan, Jaccard: 0.3414634146341463
+检查你指定的属性 934 是否为数值型！
+Attribute: 934, MSE: nan, Jaccard: 0.31055900621118016
+检查你指定的属性 938 是否为数值型！
+Attribute: 938, MSE: nan, Jaccard: 0.37125748502994016
+检查你指定的属性 942 是否为数值型！
+Attribute: 942, MSE: nan, Jaccard: 0.4
+检查你指定的属性 946 是否为数值型！
+Attribute: 946, MSE: nan, Jaccard: 0.35151515151515156
+检查你指定的属性 950 是否为数值型！
+Attribute: 950, MSE: nan, Jaccard: 0.2451612903225806
+Attribute: soil_moisture, MSE: nan, Jaccard: 0.0
+加权混合距离: 0.21629468400159774

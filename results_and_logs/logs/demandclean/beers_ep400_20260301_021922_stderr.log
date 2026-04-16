@@ -1,0 +1,63 @@
+[02:19:23] INFO: ==================================================
+[02:19:23] INFO: DemandClean 训练开始
+[02:19:23] INFO:   检测器模式: auto
+[02:19:23] INFO:   训练模式: clean_base
+[02:19:23] INFO:   Agent类型: dueling_two_stage
+[02:19:23] INFO:   推理模式: two_phase
+[02:19:23] INFO:   FD规则: 4
+[02:19:23] INFO:   丰富规则: 有
+[02:19:23] INFO: ==================================================
+[02:19:23] INFO: 
+[Step 1] 初始化错误检测器...
+[02:19:23] INFO: 
+[Step 1.5] 运行 RAHA 检测获取标注行...
+[02:23:46] INFO:   [预修复] 利用 RAHA 标注行修复 44 个特征单元格 + 2 个标签
+[02:23:46] INFO:   标注行: [0, 61, 133, 290, 413, 752, 864, 1051, 1125, 1162]... (共 20 行)
+[02:23:46] INFO: 
+[Step 2] 训练 DQN Agent...
+[02:23:46] INFO: 开始训练 (dueling_two_stage Agent, mode=clean_base)
+[02:23:46] INFO:   任务类型: classification
+[02:23:46] INFO:   模型类型: random_forest
+[02:23:46] INFO:   原始数据: 2410 行
+[02:24:37] INFO:   Clean Base 自动选择 (5-fold CV):
+[02:24:37] INFO:     DeleteFix: 482 行, CV=0.3713
+[02:24:37] INFO:     VE-Fill:   2410 行, CV=0.2996
+[02:24:37] INFO:     → 选择 DeleteFix (482 行)
+[02:24:37] INFO:   标签注入: 检测到 6 个标签错误, rate=0.002, symmetric=True
+[02:24:37] INFO:   自适应注入比例范围 (基于检测结果):
+[02:24:37] INFO:     missing: (0.1784, 0.2676)
+[02:24:37] INFO:     semantic: (0.0062, 0.0112)
+[02:24:37] INFO:     syntactic: (0.0050, 0.0100)
+[02:24:37] INFO:     label: (0.0050, 0.0100)
+[02:24:41] INFO:   ErrorInjector: rich_rules=True, domain=3, cfd=0, fd=4
+[02:24:41] INFO:   开始训练 DQN (400 episodes, 起始轮=0)...
+[02:28:16] INFO:   Episode 50/400: Score=0.7324, Best=0.7822, Eps=0.778
+[02:28:16] INFO:     Actions: {'no_action': 40, 'repair_value': 7, 'delete': 42, 'replace_nearby': 21}
+[02:31:38] INFO:   Episode 100/400: Score=0.7386, Best=0.7822, Eps=0.606
+[02:31:38] INFO:     Actions: {'no_action': 30, 'repair_value': 12, 'delete': 52, 'replace_nearby': 24}
+[02:35:28] INFO:   Episode 150/400: Score=0.7220, Best=0.8174, Eps=0.471
+[02:35:28] INFO:     Actions: {'no_action': 78, 'repair_value': 12, 'delete': 16, 'replace_nearby': 18}
+[02:38:41] INFO:   Episode 200/400: Score=0.7469, Best=0.8174, Eps=0.367
+[02:38:41] INFO:     Actions: {'no_action': 83, 'repair_value': 5, 'delete': 17, 'replace_nearby': 28}
+[02:42:50] INFO:   Episode 250/400: Score=0.7822, Best=0.8174, Eps=0.286
+[02:42:50] INFO:     Actions: {'no_action': 16, 'repair_value': 14, 'delete': 17, 'replace_nearby': 61}
+[02:46:30] INFO:   Episode 300/400: Score=0.7324, Best=0.8174, Eps=0.222
+[02:46:30] INFO:     Actions: {'no_action': 111, 'repair_value': 1, 'delete': 12, 'replace_nearby': 10}
+[02:51:17] INFO:   Episode 350/400: Score=0.7552, Best=0.8174, Eps=0.173
+[02:51:17] INFO:     Actions: {'no_action': 85, 'repair_value': 0, 'delete': 10, 'replace_nearby': 10}
+[02:55:00] INFO:   Episode 400/400: Score=0.7697, Best=0.8195, Eps=0.135
+[02:55:00] INFO:     Actions: {'no_action': 80, 'repair_value': 2, 'delete': 11, 'replace_nearby': 19}
+[02:55:00] INFO: 
+已恢复最佳模型权重 (Episode 395, Score=0.8195, Cost=0)
+[02:55:00] INFO: 
+训练完成! 最佳分数: 0.8195 (共 400 episodes)
+[02:55:00] INFO:   最佳动作分布: {'no_action': 73, 'repair_value': 0, 'delete': 19, 'replace_nearby': 3}
+[02:55:00] INFO: 
+训练完成!
+[02:55:00] INFO: 模型已保存: /Users/qianzekai/PycharmProjects/TolerDM/results/demandclean/beers/v6_auto_dueling_two/model/v6_auto_dueling_two_agent.pt
+[02:55:00] INFO: 
+==================================================
+[02:55:00] INFO: 两阶段推理 - 第一阶段 (Plan)
+[02:55:00] INFO: ==================================================
+[1;34m[03:38:38][0m[1;33m WARNING Snoopy may use all CPU cores! Set env. variable 'SNOOPY_LIMIT_CPU' to 'y' to limit CPU usage. [0m[1;34m(__init__ -> _init_tf_pytorch on MainThread)[0m
+[1;34m[03:38:38][0m[2;37m DEBUG   TensorFlow sees: 1 Physical GPUs, 1 Logical GPUs [0m[1;34m(__init__ -> _init_tf_pytorch on MainThread)[0m

@@ -1,0 +1,36 @@
+[2026-02-25 01:16:39,117] INFO - demandclean: ==================================================
+[2026-02-25 01:16:39,117] INFO - demandclean: DemandClean 训练开始
+[2026-02-25 01:16:39,117] INFO - demandclean:   检测器模式: oracle
+[2026-02-25 01:16:39,117] INFO - demandclean:   训练模式: clean_base
+[2026-02-25 01:16:39,117] INFO - demandclean:   Agent类型: single
+[2026-02-25 01:16:39,117] INFO - demandclean:   推理模式: single_phase
+[2026-02-25 01:16:39,117] INFO - demandclean:   FD规则: 4
+[2026-02-25 01:16:39,117] INFO - demandclean:   丰富规则: 有
+[2026-02-25 01:16:39,117] INFO - demandclean: ==================================================
+[2026-02-25 01:16:39,117] INFO - demandclean: 
+[Step 1] 初始化错误检测器...
+[2026-02-25 01:16:39,117] INFO - demandclean: 
+[Step 1.8] 加载续训模型: /Users/qianzekai/PycharmProjects/TolerDM/results/demandclean/beers/v3_oracle_plain_single/model/v3_oracle_plain_single_agent.pt
+[2026-02-25 01:16:39,673] INFO - demandclean:   已训练 6 episodes, best_score=0.0000, epsilon=0.9704
+[2026-02-25 01:16:39,673] INFO - demandclean: 
+[Step 2] 训练 DQN Agent...
+[2026-02-25 01:16:39,673] INFO - demandclean: 续训 (single Agent, mode=clean_base)
+[2026-02-25 01:16:39,673] INFO - demandclean:   任务类型: classification
+[2026-02-25 01:16:39,673] INFO - demandclean:   模型类型: random_forest
+[2026-02-25 01:16:39,673] INFO - demandclean:   原始数据: 2410 行
+[2026-02-25 01:16:39,673] INFO - demandclean:   续训起始轮: 6
+[2026-02-25 01:16:39,673] INFO - demandclean:   基准数据: 1326 行
+[2026-02-25 01:16:39,674] INFO - demandclean:   ErrorInjector: rich_rules=True, domain=3, cfd=0, fd=4
+[2026-02-25 01:16:39,674] INFO - demandclean:   开始训练 DQN (3 episodes, 起始轮=6)...
+[2026-02-25 01:16:41,107] INFO - demandclean: 
+已恢复最佳模型权重 (Episode 8, Score=0.0000, Cost=114)
+[2026-02-25 01:16:41,107] INFO - demandclean: 
+训练完成! 最佳分数: 0.0000 (共 9 episodes)
+[2026-02-25 01:16:41,107] INFO - demandclean:   最佳动作分布: {'no_action': 93, 'repair_value': 114, 'delete': 112, 'replace_nearby': 109}
+[2026-02-25 01:16:41,107] INFO - demandclean: 
+训练完成!
+[2026-02-25 01:16:41,109] INFO - demandclean: 模型已保存: /Users/qianzekai/PycharmProjects/TolerDM/results/demandclean/beers/v3_oracle_plain_single/model/v3_oracle_plain_single_agent.pt
+[2026-02-25 01:16:41,109] INFO - demandclean: 
+==================================================
+[2026-02-25 01:16:41,109] INFO - demandclean: 单阶段推理
+[2026-02-25 01:16:41,109] INFO - demandclean: ==================================================

@@ -1,0 +1,143 @@
+DemandClean 结果摘要 - v3_oracle_plain_single
+============================================================
+
+数据集: smartfactory
+检测器: oracle
+Agent: single_stage
+推理模式: single_phase
+任务: classification (random_forest)
+训练轮数: 50
+执行时间: 4187.29 秒
+数据维度: (23645, 18) -> (23645, 18)
+真值成本: 0
+
+Baseline 对比:
+------------------------------------------------------------
+  NoFix: {'n_samples': 23645, 'rf_accuracy': 0.9706, 'rf_f1': 0.9704, 'lr_accuracy': 0.7701, 'lr_f1': 0.675}
+  DeleteAll: {'n_samples': 16552, 'rf_accuracy': 0.9622, 'rf_f1': 0.9618, 'lr_accuracy': 0.7514, 'lr_f1': 0.652}
+  DeleteFix: {'n_samples': 16552, 'rf_accuracy': 0.9622, 'rf_f1': 0.9618, 'lr_accuracy': 0.7514, 'lr_f1': 0.652}
+  ReplaceAll: {'n_samples': 23645, 'rf_accuracy': 0.9706, 'rf_f1': 0.9704, 'lr_accuracy': 0.7701, 'lr_f1': 0.675}
+  DemandClean: {'n_samples': 23645, 'rf_accuracy': 0.9706, 'rf_f1': 0.9704, 'lr_accuracy': 0.7701, 'lr_f1': 0.675}
+  FullFix: {'n_samples': 23645, 'rf_accuracy': 0.9808, 'rf_f1': 0.9808, 'lr_accuracy': 0.7739, 'lr_f1': 0.6818}
+
+模型容忍度:
+------------------------------------------------------------
+  rf: {'P_clean': 0.980757031084796, 'P_dirty': 0.9775851131317403, 'P_dc': 0.9775851131317403, 'tolerance_prior': 1.0, 'tolerance_post': 0.0}
+  lr: {'P_clean': 0.7739479805455699, 'P_dirty': 0.771198984986255, 'P_dc': 0.771198984986255, 'tolerance_prior': 1.0, 'tolerance_post': 0.0}
+
+检测器准确率:
+------------------------------------------------------------
+  overall: {'precision': 1.0, 'recall': 1.0, 'f1': 1.0, 'tp': 7093, 'fp': 0, 'fn': 0, 'gt_count': 7093, 'det_count': 7093}
+  missing: {'precision': 1.0, 'recall': 1.0, 'f1': 1.0, 'tp': 7093, 'fp': 0, 'fn': 0, 'gt_count': 7093, 'det_count': 7093}
+  syntactic: {'precision': 0.0, 'recall': 0.0, 'f1': 0.0, 'tp': 0, 'fp': 0, 'fn': 0, 'gt_count': 0, 'det_count': 0}
+  semantic: {'precision': 0.0, 'recall': 0.0, 'f1': 0.0, 'tp': 0, 'fp': 0, 'fn': 0, 'gt_count': 0, 'det_count': 0}
+  value_error_combined: {'precision': 0.0, 'recall': 0.0, 'f1': 0.0, 'tp': 0, 'fp': 0, 'fn': 0, 'gt_count': 0, 'det_count': 0}
+  ground_truth_total: 7093
+  detected_total: 7093
+
+Clean4MLBaseline 统一测评:
+------------------------------------------------------------
+  accuracy: 0.0
+  recall: 0.0
+  f1_score: 0.0
+  edr: -6.766389397998026
+  hybrid_distance: 200958.14436961187
+  r_edr: -2.326801071478923
+
+  下游任务性能:
+    ml_rf_accuracy: 0.970606893635018
+    ml_rf_f1: 0.9703849050397858
+    ml_lr_accuracy: 0.7701416790019031
+    ml_lr_f1: 0.6749503130491109
+    ml_svm_accuracy: 0.7771198984986255
+    ml_svm_f1: 0.6868334405099413
+    ml_knn_accuracy: 0.8117995347853669
+    ml_knn_f1: 0.8041547698258751
+    ml_dt_accuracy: 0.9509410023260731
+    ml_dt_f1: 0.9511444701246452
+    ml_gb_accuracy: 0.8022837809262
+    ml_gb_f1: 0.7457657556861097
+
+  容忍度:
+    tolerance_P_do_nothing: 0.7483611757242546
+    tolerance_P_demand_clean: 0.7802918164516811
+    tolerance_P_repair_all: 0.9816028758722775
+    tolerance_tolerance_prior: 1.0426674201751907
+    tolerance_tolerance_post: 0.1368993653671802
+
+  Snoopy 上界:
+    snoopy_snoopy_available: True
+    snoopy_upper_bound_dirty: 0.7222668640304504
+    snoopy_upper_bound_cleaned: 0.7132586170437725
+    snoopy_upper_bound_clean: 0.7009938676252907
+    snoopy_upper_bound_improvement: 0.42345924453280087
+
+  真值成本:
+    method_type: 1
+    ground_truth_cost: 0
+    ideal_total_changes: 78732
+    ideal_correct_repairs: 0
+    ideal_wrong_repairs: 78732
+    ideal_deleted_rows: 0
+    ideal_ideal_min_ground_truth_cost: 0
+    ideal_repair_accuracy: 0.0
+
+============================================================
+Shapley 贡献分析:
+============================================================
+# Shapley Value Analysis Report
+
+- 数据规模: 5000 行 × 18 列
+- 错误总数: 1499
+- 任务类型: classification (random_forest)
+- MC 采样次数: 50
+
+## 维度 1: 动作重要性 (Action Importance)
+
+| 排名 | 动作 | Shapley 值 | 占比 | 方向 |
+|------|------|-----------|------|------|
+| 1 | no_action | +0.000000 | 0.0% | — 无影响 |
+| 2 | repair_value | +0.000000 | 0.0% | — 无影响 |
+| 3 | delete | +0.000000 | 0.0% | — 无影响 |
+| 4 | replace_nearby | +0.000000 | 0.0% | — 无影响 |
+
+**结论**: 最有效的清洗动作是 **no_action**
+
+## 维度 2: 特征重要性 (Feature Importance)
+
+| 排名 | 特征 | Shapley 值 | 占比 | 清洗价值 |
+|------|------|-----------|------|---------|
+| 1 | o_w_bhl_voltage | +0.000053 | 9.3% | — 可忽略 |
+| 2 | o_w_hr_power | +0.000049 | 8.6% | — 可忽略 |
+| 3 | i_w_bhl_weg | +0.000041 | 7.2% | — 可忽略 |
+| 4 | o_w_blo_power | +0.000033 | 5.7% | — 可忽略 |
+| 5 | o_w_bhr_power | +0.000029 | 5.0% | — 可忽略 |
+| 6 | o_w_bru_voltage | +0.000021 | 3.6% | — 可忽略 |
+| 7 | o_w_blo_voltage | +0.000020 | 3.6% | — 可忽略 |
+| 8 | o_w_bhl_power | +0.000020 | 3.5% | — 可忽略 |
+| 9 | i_w_hr_weg | +0.000016 | 2.9% | — 可忽略 |
+| 10 | i_w_blo_weg | +0.000004 | 0.7% | — 可忽略 |
+| 11 | i_w_bru_weg | +0.000000 | 0.0% | — 可忽略 |
+| 12 | i_w_bhr_weg | +0.000000 | 0.0% | — 可忽略 |
+| 13 | o_w_bhr_voltage | +0.000000 | 0.0% | — 可忽略 |
+| 14 | o_w_bru_power | +0.000000 | 0.0% | — 可忽略 |
+| 15 | o_w_hr_voltage | -0.000004 | 0.7% | — 可忽略 |
+| 16 | o_w_hl_voltage | -0.000082 | 14.3% | — 可忽略 |
+| 17 | o_w_hl_power | -0.000098 | 17.2% | — 可忽略 |
+| 18 | i_w_hl_weg | -0.000102 | 17.7% | — 可忽略 |
+
+**结论**: 
+- 清洗价值极低的特征: o_w_bhl_voltage, o_w_hr_power, i_w_bhl_weg（清洗它们几乎不影响性能）
+
+## 维度 3: 错误类型重要性 (Error Type Importance)
+
+| 排名 | 错误类型 | Shapley 值 | 占比 | 优先级 |
+|------|---------|-----------|------|--------|
+| 1 | missing | +0.000000 | 0.0% | 🟢 低 |
+
+**结论**: 对下游性能影响最大的错误类型是 **missing**，检测器应优先识别此类错误。
+
+## 综合清洗建议
+
+在有限的真值预算下，建议优先对 **o_w_bhl_voltage, o_w_hr_power, i_w_bhl_weg** 列中的 **missing** 类型错误执行 **no_action** 操作，以最大化下游 classification 任务性能。
+

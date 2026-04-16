@@ -1,0 +1,358 @@
+[日志] 完整输出将保存到: /Users/qianzekai/PycharmProjects/TolerDM/logs/demandclean/beers_ep3_20260225_010839.log
+======================================================================
+DemandClean 统一运行脚本
+======================================================================
+数据集: ['beers']
+启用版本: ['v3_oracle_plain_single']
+训练轮数: 3
+详细输出: True
+======================================================================
+
+######################################################################
+# 数据集: beers
+######################################################################
+  数据集: beers
+  脏数据: (2410, 8), 干净数据: (2410, 8)
+  特征列: 8, 标签列: style
+  FD规则: 0 条
+
+======================================================================
+版本: v3_oracle_plain_single
+数据集: beers | 任务: classification | 模型: random_forest
+检测器: oracle | Agent: single_stage | 推理: single_phase
+训练轮数: 3 | 输出目录: /Users/qianzekai/PycharmProjects/TolerDM/results/demandclean/beers/v3_oracle_plain_single
+======================================================================
+
+[Step 1] 创建 DemandClean 实例...
+
+[Step 2] 续训 (检测到已有模型: /Users/qianzekai/PycharmProjects/TolerDM/results/demandclean/beers/v3_oracle_plain_single/model/v3_oracle_plain_single_agent.pt)...
+  已有训练历史: 3 episodes
+  新增训练: 3 episodes
+[OracleDetector] fit() 无操作，Oracle 不需要训练
+  模型已保存: /Users/qianzekai/PycharmProjects/TolerDM/results/demandclean/beers/v3_oracle_plain_single/model/v3_oracle_plain_single_agent.pt
+  训练历史已保存: /Users/qianzekai/PycharmProjects/TolerDM/results/demandclean/beers/v3_oracle_plain_single/report/v3_oracle_plain_single_history.json
+
+[Step 3] 推理 (模式: single_phase)...
+
+[OracleDetector] 检测完成:
+  缺失值:     1196 个
+  语义错误:   3229 个
+  句法错误:   0 个
+  标签噪声:   2 个
+  共计:       4427 个错误  (特征: 4425/19280=22.95%, 标签: 2/2410=0.08%)
+
+============================================================
+单阶段推理
+============================================================
+  算法: DQN (Single Stage)
+  任务类型: classification
+  下游模型: random_forest
+  检测到的错误: 4427 个 (missing=1196, semantic=3229, syntactic=0, label=2)
+
+  推理进度: [====================] 4427/4427
+
+  动作分布 (共 2589 个错误):
+    no_action          660 ( 25.5%) ██████████
+    repair_value         1 (  0.0%) 
+    delete            1928 ( 74.5%) █████████████████████████████
+    replace_nearby       0 (  0.0%) 
+
+  动作降级: 660 次
+    行2083: delete → no_action
+    行1386: delete → no_action
+    行227: delete → no_action
+    行1391: delete → no_action
+    行458: delete → no_action
+    ... 共 660 次降级
+
+  修复明细 (repair_value): 共 1 条
+    行        列      脏值           → 修复值          错误类型      
+    -------------------------------------------------------
+    1051     -1     1.0000       → 0.0000       label_noise
+
+  删除明细 (delete): 共 1928 条
+    行        列      脏值           错误类型      
+    ----------------------------------------
+    711      1      0.2974       semantic  
+    1572     2      2.3294       semantic  
+    252      1      -0.1953      semantic  
+    1698     3      NaN          missing   
+    1774     1      0.0510       semantic  
+    369      3      NaN          missing   
+    660      1      0.2974       semantic  
+    55       2      -0.6984      semantic  
+    1709     1      -0.4416      semantic  
+    1421     1      2.0217       semantic  
+    1634     3      NaN          missing   
+    1378     1      1.2827       semantic  
+    1927     1      -0.4416      semantic  
+    1038     1      1.7754       semantic  
+    173      1      -0.1953      semantic  
+    1829     3      NaN          missing   
+    851      2      -1.4554      semantic  
+    2106     1      1.2827       semantic  
+    206      3      NaN          missing   
+    1708     1      1.5290       semantic  
+    2213     3      NaN          missing   
+    375      2      0.0585       semantic  
+    727      2      0.8155       semantic  
+    1944     1      1.5290       semantic  
+    1398     1      -0.1953      semantic  
+    1101     2      0.8155       semantic  
+    1682     1      0.2974       semantic  
+    2067     1      2.0217       semantic  
+    2184     1      0.0510       semantic  
+    388      1      1.7754       semantic  
+    ... 省略 1898 条
+  真值使用: 1
+  动作分布: {'no_action': 660, 'repair_value': 1, 'delete': 1928, 'replace_nearby': 0}
+  清洗后数据已保存: /Users/qianzekai/PycharmProjects/TolerDM/results/demandclean/beers/v3_oracle_plain_single/data/v3_oracle_plain_single_cleaned.csv
+  原始格式清洗数据已保存: /Users/qianzekai/PycharmProjects/TolerDM/results/demandclean/beers/v3_oracle_plain_single/data/v3_oracle_plain_single_cleaned_original.csv
+
+[Step 4] 检测器准确率评估...
+
+[OracleDetector] 检测完成:
+  缺失值:     1196 个
+  语义错误:   3229 个
+  句法错误:   0 个
+  标签噪声:   2 个
+  共计:       4427 个错误  (特征: 4425/19280=22.95%, 标签: 2/2410=0.08%)
+
+============================================================
+检测器准确率评估
+============================================================
+真实错误总数: 4425 (缺失: 1196, 值错误: 3229)
+检测报告总数: 4425 (missing: 1196, syntactic: 0, semantic: 3229)
+------------------------------------------------------------
+
+  [总体]
+    Precision = 1.0000  |  Recall = 1.0000  |  F1 = 1.0000
+    TP=4425  FP=0  FN=0  (GT=4425, Det=4425)
+
+  [缺失值 (missing)]
+    Precision = 1.0000  |  Recall = 1.0000  |  F1 = 1.0000
+    TP=1196  FP=0  FN=0  (GT=1196, Det=1196)
+
+  [句法错误 (syntactic)]
+    Precision = 0.0000  |  Recall = 0.0000  |  F1 = 0.0000
+    TP=0  FP=0  FN=3229  (GT=3229, Det=0)
+
+  [语义错误 (semantic)]
+    Precision = 1.0000  |  Recall = 1.0000  |  F1 = 1.0000
+    TP=3229  FP=0  FN=0  (GT=3229, Det=3229)
+
+  [值错误合并 (syntactic+semantic)]
+    Precision = 1.0000  |  Recall = 1.0000  |  F1 = 1.0000
+    TP=3229  FP=0  FN=0  (GT=3229, Det=3229)
+
+[Step 5] Baseline 评估与可视化...
+  DeleteFix: 删除 1928 行, 保留 482 行
+
+============================================================
+Baseline 对比评估 - v3_oracle_plain_single
+============================================================
+  NoFix          : rf_accuracy=0.3693 | rf_f1=0.3307 | lr_accuracy=0.2635 | lr_f1=0.1761
+  DeleteAll      : rf_accuracy=0.4528 | rf_f1=0.3939 | lr_accuracy=0.3283 | lr_f1=0.2568
+  DeleteFix      : rf_accuracy=0.4433 | rf_f1=0.4166 | lr_accuracy=0.3505 | lr_f1=0.3194
+  ReplaceAll     : rf_accuracy=0.3693 | rf_f1=0.3307 | lr_accuracy=0.2635 | lr_f1=0.1761
+  DemandClean    : rf_accuracy=0.3608 | rf_f1=0.32 | lr_accuracy=0.3196 | lr_f1=0.2404
+  FullFix        : rf_accuracy=0.3734 | rf_f1=0.3361 | lr_accuracy=0.2635 | lr_f1=0.1749
+  [可视化] Baseline 对比图已保存: /Users/qianzekai/PycharmProjects/TolerDM/results/demandclean/beers/v3_oracle_plain_single/visualization/v3_oracle_plain_single_baseline_comparison.png
+
+[Step 6] 模型容忍度评估...
+============================================================
+模型容忍度计算 - v3_oracle_plain_single
+任务类型: classification  |  模型列表: ['rf', 'lr']
+============================================================
+
+--- 模型: RF ---
+  P_clean  = 0.3817
+  P_dirty  = 0.3838
+  P_dc     = 0.0664
+  先验容忍度 (P_dc / P_dirty)            = 0.1730
+  后验容忍度 (P_dc-P_dirty)/(P_clean-P_dirty) = 153.0000
+
+--- 模型: LR ---
+  P_clean  = 0.2718
+  P_dirty  = 0.2801
+  P_dc     = 0.1432
+  先验容忍度 (P_dc / P_dirty)            = 0.5111
+  后验容忍度 (P_dc-P_dirty)/(P_clean-P_dirty) = 16.5000
+  容忍度柱状图已保存: /Users/qianzekai/PycharmProjects/TolerDM/results/demandclean/beers/v3_oracle_plain_single/visualization/v3_oracle_plain_single_tolerance_bar.png
+
+[Step 7] Shapley 三维度分析...
+============================================================
+DemandClean - 三维度 Shapley 分析
+============================================================
+  数据: 2410 行 x 8 列
+  错误数: 4427
+  错误分布: {'missing': 1196, 'semantic': 3229, 'unknown': 2}
+  输出目录: /Users/qianzekai/PycharmProjects/TolerDM/results/demandclean/beers/v3_oracle_plain_single/evaluation/shapley
+
+[Shapley] 维度1: 动作重要性 (精确枚举 4!=24 排列) ...
+[Shapley] 图表已保存: /Users/qianzekai/PycharmProjects/TolerDM/results/demandclean/beers/v3_oracle_plain_single/evaluation/shapley/shapley_action_importance.png
+  动作重要性 Shapley 值:
+    delete              : +0.146701
+    no_action           : +0.084201
+    replace_nearby      : +0.084201
+    repair_value        : +0.049479
+
+[Shapley] 维度2: 跳过特征 Shapley（计算量过大，仅保留维度1和维度3）
+[Shapley] 维度3: 错误类型重要性 (精确枚举 3!=6 排列) ...
+[Shapley] 图表已保存: /Users/qianzekai/PycharmProjects/TolerDM/results/demandclean/beers/v3_oracle_plain_single/evaluation/shapley/shapley_error_type_importance.png
+  错误类型重要性 Shapley 值:
+    semantic            : +0.151042
+    label_noise         : +0.151042
+    missing             : +0.000000
+
+[Shapley] JSON 结果已保存: /Users/qianzekai/PycharmProjects/TolerDM/results/demandclean/beers/v3_oracle_plain_single/evaluation/shapley/shapley_results.json
+[Shapley] Markdown 报告已保存: /Users/qianzekai/PycharmProjects/TolerDM/results/demandclean/beers/v3_oracle_plain_single/evaluation/shapley/shapley_report.md
+
+============================================================
+Shapley 分析完成!
+============================================================
+# Shapley Value Analysis Report
+
+- 数据规模: 2410 行 × 8 列
+- 错误总数: 4427
+- 任务类型: classification (random_forest)
+- MC 采样次数: 200
+
+## 维度 1: 动作重要性 (Action Importance)
+
+| 排名 | 动作 | Shapley 值 | 占比 | 方向 |
+|------|------|-----------|------|------|
+| 1 | delete | +0.146701 | 40.2% | ↑ 正贡献 |
+| 2 | no_action | +0.084201 | 23.1% | ↑ 正贡献 |
+| 3 | replace_nearby | +0.084201 | 23.1% | ↑ 正贡献 |
+| 4 | repair_value | +0.049479 | 13.6% | ↑ 正贡献 |
+
+**结论**: 最有效的清洗动作是 **delete**
+
+## 维度 2: 特征重要性 (Feature Importance)
+
+| 排名 | 特征 | Shapley 值 | 占比 | 清洗价值 |
+|------|------|-----------|------|---------|
+| 1 | beer_name | +0.000000 | 0.0% | — 可忽略 |
+| 2 | ounces | +0.000000 | 0.0% | — 可忽略 |
+| 3 | abv | +0.000000 | 0.0% | — 可忽略 |
+| 4 | ibu | +0.000000 | 0.0% | — 可忽略 |
+| 5 | brewery_id | +0.000000 | 0.0% | — 可忽略 |
+| 6 | brewery_name | +0.000000 | 0.0% | — 可忽略 |
+| 7 | city | +0.000000 | 0.0% | — 可忽略 |
+| 8 | state | +0.000000 | 0.0% | — 可忽略 |
+
+**结论**: 
+- 清洗价值极低的特征: beer_name, ounces, abv（清洗它们几乎不影响性能）
+
+## 维度 3: 错误类型重要性 (Error Type Importance)
+
+| 排名 | 错误类型 | Shapley 值 | 占比 | 优先级 |
+|------|---------|-----------|------|--------|
+| 1 | semantic | +0.151042 | 50.0% | 🔴 高 |
+| 2 | label_noise | +0.151042 | 50.0% | 🔴 高 |
+| 3 | missing | +0.000000 | 0.0% | 🟢 低 |
+
+**结论**: 对下游性能影响最大的错误类型是 **semantic**，检测器应优先识别此类错误。
+
+## 综合清洗建议
+
+
+
+  输出文件:
+    /Users/qianzekai/PycharmProjects/TolerDM/results/demandclean/beers/v3_oracle_plain_single/evaluation/shapley/shapley_action_importance.png
+    /Users/qianzekai/PycharmProjects/TolerDM/results/demandclean/beers/v3_oracle_plain_single/evaluation/shapley/shapley_feature_importance.png
+    /Users/qianzekai/PycharmProjects/TolerDM/results/demandclean/beers/v3_oracle_plain_single/evaluation/shapley/shapley_error_type_importance.png
+    /Users/qianzekai/PycharmProjects/TolerDM/results/demandclean/beers/v3_oracle_plain_single/evaluation/shapley/shapley_results.json
+    /Users/qianzekai/PycharmProjects/TolerDM/results/demandclean/beers/v3_oracle_plain_single/evaluation/shapley/shapley_report.md
+============================================================
+
+[Step 8] 训练曲线可视化...
+  [可视化] 训练曲线已保存: /Users/qianzekai/PycharmProjects/TolerDM/results/demandclean/beers/v3_oracle_plain_single/visualization/v3_oracle_plain_single_training_curves.png
+
+[Step 9] Clean4MLBaseline 统一测评...
+======================================================================
+Clean4MLBaseline 统一测评 - v3_oracle_plain_single
+======================================================================
+
+[1/5] 传统清洗指标
+--------------------------------------------------
+差异文件已保存到:
+/Users/qianzekai/PycharmProjects/TolerDM/results/demandclean/beers/v3_oracle_plain_single/evaluation/v3_oracle_plain_single_clean_vs_dirty.csv
+/Users/qianzekai/PycharmProjects/TolerDM/results/demandclean/beers/v3_oracle_plain_single/evaluation/v3_oracle_plain_single_dirty_vs_cleaned.csv
+/Users/qianzekai/PycharmProjects/TolerDM/results/demandclean/beers/v3_oracle_plain_single/evaluation/v3_oracle_plain_single_clean_vs_cleaned.csv
+修复错误数据文件已保存到: /Users/qianzekai/PycharmProjects/TolerDM/results/demandclean/beers/v3_oracle_plain_single/evaluation/v3_oracle_plain_single_repair_errors.csv
+未修复但是应该修复数据文件已保存到: /Users/qianzekai/PycharmProjects/TolerDM/results/demandclean/beers/v3_oracle_plain_single/evaluation/v3_oracle_plain_single_unrepaired.csv
+修复准确率: 0.014925373134328358, 修复召回率: 0.0036101083032490976, F1值: 0.005813953457005475
+========================================
+EDR 结果已保存到: /Users/qianzekai/PycharmProjects/TolerDM/results/demandclean/beers/v3_oracle_plain_single/evaluation/v3_oracle_plain_single_edr_evaluation.txt
+错误减少率 (EDR): -0.22563176895306858
+========================================
+混合距离结果已保存到: /Users/qianzekai/PycharmProjects/TolerDM/results/demandclean/beers/v3_oracle_plain_single/evaluation/v3_oracle_plain_single_hybrid_distance_evaluation.txt
+混合距离 (Hybrid Distance): 0.058355758347299475
+========================================
+R-EDR 结果已保存到: /Users/qianzekai/PycharmProjects/TolerDM/results/demandclean/beers/v3_oracle_plain_single/evaluation/v3_oracle_plain_single_record_based_edr_evaluation.txt
+基于条目的错误减少率 (R-EDR): 0.0
+========================================
+
+[2/5] 下游任务性能 (classification)
+--------------------------------------------------
+警告: 清洗后数据行数(482)与干净数据行数(2410)不一致
+将使用清洗后数据自身进行评估（行对齐）
+通过索引对齐，使用 482 行数据进行评估
+RF - Accuracy: 0.3505, F1: 0.2940, Precision: 0.2731, Recall: 0.3505
+LR - Accuracy: 0.2887, F1: 0.2088, Precision: 0.1720, Recall: 0.2887
+SVM - Accuracy: 0.3093, F1: 0.1966, Precision: 0.1511, Recall: 0.3093
+KNN - Accuracy: 0.1856, F1: 0.1402, Precision: 0.1151, Recall: 0.1856
+DT - Accuracy: 0.2371, F1: 0.2289, Precision: 0.2284, Recall: 0.2371
+GB - Accuracy: 0.2784, F1: 0.2540, Precision: 0.2487, Recall: 0.2784
+
+[3/5] 模型容忍度
+--------------------------------------------------
+
+容忍度计算结果:
+  P_do_nothing (脏数据性能): 0.3797
+  P_demand_clean (清洗后性能): 0.2680
+  P_repair_all (完全修复性能): 0.3859
+  先验容忍度 (Tolerance_prior): 0.7060
+  后验容忍度 (Tolerance_post): -17.9347
+
+[4/5] Snoopy上界评估
+--------------------------------------------------
+Snoopy模块可用，正在评估数据质量上界...
+  脏数据上界: 0.2606
+  清洗后上界: 0.2863
+  干净数据上界: 0.2581
+  上界提升比例: -10.3121
+
+[5/5] 真值使用成本
+--------------------------------------------------
+  方法类型: Type 1 (全自动)
+  实际真值使用: 1
+  理想最小成本: 2
+  总修改单元格: 494
+  正确修复: 2
+  错误修复: 492
+
+======================================================================
+测评完成，结果已保存到: /Users/qianzekai/PycharmProjects/TolerDM/results/demandclean/beers/v3_oracle_plain_single/evaluation/v3_oracle_plain_single_evaluation_results.txt
+======================================================================
+  统一测评完成，结果已保存到: /Users/qianzekai/PycharmProjects/TolerDM/results/demandclean/beers/v3_oracle_plain_single/v3_oracle_plain_single_evaluation_results.txt
+
+[Step 10] 真值成本汇总...
+  RAHA 检测成本: 0
+  Agent 修复成本: 1
+  总成本: 1 / 19280 cells = 0.0052%
+
+  [输出] 报告已保存: /Users/qianzekai/PycharmProjects/TolerDM/results/demandclean/beers/v3_oracle_plain_single/report/v3_oracle_plain_single_report.json
+
+  版本 v3_oracle_plain_single 完成! 耗时: 25.36s
+  输出目录: /Users/qianzekai/PycharmProjects/TolerDM/results/demandclean/beers/v3_oracle_plain_single
+
+  只有 1 个版本完成，跳过跨版本对比
+
+======================================================================
+全部完成! 总耗时: 46.91s
+结果目录: /Users/qianzekai/PycharmProjects/TolerDM/results/demandclean
+日志文件: /Users/qianzekai/PycharmProjects/TolerDM/logs/demandclean/beers_ep3_20260225_010839.log
+======================================================================

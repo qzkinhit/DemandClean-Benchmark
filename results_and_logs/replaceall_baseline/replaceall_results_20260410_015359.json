@@ -1,0 +1,30 @@
+[
+  {
+    "dataset": "smartfactory",
+    "task_type": "classification",
+    "n_errors": 4324,
+    "n_train": 14187,
+    "n_test": 4729,
+    "authenticity": 0.9970591229842657,
+    "elapsed_time": 13.75,
+    "truth_cost": 0,
+    "replaceall": {
+      "rf_accuracy": 0.9629942905476845,
+      "rf_f1": 0.9626555458845044,
+      "lr_accuracy": 0.7623176147176993,
+      "lr_f1": 0.6659004305183669
+    },
+    "nofix": {
+      "rf_accuracy": 0.9613026009727215,
+      "rf_f1": 0.9607827460824603,
+      "lr_accuracy": 0.7595686191583845,
+      "lr_f1": 0.6576589062241166
+    },
+    "fullfix": {
+      "rf_accuracy": 0.9663776696976105,
+      "rf_f1": 0.9661023704739319,
+      "lr_accuracy": 0.7627405371114401,
+      "lr_f1": 0.6668619629789776
+    }
+  }
+]

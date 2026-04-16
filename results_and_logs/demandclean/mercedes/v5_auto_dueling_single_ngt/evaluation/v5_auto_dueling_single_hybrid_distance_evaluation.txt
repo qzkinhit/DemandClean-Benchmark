@@ -1,0 +1,747 @@
+Attribute: index, MSE: nan, Jaccard: 0.0
+Attribute: X0, MSE: nan, Jaccard: 0.9980405960342602
+Attribute: X1, MSE: nan, Jaccard: 0.99940911044263
+Attribute: X2, MSE: nan, Jaccard: 0.9998179322708047
+Attribute: X3, MSE: nan, Jaccard: 0.9910981768381409
+Attribute: X4, MSE: nan, Jaccard: 0.5002631578947369
+Attribute: X5, MSE: nan, Jaccard: 0.9999783193131558
+Attribute: X6, MSE: nan, Jaccard: 0.9894731960675199
+Attribute: X8, MSE: nan, Jaccard: 0.9987441860465116
+检查你指定的属性 X10 是否为数值型！
+Attribute: X10, MSE: nan, Jaccard: 0.9939531490001599
+检查你指定的属性 X11 是否为数值型！
+Attribute: X11, MSE: nan, Jaccard: 0.0
+检查你指定的属性 X12 是否为数值型！
+Attribute: X12, MSE: nan, Jaccard: 0.9941864895308773
+检查你指定的属性 X13 是否为数值型！
+Attribute: X13, MSE: nan, Jaccard: 0.9947853207218501
+检查你指定的属性 X14 是否为数值型！
+Attribute: X14, MSE: nan, Jaccard: 0.994311674821235
+检查你指定的属性 X15 是否为数值型！
+Attribute: X15, MSE: nan, Jaccard: 0.9971768277970627
+检查你指定的属性 X16 是否为数值型！
+Attribute: X16, MSE: nan, Jaccard: 0.9945696633083613
+检查你指定的属性 X17 是否为数值型！
+Attribute: X17, MSE: nan, Jaccard: 0.9946076991808451
+检查你指定的属性 X18 是否为数值型！
+Attribute: X18, MSE: nan, Jaccard: 0.9940033416746191
+检查你指定的属性 X19 是否为数值型！
+Attribute: X19, MSE: nan, Jaccard: 0.9945872300506173
+检查你指定的属性 X20 是否为数值型！
+Attribute: X20, MSE: nan, Jaccard: 0.9945712155422255
+检查你指定的属性 X21 是否为数值型！
+Attribute: X21, MSE: nan, Jaccard: 0.9943322098992828
+检查你指定的属性 X22 是否为数值型！
+Attribute: X22, MSE: nan, Jaccard: 0.9946329191333867
+检查你指定的属性 X23 是否为数值型！
+Attribute: X23, MSE: nan, Jaccard: 0.9944203189240743
+检查你指定的属性 X24 是否为数值型！
+Attribute: X24, MSE: nan, Jaccard: 0.9942930581133116
+检查你指定的属性 X26 是否为数值型！
+Attribute: X26, MSE: nan, Jaccard: 0.9943132466936528
+检查你指定的属性 X27 是否为数值型！
+Attribute: X27, MSE: nan, Jaccard: 0.9949488752556237
+检查你指定的属性 X28 是否为数值型！
+Attribute: X28, MSE: nan, Jaccard: 0.9945227393784053
+检查你指定的属性 X29 是否为数值型！
+Attribute: X29, MSE: nan, Jaccard: 0.994811735429861
+检查你指定的属性 X30 是否为数值型！
+Attribute: X30, MSE: nan, Jaccard: 0.9950707835482472
+检查你指定的属性 X31 是否为数值型！
+Attribute: X31, MSE: nan, Jaccard: 0.9943851856023624
+检查你指定的属性 X32 是否为数值型！
+Attribute: X32, MSE: nan, Jaccard: 0.9942278171863704
+检查你指定的属性 X33 是否为数值型！
+Attribute: X33, MSE: nan, Jaccard: 0.9968553459119497
+检查你指定的属性 X34 是否为数值型！
+Attribute: X34, MSE: nan, Jaccard: 0.9948026779422128
+检查你指定的属性 X35 是否为数值型！
+Attribute: X35, MSE: nan, Jaccard: 0.9952563886768925
+检查你指定的属性 X36 是否为数值型！
+Attribute: X36, MSE: nan, Jaccard: 0.995007181632972
+检查你指定的属性 X37 是否为数值型！
+Attribute: X37, MSE: nan, Jaccard: 0.9944185207460319
+检查你指定的属性 X38 是否为数值型！
+Attribute: X38, MSE: nan, Jaccard: 0.9947481462349962
+检查你指定的属性 X39 是否为数值型！
+Attribute: X39, MSE: nan, Jaccard: 0.9936736710741775
+检查你指定的属性 X40 是否为数值型！
+Attribute: X40, MSE: nan, Jaccard: 0.9972210491191299
+检查你指定的属性 X41 是否为数值型！
+Attribute: X41, MSE: nan, Jaccard: 0.9943547826684729
+检查你指定的属性 X42 是否为数值型！
+Attribute: X42, MSE: nan, Jaccard: 0.9942536989440078
+检查你指定的属性 X43 是否为数值型！
+Attribute: X43, MSE: nan, Jaccard: 0.9939362816211612
+检查你指定的属性 X44 是否为数值型！
+Attribute: X44, MSE: nan, Jaccard: 0.9940106107059825
+检查你指定的属性 X45 是否为数值型！
+Attribute: X45, MSE: nan, Jaccard: 0.994930581373871
+检查你指定的属性 X46 是否为数值型！
+Attribute: X46, MSE: nan, Jaccard: 0.9948072689212113
+检查你指定的属性 X47 是否为数值型！
+Attribute: X47, MSE: nan, Jaccard: 0.9972727272727273
+检查你指定的属性 X48 是否为数值型！
+Attribute: X48, MSE: nan, Jaccard: 0.9939916487040913
+检查你指定的属性 X49 是否为数值型！
+Attribute: X49, MSE: nan, Jaccard: 0.9942972570016009
+检查你指定的属性 X50 是否为数值型！
+Attribute: X50, MSE: nan, Jaccard: 0.997317694883628
+检查你指定的属性 X51 是否为数值型！
+Attribute: X51, MSE: nan, Jaccard: 0.9947343044820297
+检查你指定的属性 X52 是否为数值型！
+Attribute: X52, MSE: nan, Jaccard: 0.9948576038725292
+检查你指定的属性 X53 是否为数值型！
+Attribute: X53, MSE: nan, Jaccard: 0.9940796857463524
+检查你指定的属性 X54 是否为数值型！
+Attribute: X54, MSE: nan, Jaccard: 0.9935123293826883
+检查你指定的属性 X55 是否为数值型！
+Attribute: X55, MSE: nan, Jaccard: 0.993988307724145
+检查你指定的属性 X56 是否为数值型！
+Attribute: X56, MSE: nan, Jaccard: 0.994825679989677
+检查你指定的属性 X57 是否为数值型！
+Attribute: X57, MSE: nan, Jaccard: 0.9943610306745004
+检查你指定的属性 X58 是否为数值型！
+Attribute: X58, MSE: nan, Jaccard: 0.9943157731541009
+检查你指定的属性 X59 是否为数值型！
+Attribute: X59, MSE: nan, Jaccard: 0.9973955587770164
+检查你指定的属性 X60 是否为数值型！
+Attribute: X60, MSE: nan, Jaccard: 0.9936275134200709
+检查你指定的属性 X61 是否为数值型！
+Attribute: X61, MSE: nan, Jaccard: 0.9940149358279103
+检查你指定的属性 X62 是否为数值型！
+Attribute: X62, MSE: nan, Jaccard: 0.9945711265478707
+检查你指定的属性 X63 是否为数值型！
+Attribute: X63, MSE: nan, Jaccard: 0.9948774308320703
+检查你指定的属性 X64 是否为数值型！
+Attribute: X64, MSE: nan, Jaccard: 0.9946801722847538
+检查你指定的属性 X65 是否为数值型！
+Attribute: X65, MSE: nan, Jaccard: 0.996742671009772
+检查你指定的属性 X66 是否为数值型！
+Attribute: X66, MSE: nan, Jaccard: 0.9975191191191192
+检查你指定的属性 X67 是否为数值型！
+Attribute: X67, MSE: nan, Jaccard: 0.99748322147651
+检查你指定的属性 X68 是否为数值型！
+Attribute: X68, MSE: nan, Jaccard: 0.9939662742139063
+检查你指定的属性 X69 是否为数值型！
+Attribute: X69, MSE: nan, Jaccard: 0.9946633929195237
+检查你指定的属性 X70 是否为数值型！
+Attribute: X70, MSE: nan, Jaccard: 0.9942888389048897
+检查你指定的属性 X71 是否为数值型！
+Attribute: X71, MSE: nan, Jaccard: 0.9946766754979884
+检查你指定的属性 X73 是否为数值型！
+Attribute: X73, MSE: nan, Jaccard: 0.9940018979499239
+检查你指定的属性 X74 是否为数值型！
+Attribute: X74, MSE: nan, Jaccard: 0.9937662781264677
+检查你指定的属性 X75 是否为数值型！
+Attribute: X75, MSE: nan, Jaccard: 0.9945002663489944
+检查你指定的属性 X76 是否为数值型！
+Attribute: X76, MSE: nan, Jaccard: 0.9975948071620603
+检查你指定的属性 X77 是否为数值型！
+Attribute: X77, MSE: nan, Jaccard: 0.9948051948051948
+检查你指定的属性 X78 是否为数值型！
+Attribute: X78, MSE: nan, Jaccard: 0.9943056703609398
+检查你指定的属性 X79 是否为数值型！
+Attribute: X79, MSE: nan, Jaccard: 0.9970870644082426
+检查你指定的属性 X80 是否为数值型！
+Attribute: X80, MSE: nan, Jaccard: 0.9945699548000932
+检查你指定的属性 X81 是否为数值型！
+Attribute: X81, MSE: nan, Jaccard: 0.9945382936547119
+检查你指定的属性 X82 是否为数值型！
+Attribute: X82, MSE: nan, Jaccard: 0.9942767905001901
+检查你指定的属性 X83 是否为数值型！
+Attribute: X83, MSE: nan, Jaccard: 0.9938116493668515
+检查你指定的属性 X84 是否为数值型！
+Attribute: X84, MSE: nan, Jaccard: 0.9974698535745047
+检查你指定的属性 X85 是否为数值型！
+Attribute: X85, MSE: nan, Jaccard: 0.9971355475352917
+检查你指定的属性 X86 是否为数值型！
+Attribute: X86, MSE: nan, Jaccard: 0.9944993243114638
+检查你指定的属性 X87 是否为数值型！
+Attribute: X87, MSE: nan, Jaccard: 0.9960578804756887
+检查你指定的属性 X88 是否为数值型！
+Attribute: X88, MSE: nan, Jaccard: 0.9947421161214265
+检查你指定的属性 X89 是否为数值型！
+Attribute: X89, MSE: nan, Jaccard: 0.9956986369134544
+检查你指定的属性 X90 是否为数值型！
+Attribute: X90, MSE: nan, Jaccard: 0.9949994437320311
+检查你指定的属性 X91 是否为数值型！
+Attribute: X91, MSE: nan, Jaccard: 0.9944412750481352
+检查你指定的属性 X92 是否为数值型！
+Attribute: X92, MSE: nan, Jaccard: 0.9973670352817272
+检查你指定的属性 X93 是否为数值型！
+Attribute: X93, MSE: nan, Jaccard: 0.0
+检查你指定的属性 X94 是否为数值型！
+Attribute: X94, MSE: nan, Jaccard: 0.9943088806820928
+检查你指定的属性 X95 是否为数值型！
+Attribute: X95, MSE: nan, Jaccard: 0.9972778537252222
+检查你指定的属性 X96 是否为数值型！
+Attribute: X96, MSE: nan, Jaccard: 0.9940992358755517
+检查你指定的属性 X97 是否为数值型！
+Attribute: X97, MSE: nan, Jaccard: 0.994623549903053
+检查你指定的属性 X98 是否为数值型！
+Attribute: X98, MSE: nan, Jaccard: 0.9940782040492246
+检查你指定的属性 X99 是否为数值型！
+Attribute: X99, MSE: nan, Jaccard: 0.9947853056501896
+检查你指定的属性 X100 是否为数值型！
+Attribute: X100, MSE: nan, Jaccard: 0.9942983731359268
+检查你指定的属性 X101 是否为数值型！
+Attribute: X101, MSE: nan, Jaccard: 0.9949582073047382
+检查你指定的属性 X102 是否为数值型！
+Attribute: X102, MSE: nan, Jaccard: 0.9953062615639303
+检查你指定的属性 X103 是否为数值型！
+Attribute: X103, MSE: nan, Jaccard: 0.9945267783886294
+检查你指定的属性 X104 是否为数值型！
+Attribute: X104, MSE: nan, Jaccard: 0.9968354430379747
+检查你指定的属性 X105 是否为数值型！
+Attribute: X105, MSE: nan, Jaccard: 0.9947212828429997
+检查你指定的属性 X106 是否为数值型！
+Attribute: X106, MSE: nan, Jaccard: 0.9943909616557653
+检查你指定的属性 X107 是否为数值型！
+Attribute: X107, MSE: nan, Jaccard: 0.0
+检查你指定的属性 X108 是否为数值型！
+Attribute: X108, MSE: nan, Jaccard: 0.9948422614304215
+检查你指定的属性 X109 是否为数值型！
+Attribute: X109, MSE: nan, Jaccard: 0.9975690880106902
+检查你指定的属性 X110 是否为数值型！
+Attribute: X110, MSE: nan, Jaccard: 0.9936025334769165
+检查你指定的属性 X111 是否为数值型！
+Attribute: X111, MSE: nan, Jaccard: 0.9971580269611137
+检查你指定的属性 X112 是否为数值型！
+Attribute: X112, MSE: nan, Jaccard: 0.9976190476190476
+检查你指定的属性 X113 是否为数值型！
+Attribute: X113, MSE: nan, Jaccard: 0.9946969242836289
+检查你指定的属性 X114 是否为数值型！
+Attribute: X114, MSE: nan, Jaccard: 0.9942068613428383
+检查你指定的属性 X115 是否为数值型！
+Attribute: X115, MSE: nan, Jaccard: 0.9946613873087613
+检查你指定的属性 X116 是否为数值型！
+Attribute: X116, MSE: nan, Jaccard: 0.994781993525999
+检查你指定的属性 X117 是否为数值型！
+Attribute: X117, MSE: nan, Jaccard: 0.9941640231404362
+检查你指定的属性 X118 是否为数值型！
+Attribute: X118, MSE: nan, Jaccard: 0.9945623189459777
+检查你指定的属性 X119 是否为数值型！
+Attribute: X119, MSE: nan, Jaccard: 0.9945495707104376
+检查你指定的属性 X120 是否为数值型！
+Attribute: X120, MSE: nan, Jaccard: 0.9948775734982631
+检查你指定的属性 X122 是否为数值型！
+Attribute: X122, MSE: nan, Jaccard: 0.9970114942528736
+检查你指定的属性 X123 是否为数值型！
+Attribute: X123, MSE: nan, Jaccard: 0.9973868418045696
+检查你指定的属性 X124 是否为数值型！
+Attribute: X124, MSE: nan, Jaccard: 0.9939441811479727
+检查你指定的属性 X125 是否为数值型！
+Attribute: X125, MSE: nan, Jaccard: 0.9949672627772892
+检查你指定的属性 X126 是否为数值型！
+Attribute: X126, MSE: nan, Jaccard: 0.993902299616666
+检查你指定的属性 X127 是否为数值型！
+Attribute: X127, MSE: nan, Jaccard: 0.9944654096255954
+检查你指定的属性 X128 是否为数值型！
+Attribute: X128, MSE: nan, Jaccard: 0.9938685070958435
+检查你指定的属性 X129 是否为数值型！
+Attribute: X129, MSE: nan, Jaccard: 0.9946116669306443
+检查你指定的属性 X130 是否为数值型！
+Attribute: X130, MSE: nan, Jaccard: 0.994439902996778
+检查你指定的属性 X131 是否为数值型！
+Attribute: X131, MSE: nan, Jaccard: 0.994685025601598
+检查你指定的属性 X132 是否为数值型！
+Attribute: X132, MSE: nan, Jaccard: 0.9944391062994314
+检查你指定的属性 X133 是否为数值型！
+Attribute: X133, MSE: nan, Jaccard: 0.9971462169448747
+检查你指定的属性 X134 是否为数值型！
+Attribute: X134, MSE: nan, Jaccard: 0.994033510011034
+检查你指定的属性 X135 是否为数值型！
+Attribute: X135, MSE: nan, Jaccard: 0.997598627787307
+检查你指定的属性 X136 是否为数值型！
+Attribute: X136, MSE: nan, Jaccard: 0.9942635731645684
+检查你指定的属性 X137 是否为数值型！
+Attribute: X137, MSE: nan, Jaccard: 0.9944757211643258
+检查你指定的属性 X138 是否为数值型！
+Attribute: X138, MSE: nan, Jaccard: 0.994285017336609
+检查你指定的属性 X139 是否为数值型！
+Attribute: X139, MSE: nan, Jaccard: 0.9975757575757576
+检查你指定的属性 X140 是否为数值型！
+Attribute: X140, MSE: nan, Jaccard: 0.9941629067208351
+检查你指定的属性 X141 是否为数值型！
+Attribute: X141, MSE: nan, Jaccard: 0.9951298753990623
+检查你指定的属性 X142 是否为数值型！
+Attribute: X142, MSE: nan, Jaccard: 0.9942624065436146
+检查你指定的属性 X143 是否为数值型！
+Attribute: X143, MSE: nan, Jaccard: 0.9972903017067055
+检查你指定的属性 X144 是否为数值型！
+Attribute: X144, MSE: nan, Jaccard: 0.9944391370209765
+检查你指定的属性 X145 是否为数值型！
+Attribute: X145, MSE: nan, Jaccard: 0.9937433618050535
+检查你指定的属性 X146 是否为数值型！
+Attribute: X146, MSE: nan, Jaccard: 0.994550260955793
+检查你指定的属性 X147 是否为数值型！
+Attribute: X147, MSE: nan, Jaccard: 0.9946259924518728
+检查你指定的属性 X148 是否为数值型！
+Attribute: X148, MSE: nan, Jaccard: 0.9938259453047615
+检查你指定的属性 X150 是否为数值型！
+Attribute: X150, MSE: nan, Jaccard: 0.9944019753738432
+检查你指定的属性 X151 是否为数值型！
+Attribute: X151, MSE: nan, Jaccard: 0.9944406768513231
+检查你指定的属性 X152 是否为数值型！
+Attribute: X152, MSE: nan, Jaccard: 0.9972499638153134
+检查你指定的属性 X153 是否为数值型！
+Attribute: X153, MSE: nan, Jaccard: 0.9971347011596788
+检查你指定的属性 X154 是否为数值型！
+Attribute: X154, MSE: nan, Jaccard: 0.9942493191329628
+检查你指定的属性 X155 是否为数值型！
+Attribute: X155, MSE: nan, Jaccard: 0.9944848063964128
+检查你指定的属性 X156 是否为数值型！
+Attribute: X156, MSE: nan, Jaccard: 0.9940168315633787
+检查你指定的属性 X157 是否为数值型！
+Attribute: X157, MSE: nan, Jaccard: 0.9943052988676797
+检查你指定的属性 X158 是否为数值型！
+Attribute: X158, MSE: nan, Jaccard: 0.9941740817466341
+检查你指定的属性 X159 是否为数值型！
+Attribute: X159, MSE: nan, Jaccard: 0.994313800763191
+检查你指定的属性 X160 是否为数值型！
+Attribute: X160, MSE: nan, Jaccard: 0.9945716293897633
+检查你指定的属性 X161 是否为数值型！
+Attribute: X161, MSE: nan, Jaccard: 0.9952697142451102
+检查你指定的属性 X162 是否为数值型！
+Attribute: X162, MSE: nan, Jaccard: 0.9945423986605232
+检查你指定的属性 X163 是否为数值型！
+Attribute: X163, MSE: nan, Jaccard: 0.9942651866147912
+检查你指定的属性 X164 是否为数值型！
+Attribute: X164, MSE: nan, Jaccard: 0.9975448933782267
+检查你指定的属性 X165 是否为数值型！
+Attribute: X165, MSE: nan, Jaccard: 0.994415884471562
+检查你指定的属性 X166 是否为数值型！
+Attribute: X166, MSE: nan, Jaccard: 0.9971548367774783
+检查你指定的属性 X167 是否为数值型！
+Attribute: X167, MSE: nan, Jaccard: 0.994215783502192
+检查你指定的属性 X168 是否为数值型！
+Attribute: X168, MSE: nan, Jaccard: 0.9948484223352312
+检查你指定的属性 X169 是否为数值型！
+Attribute: X169, MSE: nan, Jaccard: 0.9945362439677606
+检查你指定的属性 X170 是否为数值型！
+Attribute: X170, MSE: nan, Jaccard: 0.9946369385489017
+检查你指定的属性 X171 是否为数值型！
+Attribute: X171, MSE: nan, Jaccard: 0.994586327096553
+检查你指定的属性 X172 是否为数值型！
+Attribute: X172, MSE: nan, Jaccard: 0.9943758014764496
+检查你指定的属性 X173 是否为数值型！
+Attribute: X173, MSE: nan, Jaccard: 0.9948964287442201
+检查你指定的属性 X174 是否为数值型！
+Attribute: X174, MSE: nan, Jaccard: 0.9944947284138461
+检查你指定的属性 X175 是否为数值型！
+Attribute: X175, MSE: nan, Jaccard: 0.9943272868689711
+检查你指定的属性 X176 是否为数值型！
+Attribute: X176, MSE: nan, Jaccard: 0.9943049588256355
+检查你指定的属性 X177 是否为数值型！
+Attribute: X177, MSE: nan, Jaccard: 0.9944833790870377
+检查你指定的属性 X178 是否为数值型！
+Attribute: X178, MSE: nan, Jaccard: 0.9952140935863082
+检查你指定的属性 X179 是否为数值型！
+Attribute: X179, MSE: nan, Jaccard: 0.9944253356277136
+检查你指定的属性 X180 是否为数值型！
+Attribute: X180, MSE: nan, Jaccard: 0.9942530872485832
+检查你指定的属性 X181 是否为数值型！
+Attribute: X181, MSE: nan, Jaccard: 0.9947987438671466
+检查你指定的属性 X182 是否为数值型！
+Attribute: X182, MSE: nan, Jaccard: 0.9972976370035194
+检查你指定的属性 X183 是否为数值型！
+Attribute: X183, MSE: nan, Jaccard: 0.995427121321614
+检查你指定的属性 X184 是否为数值型！
+Attribute: X184, MSE: nan, Jaccard: 0.9966101694915255
+检查你指定的属性 X185 是否为数值型！
+Attribute: X185, MSE: nan, Jaccard: 0.9944096564891672
+检查你指定的属性 X186 是否为数值型！
+Attribute: X186, MSE: nan, Jaccard: 0.9942585898077686
+检查你指定的属性 X187 是否为数值型！
+Attribute: X187, MSE: nan, Jaccard: 0.9943649749976279
+检查你指定的属性 X189 是否为数值型！
+Attribute: X189, MSE: nan, Jaccard: 0.997129810828441
+检查你指定的属性 X190 是否为数值型！
+Attribute: X190, MSE: nan, Jaccard: 0.997235110803324
+检查你指定的属性 X191 是否为数值型！
+Attribute: X191, MSE: nan, Jaccard: 0.994614177485992
+检查你指定的属性 X192 是否为数值型！
+Attribute: X192, MSE: nan, Jaccard: 0.9936978874152158
+检查你指定的属性 X194 是否为数值型！
+Attribute: X194, MSE: nan, Jaccard: 0.9948018008346229
+检查你指定的属性 X195 是否为数值型！
+Attribute: X195, MSE: nan, Jaccard: 0.9952948242656097
+检查你指定的属性 X196 是否为数值型！
+Attribute: X196, MSE: nan, Jaccard: 0.9974161358600718
+检查你指定的属性 X197 是否为数值型！
+Attribute: X197, MSE: nan, Jaccard: 0.994722002707541
+检查你指定的属性 X198 是否为数值型！
+Attribute: X198, MSE: nan, Jaccard: 0.9944880118274732
+检查你指定的属性 X199 是否为数值型！
+Attribute: X199, MSE: nan, Jaccard: 0.9937211171388387
+检查你指定的属性 X200 是否为数值型！
+Attribute: X200, MSE: nan, Jaccard: 0.9974340175953079
+检查你指定的属性 X201 是否为数值型！
+Attribute: X201, MSE: nan, Jaccard: 0.9947359535994464
+检查你指定的属性 X202 是否为数值型！
+Attribute: X202, MSE: nan, Jaccard: 0.9947721431395808
+检查你指定的属性 X203 是否为数值型！
+Attribute: X203, MSE: nan, Jaccard: 0.9972632731253421
+检查你指定的属性 X204 是否为数值型！
+Attribute: X204, MSE: nan, Jaccard: 0.9972883665474366
+检查你指定的属性 X205 是否为数值型！
+Attribute: X205, MSE: nan, Jaccard: 0.997202308095821
+检查你指定的属性 X206 是否为数值型！
+Attribute: X206, MSE: nan, Jaccard: 0.9973013014525247
+检查你指定的属性 X207 是否为数值型！
+Attribute: X207, MSE: nan, Jaccard: 0.9972988115449916
+检查你指定的属性 X208 是否为数值型！
+Attribute: X208, MSE: nan, Jaccard: 0.9940424240124464
+检查你指定的属性 X209 是否为数值型！
+Attribute: X209, MSE: nan, Jaccard: 0.9949510749281623
+检查你指定的属性 X210 是否为数值型！
+Attribute: X210, MSE: nan, Jaccard: 0.9972672724155666
+检查你指定的属性 X211 是否为数值型！
+Attribute: X211, MSE: nan, Jaccard: 0.9972093352693274
+检查你指定的属性 X212 是否为数值型！
+Attribute: X212, MSE: nan, Jaccard: 0.9935809817754262
+检查你指定的属性 X213 是否为数值型！
+Attribute: X213, MSE: nan, Jaccard: 0.9944455432489452
+检查你指定的属性 X214 是否为数值型！
+Attribute: X214, MSE: nan, Jaccard: 0.9944817300521999
+检查你指定的属性 X215 是否为数值型！
+Attribute: X215, MSE: nan, Jaccard: 0.9951021858894615
+检查你指定的属性 X216 是否为数值型！
+Attribute: X216, MSE: nan, Jaccard: 0.9943161644852573
+检查你指定的属性 X217 是否为数值型！
+Attribute: X217, MSE: nan, Jaccard: 0.9973457959664856
+检查你指定的属性 X218 是否为数值型！
+Attribute: X218, MSE: nan, Jaccard: 0.995050115474952
+检查你指定的属性 X219 是否为数值型！
+Attribute: X219, MSE: nan, Jaccard: 0.9943280642539489
+检查你指定的属性 X220 是否为数值型！
+Attribute: X220, MSE: nan, Jaccard: 0.9947165028427294
+检查你指定的属性 X221 是否为数值型！
+Attribute: X221, MSE: nan, Jaccard: 0.9945680118093911
+检查你指定的属性 X222 是否为数值型！
+Attribute: X222, MSE: nan, Jaccard: 0.9971108480947729
+检查你指定的属性 X223 是否为数值型！
+Attribute: X223, MSE: nan, Jaccard: 0.9948734577215371
+检查你指定的属性 X224 是否为数值型！
+Attribute: X224, MSE: nan, Jaccard: 0.9942536882087416
+检查你指定的属性 X225 是否为数值型！
+Attribute: X225, MSE: nan, Jaccard: 0.9945250204518888
+检查你指定的属性 X226 是否为数值型！
+Attribute: X226, MSE: nan, Jaccard: 0.9946735696002379
+检查你指定的属性 X227 是否为数值型！
+Attribute: X227, MSE: nan, Jaccard: 1.0
+检查你指定的属性 X228 是否为数值型！
+Attribute: X228, MSE: nan, Jaccard: 0.9942013142317803
+检查你指定的属性 X229 是否为数值型！
+Attribute: X229, MSE: nan, Jaccard: 0.997140974484753
+检查你指定的属性 X230 是否为数值型！
+Attribute: X230, MSE: nan, Jaccard: 0.9953222335485332
+检查你指定的属性 X231 是否为数值型！
+Attribute: X231, MSE: nan, Jaccard: 0.9943241189322694
+检查你指定的属性 X232 是否为数值型！
+Attribute: X232, MSE: nan, Jaccard: 0.994073177007431
+检查你指定的属性 X233 是否为数值型！
+Attribute: X233, MSE: nan, Jaccard: 0.0
+检查你指定的属性 X234 是否为数值型！
+Attribute: X234, MSE: nan, Jaccard: 0.9948442619621335
+检查你指定的属性 X235 是否为数值型！
+Attribute: X235, MSE: nan, Jaccard: 0.0
+检查你指定的属性 X236 是否为数值型！
+Attribute: X236, MSE: nan, Jaccard: 0.9970880810273105
+检查你指定的属性 X237 是否为数值型！
+Attribute: X237, MSE: nan, Jaccard: 0.9940049819362773
+检查你指定的属性 X238 是否为数值型！
+Attribute: X238, MSE: nan, Jaccard: 0.9943254653026008
+检查你指定的属性 X239 是否为数值型！
+Attribute: X239, MSE: nan, Jaccard: 0.994984126984127
+检查你指定的属性 X240 是否为数值型！
+Attribute: X240, MSE: nan, Jaccard: 0.9941238121351622
+检查你指定的属性 X241 是否为数值型！
+Attribute: X241, MSE: nan, Jaccard: 0.9943403857497799
+检查你指定的属性 X242 是否为数值型！
+Attribute: X242, MSE: nan, Jaccard: 0.9952595901779205
+检查你指定的属性 X243 是否为数值型！
+Attribute: X243, MSE: nan, Jaccard: 0.9942803746055966
+检查你指定的属性 X244 是否为数值型！
+Attribute: X244, MSE: nan, Jaccard: 0.9944183872153344
+检查你指定的属性 X245 是否为数值型！
+Attribute: X245, MSE: nan, Jaccard: 0.9955874604847208
+检查你指定的属性 X246 是否为数值型！
+Attribute: X246, MSE: nan, Jaccard: 0.9944830838814888
+检查你指定的属性 X247 是否为数值型！
+Attribute: X247, MSE: nan, Jaccard: 0.9943468215316121
+检查你指定的属性 X248 是否为数值型！
+Attribute: X248, MSE: nan, Jaccard: 0.9971075310454132
+检查你指定的属性 X249 是否为数值型！
+Attribute: X249, MSE: nan, Jaccard: 0.9942072201707091
+检查你指定的属性 X250 是否为数值型！
+Attribute: X250, MSE: nan, Jaccard: 0.9939075630252101
+检查你指定的属性 X251 是否为数值型！
+Attribute: X251, MSE: nan, Jaccard: 0.9939369453554617
+检查你指定的属性 X252 是否为数值型！
+Attribute: X252, MSE: nan, Jaccard: 0.9932234791265476
+检查你指定的属性 X253 是否为数值型！
+Attribute: X253, MSE: nan, Jaccard: 0.9936275134200709
+检查你指定的属性 X254 是否为数值型！
+Attribute: X254, MSE: nan, Jaccard: 0.9941904761904762
+检查你指定的属性 X255 是否为数值型！
+Attribute: X255, MSE: nan, Jaccard: 0.9946083182690325
+检查你指定的属性 X256 是否为数值型！
+Attribute: X256, MSE: nan, Jaccard: 0.9946068875559354
+检查你指定的属性 X257 是否为数值型！
+Attribute: X257, MSE: nan, Jaccard: 0.9973005093378607
+检查你指定的属性 X258 是否为数值型！
+Attribute: X258, MSE: nan, Jaccard: 0.9943516075442197
+检查你指定的属性 X259 是否为数值型！
+Attribute: X259, MSE: nan, Jaccard: 0.9939005890168754
+检查你指定的属性 X260 是否为数值型！
+Attribute: X260, MSE: nan, Jaccard: 0.9972133147438131
+检查你指定的属性 X261 是否为数值型！
+Attribute: X261, MSE: nan, Jaccard: 0.9975128135958996
+检查你指定的属性 X262 是否为数值型！
+Attribute: X262, MSE: nan, Jaccard: 0.9936994104217005
+检查你指定的属性 X263 是否为数值型！
+Attribute: X263, MSE: nan, Jaccard: 0.9942006857098414
+检查你指定的属性 X264 是否为数值型！
+Attribute: X264, MSE: nan, Jaccard: 0.9970575022461815
+检查你指定的属性 X265 是否为数值型！
+Attribute: X265, MSE: nan, Jaccard: 0.9941895835201584
+检查你指定的属性 X266 是否为数值型！
+Attribute: X266, MSE: nan, Jaccard: 0.9943889447658718
+检查你指定的属性 X267 是否为数值型！
+Attribute: X267, MSE: nan, Jaccard: 0.9975091013604138
+检查你指定的属性 X268 是否为数值型！
+Attribute: X268, MSE: nan, Jaccard: 0.0
+检查你指定的属性 X269 是否为数值型！
+Attribute: X269, MSE: nan, Jaccard: 0.9941538120968797
+检查你指定的属性 X270 是否为数值型！
+Attribute: X270, MSE: nan, Jaccard: 0.9973211875843455
+检查你指定的属性 X271 是否为数值型！
+Attribute: X271, MSE: nan, Jaccard: 0.9971688449311198
+检查你指定的属性 X272 是否为数值型！
+Attribute: X272, MSE: nan, Jaccard: 0.9941645021645021
+检查你指定的属性 X273 是否为数值型！
+Attribute: X273, MSE: nan, Jaccard: 0.9946498387473102
+检查你指定的属性 X274 是否为数值型！
+Attribute: X274, MSE: nan, Jaccard: 0.9944079923611917
+检查你指定的属性 X275 是否为数值型！
+Attribute: X275, MSE: nan, Jaccard: 0.9948490956917864
+检查你指定的属性 X276 是否为数值型！
+Attribute: X276, MSE: nan, Jaccard: 0.9944334657734395
+检查你指定的属性 X277 是否为数值型！
+Attribute: X277, MSE: nan, Jaccard: 0.996551724137931
+检查你指定的属性 X278 是否为数值型！
+Attribute: X278, MSE: nan, Jaccard: 0.9935301789885562
+检查你指定的属性 X279 是否为数值型！
+Attribute: X279, MSE: nan, Jaccard: 0.9942616073374629
+检查你指定的属性 X280 是否为数值型！
+Attribute: X280, MSE: nan, Jaccard: 0.9974094113789146
+检查你指定的属性 X281 是否为数值型！
+Attribute: X281, MSE: nan, Jaccard: 0.9975490196078431
+检查你指定的属性 X282 是否为数值型！
+Attribute: X282, MSE: nan, Jaccard: 0.9973280343846889
+检查你指定的属性 X283 是否为数值型！
+Attribute: X283, MSE: nan, Jaccard: 0.9942998997328658
+检查你指定的属性 X284 是否为数值型！
+Attribute: X284, MSE: nan, Jaccard: 0.9972074385508634
+检查你指定的属性 X285 是否为数值型！
+Attribute: X285, MSE: nan, Jaccard: 0.994080607042482
+检查你指定的属性 X286 是否为数值型！
+Attribute: X286, MSE: nan, Jaccard: 0.994092479583431
+检查你指定的属性 X287 是否为数值型！
+Attribute: X287, MSE: nan, Jaccard: 0.9939027136946016
+检查你指定的属性 X288 是否为数值型！
+Attribute: X288, MSE: nan, Jaccard: 0.9971912280701755
+检查你指定的属性 X289 是否为数值型！
+Attribute: X289, MSE: nan, Jaccard: 0.0
+检查你指定的属性 X290 是否为数值型！
+Attribute: X290, MSE: nan, Jaccard: 0.0
+检查你指定的属性 X291 是否为数值型！
+Attribute: X291, MSE: nan, Jaccard: 0.9950187341094607
+检查你指定的属性 X292 是否为数值型！
+Attribute: X292, MSE: nan, Jaccard: 0.9943484246061465
+检查你指定的属性 X293 是否为数值型！
+Attribute: X293, MSE: nan, Jaccard: 0.0
+检查你指定的属性 X294 是否为数值型！
+Attribute: X294, MSE: nan, Jaccard: 0.9949482615240481
+检查你指定的属性 X295 是否为数值型！
+Attribute: X295, MSE: nan, Jaccard: 0.9973898696584722
+检查你指定的属性 X296 是否为数值型！
+Attribute: X296, MSE: nan, Jaccard: 1.0
+检查你指定的属性 X297 是否为数值型！
+Attribute: X297, MSE: nan, Jaccard: 0.0
+检查你指定的属性 X298 是否为数值型！
+Attribute: X298, MSE: nan, Jaccard: 0.9944417415840688
+检查你指定的属性 X299 是否为数值型！
+Attribute: X299, MSE: nan, Jaccard: 0.9942749603803487
+检查你指定的属性 X300 是否为数值型！
+Attribute: X300, MSE: nan, Jaccard: 0.9947623461244334
+检查你指定的属性 X301 是否为数值型！
+Attribute: X301, MSE: nan, Jaccard: 0.9948716459976821
+检查你指定的属性 X302 是否为数值型！
+Attribute: X302, MSE: nan, Jaccard: 0.993654888520887
+检查你指定的属性 X304 是否为数值型！
+Attribute: X304, MSE: nan, Jaccard: 0.9949948433801907
+检查你指定的属性 X305 是否为数值型！
+Attribute: X305, MSE: nan, Jaccard: 0.9945213371177374
+检查你指定的属性 X306 是否为数值型！
+Attribute: X306, MSE: nan, Jaccard: 0.9943578268283125
+检查你指定的属性 X307 是否为数值型！
+Attribute: X307, MSE: nan, Jaccard: 0.9947466265613903
+检查你指定的属性 X308 是否为数值型！
+Attribute: X308, MSE: nan, Jaccard: 0.9946754503116225
+检查你指定的属性 X309 是否为数值型！
+Attribute: X309, MSE: nan, Jaccard: 0.9971421767087402
+检查你指定的属性 X310 是否为数值型！
+Attribute: X310, MSE: nan, Jaccard: 0.9971688449311198
+检查你指定的属性 X311 是否为数值型！
+Attribute: X311, MSE: nan, Jaccard: 0.9952931528144529
+检查你指定的属性 X312 是否为数值型！
+Attribute: X312, MSE: nan, Jaccard: 0.9944357307597266
+检查你指定的属性 X313 是否为数值型！
+Attribute: X313, MSE: nan, Jaccard: 0.9942630533667921
+检查你指定的属性 X314 是否为数值型！
+Attribute: X314, MSE: nan, Jaccard: 0.9941930609754669
+检查你指定的属性 X315 是否为数值型！
+Attribute: X315, MSE: nan, Jaccard: 0.9970444059976932
+检查你指定的属性 X316 是否为数值型！
+Attribute: X316, MSE: nan, Jaccard: 0.9944161631573838
+检查你指定的属性 X317 是否为数值型！
+Attribute: X317, MSE: nan, Jaccard: 0.994533182858831
+检查你指定的属性 X318 是否为数值型！
+Attribute: X318, MSE: nan, Jaccard: 0.997416096736105
+检查你指定的属性 X319 是否为数值型！
+Attribute: X319, MSE: nan, Jaccard: 0.9974944178628389
+检查你指定的属性 X320 是否为数值型！
+Attribute: X320, MSE: nan, Jaccard: 0.9948155538791413
+检查你指定的属性 X321 是否为数值型！
+Attribute: X321, MSE: nan, Jaccard: 0.9947383821744408
+检查你指定的属性 X322 是否为数值型！
+Attribute: X322, MSE: nan, Jaccard: 0.9952174053638261
+检查你指定的属性 X323 是否为数值型！
+Attribute: X323, MSE: nan, Jaccard: 0.9973091976516634
+检查你指定的属性 X324 是否为数值型！
+Attribute: X324, MSE: nan, Jaccard: 0.9945141861444009
+检查你指定的属性 X325 是否为数值型！
+Attribute: X325, MSE: nan, Jaccard: 0.994009332178837
+检查你指定的属性 X326 是否为数值型！
+Attribute: X326, MSE: nan, Jaccard: 0.9947149758516769
+检查你指定的属性 X327 是否为数值型！
+Attribute: X327, MSE: nan, Jaccard: 0.9946153602696624
+检查你指定的属性 X328 是否为数值型！
+Attribute: X328, MSE: nan, Jaccard: 0.9942624645214636
+检查你指定的属性 X329 是否为数值型！
+Attribute: X329, MSE: nan, Jaccard: 0.9945886132965969
+检查你指定的属性 X330 是否为数值型！
+Attribute: X330, MSE: nan, Jaccard: 0.0
+检查你指定的属性 X331 是否为数值型！
+Attribute: X331, MSE: nan, Jaccard: 0.9947343916501427
+检查你指定的属性 X332 是否为数值型！
+Attribute: X332, MSE: nan, Jaccard: 0.9978354978354979
+检查你指定的属性 X333 是否为数值型！
+Attribute: X333, MSE: nan, Jaccard: 0.997252265419468
+检查你指定的属性 X334 是否为数值型！
+Attribute: X334, MSE: nan, Jaccard: 0.9939267580088609
+检查你指定的属性 X335 是否为数值型！
+Attribute: X335, MSE: nan, Jaccard: 0.9975897900094859
+检查你指定的属性 X336 是否为数值型！
+Attribute: X336, MSE: nan, Jaccard: 0.9939302566371274
+检查你指定的属性 X337 是否为数值型！
+Attribute: X337, MSE: nan, Jaccard: 0.9946104223624557
+检查你指定的属性 X338 是否为数值型！
+Attribute: X338, MSE: nan, Jaccard: 0.994156873003776
+检查你指定的属性 X339 是否为数值型！
+Attribute: X339, MSE: nan, Jaccard: 1.0
+检查你指定的属性 X340 是否为数值型！
+Attribute: X340, MSE: nan, Jaccard: 0.9946301465694065
+检查你指定的属性 X341 是否为数值型！
+Attribute: X341, MSE: nan, Jaccard: 0.9970422493656694
+检查你指定的属性 X342 是否为数值型！
+Attribute: X342, MSE: nan, Jaccard: 0.9946004171858219
+检查你指定的属性 X343 是否为数值型！
+Attribute: X343, MSE: nan, Jaccard: 0.9941224885888318
+检查你指定的属性 X344 是否为数值型！
+Attribute: X344, MSE: nan, Jaccard: 0.9951955594827582
+检查你指定的属性 X345 是否为数值型！
+Attribute: X345, MSE: nan, Jaccard: 0.994701726844584
+检查你指定的属性 X346 是否为数值型！
+Attribute: X346, MSE: nan, Jaccard: 0.9949181398116085
+检查你指定的属性 X347 是否为数值型！
+Attribute: X347, MSE: nan, Jaccard: 0.0
+检查你指定的属性 X348 是否为数值型！
+Attribute: X348, MSE: nan, Jaccard: 0.997167237625253
+检查你指定的属性 X349 是否为数值型！
+Attribute: X349, MSE: nan, Jaccard: 0.9969608736997931
+检查你指定的属性 X350 是否为数值型！
+Attribute: X350, MSE: nan, Jaccard: 0.994515443329893
+检查你指定的属性 X351 是否为数值型！
+Attribute: X351, MSE: nan, Jaccard: 0.9948336121398214
+检查你指定的属性 X352 是否为数值型！
+Attribute: X352, MSE: nan, Jaccard: 0.9970726702076291
+检查你指定的属性 X353 是否为数值型！
+Attribute: X353, MSE: nan, Jaccard: 0.9941146193127176
+检查你指定的属性 X354 是否为数值型！
+Attribute: X354, MSE: nan, Jaccard: 0.9944071558373772
+检查你指定的属性 X355 是否为数值型！
+Attribute: X355, MSE: nan, Jaccard: 0.9947118750124845
+检查你指定的属性 X356 是否为数值型！
+Attribute: X356, MSE: nan, Jaccard: 0.9947377302486028
+检查你指定的属性 X357 是否为数值型！
+Attribute: X357, MSE: nan, Jaccard: 0.9974809509930466
+检查你指定的属性 X358 是否为数值型！
+Attribute: X358, MSE: nan, Jaccard: 0.9949777649039052
+检查你指定的属性 X359 是否为数值型！
+Attribute: X359, MSE: nan, Jaccard: 0.9946105609714214
+检查你指定的属性 X360 是否为数值型！
+Attribute: X360, MSE: nan, Jaccard: 0.9946696385068383
+检查你指定的属性 X361 是否为数值型！
+Attribute: X361, MSE: nan, Jaccard: 0.9947274958285117
+检查你指定的属性 X362 是否为数值型！
+Attribute: X362, MSE: nan, Jaccard: 0.9940959892561231
+检查你指定的属性 X363 是否为数值型！
+Attribute: X363, MSE: nan, Jaccard: 0.9948801415302964
+检查你指定的属性 X364 是否为数值型！
+Attribute: X364, MSE: nan, Jaccard: 0.9944091006070951
+检查你指定的属性 X365 是否为数值型！
+Attribute: X365, MSE: nan, Jaccard: 0.9947650077890285
+检查你指定的属性 X366 是否为数值型！
+Attribute: X366, MSE: nan, Jaccard: 0.9939011405251233
+检查你指定的属性 X367 是否为数值型！
+Attribute: X367, MSE: nan, Jaccard: 0.994265877004297
+检查你指定的属性 X368 是否为数值型！
+Attribute: X368, MSE: nan, Jaccard: 0.9944355414761545
+检查你指定的属性 X369 是否为数值型！
+Attribute: X369, MSE: nan, Jaccard: 0.9969788519637462
+检查你指定的属性 X370 是否为数值型！
+Attribute: X370, MSE: nan, Jaccard: 0.9945147679324895
+检查你指定的属性 X371 是否为数值型！
+Attribute: X371, MSE: nan, Jaccard: 0.9945560252240784
+检查你指定的属性 X372 是否为数值型！
+Attribute: X372, MSE: nan, Jaccard: 0.9973228744939271
+检查你指定的属性 X373 是否为数值型！
+Attribute: X373, MSE: nan, Jaccard: 0.9946777684680911
+检查你指定的属性 X374 是否为数值型！
+Attribute: X374, MSE: nan, Jaccard: 0.9943836849438369
+检查你指定的属性 X375 是否为数值型！
+Attribute: X375, MSE: nan, Jaccard: 0.9944403552059361
+检查你指定的属性 X376 是否为数值型！
+Attribute: X376, MSE: nan, Jaccard: 0.9952774280198103
+检查你指定的属性 X377 是否为数值型！
+Attribute: X377, MSE: nan, Jaccard: 0.9938853404087035
+检查你指定的属性 X378 是否为数值型！
+Attribute: X378, MSE: nan, Jaccard: 0.993989972908168
+检查你指定的属性 X379 是否为数值型！
+Attribute: X379, MSE: nan, Jaccard: 0.9951684802654204
+检查你指定的属性 X380 是否为数值型！
+Attribute: X380, MSE: nan, Jaccard: 0.9971404055490134
+检查你指定的属性 X382 是否为数值型！
+Attribute: X382, MSE: nan, Jaccard: 0.9943897746192367
+检查你指定的属性 X383 是否为数值型！
+Attribute: X383, MSE: nan, Jaccard: 0.9947943367504367
+检查你指定的属性 X384 是否为数值型！
+Attribute: X384, MSE: nan, Jaccard: 0.9941334517746855
+检查你指定的属性 X385 是否为数值型！
+Attribute: X385, MSE: nan, Jaccard: 0.9974683544303797
+Attribute: y, MSE: nan, Jaccard: 0.0
+加权混合距离: 0.47849798792075754

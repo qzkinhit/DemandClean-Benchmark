@@ -1,0 +1,17 @@
+Attribute: index, MSE: nan, Jaccard: 0.0
+Attribute: age, MSE: 0.0, Jaccard: 0.0
+Attribute: workclass, MSE: nan, Jaccard: 0.0
+Attribute: fnlwgt, MSE: 6.243184573548635e-36, Jaccard: 0.03447262036016174
+Attribute: education, MSE: nan, Jaccard: 0.0
+Attribute: educational_num, MSE: 0.0, Jaccard: 0.0
+Attribute: marital_status, MSE: nan, Jaccard: 0.0
+Attribute: occupation, MSE: nan, Jaccard: 0.0
+Attribute: relationship, MSE: nan, Jaccard: 0.0
+Attribute: race, MSE: nan, Jaccard: 0.0
+Attribute: gender, MSE: nan, Jaccard: 0.0
+Attribute: capital_gain, MSE: 2.079508824593848e-40, Jaccard: 0.016393442622950838
+Attribute: capital_loss, MSE: 1.6054100920707011e-34, Jaccard: 0.1523809523809524
+Attribute: hours_per_week, MSE: 4.0373747009842544e-35, Jaccard: 0.06060606060606055
+Attribute: native_country, MSE: nan, Jaccard: 0.0
+Attribute: income, MSE: nan, Jaccard: 0.02277156387950907
+加权混合距离: 0.008957019995301081

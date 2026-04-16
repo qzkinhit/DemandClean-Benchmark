@@ -1,0 +1,173 @@
+[
+  {
+    "dataset": "adult",
+    "task_type": "classification",
+    "elapsed_time": 60.79,
+    "truth_cost": 0,
+    "ml_results": {
+      "rf": {
+        "accuracy": 0.8518518518518519,
+        "f1": 0.8502176697203637
+      }
+    },
+    "P_do_nothing": 0.8518518518518519,
+    "P_demand_clean": 0.8518518518518519,
+    "P_repair_all": 0.8564953012714207,
+    "upper_bound_dirty": 0.8185176041264022,
+    "upper_bound_cleaned": 0.8185176041264022,
+    "upper_bound_clean": 0.852085376351815,
+    "upper_bound_improvement": 0.0
+  },
+  {
+    "dataset": "beers",
+    "task_type": "classification",
+    "elapsed_time": 4.22,
+    "truth_cost": 0,
+    "ml_results": {
+      "rf": {
+        "accuracy": 0.3029045643153527,
+        "f1": 0.26976105762789554
+      }
+    },
+    "P_do_nothing": 0.22821576763485477,
+    "P_demand_clean": 0.3029045643153527,
+    "P_repair_all": 0.2946058091286307,
+    "upper_bound_dirty": 0.1950207468879668,
+    "upper_bound_cleaned": 0.21618257261410787,
+    "upper_bound_clean": 0.22157676348547714,
+    "upper_bound_improvement": 0.7968750000000004
+  },
+  {
+    "dataset": "bike",
+    "task_type": "regression",
+    "elapsed_time": 86.79,
+    "truth_cost": 0,
+    "ml_results": {
+      "rf": {
+        "mse": 124.66166093210586,
+        "r2": 0.9960330663190344
+      }
+    },
+    "P_do_nothing": 0.9962917472557477,
+    "P_demand_clean": 0.9960330663190344,
+    "P_repair_all": 0.9997741887479192,
+    "upper_bound_dirty": 1893.6744636584299,
+    "upper_bound_cleaned": 501.53888540936157,
+    "upper_bound_clean": 25.380490126136884,
+    "upper_bound_improvement": 0.7451373274073271
+  },
+  {
+    "dataset": "breast_cancer",
+    "task_type": "classification",
+    "elapsed_time": 1.28,
+    "truth_cost": 0,
+    "ml_results": {
+      "rf": {
+        "accuracy": 0.9928571428571429,
+        "f1": 0.992829703201893
+      }
+    },
+    "P_do_nothing": 0.9928571428571429,
+    "P_demand_clean": 0.9928571428571429,
+    "P_repair_all": 0.9928571428571429,
+    "upper_bound_dirty": 0.9385097636176774,
+    "upper_bound_cleaned": 0.9456526207605345,
+    "upper_bound_clean": 0.9642754367934223,
+    "upper_bound_improvement": 0.2772237734343844
+  },
+  {
+    "dataset": "har",
+    "task_type": "clustering",
+    "elapsed_time": 13.91,
+    "truth_cost": 0,
+    "ml_results": {
+      "kmeans": {
+        "silhouette": 0.49094983112685886,
+        "ari": 0.6477855509688378
+      }
+    },
+    "P_do_nothing": 0.5238125895953722,
+    "P_demand_clean": 0.49094983112685886,
+    "P_repair_all": 0.6875855528743094,
+    "upper_bound_dirty": 0.5238125895953722,
+    "upper_bound_cleaned": 0.49094983112685886,
+    "upper_bound_clean": 0.6875855528743094,
+    "upper_bound_improvement": -0.2006604619624652
+  },
+  {
+    "dataset": "mercedes",
+    "task_type": "regression",
+    "elapsed_time": 377.99,
+    "truth_cost": 0,
+    "ml_results": {
+      "rf": {
+        "mse": 112.52922619668644,
+        "r2": 0.40464878787066705
+      }
+    },
+    "P_do_nothing": 0.36012068799233987,
+    "P_demand_clean": 0.40464878787066705,
+    "P_repair_all": 0.39366847211154044,
+    "upper_bound_dirty": 84.91822328751343,
+    "upper_bound_cleaned": 78.11193496912412,
+    "upper_bound_clean": 82.23248429026818,
+    "upper_bound_improvement": 2.53423297102603
+  },
+  {
+    "dataset": "nasa",
+    "task_type": "regression",
+    "elapsed_time": 2.43,
+    "truth_cost": 0,
+    "ml_results": {
+      "rf": {
+        "mse": 19.604847039764003,
+        "r2": 0.5875634990124914
+      }
+    },
+    "P_do_nothing": 0.6058186856035939,
+    "P_demand_clean": 0.5875634990124914,
+    "P_repair_all": 0.680036678206931,
+    "upper_bound_dirty": 62.80660193644426,
+    "upper_bound_cleaned": 61.169184464609785,
+    "upper_bound_clean": 61.094628209220716,
+    "upper_bound_improvement": 0.9564501170762804
+  },
+  {
+    "dataset": "smartfactory",
+    "task_type": "classification",
+    "elapsed_time": 44.17,
+    "truth_cost": 0,
+    "ml_results": {
+      "rf": {
+        "accuracy": 0.9619369845633327,
+        "f1": 0.9614192677187225
+      }
+    },
+    "P_do_nothing": 0.9583421442165363,
+    "P_demand_clean": 0.9619369845633327,
+    "P_repair_all": 0.9663776696976105,
+    "upper_bound_dirty": 0.7118206809050538,
+    "upper_bound_cleaned": 0.713004863607528,
+    "upper_bound_clean": 0.7021780503277648,
+    "upper_bound_improvement": -0.12280701754387399
+  },
+  {
+    "dataset": "soilmoisture",
+    "task_type": "regression",
+    "elapsed_time": 28.92,
+    "truth_cost": 0,
+    "ml_results": {
+      "rf": {
+        "mse": 1.2191823361764675,
+        "r2": 0.9179422789804818
+      }
+    },
+    "P_do_nothing": 0.8836748177014123,
+    "P_demand_clean": 0.9179422789804818,
+    "P_repair_all": 0.9409867037386066,
+    "upper_bound_dirty": 5.15738064132255,
+    "upper_bound_cleaned": 6.058048971631372,
+    "upper_bound_clean": 9.414179047747583,
+    "upper_bound_improvement": 0.2115835057984873
+  }
+]

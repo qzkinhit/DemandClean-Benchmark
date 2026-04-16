@@ -1,0 +1,31 @@
+Attribute: index
+Distance (Dirty to Clean): 0
+Distance (Repaired to Clean): 0
+========================================
+Attribute: frequency
+Distance (Dirty to Clean): 52
+Distance (Repaired to Clean): 31
+========================================
+Attribute: angle
+Distance (Dirty to Clean): 69
+Distance (Repaired to Clean): 324
+========================================
+Attribute: chord_length
+Distance (Dirty to Clean): 46
+Distance (Repaired to Clean): 709
+========================================
+Attribute: velocity
+Distance (Dirty to Clean): 69
+Distance (Repaired to Clean): 592
+========================================
+Attribute: thickness
+Distance (Dirty to Clean): 32
+Distance (Repaired to Clean): 709
+========================================
+Attribute: sound_pressure_level
+Distance (Dirty to Clean): 0
+Distance (Repaired to Clean): 0
+========================================
+总的脏数据到干净数据距离: 268
+总的修复后数据到干净数据距离: 2365
+错误减少率 (EDR): -7.824626865671642

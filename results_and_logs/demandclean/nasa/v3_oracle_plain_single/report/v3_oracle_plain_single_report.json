@@ -1,0 +1,218 @@
+{
+  "version_name": "v3_oracle_plain_single",
+  "dataset": "nasa",
+  "task_type": "regression",
+  "model_type": "ridge",
+  "detector_mode": "oracle",
+  "agent_type": "single_stage",
+  "inference_mode": "single_phase",
+  "n_episodes": 50,
+  "data_shape": [
+    1503,
+    5
+  ],
+  "action_counts": {
+    "no_action": 0,
+    "repair_value": 69,
+    "delete": 49,
+    "replace_nearby": 1107
+  },
+  "keep_mask": "[ True  True  True ...  True  True  True]",
+  "ground_truth_used": 69,
+  "cleaned_shape": [
+    1454,
+    5
+  ],
+  "detector_accuracy": {
+    "overall": {
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0,
+      "tp": 1230,
+      "fp": 0,
+      "fn": 0,
+      "gt_count": 1230,
+      "det_count": 1230
+    },
+    "missing": {
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0,
+      "tp": 30,
+      "fp": 0,
+      "fn": 0,
+      "gt_count": 30,
+      "det_count": 30
+    },
+    "syntactic": {
+      "precision": 1.0,
+      "recall": 0.215,
+      "f1": 0.35390946502057613,
+      "tp": 258,
+      "fp": 0,
+      "fn": 942,
+      "gt_count": 1200,
+      "det_count": 258
+    },
+    "semantic": {
+      "precision": 1.0,
+      "recall": 0.785,
+      "f1": 0.8795518207282913,
+      "tp": 942,
+      "fp": 0,
+      "fn": 258,
+      "gt_count": 1200,
+      "det_count": 942
+    },
+    "value_error_combined": {
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0,
+      "tp": 1200,
+      "fp": 0,
+      "fn": 0,
+      "gt_count": 1200,
+      "det_count": 1200
+    },
+    "ground_truth_total": 1230,
+    "detected_total": 1230
+  },
+  "baseline_results": {
+    "NoFix": {
+      "n_samples": 1503,
+      "rf_mse": 29.8258,
+      "rf_r2": 0.4047,
+      "ridge_mse": 46.1931,
+      "ridge_r2": 0.078
+    },
+    "DeleteAll": {
+      "n_samples": 1473,
+      "rf_mse": 29.5505,
+      "rf_r2": 0.3448,
+      "ridge_mse": 43.1417,
+      "ridge_r2": 0.0435
+    },
+    "DeleteFix": {
+      "n_samples": 488,
+      "rf_mse": 27.2481,
+      "rf_r2": 0.3905,
+      "ridge_mse": 35.7666,
+      "ridge_r2": 0.1999
+    },
+    "ReplaceAll": {
+      "n_samples": 1503,
+      "rf_mse": 29.8258,
+      "rf_r2": 0.4047,
+      "ridge_mse": 46.1931,
+      "ridge_r2": 0.078
+    },
+    "DemandClean": {
+      "n_samples": 1454,
+      "rf_mse": 26.3628,
+      "rf_r2": 0.4637,
+      "ridge_mse": 41.6964,
+      "ridge_r2": 0.1518
+    },
+    "FullFix": {
+      "n_samples": 1503,
+      "rf_mse": 16.7925,
+      "rf_r2": 0.6648,
+      "ridge_mse": 37.5769,
+      "ridge_r2": 0.2499
+    }
+  },
+  "tolerance_results": {
+    "rf": {
+      "P_clean": 0.6648106411090795,
+      "P_dirty": 0.5466548230621495,
+      "P_dc": -0.38018480306856794,
+      "tolerance_prior": -0.6954750731712551,
+      "tolerance_post": -7.84421488040977
+    },
+    "ridge": {
+      "P_clean": 0.24994023270531185,
+      "P_dirty": 0.1282485966365411,
+      "P_dc": 0.035181049958485144,
+      "tolerance_prior": 0.27431918072514194,
+      "tolerance_post": -0.7647817852121022
+    }
+  },
+  "shapley_results": {
+    "meta": {
+      "n_samples": 1503,
+      "n_features": 5,
+      "n_errors": 1230,
+      "task_type": "regression",
+      "model_type": "ridge",
+      "mc_samples": 200
+    },
+    "action_shapley": {
+      "no_action": 0.19669438217890445,
+      "repair_value": 1.9464037705195925,
+      "delete": 0.45077137219828484,
+      "replace_nearby": 0.04319094447206595
+    },
+    "feature_shapley": {
+      "frequency": 0.6856075616263861,
+      "angle": -3.1392541243396126,
+      "chord_length": 0.7330433861720305,
+      "velocity": 0.9965853785460511,
+      "thickness": 3.9848892248182053
+    },
+    "error_type_shapley": {
+      "missing": 0.06395545133782814,
+      "semantic": -0.6586594554070379,
+      "syntactic": 2.8744291919451848
+    },
+    "report_text": "# Shapley Value Analysis Report\n\n- 数据规模: 1503 行 × 5 列\n- 错误总数: 1230\n- 任务类型: regression (ridge)\n- MC 采样次数: 200\n\n## 维度 1: 动作重要性 (Action Importance)\n\n| 排名 | 动作 | Shapley 值 | 占比 | 方向 |\n|------|------|-----------|------|------|\n| 1 | repair_value | +1.946404 | 73.8% | ↑ 正贡献 |\n| 2 | delete | +0.450771 | 17.1% | ↑ 正贡献 |\n| 3 | no_action | +0.196694 | 7.5% | ↑ 正贡献 |\n| 4 | replace_nearby | +0.043191 | 1.6% | ↑ 正贡献 |\n\n**结论**: 最有效的清洗动作是 **repair_value**\n\n## 维度 2: 特征重要性 (Feature Importance)\n\n| 排名 | 特征 | Shapley 值 | 占比 | 清洗价值 |\n|------|------|-----------|------|---------|\n| 1 | thickness | +3.984889 | 41.8% | ★ 高价值 |\n| 2 | velocity | +0.996585 | 10.4% | ★ 高价值 |\n| 3 | chord_length | +0.733043 | 7.7% | ★ 高价值 |\n| 4 | frequency | +0.685608 | 7.2% | ★ 高价值 |\n| 5 | angle | -3.139254 | 32.9% | ✗ 负价值 |\n\n**结论**: \n- 最值得清洗的特征: **thickness, velocity, chord_length**（优先投入清洗预算）\n- 清洗后反而降低性能: angle（建议保留原值不清洗）\n\n## 维度 3: 错误类型重要性 (Error Type Importance)\n\n| 排名 | 错误类型 | Shapley 值 | 占比 | 优先级 |\n|------|---------|-----------|------|--------|\n| 1 | syntactic | +2.874429 | 79.9% | 🔴 高 |\n| 2 | missing | +0.063955 | 1.8% | 🟢 低 |\n| 3 | semantic | -0.658659 | 18.3% | 🟢 低 |\n\n**结论**: 对下游性能影响最大的错误类型是 **syntactic**，检测器应优先识别此类错误。\n\n## 综合清洗建议\n\n在有限的真值预算下，建议优先对 **thickness, velocity, chord_length** 列中的 **syntactic** 类型错误执行 **repair_value** 操作，以最大化下游 regression 任务性能。\n"
+  },
+  "getscoreml_results": {
+    "task_name": "v3_oracle_plain_single",
+    "task_type": "regression",
+    "total_records": 1503,
+    "total_cells": 10521,
+    "cleaned_rows": 1454,
+    "accuracy": 0.08793103448275862,
+    "precision": 0.08793103448275862,
+    "recall": 0.1495601173020528,
+    "f1_score": 0.11074918562111946,
+    "edr": -0.5513196480938416,
+    "hybrid_distance": 0.24327050947012513,
+    "r_edr": -0.32697947214076245,
+    "ml_rf_mse": 26.33864864650853,
+    "ml_rf_r2": 0.4642112489479887,
+    "ml_lr_mse": 41.48732893518161,
+    "ml_lr_r2": 0.15605221615606535,
+    "ml_ridge_mse": 41.49249866331957,
+    "ml_ridge_r2": 0.15594705198384484,
+    "ml_lasso_mse": 46.112161481665176,
+    "ml_lasso_r2": 0.06197247474026579,
+    "ml_knn_mse": 45.57670862240551,
+    "ml_knn_r2": 0.07286481863232774,
+    "ml_gb_mse": 30.31554215903512,
+    "ml_gb_r2": 0.38331207918644805,
+    "tolerance_P_do_nothing": -0.28506351126990426,
+    "tolerance_P_demand_clean": 0.4672380739631077,
+    "tolerance_P_repair_all": 0.9334221456983891,
+    "tolerance_tolerance_prior": -1.6390665781167504,
+    "tolerance_tolerance_post": 0.6174070092091267,
+    "snoopy_snoopy_available": true,
+    "snoopy_upper_bound_dirty": 33.01175007447022,
+    "snoopy_upper_bound_cleaned": 29.132061692283525,
+    "snoopy_upper_bound_clean": 13.015656489182849,
+    "snoopy_upper_bound_improvement": 0.19402231569076445,
+    "ideal_total_changes": 1160,
+    "ideal_correct_repairs": 101,
+    "ideal_wrong_repairs": 1059,
+    "ideal_deleted_rows": 49,
+    "ideal_ideal_min_ground_truth_cost": 101,
+    "ideal_repair_accuracy": 0.08706896551724137,
+    "method_type": 1,
+    "ground_truth_cost": 69,
+    "cost_ratio": 0.04590818363273453,
+    "total_samples": 1503,
+    "labeled_samples": 69,
+    "validation_samples": 0
+  },
+  "elapsed_time": 25.73
+}

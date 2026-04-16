@@ -1,0 +1,5 @@
+[04:32:58] INFO: 模型已加载: /Users/qianzekai/PycharmProjects/TolerDM/results/demandclean/nasa/v8_auto_plain_two/model/v8_auto_plain_two_agent.pt
+Traceback (most recent call last):
+  File "/Users/qianzekai/PycharmProjects/TolerDM/run_demandclean/run_demandclean_base.py", line 1996, in run_version
+    if history and history.get('score'):
+UnboundLocalError: local variable 'history' referenced before assignment

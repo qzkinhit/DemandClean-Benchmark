@@ -1,0 +1,156 @@
+DemandClean 结果摘要 - v5_auto_dueling_single
+============================================================
+
+数据集: nasa
+检测器: auto
+Agent: dueling_two_stage
+推理模式: single_phase
+任务: regression (ridge)
+训练轮数: 250
+执行时间: 381.79 秒
+可视化耗时: 672.64 秒
+数据维度: (901, 5) -> (457, 5)
+真值成本: 2
+
+步骤计时:
+------------------------------------------------------------
+  Step 1 初始化: 0.01s
+  Step 2 训练: 336.33s
+  Step 3 推理: 29.40s
+  Step 4 检测器评估: 0.03s
+  Step 5 Baseline评估: 7.43s
+  Step 6 容忍度评估: 1.97s
+  Step 7 Shapley分析: 669.73s
+  Step 8 训练曲线: 1.87s
+  Step 9 统一测评: 7.67s
+  Step 10 成本汇总: 0.00s
+
+Baseline 对比:
+------------------------------------------------------------
+  NoFix: {'n_samples': 901, 'n_test': 301, 'rf_mse': 17.8841, 'rf_r2': 0.6238, 'ridge_mse': 47.5844, 'ridge_r2': -0.0011, 'auth': 0.6459, 'div': 0.7391, 'cost': 0}
+  DeleteAll: {'n_samples': 665, 'n_test': 301, 'rf_mse': 17.9882, 'rf_r2': 0.6216, 'ridge_mse': 47.7018, 'ridge_r2': -0.0035, 'auth': 0.4767, 'div': 0.7381, 'cost': 0}
+  DeleteFix: {'n_samples': 439, 'n_test': 301, 'rf_mse': 21.649, 'rf_r2': 0.5446, 'ridge_mse': 47.4124, 'ridge_r2': 0.0026, 'auth': 0.533, 'div': 0.0, 'cost': 462}
+  ReplaceAll: {'n_samples': 901, 'n_test': 301, 'rf_mse': 19.9428, 'rf_r2': 0.5805, 'ridge_mse': 47.322, 'ridge_r2': 0.0045, 'auth': 0.7092, 'div': 0.0004, 'cost': 0}
+  DemandClean: {'n_samples': 457, 'n_test': 301, 'rf_mse': 21.879, 'rf_r2': 0.5397, 'ridge_mse': 47.3878, 'ridge_r2': 0.0031, 'auth': 0.5186, 'div': 0.0, 'cost': 2}
+  FullFix: {'n_samples': 901, 'n_test': 301, 'rf_mse': 15.2092, 'rf_r2': 0.68, 'ridge_mse': 47.3639, 'ridge_r2': 0.0036, 'auth': 1.0, 'div': 0.0, 'cost': 901}
+
+模型容忍度:
+------------------------------------------------------------
+  rf: {'P_clean': 0.6791534862086115, 'P_dirty': 0.5719498528481834, 'P_dc': -0.3161795309368851, 'tolerance_prior': -0.5528098824789991, 'tolerance_post': -8.284508238625639}
+  ridge: {'P_clean': 0.002334946505679336, 'P_dirty': -0.0012476735822752882, 'P_dc': -0.007195139861522204, 'tolerance_prior': 5.766844761112093, 'tolerance_post': -1.6600884640945617}
+
+检测器准确率:
+------------------------------------------------------------
+  overall: {'precision': 0.946058091286307, 'recall': 1.0, 'f1': 0.9722814498933902, 'tp': 456, 'fp': 26, 'fn': 0, 'gt_count': 456, 'det_count': 482}
+  missing: {'precision': 1.0, 'recall': 1.0, 'f1': 1.0, 'tp': 236, 'fp': 0, 'fn': 0, 'gt_count': 236, 'det_count': 236}
+  syntactic: {'precision': 0.9863013698630136, 'recall': 0.9818181818181818, 'f1': 0.9840546697038723, 'tp': 216, 'fp': 3, 'fn': 4, 'gt_count': 220, 'det_count': 219}
+  semantic: {'precision': 0.14814814814814814, 'recall': 0.01818181818181818, 'f1': 0.032388663967611336, 'tp': 4, 'fp': 23, 'fn': 216, 'gt_count': 220, 'det_count': 27}
+  value_error_combined: {'precision': 0.8943089430894309, 'recall': 1.0, 'f1': 0.944206008583691, 'tp': 220, 'fp': 26, 'fn': 0, 'gt_count': 220, 'det_count': 246}
+  ground_truth_total: 456
+  detected_total: 482
+
+Clean4MLBaseline 统一测评:
+------------------------------------------------------------
+  accuracy: 0.0020477815699658703
+  recall: 0.16666666666666666
+  f1_score: 0.004045852998276261
+  edr: -80.33333333333333
+  hybrid_distance: 0.2694369202226345
+  r_edr: -24.38888888888889
+
+  下游任务性能:
+    ml_rf_mse: 21.879020002210222
+    ml_rf_r2: 0.5397206396742221
+    ml_lr_mse: 36.516627605259394
+    ml_lr_r2: 0.23178231960547124
+    ml_ridge_mse: 47.38778272305797
+    ml_ridge_r2: 0.003080653666267641
+    ml_lasso_mse: 47.56354946905937
+    ml_lasso_r2: -0.0006170350514123069
+    ml_knn_mse: 39.878379640531556
+    ml_knn_r2: 0.16105954151885493
+    ml_gb_mse: 19.965181033118526
+    ml_gb_r2: 0.5799829812403016
+
+  容忍度:
+    tolerance_P_do_nothing: 0.6237630590001768
+    tolerance_P_demand_clean: 0.5397206396742221
+    tolerance_P_repair_all: 0.680036678206931
+    tolerance_tolerance_prior: 0.865265475226017
+    tolerance_tolerance_post: -1.4934603551475063
+
+  Snoopy 上界:
+    snoopy_snoopy_available: True
+    snoopy_upper_bound_dirty: 28.88795953614174
+    snoopy_upper_bound_cleaned: 21.09992797986491
+    snoopy_upper_bound_clean: 17.223797781209107
+    snoopy_upper_bound_improvement: 0.6676889192644613
+
+  真值成本:
+    method_type: 1
+    ground_truth_cost: 2
+    ideal_total_changes: 2087
+    ideal_correct_repairs: 623
+    ideal_wrong_repairs: 1464
+    ideal_deleted_rows: 444
+    ideal_ideal_min_ground_truth_cost: 623
+    ideal_repair_accuracy: 0.2985146142788692
+
+============================================================
+Shapley 贡献分析:
+============================================================
+# Shapley Value Analysis Report
+
+- 数据规模: 901 行 × 5 列
+- 错误总数: 482
+- 任务类型: regression (random_forest)
+- MC 采样次数: 200
+
+## 维度 1: 动作重要性 (Action Importance)
+
+| 排名 | 动作 | Shapley 值 | 占比 | 方向 |
+|------|------|-----------|------|------|
+| 1 | delete | +5.619806 | 71.9% | ↑ 正贡献 |
+| 2 | repair_value | +0.943760 | 12.1% | ↑ 正贡献 |
+| 3 | no_action | +0.643273 | 8.2% | ↑ 正贡献 |
+| 4 | replace_nearby | +0.605919 | 7.8% | ↑ 正贡献 |
+
+**结论**: 最有效的清洗动作是 **delete**
+
+## 维度 2: 特征重要性 (Feature Importance)
+
+| 排名 | 特征 | Shapley 值 | 占比 | 清洗价值 |
+|------|------|-----------|------|---------|
+| 1 | frequency | +0.000000 | 0.0% | — 可忽略 |
+| 2 | angle | +0.000000 | 0.0% | — 可忽略 |
+| 3 | chord_length | +0.000000 | 0.0% | — 可忽略 |
+| 4 | velocity | +0.000000 | 0.0% | — 可忽略 |
+| 5 | thickness | +0.000000 | 0.0% | — 可忽略 |
+
+**结论**: 
+- 清洗价值极低的特征: frequency, angle, chord_length（清洗它们几乎不影响性能）
+
+## 维度 3: 错误类型重要性 (Error Type Importance)
+
+| 排名 | 错误类型 | Shapley 值 | 占比 | 优先级 |
+|------|---------|-----------|------|--------|
+| 1 | syntactic | +5.004058 | 60.9% | 🔴 高 |
+| 2 | missing | +2.552091 | 31.0% | 🟡 中 |
+| 3 | semantic | -0.666281 | 8.1% | 🟢 低 |
+
+**结论**: 对下游性能影响最大的错误类型是 **syntactic**，检测器应优先识别此类错误。
+
+## 综合清洗建议
+
+
+
+============================================================
+真值使用成本汇总:
+============================================================
+  RAHA 检测成本: 20
+  Agent 修复成本: 2
+  总成本: 22
+  总数据单元: 4505
+  成本率: 0.4883%
+  apply_raha_truth: True
+  count_raha_cost: True

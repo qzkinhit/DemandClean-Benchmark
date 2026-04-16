@@ -1,0 +1,248 @@
+[
+  {
+    "dataset": "beers",
+    "task_type": "classification",
+    "n_errors": 2028,
+    "n_train": 1446,
+    "n_test": 482,
+    "authenticity": 0.9150145996619026,
+    "elapsed_time": 10.16,
+    "truth_cost": 0,
+    "replaceall": {
+      "rf_accuracy": 0.27800829875518673,
+      "rf_f1": 0.25392614045760864,
+      "lr_accuracy": 0.1887966804979253,
+      "lr_f1": 0.15355436312347476
+    },
+    "nofix": {
+      "rf_accuracy": 0.3112033195020747,
+      "rf_f1": 0.2608935295550961,
+      "lr_accuracy": 0.2053941908713693,
+      "lr_f1": 0.11897603960555274
+    },
+    "fullfix": {
+      "rf_accuracy": 0.3091286307053942,
+      "rf_f1": 0.26989908942530855,
+      "lr_accuracy": 0.2012448132780083,
+      "lr_f1": 0.12031759009238109
+    }
+  },
+  {
+    "dataset": "adult",
+    "task_type": "classification",
+    "n_errors": 0,
+    "n_train": 27133,
+    "n_test": 9045,
+    "authenticity": 1.0,
+    "elapsed_time": 5.01,
+    "truth_cost": 0,
+    "replaceall": {
+      "rf_accuracy": 0.8518518518518519,
+      "rf_f1": 0.8502176697203637,
+      "lr_accuracy": 0.820342730790492,
+      "lr_f1": 0.8087583318987146
+    },
+    "nofix": {
+      "rf_accuracy": 0.8518518518518519,
+      "rf_f1": 0.8502176697203637,
+      "lr_accuracy": 0.820342730790492,
+      "lr_f1": 0.8087583318987146
+    },
+    "fullfix": {
+      "rf_accuracy": 0.8564953012714207,
+      "rf_f1": 0.8532328751407122,
+      "lr_accuracy": 0.8202321724709785,
+      "lr_f1": 0.8059981517025038
+    }
+  },
+  {
+    "dataset": "bike",
+    "task_type": "regression",
+    "n_errors": 26517,
+    "n_train": 10427,
+    "n_test": 3476,
+    "authenticity": 0.8346728045778588,
+    "elapsed_time": 4.24,
+    "truth_cost": 0,
+    "replaceall": {
+      "rf_mse": 143.0491313866513,
+      "rf_r2": 0.9954479475639296,
+      "ridge_mse": 2492.144638018437,
+      "ridge_r2": 0.920695966759361
+    },
+    "nofix": {
+      "rf_mse": 110.91921521864211,
+      "rf_r2": 0.9964703729484502,
+      "ridge_mse": 4421.983382690743,
+      "ridge_r2": 0.8592854075077703
+    },
+    "fullfix": {
+      "rf_mse": 7.148902215189874,
+      "rf_r2": 0.9997725104834372,
+      "ridge_mse": 0.00100244426911542,
+      "ridge_r2": 0.9999999681006181
+    }
+  },
+  {
+    "dataset": "breast_cancer",
+    "task_type": "classification",
+    "n_errors": 318,
+    "n_train": 419,
+    "n_test": 140,
+    "authenticity": 0.9350304958896845,
+    "elapsed_time": 0.5,
+    "truth_cost": 0,
+    "replaceall": {
+      "rf_accuracy": 0.9928571428571429,
+      "rf_f1": 0.992829703201893,
+      "lr_accuracy": 0.9857142857142858,
+      "lr_f1": 0.9856018568889855
+    },
+    "nofix": {
+      "rf_accuracy": 0.9928571428571429,
+      "rf_f1": 0.992829703201893,
+      "lr_accuracy": 0.9571428571428572,
+      "lr_f1": 0.9560295385538106
+    },
+    "fullfix": {
+      "rf_accuracy": 0.9928571428571429,
+      "rf_f1": 0.992829703201893,
+      "lr_accuracy": 0.9857142857142858,
+      "lr_f1": 0.9856018568889855
+    }
+  },
+  {
+    "dataset": "har",
+    "task_type": "clustering",
+    "n_errors": 22285,
+    "n_train": 42000,
+    "n_test": 14000,
+    "authenticity": 0.8231349206349207,
+    "elapsed_time": 38.24,
+    "truth_cost": 0,
+    "replaceall": {
+      "silhouette": 0.5275262913838955,
+      "ari": 0.6029414628787818
+    },
+    "nofix": {
+      "silhouette": 0.5263459881043301,
+      "ari": 0.6031778008641346
+    },
+    "fullfix": {
+      "silhouette": 0.6852696857791937,
+      "ari": 0.7170065101140911
+    }
+  },
+  {
+    "dataset": "mercedes",
+    "task_type": "regression",
+    "n_errors": 180581,
+    "n_train": 2525,
+    "n_test": 842,
+    "authenticity": 0.8685696229197388,
+    "elapsed_time": 18.0,
+    "truth_cost": 0,
+    "replaceall": {
+      "rf_mse": 118.41670919913291,
+      "rf_r2": 0.37350025641475126,
+      "ridge_mse": 115.8438824111501,
+      "ridge_r2": 0.38711214728608023
+    },
+    "nofix": {
+      "rf_mse": 121.03075264388347,
+      "rf_r2": 0.3596703032017894,
+      "ridge_mse": 122.73343187154785,
+      "ridge_r2": 0.3506620466241993
+    },
+    "fullfix": {
+      "rf_mse": 114.60465060264426,
+      "rf_r2": 0.39366847211154055,
+      "ridge_mse": 111.31369545343703,
+      "ridge_r2": 0.41107971897925855
+    }
+  },
+  {
+    "dataset": "nasa",
+    "task_type": "regression",
+    "n_errors": 459,
+    "n_train": 901,
+    "n_test": 301,
+    "authenticity": 0.9276359600443951,
+    "elapsed_time": 0.45,
+    "truth_cost": 0,
+    "replaceall": {
+      "rf_mse": 19.531516102035226,
+      "rf_r2": 0.5891061968621429,
+      "ridge_mse": 47.563182349062664,
+      "ridge_r2": -0.0006093117732568487
+    },
+    "nofix": {
+      "rf_mse": 17.919503927380465,
+      "rf_r2": 0.623018864454773,
+      "ridge_mse": 47.584203446511,
+      "ridge_r2": -0.0010515426083621549
+    },
+    "fullfix": {
+      "rf_mse": 15.209206670769154,
+      "rf_r2": 0.6800366782069311,
+      "ridge_mse": 47.36410769609743,
+      "ridge_r2": 0.003578716480049593
+    }
+  },
+  {
+    "dataset": "smartfactory",
+    "task_type": "classification",
+    "n_errors": 4324,
+    "n_train": 14187,
+    "n_test": 4729,
+    "authenticity": 0.9970591229842657,
+    "elapsed_time": 14.12,
+    "truth_cost": 0,
+    "replaceall": {
+      "rf_accuracy": 0.9629942905476845,
+      "rf_f1": 0.9626555458845044,
+      "lr_accuracy": 0.7623176147176993,
+      "lr_f1": 0.6659004305183669
+    },
+    "nofix": {
+      "rf_accuracy": 0.9613026009727215,
+      "rf_f1": 0.9607827460824603,
+      "lr_accuracy": 0.7595686191583845,
+      "lr_f1": 0.6576589062241166
+    },
+    "fullfix": {
+      "rf_accuracy": 0.9663776696976105,
+      "rf_f1": 0.9661023704739319,
+      "lr_accuracy": 0.7627405371114401,
+      "lr_f1": 0.6668619629789776
+    }
+  },
+  {
+    "dataset": "soilmoisture",
+    "task_type": "regression",
+    "n_errors": 15716,
+    "n_train": 407,
+    "n_test": 136,
+    "authenticity": 0.6959507825649558,
+    "elapsed_time": 2.03,
+    "truth_cost": 0,
+    "replaceall": {
+      "rf_mse": 1.4110615613235251,
+      "rf_r2": 0.9050277448215162,
+      "ridge_mse": 3.598960812009105,
+      "ridge_r2": 0.7577700123197355
+    },
+    "nofix": {
+      "rf_mse": 1.6618532988970554,
+      "rf_r2": 0.8881480724171824,
+      "ridge_mse": 5.992064959973379,
+      "ridge_r2": 0.5967008541492215
+    },
+    "fullfix": {
+      "rf_mse": 0.7591868189705892,
+      "rf_r2": 0.9489025239750791,
+      "ridge_mse": 2.153693494615798,
+      "ridge_r2": 0.855044504256044
+    }
+  }
+]

@@ -1,0 +1,5 @@
+[04:49:06] INFO:   Clean Base 自动选择 (5-fold CV, 样本保留率加权):
+[04:49:06] INFO:     DeleteFix: 9861 行, CV=0.7901, 权重=0.834, 加权=0.6587
+[04:49:06] INFO:     VE-Fill:   14187 行, CV=0.7942, 权重=1.000, 加权=0.7942
+[04:49:06] INFO:     → 选择 VE-Fill (14187 行)
+[05:09:34] INFO: 模型已保存: /Users/qianzekai/PycharmProjects/TolerDM/results/demandclean/smartfactory/v7_auto_plain_single/model/v7_auto_plain_single_agent.pt

@@ -1,0 +1,46 @@
+Clean4MLBaseline 统一测评报告
+任务名称: v6_auto_dueling_two
+======================================================================
+
+[传统清洗指标]
+  precision: 0.00043355107231631885
+  accuracy: 0.00043355107231631885
+  recall: 0.00012013936165952505
+  f1_score: 0.0001881431806351146
+  edr: -0.16233230547435024
+  hybrid_distance: 0.4689670220324643
+  r_edr: 0.0
+
+[下游任务性能]
+  ml_rf_mse: 80.10454699880677
+  ml_rf_r2: 0.5018065185830924
+  ml_lr_mse: 117.32026323052432
+  ml_lr_r2: 0.27035115272003785
+  ml_ridge_mse: 117.1599910922046
+  ml_ridge_r2: 0.2713479317738513
+  ml_lasso_mse: 98.20713792854295
+  ml_lasso_r2: 0.3892212392719725
+  ml_knn_mse: 123.07110904545456
+  ml_knn_r2: 0.2345849695884532
+  ml_gb_mse: 125.81849048965734
+  ml_gb_r2: 0.21749820513189888
+
+[模型容忍度]
+  tolerance_P_do_nothing: 0.5493791207518035
+  tolerance_P_demand_clean: 0.3868693503642654
+  tolerance_P_repair_all: 0.49220883372505886
+  tolerance_tolerance_prior: 0.7041937630153291
+  tolerance_tolerance_post: 2.8425564893790884
+
+[Snoopy上界评估]
+  snoopy_snoopy_available: True
+  snoopy_upper_bound_dirty: 82.43558994258044
+  snoopy_upper_bound_cleaned: 95.49914245317042
+  snoopy_upper_bound_clean: 82.61599756727463
+  snoopy_upper_bound_improvement: 72.41131040183888
+
+[真值使用成本]
+  方法类型: Type 2
+  实际真值使用: 68
+  理想最小成本: 3
+  修复准确率: 0.0001

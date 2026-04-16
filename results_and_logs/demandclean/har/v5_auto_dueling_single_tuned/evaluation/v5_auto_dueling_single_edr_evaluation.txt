@@ -1,0 +1,23 @@
+Attribute: index
+Distance (Dirty to Clean): 0
+Distance (Repaired to Clean): 0
+========================================
+Attribute: x
+Distance (Dirty to Clean): 1239
+Distance (Repaired to Clean): 12580
+========================================
+Attribute: y
+Distance (Dirty to Clean): 4996
+Distance (Repaired to Clean): 6975
+========================================
+Attribute: z
+Distance (Dirty to Clean): 4450
+Distance (Repaired to Clean): 230
+========================================
+Attribute: gt
+Distance (Dirty to Clean): 852
+Distance (Repaired to Clean): 476
+========================================
+总的脏数据到干净数据距离: 11537
+总的修复后数据到干净数据距离: 20261
+错误减少率 (EDR): -0.7561757822657537

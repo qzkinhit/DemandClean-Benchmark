@@ -1,0 +1,64 @@
+[2026-03-03 22:39:39,008] INFO - demandclean: ==================================================
+[2026-03-03 22:39:39,008] INFO - demandclean: DemandClean 训练开始
+[2026-03-03 22:39:39,008] INFO - demandclean:   检测器模式: auto
+[2026-03-03 22:39:39,008] INFO - demandclean:   训练模式: clean_base
+[2026-03-03 22:39:39,009] INFO - demandclean:   Agent类型: dueling_two_stage
+[2026-03-03 22:39:39,009] INFO - demandclean:   推理模式: single_phase
+[2026-03-03 22:39:39,009] INFO - demandclean:   FD规则: 4
+[2026-03-03 22:39:39,009] INFO - demandclean:   丰富规则: 有
+[2026-03-03 22:39:39,009] INFO - demandclean: ==================================================
+[2026-03-03 22:39:39,009] INFO - demandclean: 
+[Step 1] 初始化错误检测器...
+[2026-03-03 22:39:39,009] INFO - demandclean: 
+[Step 1.5] 运行 RAHA 检测获取标注行...
+[2026-03-03 22:44:35,454] INFO - demandclean:   [预修复] 利用 RAHA 标注行修复 41 个特征单元格 + 0 个标签
+[2026-03-03 22:44:35,456] INFO - demandclean:   标注行: [5, 76, 161, 276, 284, 452, 468, 515, 535, 768]... (共 20 行)
+[2026-03-03 22:44:35,456] INFO - demandclean: 
+[Step 2] 训练 DQN Agent...
+[2026-03-03 22:44:35,456] INFO - demandclean: 开始训练 (dueling_two_stage Agent, mode=clean_base)
+[2026-03-03 22:44:35,456] INFO - demandclean:   任务类型: classification
+[2026-03-03 22:44:35,456] INFO - demandclean:   模型类型: random_forest
+[2026-03-03 22:44:35,457] INFO - demandclean:   原始数据: 1446 行
+[2026-03-03 22:45:14,480] INFO - demandclean:   Clean Base 自动选择 (5-fold CV, 样本保留率加权):
+[2026-03-03 22:45:14,481] INFO - demandclean:     DeleteFix: 289 行, CV=0.2944, 权重=0.447, 加权=0.1316
+[2026-03-03 22:45:14,481] INFO - demandclean:     VE-Fill:   1446 行, CV=0.0000, 权重=1.000, 加权=0.0000
+[2026-03-03 22:45:14,481] INFO - demandclean:     → 选择 DeleteFix (289 行)
+[2026-03-03 22:45:14,481] INFO - demandclean:   标签注入: 检测器未发现标签错误，不注入
+[2026-03-03 22:45:14,481] INFO - demandclean:   自适应注入比例范围 (基于检测结果):
+[2026-03-03 22:45:14,481] INFO - demandclean:     missing: (0.1804, 0.2705)
+[2026-03-03 22:45:14,482] INFO - demandclean:     semantic: (0.0050, 0.0100)
+[2026-03-03 22:45:14,482] INFO - demandclean:     syntactic: (0.0050, 0.0100)
+[2026-03-03 22:45:14,482] INFO - demandclean:     label: 不注入
+[2026-03-03 22:45:20,947] INFO - demandclean:   ErrorInjector: rich_rules=True, domain=3, cfd=0, fd=4
+[2026-03-03 22:45:20,947] INFO - demandclean:   Oracle 模式: reward 使用干净验证集 (482 行)
+[2026-03-03 22:45:20,947] INFO - demandclean:   开始训练 DQN (400 episodes, 起始轮=0)...
+[2026-03-03 22:47:13,121] INFO - demandclean:   Episode 50/400: Score=0.2199, Best=0.2635, Eps=0.778
+[2026-03-03 22:47:13,122] INFO - demandclean:     Actions: {'no_action': 21, 'repair_value': 6, 'delete': 20, 'replace_nearby': 5}
+[2026-03-03 22:49:08,776] INFO - demandclean:   Episode 100/400: Score=0.2054, Best=0.2635, Eps=0.606
+[2026-03-03 22:49:08,778] INFO - demandclean:     Actions: {'no_action': 11, 'repair_value': 12, 'delete': 24, 'replace_nearby': 24}
+[2026-03-03 22:50:56,672] INFO - demandclean:   Episode 150/400: Score=0.2095, Best=0.2635, Eps=0.471
+[2026-03-03 22:50:56,680] INFO - demandclean:     Actions: {'no_action': 37, 'repair_value': 3, 'delete': 17, 'replace_nearby': 12}
+[2026-03-03 22:52:55,615] INFO - demandclean:   Episode 200/400: Score=0.1992, Best=0.2635, Eps=0.367
+[2026-03-03 22:52:55,616] INFO - demandclean:     Actions: {'no_action': 23, 'repair_value': 1, 'delete': 25, 'replace_nearby': 15}
+[2026-03-03 22:54:40,264] INFO - demandclean:   Episode 250/400: Score=0.2158, Best=0.2635, Eps=0.286
+[2026-03-03 22:54:40,265] INFO - demandclean:     Actions: {'no_action': 36, 'repair_value': 1, 'delete': 17, 'replace_nearby': 4}
+[2026-03-03 22:56:08,523] INFO - demandclean:   Episode 300/400: Score=0.2075, Best=0.2635, Eps=0.222
+[2026-03-03 22:56:08,524] INFO - demandclean:     Actions: {'no_action': 4, 'repair_value': 0, 'delete': 46, 'replace_nearby': 11}
+[2026-03-03 22:57:29,248] INFO - demandclean:   Episode 350/400: Score=0.2012, Best=0.2635, Eps=0.173
+[2026-03-03 22:57:29,249] INFO - demandclean:     Actions: {'no_action': 68, 'repair_value': 0, 'delete': 3, 'replace_nearby': 3}
+[2026-03-03 22:58:50,506] INFO - demandclean:   Episode 400/400: Score=0.2116, Best=0.2635, Eps=0.135
+[2026-03-03 22:58:50,507] INFO - demandclean:     Actions: {'no_action': 13, 'repair_value': 3, 'delete': 5, 'replace_nearby': 48}
+[2026-03-03 22:58:50,508] INFO - demandclean: 
+已恢复最佳模型权重 (Episode 13, Score=0.2635, Cost=6)
+[2026-03-03 22:58:50,508] INFO - demandclean: 
+训练完成! 最佳分数: 0.2635 (共 400 episodes)
+[2026-03-03 22:58:50,508] INFO - demandclean:   最佳动作分布: {'no_action': 29, 'repair_value': 6, 'delete': 25, 'replace_nearby': 14}
+[2026-03-03 22:58:50,509] INFO - demandclean: 
+训练完成!
+[2026-03-03 22:58:50,522] INFO - demandclean: 模型已保存: /Users/qianzekai/PycharmProjects/TolerDM/results/demandclean/beers/v5_auto_dueling_single/model/v5_auto_dueling_single_agent.pt
+[2026-03-03 22:58:50,536] INFO - demandclean: 
+==================================================
+[2026-03-03 22:58:50,536] INFO - demandclean: 单阶段推理
+[2026-03-03 22:58:50,536] INFO - demandclean: ==================================================
+[2026-03-03 22:58:50,538] INFO - demandclean:   [预修复] 利用 RAHA 标注行修复 41 个特征单元格 + 0 个标签
+[2026-03-03 22:58:50,538] INFO - demandclean:   移除已修复错误: missing=38, syntactic=3

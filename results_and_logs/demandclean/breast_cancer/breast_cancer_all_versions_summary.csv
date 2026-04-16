@@ -1,0 +1,4 @@
+﻿version,detector,agent,inference,truth_cost,elapsed_time,raha_cost,total_cost,cost_ratio,dc_accuracy,dc_f1,tol_prior,tol_post
+v5_auto_dueling_single,auto,dueling_two_stage,single_phase,45,20.14,20,65,0.010332,1.0,1.0,0.5588235294117647,-60.00000000000022
+v7_auto_plain_single,auto,single_stage,single_phase,0,20.21,20,20,0.003179,0.9643,0.9644,1.0073529411764706,1.0
+v8_auto_plain_two,auto,single_stage,two_phase,0,20.6,20,20,0.003179,0.9357,0.9355,1.0,0.0

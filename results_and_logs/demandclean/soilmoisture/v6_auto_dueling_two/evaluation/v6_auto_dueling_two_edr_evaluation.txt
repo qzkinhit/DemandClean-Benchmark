@@ -1,0 +1,519 @@
+Attribute: index
+Distance (Dirty to Clean): 0
+Distance (Repaired to Clean): 0
+========================================
+Attribute: datetime
+Distance (Dirty to Clean): 40
+Distance (Repaired to Clean): 40
+========================================
+Attribute: soil_temperature
+Distance (Dirty to Clean): 37
+Distance (Repaired to Clean): 37
+========================================
+Attribute: 454
+Distance (Dirty to Clean): 44
+Distance (Repaired to Clean): 45
+========================================
+Attribute: 458
+Distance (Dirty to Clean): 44
+Distance (Repaired to Clean): 47
+========================================
+Attribute: 462
+Distance (Dirty to Clean): 50
+Distance (Repaired to Clean): 51
+========================================
+Attribute: 466
+Distance (Dirty to Clean): 54
+Distance (Repaired to Clean): 54
+========================================
+Attribute: 470
+Distance (Dirty to Clean): 35
+Distance (Repaired to Clean): 35
+========================================
+Attribute: 474
+Distance (Dirty to Clean): 52
+Distance (Repaired to Clean): 52
+========================================
+Attribute: 478
+Distance (Dirty to Clean): 36
+Distance (Repaired to Clean): 37
+========================================
+Attribute: 482
+Distance (Dirty to Clean): 36
+Distance (Repaired to Clean): 36
+========================================
+Attribute: 486
+Distance (Dirty to Clean): 38
+Distance (Repaired to Clean): 38
+========================================
+Attribute: 490
+Distance (Dirty to Clean): 40
+Distance (Repaired to Clean): 40
+========================================
+Attribute: 494
+Distance (Dirty to Clean): 40
+Distance (Repaired to Clean): 40
+========================================
+Attribute: 498
+Distance (Dirty to Clean): 37
+Distance (Repaired to Clean): 37
+========================================
+Attribute: 502
+Distance (Dirty to Clean): 45
+Distance (Repaired to Clean): 46
+========================================
+Attribute: 506
+Distance (Dirty to Clean): 42
+Distance (Repaired to Clean): 42
+========================================
+Attribute: 510
+Distance (Dirty to Clean): 38
+Distance (Repaired to Clean): 38
+========================================
+Attribute: 514
+Distance (Dirty to Clean): 33
+Distance (Repaired to Clean): 33
+========================================
+Attribute: 518
+Distance (Dirty to Clean): 39
+Distance (Repaired to Clean): 39
+========================================
+Attribute: 522
+Distance (Dirty to Clean): 54
+Distance (Repaired to Clean): 54
+========================================
+Attribute: 526
+Distance (Dirty to Clean): 41
+Distance (Repaired to Clean): 41
+========================================
+Attribute: 530
+Distance (Dirty to Clean): 47
+Distance (Repaired to Clean): 47
+========================================
+Attribute: 534
+Distance (Dirty to Clean): 36
+Distance (Repaired to Clean): 36
+========================================
+Attribute: 538
+Distance (Dirty to Clean): 36
+Distance (Repaired to Clean): 36
+========================================
+Attribute: 542
+Distance (Dirty to Clean): 49
+Distance (Repaired to Clean): 49
+========================================
+Attribute: 546
+Distance (Dirty to Clean): 48
+Distance (Repaired to Clean): 48
+========================================
+Attribute: 550
+Distance (Dirty to Clean): 47
+Distance (Repaired to Clean): 47
+========================================
+Attribute: 554
+Distance (Dirty to Clean): 43
+Distance (Repaired to Clean): 43
+========================================
+Attribute: 558
+Distance (Dirty to Clean): 38
+Distance (Repaired to Clean): 38
+========================================
+Attribute: 562
+Distance (Dirty to Clean): 47
+Distance (Repaired to Clean): 47
+========================================
+Attribute: 566
+Distance (Dirty to Clean): 37
+Distance (Repaired to Clean): 37
+========================================
+Attribute: 570
+Distance (Dirty to Clean): 36
+Distance (Repaired to Clean): 36
+========================================
+Attribute: 574
+Distance (Dirty to Clean): 41
+Distance (Repaired to Clean): 40
+========================================
+Attribute: 578
+Distance (Dirty to Clean): 36
+Distance (Repaired to Clean): 35
+========================================
+Attribute: 582
+Distance (Dirty to Clean): 47
+Distance (Repaired to Clean): 41
+========================================
+Attribute: 586
+Distance (Dirty to Clean): 48
+Distance (Repaired to Clean): 48
+========================================
+Attribute: 590
+Distance (Dirty to Clean): 38
+Distance (Repaired to Clean): 37
+========================================
+Attribute: 594
+Distance (Dirty to Clean): 39
+Distance (Repaired to Clean): 39
+========================================
+Attribute: 598
+Distance (Dirty to Clean): 38
+Distance (Repaired to Clean): 35
+========================================
+Attribute: 602
+Distance (Dirty to Clean): 42
+Distance (Repaired to Clean): 37
+========================================
+Attribute: 606
+Distance (Dirty to Clean): 42
+Distance (Repaired to Clean): 41
+========================================
+Attribute: 610
+Distance (Dirty to Clean): 39
+Distance (Repaired to Clean): 38
+========================================
+Attribute: 614
+Distance (Dirty to Clean): 35
+Distance (Repaired to Clean): 32
+========================================
+Attribute: 618
+Distance (Dirty to Clean): 42
+Distance (Repaired to Clean): 37
+========================================
+Attribute: 622
+Distance (Dirty to Clean): 32
+Distance (Repaired to Clean): 29
+========================================
+Attribute: 626
+Distance (Dirty to Clean): 42
+Distance (Repaired to Clean): 28
+========================================
+Attribute: 630
+Distance (Dirty to Clean): 42
+Distance (Repaired to Clean): 25
+========================================
+Attribute: 634
+Distance (Dirty to Clean): 31
+Distance (Repaired to Clean): 25
+========================================
+Attribute: 638
+Distance (Dirty to Clean): 44
+Distance (Repaired to Clean): 43
+========================================
+Attribute: 642
+Distance (Dirty to Clean): 40
+Distance (Repaired to Clean): 33
+========================================
+Attribute: 646
+Distance (Dirty to Clean): 44
+Distance (Repaired to Clean): 32
+========================================
+Attribute: 650
+Distance (Dirty to Clean): 43
+Distance (Repaired to Clean): 43
+========================================
+Attribute: 654
+Distance (Dirty to Clean): 34
+Distance (Repaired to Clean): 34
+========================================
+Attribute: 658
+Distance (Dirty to Clean): 49
+Distance (Repaired to Clean): 50
+========================================
+Attribute: 662
+Distance (Dirty to Clean): 37
+Distance (Repaired to Clean): 37
+========================================
+Attribute: 666
+Distance (Dirty to Clean): 30
+Distance (Repaired to Clean): 30
+========================================
+Attribute: 670
+Distance (Dirty to Clean): 37
+Distance (Repaired to Clean): 37
+========================================
+Attribute: 674
+Distance (Dirty to Clean): 41
+Distance (Repaired to Clean): 41
+========================================
+Attribute: 678
+Distance (Dirty to Clean): 48
+Distance (Repaired to Clean): 48
+========================================
+Attribute: 682
+Distance (Dirty to Clean): 42
+Distance (Repaired to Clean): 42
+========================================
+Attribute: 686
+Distance (Dirty to Clean): 38
+Distance (Repaired to Clean): 38
+========================================
+Attribute: 690
+Distance (Dirty to Clean): 49
+Distance (Repaired to Clean): 49
+========================================
+Attribute: 694
+Distance (Dirty to Clean): 37
+Distance (Repaired to Clean): 37
+========================================
+Attribute: 698
+Distance (Dirty to Clean): 44
+Distance (Repaired to Clean): 44
+========================================
+Attribute: 702
+Distance (Dirty to Clean): 37
+Distance (Repaired to Clean): 37
+========================================
+Attribute: 706
+Distance (Dirty to Clean): 32
+Distance (Repaired to Clean): 32
+========================================
+Attribute: 710
+Distance (Dirty to Clean): 40
+Distance (Repaired to Clean): 40
+========================================
+Attribute: 714
+Distance (Dirty to Clean): 47
+Distance (Repaired to Clean): 47
+========================================
+Attribute: 718
+Distance (Dirty to Clean): 41
+Distance (Repaired to Clean): 41
+========================================
+Attribute: 722
+Distance (Dirty to Clean): 41
+Distance (Repaired to Clean): 41
+========================================
+Attribute: 726
+Distance (Dirty to Clean): 41
+Distance (Repaired to Clean): 41
+========================================
+Attribute: 730
+Distance (Dirty to Clean): 42
+Distance (Repaired to Clean): 42
+========================================
+Attribute: 734
+Distance (Dirty to Clean): 39
+Distance (Repaired to Clean): 39
+========================================
+Attribute: 738
+Distance (Dirty to Clean): 48
+Distance (Repaired to Clean): 48
+========================================
+Attribute: 742
+Distance (Dirty to Clean): 42
+Distance (Repaired to Clean): 42
+========================================
+Attribute: 746
+Distance (Dirty to Clean): 42
+Distance (Repaired to Clean): 42
+========================================
+Attribute: 750
+Distance (Dirty to Clean): 43
+Distance (Repaired to Clean): 43
+========================================
+Attribute: 754
+Distance (Dirty to Clean): 39
+Distance (Repaired to Clean): 39
+========================================
+Attribute: 758
+Distance (Dirty to Clean): 46
+Distance (Repaired to Clean): 46
+========================================
+Attribute: 762
+Distance (Dirty to Clean): 51
+Distance (Repaired to Clean): 50
+========================================
+Attribute: 766
+Distance (Dirty to Clean): 43
+Distance (Repaired to Clean): 43
+========================================
+Attribute: 770
+Distance (Dirty to Clean): 44
+Distance (Repaired to Clean): 43
+========================================
+Attribute: 774
+Distance (Dirty to Clean): 31
+Distance (Repaired to Clean): 31
+========================================
+Attribute: 778
+Distance (Dirty to Clean): 40
+Distance (Repaired to Clean): 40
+========================================
+Attribute: 782
+Distance (Dirty to Clean): 46
+Distance (Repaired to Clean): 46
+========================================
+Attribute: 786
+Distance (Dirty to Clean): 34
+Distance (Repaired to Clean): 34
+========================================
+Attribute: 790
+Distance (Dirty to Clean): 41
+Distance (Repaired to Clean): 41
+========================================
+Attribute: 794
+Distance (Dirty to Clean): 47
+Distance (Repaired to Clean): 47
+========================================
+Attribute: 798
+Distance (Dirty to Clean): 50
+Distance (Repaired to Clean): 50
+========================================
+Attribute: 802
+Distance (Dirty to Clean): 38
+Distance (Repaired to Clean): 38
+========================================
+Attribute: 806
+Distance (Dirty to Clean): 35
+Distance (Repaired to Clean): 35
+========================================
+Attribute: 810
+Distance (Dirty to Clean): 38
+Distance (Repaired to Clean): 38
+========================================
+Attribute: 814
+Distance (Dirty to Clean): 34
+Distance (Repaired to Clean): 34
+========================================
+Attribute: 818
+Distance (Dirty to Clean): 49
+Distance (Repaired to Clean): 49
+========================================
+Attribute: 822
+Distance (Dirty to Clean): 41
+Distance (Repaired to Clean): 40
+========================================
+Attribute: 826
+Distance (Dirty to Clean): 54
+Distance (Repaired to Clean): 54
+========================================
+Attribute: 830
+Distance (Dirty to Clean): 38
+Distance (Repaired to Clean): 36
+========================================
+Attribute: 834
+Distance (Dirty to Clean): 38
+Distance (Repaired to Clean): 36
+========================================
+Attribute: 838
+Distance (Dirty to Clean): 48
+Distance (Repaired to Clean): 48
+========================================
+Attribute: 842
+Distance (Dirty to Clean): 35
+Distance (Repaired to Clean): 35
+========================================
+Attribute: 846
+Distance (Dirty to Clean): 42
+Distance (Repaired to Clean): 38
+========================================
+Attribute: 850
+Distance (Dirty to Clean): 41
+Distance (Repaired to Clean): 40
+========================================
+Attribute: 854
+Distance (Dirty to Clean): 31
+Distance (Repaired to Clean): 31
+========================================
+Attribute: 858
+Distance (Dirty to Clean): 39
+Distance (Repaired to Clean): 38
+========================================
+Attribute: 862
+Distance (Dirty to Clean): 50
+Distance (Repaired to Clean): 47
+========================================
+Attribute: 866
+Distance (Dirty to Clean): 39
+Distance (Repaired to Clean): 36
+========================================
+Attribute: 870
+Distance (Dirty to Clean): 39
+Distance (Repaired to Clean): 37
+========================================
+Attribute: 874
+Distance (Dirty to Clean): 54
+Distance (Repaired to Clean): 51
+========================================
+Attribute: 878
+Distance (Dirty to Clean): 32
+Distance (Repaired to Clean): 30
+========================================
+Attribute: 882
+Distance (Dirty to Clean): 34
+Distance (Repaired to Clean): 31
+========================================
+Attribute: 886
+Distance (Dirty to Clean): 35
+Distance (Repaired to Clean): 27
+========================================
+Attribute: 890
+Distance (Dirty to Clean): 46
+Distance (Repaired to Clean): 36
+========================================
+Attribute: 894
+Distance (Dirty to Clean): 41
+Distance (Repaired to Clean): 29
+========================================
+Attribute: 898
+Distance (Dirty to Clean): 41
+Distance (Repaired to Clean): 30
+========================================
+Attribute: 902
+Distance (Dirty to Clean): 27
+Distance (Repaired to Clean): 18
+========================================
+Attribute: 906
+Distance (Dirty to Clean): 43
+Distance (Repaired to Clean): 25
+========================================
+Attribute: 910
+Distance (Dirty to Clean): 40
+Distance (Repaired to Clean): 26
+========================================
+Attribute: 914
+Distance (Dirty to Clean): 52
+Distance (Repaired to Clean): 41
+========================================
+Attribute: 918
+Distance (Dirty to Clean): 43
+Distance (Repaired to Clean): 29
+========================================
+Attribute: 922
+Distance (Dirty to Clean): 38
+Distance (Repaired to Clean): 24
+========================================
+Attribute: 926
+Distance (Dirty to Clean): 34
+Distance (Repaired to Clean): 25
+========================================
+Attribute: 930
+Distance (Dirty to Clean): 39
+Distance (Repaired to Clean): 28
+========================================
+Attribute: 934
+Distance (Dirty to Clean): 43
+Distance (Repaired to Clean): 25
+========================================
+Attribute: 938
+Distance (Dirty to Clean): 51
+Distance (Repaired to Clean): 31
+========================================
+Attribute: 942
+Distance (Dirty to Clean): 44
+Distance (Repaired to Clean): 34
+========================================
+Attribute: 946
+Distance (Dirty to Clean): 44
+Distance (Repaired to Clean): 29
+========================================
+Attribute: 950
+Distance (Dirty to Clean): 38
+Distance (Repaired to Clean): 19
+========================================
+Attribute: soil_moisture
+Distance (Dirty to Clean): 0
+Distance (Repaired to Clean): 0
+========================================
+总的脏数据到干净数据距离: 5225
+总的修复后数据到干净数据距离: 4894
+错误减少率 (EDR): 0.06334928229665072

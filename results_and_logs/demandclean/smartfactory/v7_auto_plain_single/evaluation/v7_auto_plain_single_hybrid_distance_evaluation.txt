@@ -1,0 +1,39 @@
+Attribute: index, MSE: nan, Jaccard: 0.0
+检查你指定的属性 i_w_blo_weg 是否为数值型！
+Attribute: i_w_blo_weg, MSE: nan, Jaccard: 0.29160631878368615
+检查你指定的属性 o_w_blo_power 是否为数值型！
+Attribute: o_w_blo_power, MSE: nan, Jaccard: 0.20302479784284866
+检查你指定的属性 o_w_blo_voltage 是否为数值型！
+Attribute: o_w_blo_voltage, MSE: nan, Jaccard: 0.6519731344806792
+检查你指定的属性 i_w_bhl_weg 是否为数值型！
+Attribute: i_w_bhl_weg, MSE: nan, Jaccard: 0.22711514398410515
+检查你指定的属性 o_w_bhl_power 是否为数值型！
+Attribute: o_w_bhl_power, MSE: nan, Jaccard: 0.2383419156979587
+检查你指定的属性 o_w_bhl_voltage 是否为数值型！
+Attribute: o_w_bhl_voltage, MSE: nan, Jaccard: 0.7931876572892285
+检查你指定的属性 i_w_bhr_weg 是否为数值型！
+Attribute: i_w_bhr_weg, MSE: nan, Jaccard: 0.34220096983709325
+检查你指定的属性 o_w_bhr_power 是否为数值型！
+Attribute: o_w_bhr_power, MSE: nan, Jaccard: 0.19596141452541993
+检查你指定的属性 o_w_bhr_voltage 是否为数值型！
+Attribute: o_w_bhr_voltage, MSE: nan, Jaccard: 0.7064010819459463
+检查你指定的属性 i_w_bru_weg 是否为数值型！
+Attribute: i_w_bru_weg, MSE: nan, Jaccard: 0.3141501468126786
+检查你指定的属性 o_w_bru_power 是否为数值型！
+Attribute: o_w_bru_power, MSE: nan, Jaccard: 0.2135747355576888
+检查你指定的属性 o_w_bru_voltage 是否为数值型！
+Attribute: o_w_bru_voltage, MSE: nan, Jaccard: 0.7879963504094458
+检查你指定的属性 i_w_hr_weg 是否为数值型！
+Attribute: i_w_hr_weg, MSE: nan, Jaccard: 0.12762894734276298
+检查你指定的属性 o_w_hr_power 是否为数值型！
+Attribute: o_w_hr_power, MSE: nan, Jaccard: 0.19617378850337808
+检查你指定的属性 o_w_hr_voltage 是否为数值型！
+Attribute: o_w_hr_voltage, MSE: nan, Jaccard: 0.4479308690867263
+检查你指定的属性 i_w_hl_weg 是否为数值型！
+Attribute: i_w_hl_weg, MSE: nan, Jaccard: 0.1546501594801709
+检查你指定的属性 o_w_hl_power 是否为数值型！
+Attribute: o_w_hl_power, MSE: nan, Jaccard: 0.18157631764709936
+检查你指定的属性 o_w_hl_voltage 是否为数值型！
+Attribute: o_w_hl_voltage, MSE: nan, Jaccard: 0.46616585830099266
+Attribute: labels, MSE: nan, Jaccard: 0.0
+加权混合距离: 0.16349149018819772

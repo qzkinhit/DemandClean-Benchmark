@@ -1,0 +1,34 @@
+{
+  "meta": {
+    "n_samples": 419,
+    "n_features": 9,
+    "n_errors": 332,
+    "task_type": "classification",
+    "model_type": "random_forest",
+    "mc_samples": 200
+  },
+  "action_shapley": {
+    "no_action": 0.00825615016524997,
+    "repair_value": -0.0021806587990020796,
+    "delete": -0.010212787313058294,
+    "replace_nearby": -0.008204755184544268
+  },
+  "feature_shapley": {
+    "Clump Thickness": 0.0,
+    "Uniformity of Cell Size": 0.0,
+    "Uniformity of Cell Shape": 0.0,
+    "Marginal Adhesion": 0.0,
+    "Single Epithelial Cell Size": 0.0,
+    "Bare Nuclei": 0.0,
+    "Bland Chromatin": 0.0,
+    "Normal Nucleoli": 0.0,
+    "Mitoses": 0.0
+  },
+  "feature_shapley_skipped": true,
+  "error_type_shapley": {
+    "missing": -0.001017469456265278,
+    "semantic": 0.007014659057790936,
+    "syntactic": -0.01345747337437675,
+    "label_noise": 0.007313354592715944
+  }
+}

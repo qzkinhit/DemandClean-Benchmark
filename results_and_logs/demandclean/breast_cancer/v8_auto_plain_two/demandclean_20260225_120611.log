@@ -1,0 +1,42 @@
+[2026-02-25 12:06:11,902] INFO - demandclean: ==================================================
+[2026-02-25 12:06:11,902] INFO - demandclean: DemandClean 训练开始
+[2026-02-25 12:06:11,903] INFO - demandclean:   检测器模式: auto
+[2026-02-25 12:06:11,903] INFO - demandclean:   训练模式: clean_base
+[2026-02-25 12:06:11,903] INFO - demandclean:   Agent类型: single
+[2026-02-25 12:06:11,903] INFO - demandclean:   推理模式: two_phase
+[2026-02-25 12:06:11,903] INFO - demandclean:   FD规则: 0
+[2026-02-25 12:06:11,903] INFO - demandclean:   丰富规则: 有
+[2026-02-25 12:06:11,903] INFO - demandclean: ==================================================
+[2026-02-25 12:06:11,903] INFO - demandclean: 
+[Step 1] 初始化错误检测器...
+[2026-02-25 12:06:11,903] INFO - demandclean: 
+[Step 1.5] 运行 RAHA 检测获取标注行...
+[2026-02-25 12:06:24,681] INFO - demandclean:   [预修复] 利用 RAHA 标注行修复 26 个特征单元格 + 1 个标签
+[2026-02-25 12:06:24,681] INFO - demandclean:   标注行: [12, 18, 50, 54, 63, 84, 98, 151, 268, 319]... (共 20 行)
+[2026-02-25 12:06:24,681] INFO - demandclean: 
+[Step 2] 训练 DQN Agent...
+[2026-02-25 12:06:24,681] INFO - demandclean: 开始训练 (single Agent, mode=clean_base)
+[2026-02-25 12:06:24,681] INFO - demandclean:   任务类型: classification
+[2026-02-25 12:06:24,681] INFO - demandclean:   模型类型: random_forest
+[2026-02-25 12:06:24,681] INFO - demandclean:   原始数据: 699 行
+[2026-02-25 12:06:24,681] INFO - demandclean:   基准数据: 484 行
+[2026-02-25 12:06:24,681] INFO - demandclean:   标签注入: 检测到 35 个标签错误, rate=0.050, symmetric=False
+[2026-02-25 12:06:24,682] INFO - demandclean:   自适应注入比例范围 (基于检测结果):
+[2026-02-25 12:06:24,682] INFO - demandclean:     missing: (0.0292, 0.0439)
+[2026-02-25 12:06:24,682] INFO - demandclean:     semantic: (0.0195, 0.0292)
+[2026-02-25 12:06:24,682] INFO - demandclean:     syntactic: (0.0243, 0.0364)
+[2026-02-25 12:06:24,682] INFO - demandclean:     label: (0.0401, 0.0601)
+[2026-02-25 12:06:24,684] INFO - demandclean:   ErrorInjector: rich_rules=True, domain=9, cfd=22, fd=0
+[2026-02-25 12:06:24,684] INFO - demandclean:   开始训练 DQN (5 episodes, 起始轮=0)...
+[2026-02-25 12:06:26,997] INFO - demandclean: 
+已恢复最佳模型权重 (Episode 1, Score=0.9897, Cost=23)
+[2026-02-25 12:06:26,997] INFO - demandclean: 
+训练完成! 最佳分数: 0.9897 (共 5 episodes)
+[2026-02-25 12:06:26,997] INFO - demandclean:   最佳动作分布: {'no_action': 10, 'repair_value': 23, 'delete': 10, 'replace_nearby': 23}
+[2026-02-25 12:06:26,998] INFO - demandclean: 
+训练完成!
+[2026-02-25 12:06:26,999] INFO - demandclean: 模型已保存: /Users/qianzekai/PycharmProjects/TolerDM/results/demandclean/breast_cancer/v8_auto_plain_two/model/v8_auto_plain_two_agent.pt
+[2026-02-25 12:06:27,000] INFO - demandclean: 
+==================================================
+[2026-02-25 12:06:27,000] INFO - demandclean: 两阶段推理 - 第一阶段 (Plan)
+[2026-02-25 12:06:27,000] INFO - demandclean: ==================================================

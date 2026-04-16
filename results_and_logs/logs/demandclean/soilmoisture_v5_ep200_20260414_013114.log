@@ -1,0 +1,203 @@
+[日志] 完整输出将保存到: /Users/qianzekai/PycharmProjects/TolerDM/logs/demandclean/soilmoisture_v5_ep200_20260414_013114.log
+======================================================================
+DemandClean 统一运行脚本
+======================================================================
+数据集: ['soilmoisture']
+启用版本: ['v5_auto_dueling_single']
+训练轮数: 200
+详细输出: False
+Oracle 模式: 启用 (三路划分 60/20/20, --no-oracle 关闭)
+修复率控制: min=None, max=1.0
+======================================================================
+
+######################################################################
+# 数据集: soilmoisture
+######################################################################
+
+  60/20/20 划分: train=407, val=136, test=136
+  60% 子集 CSV: /Users/qianzekai/PycharmProjects/TolerDM/results/demandclean/soilmoisture/dirty_train_60pct.csv
+  数据集: soilmoisture
+  脏数据: (407, 127)
+  特征列: 127, 标签列: soil_moisture
+  分类列: (无)
+  LE fit: 仅 dirty (407 行)
+  SS fit: 仅 dirty (407 行)
+  FD规则: 0 条
+  编码完成: X_dirty_train=(407, 127), X_clean_train=(407, 127), X_clean_val=(136, 127), X_clean_test=(136, 127)
+
+======================================================================
+版本: v5_auto_dueling_single
+数据集: soilmoisture | 任务: regression | 模型: ridge
+检测器: auto | Agent: dueling_two_stage | 推理: single_phase
+训练轮数: 200 | 输出目录: /Users/qianzekai/PycharmProjects/TolerDM/results/demandclean/soilmoisture/v5_auto_dueling_single_tuned
+======================================================================
+
+[Step 1] 创建 DemandClean 实例...
+  [计时] Step 1 (初始化): 0.00s
+
+[Step 2] 训练 (200 episodes)...
+  RAHA 检测结果: 1421 个单元格
+  Precision=0.4412  Recall=0.2651  F1=0.3312
+  RAHA 标注行数: 20 (labeling_budget=20)
+  RAHA 检测结果: 1725 个单元格
+  Precision=0.3826  Recall=0.2612  F1=0.3104
+  RAHA 标注行数: 20 (labeling_budget=20)
+  RAHA 检测结果: 2044 个单元格
+  Precision=0.3689  Recall=0.3059  F1=0.3344
+  RAHA 标注行数: 20 (labeling_budget=20)
+  RAHA 检测结果: 2028 个单元格
+  Precision=0.4063  Recall=0.3309  F1=0.3648
+  RAHA 标注行数: 20 (labeling_budget=20)
+  RAHA 检测结果: 1796 个单元格
+  Precision=0.3859  Recall=0.2845  F1=0.3275
+  RAHA 标注行数: 20 (labeling_budget=20)
+  RAHA 检测结果: 1531 个单元格
+  Precision=0.4037  Recall=0.2536  F1=0.3115
+  RAHA 标注行数: 20 (labeling_budget=20)
+  RAHA 检测结果: 599 个单元格
+  Precision=0.4057  Recall=0.2440  F1=0.3047
+  RAHA 标注行数: 20 (labeling_budget=20)
+  模型已保存: /Users/qianzekai/PycharmProjects/TolerDM/results/demandclean/soilmoisture/v5_auto_dueling_single_tuned/model/v5_auto_dueling_single_agent.pt
+  训练历史已保存: /Users/qianzekai/PycharmProjects/TolerDM/results/demandclean/soilmoisture/v5_auto_dueling_single_tuned/report/v5_auto_dueling_single_history.json
+  [计时] Step 2 (训练): 3211.90s
+
+[Step 3] 推理 (模式: single_phase)...
+  真值使用: 4267
+  动作分布: {'no_action': 0, 'repair_value': 4267, 'delete': 0, 'replace_nearby': 10838}
+  清洗后数据已保存: /Users/qianzekai/PycharmProjects/TolerDM/results/demandclean/soilmoisture/v5_auto_dueling_single_tuned/data/v5_auto_dueling_single_cleaned.csv
+  原始格式清洗数据已保存: /Users/qianzekai/PycharmProjects/TolerDM/results/demandclean/soilmoisture/v5_auto_dueling_single_tuned/data/v5_auto_dueling_single_cleaned_original.csv
+  编码版本已保存: /Users/qianzekai/PycharmProjects/TolerDM/results/demandclean/soilmoisture/v5_auto_dueling_single_tuned/data/v5_auto_dueling_single_cleaned_encoded.npz
+  [计时] Step 3 (推理): 3478.13s
+
+[Step 4] 检测器准确率评估...
+  [计时] Step 4 (检测器评估): 0.23s
+
+[Step 5] Baseline 评估与可视化...
+  ReplaceAll VE: ValueEstimator(DC=248 rules (125 target cols), DOMAIN=126 cols)
+  ReplaceAll VE 估值: 21083 个错误, 1.6s
+  DeleteFix: 删除 326 行, 保留 81 行
+  统一测试集 (Oracle): 136 行
+
+============================================================
+Baseline 对比评估 - v5_auto_dueling_single
+============================================================
+  NoFix          : rf_mse=1.6662 | rf_r2=0.8879 | ridge_mse=5.9249 | ridge_r2=0.6012 | 3.1s
+  DeleteAll      : rf_mse=2.0461 | rf_r2=0.8623 | ridge_mse=5.6991 | ridge_r2=0.6164 | 2.7s
+  DeleteFix      : rf_mse=2.3088 | rf_r2=0.8446 | ridge_mse=6.5486 | ridge_r2=0.5592 | 3.5s
+  ReplaceAll     : rf_mse=1.2466 | rf_r2=0.9161 | ridge_mse=4.7417 | ridge_r2=0.6809 | 3.4s
+  DemandClean    : rf_mse=0.9697 | rf_r2=0.9347 | ridge_mse=3.0338 | ridge_r2=0.7958 | 3.1s
+  FullFix        : rf_mse=0.7594 | rf_r2=0.9489 | ridge_mse=1.8365 | ridge_r2=0.8764 | 2.4s
+  [可视化] Baseline 对比图已保存: /Users/qianzekai/PycharmProjects/TolerDM/results/demandclean/soilmoisture/v5_auto_dueling_single_tuned/visualization/v5_auto_dueling_single_baseline_comparison.png
+  [计时] Step 5 (Baseline评估): 20.43s
+
+[Step 6] 模型容忍度评估...
+============================================================
+模型容忍度计算 - v5_auto_dueling_single
+任务类型: regression  |  模型列表: ['rf', 'ridge']
+============================================================
+
+--- 模型: RF ---
+  P_clean  = 0.9618
+  P_dirty  = 0.8942
+  P_dc     = 0.9412
+  先验容忍度 (P_dc / P_dirty)            = 1.0525
+  后验容忍度 (P_dc-P_dirty)/(P_clean-P_dirty) = 0.6953
+
+--- 模型: RIDGE ---
+  P_clean  = 0.8225
+  P_dirty  = 0.6104
+  P_dc     = 0.7393
+  先验容忍度 (P_dc / P_dirty)            = 1.2110
+  后验容忍度 (P_dc-P_dirty)/(P_clean-P_dirty) = 0.6074
+  容忍度柱状图已保存: /Users/qianzekai/PycharmProjects/TolerDM/results/demandclean/soilmoisture/v5_auto_dueling_single_tuned/visualization/v5_auto_dueling_single_tolerance_bar.png
+  [计时] Step 6 (容忍度评估): 7.85s
+
+[Step 7] Shapley 三维度分析...
+[Shapley] 维度1: 动作重要性 (精确枚举 4!=24 排列) ...
+[Shapley] 图表已保存: /Users/qianzekai/PycharmProjects/TolerDM/results/demandclean/soilmoisture/v5_auto_dueling_single_tuned/evaluation/shapley/shapley_action_importance.png
+[Shapley] 维度2: 跳过特征 Shapley（计算量过大，仅保留维度1和维度3）
+[Shapley] 维度3: 错误类型重要性 (精确枚举 3!=6 排列) ...
+[Shapley] 图表已保存: /Users/qianzekai/PycharmProjects/TolerDM/results/demandclean/soilmoisture/v5_auto_dueling_single_tuned/evaluation/shapley/shapley_error_type_importance.png
+  [计时] Step 7 (Shapley分析): 33656.72s
+
+[Step 8] 训练曲线可视化...
+  [可视化] 训练曲线已保存: /Users/qianzekai/PycharmProjects/TolerDM/results/demandclean/soilmoisture/v5_auto_dueling_single_tuned/visualization/v5_auto_dueling_single_training_curves.png
+  [计时] Step 8 (训练曲线): 0.60s
+
+[Step 9] Clean4MLBaseline 统一测评...
+差异文件已保存到:
+/Users/qianzekai/PycharmProjects/TolerDM/results/demandclean/soilmoisture/v5_auto_dueling_single_tuned/evaluation/v5_auto_dueling_single_clean_vs_dirty.csv
+/Users/qianzekai/PycharmProjects/TolerDM/results/demandclean/soilmoisture/v5_auto_dueling_single_tuned/evaluation/v5_auto_dueling_single_dirty_vs_cleaned.csv
+/Users/qianzekai/PycharmProjects/TolerDM/results/demandclean/soilmoisture/v5_auto_dueling_single_tuned/evaluation/v5_auto_dueling_single_clean_vs_cleaned.csv
+修复错误数据文件已保存到: /Users/qianzekai/PycharmProjects/TolerDM/results/demandclean/soilmoisture/v5_auto_dueling_single_tuned/evaluation/v5_auto_dueling_single_repair_errors.csv
+未修复但是应该修复数据文件已保存到: /Users/qianzekai/PycharmProjects/TolerDM/results/demandclean/soilmoisture/v5_auto_dueling_single_tuned/evaluation/v5_auto_dueling_single_unrepaired.csv
+修复准确率: 0.3819487998175495, 修复召回率: 0.42625349961822345, F1值: 0.40288678389241456
+========================================
+EDR 结果已保存到: /Users/qianzekai/PycharmProjects/TolerDM/results/demandclean/soilmoisture/v5_auto_dueling_single_tuned/evaluation/v5_auto_dueling_single_edr_evaluation.txt
+错误减少率 (EDR): 0.16530923899210995
+========================================
+混合距离结果已保存到: /Users/qianzekai/PycharmProjects/TolerDM/results/demandclean/soilmoisture/v5_auto_dueling_single_tuned/evaluation/v5_auto_dueling_single_hybrid_distance_evaluation.txt
+混合距离 (Hybrid Distance): 0.19984855238941412
+========================================
+R-EDR 结果已保存到: /Users/qianzekai/PycharmProjects/TolerDM/results/demandclean/soilmoisture/v5_auto_dueling_single_tuned/evaluation/v5_auto_dueling_single_record_based_edr_evaluation.txt
+基于条目的错误减少率 (R-EDR): 0.004914004914004914
+========================================
+  [下游任务] 使用编码版本（跳过 CSV preprocess）
+  Oracle 模式: train=407, test=136
+RF - MSE: 0.9697, R2: 0.9347
+LR - MSE: 3.0095, R2: 0.7974
+RIDGE - MSE: 3.0338, R2: 0.7958
+LASSO - MSE: 11.6217, R2: 0.2178
+KNN - MSE: 2.5002, R2: 0.8317
+GB - MSE: 1.0831, R2: 0.9271
+  [容忍度] 使用编码版本（跳过 CSV preprocess）
+  Oracle 模式: train dirty=407, cleaned=407, clean=407, test=136
+
+容忍度计算结果:
+  P_do_nothing (脏数据性能): 0.8879
+  P_demand_clean (清洗后性能): 0.9347
+  P_repair_all (完全修复性能): 0.9489
+  先验容忍度 (Tolerance_prior): 1.0528
+  后验容忍度 (Tolerance_post): 0.7681
+  [Snoopy] 使用编码版本（跳过 CSV preprocess）
+使用编码数据评估数据质量上界...
+  统一测评完成，结果已保存到: /Users/qianzekai/PycharmProjects/TolerDM/results/demandclean/soilmoisture/v5_auto_dueling_single_tuned/v5_auto_dueling_single_evaluation_results.txt
+  [计时] Step 9 (统一测评): 32.75s
+
+[Step 10] 真值成本汇总...
+  RAHA 检测成本: 140
+  Agent 修复成本: 4267
+  总成本: 4407 / 51689 cells = 8.5260%
+  [计时] Step 10 (成本汇总): 0.00s
+
+──────────────────────────────────────────────────
+  步骤计时汇总
+──────────────────────────────────────────────────
+  Step 1 初始化         │     0.00s
+  Step 2 训练          │  3211.90s
+  Step 3 推理          │  3478.13s
+  Step 4 检测器评估       │     0.23s
+  Step 5 Baseline评估  │    20.43s
+  Step 6 容忍度评估       │     7.85s
+  Step 7 Shapley分析   │ 33656.72s
+  Step 8 训练曲线        │     0.60s
+  Step 9 统一测评        │    32.75s
+  Step 10 成本汇总        │     0.00s
+──────────────────────────────────────────────────
+  总计(含可视化)       │ 40408.61s
+  可视化耗时           │ 33657.89s
+  净耗时(扣可视化)     │  6750.72s
+──────────────────────────────────────────────────
+
+  [输出] 报告已保存: /Users/qianzekai/PycharmProjects/TolerDM/results/demandclean/soilmoisture/v5_auto_dueling_single_tuned/report/v5_auto_dueling_single_report.json
+
+  版本 v5_auto_dueling_single 完成! 耗时: 6750.72s
+  输出目录: /Users/qianzekai/PycharmProjects/TolerDM/results/demandclean/soilmoisture/v5_auto_dueling_single_tuned
+
+  只有 1 个版本完成，跳过跨版本对比
+
+======================================================================
+全部完成! 总耗时: 40409.00s
+结果目录: /Users/qianzekai/PycharmProjects/TolerDM/results/demandclean
+日志文件: /Users/qianzekai/PycharmProjects/TolerDM/logs/demandclean/soilmoisture_v5_ep200_20260414_013114.log
+======================================================================

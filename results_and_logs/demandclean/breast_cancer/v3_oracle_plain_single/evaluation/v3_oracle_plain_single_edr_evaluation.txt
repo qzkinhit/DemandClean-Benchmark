@@ -1,0 +1,47 @@
+Attribute: index
+Distance (Dirty to Clean): 0
+Distance (Repaired to Clean): 0
+========================================
+Attribute: Clump Thickness
+Distance (Dirty to Clean): 48
+Distance (Repaired to Clean): 43
+========================================
+Attribute: Uniformity of Cell Size
+Distance (Dirty to Clean): 35
+Distance (Repaired to Clean): 16
+========================================
+Attribute: Uniformity of Cell Shape
+Distance (Dirty to Clean): 33
+Distance (Repaired to Clean): 31
+========================================
+Attribute: Marginal Adhesion
+Distance (Dirty to Clean): 33
+Distance (Repaired to Clean): 23
+========================================
+Attribute: Single Epithelial Cell Size
+Distance (Dirty to Clean): 34
+Distance (Repaired to Clean): 29
+========================================
+Attribute: Bare Nuclei
+Distance (Dirty to Clean): 29
+Distance (Repaired to Clean): 26
+========================================
+Attribute: Bland Chromatin
+Distance (Dirty to Clean): 39
+Distance (Repaired to Clean): 21
+========================================
+Attribute: Normal Nucleoli
+Distance (Dirty to Clean): 39
+Distance (Repaired to Clean): 15
+========================================
+Attribute: Mitoses
+Distance (Dirty to Clean): 28
+Distance (Repaired to Clean): 3
+========================================
+Attribute: class
+Distance (Dirty to Clean): 6
+Distance (Repaired to Clean): 0
+========================================
+总的脏数据到干净数据距离: 324
+总的修复后数据到干净数据距离: 207
+错误减少率 (EDR): 0.3611111111111111
