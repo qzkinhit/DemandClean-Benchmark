@@ -1,0 +1,258 @@
+Preprocessing missing values...
+
+============================================================
+Running CtxPipe with dirty file: Data/breast_cancer/dirty_index.csv
+Task name: breast_cancer_ctxpipe_vzekai
+Model tag: ctx_50000
+============================================================
+
+2026-01-31 21:17:16.782 | DEBUG    | config:makedirs:108 - making dir: /home/qianzekai/Clean4MLBaseline/logs/ctxpipe-3linear
+2026-01-31 21:17:16.782 | DEBUG    | config:makedirs:108 - making dir: /home/qianzekai/Clean4MLBaseline/exp/ctxpipe-3linear
+2026-01-31 21:17:16.782 | DEBUG    | config:makedirs:108 - making dir: /home/qianzekai/Clean4MLBaseline/Methods/ctxpipe/models/ctxpipe-3linear
+2026-01-31 21:17:16.788 | WARNING  | ctxpipe.info:_check_and_create_empty_files:54 - creating empty info file at /home/qianzekai/Clean4MLBaseline/results/ctxpipe/breast_cancer_ctxpipe_vzekai/aipipe/datasetinfo.json
+2026-01-31 21:17:16.788 | WARNING  | ctxpipe.info:_check_and_create_empty_files:54 - creating empty info file at /home/qianzekai/Clean4MLBaseline/results/ctxpipe/breast_cancer_ctxpipe_vzekai/aipipe/classification_task_dic.json
+2026-01-31 21:17:16.788 | WARNING  | ctxpipe.info:_check_and_create_empty_files:61 - creating empty info file at /home/qianzekai/Clean4MLBaseline/results/ctxpipe/breast_cancer_ctxpipe_vzekai/aipipe/test_index.json
+2026-01-31 21:17:17.595 | DEBUG    | ctxpipe.env.enviroment:step:107 - adding step ImputerNumMode...
+[CtxPipe Adapter] Using device: CPU (CUDA not available)
+没有指定错误比例，仅进行原数据集的空值替换，不添加错误
+已将注入错误的文件保存到: Data/breast_cancer/clean_index.csv
+没有指定错误比例，仅进行原数据集的空值替换，不添加错误
+已将注入错误的文件保存到: Data/breast_cancer/dirty_index.csv
+[CtxPipe Adapter] Detected index column. Removing for processing.
+[CtxPipe Adapter] Using label column: 8 (Mitoses)
+[CtxPipe Adapter] Converted 'empty' strings to actual empty values for NaN detection.
+[CtxPipe Adapter] Generating pipeline with model tag: ctx_50000
+[0;33;40mstart run AIPipe:[0m
+taskid: 0, predictor: <LogisticRegression>, metric: <ctxpipe.env.metric.AccuracyMetric object at 0x7dda229de040>, default: False
+DQN Forward
+data torch.Size([1, 3300]) tensor([[ 4.0000,  0.5459, 10.0000,  ...,  0.0000,  0.0000,  0.0000]])
+C MTML: torch.Size([1, 6]) tensor([[2.6391, 2.7908, 2.6482, 2.6955]], grad_fn=<SliceBackward0>)
+C +BAS: torch.Size([1, 6]) tensor([[3.0609, 3.4166, 2.6567, 3.2540]], grad_fn=<SliceBackward0>)
+C GATE: torch.Size([1, 6]) tensor([[0.9553, 0.9682, 0.9344, 0.9628]], grad_fn=<SliceBackward0>)
+----------------------------------------
+Before gate: tensor([ 0.5691, -0.0345,  0.4659, -0.1552,  0.4914,  0.7302],
+       grad_fn=<SelectBackward0>)
+Context: tensor([ 0.9401, -0.3568,  0.9261, -0.9561,  0.9396,  0.9561],
+       grad_fn=<SelectBackward0>)
+Gate: tensor([0.9553, 0.9682, 0.9344, 0.9628, 0.9506, 0.9692],
+       grad_fn=<SelectBackward0>)
+Context after gate: tensor([ 0.9428, -0.3137,  0.9309, -0.8834,  0.9426,  0.9574],
+       grad_fn=<SelectBackward0>)
+With context: tensor([0.5365, 0.0108, 0.4337, 0.1371, 0.4632, 0.6991],
+       grad_fn=<SelectBackward0>)
+RnnDQN Forward
+C MTML: torch.Size([1, 3]) tensor([[3.7560, 3.9380, 4.4972]], grad_fn=<SliceBackward0>)
+C +BAS: torch.Size([1, 3]) tensor([[4.1389, 4.6313, 5.3791]], grad_fn=<SliceBackward0>)
+C GATE: torch.Size([1, 3]) tensor([[0.9843, 0.9904, 0.9954]], grad_fn=<SliceBackward0>)
+----------------------------------------
+Before gate: tensor([0.6789, 0.6821, 0.6992], grad_fn=<SelectBackward0>)
+Context: tensor([0.9406, 0.9465, 0.9294], grad_fn=<SelectBackward0>)
+Gate: tensor([0.9843, 0.9904, 0.9954], grad_fn=<SelectBackward0>)
+Context after gate: tensor([0.9415, 0.9470, 0.9297], grad_fn=<SelectBackward0>)
+With context: tensor([0.6392, 0.6459, 0.6501], grad_fn=<SelectBackward0>)
+executing function _do_add_step
+2026-01-31 21:17:17.911 | DEBUG    | ctxpipe.env.enviroment:step:107 - adding step ImputerCatMode...
+executing function _do_add_step
+2026-01-31 21:17:18.547 | DEBUG    | ctxpipe.env.enviroment:step:107 - adding step LabelEncoder...
+RnnDQN Forward
+C MTML: torch.Size([1, 3]) tensor([[3.7503, 4.0316, 3.7842]], grad_fn=<SliceBackward0>)
+C +BAS: torch.Size([1, 3]) tensor([[4.6814, 5.0833, 5.0080]], grad_fn=<SliceBackward0>)
+C GATE: torch.Size([1, 3]) tensor([[0.9908, 0.9938, 0.9934]], grad_fn=<SliceBackward0>)
+----------------------------------------
+Before gate: tensor([ 0.5356,  0.6778, -0.1919], grad_fn=<SelectBackward0>)
+Context: tensor([ 0.9765,  0.9289, -0.9925], grad_fn=<SelectBackward0>)
+Gate: tensor([0.9908, 0.9938, 0.9934], grad_fn=<SelectBackward0>)
+Context after gate: tensor([ 0.9767,  0.9294, -0.9793], grad_fn=<SelectBackward0>)
+With context: tensor([0.5231, 0.6299, 0.1879], grad_fn=<SelectBackward0>)
+executing function _do_add_step
+2026-01-31 21:17:19.284 | DEBUG    | ctxpipe.env.enviroment:step:107 - adding step blank...
+RnnDQN Forward
+C MTML: torch.Size([1, 2]) tensor([[2.7026, 2.5145]], grad_fn=<SliceBackward0>)
+C +BAS: torch.Size([1, 2]) tensor([[4.6119, 4.3593]], grad_fn=<SliceBackward0>)
+C GATE: torch.Size([1, 2]) tensor([[0.9902, 0.9874]], grad_fn=<SliceBackward0>)
+----------------------------------------
+Before gate: tensor([0.5795, 0.5941], grad_fn=<SelectBackward0>)
+Context: tensor([0.9521, 0.9385], grad_fn=<SelectBackward0>)
+Gate: tensor([0.9902, 0.9874], grad_fn=<SelectBackward0>)
+Context after gate: tensor([0.9525, 0.9393], grad_fn=<SelectBackward0>)
+With context: tensor([0.5520, 0.5581], grad_fn=<SelectBackward0>)
+executing function _do_add_step
+2026-01-31 21:17:19.953 | DEBUG    | ctxpipe.env.enviroment:step:107 - adding step PowerTransformer...
+RnnDQN Forward
+C MTML: torch.Size([1, 9]) tensor([[4.2079, 4.3096, 3.9680, 3.8133]], grad_fn=<SliceBackward0>)
+C +BAS: torch.Size([1, 9]) tensor([[4.6741, 4.6029, 4.4646, 4.0634]], grad_fn=<SliceBackward0>)
+C GATE: torch.Size([1, 9]) tensor([[0.9908, 0.9901, 0.9886, 0.9831]], grad_fn=<SliceBackward0>)
+----------------------------------------
+Before gate: tensor([ 0.5317,  0.5204,  0.4458,  0.4933, -0.2107,  0.6424,  0.4987,  0.4950,
+        -0.1135], grad_fn=<SelectBackward0>)
+Context: tensor([ 0.9558,  0.8946,  0.9125,  0.9638, -0.9694,  0.9243,  0.9713,  0.9732,
+        -0.9682], grad_fn=<SelectBackward0>)
+Gate: tensor([0.9908, 0.9901, 0.9886, 0.9831, 0.9847, 0.9874, 0.9878, 0.9930, 0.9913],
+       grad_fn=<SelectBackward0>)
+Context after gate: tensor([ 0.9562,  0.8956,  0.9135,  0.9645, -0.9393,  0.9253,  0.9717,  0.9734,
+        -0.9510], grad_fn=<SelectBackward0>)
+With context: tensor([0.5084, 0.4660, 0.4072, 0.4757, 0.1979, 0.5944, 0.4846, 0.4819, 0.1080],
+       grad_fn=<SelectBackward0>)
+executing function _do_add_step
+2026-01-31 21:17:20.682 | DEBUG    | ctxpipe.env.enviroment:step:107 - adding step RandomTreesEmbedding...
+RnnDQN Forward
+C MTML: torch.Size([1, 8]) tensor([[4.2287, 4.5942, 4.4626, 4.2134]], grad_fn=<SliceBackward0>)
+C +BAS: torch.Size([1, 8]) tensor([[4.5946, 5.2065, 4.8233, 4.5870]], grad_fn=<SliceBackward0>)
+C GATE: torch.Size([1, 8]) tensor([[0.9900, 0.9945, 0.9920, 0.9899]], grad_fn=<SliceBackward0>)
+----------------------------------------
+Before gate: tensor([ 0.6437,  0.7124,  0.7504, -0.2402,  0.5058,  0.5039,  0.7443, -0.1332],
+       grad_fn=<SelectBackward0>)
+Context: tensor([ 0.9097,  0.9186,  0.8626, -0.9748,  0.9668,  0.9874,  0.9366, -0.9870],
+       grad_fn=<SelectBackward0>)
+Gate: tensor([0.9900, 0.9945, 0.9920, 0.9899, 0.9919, 0.9958, 0.9911, 0.9924],
+       grad_fn=<SelectBackward0>)
+Context after gate: tensor([ 0.9106,  0.9190,  0.8637, -0.9549,  0.9670,  0.9874,  0.9372, -0.9718],
+       grad_fn=<SelectBackward0>)
+With context: tensor([0.5862, 0.6547, 0.6481, 0.2293, 0.4891, 0.4975, 0.6976, 0.1294],
+       grad_fn=<SelectBackward0>)
+executing function _do_add_step
+2026-01-31 21:17:21.446 | INFO     | ctxpipe.env.pipeline:evaluate:290 - evaluating [<ImputerNumMode>, <ImputerCatMode>, <LabelEncoder>, <blank>, <PowerTransformer>, <RandomTreesEmbedding>] using predictor LogisticRegression...
+2026-01-31 21:17:21.630 | ERROR    | ctxpipe.env.pipeline:evaluate:320 - evaluating [<ImputerNumMode>, <ImputerCatMode>, <LabelEncoder>, <blank>, <PowerTransformer>, <RandomTreesEmbedding>] using predictor LogisticRegression failed with error cannot unpack non-iterable FunctionTimedOut object
+
+CtxPipe output saved to: results/ctxpipe/breast_cancer_ctxpipe_vzekai/breast_cancer_ctxpipe_vzekai_cleaned.csv
+Pipeline info saved to: results/ctxpipe/breast_cancer_ctxpipe_vzekai/breast_cancer_ctxpipe_vzekai_pipeline_info.txt
+
+============================================================
+CtxPipe Results:
+============================================================
+AI Sequence: ['ImputerNumMode', 'ImputerCatMode', 'LabelEncoder', 'blank', 'PowerTransformer', 'RandomTreesEmbedding']
+ML Score: -1.0000
+Execution Time: 5.26 seconds
+============================================================
+
+============================================================
+Traditional Data Cleaning Evaluation
+Note: CtxPipe is designed for ML data preparation,
+      traditional cleaning metrics may not be applicable.
+============================================================
+
+Traditional Evaluation Results:
+Accuracy: 0.49473684210526314
+Recall: 0.17938931297709923
+F1 Score: 0.26330532208979274
+EDR: 0.17938931297709923
+Hybrid Distance: 0.1692740368375214
+R-EDR: 0.15789473684210525
+Time: 5.26s
+Speed: 0.7525 seconds/100num
+
+============================================================
+调用统一测评模块 getScoreML
+============================================================
+[1;34m[21:17:24][0m[1;33m WARNING Snoopy may use all CPU cores! Set env. variable 'SNOOPY_LIMIT_CPU' to 'y' to limit CPU usage. [0m[1;34m(__init__ -> _init_tf_pytorch on MainThread)[0m
+
+getScoreML统一测评完成
+
+============================================================
+CtxPipe finished successfully!
+Results saved to: results/ctxpipe/breast_cancer_ctxpipe_vzekai
+============================================================
+
+taskid: 0, predictor: <RandomForestClassifier>, metric: <ctxpipe.env.metric.AccuracyMetric object at 0x7dda229de040>, default: False
+DQN Forward
+data torch.Size([1, 3300]) tensor([[ 4.0000,  0.5459, 10.0000,  ...,  0.0000,  0.0000,  0.0000]])
+C MTML: torch.Size([1, 6]) tensor([[2.5869, 2.7362, 2.5973, 2.6457]], grad_fn=<SliceBackward0>)
+C +BAS: torch.Size([1, 6]) tensor([[3.0088, 3.3619, 2.6059, 3.2042]], grad_fn=<SliceBackward0>)
+C GATE: torch.Size([1, 6]) tensor([[0.9530, 0.9665, 0.9312, 0.9610]], grad_fn=<SliceBackward0>)
+----------------------------------------
+Before gate: tensor([ 0.5579, -0.0358,  0.4543, -0.1504,  0.4795,  0.7198],
+       grad_fn=<SelectBackward0>)
+Context: tensor([ 0.9379, -0.3533,  0.9228, -0.9542,  0.9373,  0.9548],
+       grad_fn=<SelectBackward0>)
+Gate: tensor([0.9530, 0.9665, 0.9312, 0.9610, 0.9483, 0.9675],
+       grad_fn=<SelectBackward0>)
+Context after gate: tensor([ 0.9408, -0.3080,  0.9281, -0.8779,  0.9405,  0.9562],
+       grad_fn=<SelectBackward0>)
+With context: tensor([0.5249, 0.0110, 0.4216, 0.1320, 0.4510, 0.6883],
+       grad_fn=<SelectBackward0>)
+[0;32;40msucceed[0m
+
+
+dataset: breast_cancer_ctxpipe_vzekai
+accuracy of AIPipe: -1
+[CtxPipe Adapter] Applying generated pipeline to data...
+[CtxPipe Adapter] Data shape: (699, 9), Num cols: 5, Cat cols: 4
+[CtxPipe Adapter] Num columns: ['Uniformity of Cell Size', 'Uniformity of Cell Shape', 'Single Epithelial Cell Size', 'Bland Chromatin', 'class']
+[CtxPipe Adapter] AI Sequence: ['ImputerNumMode', 'ImputerCatMode', 'LabelEncoder', 'blank', 'PowerTransformer', 'RandomTreesEmbedding']
+[CtxPipe Adapter] Applied ImputerNum (median)
+[CtxPipe Adapter] Applied ImputerCat (most_frequent)
+[CtxPipe Adapter] Skipped LabelEncoder (not imputation, would change data values)
+[CtxPipe Adapter] Skipped PowerTransformer (not imputation, would change data values)
+[CtxPipe Adapter] Skipped RandomTreesEmbedding (not imputation, would change data values)
+[CtxPipe Adapter] Pipeline applied successfully.
+没有指定错误比例，仅进行原数据集的空值替换，不添加错误
+已将注入错误的文件保存到: results/ctxpipe/breast_cancer_ctxpipe_vzekai/breast_cancer_ctxpipe_vzekai_cleaned.csv
+修复准确率: 0.49473684210526314, 修复召回率: 0.17938931297709923, F1值: 0.26330532208979274
+========================================
+错误减少率 (EDR): 0.17938931297709923
+========================================
+混合距离 (Hybrid Distance): 0.1692740368375214
+========================================
+基于条目的错误减少率 (R-EDR): 0.15789473684210525
+========================================
+numeric: Index(['Clump Thickness', 'Uniformity of Cell Size',
+       'Uniformity of Cell Shape', 'Marginal Adhesion',
+       'Single Epithelial Cell Size', 'Bland Chromatin', 'Normal Nucleoli',
+       'Mitoses', 'class'],
+      dtype='object')
+categorical: Index(['Bare Nuclei'], dtype='object')
+列级平均RMSE (数值列, 归一化): 1.939025
+  Clump Thickness: 3.467276
+  Uniformity of Cell Size: 1.984460
+  Uniformity of Cell Shape: 1.546636
+  Marginal Adhesion: 1.437759
+  Single Epithelial Cell Size: 1.980657
+  Bland Chromatin: 2.731065
+  Normal Nucleoli: 1.796969
+  Mitoses: 2.198195
+  class: 0.308207
+列级平均F1 (类别列, weighted): 0.953686
+  Bare Nuclei: 0.953686
+========================================
+调试文件已保存到: results/ctxpipe/breast_cancer_ctxpipe_vzekai/debug
+修复准确率: 0.49473684210526314, 修复召回率: 0.17938931297709923, F1值: 0.26330532208979274
+========================================
+错误减少率 (EDR): 0.17938931297709923
+========================================
+混合距离 (Hybrid Distance): 0.1692740368375214
+========================================
+基于条目的错误减少率 (R-EDR): 0.15789473684210525
+========================================
+numeric: Index(['Clump Thickness', 'Uniformity of Cell Size',
+       'Uniformity of Cell Shape', 'Marginal Adhesion',
+       'Single Epithelial Cell Size', 'Bland Chromatin', 'Normal Nucleoli',
+       'Mitoses', 'class'],
+      dtype='object')
+categorical: Index(['Bare Nuclei'], dtype='object')
+列级平均RMSE (数值列, 归一化): 1.939025
+  Clump Thickness: 3.467276
+  Uniformity of Cell Size: 1.984460
+  Uniformity of Cell Shape: 1.546636
+  Marginal Adhesion: 1.437759
+  Single Epithelial Cell Size: 1.980657
+  Bland Chromatin: 2.731065
+  Normal Nucleoli: 1.796969
+  Mitoses: 2.198195
+  class: 0.308207
+列级平均F1 (类别列, weighted): 0.953686
+  Bare Nuclei: 0.953686
+========================================
+RF - Accuracy: 0.9571, F1: 0.9571, Precision: 0.9571, Recall: 0.9571
+LR - Accuracy: 0.8929, F1: 0.8911, Precision: 0.8920, Recall: 0.8929
+SVM - Accuracy: 0.9357, F1: 0.9365, Precision: 0.9399, Recall: 0.9357
+KNN - Accuracy: 0.9071, F1: 0.9049, Precision: 0.9081, Recall: 0.9071
+DT - Accuracy: 0.8929, F1: 0.8932, Precision: 0.8936, Recall: 0.8929
+GB - Accuracy: 0.9571, F1: 0.9574, Precision: 0.9581, Recall: 0.9571
+
+容忍度计算结果:
+  P_do_nothing (脏数据性能): 0.9640
+  P_demand_clean (清洗后性能): 0.9784
+  P_repair_all (完全修复性能): 0.9712
+  先验容忍度 (Tolerance_prior): 1.0149
+  后验容忍度 (Tolerance_post): 2.0000
+Snoopy模块可用，正在评估数据质量上界...

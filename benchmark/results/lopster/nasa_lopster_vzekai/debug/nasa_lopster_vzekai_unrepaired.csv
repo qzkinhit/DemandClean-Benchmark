@@ -1,0 +1,21 @@
+Attribute,Index,Dirty Value,Clean Value
+frequency,160,0,500
+frequency,252,0,2500
+frequency,516,0,1600
+frequency,547,0,1250
+frequency,559,1100,1000
+frequency,634,0,500
+frequency,649,0,400
+frequency,803,0,2000
+frequency,893,0,800
+frequency,897,0,2000
+frequency,964,1100,3150
+frequency,1301,3300,3150
+angle,133,0,3
+angle,255,0,2
+angle,318,0,4
+velocity,177,33,39.6
+velocity,179,66,39.6
+velocity,379,33,39.6
+velocity,411,55,55.5
+velocity,557,55,55.5

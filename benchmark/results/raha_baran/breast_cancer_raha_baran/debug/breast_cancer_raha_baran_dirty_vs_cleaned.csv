@@ -1,0 +1,269 @@
+Attribute,Index,Dirty Value,Cleaned Value
+Clump Thickness,56,empty,10
+Uniformity of Cell Size,14,empty,1
+Uniformity of Cell Size,33,empty,1
+Uniformity of Cell Size,41,empty,1
+Uniformity of Cell Size,44,empty,1
+Uniformity of Cell Size,51,empty,1
+Uniformity of Cell Size,73,33,3
+Uniformity of Cell Size,75,66,6
+Uniformity of Cell Size,115,33,3
+Uniformity of Cell Size,125,empty,1
+Uniformity of Cell Size,140,empty,1
+Uniformity of Cell Size,144,empty,1
+Uniformity of Cell Size,148,11,1
+Uniformity of Cell Size,150,88,8
+Uniformity of Cell Size,182,11,1
+Uniformity of Cell Size,200,empty,1
+Uniformity of Cell Size,253,33,3
+Uniformity of Cell Size,263,empty,1
+Uniformity of Cell Size,265,empty,1
+Uniformity of Cell Size,282,11,1
+Uniformity of Cell Size,338,empty,1
+Uniformity of Cell Size,344,empty,1
+Uniformity of Cell Size,361,empty,1
+Uniformity of Cell Size,372,empty,1
+Uniformity of Cell Size,380,33,3
+Uniformity of Cell Size,395,22,2
+Uniformity of Cell Size,407,22,2
+Uniformity of Cell Size,421,empty,1
+Uniformity of Cell Size,431,empty,1
+Uniformity of Cell Size,468,66,6
+Uniformity of Cell Size,480,88,8
+Uniformity of Cell Size,513,empty,1
+Uniformity of Cell Size,566,empty,1
+Uniformity of Cell Size,587,empty,1
+Uniformity of Cell Size,598,11,1
+Uniformity of Cell Size,625,11,1
+Uniformity of Cell Size,630,empty,1
+Uniformity of Cell Size,649,empty,1
+Uniformity of Cell Size,685,empty,1
+Uniformity of Cell Shape,16,empty,4
+Uniformity of Cell Shape,37,10,4
+Uniformity of Cell Shape,39,empty,6
+Uniformity of Cell Shape,45,empty,8
+Uniformity of Cell Shape,46,11,1
+Uniformity of Cell Shape,50,empty,4
+Uniformity of Cell Shape,57,10,4
+Uniformity of Cell Shape,73,1,3
+Uniformity of Cell Shape,77,empty,1
+Uniformity of Cell Shape,97,empty,1
+Uniformity of Cell Shape,104,33,1
+Uniformity of Cell Shape,107,10,1
+Uniformity of Cell Shape,110,empty,4
+Uniformity of Cell Shape,114,10,1
+Uniformity of Cell Shape,137,empty,1
+Uniformity of Cell Shape,153,empty,4
+Uniformity of Cell Shape,155,empty,1
+Uniformity of Cell Shape,156,55,1
+Uniformity of Cell Shape,160,10,8
+Uniformity of Cell Shape,168,10,1
+Uniformity of Cell Shape,174,10,8
+Uniformity of Cell Shape,178,10,8
+Uniformity of Cell Shape,189,4,8
+Uniformity of Cell Shape,191,10,8
+Uniformity of Cell Shape,192,10,8
+Uniformity of Cell Shape,214,10,8
+Uniformity of Cell Shape,215,10,6
+Uniformity of Cell Shape,216,8,1
+Uniformity of Cell Shape,221,11,1
+Uniformity of Cell Shape,230,10,8
+Uniformity of Cell Shape,231,7,6
+Uniformity of Cell Shape,239,10,8
+Uniformity of Cell Shape,249,1,6
+Uniformity of Cell Shape,252,empty,1
+Uniformity of Cell Shape,262,10,6
+Uniformity of Cell Shape,265,11,1
+Uniformity of Cell Shape,287,10,8
+Uniformity of Cell Shape,301,10,8
+Uniformity of Cell Shape,303,10,8
+Uniformity of Cell Shape,306,4,8
+Uniformity of Cell Shape,328,11,1
+Uniformity of Cell Shape,350,3,6
+Uniformity of Cell Shape,354,10,4
+Uniformity of Cell Shape,361,10,8
+Uniformity of Cell Shape,367,10,8
+Uniformity of Cell Shape,376,empty,1
+Uniformity of Cell Shape,382,empty,4
+Uniformity of Cell Shape,419,empty,4
+Uniformity of Cell Shape,426,10,8
+Uniformity of Cell Shape,436,10,1
+Uniformity of Cell Shape,480,empty,4
+Uniformity of Cell Shape,483,10,8
+Uniformity of Cell Shape,488,10,1
+Uniformity of Cell Shape,522,11,1
+Uniformity of Cell Shape,524,66,6
+Uniformity of Cell Shape,539,11,1
+Uniformity of Cell Shape,547,10,8
+Uniformity of Cell Shape,563,empty,1
+Uniformity of Cell Shape,566,10,8
+Uniformity of Cell Shape,570,88,8
+Uniformity of Cell Shape,571,empty,4
+Uniformity of Cell Shape,572,10,1
+Uniformity of Cell Shape,587,10,8
+Uniformity of Cell Shape,593,4,1
+Uniformity of Cell Shape,597,empty,1
+Uniformity of Cell Shape,609,10,1
+Uniformity of Cell Shape,613,10,8
+Uniformity of Cell Shape,617,empty,1
+Uniformity of Cell Shape,620,empty,1
+Uniformity of Cell Shape,629,empty,4
+Uniformity of Cell Shape,634,4,8
+Uniformity of Cell Shape,645,empty,1
+Uniformity of Cell Shape,648,empty,1
+Uniformity of Cell Shape,649,10,8
+Uniformity of Cell Shape,653,11,1
+Uniformity of Cell Shape,655,empty,1
+Uniformity of Cell Shape,665,1,8
+Uniformity of Cell Shape,669,4,8
+Uniformity of Cell Shape,670,10,1
+Uniformity of Cell Shape,681,10,8
+Uniformity of Cell Shape,682,10,6
+Uniformity of Cell Shape,697,1,8
+Marginal Adhesion,466,1,7
+Marginal Adhesion,683,empty,1
+Single Epithelial Cell Size,29,22,2
+Single Epithelial Cell Size,39,22,2
+Single Epithelial Cell Size,89,22,2
+Single Epithelial Cell Size,107,empty,4
+Single Epithelial Cell Size,112,empty,4
+Single Epithelial Cell Size,144,22,2
+Single Epithelial Cell Size,157,empty,2
+Single Epithelial Cell Size,190,empty,4
+Single Epithelial Cell Size,194,empty,2
+Single Epithelial Cell Size,218,empty,4
+Single Epithelial Cell Size,219,empty,4
+Single Epithelial Cell Size,226,22,2
+Single Epithelial Cell Size,227,44,10
+Single Epithelial Cell Size,248,22,2
+Single Epithelial Cell Size,249,empty,4
+Single Epithelial Cell Size,255,empty,4
+Single Epithelial Cell Size,270,empty,2
+Single Epithelial Cell Size,289,empty,4
+Single Epithelial Cell Size,330,empty,4
+Single Epithelial Cell Size,337,empty,4
+Single Epithelial Cell Size,359,empty,4
+Single Epithelial Cell Size,367,empty,4
+Single Epithelial Cell Size,369,empty,2
+Single Epithelial Cell Size,373,22,2
+Single Epithelial Cell Size,375,empty,4
+Single Epithelial Cell Size,395,empty,2
+Single Epithelial Cell Size,404,22,2
+Single Epithelial Cell Size,424,22,2
+Single Epithelial Cell Size,447,empty,2
+Single Epithelial Cell Size,474,22,2
+Single Epithelial Cell Size,479,empty,2
+Single Epithelial Cell Size,498,empty,4
+Single Epithelial Cell Size,531,empty,4
+Single Epithelial Cell Size,535,22,2
+Single Epithelial Cell Size,592,empty,4
+Single Epithelial Cell Size,618,11,1
+Single Epithelial Cell Size,627,77,7
+Single Epithelial Cell Size,628,empty,2
+Single Epithelial Cell Size,639,22,2
+Single Epithelial Cell Size,654,empty,4
+Single Epithelial Cell Size,662,empty,4
+Bare Nuclei,282,empty,1
+Bland Chromatin,2,33,3
+Bland Chromatin,3,8,3
+Bland Chromatin,9,empty,1
+Bland Chromatin,29,empty,1
+Bland Chromatin,37,empty,1
+Bland Chromatin,123,55,5
+Bland Chromatin,141,empty,1
+Bland Chromatin,151,33,3
+Bland Chromatin,159,11,1
+Bland Chromatin,179,33,3
+Bland Chromatin,197,77,7
+Bland Chromatin,206,empty,1
+Bland Chromatin,220,33,3
+Bland Chromatin,263,77,7
+Bland Chromatin,302,33,3
+Bland Chromatin,306,empty,1
+Bland Chromatin,327,empty,1
+Bland Chromatin,336,11,1
+Bland Chromatin,341,empty,1
+Bland Chromatin,348,empty,1
+Bland Chromatin,364,22,2
+Bland Chromatin,368,empty,1
+Bland Chromatin,375,22,2
+Bland Chromatin,385,empty,1
+Bland Chromatin,399,empty,1
+Bland Chromatin,405,empty,1
+Bland Chromatin,417,77,7
+Bland Chromatin,432,empty,1
+Bland Chromatin,447,11,1
+Bland Chromatin,454,empty,1
+Bland Chromatin,466,77,7
+Bland Chromatin,491,empty,1
+Bland Chromatin,510,11,1
+Bland Chromatin,523,empty,1
+Bland Chromatin,525,22,2
+Bland Chromatin,562,empty,1
+Bland Chromatin,564,empty,1
+Bland Chromatin,569,empty,1
+Bland Chromatin,576,empty,1
+Bland Chromatin,602,22,2
+Bland Chromatin,628,11,1
+Bland Chromatin,692,44,4
+Normal Nucleoli,422,22,2
+Mitoses,9,5,1
+Mitoses,46,2,1
+Mitoses,58,4,1
+Mitoses,59,empty,1
+Mitoses,86,10,3
+Mitoses,94,11,1
+Mitoses,111,2,1
+Mitoses,132,11,1
+Mitoses,145,4,1
+Mitoses,164,77,1
+Mitoses,165,empty,1
+Mitoses,168,10,1
+Mitoses,178,3,1
+Mitoses,204,empty,1
+Mitoses,216,2,1
+Mitoses,217,empty,1
+Mitoses,219,2,3
+Mitoses,224,11,1
+Mitoses,239,10,3
+Mitoses,249,11,1
+Mitoses,262,5,1
+Mitoses,273,11,1
+Mitoses,301,1,3
+Mitoses,309,empty,1
+Mitoses,316,7,1
+Mitoses,321,66,1
+Mitoses,325,empty,1
+Mitoses,329,1,3
+Mitoses,373,empty,1
+Mitoses,379,empty,1
+Mitoses,380,empty,1
+Mitoses,386,3,1
+Mitoses,394,empty,1
+Mitoses,395,3,1
+Mitoses,400,11,1
+Mitoses,413,11,1
+Mitoses,417,empty,1
+Mitoses,419,2,1
+Mitoses,422,empty,1
+Mitoses,442,11,1
+Mitoses,444,3,1
+Mitoses,451,empty,1
+Mitoses,456,empty,1
+Mitoses,470,empty,1
+Mitoses,482,empty,1
+Mitoses,489,empty,1
+Mitoses,542,11,1
+Mitoses,554,2,1
+Mitoses,570,empty,1
+Mitoses,603,11,1
+Mitoses,616,11,1
+Mitoses,621,11,1
+Mitoses,635,empty,1
+Mitoses,649,10,1
+Mitoses,667,2,1
+Mitoses,669,3,1
+Mitoses,686,11,1
+Mitoses,690,8,1
+Mitoses,692,empty,1
+Mitoses,694,2,1

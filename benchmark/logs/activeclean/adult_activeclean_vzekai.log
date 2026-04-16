@@ -1,0 +1,127 @@
+============================================================
+ActiveClean 数据清洗
+============================================================
+脏数据: Data/adult/dirty_index.csv
+干净数据: Data/adult/clean_index.csv
+任务名称: adult_activeclean_vzekai
+------------------------------------------------------------
+清洗后数据已保存到: results/activeclean/adult_activeclean_vzekai/adult_activeclean_vzekai_output.csv
+------------------------------------------------------------
+执行时间: 5.37 秒
+真值使用量 (Ground Truth Cost): 500
+
+============================================================
+调用统一测评模块 getScoreML
+============================================================
+2026-01-29 19:42:15.714472: W tensorflow/compiler/xla/stream_executor/platform/default/dso_loader.cc:64] Could not load dynamic library 'libnvinfer.so.7'; dlerror: libnvinfer.so.7: cannot open shared object file: No such file or directory
+2026-01-29 19:42:15.714605: W tensorflow/compiler/xla/stream_executor/platform/default/dso_loader.cc:64] Could not load dynamic library 'libnvinfer_plugin.so.7'; dlerror: libnvinfer_plugin.so.7: cannot open shared object file: No such file or directory
+2026-01-29 19:42:15.714616: W tensorflow/compiler/tf2tensorrt/utils/py_utils.cc:38] TF-TRT Warning: Cannot dlopen some TensorRT libraries. If you would like to use Nvidia GPU with TensorRT, please make sure the missing libraries mentioned above are installed properly.
+[1;34m[19:42:16][0m[1;33m WARNING Snoopy may use all CPU cores! Set env. variable 'SNOOPY_LIMIT_CPU' to 'y' to limit CPU usage. [0m[1;34m(__init__ -> _init_tf_pytorch on MainThread)[0m
+2026-01-29 19:42:16.703993: E tensorflow/compiler/xla/stream_executor/cuda/cuda_driver.cc:267] failed call to cuInit: CUDA_ERROR_NO_DEVICE: no CUDA-capable device is detected
+结果已保存到: results/activeclean/adult_activeclean_vzekai
+日志文件: results/activeclean/adult_activeclean_vzekai/adult_activeclean_vzekai.log
+============================================================
+[ActiveClean Wrapper] 检测到非数值列，自动进行向量化...
+[ActiveClean Wrapper] 向量化完成，编码列: ['workclass', 'education', 'marital_status', 'occupation', 'relationship', 'race', 'gender', 'native_country']
+[ActiveClean Wrapper] 数据集: 45222 行, 0 脏行, 45222 干净行
+[ActiveClean] Initialization
+[ActiveClean] 检测到分类任务，类别数: 2
+[ActiveClean] Number Cleaned So Far: 50
+[ActiveClean] Internal Accuracy: 0.7505
+[ActiveClean] Number Cleaned So Far: 100
+[ActiveClean] Internal Accuracy: 0.4793
+[ActiveClean] Number Cleaned So Far: 150
+[ActiveClean] Internal Accuracy: 0.2495
+[ActiveClean] Number Cleaned So Far: 200
+[ActiveClean] Internal Accuracy: 0.2495
+[ActiveClean] Number Cleaned So Far: 250
+[ActiveClean] Internal Accuracy: 0.7554
+[ActiveClean] Number Cleaned So Far: 300
+[ActiveClean] Internal Accuracy: 0.2495
+[ActiveClean] Number Cleaned So Far: 350
+[ActiveClean] Internal Accuracy: 0.7158
+[ActiveClean] Number Cleaned So Far: 400
+[ActiveClean] Internal Accuracy: 0.7868
+[ActiveClean] Number Cleaned So Far: 450
+[ActiveClean] Internal Accuracy: 0.7613
+[ActiveClean] Final - Number Cleaned: 500
+[ActiveClean Wrapper] 清洗完成: 500 行被替换为干净数据
+======================================================================
+Clean4MLBaseline 统一测评 - adult_activeclean_vzekai
+======================================================================
+
+[1/5] 传统清洗指标
+--------------------------------------------------
+调试文件已保存到: results/activeclean/adult_activeclean_vzekai/debug
+修复准确率: 1.0, 修复召回率: 0.014697236919459141, F1值: 0.02896871378625285
+========================================
+错误减少率 (EDR): 0.014697236919459141
+========================================
+混合距离 (Hybrid Distance): 0.0028024633331670303
+========================================
+基于条目的错误减少率 (R-EDR): 0.014697236919459141
+========================================
+numeric: Index(['age', 'fnlwgt', 'educational_num', 'capital_gain', 'capital_loss',
+       'hours_per_week', 'income'],
+      dtype='object')
+categorical: Index(['workclass', 'education', 'marital_status', 'occupation',
+       'relationship', 'race', 'gender', 'native_country'],
+      dtype='object')
+列级平均RMSE (数值列, 归一化): 0.063697
+  age: 0.000000
+  fnlwgt: 0.000000
+  educational_num: 0.000000
+  capital_gain: 0.000000
+  capital_loss: 0.000000
+  hours_per_week: 0.000000
+  income: 0.445881
+列级平均F1 (类别列, weighted): 1.000000
+  workclass: 1.000000
+  education: 1.000000
+  marital_status: 1.000000
+  occupation: 1.000000
+  relationship: 1.000000
+  race: 1.000000
+  gender: 1.000000
+  native_country: 1.000000
+========================================
+
+[2/5] 下游任务性能 (classification)
+--------------------------------------------------
+RF - Accuracy: 0.8551, F1: 0.8510, Precision: 0.8497, Recall: 0.8551
+LR - Accuracy: 0.8211, F1: 0.8057, Precision: 0.8094, Recall: 0.8211
+SVM - Accuracy: 0.8502, F1: 0.8417, Precision: 0.8433, Recall: 0.8502
+KNN - Accuracy: 0.8279, F1: 0.8241, Precision: 0.8220, Recall: 0.8279
+DT - Accuracy: 0.8060, F1: 0.8068, Precision: 0.8077, Recall: 0.8060
+GB - Accuracy: 0.8671, F1: 0.8603, Precision: 0.8623, Recall: 0.8671
+
+[3/5] 模型容忍度
+--------------------------------------------------
+
+容忍度计算结果:
+  P_do_nothing (脏数据性能): 0.8543
+  P_demand_clean (清洗后性能): 0.8543
+  P_repair_all (完全修复性能): 0.8543
+  先验容忍度 (Tolerance_prior): 1.0000
+  后验容忍度 (Tolerance_post): 0.0000
+
+[4/5] Snoopy上界评估
+--------------------------------------------------
+Snoopy模块可用，正在评估数据质量上界...
+  脏数据上界: 0.8523
+  清洗后上界: 0.8187
+  干净数据上界: 0.8523
+  上界提升比例: 0.0000
+
+[5/5] 真值使用成本
+--------------------------------------------------
+  方法类型: Type 3 (需迭代交互)
+  实际真值使用: 500
+  理想最小成本: 25
+  总修改单元格: 25
+  正确修复: 25
+  错误修复: 0
+
+======================================================================
+测评完成，结果已保存到: results/activeclean/adult_activeclean_vzekai/adult_activeclean_vzekai_report.txt
+======================================================================

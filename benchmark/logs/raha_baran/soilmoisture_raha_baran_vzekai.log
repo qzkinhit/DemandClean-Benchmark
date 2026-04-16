@@ -1,0 +1,915 @@
+============================================================
+Baran/Raha 数据清洗
+============================================================
+脏数据: Data/soilmoisture/dirty_index.csv
+干净数据: Data/soilmoisture/clean_index.csv
+任务名称: soilmoisture_raha_baran_vzekai
+标注预算: 20
+列拆分阈值: 30
+并行进程数限制: 2
+------------------------------------------------------------
+数据集列数 (129) 超过阈值 (30)，启用列拆分模式
+检测到高维数据集: 129 列，将拆分处理
+拆分为 5 个子集，每组最多 30 列
+临时目录: /tmp/baran_split_soilmoisture_raha_baran_vzekai_bv8jr4j7
+  Split 0: 处理 30 列 (datetime...562)
+============================================================
+阶段1: Raha错误检测
+============================================================
+检测到错误单元格: 8827
+检测 Precision: 0.3494
+检测 Recall: 0.4624
+检测 F1: 0.3980
+============================================================
+阶段2: Baran错误修复
+============================================================
+------------------------------------------------------------------------
+---------------------Initialize the Dataset Object----------------------
+------------------------------------------------------------------------
+------------------------------------------------------------------------
+--------------------Initialize Error Corrector Models-------------------
+------------------------------------------------------------------------
+The error corrector models are initialized.
+------------------------------------------------------------------------
+--------------Iterative Tuple Sampling, Labeling, and Learning----------
+------------------------------------------------------------------------
+Tuple 608 is sampled.
+Tuple 608 is labeled.
+The error corrector models are updated with new labeled tuple 608.
+84586 pairs of (a data error, a potential correction) are featurized.
+0% (24 / 8834) of data errors are corrected.
+------------------------------------------------------------------------
+Tuple 612 is sampled.
+Tuple 612 is labeled.
+The error corrector models are updated with new labeled tuple 612.
+235875 pairs of (a data error, a potential correction) are featurized.
+8% (707 / 8840) of data errors are corrected.
+------------------------------------------------------------------------
+Tuple 295 is sampled.
+Tuple 295 is labeled.
+The error corrector models are updated with new labeled tuple 295.
+320770 pairs of (a data error, a potential correction) are featurized.
+8% (727 / 8842) of data errors are corrected.
+------------------------------------------------------------------------
+Tuple 139 is sampled.
+Tuple 139 is labeled.
+The error corrector models are updated with new labeled tuple 139.
+403300 pairs of (a data error, a potential correction) are featurized.
+8% (745 / 8845) of data errors are corrected.
+------------------------------------------------------------------------
+Tuple 605 is sampled.
+Tuple 605 is labeled.
+The error corrector models are updated with new labeled tuple 605.
+504248 pairs of (a data error, a potential correction) are featurized.
+9% (757 / 8849) of data errors are corrected.
+------------------------------------------------------------------------
+Tuple 437 is sampled.
+Tuple 437 is labeled.
+The error corrector models are updated with new labeled tuple 437.
+579242 pairs of (a data error, a potential correction) are featurized.
+9% (763 / 8852) of data errors are corrected.
+------------------------------------------------------------------------
+Tuple 192 is sampled.
+Tuple 192 is labeled.
+The error corrector models are updated with new labeled tuple 192.
+779272 pairs of (a data error, a potential correction) are featurized.
+9% (794 / 8860) of data errors are corrected.
+------------------------------------------------------------------------
+Tuple 19 is sampled.
+Tuple 19 is labeled.
+The error corrector models are updated with new labeled tuple 19.
+884784 pairs of (a data error, a potential correction) are featurized.
+9% (802 / 8865) of data errors are corrected.
+------------------------------------------------------------------------
+Tuple 164 is sampled.
+Tuple 164 is labeled.
+The error corrector models are updated with new labeled tuple 164.
+1036848 pairs of (a data error, a potential correction) are featurized.
+9% (812 / 8871) of data errors are corrected.
+------------------------------------------------------------------------
+Tuple 292 is sampled.
+Tuple 292 is labeled.
+The error corrector models are updated with new labeled tuple 292.
+1116700 pairs of (a data error, a potential correction) are featurized.
+9% (817 / 8875) of data errors are corrected.
+------------------------------------------------------------------------
+Tuple 9 is sampled.
+Tuple 9 is labeled.
+The error corrector models are updated with new labeled tuple 9.
+1153462 pairs of (a data error, a potential correction) are featurized.
+9% (821 / 8879) of data errors are corrected.
+------------------------------------------------------------------------
+Tuple 0 is sampled.
+Tuple 0 is labeled.
+The error corrector models are updated with new labeled tuple 0.
+1265529 pairs of (a data error, a potential correction) are featurized.
+9% (831 / 8887) of data errors are corrected.
+------------------------------------------------------------------------
+Tuple 18 is sampled.
+Tuple 18 is labeled.
+The error corrector models are updated with new labeled tuple 18.
+1335686 pairs of (a data error, a potential correction) are featurized.
+9% (837 / 8890) of data errors are corrected.
+------------------------------------------------------------------------
+Tuple 570 is sampled.
+Tuple 570 is labeled.
+The error corrector models are updated with new labeled tuple 570.
+1424840 pairs of (a data error, a potential correction) are featurized.
+9% (845 / 8896) of data errors are corrected.
+------------------------------------------------------------------------
+Tuple 574 is sampled.
+Tuple 574 is labeled.
+The error corrector models are updated with new labeled tuple 574.
+1564062 pairs of (a data error, a potential correction) are featurized.
+10% (855 / 8901) of data errors are corrected.
+------------------------------------------------------------------------
+Tuple 478 is sampled.
+Tuple 478 is labeled.
+The error corrector models are updated with new labeled tuple 478.
+1652600 pairs of (a data error, a potential correction) are featurized.
+10% (862 / 8905) of data errors are corrected.
+------------------------------------------------------------------------
+Tuple 569 is sampled.
+Tuple 569 is labeled.
+The error corrector models are updated with new labeled tuple 569.
+1695427 pairs of (a data error, a potential correction) are featurized.
+10% (868 / 8909) of data errors are corrected.
+------------------------------------------------------------------------
+Tuple 270 is sampled.
+Tuple 270 is labeled.
+The error corrector models are updated with new labeled tuple 270.
+1797078 pairs of (a data error, a potential correction) are featurized.
+10% (875 / 8913) of data errors are corrected.
+------------------------------------------------------------------------
+Tuple 345 is sampled.
+Tuple 345 is labeled.
+The error corrector models are updated with new labeled tuple 345.
+  Split 1: 处理 30 列 (566...682)
+1941803 pairs of (a data error, a potential correction) are featurized.
+10% (885 / 8921) of data errors are corrected.
+------------------------------------------------------------------------
+修复单元格数: 885
+修复后数据已保存: /tmp/baran_split_soilmoisture_raha_baran_vzekai_bv8jr4j7/soilmoisture_raha_baran_vzekai_split0_cleaned.csv
+============================================================
+阶段1: Raha错误检测
+============================================================
+检测到错误单元格: 7469
+检测 Precision: 0.2960
+检测 Recall: 0.3608
+检测 F1: 0.3252
+============================================================
+阶段2: Baran错误修复
+============================================================
+------------------------------------------------------------------------
+---------------------Initialize the Dataset Object----------------------
+------------------------------------------------------------------------
+------------------------------------------------------------------------
+--------------------Initialize Error Corrector Models-------------------
+------------------------------------------------------------------------
+The error corrector models are initialized.
+------------------------------------------------------------------------
+--------------Iterative Tuple Sampling, Labeling, and Learning----------
+------------------------------------------------------------------------
+Tuple 423 is sampled.
+Tuple 423 is labeled.
+The error corrector models are updated with new labeled tuple 423.
+117104 pairs of (a data error, a potential correction) are featurized.
+0% (19 / 7471) of data errors are corrected.
+------------------------------------------------------------------------
+Tuple 274 is sampled.
+Tuple 274 is labeled.
+The error corrector models are updated with new labeled tuple 274.
+308099 pairs of (a data error, a potential correction) are featurized.
+0% (34 / 7481) of data errors are corrected.
+------------------------------------------------------------------------
+Tuple 398 is sampled.
+Tuple 398 is labeled.
+The error corrector models are updated with new labeled tuple 398.
+383943 pairs of (a data error, a potential correction) are featurized.
+1% (43 / 7486) of data errors are corrected.
+------------------------------------------------------------------------
+Tuple 455 is sampled.
+Tuple 455 is labeled.
+The error corrector models are updated with new labeled tuple 455.
+488799 pairs of (a data error, a potential correction) are featurized.
+1% (50 / 7490) of data errors are corrected.
+------------------------------------------------------------------------
+Tuple 556 is sampled.
+Tuple 556 is labeled.
+The error corrector models are updated with new labeled tuple 556.
+679844 pairs of (a data error, a potential correction) are featurized.
+1% (61 / 7497) of data errors are corrected.
+------------------------------------------------------------------------
+Tuple 217 is sampled.
+Tuple 217 is labeled.
+The error corrector models are updated with new labeled tuple 217.
+784536 pairs of (a data error, a potential correction) are featurized.
+1% (69 / 7501) of data errors are corrected.
+------------------------------------------------------------------------
+Tuple 668 is sampled.
+Tuple 668 is labeled.
+The error corrector models are updated with new labeled tuple 668.
+935325 pairs of (a data error, a potential correction) are featurized.
+1% (80 / 7506) of data errors are corrected.
+------------------------------------------------------------------------
+Tuple 108 is sampled.
+Tuple 108 is labeled.
+The error corrector models are updated with new labeled tuple 108.
+1085756 pairs of (a data error, a potential correction) are featurized.
+1% (91 / 7515) of data errors are corrected.
+------------------------------------------------------------------------
+Tuple 630 is sampled.
+Tuple 630 is labeled.
+The error corrector models are updated with new labeled tuple 630.
+1194937 pairs of (a data error, a potential correction) are featurized.
+1% (101 / 7521) of data errors are corrected.
+------------------------------------------------------------------------
+Tuple 413 is sampled.
+Tuple 413 is labeled.
+The error corrector models are updated with new labeled tuple 413.
+1282050 pairs of (a data error, a potential correction) are featurized.
+1% (108 / 7525) of data errors are corrected.
+------------------------------------------------------------------------
+Tuple 343 is sampled.
+Tuple 343 is labeled.
+The error corrector models are updated with new labeled tuple 343.
+1372723 pairs of (a data error, a potential correction) are featurized.
+2% (115 / 7529) of data errors are corrected.
+------------------------------------------------------------------------
+Tuple 125 is sampled.
+Tuple 125 is labeled.
+The error corrector models are updated with new labeled tuple 125.
+1449126 pairs of (a data error, a potential correction) are featurized.
+2% (125 / 7535) of data errors are corrected.
+------------------------------------------------------------------------
+Tuple 631 is sampled.
+Tuple 631 is labeled.
+The error corrector models are updated with new labeled tuple 631.
+1526634 pairs of (a data error, a potential correction) are featurized.
+2% (134 / 7540) of data errors are corrected.
+------------------------------------------------------------------------
+Tuple 511 is sampled.
+Tuple 511 is labeled.
+The error corrector models are updated with new labeled tuple 511.
+1652819 pairs of (a data error, a potential correction) are featurized.
+2% (145 / 7550) of data errors are corrected.
+------------------------------------------------------------------------
+Tuple 257 is sampled.
+Tuple 257 is labeled.
+The error corrector models are updated with new labeled tuple 257.
+1878907 pairs of (a data error, a potential correction) are featurized.
+2% (158 / 7559) of data errors are corrected.
+------------------------------------------------------------------------
+Tuple 41 is sampled.
+Tuple 41 is labeled.
+The error corrector models are updated with new labeled tuple 41.
+2027481 pairs of (a data error, a potential correction) are featurized.
+2% (170 / 7568) of data errors are corrected.
+------------------------------------------------------------------------
+Tuple 478 is sampled.
+Tuple 478 is labeled.
+The error corrector models are updated with new labeled tuple 478.
+2155409 pairs of (a data error, a potential correction) are featurized.
+2% (177 / 7574) of data errors are corrected.
+------------------------------------------------------------------------
+Tuple 111 is sampled.
+Tuple 111 is labeled.
+The error corrector models are updated with new labeled tuple 111.
+2289343 pairs of (a data error, a potential correction) are featurized.
+2% (185 / 7578) of data errors are corrected.
+------------------------------------------------------------------------
+Tuple 619 is sampled.
+Tuple 619 is labeled.
+The error corrector models are updated with new labeled tuple 619.
+  Split 2: 处理 30 列 (686...802)
+2403062 pairs of (a data error, a potential correction) are featurized.
+3% (196 / 7585) of data errors are corrected.
+------------------------------------------------------------------------
+修复单元格数: 196
+修复后数据已保存: /tmp/baran_split_soilmoisture_raha_baran_vzekai_bv8jr4j7/soilmoisture_raha_baran_vzekai_split1_cleaned.csv
+============================================================
+阶段1: Raha错误检测
+============================================================
+检测到错误单元格: 6111
+检测 Precision: 0.3003
+检测 Recall: 0.2951
+检测 F1: 0.2977
+============================================================
+阶段2: Baran错误修复
+============================================================
+------------------------------------------------------------------------
+---------------------Initialize the Dataset Object----------------------
+------------------------------------------------------------------------
+------------------------------------------------------------------------
+--------------------Initialize Error Corrector Models-------------------
+------------------------------------------------------------------------
+The error corrector models are initialized.
+------------------------------------------------------------------------
+--------------Iterative Tuple Sampling, Labeling, and Learning----------
+------------------------------------------------------------------------
+Tuple 114 is sampled.
+Tuple 114 is labeled.
+The error corrector models are updated with new labeled tuple 114.
+120266 pairs of (a data error, a potential correction) are featurized.
+0% (17 / 6115) of data errors are corrected.
+------------------------------------------------------------------------
+Tuple 610 is sampled.
+Tuple 610 is labeled.
+The error corrector models are updated with new labeled tuple 610.
+247668 pairs of (a data error, a potential correction) are featurized.
+1% (33 / 6127) of data errors are corrected.
+------------------------------------------------------------------------
+Tuple 148 is sampled.
+Tuple 148 is labeled.
+The error corrector models are updated with new labeled tuple 148.
+392374 pairs of (a data error, a potential correction) are featurized.
+1% (45 / 6136) of data errors are corrected.
+------------------------------------------------------------------------
+Tuple 13 is sampled.
+Tuple 13 is labeled.
+The error corrector models are updated with new labeled tuple 13.
+444915 pairs of (a data error, a potential correction) are featurized.
+1% (53 / 6142) of data errors are corrected.
+------------------------------------------------------------------------
+Tuple 75 is sampled.
+Tuple 75 is labeled.
+The error corrector models are updated with new labeled tuple 75.
+559282 pairs of (a data error, a potential correction) are featurized.
+1% (62 / 6149) of data errors are corrected.
+------------------------------------------------------------------------
+Tuple 453 is sampled.
+Tuple 453 is labeled.
+The error corrector models are updated with new labeled tuple 453.
+698282 pairs of (a data error, a potential correction) are featurized.
+1% (75 / 6158) of data errors are corrected.
+------------------------------------------------------------------------
+Tuple 94 is sampled.
+Tuple 94 is labeled.
+The error corrector models are updated with new labeled tuple 94.
+775024 pairs of (a data error, a potential correction) are featurized.
+1% (84 / 6163) of data errors are corrected.
+------------------------------------------------------------------------
+Tuple 216 is sampled.
+Tuple 216 is labeled.
+The error corrector models are updated with new labeled tuple 216.
+896163 pairs of (a data error, a potential correction) are featurized.
+1% (92 / 6168) of data errors are corrected.
+------------------------------------------------------------------------
+Tuple 33 is sampled.
+Tuple 33 is labeled.
+The error corrector models are updated with new labeled tuple 33.
+1047678 pairs of (a data error, a potential correction) are featurized.
+2% (103 / 6176) of data errors are corrected.
+------------------------------------------------------------------------
+Tuple 475 is sampled.
+Tuple 475 is labeled.
+The error corrector models are updated with new labeled tuple 475.
+1169300 pairs of (a data error, a potential correction) are featurized.
+2% (111 / 6184) of data errors are corrected.
+------------------------------------------------------------------------
+Tuple 379 is sampled.
+Tuple 379 is labeled.
+The error corrector models are updated with new labeled tuple 379.
+1286982 pairs of (a data error, a potential correction) are featurized.
+2% (122 / 6192) of data errors are corrected.
+------------------------------------------------------------------------
+Tuple 302 is sampled.
+Tuple 302 is labeled.
+The error corrector models are updated with new labeled tuple 302.
+1336500 pairs of (a data error, a potential correction) are featurized.
+2% (125 / 6195) of data errors are corrected.
+------------------------------------------------------------------------
+Tuple 482 is sampled.
+Tuple 482 is labeled.
+The error corrector models are updated with new labeled tuple 482.
+1482554 pairs of (a data error, a potential correction) are featurized.
+2% (137 / 6204) of data errors are corrected.
+------------------------------------------------------------------------
+Tuple 167 is sampled.
+Tuple 167 is labeled.
+The error corrector models are updated with new labeled tuple 167.
+1547594 pairs of (a data error, a potential correction) are featurized.
+2% (144 / 6210) of data errors are corrected.
+------------------------------------------------------------------------
+Tuple 214 is sampled.
+Tuple 214 is labeled.
+The error corrector models are updated with new labeled tuple 214.
+1650067 pairs of (a data error, a potential correction) are featurized.
+3% (157 / 6219) of data errors are corrected.
+------------------------------------------------------------------------
+Tuple 440 is sampled.
+Tuple 440 is labeled.
+The error corrector models are updated with new labeled tuple 440.
+1771550 pairs of (a data error, a potential correction) are featurized.
+3% (168 / 6227) of data errors are corrected.
+------------------------------------------------------------------------
+Tuple 89 is sampled.
+Tuple 89 is labeled.
+The error corrector models are updated with new labeled tuple 89.
+1839441 pairs of (a data error, a potential correction) are featurized.
+3% (174 / 6231) of data errors are corrected.
+------------------------------------------------------------------------
+Tuple 82 is sampled.
+Tuple 82 is labeled.
+The error corrector models are updated with new labeled tuple 82.
+1959579 pairs of (a data error, a potential correction) are featurized.
+3% (186 / 6240) of data errors are corrected.
+------------------------------------------------------------------------
+Tuple 391 is sampled.
+Tuple 391 is labeled.
+The error corrector models are updated with new labeled tuple 391.
+  Split 3: 处理 30 列 (806...922)
+2065466 pairs of (a data error, a potential correction) are featurized.
+3% (197 / 6248) of data errors are corrected.
+------------------------------------------------------------------------
+修复单元格数: 197
+修复后数据已保存: /tmp/baran_split_soilmoisture_raha_baran_vzekai_bv8jr4j7/soilmoisture_raha_baran_vzekai_split2_cleaned.csv
+============================================================
+阶段1: Raha错误检测
+============================================================
+检测到错误单元格: 4074
+检测 Precision: 0.3034
+检测 Recall: 0.2061
+检测 F1: 0.2455
+============================================================
+阶段2: Baran错误修复
+============================================================
+------------------------------------------------------------------------
+---------------------Initialize the Dataset Object----------------------
+------------------------------------------------------------------------
+------------------------------------------------------------------------
+--------------------Initialize Error Corrector Models-------------------
+------------------------------------------------------------------------
+The error corrector models are initialized.
+------------------------------------------------------------------------
+--------------Iterative Tuple Sampling, Labeling, and Learning----------
+------------------------------------------------------------------------
+Tuple 585 is sampled.
+Tuple 585 is labeled.
+The error corrector models are updated with new labeled tuple 585.
+61423 pairs of (a data error, a potential correction) are featurized.
+0% (15 / 4082) of data errors are corrected.
+------------------------------------------------------------------------
+Tuple 608 is sampled.
+Tuple 608 is labeled.
+The error corrector models are updated with new labeled tuple 608.
+153973 pairs of (a data error, a potential correction) are featurized.
+1% (24 / 4088) of data errors are corrected.
+------------------------------------------------------------------------
+Tuple 253 is sampled.
+Tuple 253 is labeled.
+The error corrector models are updated with new labeled tuple 253.
+209236 pairs of (a data error, a potential correction) are featurized.
+1% (31 / 4094) of data errors are corrected.
+------------------------------------------------------------------------
+Tuple 37 is sampled.
+Tuple 37 is labeled.
+The error corrector models are updated with new labeled tuple 37.
+315170 pairs of (a data error, a potential correction) are featurized.
+1% (44 / 4104) of data errors are corrected.
+------------------------------------------------------------------------
+Tuple 466 is sampled.
+Tuple 466 is labeled.
+The error corrector models are updated with new labeled tuple 466.
+426575 pairs of (a data error, a potential correction) are featurized.
+1% (56 / 4112) of data errors are corrected.
+------------------------------------------------------------------------
+Tuple 278 is sampled.
+Tuple 278 is labeled.
+The error corrector models are updated with new labeled tuple 278.
+511730 pairs of (a data error, a potential correction) are featurized.
+2% (65 / 4119) of data errors are corrected.
+------------------------------------------------------------------------
+Tuple 439 is sampled.
+Tuple 439 is labeled.
+The error corrector models are updated with new labeled tuple 439.
+590429 pairs of (a data error, a potential correction) are featurized.
+2% (73 / 4127) of data errors are corrected.
+------------------------------------------------------------------------
+Tuple 552 is sampled.
+Tuple 552 is labeled.
+The error corrector models are updated with new labeled tuple 552.
+674939 pairs of (a data error, a potential correction) are featurized.
+2% (84 / 4135) of data errors are corrected.
+------------------------------------------------------------------------
+Tuple 373 is sampled.
+Tuple 373 is labeled.
+The error corrector models are updated with new labeled tuple 373.
+782393 pairs of (a data error, a potential correction) are featurized.
+2% (95 / 4143) of data errors are corrected.
+------------------------------------------------------------------------
+Tuple 263 is sampled.
+Tuple 263 is labeled.
+The error corrector models are updated with new labeled tuple 263.
+898266 pairs of (a data error, a potential correction) are featurized.
+3% (108 / 4156) of data errors are corrected.
+------------------------------------------------------------------------
+Tuple 459 is sampled.
+Tuple 459 is labeled.
+The error corrector models are updated with new labeled tuple 459.
+984882 pairs of (a data error, a potential correction) are featurized.
+3% (118 / 4166) of data errors are corrected.
+------------------------------------------------------------------------
+Tuple 409 is sampled.
+Tuple 409 is labeled.
+The error corrector models are updated with new labeled tuple 409.
+1065895 pairs of (a data error, a potential correction) are featurized.
+3% (127 / 4173) of data errors are corrected.
+------------------------------------------------------------------------
+Tuple 155 is sampled.
+Tuple 155 is labeled.
+The error corrector models are updated with new labeled tuple 155.
+1139761 pairs of (a data error, a potential correction) are featurized.
+3% (135 / 4180) of data errors are corrected.
+------------------------------------------------------------------------
+Tuple 31 is sampled.
+Tuple 31 is labeled.
+The error corrector models are updated with new labeled tuple 31.
+1160400 pairs of (a data error, a potential correction) are featurized.
+3% (138 / 4182) of data errors are corrected.
+------------------------------------------------------------------------
+Tuple 366 is sampled.
+Tuple 366 is labeled.
+The error corrector models are updated with new labeled tuple 366.
+1190774 pairs of (a data error, a potential correction) are featurized.
+3% (143 / 4186) of data errors are corrected.
+------------------------------------------------------------------------
+Tuple 423 is sampled.
+Tuple 423 is labeled.
+The error corrector models are updated with new labeled tuple 423.
+1240049 pairs of (a data error, a potential correction) are featurized.
+4% (150 / 4192) of data errors are corrected.
+------------------------------------------------------------------------
+Tuple 201 is sampled.
+Tuple 201 is labeled.
+The error corrector models are updated with new labeled tuple 201.
+1316755 pairs of (a data error, a potential correction) are featurized.
+4% (157 / 4199) of data errors are corrected.
+------------------------------------------------------------------------
+Tuple 21 is sampled.
+Tuple 21 is labeled.
+The error corrector models are updated with new labeled tuple 21.
+1435623 pairs of (a data error, a potential correction) are featurized.
+4% (172 / 4209) of data errors are corrected.
+------------------------------------------------------------------------
+Tuple 296 is sampled.
+Tuple 296 is labeled.
+The error corrector models are updated with new labeled tuple 296.
+  Split 4: 处理 8 列 (926...soil_moisture)
+1517431 pairs of (a data error, a potential correction) are featurized.
+4% (183 / 4218) of data errors are corrected.
+------------------------------------------------------------------------
+修复单元格数: 183
+修复后数据已保存: /tmp/baran_split_soilmoisture_raha_baran_vzekai_bv8jr4j7/soilmoisture_raha_baran_vzekai_split3_cleaned.csv
+============================================================
+阶段1: Raha错误检测
+============================================================
+检测到错误单元格: 679
+检测 Precision: 0.3049
+检测 Recall: 0.1400
+检测 F1: 0.1918
+============================================================
+阶段2: Baran错误修复
+============================================================
+------------------------------------------------------------------------
+---------------------Initialize the Dataset Object----------------------
+------------------------------------------------------------------------
+------------------------------------------------------------------------
+--------------------Initialize Error Corrector Models-------------------
+------------------------------------------------------------------------
+The error corrector models are initialized.
+------------------------------------------------------------------------
+--------------Iterative Tuple Sampling, Labeling, and Learning----------
+------------------------------------------------------------------------
+Tuple 446 is sampled.
+Tuple 446 is labeled.
+The error corrector models are updated with new labeled tuple 446.
+2552 pairs of (a data error, a potential correction) are featurized.
+0% (3 / 680) of data errors are corrected.
+------------------------------------------------------------------------
+Tuple 395 is sampled.
+Tuple 395 is labeled.
+The error corrector models are updated with new labeled tuple 395.
+7156 pairs of (a data error, a potential correction) are featurized.
+1% (6 / 683) of data errors are corrected.
+------------------------------------------------------------------------
+Tuple 194 is sampled.
+Tuple 194 is labeled.
+The error corrector models are updated with new labeled tuple 194.
+9647 pairs of (a data error, a potential correction) are featurized.
+1% (7 / 684) of data errors are corrected.
+------------------------------------------------------------------------
+Tuple 172 is sampled.
+Tuple 172 is labeled.
+The error corrector models are updated with new labeled tuple 172.
+12749 pairs of (a data error, a potential correction) are featurized.
+1% (9 / 685) of data errors are corrected.
+------------------------------------------------------------------------
+Tuple 449 is sampled.
+Tuple 449 is labeled.
+The error corrector models are updated with new labeled tuple 449.
+18441 pairs of (a data error, a potential correction) are featurized.
+2% (12 / 688) of data errors are corrected.
+------------------------------------------------------------------------
+Tuple 363 is sampled.
+Tuple 363 is labeled.
+The error corrector models are updated with new labeled tuple 363.
+22221 pairs of (a data error, a potential correction) are featurized.
+2% (14 / 690) of data errors are corrected.
+------------------------------------------------------------------------
+Tuple 51 is sampled.
+Tuple 51 is labeled.
+The error corrector models are updated with new labeled tuple 51.
+24747 pairs of (a data error, a potential correction) are featurized.
+2% (15 / 691) of data errors are corrected.
+------------------------------------------------------------------------
+Tuple 656 is sampled.
+Tuple 656 is labeled.
+The error corrector models are updated with new labeled tuple 656.
+28043 pairs of (a data error, a potential correction) are featurized.
+2% (17 / 693) of data errors are corrected.
+------------------------------------------------------------------------
+Tuple 322 is sampled.
+Tuple 322 is labeled.
+The error corrector models are updated with new labeled tuple 322.
+30583 pairs of (a data error, a potential correction) are featurized.
+3% (18 / 694) of data errors are corrected.
+------------------------------------------------------------------------
+Tuple 4 is sampled.
+Tuple 4 is labeled.
+The error corrector models are updated with new labeled tuple 4.
+33129 pairs of (a data error, a potential correction) are featurized.
+3% (19 / 695) of data errors are corrected.
+------------------------------------------------------------------------
+Tuple 228 is sampled.
+Tuple 228 is labeled.
+The error corrector models are updated with new labeled tuple 228.
+40799 pairs of (a data error, a potential correction) are featurized.
+3% (22 / 698) of data errors are corrected.
+------------------------------------------------------------------------
+Tuple 28 is sampled.
+Tuple 28 is labeled.
+The error corrector models are updated with new labeled tuple 28.
+50491 pairs of (a data error, a potential correction) are featurized.
+4% (26 / 702) of data errors are corrected.
+------------------------------------------------------------------------
+Tuple 583 is sampled.
+Tuple 583 is labeled.
+The error corrector models are updated with new labeled tuple 583.
+55681 pairs of (a data error, a potential correction) are featurized.
+11% (76 / 704) of data errors are corrected.
+------------------------------------------------------------------------
+Tuple 380 is sampled.
+Tuple 380 is labeled.
+The error corrector models are updated with new labeled tuple 380.
+61517 pairs of (a data error, a potential correction) are featurized.
+11% (78 / 706) of data errors are corrected.
+------------------------------------------------------------------------
+Tuple 98 is sampled.
+Tuple 98 is labeled.
+The error corrector models are updated with new labeled tuple 98.
+61517 pairs of (a data error, a potential correction) are featurized.
+11% (78 / 706) of data errors are corrected.
+------------------------------------------------------------------------
+Tuple 373 is sampled.
+Tuple 373 is labeled.
+The error corrector models are updated with new labeled tuple 373.
+66737 pairs of (a data error, a potential correction) are featurized.
+11% (80 / 708) of data errors are corrected.
+------------------------------------------------------------------------
+Tuple 145 is sampled.
+Tuple 145 is labeled.
+The error corrector models are updated with new labeled tuple 145.
+73476 pairs of (a data error, a potential correction) are featurized.
+12% (84 / 712) of data errors are corrected.
+------------------------------------------------------------------------
+Tuple 236 is sampled.
+Tuple 236 is labeled.
+The error corrector models are updated with new labeled tuple 236.
+75489 pairs of (a data error, a potential correction) are featurized.
+12% (85 / 713) of data errors are corrected.
+------------------------------------------------------------------------
+Tuple 104 is sampled.
+Tuple 104 is labeled.
+The error corrector models are updated with new labeled tuple 104.
+合并所有子集结果...
+合并结果已保存: results/raha_baran/soilmoisture_raha_baran_vzekai/soilmoisture_raha_baran_vzekai_cleaned.csv
+已清理临时目录: /tmp/baran_split_soilmoisture_raha_baran_vzekai_bv8jr4j7
+------------------------------------------------------------
+执行时间: 1116.14 秒
+执行状态: 成功
+拆分数量: 5
+总检测单元格: 27688
+总修复单元格: 1549
+标注预算: 20
+真值使用成本: 100 (Type 3: 迭代交互)
+
+============================================================
+调用统一测评模块 getScoreML
+============================================================
+2026-02-01 00:25:17.470788: W tensorflow/compiler/xla/stream_executor/platform/default/dso_loader.cc:64] Could not load dynamic library 'libnvinfer.so.7'; dlerror: libnvinfer.so.7: cannot open shared object file: No such file or directory
+2026-02-01 00:25:17.470885: W tensorflow/compiler/xla/stream_executor/platform/default/dso_loader.cc:64] Could not load dynamic library 'libnvinfer_plugin.so.7'; dlerror: libnvinfer_plugin.so.7: cannot open shared object file: No such file or directory
+2026-02-01 00:25:17.470898: W tensorflow/compiler/tf2tensorrt/utils/py_utils.cc:38] TF-TRT Warning: Cannot dlopen some TensorRT libraries. If you would like to use Nvidia GPU with TensorRT, please make sure the missing libraries mentioned above are installed properly.
+[1;34m[00:25:18][0m[1;33m WARNING Snoopy may use all CPU cores! Set env. variable 'SNOOPY_LIMIT_CPU' to 'y' to limit CPU usage. [0m[1;34m(__init__ -> _init_tf_pytorch on MainThread)[0m
+2026-02-01 00:25:18.058335: E tensorflow/compiler/xla/stream_executor/cuda/cuda_driver.cc:267] failed call to cuInit: CUDA_ERROR_NO_DEVICE: no CUDA-capable device is detected
+
+结果已保存到: results/raha_baran/soilmoisture_raha_baran_vzekai
+============================================================
+80984 pairs of (a data error, a potential correction) are featurized.
+12% (88 / 716) of data errors are corrected.
+------------------------------------------------------------------------
+修复单元格数: 88
+修复后数据已保存: /tmp/baran_split_soilmoisture_raha_baran_vzekai_bv8jr4j7/soilmoisture_raha_baran_vzekai_split4_cleaned.csv
+======================================================================
+Clean4MLBaseline 统一测评 - soilmoisture_raha_baran_vzekai
+======================================================================
+
+[1/5] 传统清洗指标
+--------------------------------------------------
+调试文件已保存到: results/raha_baran/soilmoisture_raha_baran_vzekai/debug
+修复准确率: 0.896, 修复召回率: 0.03013761820558161, F1值: 0.05831380861432908
+========================================
+错误减少率 (EDR): 0.027715845314061658
+========================================
+混合距离 (Hybrid Distance): 0.6448285454911757
+========================================
+基于条目的错误减少率 (R-EDR): 0.0
+========================================
+numeric: Index(['datetime', 'soil_temperature', '454', '458', '462', '466', '470',
+       '474', '478', '482',
+       ...
+       '918', '922', '926', '930', '934', '938', '942', '946', '950',
+       'soil_moisture'],
+      dtype='object', length=128)
+categorical: (none)
+列级平均RMSE (数值列, 归一化): 18203929.435951
+  datetime: 2.214733
+  soil_temperature: 2.239970
+  454: 2.363040
+  458: 2.141864
+  462: 2.095129
+  466: 2.480143
+  470: 2.259763
+  474: 2.217991
+  478: 2.036843
+  482: 2.091446
+  486: 2.350690
+  490: 2.200693
+  494: 1.984823
+  498: 2.113984
+  502: 2.175060
+  506: 2.290019
+  510: 2.226561
+  514: 2.076950
+  518: 2.314084
+  522: 2.372747
+  526: 2.006880
+  530: 1.964663
+  534: 2.054210
+  538: 2.238737
+  542: 2.063984
+  546: 2.213222
+  550: 2330102697.206550
+  554: 2.302430
+  558: 2.176537
+  562: 2.154243
+  566: 2.169031
+  570: 2.227205
+  574: 2.077729
+  578: 1.913651
+  582: 1.999212
+  586: 2.123626
+  590: 2.295475
+  594: 2.154264
+  598: 2.115173
+  602: 2.368459
+  606: 2.281381
+  610: 2.190789
+  614: 2.160879
+  618: 2.153376
+  622: 2.199793
+  626: 2.342914
+  630: 2.170539
+  634: 2.051890
+  638: 1.911852
+  642: 2.332241
+  646: 2.185392
+  650: 2.139055
+  654: 2.114748
+  658: 2.294697
+  662: 1.983810
+  666: 2.208515
+  670: 2.214589
+  674: 1.810890
+  678: 1.954104
+  682: 1.920509
+  686: 2.258214
+  690: 2.162791
+  694: 2.264030
+  698: 2.191493
+  702: 2.193817
+  706: 2.136485
+  710: 2.133792
+  714: 1.999095
+  718: 2.019076
+  722: 2.141285
+  726: 2.095723
+  730: 2.183435
+  734: 2.228566
+  738: 2.272383
+  742: 2.331343
+  746: 1.911214
+  750: 1.969644
+  754: 2.087074
+  758: 2.165219
+  762: 2.098080
+  766: 2.282220
+  770: 2.119840
+  774: 2.060830
+  778: 2.017721
+  782: 2.228183
+  786: 2.044543
+  790: 2.174373
+  794: 2.326171
+  798: 2.266062
+  802: 2.023789
+  806: 2.063572
+  810: 2.126916
+  814: 2.160402
+  818: 2.292001
+  822: 2.092438
+  826: 2.168669
+  830: 1.905387
+  834: 2.109283
+  838: 2.218492
+  842: 2.140950
+  846: 2.225927
+  850: 2.155748
+  854: 2.213580
+  858: 2.063920
+  862: 2.240008
+  866: 2.175410
+  870: 2.048447
+  874: 2.300767
+  878: 2.092971
+  882: 2.279209
+  886: 2.078442
+  890: 2.273531
+  894: 2.141941
+  898: 2.167364
+  902: 1.917234
+  906: 2.100882
+  910: 2.172729
+  914: 2.014120
+  918: 2.181651
+  922: 1.888778
+  926: 2.184241
+  930: 1.911670
+  934: 2.060564
+  938: 2.287973
+  942: 2.074538
+  946: 2.171768
+  950: 2.019898
+  soil_moisture: 0.000000
+列级平均F1: N/A (无类别列)
+========================================
+
+[2/5] 下游任务性能 (regression)
+--------------------------------------------------
+RF - MSE: 2.7956, R2: 0.8048, MAE: 1.1704, RMSE: 1.6720
+LR - MSE: 7.8430, R2: 0.4524, MAE: 2.1154, RMSE: 2.8005
+RIDGE - MSE: 7.8324, R2: 0.4531, MAE: 2.1135, RMSE: 2.7986
+LASSO - MSE: 9.8717, R2: 0.3108, MAE: 2.4743, RMSE: 3.1419
+KNN - MSE: 5.5583, R2: 0.6119, MAE: 1.7211, RMSE: 2.3576
+GB - MSE: 2.9306, R2: 0.7954, MAE: 1.1767, RMSE: 1.7119
+
+[3/5] 模型容忍度
+--------------------------------------------------
+
+容忍度计算结果:
+  P_do_nothing (脏数据性能): -4.8276
+  P_demand_clean (清洗后性能): -4.9995
+  P_repair_all (完全修复性能): -0.8688
+  先验容忍度 (Tolerance_prior): 1.0356
+  后验容忍度 (Tolerance_post): -0.0434
+
+[4/5] Snoopy上界评估
+--------------------------------------------------
+Snoopy模块可用，正在评估数据质量上界...
+  脏数据上界: 5.0025
+  清洗后上界: 5.0163
+  干净数据上界: 8.7752
+  上界提升比例: 0.0037
+
+[5/5] 真值使用成本
+--------------------------------------------------
+  方法类型: Type 3 (需迭代交互)
+  实际真值使用: 100
+  理想最小成本: 779
+  总修改单元格: 1549
+  正确修复: 779
+  错误修复: 770
+
+======================================================================
+测评完成，结果已保存到: results/raha_baran/soilmoisture_raha_baran_vzekai/soilmoisture_raha_baran_vzekai_report.txt
+======================================================================

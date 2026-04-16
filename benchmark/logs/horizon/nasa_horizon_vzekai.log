@@ -1,0 +1,100 @@
+============================================================
+Horizon 数据清洗
+============================================================
+脏数据: Data/nasa/dirty_index.csv
+约束文件: Data/nasa/rules.txt
+任务名称: nasa_horizon_vzekai
+------------------------------------------------------------
+执行Horizon清洗...
+修复后数据已保存: results/horizon/nasa_horizon_vzekai/nasa_horizon_vzekai_cleaned.csv
+------------------------------------------------------------
+执行时间: 4.18 秒
+执行状态: 成功
+真值使用成本: 0 (全自动)
+
+============================================================
+调用统一测评模块 getScoreML
+============================================================
+2026-01-29 21:16:20.061655: W tensorflow/compiler/xla/stream_executor/platform/default/dso_loader.cc:64] Could not load dynamic library 'libnvinfer.so.7'; dlerror: libnvinfer.so.7: cannot open shared object file: No such file or directory
+2026-01-29 21:16:20.061720: W tensorflow/compiler/xla/stream_executor/platform/default/dso_loader.cc:64] Could not load dynamic library 'libnvinfer_plugin.so.7'; dlerror: libnvinfer_plugin.so.7: cannot open shared object file: No such file or directory
+2026-01-29 21:16:20.061727: W tensorflow/compiler/tf2tensorrt/utils/py_utils.cc:38] TF-TRT Warning: Cannot dlopen some TensorRT libraries. If you would like to use Nvidia GPU with TensorRT, please make sure the missing libraries mentioned above are installed properly.
+[1;34m[21:16:20][0m[1;33m WARNING Snoopy may use all CPU cores! Set env. variable 'SNOOPY_LIMIT_CPU' to 'y' to limit CPU usage. [0m[1;34m(__init__ -> _init_tf_pytorch on MainThread)[0m
+2026-01-29 21:16:20.646008: E tensorflow/compiler/xla/stream_executor/cuda/cuda_driver.cc:267] failed call to cuInit: CUDA_ERROR_NO_DEVICE: no CUDA-capable device is detected
+
+结果已保存到: results/horizon/nasa_horizon_vzekai
+============================================================
+[['thickness'], ['chord_length'], ['velocity'], ['angle']]
+{0: {1, 2, 3}, 1: set(), 2: set(), 3: set()}
+[0, 1, 2, 3]
+{'thickness': 0, 'chord_length': 1, 'velocity': 2, 'angle': 3}
+0 1
+0 2
+0 3
+======================================================================
+Clean4MLBaseline 统一测评 - nasa_horizon_vzekai
+======================================================================
+
+[1/5] 传统清洗指标
+--------------------------------------------------
+调试文件已保存到: results/horizon/nasa_horizon_vzekai/debug
+修复准确率: 0.6343612334801763, 修复召回率: 0.5909712722298222, F1值: 0.6118980169472299
+========================================
+错误减少率 (EDR): 0.2640218878248974
+========================================
+混合距离 (Hybrid Distance): 1.0503871537949192
+========================================
+基于条目的错误减少率 (R-EDR): 0.35157318741450067
+========================================
+numeric: Index(['frequency', 'angle', 'chord_length', 'velocity', 'thickness',
+       'sound_pressure_level'],
+      dtype='object')
+categorical: (none)
+列级平均RMSE (数值列, 归一化): 103301142316.579468
+  frequency: 12791.453439
+  angle: 53.189739
+  chord_length: 0.254942
+  velocity: 0.231448
+  thickness: 619806841054.347290
+  sound_pressure_level: 0.000000
+列级平均F1: N/A (无类别列)
+========================================
+
+[2/5] 下游任务性能 (regression)
+--------------------------------------------------
+RF - MSE: 28.3465, R2: 0.4342, MAE: 3.9188, RMSE: 5.3241
+LR - MSE: 43.2646, R2: 0.1364, MAE: 5.3973, RMSE: 6.5776
+RIDGE - MSE: 43.2667, R2: 0.1364, MAE: 5.3974, RMSE: 6.5777
+LASSO - MSE: 47.9759, R2: 0.0424, MAE: 5.6881, RMSE: 6.9265
+KNN - MSE: 41.8983, R2: 0.1637, MAE: 5.1756, RMSE: 6.4729
+GB - MSE: 27.9529, R2: 0.4420, MAE: 4.1275, RMSE: 5.2870
+
+[3/5] 模型容忍度
+--------------------------------------------------
+
+容忍度计算结果:
+  P_do_nothing (脏数据性能): -64.5243
+  P_demand_clean (清洗后性能): -62.3418
+  P_repair_all (完全修复性能): -3.3429
+  先验容忍度 (Tolerance_prior): 0.9662
+  后验容忍度 (Tolerance_post): 0.0357
+
+[4/5] Snoopy上界评估
+--------------------------------------------------
+Snoopy模块可用，正在评估数据质量上界...
+  脏数据上界: 33.0118
+  清洗后上界: 31.9318
+  干净数据上界: 13.0157
+  上界提升比例: 0.0540
+
+[5/5] 真值使用成本
+--------------------------------------------------
+  方法类型: Type 1 (全自动)
+  实际真值使用: 0
+  理想最小成本: 414
+  总修改单元格: 681
+  正确修复: 414
+  错误修复: 267
+
+======================================================================
+测评完成，结果已保存到: results/horizon/nasa_horizon_vzekai/nasa_horizon_vzekai_report.txt
+======================================================================

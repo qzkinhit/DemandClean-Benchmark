@@ -1,0 +1,3 @@
+t1&t2&EQ(t1.thickness,t2.thickness)&IQ(t1.angle,t2.angle)
+t1&t2&EQ(t1.thickness,t2.thickness)&IQ(t1.chord_length,t2.chord_length)
+t1&t2&EQ(t1.thickness,t2.thickness)&IQ(t1.velocity,t2.velocity)

@@ -1,0 +1,7690 @@
+tid,attribute,correct_val
+0,index,1
+0,Clump Thickness,5
+0,Uniformity of Cell Size,1
+0,Uniformity of Cell Shape,1
+0,Marginal Adhesion,1
+0,Single Epithelial Cell Size,2
+0,Bare Nuclei,1
+0,Bland Chromatin,3
+0,Normal Nucleoli,1
+0,Mitoses,1
+0,class,2
+1,index,2
+1,Clump Thickness,5
+1,Uniformity of Cell Size,4
+1,Uniformity of Cell Shape,4
+1,Marginal Adhesion,5
+1,Single Epithelial Cell Size,7
+1,Bare Nuclei,10
+1,Bland Chromatin,3
+1,Normal Nucleoli,2
+1,Mitoses,1
+1,class,2
+2,index,3
+2,Clump Thickness,3
+2,Uniformity of Cell Size,1
+2,Uniformity of Cell Shape,1
+2,Marginal Adhesion,1
+2,Single Epithelial Cell Size,2
+2,Bare Nuclei,2
+2,Bland Chromatin,3
+2,Normal Nucleoli,1
+2,Mitoses,1
+2,class,2
+3,index,4
+3,Clump Thickness,6
+3,Uniformity of Cell Size,8
+3,Uniformity of Cell Shape,8
+3,Marginal Adhesion,1
+3,Single Epithelial Cell Size,3
+3,Bare Nuclei,4
+3,Bland Chromatin,3
+3,Normal Nucleoli,7
+3,Mitoses,1
+3,class,2
+4,index,5
+4,Clump Thickness,4
+4,Uniformity of Cell Size,1
+4,Uniformity of Cell Shape,1
+4,Marginal Adhesion,3
+4,Single Epithelial Cell Size,2
+4,Bare Nuclei,1
+4,Bland Chromatin,3
+4,Normal Nucleoli,1
+4,Mitoses,1
+4,class,2
+5,index,6
+5,Clump Thickness,8
+5,Uniformity of Cell Size,10
+5,Uniformity of Cell Shape,10
+5,Marginal Adhesion,8
+5,Single Epithelial Cell Size,7
+5,Bare Nuclei,10
+5,Bland Chromatin,9
+5,Normal Nucleoli,7
+5,Mitoses,1
+5,class,4
+6,index,7
+6,Clump Thickness,1
+6,Uniformity of Cell Size,1
+6,Uniformity of Cell Shape,1
+6,Marginal Adhesion,1
+6,Single Epithelial Cell Size,2
+6,Bare Nuclei,10
+6,Bland Chromatin,3
+6,Normal Nucleoli,1
+6,Mitoses,1
+6,class,2
+7,index,8
+7,Clump Thickness,2
+7,Uniformity of Cell Size,1
+7,Uniformity of Cell Shape,2
+7,Marginal Adhesion,1
+7,Single Epithelial Cell Size,2
+7,Bare Nuclei,1
+7,Bland Chromatin,3
+7,Normal Nucleoli,1
+7,Mitoses,1
+7,class,2
+8,index,9
+8,Clump Thickness,2
+8,Uniformity of Cell Size,1
+8,Uniformity of Cell Shape,1
+8,Marginal Adhesion,1
+8,Single Epithelial Cell Size,2
+8,Bare Nuclei,1
+8,Bland Chromatin,1
+8,Normal Nucleoli,1
+8,Mitoses,5
+8,class,2
+9,index,10
+9,Clump Thickness,4
+9,Uniformity of Cell Size,2
+9,Uniformity of Cell Shape,1
+9,Marginal Adhesion,1
+9,Single Epithelial Cell Size,2
+9,Bare Nuclei,1
+9,Bland Chromatin,2
+9,Normal Nucleoli,1
+9,Mitoses,1
+9,class,2
+10,index,11
+10,Clump Thickness,1
+10,Uniformity of Cell Size,1
+10,Uniformity of Cell Shape,1
+10,Marginal Adhesion,1
+10,Single Epithelial Cell Size,1
+10,Bare Nuclei,1
+10,Bland Chromatin,3
+10,Normal Nucleoli,1
+10,Mitoses,1
+10,class,2
+11,index,12
+11,Clump Thickness,2
+11,Uniformity of Cell Size,1
+11,Uniformity of Cell Shape,1
+11,Marginal Adhesion,1
+11,Single Epithelial Cell Size,2
+11,Bare Nuclei,1
+11,Bland Chromatin,2
+11,Normal Nucleoli,1
+11,Mitoses,1
+11,class,2
+12,index,13
+12,Clump Thickness,5
+12,Uniformity of Cell Size,3
+12,Uniformity of Cell Shape,3
+12,Marginal Adhesion,3
+12,Single Epithelial Cell Size,2
+12,Bare Nuclei,3
+12,Bland Chromatin,4
+12,Normal Nucleoli,4
+12,Mitoses,1
+12,class,4
+13,index,14
+13,Clump Thickness,1
+13,Uniformity of Cell Size,1
+13,Uniformity of Cell Shape,1
+13,Marginal Adhesion,1
+13,Single Epithelial Cell Size,2
+13,Bare Nuclei,3
+13,Bland Chromatin,3
+13,Normal Nucleoli,1
+13,Mitoses,1
+13,class,2
+14,index,15
+14,Clump Thickness,8
+14,Uniformity of Cell Size,7
+14,Uniformity of Cell Shape,5
+14,Marginal Adhesion,10
+14,Single Epithelial Cell Size,7
+14,Bare Nuclei,9
+14,Bland Chromatin,5
+14,Normal Nucleoli,5
+14,Mitoses,4
+14,class,4
+15,index,16
+15,Clump Thickness,7
+15,Uniformity of Cell Size,4
+15,Uniformity of Cell Shape,6
+15,Marginal Adhesion,4
+15,Single Epithelial Cell Size,6
+15,Bare Nuclei,1
+15,Bland Chromatin,4
+15,Normal Nucleoli,3
+15,Mitoses,1
+15,class,4
+16,index,17
+16,Clump Thickness,4
+16,Uniformity of Cell Size,1
+16,Uniformity of Cell Shape,1
+16,Marginal Adhesion,1
+16,Single Epithelial Cell Size,2
+16,Bare Nuclei,1
+16,Bland Chromatin,2
+16,Normal Nucleoli,1
+16,Mitoses,1
+16,class,2
+17,index,18
+17,Clump Thickness,4
+17,Uniformity of Cell Size,1
+17,Uniformity of Cell Shape,1
+17,Marginal Adhesion,1
+17,Single Epithelial Cell Size,2
+17,Bare Nuclei,1
+17,Bland Chromatin,3
+17,Normal Nucleoli,1
+17,Mitoses,1
+17,class,2
+18,index,19
+18,Clump Thickness,10
+18,Uniformity of Cell Size,7
+18,Uniformity of Cell Shape,7
+18,Marginal Adhesion,6
+18,Single Epithelial Cell Size,4
+18,Bare Nuclei,10
+18,Bland Chromatin,4
+18,Normal Nucleoli,1
+18,Mitoses,2
+18,class,4
+19,index,20
+19,Clump Thickness,6
+19,Uniformity of Cell Size,1
+19,Uniformity of Cell Shape,1
+19,Marginal Adhesion,1
+19,Single Epithelial Cell Size,2
+19,Bare Nuclei,1
+19,Bland Chromatin,3
+19,Normal Nucleoli,1
+19,Mitoses,1
+19,class,2
+20,index,21
+20,Clump Thickness,7
+20,Uniformity of Cell Size,3
+20,Uniformity of Cell Shape,2
+20,Marginal Adhesion,10
+20,Single Epithelial Cell Size,5
+20,Bare Nuclei,10
+20,Bland Chromatin,5
+20,Normal Nucleoli,4
+20,Mitoses,4
+20,class,4
+21,index,22
+21,Clump Thickness,10
+21,Uniformity of Cell Size,5
+21,Uniformity of Cell Shape,5
+21,Marginal Adhesion,3
+21,Single Epithelial Cell Size,6
+21,Bare Nuclei,7
+21,Bland Chromatin,7
+21,Normal Nucleoli,10
+21,Mitoses,1
+21,class,4
+22,index,23
+22,Clump Thickness,3
+22,Uniformity of Cell Size,1
+22,Uniformity of Cell Shape,1
+22,Marginal Adhesion,1
+22,Single Epithelial Cell Size,2
+22,Bare Nuclei,1
+22,Bland Chromatin,2
+22,Normal Nucleoli,1
+22,Mitoses,1
+22,class,2
+23,index,24
+23,Clump Thickness,8
+23,Uniformity of Cell Size,4
+23,Uniformity of Cell Shape,5
+23,Marginal Adhesion,1
+23,Single Epithelial Cell Size,2
+23,Bare Nuclei,?
+23,Bland Chromatin,7
+23,Normal Nucleoli,3
+23,Mitoses,1
+23,class,4
+24,index,25
+24,Clump Thickness,1
+24,Uniformity of Cell Size,1
+24,Uniformity of Cell Shape,1
+24,Marginal Adhesion,1
+24,Single Epithelial Cell Size,2
+24,Bare Nuclei,1
+24,Bland Chromatin,3
+24,Normal Nucleoli,1
+24,Mitoses,1
+24,class,2
+25,index,26
+25,Clump Thickness,5
+25,Uniformity of Cell Size,2
+25,Uniformity of Cell Shape,3
+25,Marginal Adhesion,4
+25,Single Epithelial Cell Size,2
+25,Bare Nuclei,7
+25,Bland Chromatin,3
+25,Normal Nucleoli,6
+25,Mitoses,1
+25,class,4
+26,index,27
+26,Clump Thickness,3
+26,Uniformity of Cell Size,2
+26,Uniformity of Cell Shape,1
+26,Marginal Adhesion,1
+26,Single Epithelial Cell Size,1
+26,Bare Nuclei,1
+26,Bland Chromatin,2
+26,Normal Nucleoli,1
+26,Mitoses,1
+26,class,2
+27,index,28
+27,Clump Thickness,5
+27,Uniformity of Cell Size,1
+27,Uniformity of Cell Shape,1
+27,Marginal Adhesion,1
+27,Single Epithelial Cell Size,2
+27,Bare Nuclei,1
+27,Bland Chromatin,2
+27,Normal Nucleoli,1
+27,Mitoses,1
+27,class,2
+28,index,29
+28,Clump Thickness,2
+28,Uniformity of Cell Size,1
+28,Uniformity of Cell Shape,1
+28,Marginal Adhesion,1
+28,Single Epithelial Cell Size,2
+28,Bare Nuclei,1
+28,Bland Chromatin,2
+28,Normal Nucleoli,1
+28,Mitoses,1
+28,class,2
+29,index,30
+29,Clump Thickness,1
+29,Uniformity of Cell Size,1
+29,Uniformity of Cell Shape,3
+29,Marginal Adhesion,1
+29,Single Epithelial Cell Size,2
+29,Bare Nuclei,1
+29,Bland Chromatin,1
+29,Normal Nucleoli,1
+29,Mitoses,1
+29,class,2
+30,index,31
+30,Clump Thickness,3
+30,Uniformity of Cell Size,1
+30,Uniformity of Cell Shape,1
+30,Marginal Adhesion,1
+30,Single Epithelial Cell Size,1
+30,Bare Nuclei,1
+30,Bland Chromatin,2
+30,Normal Nucleoli,1
+30,Mitoses,1
+30,class,2
+31,index,32
+31,Clump Thickness,2
+31,Uniformity of Cell Size,1
+31,Uniformity of Cell Shape,1
+31,Marginal Adhesion,1
+31,Single Epithelial Cell Size,2
+31,Bare Nuclei,1
+31,Bland Chromatin,3
+31,Normal Nucleoli,1
+31,Mitoses,1
+31,class,2
+32,index,33
+32,Clump Thickness,10
+32,Uniformity of Cell Size,7
+32,Uniformity of Cell Shape,7
+32,Marginal Adhesion,3
+32,Single Epithelial Cell Size,8
+32,Bare Nuclei,5
+32,Bland Chromatin,7
+32,Normal Nucleoli,4
+32,Mitoses,3
+32,class,4
+33,index,34
+33,Clump Thickness,2
+33,Uniformity of Cell Size,1
+33,Uniformity of Cell Shape,1
+33,Marginal Adhesion,2
+33,Single Epithelial Cell Size,2
+33,Bare Nuclei,1
+33,Bland Chromatin,3
+33,Normal Nucleoli,1
+33,Mitoses,1
+33,class,2
+34,index,35
+34,Clump Thickness,3
+34,Uniformity of Cell Size,1
+34,Uniformity of Cell Shape,2
+34,Marginal Adhesion,1
+34,Single Epithelial Cell Size,2
+34,Bare Nuclei,1
+34,Bland Chromatin,2
+34,Normal Nucleoli,1
+34,Mitoses,1
+34,class,2
+35,index,36
+35,Clump Thickness,2
+35,Uniformity of Cell Size,1
+35,Uniformity of Cell Shape,1
+35,Marginal Adhesion,1
+35,Single Epithelial Cell Size,2
+35,Bare Nuclei,1
+35,Bland Chromatin,2
+35,Normal Nucleoli,1
+35,Mitoses,1
+35,class,2
+36,index,37
+36,Clump Thickness,10
+36,Uniformity of Cell Size,10
+36,Uniformity of Cell Shape,10
+36,Marginal Adhesion,8
+36,Single Epithelial Cell Size,6
+36,Bare Nuclei,1
+36,Bland Chromatin,8
+36,Normal Nucleoli,9
+36,Mitoses,1
+36,class,4
+37,index,38
+37,Clump Thickness,6
+37,Uniformity of Cell Size,2
+37,Uniformity of Cell Shape,1
+37,Marginal Adhesion,1
+37,Single Epithelial Cell Size,1
+37,Bare Nuclei,1
+37,Bland Chromatin,7
+37,Normal Nucleoli,1
+37,Mitoses,1
+37,class,2
+38,index,39
+38,Clump Thickness,5
+38,Uniformity of Cell Size,4
+38,Uniformity of Cell Shape,4
+38,Marginal Adhesion,9
+38,Single Epithelial Cell Size,2
+38,Bare Nuclei,10
+38,Bland Chromatin,5
+38,Normal Nucleoli,6
+38,Mitoses,1
+38,class,4
+39,index,40
+39,Clump Thickness,2
+39,Uniformity of Cell Size,5
+39,Uniformity of Cell Shape,3
+39,Marginal Adhesion,3
+39,Single Epithelial Cell Size,6
+39,Bare Nuclei,7
+39,Bland Chromatin,7
+39,Normal Nucleoli,5
+39,Mitoses,1
+39,class,4
+40,index,41
+40,Clump Thickness,6
+40,Uniformity of Cell Size,6
+40,Uniformity of Cell Shape,6
+40,Marginal Adhesion,9
+40,Single Epithelial Cell Size,6
+40,Bare Nuclei,?
+40,Bland Chromatin,7
+40,Normal Nucleoli,8
+40,Mitoses,1
+40,class,2
+41,index,42
+41,Clump Thickness,10
+41,Uniformity of Cell Size,4
+41,Uniformity of Cell Shape,3
+41,Marginal Adhesion,1
+41,Single Epithelial Cell Size,3
+41,Bare Nuclei,3
+41,Bland Chromatin,6
+41,Normal Nucleoli,5
+41,Mitoses,2
+41,class,4
+42,index,43
+42,Clump Thickness,6
+42,Uniformity of Cell Size,10
+42,Uniformity of Cell Shape,10
+42,Marginal Adhesion,2
+42,Single Epithelial Cell Size,8
+42,Bare Nuclei,10
+42,Bland Chromatin,7
+42,Normal Nucleoli,3
+42,Mitoses,3
+42,class,4
+43,index,44
+43,Clump Thickness,5
+43,Uniformity of Cell Size,6
+43,Uniformity of Cell Shape,5
+43,Marginal Adhesion,6
+43,Single Epithelial Cell Size,10
+43,Bare Nuclei,1
+43,Bland Chromatin,3
+43,Normal Nucleoli,1
+43,Mitoses,1
+43,class,4
+44,index,45
+44,Clump Thickness,10
+44,Uniformity of Cell Size,10
+44,Uniformity of Cell Shape,10
+44,Marginal Adhesion,4
+44,Single Epithelial Cell Size,8
+44,Bare Nuclei,1
+44,Bland Chromatin,8
+44,Normal Nucleoli,10
+44,Mitoses,1
+44,class,4
+45,index,46
+45,Clump Thickness,1
+45,Uniformity of Cell Size,1
+45,Uniformity of Cell Shape,1
+45,Marginal Adhesion,1
+45,Single Epithelial Cell Size,2
+45,Bare Nuclei,1
+45,Bland Chromatin,2
+45,Normal Nucleoli,1
+45,Mitoses,2
+45,class,2
+46,index,47
+46,Clump Thickness,3
+46,Uniformity of Cell Size,7
+46,Uniformity of Cell Shape,7
+46,Marginal Adhesion,4
+46,Single Epithelial Cell Size,4
+46,Bare Nuclei,9
+46,Bland Chromatin,4
+46,Normal Nucleoli,8
+46,Mitoses,1
+46,class,4
+47,index,48
+47,Clump Thickness,1
+47,Uniformity of Cell Size,1
+47,Uniformity of Cell Shape,1
+47,Marginal Adhesion,1
+47,Single Epithelial Cell Size,2
+47,Bare Nuclei,1
+47,Bland Chromatin,2
+47,Normal Nucleoli,1
+47,Mitoses,1
+47,class,2
+48,index,49
+48,Clump Thickness,4
+48,Uniformity of Cell Size,1
+48,Uniformity of Cell Shape,1
+48,Marginal Adhesion,3
+48,Single Epithelial Cell Size,2
+48,Bare Nuclei,1
+48,Bland Chromatin,3
+48,Normal Nucleoli,1
+48,Mitoses,1
+48,class,2
+49,index,50
+49,Clump Thickness,7
+49,Uniformity of Cell Size,8
+49,Uniformity of Cell Shape,7
+49,Marginal Adhesion,2
+49,Single Epithelial Cell Size,4
+49,Bare Nuclei,8
+49,Bland Chromatin,3
+49,Normal Nucleoli,8
+49,Mitoses,2
+49,class,4
+50,index,51
+50,Clump Thickness,9
+50,Uniformity of Cell Size,5
+50,Uniformity of Cell Shape,8
+50,Marginal Adhesion,1
+50,Single Epithelial Cell Size,2
+50,Bare Nuclei,3
+50,Bland Chromatin,2
+50,Normal Nucleoli,1
+50,Mitoses,5
+50,class,4
+51,index,52
+51,Clump Thickness,5
+51,Uniformity of Cell Size,3
+51,Uniformity of Cell Shape,3
+51,Marginal Adhesion,4
+51,Single Epithelial Cell Size,2
+51,Bare Nuclei,4
+51,Bland Chromatin,3
+51,Normal Nucleoli,4
+51,Mitoses,1
+51,class,4
+52,index,53
+52,Clump Thickness,10
+52,Uniformity of Cell Size,3
+52,Uniformity of Cell Shape,6
+52,Marginal Adhesion,2
+52,Single Epithelial Cell Size,3
+52,Bare Nuclei,5
+52,Bland Chromatin,4
+52,Normal Nucleoli,10
+52,Mitoses,2
+52,class,4
+53,index,54
+53,Clump Thickness,5
+53,Uniformity of Cell Size,5
+53,Uniformity of Cell Shape,5
+53,Marginal Adhesion,8
+53,Single Epithelial Cell Size,10
+53,Bare Nuclei,8
+53,Bland Chromatin,7
+53,Normal Nucleoli,3
+53,Mitoses,7
+53,class,4
+54,index,55
+54,Clump Thickness,10
+54,Uniformity of Cell Size,5
+54,Uniformity of Cell Shape,5
+54,Marginal Adhesion,6
+54,Single Epithelial Cell Size,8
+54,Bare Nuclei,8
+54,Bland Chromatin,7
+54,Normal Nucleoli,1
+54,Mitoses,1
+54,class,4
+55,index,56
+55,Clump Thickness,10
+55,Uniformity of Cell Size,6
+55,Uniformity of Cell Shape,6
+55,Marginal Adhesion,3
+55,Single Epithelial Cell Size,4
+55,Bare Nuclei,5
+55,Bland Chromatin,3
+55,Normal Nucleoli,6
+55,Mitoses,1
+55,class,4
+56,index,57
+56,Clump Thickness,8
+56,Uniformity of Cell Size,10
+56,Uniformity of Cell Shape,10
+56,Marginal Adhesion,1
+56,Single Epithelial Cell Size,3
+56,Bare Nuclei,6
+56,Bland Chromatin,3
+56,Normal Nucleoli,9
+56,Mitoses,1
+56,class,4
+57,index,58
+57,Clump Thickness,8
+57,Uniformity of Cell Size,2
+57,Uniformity of Cell Shape,4
+57,Marginal Adhesion,1
+57,Single Epithelial Cell Size,5
+57,Bare Nuclei,1
+57,Bland Chromatin,5
+57,Normal Nucleoli,4
+57,Mitoses,4
+57,class,4
+58,index,59
+58,Clump Thickness,5
+58,Uniformity of Cell Size,2
+58,Uniformity of Cell Shape,3
+58,Marginal Adhesion,1
+58,Single Epithelial Cell Size,6
+58,Bare Nuclei,10
+58,Bland Chromatin,5
+58,Normal Nucleoli,1
+58,Mitoses,1
+58,class,4
+59,index,60
+59,Clump Thickness,9
+59,Uniformity of Cell Size,5
+59,Uniformity of Cell Shape,5
+59,Marginal Adhesion,2
+59,Single Epithelial Cell Size,2
+59,Bare Nuclei,2
+59,Bland Chromatin,5
+59,Normal Nucleoli,1
+59,Mitoses,1
+59,class,4
+60,index,61
+60,Clump Thickness,5
+60,Uniformity of Cell Size,3
+60,Uniformity of Cell Shape,5
+60,Marginal Adhesion,5
+60,Single Epithelial Cell Size,3
+60,Bare Nuclei,3
+60,Bland Chromatin,4
+60,Normal Nucleoli,10
+60,Mitoses,1
+60,class,4
+61,index,62
+61,Clump Thickness,1
+61,Uniformity of Cell Size,1
+61,Uniformity of Cell Shape,1
+61,Marginal Adhesion,1
+61,Single Epithelial Cell Size,2
+61,Bare Nuclei,2
+61,Bland Chromatin,2
+61,Normal Nucleoli,1
+61,Mitoses,1
+61,class,2
+62,index,63
+62,Clump Thickness,9
+62,Uniformity of Cell Size,10
+62,Uniformity of Cell Shape,10
+62,Marginal Adhesion,1
+62,Single Epithelial Cell Size,10
+62,Bare Nuclei,8
+62,Bland Chromatin,3
+62,Normal Nucleoli,3
+62,Mitoses,1
+62,class,4
+63,index,64
+63,Clump Thickness,6
+63,Uniformity of Cell Size,3
+63,Uniformity of Cell Shape,4
+63,Marginal Adhesion,1
+63,Single Epithelial Cell Size,5
+63,Bare Nuclei,2
+63,Bland Chromatin,3
+63,Normal Nucleoli,9
+63,Mitoses,1
+63,class,4
+64,index,65
+64,Clump Thickness,1
+64,Uniformity of Cell Size,1
+64,Uniformity of Cell Shape,1
+64,Marginal Adhesion,1
+64,Single Epithelial Cell Size,2
+64,Bare Nuclei,1
+64,Bland Chromatin,2
+64,Normal Nucleoli,1
+64,Mitoses,1
+64,class,2
+65,index,66
+65,Clump Thickness,10
+65,Uniformity of Cell Size,4
+65,Uniformity of Cell Shape,2
+65,Marginal Adhesion,1
+65,Single Epithelial Cell Size,3
+65,Bare Nuclei,2
+65,Bland Chromatin,4
+65,Normal Nucleoli,3
+65,Mitoses,10
+65,class,4
+66,index,67
+66,Clump Thickness,4
+66,Uniformity of Cell Size,1
+66,Uniformity of Cell Shape,1
+66,Marginal Adhesion,1
+66,Single Epithelial Cell Size,2
+66,Bare Nuclei,1
+66,Bland Chromatin,3
+66,Normal Nucleoli,1
+66,Mitoses,1
+66,class,2
+67,index,68
+67,Clump Thickness,5
+67,Uniformity of Cell Size,3
+67,Uniformity of Cell Shape,4
+67,Marginal Adhesion,1
+67,Single Epithelial Cell Size,8
+67,Bare Nuclei,10
+67,Bland Chromatin,4
+67,Normal Nucleoli,9
+67,Mitoses,1
+67,class,4
+68,index,69
+68,Clump Thickness,8
+68,Uniformity of Cell Size,3
+68,Uniformity of Cell Shape,8
+68,Marginal Adhesion,3
+68,Single Epithelial Cell Size,4
+68,Bare Nuclei,9
+68,Bland Chromatin,8
+68,Normal Nucleoli,9
+68,Mitoses,8
+68,class,4
+69,index,70
+69,Clump Thickness,1
+69,Uniformity of Cell Size,1
+69,Uniformity of Cell Shape,1
+69,Marginal Adhesion,1
+69,Single Epithelial Cell Size,2
+69,Bare Nuclei,1
+69,Bland Chromatin,3
+69,Normal Nucleoli,2
+69,Mitoses,1
+69,class,2
+70,index,71
+70,Clump Thickness,5
+70,Uniformity of Cell Size,1
+70,Uniformity of Cell Shape,3
+70,Marginal Adhesion,1
+70,Single Epithelial Cell Size,2
+70,Bare Nuclei,1
+70,Bland Chromatin,2
+70,Normal Nucleoli,1
+70,Mitoses,1
+70,class,2
+71,index,72
+71,Clump Thickness,6
+71,Uniformity of Cell Size,10
+71,Uniformity of Cell Shape,2
+71,Marginal Adhesion,8
+71,Single Epithelial Cell Size,10
+71,Bare Nuclei,2
+71,Bland Chromatin,7
+71,Normal Nucleoli,8
+71,Mitoses,10
+71,class,4
+72,index,73
+72,Clump Thickness,1
+72,Uniformity of Cell Size,3
+72,Uniformity of Cell Shape,3
+72,Marginal Adhesion,2
+72,Single Epithelial Cell Size,2
+72,Bare Nuclei,1
+72,Bland Chromatin,7
+72,Normal Nucleoli,2
+72,Mitoses,1
+72,class,2
+73,index,74
+73,Clump Thickness,9
+73,Uniformity of Cell Size,4
+73,Uniformity of Cell Shape,5
+73,Marginal Adhesion,10
+73,Single Epithelial Cell Size,6
+73,Bare Nuclei,10
+73,Bland Chromatin,4
+73,Normal Nucleoli,8
+73,Mitoses,1
+73,class,4
+74,index,75
+74,Clump Thickness,10
+74,Uniformity of Cell Size,6
+74,Uniformity of Cell Shape,4
+74,Marginal Adhesion,1
+74,Single Epithelial Cell Size,3
+74,Bare Nuclei,4
+74,Bland Chromatin,3
+74,Normal Nucleoli,2
+74,Mitoses,3
+74,class,4
+75,index,76
+75,Clump Thickness,1
+75,Uniformity of Cell Size,1
+75,Uniformity of Cell Shape,2
+75,Marginal Adhesion,1
+75,Single Epithelial Cell Size,2
+75,Bare Nuclei,2
+75,Bland Chromatin,4
+75,Normal Nucleoli,2
+75,Mitoses,1
+75,class,2
+76,index,77
+76,Clump Thickness,1
+76,Uniformity of Cell Size,1
+76,Uniformity of Cell Shape,4
+76,Marginal Adhesion,1
+76,Single Epithelial Cell Size,2
+76,Bare Nuclei,1
+76,Bland Chromatin,2
+76,Normal Nucleoli,1
+76,Mitoses,1
+76,class,2
+77,index,78
+77,Clump Thickness,5
+77,Uniformity of Cell Size,3
+77,Uniformity of Cell Shape,1
+77,Marginal Adhesion,2
+77,Single Epithelial Cell Size,2
+77,Bare Nuclei,1
+77,Bland Chromatin,2
+77,Normal Nucleoli,1
+77,Mitoses,1
+77,class,2
+78,index,79
+78,Clump Thickness,3
+78,Uniformity of Cell Size,1
+78,Uniformity of Cell Shape,1
+78,Marginal Adhesion,1
+78,Single Epithelial Cell Size,2
+78,Bare Nuclei,3
+78,Bland Chromatin,3
+78,Normal Nucleoli,1
+78,Mitoses,1
+78,class,2
+79,index,80
+79,Clump Thickness,2
+79,Uniformity of Cell Size,1
+79,Uniformity of Cell Shape,1
+79,Marginal Adhesion,1
+79,Single Epithelial Cell Size,3
+79,Bare Nuclei,1
+79,Bland Chromatin,2
+79,Normal Nucleoli,1
+79,Mitoses,1
+79,class,2
+80,index,81
+80,Clump Thickness,2
+80,Uniformity of Cell Size,2
+80,Uniformity of Cell Shape,2
+80,Marginal Adhesion,1
+80,Single Epithelial Cell Size,1
+80,Bare Nuclei,1
+80,Bland Chromatin,7
+80,Normal Nucleoli,1
+80,Mitoses,1
+80,class,2
+81,index,82
+81,Clump Thickness,4
+81,Uniformity of Cell Size,1
+81,Uniformity of Cell Shape,1
+81,Marginal Adhesion,2
+81,Single Epithelial Cell Size,2
+81,Bare Nuclei,1
+81,Bland Chromatin,2
+81,Normal Nucleoli,1
+81,Mitoses,1
+81,class,2
+82,index,83
+82,Clump Thickness,5
+82,Uniformity of Cell Size,2
+82,Uniformity of Cell Shape,1
+82,Marginal Adhesion,1
+82,Single Epithelial Cell Size,2
+82,Bare Nuclei,1
+82,Bland Chromatin,3
+82,Normal Nucleoli,1
+82,Mitoses,1
+82,class,2
+83,index,84
+83,Clump Thickness,3
+83,Uniformity of Cell Size,1
+83,Uniformity of Cell Shape,1
+83,Marginal Adhesion,1
+83,Single Epithelial Cell Size,2
+83,Bare Nuclei,2
+83,Bland Chromatin,7
+83,Normal Nucleoli,1
+83,Mitoses,1
+83,class,2
+84,index,85
+84,Clump Thickness,3
+84,Uniformity of Cell Size,5
+84,Uniformity of Cell Shape,7
+84,Marginal Adhesion,8
+84,Single Epithelial Cell Size,8
+84,Bare Nuclei,9
+84,Bland Chromatin,7
+84,Normal Nucleoli,10
+84,Mitoses,7
+84,class,4
+85,index,86
+85,Clump Thickness,5
+85,Uniformity of Cell Size,10
+85,Uniformity of Cell Shape,6
+85,Marginal Adhesion,1
+85,Single Epithelial Cell Size,10
+85,Bare Nuclei,4
+85,Bland Chromatin,4
+85,Normal Nucleoli,10
+85,Mitoses,10
+85,class,4
+86,index,87
+86,Clump Thickness,3
+86,Uniformity of Cell Size,3
+86,Uniformity of Cell Shape,6
+86,Marginal Adhesion,4
+86,Single Epithelial Cell Size,5
+86,Bare Nuclei,8
+86,Bland Chromatin,4
+86,Normal Nucleoli,4
+86,Mitoses,1
+86,class,4
+87,index,88
+87,Clump Thickness,3
+87,Uniformity of Cell Size,6
+87,Uniformity of Cell Shape,6
+87,Marginal Adhesion,6
+87,Single Epithelial Cell Size,5
+87,Bare Nuclei,10
+87,Bland Chromatin,6
+87,Normal Nucleoli,8
+87,Mitoses,3
+87,class,4
+88,index,89
+88,Clump Thickness,4
+88,Uniformity of Cell Size,1
+88,Uniformity of Cell Shape,1
+88,Marginal Adhesion,1
+88,Single Epithelial Cell Size,2
+88,Bare Nuclei,1
+88,Bland Chromatin,3
+88,Normal Nucleoli,1
+88,Mitoses,1
+88,class,2
+89,index,90
+89,Clump Thickness,2
+89,Uniformity of Cell Size,1
+89,Uniformity of Cell Shape,1
+89,Marginal Adhesion,2
+89,Single Epithelial Cell Size,3
+89,Bare Nuclei,1
+89,Bland Chromatin,2
+89,Normal Nucleoli,1
+89,Mitoses,1
+89,class,2
+90,index,91
+90,Clump Thickness,1
+90,Uniformity of Cell Size,1
+90,Uniformity of Cell Shape,1
+90,Marginal Adhesion,1
+90,Single Epithelial Cell Size,2
+90,Bare Nuclei,1
+90,Bland Chromatin,3
+90,Normal Nucleoli,1
+90,Mitoses,1
+90,class,2
+91,index,92
+91,Clump Thickness,3
+91,Uniformity of Cell Size,1
+91,Uniformity of Cell Shape,1
+91,Marginal Adhesion,2
+91,Single Epithelial Cell Size,2
+91,Bare Nuclei,1
+91,Bland Chromatin,1
+91,Normal Nucleoli,1
+91,Mitoses,1
+91,class,2
+92,index,93
+92,Clump Thickness,4
+92,Uniformity of Cell Size,1
+92,Uniformity of Cell Shape,1
+92,Marginal Adhesion,1
+92,Single Epithelial Cell Size,2
+92,Bare Nuclei,1
+92,Bland Chromatin,3
+92,Normal Nucleoli,1
+92,Mitoses,1
+92,class,2
+93,index,94
+93,Clump Thickness,1
+93,Uniformity of Cell Size,1
+93,Uniformity of Cell Shape,1
+93,Marginal Adhesion,1
+93,Single Epithelial Cell Size,2
+93,Bare Nuclei,1
+93,Bland Chromatin,2
+93,Normal Nucleoli,1
+93,Mitoses,1
+93,class,2
+94,index,95
+94,Clump Thickness,2
+94,Uniformity of Cell Size,1
+94,Uniformity of Cell Shape,1
+94,Marginal Adhesion,1
+94,Single Epithelial Cell Size,2
+94,Bare Nuclei,1
+94,Bland Chromatin,3
+94,Normal Nucleoli,1
+94,Mitoses,1
+94,class,2
+95,index,96
+95,Clump Thickness,1
+95,Uniformity of Cell Size,1
+95,Uniformity of Cell Shape,1
+95,Marginal Adhesion,1
+95,Single Epithelial Cell Size,2
+95,Bare Nuclei,1
+95,Bland Chromatin,3
+95,Normal Nucleoli,1
+95,Mitoses,1
+95,class,2
+96,index,97
+96,Clump Thickness,2
+96,Uniformity of Cell Size,1
+96,Uniformity of Cell Shape,1
+96,Marginal Adhesion,2
+96,Single Epithelial Cell Size,2
+96,Bare Nuclei,1
+96,Bland Chromatin,1
+96,Normal Nucleoli,1
+96,Mitoses,1
+96,class,2
+97,index,98
+97,Clump Thickness,5
+97,Uniformity of Cell Size,1
+97,Uniformity of Cell Shape,1
+97,Marginal Adhesion,1
+97,Single Epithelial Cell Size,2
+97,Bare Nuclei,1
+97,Bland Chromatin,3
+97,Normal Nucleoli,1
+97,Mitoses,1
+97,class,2
+98,index,99
+98,Clump Thickness,9
+98,Uniformity of Cell Size,6
+98,Uniformity of Cell Shape,9
+98,Marginal Adhesion,2
+98,Single Epithelial Cell Size,10
+98,Bare Nuclei,6
+98,Bland Chromatin,2
+98,Normal Nucleoli,9
+98,Mitoses,10
+98,class,4
+99,index,100
+99,Clump Thickness,7
+99,Uniformity of Cell Size,5
+99,Uniformity of Cell Shape,6
+99,Marginal Adhesion,10
+99,Single Epithelial Cell Size,5
+99,Bare Nuclei,10
+99,Bland Chromatin,7
+99,Normal Nucleoli,9
+99,Mitoses,4
+99,class,4
+100,index,101
+100,Clump Thickness,10
+100,Uniformity of Cell Size,3
+100,Uniformity of Cell Shape,5
+100,Marginal Adhesion,1
+100,Single Epithelial Cell Size,10
+100,Bare Nuclei,5
+100,Bland Chromatin,3
+100,Normal Nucleoli,10
+100,Mitoses,2
+100,class,4
+101,index,102
+101,Clump Thickness,2
+101,Uniformity of Cell Size,3
+101,Uniformity of Cell Shape,4
+101,Marginal Adhesion,4
+101,Single Epithelial Cell Size,2
+101,Bare Nuclei,5
+101,Bland Chromatin,2
+101,Normal Nucleoli,5
+101,Mitoses,1
+101,class,4
+102,index,103
+102,Clump Thickness,4
+102,Uniformity of Cell Size,1
+102,Uniformity of Cell Shape,2
+102,Marginal Adhesion,1
+102,Single Epithelial Cell Size,2
+102,Bare Nuclei,1
+102,Bland Chromatin,3
+102,Normal Nucleoli,1
+102,Mitoses,1
+102,class,2
+103,index,104
+103,Clump Thickness,8
+103,Uniformity of Cell Size,2
+103,Uniformity of Cell Shape,3
+103,Marginal Adhesion,1
+103,Single Epithelial Cell Size,6
+103,Bare Nuclei,3
+103,Bland Chromatin,7
+103,Normal Nucleoli,1
+103,Mitoses,1
+103,class,4
+104,index,105
+104,Clump Thickness,10
+104,Uniformity of Cell Size,10
+104,Uniformity of Cell Shape,10
+104,Marginal Adhesion,10
+104,Single Epithelial Cell Size,10
+104,Bare Nuclei,1
+104,Bland Chromatin,8
+104,Normal Nucleoli,8
+104,Mitoses,8
+104,class,4
+105,index,106
+105,Clump Thickness,7
+105,Uniformity of Cell Size,3
+105,Uniformity of Cell Shape,4
+105,Marginal Adhesion,4
+105,Single Epithelial Cell Size,3
+105,Bare Nuclei,3
+105,Bland Chromatin,3
+105,Normal Nucleoli,2
+105,Mitoses,7
+105,class,4
+106,index,107
+106,Clump Thickness,10
+106,Uniformity of Cell Size,10
+106,Uniformity of Cell Shape,10
+106,Marginal Adhesion,8
+106,Single Epithelial Cell Size,2
+106,Bare Nuclei,10
+106,Bland Chromatin,4
+106,Normal Nucleoli,1
+106,Mitoses,1
+106,class,4
+107,index,108
+107,Clump Thickness,1
+107,Uniformity of Cell Size,6
+107,Uniformity of Cell Shape,8
+107,Marginal Adhesion,10
+107,Single Epithelial Cell Size,8
+107,Bare Nuclei,10
+107,Bland Chromatin,5
+107,Normal Nucleoli,7
+107,Mitoses,1
+107,class,4
+108,index,109
+108,Clump Thickness,1
+108,Uniformity of Cell Size,1
+108,Uniformity of Cell Shape,1
+108,Marginal Adhesion,1
+108,Single Epithelial Cell Size,2
+108,Bare Nuclei,1
+108,Bland Chromatin,2
+108,Normal Nucleoli,3
+108,Mitoses,1
+108,class,2
+109,index,110
+109,Clump Thickness,6
+109,Uniformity of Cell Size,5
+109,Uniformity of Cell Shape,4
+109,Marginal Adhesion,4
+109,Single Epithelial Cell Size,3
+109,Bare Nuclei,9
+109,Bland Chromatin,7
+109,Normal Nucleoli,8
+109,Mitoses,3
+109,class,4
+110,index,111
+110,Clump Thickness,1
+110,Uniformity of Cell Size,3
+110,Uniformity of Cell Shape,1
+110,Marginal Adhesion,2
+110,Single Epithelial Cell Size,2
+110,Bare Nuclei,2
+110,Bland Chromatin,5
+110,Normal Nucleoli,3
+110,Mitoses,2
+110,class,2
+111,index,112
+111,Clump Thickness,8
+111,Uniformity of Cell Size,6
+111,Uniformity of Cell Shape,4
+111,Marginal Adhesion,3
+111,Single Epithelial Cell Size,5
+111,Bare Nuclei,9
+111,Bland Chromatin,3
+111,Normal Nucleoli,1
+111,Mitoses,1
+111,class,4
+112,index,113
+112,Clump Thickness,10
+112,Uniformity of Cell Size,3
+112,Uniformity of Cell Shape,3
+112,Marginal Adhesion,10
+112,Single Epithelial Cell Size,2
+112,Bare Nuclei,10
+112,Bland Chromatin,7
+112,Normal Nucleoli,3
+112,Mitoses,3
+112,class,4
+113,index,114
+113,Clump Thickness,10
+113,Uniformity of Cell Size,10
+113,Uniformity of Cell Shape,10
+113,Marginal Adhesion,3
+113,Single Epithelial Cell Size,10
+113,Bare Nuclei,8
+113,Bland Chromatin,8
+113,Normal Nucleoli,1
+113,Mitoses,1
+113,class,4
+114,index,115
+114,Clump Thickness,3
+114,Uniformity of Cell Size,3
+114,Uniformity of Cell Shape,2
+114,Marginal Adhesion,1
+114,Single Epithelial Cell Size,2
+114,Bare Nuclei,3
+114,Bland Chromatin,3
+114,Normal Nucleoli,1
+114,Mitoses,1
+114,class,2
+115,index,116
+115,Clump Thickness,1
+115,Uniformity of Cell Size,1
+115,Uniformity of Cell Shape,1
+115,Marginal Adhesion,1
+115,Single Epithelial Cell Size,2
+115,Bare Nuclei,5
+115,Bland Chromatin,1
+115,Normal Nucleoli,1
+115,Mitoses,1
+115,class,2
+116,index,117
+116,Clump Thickness,8
+116,Uniformity of Cell Size,3
+116,Uniformity of Cell Shape,3
+116,Marginal Adhesion,1
+116,Single Epithelial Cell Size,2
+116,Bare Nuclei,2
+116,Bland Chromatin,3
+116,Normal Nucleoli,2
+116,Mitoses,1
+116,class,2
+117,index,118
+117,Clump Thickness,4
+117,Uniformity of Cell Size,5
+117,Uniformity of Cell Shape,5
+117,Marginal Adhesion,10
+117,Single Epithelial Cell Size,4
+117,Bare Nuclei,10
+117,Bland Chromatin,7
+117,Normal Nucleoli,5
+117,Mitoses,8
+117,class,4
+118,index,119
+118,Clump Thickness,1
+118,Uniformity of Cell Size,1
+118,Uniformity of Cell Shape,1
+118,Marginal Adhesion,1
+118,Single Epithelial Cell Size,4
+118,Bare Nuclei,3
+118,Bland Chromatin,1
+118,Normal Nucleoli,1
+118,Mitoses,1
+118,class,2
+119,index,120
+119,Clump Thickness,3
+119,Uniformity of Cell Size,2
+119,Uniformity of Cell Shape,1
+119,Marginal Adhesion,1
+119,Single Epithelial Cell Size,2
+119,Bare Nuclei,2
+119,Bland Chromatin,3
+119,Normal Nucleoli,1
+119,Mitoses,1
+119,class,2
+120,index,121
+120,Clump Thickness,1
+120,Uniformity of Cell Size,1
+120,Uniformity of Cell Shape,2
+120,Marginal Adhesion,2
+120,Single Epithelial Cell Size,2
+120,Bare Nuclei,1
+120,Bland Chromatin,3
+120,Normal Nucleoli,1
+120,Mitoses,1
+120,class,2
+121,index,122
+121,Clump Thickness,4
+121,Uniformity of Cell Size,2
+121,Uniformity of Cell Shape,1
+121,Marginal Adhesion,1
+121,Single Epithelial Cell Size,2
+121,Bare Nuclei,2
+121,Bland Chromatin,3
+121,Normal Nucleoli,1
+121,Mitoses,1
+121,class,2
+122,index,123
+122,Clump Thickness,10
+122,Uniformity of Cell Size,10
+122,Uniformity of Cell Shape,10
+122,Marginal Adhesion,2
+122,Single Epithelial Cell Size,10
+122,Bare Nuclei,10
+122,Bland Chromatin,5
+122,Normal Nucleoli,3
+122,Mitoses,3
+122,class,4
+123,index,124
+123,Clump Thickness,5
+123,Uniformity of Cell Size,3
+123,Uniformity of Cell Shape,5
+123,Marginal Adhesion,1
+123,Single Epithelial Cell Size,8
+123,Bare Nuclei,10
+123,Bland Chromatin,5
+123,Normal Nucleoli,3
+123,Mitoses,1
+123,class,4
+124,index,125
+124,Clump Thickness,5
+124,Uniformity of Cell Size,4
+124,Uniformity of Cell Shape,6
+124,Marginal Adhesion,7
+124,Single Epithelial Cell Size,9
+124,Bare Nuclei,7
+124,Bland Chromatin,8
+124,Normal Nucleoli,10
+124,Mitoses,1
+124,class,4
+125,index,126
+125,Clump Thickness,1
+125,Uniformity of Cell Size,1
+125,Uniformity of Cell Shape,1
+125,Marginal Adhesion,1
+125,Single Epithelial Cell Size,2
+125,Bare Nuclei,1
+125,Bland Chromatin,2
+125,Normal Nucleoli,1
+125,Mitoses,1
+125,class,2
+126,index,127
+126,Clump Thickness,7
+126,Uniformity of Cell Size,5
+126,Uniformity of Cell Shape,3
+126,Marginal Adhesion,7
+126,Single Epithelial Cell Size,4
+126,Bare Nuclei,10
+126,Bland Chromatin,7
+126,Normal Nucleoli,5
+126,Mitoses,5
+126,class,4
+127,index,128
+127,Clump Thickness,3
+127,Uniformity of Cell Size,1
+127,Uniformity of Cell Shape,1
+127,Marginal Adhesion,1
+127,Single Epithelial Cell Size,2
+127,Bare Nuclei,1
+127,Bland Chromatin,3
+127,Normal Nucleoli,1
+127,Mitoses,1
+127,class,2
+128,index,129
+128,Clump Thickness,8
+128,Uniformity of Cell Size,3
+128,Uniformity of Cell Shape,5
+128,Marginal Adhesion,4
+128,Single Epithelial Cell Size,5
+128,Bare Nuclei,10
+128,Bland Chromatin,1
+128,Normal Nucleoli,6
+128,Mitoses,2
+128,class,4
+129,index,130
+129,Clump Thickness,1
+129,Uniformity of Cell Size,1
+129,Uniformity of Cell Shape,1
+129,Marginal Adhesion,1
+129,Single Epithelial Cell Size,10
+129,Bare Nuclei,1
+129,Bland Chromatin,1
+129,Normal Nucleoli,1
+129,Mitoses,1
+129,class,2
+130,index,131
+130,Clump Thickness,5
+130,Uniformity of Cell Size,1
+130,Uniformity of Cell Shape,3
+130,Marginal Adhesion,1
+130,Single Epithelial Cell Size,2
+130,Bare Nuclei,1
+130,Bland Chromatin,2
+130,Normal Nucleoli,1
+130,Mitoses,1
+130,class,2
+131,index,132
+131,Clump Thickness,2
+131,Uniformity of Cell Size,1
+131,Uniformity of Cell Shape,1
+131,Marginal Adhesion,1
+131,Single Epithelial Cell Size,2
+131,Bare Nuclei,1
+131,Bland Chromatin,3
+131,Normal Nucleoli,1
+131,Mitoses,1
+131,class,2
+132,index,133
+132,Clump Thickness,5
+132,Uniformity of Cell Size,10
+132,Uniformity of Cell Shape,8
+132,Marginal Adhesion,10
+132,Single Epithelial Cell Size,8
+132,Bare Nuclei,10
+132,Bland Chromatin,3
+132,Normal Nucleoli,6
+132,Mitoses,3
+132,class,4
+133,index,134
+133,Clump Thickness,3
+133,Uniformity of Cell Size,1
+133,Uniformity of Cell Shape,1
+133,Marginal Adhesion,1
+133,Single Epithelial Cell Size,2
+133,Bare Nuclei,1
+133,Bland Chromatin,2
+133,Normal Nucleoli,2
+133,Mitoses,1
+133,class,2
+134,index,135
+134,Clump Thickness,3
+134,Uniformity of Cell Size,1
+134,Uniformity of Cell Shape,1
+134,Marginal Adhesion,1
+134,Single Epithelial Cell Size,3
+134,Bare Nuclei,1
+134,Bland Chromatin,2
+134,Normal Nucleoli,1
+134,Mitoses,1
+134,class,2
+135,index,136
+135,Clump Thickness,5
+135,Uniformity of Cell Size,1
+135,Uniformity of Cell Shape,1
+135,Marginal Adhesion,1
+135,Single Epithelial Cell Size,2
+135,Bare Nuclei,2
+135,Bland Chromatin,3
+135,Normal Nucleoli,3
+135,Mitoses,1
+135,class,2
+136,index,137
+136,Clump Thickness,4
+136,Uniformity of Cell Size,1
+136,Uniformity of Cell Shape,1
+136,Marginal Adhesion,1
+136,Single Epithelial Cell Size,2
+136,Bare Nuclei,1
+136,Bland Chromatin,2
+136,Normal Nucleoli,1
+136,Mitoses,1
+136,class,2
+137,index,138
+137,Clump Thickness,3
+137,Uniformity of Cell Size,1
+137,Uniformity of Cell Shape,1
+137,Marginal Adhesion,1
+137,Single Epithelial Cell Size,2
+137,Bare Nuclei,1
+137,Bland Chromatin,1
+137,Normal Nucleoli,1
+137,Mitoses,1
+137,class,2
+138,index,139
+138,Clump Thickness,4
+138,Uniformity of Cell Size,1
+138,Uniformity of Cell Shape,2
+138,Marginal Adhesion,1
+138,Single Epithelial Cell Size,2
+138,Bare Nuclei,1
+138,Bland Chromatin,2
+138,Normal Nucleoli,1
+138,Mitoses,1
+138,class,2
+139,index,140
+139,Clump Thickness,1
+139,Uniformity of Cell Size,1
+139,Uniformity of Cell Shape,1
+139,Marginal Adhesion,1
+139,Single Epithelial Cell Size,1
+139,Bare Nuclei,?
+139,Bland Chromatin,2
+139,Normal Nucleoli,1
+139,Mitoses,1
+139,class,2
+140,index,141
+140,Clump Thickness,3
+140,Uniformity of Cell Size,1
+140,Uniformity of Cell Shape,1
+140,Marginal Adhesion,1
+140,Single Epithelial Cell Size,2
+140,Bare Nuclei,1
+140,Bland Chromatin,1
+140,Normal Nucleoli,1
+140,Mitoses,1
+140,class,2
+141,index,142
+141,Clump Thickness,2
+141,Uniformity of Cell Size,1
+141,Uniformity of Cell Shape,1
+141,Marginal Adhesion,1
+141,Single Epithelial Cell Size,2
+141,Bare Nuclei,1
+141,Bland Chromatin,1
+141,Normal Nucleoli,1
+141,Mitoses,1
+141,class,2
+142,index,143
+142,Clump Thickness,9
+142,Uniformity of Cell Size,5
+142,Uniformity of Cell Shape,5
+142,Marginal Adhesion,4
+142,Single Epithelial Cell Size,4
+142,Bare Nuclei,5
+142,Bland Chromatin,4
+142,Normal Nucleoli,3
+142,Mitoses,3
+142,class,4
+143,index,144
+143,Clump Thickness,1
+143,Uniformity of Cell Size,1
+143,Uniformity of Cell Shape,1
+143,Marginal Adhesion,1
+143,Single Epithelial Cell Size,2
+143,Bare Nuclei,5
+143,Bland Chromatin,1
+143,Normal Nucleoli,1
+143,Mitoses,1
+143,class,2
+144,index,145
+144,Clump Thickness,2
+144,Uniformity of Cell Size,1
+144,Uniformity of Cell Shape,1
+144,Marginal Adhesion,1
+144,Single Epithelial Cell Size,2
+144,Bare Nuclei,1
+144,Bland Chromatin,2
+144,Normal Nucleoli,1
+144,Mitoses,1
+144,class,2
+145,index,146
+145,Clump Thickness,1
+145,Uniformity of Cell Size,1
+145,Uniformity of Cell Shape,3
+145,Marginal Adhesion,1
+145,Single Epithelial Cell Size,2
+145,Bare Nuclei,?
+145,Bland Chromatin,2
+145,Normal Nucleoli,1
+145,Mitoses,1
+145,class,2
+146,index,147
+146,Clump Thickness,3
+146,Uniformity of Cell Size,4
+146,Uniformity of Cell Shape,5
+146,Marginal Adhesion,2
+146,Single Epithelial Cell Size,6
+146,Bare Nuclei,8
+146,Bland Chromatin,4
+146,Normal Nucleoli,1
+146,Mitoses,1
+146,class,4
+147,index,148
+147,Clump Thickness,1
+147,Uniformity of Cell Size,1
+147,Uniformity of Cell Shape,1
+147,Marginal Adhesion,1
+147,Single Epithelial Cell Size,3
+147,Bare Nuclei,2
+147,Bland Chromatin,2
+147,Normal Nucleoli,1
+147,Mitoses,1
+147,class,2
+148,index,149
+148,Clump Thickness,3
+148,Uniformity of Cell Size,1
+148,Uniformity of Cell Shape,1
+148,Marginal Adhesion,3
+148,Single Epithelial Cell Size,8
+148,Bare Nuclei,1
+148,Bland Chromatin,5
+148,Normal Nucleoli,8
+148,Mitoses,1
+148,class,2
+149,index,150
+149,Clump Thickness,8
+149,Uniformity of Cell Size,8
+149,Uniformity of Cell Shape,7
+149,Marginal Adhesion,4
+149,Single Epithelial Cell Size,10
+149,Bare Nuclei,10
+149,Bland Chromatin,7
+149,Normal Nucleoli,8
+149,Mitoses,7
+149,class,4
+150,index,151
+150,Clump Thickness,1
+150,Uniformity of Cell Size,1
+150,Uniformity of Cell Shape,1
+150,Marginal Adhesion,1
+150,Single Epithelial Cell Size,1
+150,Bare Nuclei,1
+150,Bland Chromatin,3
+150,Normal Nucleoli,1
+150,Mitoses,1
+150,class,2
+151,index,152
+151,Clump Thickness,7
+151,Uniformity of Cell Size,2
+151,Uniformity of Cell Shape,4
+151,Marginal Adhesion,1
+151,Single Epithelial Cell Size,6
+151,Bare Nuclei,10
+151,Bland Chromatin,5
+151,Normal Nucleoli,4
+151,Mitoses,3
+151,class,4
+152,index,153
+152,Clump Thickness,10
+152,Uniformity of Cell Size,10
+152,Uniformity of Cell Shape,8
+152,Marginal Adhesion,6
+152,Single Epithelial Cell Size,4
+152,Bare Nuclei,5
+152,Bland Chromatin,8
+152,Normal Nucleoli,10
+152,Mitoses,1
+152,class,4
+153,index,154
+153,Clump Thickness,4
+153,Uniformity of Cell Size,1
+153,Uniformity of Cell Shape,1
+153,Marginal Adhesion,1
+153,Single Epithelial Cell Size,2
+153,Bare Nuclei,3
+153,Bland Chromatin,1
+153,Normal Nucleoli,1
+153,Mitoses,1
+153,class,2
+154,index,155
+154,Clump Thickness,1
+154,Uniformity of Cell Size,1
+154,Uniformity of Cell Shape,1
+154,Marginal Adhesion,1
+154,Single Epithelial Cell Size,2
+154,Bare Nuclei,1
+154,Bland Chromatin,1
+154,Normal Nucleoli,1
+154,Mitoses,1
+154,class,2
+155,index,156
+155,Clump Thickness,5
+155,Uniformity of Cell Size,5
+155,Uniformity of Cell Shape,5
+155,Marginal Adhesion,6
+155,Single Epithelial Cell Size,3
+155,Bare Nuclei,10
+155,Bland Chromatin,3
+155,Normal Nucleoli,1
+155,Mitoses,1
+155,class,4
+156,index,157
+156,Clump Thickness,1
+156,Uniformity of Cell Size,2
+156,Uniformity of Cell Shape,2
+156,Marginal Adhesion,1
+156,Single Epithelial Cell Size,2
+156,Bare Nuclei,1
+156,Bland Chromatin,2
+156,Normal Nucleoli,1
+156,Mitoses,1
+156,class,2
+157,index,158
+157,Clump Thickness,2
+157,Uniformity of Cell Size,1
+157,Uniformity of Cell Shape,1
+157,Marginal Adhesion,1
+157,Single Epithelial Cell Size,2
+157,Bare Nuclei,1
+157,Bland Chromatin,3
+157,Normal Nucleoli,1
+157,Mitoses,1
+157,class,2
+158,index,159
+158,Clump Thickness,1
+158,Uniformity of Cell Size,1
+158,Uniformity of Cell Shape,2
+158,Marginal Adhesion,1
+158,Single Epithelial Cell Size,3
+158,Bare Nuclei,?
+158,Bland Chromatin,1
+158,Normal Nucleoli,1
+158,Mitoses,1
+158,class,2
+159,index,160
+159,Clump Thickness,9
+159,Uniformity of Cell Size,9
+159,Uniformity of Cell Shape,10
+159,Marginal Adhesion,3
+159,Single Epithelial Cell Size,6
+159,Bare Nuclei,10
+159,Bland Chromatin,7
+159,Normal Nucleoli,10
+159,Mitoses,6
+159,class,4
+160,index,161
+160,Clump Thickness,10
+160,Uniformity of Cell Size,7
+160,Uniformity of Cell Shape,7
+160,Marginal Adhesion,4
+160,Single Epithelial Cell Size,5
+160,Bare Nuclei,10
+160,Bland Chromatin,5
+160,Normal Nucleoli,7
+160,Mitoses,2
+160,class,4
+161,index,162
+161,Clump Thickness,4
+161,Uniformity of Cell Size,1
+161,Uniformity of Cell Shape,1
+161,Marginal Adhesion,1
+161,Single Epithelial Cell Size,2
+161,Bare Nuclei,1
+161,Bland Chromatin,3
+161,Normal Nucleoli,2
+161,Mitoses,1
+161,class,2
+162,index,163
+162,Clump Thickness,3
+162,Uniformity of Cell Size,1
+162,Uniformity of Cell Shape,1
+162,Marginal Adhesion,1
+162,Single Epithelial Cell Size,2
+162,Bare Nuclei,1
+162,Bland Chromatin,3
+162,Normal Nucleoli,1
+162,Mitoses,1
+162,class,2
+163,index,164
+163,Clump Thickness,1
+163,Uniformity of Cell Size,1
+163,Uniformity of Cell Shape,1
+163,Marginal Adhesion,2
+163,Single Epithelial Cell Size,1
+163,Bare Nuclei,3
+163,Bland Chromatin,1
+163,Normal Nucleoli,1
+163,Mitoses,7
+163,class,2
+164,index,165
+164,Clump Thickness,5
+164,Uniformity of Cell Size,1
+164,Uniformity of Cell Shape,1
+164,Marginal Adhesion,1
+164,Single Epithelial Cell Size,2
+164,Bare Nuclei,?
+164,Bland Chromatin,3
+164,Normal Nucleoli,1
+164,Mitoses,1
+164,class,2
+165,index,166
+165,Clump Thickness,4
+165,Uniformity of Cell Size,1
+165,Uniformity of Cell Shape,1
+165,Marginal Adhesion,1
+165,Single Epithelial Cell Size,2
+165,Bare Nuclei,2
+165,Bland Chromatin,3
+165,Normal Nucleoli,2
+165,Mitoses,1
+165,class,2
+166,index,167
+166,Clump Thickness,5
+166,Uniformity of Cell Size,6
+166,Uniformity of Cell Shape,7
+166,Marginal Adhesion,8
+166,Single Epithelial Cell Size,8
+166,Bare Nuclei,10
+166,Bland Chromatin,3
+166,Normal Nucleoli,10
+166,Mitoses,3
+166,class,4
+167,index,168
+167,Clump Thickness,10
+167,Uniformity of Cell Size,8
+167,Uniformity of Cell Shape,10
+167,Marginal Adhesion,10
+167,Single Epithelial Cell Size,6
+167,Bare Nuclei,1
+167,Bland Chromatin,3
+167,Normal Nucleoli,1
+167,Mitoses,10
+167,class,4
+168,index,169
+168,Clump Thickness,3
+168,Uniformity of Cell Size,1
+168,Uniformity of Cell Shape,1
+168,Marginal Adhesion,1
+168,Single Epithelial Cell Size,2
+168,Bare Nuclei,1
+168,Bland Chromatin,3
+168,Normal Nucleoli,1
+168,Mitoses,1
+168,class,2
+169,index,170
+169,Clump Thickness,1
+169,Uniformity of Cell Size,1
+169,Uniformity of Cell Shape,1
+169,Marginal Adhesion,2
+169,Single Epithelial Cell Size,1
+169,Bare Nuclei,1
+169,Bland Chromatin,1
+169,Normal Nucleoli,1
+169,Mitoses,1
+169,class,2
+170,index,171
+170,Clump Thickness,3
+170,Uniformity of Cell Size,1
+170,Uniformity of Cell Shape,1
+170,Marginal Adhesion,1
+170,Single Epithelial Cell Size,2
+170,Bare Nuclei,1
+170,Bland Chromatin,1
+170,Normal Nucleoli,1
+170,Mitoses,1
+170,class,2
+171,index,172
+171,Clump Thickness,1
+171,Uniformity of Cell Size,1
+171,Uniformity of Cell Shape,1
+171,Marginal Adhesion,1
+171,Single Epithelial Cell Size,2
+171,Bare Nuclei,1
+171,Bland Chromatin,3
+171,Normal Nucleoli,1
+171,Mitoses,1
+171,class,2
+172,index,173
+172,Clump Thickness,1
+172,Uniformity of Cell Size,1
+172,Uniformity of Cell Shape,1
+172,Marginal Adhesion,1
+172,Single Epithelial Cell Size,2
+172,Bare Nuclei,1
+172,Bland Chromatin,2
+172,Normal Nucleoli,1
+172,Mitoses,1
+172,class,2
+173,index,174
+173,Clump Thickness,6
+173,Uniformity of Cell Size,10
+173,Uniformity of Cell Shape,10
+173,Marginal Adhesion,10
+173,Single Epithelial Cell Size,8
+173,Bare Nuclei,10
+173,Bland Chromatin,10
+173,Normal Nucleoli,10
+173,Mitoses,7
+173,class,4
+174,index,175
+174,Clump Thickness,8
+174,Uniformity of Cell Size,6
+174,Uniformity of Cell Shape,5
+174,Marginal Adhesion,4
+174,Single Epithelial Cell Size,3
+174,Bare Nuclei,10
+174,Bland Chromatin,6
+174,Normal Nucleoli,1
+174,Mitoses,1
+174,class,4
+175,index,176
+175,Clump Thickness,5
+175,Uniformity of Cell Size,8
+175,Uniformity of Cell Shape,7
+175,Marginal Adhesion,7
+175,Single Epithelial Cell Size,10
+175,Bare Nuclei,10
+175,Bland Chromatin,5
+175,Normal Nucleoli,7
+175,Mitoses,1
+175,class,4
+176,index,177
+176,Clump Thickness,2
+176,Uniformity of Cell Size,1
+176,Uniformity of Cell Shape,1
+176,Marginal Adhesion,1
+176,Single Epithelial Cell Size,2
+176,Bare Nuclei,1
+176,Bland Chromatin,3
+176,Normal Nucleoli,1
+176,Mitoses,1
+176,class,2
+177,index,178
+177,Clump Thickness,5
+177,Uniformity of Cell Size,10
+177,Uniformity of Cell Shape,10
+177,Marginal Adhesion,3
+177,Single Epithelial Cell Size,8
+177,Bare Nuclei,1
+177,Bland Chromatin,5
+177,Normal Nucleoli,10
+177,Mitoses,3
+177,class,4
+178,index,179
+178,Clump Thickness,4
+178,Uniformity of Cell Size,1
+178,Uniformity of Cell Shape,1
+178,Marginal Adhesion,1
+178,Single Epithelial Cell Size,2
+178,Bare Nuclei,1
+178,Bland Chromatin,3
+178,Normal Nucleoli,1
+178,Mitoses,1
+178,class,2
+179,index,180
+179,Clump Thickness,5
+179,Uniformity of Cell Size,3
+179,Uniformity of Cell Shape,3
+179,Marginal Adhesion,3
+179,Single Epithelial Cell Size,6
+179,Bare Nuclei,10
+179,Bland Chromatin,3
+179,Normal Nucleoli,1
+179,Mitoses,1
+179,class,4
+180,index,181
+180,Clump Thickness,1
+180,Uniformity of Cell Size,1
+180,Uniformity of Cell Shape,1
+180,Marginal Adhesion,1
+180,Single Epithelial Cell Size,1
+180,Bare Nuclei,1
+180,Bland Chromatin,3
+180,Normal Nucleoli,1
+180,Mitoses,1
+180,class,2
+181,index,182
+181,Clump Thickness,1
+181,Uniformity of Cell Size,1
+181,Uniformity of Cell Shape,1
+181,Marginal Adhesion,1
+181,Single Epithelial Cell Size,2
+181,Bare Nuclei,1
+181,Bland Chromatin,1
+181,Normal Nucleoli,1
+181,Mitoses,1
+181,class,2
+182,index,183
+182,Clump Thickness,6
+182,Uniformity of Cell Size,1
+182,Uniformity of Cell Shape,1
+182,Marginal Adhesion,1
+182,Single Epithelial Cell Size,2
+182,Bare Nuclei,1
+182,Bland Chromatin,3
+182,Normal Nucleoli,1
+182,Mitoses,1
+182,class,2
+183,index,184
+183,Clump Thickness,5
+183,Uniformity of Cell Size,8
+183,Uniformity of Cell Shape,8
+183,Marginal Adhesion,8
+183,Single Epithelial Cell Size,5
+183,Bare Nuclei,10
+183,Bland Chromatin,7
+183,Normal Nucleoli,8
+183,Mitoses,1
+183,class,4
+184,index,185
+184,Clump Thickness,8
+184,Uniformity of Cell Size,7
+184,Uniformity of Cell Shape,6
+184,Marginal Adhesion,4
+184,Single Epithelial Cell Size,4
+184,Bare Nuclei,10
+184,Bland Chromatin,5
+184,Normal Nucleoli,1
+184,Mitoses,1
+184,class,4
+185,index,186
+185,Clump Thickness,2
+185,Uniformity of Cell Size,1
+185,Uniformity of Cell Shape,1
+185,Marginal Adhesion,1
+185,Single Epithelial Cell Size,1
+185,Bare Nuclei,1
+185,Bland Chromatin,3
+185,Normal Nucleoli,1
+185,Mitoses,1
+185,class,2
+186,index,187
+186,Clump Thickness,1
+186,Uniformity of Cell Size,5
+186,Uniformity of Cell Shape,8
+186,Marginal Adhesion,6
+186,Single Epithelial Cell Size,5
+186,Bare Nuclei,8
+186,Bland Chromatin,7
+186,Normal Nucleoli,10
+186,Mitoses,1
+186,class,4
+187,index,188
+187,Clump Thickness,10
+187,Uniformity of Cell Size,5
+187,Uniformity of Cell Shape,6
+187,Marginal Adhesion,10
+187,Single Epithelial Cell Size,6
+187,Bare Nuclei,10
+187,Bland Chromatin,7
+187,Normal Nucleoli,7
+187,Mitoses,10
+187,class,4
+188,index,189
+188,Clump Thickness,5
+188,Uniformity of Cell Size,8
+188,Uniformity of Cell Shape,4
+188,Marginal Adhesion,10
+188,Single Epithelial Cell Size,5
+188,Bare Nuclei,8
+188,Bland Chromatin,9
+188,Normal Nucleoli,10
+188,Mitoses,1
+188,class,4
+189,index,190
+189,Clump Thickness,1
+189,Uniformity of Cell Size,2
+189,Uniformity of Cell Shape,3
+189,Marginal Adhesion,1
+189,Single Epithelial Cell Size,2
+189,Bare Nuclei,1
+189,Bland Chromatin,3
+189,Normal Nucleoli,1
+189,Mitoses,1
+189,class,2
+190,index,191
+190,Clump Thickness,10
+190,Uniformity of Cell Size,10
+190,Uniformity of Cell Shape,10
+190,Marginal Adhesion,8
+190,Single Epithelial Cell Size,6
+190,Bare Nuclei,8
+190,Bland Chromatin,7
+190,Normal Nucleoli,10
+190,Mitoses,1
+190,class,4
+191,index,192
+191,Clump Thickness,7
+191,Uniformity of Cell Size,5
+191,Uniformity of Cell Shape,10
+191,Marginal Adhesion,10
+191,Single Epithelial Cell Size,10
+191,Bare Nuclei,10
+191,Bland Chromatin,4
+191,Normal Nucleoli,10
+191,Mitoses,3
+191,class,4
+192,index,193
+192,Clump Thickness,5
+192,Uniformity of Cell Size,1
+192,Uniformity of Cell Shape,1
+192,Marginal Adhesion,1
+192,Single Epithelial Cell Size,2
+192,Bare Nuclei,1
+192,Bland Chromatin,2
+192,Normal Nucleoli,1
+192,Mitoses,1
+192,class,2
+193,index,194
+193,Clump Thickness,1
+193,Uniformity of Cell Size,1
+193,Uniformity of Cell Shape,1
+193,Marginal Adhesion,1
+193,Single Epithelial Cell Size,2
+193,Bare Nuclei,1
+193,Bland Chromatin,3
+193,Normal Nucleoli,1
+193,Mitoses,1
+193,class,2
+194,index,195
+194,Clump Thickness,3
+194,Uniformity of Cell Size,1
+194,Uniformity of Cell Shape,1
+194,Marginal Adhesion,1
+194,Single Epithelial Cell Size,2
+194,Bare Nuclei,1
+194,Bland Chromatin,3
+194,Normal Nucleoli,1
+194,Mitoses,1
+194,class,2
+195,index,196
+195,Clump Thickness,4
+195,Uniformity of Cell Size,1
+195,Uniformity of Cell Shape,1
+195,Marginal Adhesion,1
+195,Single Epithelial Cell Size,2
+195,Bare Nuclei,1
+195,Bland Chromatin,3
+195,Normal Nucleoli,1
+195,Mitoses,1
+195,class,2
+196,index,197
+196,Clump Thickness,8
+196,Uniformity of Cell Size,4
+196,Uniformity of Cell Shape,4
+196,Marginal Adhesion,5
+196,Single Epithelial Cell Size,4
+196,Bare Nuclei,7
+196,Bland Chromatin,7
+196,Normal Nucleoli,8
+196,Mitoses,2
+196,class,2
+197,index,198
+197,Clump Thickness,5
+197,Uniformity of Cell Size,1
+197,Uniformity of Cell Shape,1
+197,Marginal Adhesion,4
+197,Single Epithelial Cell Size,2
+197,Bare Nuclei,1
+197,Bland Chromatin,3
+197,Normal Nucleoli,1
+197,Mitoses,1
+197,class,2
+198,index,199
+198,Clump Thickness,1
+198,Uniformity of Cell Size,1
+198,Uniformity of Cell Shape,1
+198,Marginal Adhesion,1
+198,Single Epithelial Cell Size,2
+198,Bare Nuclei,1
+198,Bland Chromatin,1
+198,Normal Nucleoli,1
+198,Mitoses,1
+198,class,2
+199,index,200
+199,Clump Thickness,3
+199,Uniformity of Cell Size,1
+199,Uniformity of Cell Shape,1
+199,Marginal Adhesion,1
+199,Single Epithelial Cell Size,2
+199,Bare Nuclei,1
+199,Bland Chromatin,2
+199,Normal Nucleoli,1
+199,Mitoses,1
+199,class,2
+200,index,201
+200,Clump Thickness,9
+200,Uniformity of Cell Size,7
+200,Uniformity of Cell Shape,7
+200,Marginal Adhesion,5
+200,Single Epithelial Cell Size,5
+200,Bare Nuclei,10
+200,Bland Chromatin,7
+200,Normal Nucleoli,8
+200,Mitoses,3
+200,class,4
+201,index,202
+201,Clump Thickness,10
+201,Uniformity of Cell Size,8
+201,Uniformity of Cell Shape,8
+201,Marginal Adhesion,4
+201,Single Epithelial Cell Size,10
+201,Bare Nuclei,10
+201,Bland Chromatin,8
+201,Normal Nucleoli,1
+201,Mitoses,1
+201,class,4
+202,index,203
+202,Clump Thickness,1
+202,Uniformity of Cell Size,1
+202,Uniformity of Cell Shape,1
+202,Marginal Adhesion,1
+202,Single Epithelial Cell Size,2
+202,Bare Nuclei,1
+202,Bland Chromatin,3
+202,Normal Nucleoli,1
+202,Mitoses,1
+202,class,2
+203,index,204
+203,Clump Thickness,5
+203,Uniformity of Cell Size,1
+203,Uniformity of Cell Shape,1
+203,Marginal Adhesion,1
+203,Single Epithelial Cell Size,2
+203,Bare Nuclei,1
+203,Bland Chromatin,3
+203,Normal Nucleoli,1
+203,Mitoses,1
+203,class,2
+204,index,205
+204,Clump Thickness,1
+204,Uniformity of Cell Size,1
+204,Uniformity of Cell Shape,1
+204,Marginal Adhesion,1
+204,Single Epithelial Cell Size,2
+204,Bare Nuclei,1
+204,Bland Chromatin,3
+204,Normal Nucleoli,1
+204,Mitoses,1
+204,class,2
+205,index,206
+205,Clump Thickness,5
+205,Uniformity of Cell Size,10
+205,Uniformity of Cell Shape,10
+205,Marginal Adhesion,9
+205,Single Epithelial Cell Size,6
+205,Bare Nuclei,10
+205,Bland Chromatin,7
+205,Normal Nucleoli,10
+205,Mitoses,5
+205,class,4
+206,index,207
+206,Clump Thickness,10
+206,Uniformity of Cell Size,10
+206,Uniformity of Cell Shape,9
+206,Marginal Adhesion,3
+206,Single Epithelial Cell Size,7
+206,Bare Nuclei,5
+206,Bland Chromatin,3
+206,Normal Nucleoli,5
+206,Mitoses,1
+206,class,4
+207,index,208
+207,Clump Thickness,1
+207,Uniformity of Cell Size,1
+207,Uniformity of Cell Shape,1
+207,Marginal Adhesion,1
+207,Single Epithelial Cell Size,1
+207,Bare Nuclei,1
+207,Bland Chromatin,3
+207,Normal Nucleoli,1
+207,Mitoses,1
+207,class,2
+208,index,209
+208,Clump Thickness,1
+208,Uniformity of Cell Size,1
+208,Uniformity of Cell Shape,1
+208,Marginal Adhesion,1
+208,Single Epithelial Cell Size,1
+208,Bare Nuclei,1
+208,Bland Chromatin,3
+208,Normal Nucleoli,1
+208,Mitoses,1
+208,class,2
+209,index,210
+209,Clump Thickness,5
+209,Uniformity of Cell Size,1
+209,Uniformity of Cell Shape,1
+209,Marginal Adhesion,1
+209,Single Epithelial Cell Size,1
+209,Bare Nuclei,1
+209,Bland Chromatin,3
+209,Normal Nucleoli,1
+209,Mitoses,1
+209,class,2
+210,index,211
+210,Clump Thickness,8
+210,Uniformity of Cell Size,10
+210,Uniformity of Cell Shape,10
+210,Marginal Adhesion,10
+210,Single Epithelial Cell Size,5
+210,Bare Nuclei,10
+210,Bland Chromatin,8
+210,Normal Nucleoli,10
+210,Mitoses,6
+210,class,4
+211,index,212
+211,Clump Thickness,8
+211,Uniformity of Cell Size,10
+211,Uniformity of Cell Shape,8
+211,Marginal Adhesion,8
+211,Single Epithelial Cell Size,4
+211,Bare Nuclei,8
+211,Bland Chromatin,7
+211,Normal Nucleoli,7
+211,Mitoses,1
+211,class,4
+212,index,213
+212,Clump Thickness,1
+212,Uniformity of Cell Size,1
+212,Uniformity of Cell Shape,1
+212,Marginal Adhesion,1
+212,Single Epithelial Cell Size,2
+212,Bare Nuclei,1
+212,Bland Chromatin,3
+212,Normal Nucleoli,1
+212,Mitoses,1
+212,class,2
+213,index,214
+213,Clump Thickness,10
+213,Uniformity of Cell Size,10
+213,Uniformity of Cell Shape,10
+213,Marginal Adhesion,10
+213,Single Epithelial Cell Size,7
+213,Bare Nuclei,10
+213,Bland Chromatin,7
+213,Normal Nucleoli,10
+213,Mitoses,4
+213,class,4
+214,index,215
+214,Clump Thickness,10
+214,Uniformity of Cell Size,10
+214,Uniformity of Cell Shape,10
+214,Marginal Adhesion,10
+214,Single Epithelial Cell Size,3
+214,Bare Nuclei,10
+214,Bland Chromatin,10
+214,Normal Nucleoli,6
+214,Mitoses,1
+214,class,4
+215,index,216
+215,Clump Thickness,8
+215,Uniformity of Cell Size,7
+215,Uniformity of Cell Shape,8
+215,Marginal Adhesion,7
+215,Single Epithelial Cell Size,5
+215,Bare Nuclei,5
+215,Bland Chromatin,5
+215,Normal Nucleoli,10
+215,Mitoses,2
+215,class,4
+216,index,217
+216,Clump Thickness,1
+216,Uniformity of Cell Size,1
+216,Uniformity of Cell Shape,1
+216,Marginal Adhesion,1
+216,Single Epithelial Cell Size,2
+216,Bare Nuclei,1
+216,Bland Chromatin,2
+216,Normal Nucleoli,1
+216,Mitoses,1
+216,class,2
+217,index,218
+217,Clump Thickness,1
+217,Uniformity of Cell Size,1
+217,Uniformity of Cell Shape,1
+217,Marginal Adhesion,1
+217,Single Epithelial Cell Size,2
+217,Bare Nuclei,1
+217,Bland Chromatin,3
+217,Normal Nucleoli,1
+217,Mitoses,1
+217,class,2
+218,index,219
+218,Clump Thickness,6
+218,Uniformity of Cell Size,10
+218,Uniformity of Cell Shape,7
+218,Marginal Adhesion,7
+218,Single Epithelial Cell Size,6
+218,Bare Nuclei,4
+218,Bland Chromatin,8
+218,Normal Nucleoli,10
+218,Mitoses,2
+218,class,4
+219,index,220
+219,Clump Thickness,6
+219,Uniformity of Cell Size,1
+219,Uniformity of Cell Shape,3
+219,Marginal Adhesion,1
+219,Single Epithelial Cell Size,2
+219,Bare Nuclei,1
+219,Bland Chromatin,3
+219,Normal Nucleoli,1
+219,Mitoses,1
+219,class,2
+220,index,221
+220,Clump Thickness,1
+220,Uniformity of Cell Size,1
+220,Uniformity of Cell Shape,1
+220,Marginal Adhesion,2
+220,Single Epithelial Cell Size,2
+220,Bare Nuclei,1
+220,Bland Chromatin,3
+220,Normal Nucleoli,1
+220,Mitoses,1
+220,class,2
+221,index,222
+221,Clump Thickness,10
+221,Uniformity of Cell Size,6
+221,Uniformity of Cell Shape,4
+221,Marginal Adhesion,3
+221,Single Epithelial Cell Size,10
+221,Bare Nuclei,10
+221,Bland Chromatin,9
+221,Normal Nucleoli,10
+221,Mitoses,1
+221,class,4
+222,index,223
+222,Clump Thickness,4
+222,Uniformity of Cell Size,1
+222,Uniformity of Cell Shape,1
+222,Marginal Adhesion,3
+222,Single Epithelial Cell Size,1
+222,Bare Nuclei,5
+222,Bland Chromatin,2
+222,Normal Nucleoli,1
+222,Mitoses,1
+222,class,4
+223,index,224
+223,Clump Thickness,7
+223,Uniformity of Cell Size,5
+223,Uniformity of Cell Shape,6
+223,Marginal Adhesion,3
+223,Single Epithelial Cell Size,3
+223,Bare Nuclei,8
+223,Bland Chromatin,7
+223,Normal Nucleoli,4
+223,Mitoses,1
+223,class,4
+224,index,225
+224,Clump Thickness,10
+224,Uniformity of Cell Size,5
+224,Uniformity of Cell Shape,5
+224,Marginal Adhesion,6
+224,Single Epithelial Cell Size,3
+224,Bare Nuclei,10
+224,Bland Chromatin,7
+224,Normal Nucleoli,9
+224,Mitoses,2
+224,class,4
+225,index,226
+225,Clump Thickness,1
+225,Uniformity of Cell Size,1
+225,Uniformity of Cell Shape,1
+225,Marginal Adhesion,1
+225,Single Epithelial Cell Size,2
+225,Bare Nuclei,1
+225,Bland Chromatin,2
+225,Normal Nucleoli,1
+225,Mitoses,1
+225,class,2
+226,index,227
+226,Clump Thickness,10
+226,Uniformity of Cell Size,5
+226,Uniformity of Cell Shape,7
+226,Marginal Adhesion,4
+226,Single Epithelial Cell Size,4
+226,Bare Nuclei,10
+226,Bland Chromatin,8
+226,Normal Nucleoli,9
+226,Mitoses,1
+226,class,4
+227,index,228
+227,Clump Thickness,8
+227,Uniformity of Cell Size,9
+227,Uniformity of Cell Shape,9
+227,Marginal Adhesion,5
+227,Single Epithelial Cell Size,3
+227,Bare Nuclei,5
+227,Bland Chromatin,7
+227,Normal Nucleoli,7
+227,Mitoses,1
+227,class,4
+228,index,229
+228,Clump Thickness,1
+228,Uniformity of Cell Size,1
+228,Uniformity of Cell Shape,1
+228,Marginal Adhesion,1
+228,Single Epithelial Cell Size,1
+228,Bare Nuclei,1
+228,Bland Chromatin,3
+228,Normal Nucleoli,1
+228,Mitoses,1
+228,class,2
+229,index,230
+229,Clump Thickness,10
+229,Uniformity of Cell Size,10
+229,Uniformity of Cell Shape,10
+229,Marginal Adhesion,3
+229,Single Epithelial Cell Size,10
+229,Bare Nuclei,10
+229,Bland Chromatin,9
+229,Normal Nucleoli,10
+229,Mitoses,1
+229,class,4
+230,index,231
+230,Clump Thickness,7
+230,Uniformity of Cell Size,4
+230,Uniformity of Cell Shape,7
+230,Marginal Adhesion,4
+230,Single Epithelial Cell Size,3
+230,Bare Nuclei,7
+230,Bland Chromatin,7
+230,Normal Nucleoli,6
+230,Mitoses,1
+230,class,4
+231,index,232
+231,Clump Thickness,6
+231,Uniformity of Cell Size,8
+231,Uniformity of Cell Shape,7
+231,Marginal Adhesion,5
+231,Single Epithelial Cell Size,6
+231,Bare Nuclei,8
+231,Bland Chromatin,8
+231,Normal Nucleoli,9
+231,Mitoses,2
+231,class,4
+232,index,233
+232,Clump Thickness,8
+232,Uniformity of Cell Size,4
+232,Uniformity of Cell Shape,6
+232,Marginal Adhesion,3
+232,Single Epithelial Cell Size,3
+232,Bare Nuclei,1
+232,Bland Chromatin,4
+232,Normal Nucleoli,3
+232,Mitoses,1
+232,class,2
+233,index,234
+233,Clump Thickness,10
+233,Uniformity of Cell Size,4
+233,Uniformity of Cell Shape,5
+233,Marginal Adhesion,5
+233,Single Epithelial Cell Size,5
+233,Bare Nuclei,10
+233,Bland Chromatin,4
+233,Normal Nucleoli,1
+233,Mitoses,1
+233,class,4
+234,index,235
+234,Clump Thickness,3
+234,Uniformity of Cell Size,3
+234,Uniformity of Cell Shape,2
+234,Marginal Adhesion,1
+234,Single Epithelial Cell Size,3
+234,Bare Nuclei,1
+234,Bland Chromatin,3
+234,Normal Nucleoli,6
+234,Mitoses,1
+234,class,2
+235,index,236
+235,Clump Thickness,3
+235,Uniformity of Cell Size,1
+235,Uniformity of Cell Shape,4
+235,Marginal Adhesion,1
+235,Single Epithelial Cell Size,2
+235,Bare Nuclei,?
+235,Bland Chromatin,3
+235,Normal Nucleoli,1
+235,Mitoses,1
+235,class,2
+236,index,237
+236,Clump Thickness,10
+236,Uniformity of Cell Size,8
+236,Uniformity of Cell Shape,8
+236,Marginal Adhesion,2
+236,Single Epithelial Cell Size,8
+236,Bare Nuclei,10
+236,Bland Chromatin,4
+236,Normal Nucleoli,8
+236,Mitoses,10
+236,class,4
+237,index,238
+237,Clump Thickness,9
+237,Uniformity of Cell Size,8
+237,Uniformity of Cell Shape,8
+237,Marginal Adhesion,5
+237,Single Epithelial Cell Size,6
+237,Bare Nuclei,2
+237,Bland Chromatin,4
+237,Normal Nucleoli,10
+237,Mitoses,4
+237,class,4
+238,index,239
+238,Clump Thickness,8
+238,Uniformity of Cell Size,10
+238,Uniformity of Cell Shape,10
+238,Marginal Adhesion,8
+238,Single Epithelial Cell Size,6
+238,Bare Nuclei,9
+238,Bland Chromatin,3
+238,Normal Nucleoli,10
+238,Mitoses,10
+238,class,4
+239,index,240
+239,Clump Thickness,10
+239,Uniformity of Cell Size,4
+239,Uniformity of Cell Shape,3
+239,Marginal Adhesion,2
+239,Single Epithelial Cell Size,3
+239,Bare Nuclei,10
+239,Bland Chromatin,5
+239,Normal Nucleoli,3
+239,Mitoses,2
+239,class,4
+240,index,241
+240,Clump Thickness,5
+240,Uniformity of Cell Size,1
+240,Uniformity of Cell Shape,3
+240,Marginal Adhesion,3
+240,Single Epithelial Cell Size,2
+240,Bare Nuclei,2
+240,Bland Chromatin,2
+240,Normal Nucleoli,3
+240,Mitoses,1
+240,class,2
+241,index,242
+241,Clump Thickness,3
+241,Uniformity of Cell Size,1
+241,Uniformity of Cell Shape,1
+241,Marginal Adhesion,3
+241,Single Epithelial Cell Size,1
+241,Bare Nuclei,1
+241,Bland Chromatin,3
+241,Normal Nucleoli,1
+241,Mitoses,1
+241,class,2
+242,index,243
+242,Clump Thickness,2
+242,Uniformity of Cell Size,1
+242,Uniformity of Cell Shape,1
+242,Marginal Adhesion,1
+242,Single Epithelial Cell Size,2
+242,Bare Nuclei,1
+242,Bland Chromatin,3
+242,Normal Nucleoli,1
+242,Mitoses,1
+242,class,2
+243,index,244
+243,Clump Thickness,1
+243,Uniformity of Cell Size,1
+243,Uniformity of Cell Shape,1
+243,Marginal Adhesion,1
+243,Single Epithelial Cell Size,2
+243,Bare Nuclei,5
+243,Bland Chromatin,5
+243,Normal Nucleoli,1
+243,Mitoses,1
+243,class,2
+244,index,245
+244,Clump Thickness,1
+244,Uniformity of Cell Size,1
+244,Uniformity of Cell Shape,1
+244,Marginal Adhesion,1
+244,Single Epithelial Cell Size,2
+244,Bare Nuclei,1
+244,Bland Chromatin,3
+244,Normal Nucleoli,1
+244,Mitoses,1
+244,class,2
+245,index,246
+245,Clump Thickness,5
+245,Uniformity of Cell Size,1
+245,Uniformity of Cell Shape,1
+245,Marginal Adhesion,2
+245,Single Epithelial Cell Size,2
+245,Bare Nuclei,2
+245,Bland Chromatin,3
+245,Normal Nucleoli,1
+245,Mitoses,1
+245,class,2
+246,index,247
+246,Clump Thickness,8
+246,Uniformity of Cell Size,10
+246,Uniformity of Cell Shape,10
+246,Marginal Adhesion,8
+246,Single Epithelial Cell Size,5
+246,Bare Nuclei,10
+246,Bland Chromatin,7
+246,Normal Nucleoli,8
+246,Mitoses,1
+246,class,4
+247,index,248
+247,Clump Thickness,8
+247,Uniformity of Cell Size,4
+247,Uniformity of Cell Shape,4
+247,Marginal Adhesion,1
+247,Single Epithelial Cell Size,2
+247,Bare Nuclei,9
+247,Bland Chromatin,3
+247,Normal Nucleoli,3
+247,Mitoses,1
+247,class,4
+248,index,249
+248,Clump Thickness,4
+248,Uniformity of Cell Size,1
+248,Uniformity of Cell Shape,1
+248,Marginal Adhesion,1
+248,Single Epithelial Cell Size,2
+248,Bare Nuclei,1
+248,Bland Chromatin,3
+248,Normal Nucleoli,6
+248,Mitoses,1
+248,class,2
+249,index,250
+249,Clump Thickness,3
+249,Uniformity of Cell Size,1
+249,Uniformity of Cell Shape,1
+249,Marginal Adhesion,1
+249,Single Epithelial Cell Size,2
+249,Bare Nuclei,?
+249,Bland Chromatin,3
+249,Normal Nucleoli,1
+249,Mitoses,1
+249,class,2
+250,index,251
+250,Clump Thickness,1
+250,Uniformity of Cell Size,2
+250,Uniformity of Cell Shape,2
+250,Marginal Adhesion,1
+250,Single Epithelial Cell Size,2
+250,Bare Nuclei,1
+250,Bland Chromatin,1
+250,Normal Nucleoli,1
+250,Mitoses,1
+250,class,2
+251,index,252
+251,Clump Thickness,10
+251,Uniformity of Cell Size,4
+251,Uniformity of Cell Shape,4
+251,Marginal Adhesion,10
+251,Single Epithelial Cell Size,2
+251,Bare Nuclei,10
+251,Bland Chromatin,5
+251,Normal Nucleoli,3
+251,Mitoses,3
+251,class,4
+252,index,253
+252,Clump Thickness,6
+252,Uniformity of Cell Size,3
+252,Uniformity of Cell Shape,3
+252,Marginal Adhesion,5
+252,Single Epithelial Cell Size,3
+252,Bare Nuclei,10
+252,Bland Chromatin,3
+252,Normal Nucleoli,5
+252,Mitoses,3
+252,class,2
+253,index,254
+253,Clump Thickness,6
+253,Uniformity of Cell Size,10
+253,Uniformity of Cell Shape,10
+253,Marginal Adhesion,2
+253,Single Epithelial Cell Size,8
+253,Bare Nuclei,10
+253,Bland Chromatin,7
+253,Normal Nucleoli,3
+253,Mitoses,3
+253,class,4
+254,index,255
+254,Clump Thickness,9
+254,Uniformity of Cell Size,10
+254,Uniformity of Cell Shape,10
+254,Marginal Adhesion,1
+254,Single Epithelial Cell Size,10
+254,Bare Nuclei,8
+254,Bland Chromatin,3
+254,Normal Nucleoli,3
+254,Mitoses,1
+254,class,4
+255,index,256
+255,Clump Thickness,5
+255,Uniformity of Cell Size,6
+255,Uniformity of Cell Shape,6
+255,Marginal Adhesion,2
+255,Single Epithelial Cell Size,4
+255,Bare Nuclei,10
+255,Bland Chromatin,3
+255,Normal Nucleoli,6
+255,Mitoses,1
+255,class,4
+256,index,257
+256,Clump Thickness,3
+256,Uniformity of Cell Size,1
+256,Uniformity of Cell Shape,1
+256,Marginal Adhesion,1
+256,Single Epithelial Cell Size,2
+256,Bare Nuclei,1
+256,Bland Chromatin,1
+256,Normal Nucleoli,1
+256,Mitoses,1
+256,class,2
+257,index,258
+257,Clump Thickness,3
+257,Uniformity of Cell Size,1
+257,Uniformity of Cell Shape,1
+257,Marginal Adhesion,1
+257,Single Epithelial Cell Size,2
+257,Bare Nuclei,1
+257,Bland Chromatin,2
+257,Normal Nucleoli,1
+257,Mitoses,1
+257,class,2
+258,index,259
+258,Clump Thickness,3
+258,Uniformity of Cell Size,1
+258,Uniformity of Cell Shape,1
+258,Marginal Adhesion,1
+258,Single Epithelial Cell Size,2
+258,Bare Nuclei,1
+258,Bland Chromatin,3
+258,Normal Nucleoli,1
+258,Mitoses,1
+258,class,2
+259,index,260
+259,Clump Thickness,5
+259,Uniformity of Cell Size,7
+259,Uniformity of Cell Shape,7
+259,Marginal Adhesion,1
+259,Single Epithelial Cell Size,5
+259,Bare Nuclei,8
+259,Bland Chromatin,3
+259,Normal Nucleoli,4
+259,Mitoses,1
+259,class,2
+260,index,261
+260,Clump Thickness,10
+260,Uniformity of Cell Size,5
+260,Uniformity of Cell Shape,8
+260,Marginal Adhesion,10
+260,Single Epithelial Cell Size,3
+260,Bare Nuclei,10
+260,Bland Chromatin,5
+260,Normal Nucleoli,1
+260,Mitoses,3
+260,class,4
+261,index,262
+261,Clump Thickness,5
+261,Uniformity of Cell Size,10
+261,Uniformity of Cell Shape,10
+261,Marginal Adhesion,6
+261,Single Epithelial Cell Size,10
+261,Bare Nuclei,10
+261,Bland Chromatin,10
+261,Normal Nucleoli,6
+261,Mitoses,5
+261,class,4
+262,index,263
+262,Clump Thickness,8
+262,Uniformity of Cell Size,8
+262,Uniformity of Cell Shape,9
+262,Marginal Adhesion,4
+262,Single Epithelial Cell Size,5
+262,Bare Nuclei,10
+262,Bland Chromatin,7
+262,Normal Nucleoli,8
+262,Mitoses,1
+262,class,4
+263,index,264
+263,Clump Thickness,10
+263,Uniformity of Cell Size,4
+263,Uniformity of Cell Shape,4
+263,Marginal Adhesion,10
+263,Single Epithelial Cell Size,6
+263,Bare Nuclei,10
+263,Bland Chromatin,5
+263,Normal Nucleoli,5
+263,Mitoses,1
+263,class,4
+264,index,265
+264,Clump Thickness,7
+264,Uniformity of Cell Size,9
+264,Uniformity of Cell Shape,4
+264,Marginal Adhesion,10
+264,Single Epithelial Cell Size,10
+264,Bare Nuclei,3
+264,Bland Chromatin,5
+264,Normal Nucleoli,3
+264,Mitoses,3
+264,class,4
+265,index,266
+265,Clump Thickness,5
+265,Uniformity of Cell Size,1
+265,Uniformity of Cell Shape,4
+265,Marginal Adhesion,1
+265,Single Epithelial Cell Size,2
+265,Bare Nuclei,1
+265,Bland Chromatin,3
+265,Normal Nucleoli,2
+265,Mitoses,1
+265,class,2
+266,index,267
+266,Clump Thickness,10
+266,Uniformity of Cell Size,10
+266,Uniformity of Cell Shape,6
+266,Marginal Adhesion,3
+266,Single Epithelial Cell Size,3
+266,Bare Nuclei,10
+266,Bland Chromatin,4
+266,Normal Nucleoli,3
+266,Mitoses,2
+266,class,4
+267,index,268
+267,Clump Thickness,3
+267,Uniformity of Cell Size,3
+267,Uniformity of Cell Shape,5
+267,Marginal Adhesion,2
+267,Single Epithelial Cell Size,3
+267,Bare Nuclei,10
+267,Bland Chromatin,7
+267,Normal Nucleoli,1
+267,Mitoses,1
+267,class,4
+268,index,269
+268,Clump Thickness,10
+268,Uniformity of Cell Size,8
+268,Uniformity of Cell Shape,8
+268,Marginal Adhesion,2
+268,Single Epithelial Cell Size,3
+268,Bare Nuclei,4
+268,Bland Chromatin,8
+268,Normal Nucleoli,7
+268,Mitoses,8
+268,class,4
+269,index,270
+269,Clump Thickness,1
+269,Uniformity of Cell Size,1
+269,Uniformity of Cell Shape,1
+269,Marginal Adhesion,1
+269,Single Epithelial Cell Size,2
+269,Bare Nuclei,1
+269,Bland Chromatin,3
+269,Normal Nucleoli,1
+269,Mitoses,1
+269,class,2
+270,index,271
+270,Clump Thickness,8
+270,Uniformity of Cell Size,4
+270,Uniformity of Cell Shape,7
+270,Marginal Adhesion,1
+270,Single Epithelial Cell Size,3
+270,Bare Nuclei,10
+270,Bland Chromatin,3
+270,Normal Nucleoli,9
+270,Mitoses,2
+270,class,4
+271,index,272
+271,Clump Thickness,5
+271,Uniformity of Cell Size,1
+271,Uniformity of Cell Shape,1
+271,Marginal Adhesion,1
+271,Single Epithelial Cell Size,2
+271,Bare Nuclei,1
+271,Bland Chromatin,3
+271,Normal Nucleoli,1
+271,Mitoses,1
+271,class,2
+272,index,273
+272,Clump Thickness,3
+272,Uniformity of Cell Size,3
+272,Uniformity of Cell Shape,5
+272,Marginal Adhesion,2
+272,Single Epithelial Cell Size,3
+272,Bare Nuclei,10
+272,Bland Chromatin,7
+272,Normal Nucleoli,1
+272,Mitoses,1
+272,class,4
+273,index,274
+273,Clump Thickness,7
+273,Uniformity of Cell Size,2
+273,Uniformity of Cell Shape,4
+273,Marginal Adhesion,1
+273,Single Epithelial Cell Size,3
+273,Bare Nuclei,4
+273,Bland Chromatin,3
+273,Normal Nucleoli,3
+273,Mitoses,1
+273,class,4
+274,index,275
+274,Clump Thickness,3
+274,Uniformity of Cell Size,1
+274,Uniformity of Cell Shape,1
+274,Marginal Adhesion,1
+274,Single Epithelial Cell Size,2
+274,Bare Nuclei,1
+274,Bland Chromatin,3
+274,Normal Nucleoli,2
+274,Mitoses,1
+274,class,2
+275,index,276
+275,Clump Thickness,3
+275,Uniformity of Cell Size,1
+275,Uniformity of Cell Shape,3
+275,Marginal Adhesion,1
+275,Single Epithelial Cell Size,2
+275,Bare Nuclei,?
+275,Bland Chromatin,2
+275,Normal Nucleoli,1
+275,Mitoses,1
+275,class,2
+276,index,277
+276,Clump Thickness,3
+276,Uniformity of Cell Size,1
+276,Uniformity of Cell Shape,1
+276,Marginal Adhesion,1
+276,Single Epithelial Cell Size,2
+276,Bare Nuclei,1
+276,Bland Chromatin,2
+276,Normal Nucleoli,1
+276,Mitoses,1
+276,class,2
+277,index,278
+277,Clump Thickness,1
+277,Uniformity of Cell Size,1
+277,Uniformity of Cell Shape,1
+277,Marginal Adhesion,1
+277,Single Epithelial Cell Size,2
+277,Bare Nuclei,1
+277,Bland Chromatin,2
+277,Normal Nucleoli,1
+277,Mitoses,1
+277,class,2
+278,index,279
+278,Clump Thickness,1
+278,Uniformity of Cell Size,1
+278,Uniformity of Cell Shape,1
+278,Marginal Adhesion,1
+278,Single Epithelial Cell Size,2
+278,Bare Nuclei,1
+278,Bland Chromatin,3
+278,Normal Nucleoli,1
+278,Mitoses,1
+278,class,2
+279,index,280
+279,Clump Thickness,10
+279,Uniformity of Cell Size,5
+279,Uniformity of Cell Shape,7
+279,Marginal Adhesion,3
+279,Single Epithelial Cell Size,3
+279,Bare Nuclei,7
+279,Bland Chromatin,3
+279,Normal Nucleoli,3
+279,Mitoses,8
+279,class,4
+280,index,281
+280,Clump Thickness,3
+280,Uniformity of Cell Size,1
+280,Uniformity of Cell Shape,1
+280,Marginal Adhesion,1
+280,Single Epithelial Cell Size,2
+280,Bare Nuclei,1
+280,Bland Chromatin,3
+280,Normal Nucleoli,1
+280,Mitoses,1
+280,class,2
+281,index,282
+281,Clump Thickness,2
+281,Uniformity of Cell Size,1
+281,Uniformity of Cell Shape,1
+281,Marginal Adhesion,2
+281,Single Epithelial Cell Size,2
+281,Bare Nuclei,1
+281,Bland Chromatin,3
+281,Normal Nucleoli,1
+281,Mitoses,1
+281,class,2
+282,index,283
+282,Clump Thickness,1
+282,Uniformity of Cell Size,4
+282,Uniformity of Cell Shape,3
+282,Marginal Adhesion,10
+282,Single Epithelial Cell Size,4
+282,Bare Nuclei,10
+282,Bland Chromatin,5
+282,Normal Nucleoli,6
+282,Mitoses,1
+282,class,4
+283,index,284
+283,Clump Thickness,10
+283,Uniformity of Cell Size,4
+283,Uniformity of Cell Shape,6
+283,Marginal Adhesion,1
+283,Single Epithelial Cell Size,2
+283,Bare Nuclei,10
+283,Bland Chromatin,5
+283,Normal Nucleoli,3
+283,Mitoses,1
+283,class,4
+284,index,285
+284,Clump Thickness,7
+284,Uniformity of Cell Size,4
+284,Uniformity of Cell Shape,5
+284,Marginal Adhesion,10
+284,Single Epithelial Cell Size,2
+284,Bare Nuclei,10
+284,Bland Chromatin,3
+284,Normal Nucleoli,8
+284,Mitoses,2
+284,class,4
+285,index,286
+285,Clump Thickness,8
+285,Uniformity of Cell Size,10
+285,Uniformity of Cell Shape,10
+285,Marginal Adhesion,10
+285,Single Epithelial Cell Size,8
+285,Bare Nuclei,10
+285,Bland Chromatin,10
+285,Normal Nucleoli,7
+285,Mitoses,3
+285,class,4
+286,index,287
+286,Clump Thickness,10
+286,Uniformity of Cell Size,10
+286,Uniformity of Cell Shape,10
+286,Marginal Adhesion,10
+286,Single Epithelial Cell Size,10
+286,Bare Nuclei,10
+286,Bland Chromatin,4
+286,Normal Nucleoli,10
+286,Mitoses,10
+286,class,4
+287,index,288
+287,Clump Thickness,3
+287,Uniformity of Cell Size,1
+287,Uniformity of Cell Shape,1
+287,Marginal Adhesion,1
+287,Single Epithelial Cell Size,3
+287,Bare Nuclei,1
+287,Bland Chromatin,2
+287,Normal Nucleoli,1
+287,Mitoses,1
+287,class,2
+288,index,289
+288,Clump Thickness,6
+288,Uniformity of Cell Size,1
+288,Uniformity of Cell Shape,3
+288,Marginal Adhesion,1
+288,Single Epithelial Cell Size,4
+288,Bare Nuclei,5
+288,Bland Chromatin,5
+288,Normal Nucleoli,10
+288,Mitoses,1
+288,class,4
+289,index,290
+289,Clump Thickness,5
+289,Uniformity of Cell Size,6
+289,Uniformity of Cell Shape,6
+289,Marginal Adhesion,8
+289,Single Epithelial Cell Size,6
+289,Bare Nuclei,10
+289,Bland Chromatin,4
+289,Normal Nucleoli,10
+289,Mitoses,4
+289,class,4
+290,index,291
+290,Clump Thickness,1
+290,Uniformity of Cell Size,1
+290,Uniformity of Cell Shape,1
+290,Marginal Adhesion,1
+290,Single Epithelial Cell Size,2
+290,Bare Nuclei,1
+290,Bland Chromatin,1
+290,Normal Nucleoli,1
+290,Mitoses,1
+290,class,2
+291,index,292
+291,Clump Thickness,1
+291,Uniformity of Cell Size,1
+291,Uniformity of Cell Shape,1
+291,Marginal Adhesion,1
+291,Single Epithelial Cell Size,2
+291,Bare Nuclei,1
+291,Bland Chromatin,3
+291,Normal Nucleoli,1
+291,Mitoses,1
+291,class,2
+292,index,293
+292,Clump Thickness,8
+292,Uniformity of Cell Size,8
+292,Uniformity of Cell Shape,8
+292,Marginal Adhesion,1
+292,Single Epithelial Cell Size,2
+292,Bare Nuclei,?
+292,Bland Chromatin,6
+292,Normal Nucleoli,10
+292,Mitoses,1
+292,class,4
+293,index,294
+293,Clump Thickness,10
+293,Uniformity of Cell Size,4
+293,Uniformity of Cell Shape,4
+293,Marginal Adhesion,6
+293,Single Epithelial Cell Size,2
+293,Bare Nuclei,10
+293,Bland Chromatin,2
+293,Normal Nucleoli,3
+293,Mitoses,1
+293,class,4
+294,index,295
+294,Clump Thickness,1
+294,Uniformity of Cell Size,1
+294,Uniformity of Cell Shape,1
+294,Marginal Adhesion,1
+294,Single Epithelial Cell Size,2
+294,Bare Nuclei,?
+294,Bland Chromatin,2
+294,Normal Nucleoli,1
+294,Mitoses,1
+294,class,2
+295,index,296
+295,Clump Thickness,5
+295,Uniformity of Cell Size,5
+295,Uniformity of Cell Shape,7
+295,Marginal Adhesion,8
+295,Single Epithelial Cell Size,6
+295,Bare Nuclei,10
+295,Bland Chromatin,7
+295,Normal Nucleoli,4
+295,Mitoses,1
+295,class,4
+296,index,297
+296,Clump Thickness,5
+296,Uniformity of Cell Size,3
+296,Uniformity of Cell Shape,4
+296,Marginal Adhesion,3
+296,Single Epithelial Cell Size,4
+296,Bare Nuclei,5
+296,Bland Chromatin,4
+296,Normal Nucleoli,7
+296,Mitoses,1
+296,class,2
+297,index,298
+297,Clump Thickness,5
+297,Uniformity of Cell Size,4
+297,Uniformity of Cell Shape,3
+297,Marginal Adhesion,1
+297,Single Epithelial Cell Size,2
+297,Bare Nuclei,?
+297,Bland Chromatin,2
+297,Normal Nucleoli,3
+297,Mitoses,1
+297,class,2
+298,index,299
+298,Clump Thickness,8
+298,Uniformity of Cell Size,2
+298,Uniformity of Cell Shape,1
+298,Marginal Adhesion,1
+298,Single Epithelial Cell Size,5
+298,Bare Nuclei,1
+298,Bland Chromatin,1
+298,Normal Nucleoli,1
+298,Mitoses,1
+298,class,2
+299,index,300
+299,Clump Thickness,9
+299,Uniformity of Cell Size,1
+299,Uniformity of Cell Shape,2
+299,Marginal Adhesion,6
+299,Single Epithelial Cell Size,4
+299,Bare Nuclei,10
+299,Bland Chromatin,7
+299,Normal Nucleoli,7
+299,Mitoses,2
+299,class,4
+300,index,301
+300,Clump Thickness,8
+300,Uniformity of Cell Size,4
+300,Uniformity of Cell Shape,10
+300,Marginal Adhesion,5
+300,Single Epithelial Cell Size,4
+300,Bare Nuclei,4
+300,Bland Chromatin,7
+300,Normal Nucleoli,10
+300,Mitoses,1
+300,class,4
+301,index,302
+301,Clump Thickness,1
+301,Uniformity of Cell Size,1
+301,Uniformity of Cell Shape,1
+301,Marginal Adhesion,1
+301,Single Epithelial Cell Size,2
+301,Bare Nuclei,1
+301,Bland Chromatin,3
+301,Normal Nucleoli,1
+301,Mitoses,1
+301,class,2
+302,index,303
+302,Clump Thickness,10
+302,Uniformity of Cell Size,10
+302,Uniformity of Cell Shape,10
+302,Marginal Adhesion,7
+302,Single Epithelial Cell Size,9
+302,Bare Nuclei,10
+302,Bland Chromatin,7
+302,Normal Nucleoli,10
+302,Mitoses,10
+302,class,4
+303,index,304
+303,Clump Thickness,1
+303,Uniformity of Cell Size,1
+303,Uniformity of Cell Shape,1
+303,Marginal Adhesion,1
+303,Single Epithelial Cell Size,2
+303,Bare Nuclei,1
+303,Bland Chromatin,3
+303,Normal Nucleoli,1
+303,Mitoses,1
+303,class,2
+304,index,305
+304,Clump Thickness,8
+304,Uniformity of Cell Size,3
+304,Uniformity of Cell Shape,4
+304,Marginal Adhesion,9
+304,Single Epithelial Cell Size,3
+304,Bare Nuclei,10
+304,Bland Chromatin,3
+304,Normal Nucleoli,3
+304,Mitoses,1
+304,class,4
+305,index,306
+305,Clump Thickness,10
+305,Uniformity of Cell Size,8
+305,Uniformity of Cell Shape,4
+305,Marginal Adhesion,4
+305,Single Epithelial Cell Size,4
+305,Bare Nuclei,10
+305,Bland Chromatin,3
+305,Normal Nucleoli,10
+305,Mitoses,4
+305,class,4
+306,index,307
+306,Clump Thickness,1
+306,Uniformity of Cell Size,1
+306,Uniformity of Cell Shape,1
+306,Marginal Adhesion,1
+306,Single Epithelial Cell Size,2
+306,Bare Nuclei,1
+306,Bland Chromatin,3
+306,Normal Nucleoli,1
+306,Mitoses,1
+306,class,2
+307,index,308
+307,Clump Thickness,1
+307,Uniformity of Cell Size,1
+307,Uniformity of Cell Shape,1
+307,Marginal Adhesion,1
+307,Single Epithelial Cell Size,2
+307,Bare Nuclei,1
+307,Bland Chromatin,3
+307,Normal Nucleoli,1
+307,Mitoses,1
+307,class,2
+308,index,309
+308,Clump Thickness,7
+308,Uniformity of Cell Size,8
+308,Uniformity of Cell Shape,7
+308,Marginal Adhesion,6
+308,Single Epithelial Cell Size,4
+308,Bare Nuclei,3
+308,Bland Chromatin,8
+308,Normal Nucleoli,8
+308,Mitoses,4
+308,class,4
+309,index,310
+309,Clump Thickness,3
+309,Uniformity of Cell Size,1
+309,Uniformity of Cell Shape,1
+309,Marginal Adhesion,1
+309,Single Epithelial Cell Size,2
+309,Bare Nuclei,5
+309,Bland Chromatin,5
+309,Normal Nucleoli,1
+309,Mitoses,1
+309,class,2
+310,index,311
+310,Clump Thickness,2
+310,Uniformity of Cell Size,1
+310,Uniformity of Cell Shape,1
+310,Marginal Adhesion,1
+310,Single Epithelial Cell Size,3
+310,Bare Nuclei,1
+310,Bland Chromatin,2
+310,Normal Nucleoli,1
+310,Mitoses,1
+310,class,2
+311,index,312
+311,Clump Thickness,1
+311,Uniformity of Cell Size,1
+311,Uniformity of Cell Shape,1
+311,Marginal Adhesion,1
+311,Single Epithelial Cell Size,2
+311,Bare Nuclei,1
+311,Bland Chromatin,1
+311,Normal Nucleoli,1
+311,Mitoses,1
+311,class,2
+312,index,313
+312,Clump Thickness,8
+312,Uniformity of Cell Size,6
+312,Uniformity of Cell Shape,4
+312,Marginal Adhesion,10
+312,Single Epithelial Cell Size,10
+312,Bare Nuclei,1
+312,Bland Chromatin,3
+312,Normal Nucleoli,5
+312,Mitoses,1
+312,class,4
+313,index,314
+313,Clump Thickness,1
+313,Uniformity of Cell Size,1
+313,Uniformity of Cell Shape,1
+313,Marginal Adhesion,1
+313,Single Epithelial Cell Size,2
+313,Bare Nuclei,1
+313,Bland Chromatin,1
+313,Normal Nucleoli,1
+313,Mitoses,1
+313,class,2
+314,index,315
+314,Clump Thickness,1
+314,Uniformity of Cell Size,1
+314,Uniformity of Cell Shape,1
+314,Marginal Adhesion,1
+314,Single Epithelial Cell Size,1
+314,Bare Nuclei,1
+314,Bland Chromatin,2
+314,Normal Nucleoli,1
+314,Mitoses,1
+314,class,2
+315,index,316
+315,Clump Thickness,4
+315,Uniformity of Cell Size,6
+315,Uniformity of Cell Shape,5
+315,Marginal Adhesion,6
+315,Single Epithelial Cell Size,7
+315,Bare Nuclei,?
+315,Bland Chromatin,4
+315,Normal Nucleoli,9
+315,Mitoses,1
+315,class,2
+316,index,317
+316,Clump Thickness,5
+316,Uniformity of Cell Size,5
+316,Uniformity of Cell Shape,5
+316,Marginal Adhesion,2
+316,Single Epithelial Cell Size,5
+316,Bare Nuclei,10
+316,Bland Chromatin,4
+316,Normal Nucleoli,3
+316,Mitoses,1
+316,class,4
+317,index,318
+317,Clump Thickness,6
+317,Uniformity of Cell Size,8
+317,Uniformity of Cell Shape,7
+317,Marginal Adhesion,8
+317,Single Epithelial Cell Size,6
+317,Bare Nuclei,8
+317,Bland Chromatin,8
+317,Normal Nucleoli,9
+317,Mitoses,1
+317,class,4
+318,index,319
+318,Clump Thickness,1
+318,Uniformity of Cell Size,1
+318,Uniformity of Cell Shape,1
+318,Marginal Adhesion,1
+318,Single Epithelial Cell Size,5
+318,Bare Nuclei,1
+318,Bland Chromatin,3
+318,Normal Nucleoli,1
+318,Mitoses,1
+318,class,2
+319,index,320
+319,Clump Thickness,4
+319,Uniformity of Cell Size,4
+319,Uniformity of Cell Shape,4
+319,Marginal Adhesion,4
+319,Single Epithelial Cell Size,6
+319,Bare Nuclei,5
+319,Bland Chromatin,7
+319,Normal Nucleoli,3
+319,Mitoses,1
+319,class,2
+320,index,321
+320,Clump Thickness,7
+320,Uniformity of Cell Size,6
+320,Uniformity of Cell Shape,3
+320,Marginal Adhesion,2
+320,Single Epithelial Cell Size,5
+320,Bare Nuclei,10
+320,Bland Chromatin,7
+320,Normal Nucleoli,4
+320,Mitoses,6
+320,class,4
+321,index,322
+321,Clump Thickness,3
+321,Uniformity of Cell Size,1
+321,Uniformity of Cell Shape,1
+321,Marginal Adhesion,1
+321,Single Epithelial Cell Size,2
+321,Bare Nuclei,?
+321,Bland Chromatin,3
+321,Normal Nucleoli,1
+321,Mitoses,1
+321,class,2
+322,index,323
+322,Clump Thickness,3
+322,Uniformity of Cell Size,1
+322,Uniformity of Cell Shape,1
+322,Marginal Adhesion,1
+322,Single Epithelial Cell Size,2
+322,Bare Nuclei,1
+322,Bland Chromatin,3
+322,Normal Nucleoli,1
+322,Mitoses,1
+322,class,2
+323,index,324
+323,Clump Thickness,5
+323,Uniformity of Cell Size,4
+323,Uniformity of Cell Shape,6
+323,Marginal Adhesion,10
+323,Single Epithelial Cell Size,2
+323,Bare Nuclei,10
+323,Bland Chromatin,4
+323,Normal Nucleoli,1
+323,Mitoses,1
+323,class,4
+324,index,325
+324,Clump Thickness,1
+324,Uniformity of Cell Size,1
+324,Uniformity of Cell Shape,1
+324,Marginal Adhesion,1
+324,Single Epithelial Cell Size,2
+324,Bare Nuclei,1
+324,Bland Chromatin,3
+324,Normal Nucleoli,1
+324,Mitoses,1
+324,class,2
+325,index,326
+325,Clump Thickness,3
+325,Uniformity of Cell Size,2
+325,Uniformity of Cell Shape,2
+325,Marginal Adhesion,1
+325,Single Epithelial Cell Size,2
+325,Bare Nuclei,1
+325,Bland Chromatin,2
+325,Normal Nucleoli,3
+325,Mitoses,1
+325,class,2
+326,index,327
+326,Clump Thickness,10
+326,Uniformity of Cell Size,1
+326,Uniformity of Cell Shape,1
+326,Marginal Adhesion,1
+326,Single Epithelial Cell Size,2
+326,Bare Nuclei,10
+326,Bland Chromatin,5
+326,Normal Nucleoli,4
+326,Mitoses,1
+326,class,4
+327,index,328
+327,Clump Thickness,1
+327,Uniformity of Cell Size,1
+327,Uniformity of Cell Shape,1
+327,Marginal Adhesion,1
+327,Single Epithelial Cell Size,2
+327,Bare Nuclei,1
+327,Bland Chromatin,2
+327,Normal Nucleoli,1
+327,Mitoses,1
+327,class,2
+328,index,329
+328,Clump Thickness,8
+328,Uniformity of Cell Size,10
+328,Uniformity of Cell Shape,3
+328,Marginal Adhesion,2
+328,Single Epithelial Cell Size,6
+328,Bare Nuclei,4
+328,Bland Chromatin,3
+328,Normal Nucleoli,10
+328,Mitoses,1
+328,class,4
+329,index,330
+329,Clump Thickness,10
+329,Uniformity of Cell Size,4
+329,Uniformity of Cell Shape,6
+329,Marginal Adhesion,4
+329,Single Epithelial Cell Size,5
+329,Bare Nuclei,10
+329,Bland Chromatin,7
+329,Normal Nucleoli,1
+329,Mitoses,1
+329,class,4
+330,index,331
+330,Clump Thickness,10
+330,Uniformity of Cell Size,4
+330,Uniformity of Cell Shape,7
+330,Marginal Adhesion,2
+330,Single Epithelial Cell Size,2
+330,Bare Nuclei,8
+330,Bland Chromatin,6
+330,Normal Nucleoli,1
+330,Mitoses,1
+330,class,4
+331,index,332
+331,Clump Thickness,5
+331,Uniformity of Cell Size,1
+331,Uniformity of Cell Shape,1
+331,Marginal Adhesion,1
+331,Single Epithelial Cell Size,2
+331,Bare Nuclei,1
+331,Bland Chromatin,3
+331,Normal Nucleoli,1
+331,Mitoses,2
+331,class,2
+332,index,333
+332,Clump Thickness,5
+332,Uniformity of Cell Size,2
+332,Uniformity of Cell Shape,2
+332,Marginal Adhesion,2
+332,Single Epithelial Cell Size,2
+332,Bare Nuclei,1
+332,Bland Chromatin,2
+332,Normal Nucleoli,2
+332,Mitoses,1
+332,class,2
+333,index,334
+333,Clump Thickness,5
+333,Uniformity of Cell Size,4
+333,Uniformity of Cell Shape,6
+333,Marginal Adhesion,6
+333,Single Epithelial Cell Size,4
+333,Bare Nuclei,10
+333,Bland Chromatin,4
+333,Normal Nucleoli,3
+333,Mitoses,1
+333,class,4
+334,index,335
+334,Clump Thickness,8
+334,Uniformity of Cell Size,6
+334,Uniformity of Cell Shape,7
+334,Marginal Adhesion,3
+334,Single Epithelial Cell Size,3
+334,Bare Nuclei,10
+334,Bland Chromatin,3
+334,Normal Nucleoli,4
+334,Mitoses,2
+334,class,4
+335,index,336
+335,Clump Thickness,1
+335,Uniformity of Cell Size,1
+335,Uniformity of Cell Shape,1
+335,Marginal Adhesion,1
+335,Single Epithelial Cell Size,2
+335,Bare Nuclei,1
+335,Bland Chromatin,1
+335,Normal Nucleoli,1
+335,Mitoses,1
+335,class,2
+336,index,337
+336,Clump Thickness,6
+336,Uniformity of Cell Size,5
+336,Uniformity of Cell Shape,5
+336,Marginal Adhesion,8
+336,Single Epithelial Cell Size,4
+336,Bare Nuclei,10
+336,Bland Chromatin,3
+336,Normal Nucleoli,4
+336,Mitoses,1
+336,class,4
+337,index,338
+337,Clump Thickness,1
+337,Uniformity of Cell Size,1
+337,Uniformity of Cell Shape,1
+337,Marginal Adhesion,1
+337,Single Epithelial Cell Size,2
+337,Bare Nuclei,1
+337,Bland Chromatin,3
+337,Normal Nucleoli,1
+337,Mitoses,1
+337,class,2
+338,index,339
+338,Clump Thickness,1
+338,Uniformity of Cell Size,1
+338,Uniformity of Cell Shape,1
+338,Marginal Adhesion,1
+338,Single Epithelial Cell Size,1
+338,Bare Nuclei,1
+338,Bland Chromatin,2
+338,Normal Nucleoli,1
+338,Mitoses,1
+338,class,2
+339,index,340
+339,Clump Thickness,8
+339,Uniformity of Cell Size,5
+339,Uniformity of Cell Shape,5
+339,Marginal Adhesion,5
+339,Single Epithelial Cell Size,2
+339,Bare Nuclei,10
+339,Bland Chromatin,4
+339,Normal Nucleoli,3
+339,Mitoses,1
+339,class,4
+340,index,341
+340,Clump Thickness,10
+340,Uniformity of Cell Size,3
+340,Uniformity of Cell Shape,3
+340,Marginal Adhesion,1
+340,Single Epithelial Cell Size,2
+340,Bare Nuclei,10
+340,Bland Chromatin,7
+340,Normal Nucleoli,6
+340,Mitoses,1
+340,class,4
+341,index,342
+341,Clump Thickness,1
+341,Uniformity of Cell Size,1
+341,Uniformity of Cell Shape,1
+341,Marginal Adhesion,1
+341,Single Epithelial Cell Size,2
+341,Bare Nuclei,1
+341,Bland Chromatin,3
+341,Normal Nucleoli,1
+341,Mitoses,1
+341,class,2
+342,index,343
+342,Clump Thickness,2
+342,Uniformity of Cell Size,1
+342,Uniformity of Cell Shape,1
+342,Marginal Adhesion,1
+342,Single Epithelial Cell Size,2
+342,Bare Nuclei,1
+342,Bland Chromatin,1
+342,Normal Nucleoli,1
+342,Mitoses,1
+342,class,2
+343,index,344
+343,Clump Thickness,1
+343,Uniformity of Cell Size,1
+343,Uniformity of Cell Shape,1
+343,Marginal Adhesion,1
+343,Single Epithelial Cell Size,2
+343,Bare Nuclei,1
+343,Bland Chromatin,1
+343,Normal Nucleoli,1
+343,Mitoses,1
+343,class,2
+344,index,345
+344,Clump Thickness,7
+344,Uniformity of Cell Size,6
+344,Uniformity of Cell Shape,4
+344,Marginal Adhesion,8
+344,Single Epithelial Cell Size,10
+344,Bare Nuclei,10
+344,Bland Chromatin,9
+344,Normal Nucleoli,5
+344,Mitoses,3
+344,class,4
+345,index,346
+345,Clump Thickness,1
+345,Uniformity of Cell Size,1
+345,Uniformity of Cell Shape,1
+345,Marginal Adhesion,1
+345,Single Epithelial Cell Size,2
+345,Bare Nuclei,1
+345,Bland Chromatin,1
+345,Normal Nucleoli,1
+345,Mitoses,1
+345,class,2
+346,index,347
+346,Clump Thickness,5
+346,Uniformity of Cell Size,2
+346,Uniformity of Cell Shape,2
+346,Marginal Adhesion,2
+346,Single Epithelial Cell Size,3
+346,Bare Nuclei,1
+346,Bland Chromatin,1
+346,Normal Nucleoli,3
+346,Mitoses,1
+346,class,2
+347,index,348
+347,Clump Thickness,1
+347,Uniformity of Cell Size,1
+347,Uniformity of Cell Shape,1
+347,Marginal Adhesion,1
+347,Single Epithelial Cell Size,1
+347,Bare Nuclei,1
+347,Bland Chromatin,1
+347,Normal Nucleoli,3
+347,Mitoses,1
+347,class,2
+348,index,349
+348,Clump Thickness,3
+348,Uniformity of Cell Size,4
+348,Uniformity of Cell Shape,4
+348,Marginal Adhesion,10
+348,Single Epithelial Cell Size,5
+348,Bare Nuclei,1
+348,Bland Chromatin,3
+348,Normal Nucleoli,3
+348,Mitoses,1
+348,class,4
+349,index,350
+349,Clump Thickness,4
+349,Uniformity of Cell Size,2
+349,Uniformity of Cell Shape,3
+349,Marginal Adhesion,5
+349,Single Epithelial Cell Size,3
+349,Bare Nuclei,8
+349,Bland Chromatin,7
+349,Normal Nucleoli,6
+349,Mitoses,1
+349,class,4
+350,index,351
+350,Clump Thickness,5
+350,Uniformity of Cell Size,1
+350,Uniformity of Cell Shape,1
+350,Marginal Adhesion,3
+350,Single Epithelial Cell Size,2
+350,Bare Nuclei,1
+350,Bland Chromatin,1
+350,Normal Nucleoli,1
+350,Mitoses,1
+350,class,2
+351,index,352
+351,Clump Thickness,2
+351,Uniformity of Cell Size,1
+351,Uniformity of Cell Shape,1
+351,Marginal Adhesion,1
+351,Single Epithelial Cell Size,2
+351,Bare Nuclei,1
+351,Bland Chromatin,3
+351,Normal Nucleoli,1
+351,Mitoses,1
+351,class,2
+352,index,353
+352,Clump Thickness,3
+352,Uniformity of Cell Size,4
+352,Uniformity of Cell Shape,5
+352,Marginal Adhesion,3
+352,Single Epithelial Cell Size,7
+352,Bare Nuclei,3
+352,Bland Chromatin,4
+352,Normal Nucleoli,6
+352,Mitoses,1
+352,class,2
+353,index,354
+353,Clump Thickness,2
+353,Uniformity of Cell Size,7
+353,Uniformity of Cell Shape,10
+353,Marginal Adhesion,10
+353,Single Epithelial Cell Size,7
+353,Bare Nuclei,10
+353,Bland Chromatin,4
+353,Normal Nucleoli,9
+353,Mitoses,4
+353,class,4
+354,index,355
+354,Clump Thickness,1
+354,Uniformity of Cell Size,1
+354,Uniformity of Cell Shape,1
+354,Marginal Adhesion,1
+354,Single Epithelial Cell Size,2
+354,Bare Nuclei,1
+354,Bland Chromatin,2
+354,Normal Nucleoli,1
+354,Mitoses,1
+354,class,2
+355,index,356
+355,Clump Thickness,4
+355,Uniformity of Cell Size,1
+355,Uniformity of Cell Shape,1
+355,Marginal Adhesion,1
+355,Single Epithelial Cell Size,3
+355,Bare Nuclei,1
+355,Bland Chromatin,2
+355,Normal Nucleoli,2
+355,Mitoses,1
+355,class,2
+356,index,357
+356,Clump Thickness,5
+356,Uniformity of Cell Size,3
+356,Uniformity of Cell Shape,3
+356,Marginal Adhesion,1
+356,Single Epithelial Cell Size,3
+356,Bare Nuclei,3
+356,Bland Chromatin,3
+356,Normal Nucleoli,3
+356,Mitoses,3
+356,class,4
+357,index,358
+357,Clump Thickness,8
+357,Uniformity of Cell Size,10
+357,Uniformity of Cell Shape,10
+357,Marginal Adhesion,7
+357,Single Epithelial Cell Size,10
+357,Bare Nuclei,10
+357,Bland Chromatin,7
+357,Normal Nucleoli,3
+357,Mitoses,8
+357,class,4
+358,index,359
+358,Clump Thickness,8
+358,Uniformity of Cell Size,10
+358,Uniformity of Cell Shape,5
+358,Marginal Adhesion,3
+358,Single Epithelial Cell Size,8
+358,Bare Nuclei,4
+358,Bland Chromatin,4
+358,Normal Nucleoli,10
+358,Mitoses,3
+358,class,4
+359,index,360
+359,Clump Thickness,10
+359,Uniformity of Cell Size,3
+359,Uniformity of Cell Shape,5
+359,Marginal Adhesion,4
+359,Single Epithelial Cell Size,3
+359,Bare Nuclei,7
+359,Bland Chromatin,3
+359,Normal Nucleoli,5
+359,Mitoses,3
+359,class,4
+360,index,361
+360,Clump Thickness,6
+360,Uniformity of Cell Size,10
+360,Uniformity of Cell Shape,10
+360,Marginal Adhesion,10
+360,Single Epithelial Cell Size,10
+360,Bare Nuclei,10
+360,Bland Chromatin,8
+360,Normal Nucleoli,10
+360,Mitoses,10
+360,class,4
+361,index,362
+361,Clump Thickness,3
+361,Uniformity of Cell Size,10
+361,Uniformity of Cell Shape,3
+361,Marginal Adhesion,10
+361,Single Epithelial Cell Size,6
+361,Bare Nuclei,10
+361,Bland Chromatin,5
+361,Normal Nucleoli,1
+361,Mitoses,4
+361,class,4
+362,index,363
+362,Clump Thickness,3
+362,Uniformity of Cell Size,2
+362,Uniformity of Cell Shape,2
+362,Marginal Adhesion,1
+362,Single Epithelial Cell Size,4
+362,Bare Nuclei,3
+362,Bland Chromatin,2
+362,Normal Nucleoli,1
+362,Mitoses,1
+362,class,2
+363,index,364
+363,Clump Thickness,4
+363,Uniformity of Cell Size,4
+363,Uniformity of Cell Shape,4
+363,Marginal Adhesion,2
+363,Single Epithelial Cell Size,2
+363,Bare Nuclei,3
+363,Bland Chromatin,2
+363,Normal Nucleoli,1
+363,Mitoses,1
+363,class,2
+364,index,365
+364,Clump Thickness,2
+364,Uniformity of Cell Size,1
+364,Uniformity of Cell Shape,1
+364,Marginal Adhesion,1
+364,Single Epithelial Cell Size,2
+364,Bare Nuclei,1
+364,Bland Chromatin,3
+364,Normal Nucleoli,1
+364,Mitoses,1
+364,class,2
+365,index,366
+365,Clump Thickness,2
+365,Uniformity of Cell Size,1
+365,Uniformity of Cell Shape,1
+365,Marginal Adhesion,1
+365,Single Epithelial Cell Size,2
+365,Bare Nuclei,1
+365,Bland Chromatin,2
+365,Normal Nucleoli,1
+365,Mitoses,1
+365,class,2
+366,index,367
+366,Clump Thickness,6
+366,Uniformity of Cell Size,10
+366,Uniformity of Cell Shape,10
+366,Marginal Adhesion,10
+366,Single Epithelial Cell Size,8
+366,Bare Nuclei,10
+366,Bland Chromatin,7
+366,Normal Nucleoli,10
+366,Mitoses,7
+366,class,4
+367,index,368
+367,Clump Thickness,5
+367,Uniformity of Cell Size,8
+367,Uniformity of Cell Shape,8
+367,Marginal Adhesion,10
+367,Single Epithelial Cell Size,5
+367,Bare Nuclei,10
+367,Bland Chromatin,8
+367,Normal Nucleoli,10
+367,Mitoses,3
+367,class,4
+368,index,369
+368,Clump Thickness,1
+368,Uniformity of Cell Size,1
+368,Uniformity of Cell Shape,3
+368,Marginal Adhesion,1
+368,Single Epithelial Cell Size,2
+368,Bare Nuclei,1
+368,Bland Chromatin,1
+368,Normal Nucleoli,1
+368,Mitoses,1
+368,class,2
+369,index,370
+369,Clump Thickness,1
+369,Uniformity of Cell Size,1
+369,Uniformity of Cell Shape,3
+369,Marginal Adhesion,1
+369,Single Epithelial Cell Size,1
+369,Bare Nuclei,1
+369,Bland Chromatin,2
+369,Normal Nucleoli,1
+369,Mitoses,1
+369,class,2
+370,index,371
+370,Clump Thickness,4
+370,Uniformity of Cell Size,3
+370,Uniformity of Cell Shape,2
+370,Marginal Adhesion,1
+370,Single Epithelial Cell Size,3
+370,Bare Nuclei,1
+370,Bland Chromatin,2
+370,Normal Nucleoli,1
+370,Mitoses,1
+370,class,2
+371,index,372
+371,Clump Thickness,1
+371,Uniformity of Cell Size,1
+371,Uniformity of Cell Shape,3
+371,Marginal Adhesion,1
+371,Single Epithelial Cell Size,2
+371,Bare Nuclei,1
+371,Bland Chromatin,1
+371,Normal Nucleoli,1
+371,Mitoses,1
+371,class,2
+372,index,373
+372,Clump Thickness,4
+372,Uniformity of Cell Size,1
+372,Uniformity of Cell Shape,2
+372,Marginal Adhesion,1
+372,Single Epithelial Cell Size,2
+372,Bare Nuclei,1
+372,Bland Chromatin,2
+372,Normal Nucleoli,1
+372,Mitoses,1
+372,class,2
+373,index,374
+373,Clump Thickness,5
+373,Uniformity of Cell Size,1
+373,Uniformity of Cell Shape,1
+373,Marginal Adhesion,2
+373,Single Epithelial Cell Size,2
+373,Bare Nuclei,1
+373,Bland Chromatin,2
+373,Normal Nucleoli,1
+373,Mitoses,1
+373,class,2
+374,index,375
+374,Clump Thickness,3
+374,Uniformity of Cell Size,1
+374,Uniformity of Cell Shape,2
+374,Marginal Adhesion,1
+374,Single Epithelial Cell Size,2
+374,Bare Nuclei,1
+374,Bland Chromatin,2
+374,Normal Nucleoli,1
+374,Mitoses,1
+374,class,2
+375,index,376
+375,Clump Thickness,1
+375,Uniformity of Cell Size,1
+375,Uniformity of Cell Shape,1
+375,Marginal Adhesion,1
+375,Single Epithelial Cell Size,2
+375,Bare Nuclei,1
+375,Bland Chromatin,1
+375,Normal Nucleoli,1
+375,Mitoses,1
+375,class,2
+376,index,377
+376,Clump Thickness,1
+376,Uniformity of Cell Size,1
+376,Uniformity of Cell Shape,1
+376,Marginal Adhesion,1
+376,Single Epithelial Cell Size,2
+376,Bare Nuclei,1
+376,Bland Chromatin,2
+376,Normal Nucleoli,1
+376,Mitoses,1
+376,class,2
+377,index,378
+377,Clump Thickness,1
+377,Uniformity of Cell Size,1
+377,Uniformity of Cell Shape,1
+377,Marginal Adhesion,1
+377,Single Epithelial Cell Size,1
+377,Bare Nuclei,1
+377,Bland Chromatin,2
+377,Normal Nucleoli,1
+377,Mitoses,1
+377,class,2
+378,index,379
+378,Clump Thickness,3
+378,Uniformity of Cell Size,1
+378,Uniformity of Cell Shape,1
+378,Marginal Adhesion,4
+378,Single Epithelial Cell Size,3
+378,Bare Nuclei,1
+378,Bland Chromatin,2
+378,Normal Nucleoli,2
+378,Mitoses,1
+378,class,2
+379,index,380
+379,Clump Thickness,5
+379,Uniformity of Cell Size,3
+379,Uniformity of Cell Shape,4
+379,Marginal Adhesion,1
+379,Single Epithelial Cell Size,4
+379,Bare Nuclei,1
+379,Bland Chromatin,3
+379,Normal Nucleoli,1
+379,Mitoses,1
+379,class,2
+380,index,381
+380,Clump Thickness,1
+380,Uniformity of Cell Size,1
+380,Uniformity of Cell Shape,1
+380,Marginal Adhesion,1
+380,Single Epithelial Cell Size,2
+380,Bare Nuclei,1
+380,Bland Chromatin,1
+380,Normal Nucleoli,1
+380,Mitoses,1
+380,class,2
+381,index,382
+381,Clump Thickness,10
+381,Uniformity of Cell Size,6
+381,Uniformity of Cell Shape,3
+381,Marginal Adhesion,6
+381,Single Epithelial Cell Size,4
+381,Bare Nuclei,10
+381,Bland Chromatin,7
+381,Normal Nucleoli,8
+381,Mitoses,4
+381,class,4
+382,index,383
+382,Clump Thickness,3
+382,Uniformity of Cell Size,2
+382,Uniformity of Cell Shape,2
+382,Marginal Adhesion,2
+382,Single Epithelial Cell Size,2
+382,Bare Nuclei,1
+382,Bland Chromatin,3
+382,Normal Nucleoli,2
+382,Mitoses,1
+382,class,2
+383,index,384
+383,Clump Thickness,2
+383,Uniformity of Cell Size,1
+383,Uniformity of Cell Shape,1
+383,Marginal Adhesion,1
+383,Single Epithelial Cell Size,2
+383,Bare Nuclei,1
+383,Bland Chromatin,1
+383,Normal Nucleoli,1
+383,Mitoses,1
+383,class,2
+384,index,385
+384,Clump Thickness,2
+384,Uniformity of Cell Size,1
+384,Uniformity of Cell Shape,1
+384,Marginal Adhesion,1
+384,Single Epithelial Cell Size,2
+384,Bare Nuclei,1
+384,Bland Chromatin,1
+384,Normal Nucleoli,1
+384,Mitoses,1
+384,class,2
+385,index,386
+385,Clump Thickness,3
+385,Uniformity of Cell Size,3
+385,Uniformity of Cell Shape,2
+385,Marginal Adhesion,2
+385,Single Epithelial Cell Size,3
+385,Bare Nuclei,1
+385,Bland Chromatin,1
+385,Normal Nucleoli,2
+385,Mitoses,3
+385,class,2
+386,index,387
+386,Clump Thickness,7
+386,Uniformity of Cell Size,6
+386,Uniformity of Cell Shape,6
+386,Marginal Adhesion,3
+386,Single Epithelial Cell Size,2
+386,Bare Nuclei,10
+386,Bland Chromatin,7
+386,Normal Nucleoli,1
+386,Mitoses,1
+386,class,4
+387,index,388
+387,Clump Thickness,5
+387,Uniformity of Cell Size,3
+387,Uniformity of Cell Shape,3
+387,Marginal Adhesion,2
+387,Single Epithelial Cell Size,3
+387,Bare Nuclei,1
+387,Bland Chromatin,3
+387,Normal Nucleoli,1
+387,Mitoses,1
+387,class,2
+388,index,389
+388,Clump Thickness,2
+388,Uniformity of Cell Size,1
+388,Uniformity of Cell Shape,1
+388,Marginal Adhesion,1
+388,Single Epithelial Cell Size,2
+388,Bare Nuclei,1
+388,Bland Chromatin,2
+388,Normal Nucleoli,2
+388,Mitoses,1
+388,class,2
+389,index,390
+389,Clump Thickness,5
+389,Uniformity of Cell Size,1
+389,Uniformity of Cell Shape,1
+389,Marginal Adhesion,1
+389,Single Epithelial Cell Size,3
+389,Bare Nuclei,2
+389,Bland Chromatin,2
+389,Normal Nucleoli,2
+389,Mitoses,1
+389,class,2
+390,index,391
+390,Clump Thickness,1
+390,Uniformity of Cell Size,1
+390,Uniformity of Cell Shape,1
+390,Marginal Adhesion,2
+390,Single Epithelial Cell Size,2
+390,Bare Nuclei,1
+390,Bland Chromatin,2
+390,Normal Nucleoli,1
+390,Mitoses,1
+390,class,2
+391,index,392
+391,Clump Thickness,10
+391,Uniformity of Cell Size,8
+391,Uniformity of Cell Shape,7
+391,Marginal Adhesion,4
+391,Single Epithelial Cell Size,3
+391,Bare Nuclei,10
+391,Bland Chromatin,7
+391,Normal Nucleoli,9
+391,Mitoses,1
+391,class,4
+392,index,393
+392,Clump Thickness,3
+392,Uniformity of Cell Size,1
+392,Uniformity of Cell Shape,1
+392,Marginal Adhesion,1
+392,Single Epithelial Cell Size,2
+392,Bare Nuclei,1
+392,Bland Chromatin,2
+392,Normal Nucleoli,1
+392,Mitoses,1
+392,class,2
+393,index,394
+393,Clump Thickness,1
+393,Uniformity of Cell Size,1
+393,Uniformity of Cell Shape,1
+393,Marginal Adhesion,1
+393,Single Epithelial Cell Size,1
+393,Bare Nuclei,1
+393,Bland Chromatin,1
+393,Normal Nucleoli,1
+393,Mitoses,1
+393,class,2
+394,index,395
+394,Clump Thickness,1
+394,Uniformity of Cell Size,2
+394,Uniformity of Cell Shape,3
+394,Marginal Adhesion,1
+394,Single Epithelial Cell Size,2
+394,Bare Nuclei,1
+394,Bland Chromatin,2
+394,Normal Nucleoli,1
+394,Mitoses,1
+394,class,2
+395,index,396
+395,Clump Thickness,3
+395,Uniformity of Cell Size,1
+395,Uniformity of Cell Shape,1
+395,Marginal Adhesion,1
+395,Single Epithelial Cell Size,2
+395,Bare Nuclei,1
+395,Bland Chromatin,2
+395,Normal Nucleoli,1
+395,Mitoses,1
+395,class,2
+396,index,397
+396,Clump Thickness,3
+396,Uniformity of Cell Size,1
+396,Uniformity of Cell Shape,1
+396,Marginal Adhesion,1
+396,Single Epithelial Cell Size,2
+396,Bare Nuclei,1
+396,Bland Chromatin,3
+396,Normal Nucleoli,1
+396,Mitoses,1
+396,class,2
+397,index,398
+397,Clump Thickness,4
+397,Uniformity of Cell Size,1
+397,Uniformity of Cell Shape,1
+397,Marginal Adhesion,1
+397,Single Epithelial Cell Size,2
+397,Bare Nuclei,1
+397,Bland Chromatin,1
+397,Normal Nucleoli,1
+397,Mitoses,1
+397,class,2
+398,index,399
+398,Clump Thickness,3
+398,Uniformity of Cell Size,2
+398,Uniformity of Cell Shape,1
+398,Marginal Adhesion,1
+398,Single Epithelial Cell Size,2
+398,Bare Nuclei,1
+398,Bland Chromatin,2
+398,Normal Nucleoli,2
+398,Mitoses,1
+398,class,2
+399,index,400
+399,Clump Thickness,1
+399,Uniformity of Cell Size,2
+399,Uniformity of Cell Shape,3
+399,Marginal Adhesion,1
+399,Single Epithelial Cell Size,2
+399,Bare Nuclei,1
+399,Bland Chromatin,1
+399,Normal Nucleoli,1
+399,Mitoses,1
+399,class,2
+400,index,401
+400,Clump Thickness,3
+400,Uniformity of Cell Size,10
+400,Uniformity of Cell Shape,8
+400,Marginal Adhesion,7
+400,Single Epithelial Cell Size,6
+400,Bare Nuclei,9
+400,Bland Chromatin,9
+400,Normal Nucleoli,3
+400,Mitoses,8
+400,class,4
+401,index,402
+401,Clump Thickness,3
+401,Uniformity of Cell Size,1
+401,Uniformity of Cell Shape,1
+401,Marginal Adhesion,1
+401,Single Epithelial Cell Size,2
+401,Bare Nuclei,1
+401,Bland Chromatin,1
+401,Normal Nucleoli,1
+401,Mitoses,1
+401,class,2
+402,index,403
+402,Clump Thickness,5
+402,Uniformity of Cell Size,3
+402,Uniformity of Cell Shape,3
+402,Marginal Adhesion,1
+402,Single Epithelial Cell Size,2
+402,Bare Nuclei,1
+402,Bland Chromatin,2
+402,Normal Nucleoli,1
+402,Mitoses,1
+402,class,2
+403,index,404
+403,Clump Thickness,3
+403,Uniformity of Cell Size,1
+403,Uniformity of Cell Shape,1
+403,Marginal Adhesion,1
+403,Single Epithelial Cell Size,2
+403,Bare Nuclei,4
+403,Bland Chromatin,1
+403,Normal Nucleoli,1
+403,Mitoses,1
+403,class,2
+404,index,405
+404,Clump Thickness,1
+404,Uniformity of Cell Size,2
+404,Uniformity of Cell Shape,1
+404,Marginal Adhesion,3
+404,Single Epithelial Cell Size,2
+404,Bare Nuclei,1
+404,Bland Chromatin,1
+404,Normal Nucleoli,2
+404,Mitoses,1
+404,class,2
+405,index,406
+405,Clump Thickness,1
+405,Uniformity of Cell Size,1
+405,Uniformity of Cell Shape,1
+405,Marginal Adhesion,1
+405,Single Epithelial Cell Size,2
+405,Bare Nuclei,1
+405,Bland Chromatin,2
+405,Normal Nucleoli,1
+405,Mitoses,1
+405,class,2
+406,index,407
+406,Clump Thickness,4
+406,Uniformity of Cell Size,2
+406,Uniformity of Cell Shape,2
+406,Marginal Adhesion,1
+406,Single Epithelial Cell Size,2
+406,Bare Nuclei,1
+406,Bland Chromatin,2
+406,Normal Nucleoli,1
+406,Mitoses,1
+406,class,2
+407,index,408
+407,Clump Thickness,1
+407,Uniformity of Cell Size,1
+407,Uniformity of Cell Shape,1
+407,Marginal Adhesion,1
+407,Single Epithelial Cell Size,2
+407,Bare Nuclei,1
+407,Bland Chromatin,2
+407,Normal Nucleoli,1
+407,Mitoses,1
+407,class,2
+408,index,409
+408,Clump Thickness,2
+408,Uniformity of Cell Size,3
+408,Uniformity of Cell Shape,2
+408,Marginal Adhesion,2
+408,Single Epithelial Cell Size,2
+408,Bare Nuclei,2
+408,Bland Chromatin,3
+408,Normal Nucleoli,1
+408,Mitoses,1
+408,class,2
+409,index,410
+409,Clump Thickness,3
+409,Uniformity of Cell Size,1
+409,Uniformity of Cell Shape,2
+409,Marginal Adhesion,1
+409,Single Epithelial Cell Size,2
+409,Bare Nuclei,1
+409,Bland Chromatin,2
+409,Normal Nucleoli,1
+409,Mitoses,1
+409,class,2
+410,index,411
+410,Clump Thickness,1
+410,Uniformity of Cell Size,1
+410,Uniformity of Cell Shape,1
+410,Marginal Adhesion,1
+410,Single Epithelial Cell Size,2
+410,Bare Nuclei,1
+410,Bland Chromatin,2
+410,Normal Nucleoli,1
+410,Mitoses,1
+410,class,2
+411,index,412
+411,Clump Thickness,1
+411,Uniformity of Cell Size,1
+411,Uniformity of Cell Shape,1
+411,Marginal Adhesion,1
+411,Single Epithelial Cell Size,1
+411,Bare Nuclei,?
+411,Bland Chromatin,2
+411,Normal Nucleoli,1
+411,Mitoses,1
+411,class,2
+412,index,413
+412,Clump Thickness,10
+412,Uniformity of Cell Size,10
+412,Uniformity of Cell Shape,10
+412,Marginal Adhesion,6
+412,Single Epithelial Cell Size,8
+412,Bare Nuclei,4
+412,Bland Chromatin,8
+412,Normal Nucleoli,5
+412,Mitoses,1
+412,class,4
+413,index,414
+413,Clump Thickness,5
+413,Uniformity of Cell Size,1
+413,Uniformity of Cell Shape,2
+413,Marginal Adhesion,1
+413,Single Epithelial Cell Size,2
+413,Bare Nuclei,1
+413,Bland Chromatin,3
+413,Normal Nucleoli,1
+413,Mitoses,1
+413,class,2
+414,index,415
+414,Clump Thickness,8
+414,Uniformity of Cell Size,5
+414,Uniformity of Cell Shape,6
+414,Marginal Adhesion,2
+414,Single Epithelial Cell Size,3
+414,Bare Nuclei,10
+414,Bland Chromatin,6
+414,Normal Nucleoli,6
+414,Mitoses,1
+414,class,4
+415,index,416
+415,Clump Thickness,3
+415,Uniformity of Cell Size,3
+415,Uniformity of Cell Shape,2
+415,Marginal Adhesion,6
+415,Single Epithelial Cell Size,3
+415,Bare Nuclei,3
+415,Bland Chromatin,3
+415,Normal Nucleoli,5
+415,Mitoses,1
+415,class,2
+416,index,417
+416,Clump Thickness,8
+416,Uniformity of Cell Size,7
+416,Uniformity of Cell Shape,8
+416,Marginal Adhesion,5
+416,Single Epithelial Cell Size,10
+416,Bare Nuclei,10
+416,Bland Chromatin,7
+416,Normal Nucleoli,2
+416,Mitoses,1
+416,class,4
+417,index,418
+417,Clump Thickness,1
+417,Uniformity of Cell Size,1
+417,Uniformity of Cell Shape,1
+417,Marginal Adhesion,1
+417,Single Epithelial Cell Size,2
+417,Bare Nuclei,1
+417,Bland Chromatin,2
+417,Normal Nucleoli,1
+417,Mitoses,1
+417,class,2
+418,index,419
+418,Clump Thickness,5
+418,Uniformity of Cell Size,2
+418,Uniformity of Cell Shape,2
+418,Marginal Adhesion,2
+418,Single Epithelial Cell Size,2
+418,Bare Nuclei,2
+418,Bland Chromatin,3
+418,Normal Nucleoli,2
+418,Mitoses,2
+418,class,2
+419,index,420
+419,Clump Thickness,2
+419,Uniformity of Cell Size,3
+419,Uniformity of Cell Shape,1
+419,Marginal Adhesion,1
+419,Single Epithelial Cell Size,5
+419,Bare Nuclei,1
+419,Bland Chromatin,1
+419,Normal Nucleoli,1
+419,Mitoses,1
+419,class,2
+420,index,421
+420,Clump Thickness,3
+420,Uniformity of Cell Size,2
+420,Uniformity of Cell Shape,2
+420,Marginal Adhesion,3
+420,Single Epithelial Cell Size,2
+420,Bare Nuclei,3
+420,Bland Chromatin,3
+420,Normal Nucleoli,1
+420,Mitoses,1
+420,class,2
+421,index,422
+421,Clump Thickness,10
+421,Uniformity of Cell Size,10
+421,Uniformity of Cell Shape,10
+421,Marginal Adhesion,7
+421,Single Epithelial Cell Size,10
+421,Bare Nuclei,10
+421,Bland Chromatin,8
+421,Normal Nucleoli,2
+421,Mitoses,1
+421,class,4
+422,index,423
+422,Clump Thickness,4
+422,Uniformity of Cell Size,3
+422,Uniformity of Cell Shape,3
+422,Marginal Adhesion,1
+422,Single Epithelial Cell Size,2
+422,Bare Nuclei,1
+422,Bland Chromatin,3
+422,Normal Nucleoli,3
+422,Mitoses,1
+422,class,2
+423,index,424
+423,Clump Thickness,5
+423,Uniformity of Cell Size,1
+423,Uniformity of Cell Shape,3
+423,Marginal Adhesion,1
+423,Single Epithelial Cell Size,2
+423,Bare Nuclei,1
+423,Bland Chromatin,2
+423,Normal Nucleoli,1
+423,Mitoses,1
+423,class,2
+424,index,425
+424,Clump Thickness,3
+424,Uniformity of Cell Size,1
+424,Uniformity of Cell Shape,1
+424,Marginal Adhesion,1
+424,Single Epithelial Cell Size,2
+424,Bare Nuclei,1
+424,Bland Chromatin,1
+424,Normal Nucleoli,1
+424,Mitoses,1
+424,class,2
+425,index,426
+425,Clump Thickness,9
+425,Uniformity of Cell Size,10
+425,Uniformity of Cell Shape,10
+425,Marginal Adhesion,10
+425,Single Epithelial Cell Size,10
+425,Bare Nuclei,10
+425,Bland Chromatin,10
+425,Normal Nucleoli,10
+425,Mitoses,1
+425,class,4
+426,index,427
+426,Clump Thickness,5
+426,Uniformity of Cell Size,3
+426,Uniformity of Cell Shape,6
+426,Marginal Adhesion,1
+426,Single Epithelial Cell Size,2
+426,Bare Nuclei,1
+426,Bland Chromatin,1
+426,Normal Nucleoli,1
+426,Mitoses,1
+426,class,2
+427,index,428
+427,Clump Thickness,8
+427,Uniformity of Cell Size,7
+427,Uniformity of Cell Shape,8
+427,Marginal Adhesion,2
+427,Single Epithelial Cell Size,4
+427,Bare Nuclei,2
+427,Bland Chromatin,5
+427,Normal Nucleoli,10
+427,Mitoses,1
+427,class,4
+428,index,429
+428,Clump Thickness,1
+428,Uniformity of Cell Size,1
+428,Uniformity of Cell Shape,1
+428,Marginal Adhesion,1
+428,Single Epithelial Cell Size,2
+428,Bare Nuclei,1
+428,Bland Chromatin,2
+428,Normal Nucleoli,1
+428,Mitoses,1
+428,class,2
+429,index,430
+429,Clump Thickness,2
+429,Uniformity of Cell Size,1
+429,Uniformity of Cell Shape,1
+429,Marginal Adhesion,1
+429,Single Epithelial Cell Size,2
+429,Bare Nuclei,1
+429,Bland Chromatin,2
+429,Normal Nucleoli,1
+429,Mitoses,1
+429,class,2
+430,index,431
+430,Clump Thickness,1
+430,Uniformity of Cell Size,3
+430,Uniformity of Cell Shape,1
+430,Marginal Adhesion,1
+430,Single Epithelial Cell Size,2
+430,Bare Nuclei,1
+430,Bland Chromatin,2
+430,Normal Nucleoli,2
+430,Mitoses,1
+430,class,2
+431,index,432
+431,Clump Thickness,5
+431,Uniformity of Cell Size,1
+431,Uniformity of Cell Shape,1
+431,Marginal Adhesion,3
+431,Single Epithelial Cell Size,4
+431,Bare Nuclei,1
+431,Bland Chromatin,3
+431,Normal Nucleoli,2
+431,Mitoses,1
+431,class,2
+432,index,433
+432,Clump Thickness,5
+432,Uniformity of Cell Size,1
+432,Uniformity of Cell Shape,1
+432,Marginal Adhesion,1
+432,Single Epithelial Cell Size,2
+432,Bare Nuclei,1
+432,Bland Chromatin,2
+432,Normal Nucleoli,2
+432,Mitoses,1
+432,class,2
+433,index,434
+433,Clump Thickness,3
+433,Uniformity of Cell Size,2
+433,Uniformity of Cell Shape,2
+433,Marginal Adhesion,3
+433,Single Epithelial Cell Size,2
+433,Bare Nuclei,1
+433,Bland Chromatin,1
+433,Normal Nucleoli,1
+433,Mitoses,1
+433,class,2
+434,index,435
+434,Clump Thickness,6
+434,Uniformity of Cell Size,9
+434,Uniformity of Cell Shape,7
+434,Marginal Adhesion,5
+434,Single Epithelial Cell Size,5
+434,Bare Nuclei,8
+434,Bland Chromatin,4
+434,Normal Nucleoli,2
+434,Mitoses,1
+434,class,2
+435,index,436
+435,Clump Thickness,10
+435,Uniformity of Cell Size,8
+435,Uniformity of Cell Shape,10
+435,Marginal Adhesion,1
+435,Single Epithelial Cell Size,3
+435,Bare Nuclei,10
+435,Bland Chromatin,5
+435,Normal Nucleoli,1
+435,Mitoses,1
+435,class,4
+436,index,437
+436,Clump Thickness,10
+436,Uniformity of Cell Size,10
+436,Uniformity of Cell Shape,10
+436,Marginal Adhesion,1
+436,Single Epithelial Cell Size,6
+436,Bare Nuclei,1
+436,Bland Chromatin,2
+436,Normal Nucleoli,8
+436,Mitoses,1
+436,class,4
+437,index,438
+437,Clump Thickness,4
+437,Uniformity of Cell Size,1
+437,Uniformity of Cell Shape,1
+437,Marginal Adhesion,1
+437,Single Epithelial Cell Size,2
+437,Bare Nuclei,1
+437,Bland Chromatin,1
+437,Normal Nucleoli,1
+437,Mitoses,1
+437,class,2
+438,index,439
+438,Clump Thickness,4
+438,Uniformity of Cell Size,1
+438,Uniformity of Cell Shape,3
+438,Marginal Adhesion,3
+438,Single Epithelial Cell Size,2
+438,Bare Nuclei,1
+438,Bland Chromatin,1
+438,Normal Nucleoli,1
+438,Mitoses,1
+438,class,2
+439,index,440
+439,Clump Thickness,5
+439,Uniformity of Cell Size,1
+439,Uniformity of Cell Shape,1
+439,Marginal Adhesion,1
+439,Single Epithelial Cell Size,2
+439,Bare Nuclei,1
+439,Bland Chromatin,1
+439,Normal Nucleoli,1
+439,Mitoses,1
+439,class,2
+440,index,441
+440,Clump Thickness,10
+440,Uniformity of Cell Size,4
+440,Uniformity of Cell Shape,3
+440,Marginal Adhesion,10
+440,Single Epithelial Cell Size,4
+440,Bare Nuclei,10
+440,Bland Chromatin,10
+440,Normal Nucleoli,1
+440,Mitoses,1
+440,class,4
+441,index,442
+441,Clump Thickness,5
+441,Uniformity of Cell Size,2
+441,Uniformity of Cell Shape,2
+441,Marginal Adhesion,4
+441,Single Epithelial Cell Size,2
+441,Bare Nuclei,4
+441,Bland Chromatin,1
+441,Normal Nucleoli,1
+441,Mitoses,1
+441,class,2
+442,index,443
+442,Clump Thickness,1
+442,Uniformity of Cell Size,1
+442,Uniformity of Cell Shape,1
+442,Marginal Adhesion,3
+442,Single Epithelial Cell Size,2
+442,Bare Nuclei,3
+442,Bland Chromatin,1
+442,Normal Nucleoli,1
+442,Mitoses,1
+442,class,2
+443,index,444
+443,Clump Thickness,1
+443,Uniformity of Cell Size,1
+443,Uniformity of Cell Shape,1
+443,Marginal Adhesion,1
+443,Single Epithelial Cell Size,2
+443,Bare Nuclei,2
+443,Bland Chromatin,1
+443,Normal Nucleoli,1
+443,Mitoses,1
+443,class,2
+444,index,445
+444,Clump Thickness,5
+444,Uniformity of Cell Size,1
+444,Uniformity of Cell Shape,1
+444,Marginal Adhesion,6
+444,Single Epithelial Cell Size,3
+444,Bare Nuclei,1
+444,Bland Chromatin,2
+444,Normal Nucleoli,1
+444,Mitoses,1
+444,class,2
+445,index,446
+445,Clump Thickness,2
+445,Uniformity of Cell Size,1
+445,Uniformity of Cell Shape,1
+445,Marginal Adhesion,1
+445,Single Epithelial Cell Size,2
+445,Bare Nuclei,1
+445,Bland Chromatin,1
+445,Normal Nucleoli,1
+445,Mitoses,1
+445,class,2
+446,index,447
+446,Clump Thickness,1
+446,Uniformity of Cell Size,1
+446,Uniformity of Cell Shape,1
+446,Marginal Adhesion,1
+446,Single Epithelial Cell Size,2
+446,Bare Nuclei,1
+446,Bland Chromatin,1
+446,Normal Nucleoli,1
+446,Mitoses,1
+446,class,2
+447,index,448
+447,Clump Thickness,5
+447,Uniformity of Cell Size,1
+447,Uniformity of Cell Shape,1
+447,Marginal Adhesion,1
+447,Single Epithelial Cell Size,2
+447,Bare Nuclei,1
+447,Bland Chromatin,1
+447,Normal Nucleoli,1
+447,Mitoses,1
+447,class,2
+448,index,449
+448,Clump Thickness,1
+448,Uniformity of Cell Size,1
+448,Uniformity of Cell Shape,1
+448,Marginal Adhesion,1
+448,Single Epithelial Cell Size,1
+448,Bare Nuclei,1
+448,Bland Chromatin,1
+448,Normal Nucleoli,1
+448,Mitoses,1
+448,class,2
+449,index,450
+449,Clump Thickness,5
+449,Uniformity of Cell Size,7
+449,Uniformity of Cell Shape,9
+449,Marginal Adhesion,8
+449,Single Epithelial Cell Size,6
+449,Bare Nuclei,10
+449,Bland Chromatin,8
+449,Normal Nucleoli,10
+449,Mitoses,1
+449,class,4
+450,index,451
+450,Clump Thickness,4
+450,Uniformity of Cell Size,1
+450,Uniformity of Cell Shape,1
+450,Marginal Adhesion,3
+450,Single Epithelial Cell Size,1
+450,Bare Nuclei,1
+450,Bland Chromatin,2
+450,Normal Nucleoli,1
+450,Mitoses,1
+450,class,2
+451,index,452
+451,Clump Thickness,5
+451,Uniformity of Cell Size,1
+451,Uniformity of Cell Shape,1
+451,Marginal Adhesion,1
+451,Single Epithelial Cell Size,2
+451,Bare Nuclei,1
+451,Bland Chromatin,1
+451,Normal Nucleoli,1
+451,Mitoses,1
+451,class,2
+452,index,453
+452,Clump Thickness,3
+452,Uniformity of Cell Size,1
+452,Uniformity of Cell Shape,1
+452,Marginal Adhesion,3
+452,Single Epithelial Cell Size,2
+452,Bare Nuclei,1
+452,Bland Chromatin,1
+452,Normal Nucleoli,1
+452,Mitoses,1
+452,class,2
+453,index,454
+453,Clump Thickness,4
+453,Uniformity of Cell Size,5
+453,Uniformity of Cell Shape,5
+453,Marginal Adhesion,8
+453,Single Epithelial Cell Size,6
+453,Bare Nuclei,10
+453,Bland Chromatin,10
+453,Normal Nucleoli,7
+453,Mitoses,1
+453,class,4
+454,index,455
+454,Clump Thickness,2
+454,Uniformity of Cell Size,3
+454,Uniformity of Cell Shape,1
+454,Marginal Adhesion,1
+454,Single Epithelial Cell Size,3
+454,Bare Nuclei,1
+454,Bland Chromatin,1
+454,Normal Nucleoli,1
+454,Mitoses,1
+454,class,2
+455,index,456
+455,Clump Thickness,10
+455,Uniformity of Cell Size,2
+455,Uniformity of Cell Shape,2
+455,Marginal Adhesion,1
+455,Single Epithelial Cell Size,2
+455,Bare Nuclei,6
+455,Bland Chromatin,1
+455,Normal Nucleoli,1
+455,Mitoses,2
+455,class,4
+456,index,457
+456,Clump Thickness,10
+456,Uniformity of Cell Size,6
+456,Uniformity of Cell Shape,5
+456,Marginal Adhesion,8
+456,Single Epithelial Cell Size,5
+456,Bare Nuclei,10
+456,Bland Chromatin,8
+456,Normal Nucleoli,6
+456,Mitoses,1
+456,class,4
+457,index,458
+457,Clump Thickness,8
+457,Uniformity of Cell Size,8
+457,Uniformity of Cell Shape,9
+457,Marginal Adhesion,6
+457,Single Epithelial Cell Size,6
+457,Bare Nuclei,3
+457,Bland Chromatin,10
+457,Normal Nucleoli,10
+457,Mitoses,1
+457,class,4
+458,index,459
+458,Clump Thickness,5
+458,Uniformity of Cell Size,1
+458,Uniformity of Cell Shape,2
+458,Marginal Adhesion,1
+458,Single Epithelial Cell Size,2
+458,Bare Nuclei,1
+458,Bland Chromatin,1
+458,Normal Nucleoli,1
+458,Mitoses,1
+458,class,2
+459,index,460
+459,Clump Thickness,5
+459,Uniformity of Cell Size,1
+459,Uniformity of Cell Shape,3
+459,Marginal Adhesion,1
+459,Single Epithelial Cell Size,2
+459,Bare Nuclei,1
+459,Bland Chromatin,1
+459,Normal Nucleoli,1
+459,Mitoses,1
+459,class,2
+460,index,461
+460,Clump Thickness,5
+460,Uniformity of Cell Size,1
+460,Uniformity of Cell Shape,1
+460,Marginal Adhesion,3
+460,Single Epithelial Cell Size,2
+460,Bare Nuclei,1
+460,Bland Chromatin,1
+460,Normal Nucleoli,1
+460,Mitoses,1
+460,class,2
+461,index,462
+461,Clump Thickness,3
+461,Uniformity of Cell Size,1
+461,Uniformity of Cell Shape,1
+461,Marginal Adhesion,1
+461,Single Epithelial Cell Size,2
+461,Bare Nuclei,5
+461,Bland Chromatin,1
+461,Normal Nucleoli,1
+461,Mitoses,1
+461,class,2
+462,index,463
+462,Clump Thickness,6
+462,Uniformity of Cell Size,1
+462,Uniformity of Cell Shape,1
+462,Marginal Adhesion,3
+462,Single Epithelial Cell Size,2
+462,Bare Nuclei,1
+462,Bland Chromatin,1
+462,Normal Nucleoli,1
+462,Mitoses,1
+462,class,2
+463,index,464
+463,Clump Thickness,4
+463,Uniformity of Cell Size,1
+463,Uniformity of Cell Shape,1
+463,Marginal Adhesion,1
+463,Single Epithelial Cell Size,2
+463,Bare Nuclei,1
+463,Bland Chromatin,1
+463,Normal Nucleoli,2
+463,Mitoses,1
+463,class,2
+464,index,465
+464,Clump Thickness,4
+464,Uniformity of Cell Size,1
+464,Uniformity of Cell Shape,1
+464,Marginal Adhesion,1
+464,Single Epithelial Cell Size,2
+464,Bare Nuclei,1
+464,Bland Chromatin,1
+464,Normal Nucleoli,1
+464,Mitoses,1
+464,class,2
+465,index,466
+465,Clump Thickness,10
+465,Uniformity of Cell Size,9
+465,Uniformity of Cell Shape,8
+465,Marginal Adhesion,7
+465,Single Epithelial Cell Size,6
+465,Bare Nuclei,4
+465,Bland Chromatin,7
+465,Normal Nucleoli,10
+465,Mitoses,3
+465,class,4
+466,index,467
+466,Clump Thickness,10
+466,Uniformity of Cell Size,6
+466,Uniformity of Cell Shape,6
+466,Marginal Adhesion,2
+466,Single Epithelial Cell Size,4
+466,Bare Nuclei,10
+466,Bland Chromatin,9
+466,Normal Nucleoli,7
+466,Mitoses,1
+466,class,4
+467,index,468
+467,Clump Thickness,6
+467,Uniformity of Cell Size,6
+467,Uniformity of Cell Shape,6
+467,Marginal Adhesion,5
+467,Single Epithelial Cell Size,4
+467,Bare Nuclei,10
+467,Bland Chromatin,7
+467,Normal Nucleoli,6
+467,Mitoses,2
+467,class,4
+468,index,469
+468,Clump Thickness,4
+468,Uniformity of Cell Size,1
+468,Uniformity of Cell Shape,1
+468,Marginal Adhesion,1
+468,Single Epithelial Cell Size,2
+468,Bare Nuclei,1
+468,Bland Chromatin,1
+468,Normal Nucleoli,1
+468,Mitoses,1
+468,class,2
+469,index,470
+469,Clump Thickness,1
+469,Uniformity of Cell Size,1
+469,Uniformity of Cell Shape,2
+469,Marginal Adhesion,1
+469,Single Epithelial Cell Size,2
+469,Bare Nuclei,1
+469,Bland Chromatin,2
+469,Normal Nucleoli,1
+469,Mitoses,1
+469,class,2
+470,index,471
+470,Clump Thickness,3
+470,Uniformity of Cell Size,1
+470,Uniformity of Cell Shape,1
+470,Marginal Adhesion,1
+470,Single Epithelial Cell Size,1
+470,Bare Nuclei,1
+470,Bland Chromatin,2
+470,Normal Nucleoli,1
+470,Mitoses,1
+470,class,2
+471,index,472
+471,Clump Thickness,6
+471,Uniformity of Cell Size,1
+471,Uniformity of Cell Shape,1
+471,Marginal Adhesion,3
+471,Single Epithelial Cell Size,2
+471,Bare Nuclei,1
+471,Bland Chromatin,1
+471,Normal Nucleoli,1
+471,Mitoses,1
+471,class,2
+472,index,473
+472,Clump Thickness,6
+472,Uniformity of Cell Size,1
+472,Uniformity of Cell Shape,1
+472,Marginal Adhesion,1
+472,Single Epithelial Cell Size,1
+472,Bare Nuclei,1
+472,Bland Chromatin,1
+472,Normal Nucleoli,1
+472,Mitoses,1
+472,class,2
+473,index,474
+473,Clump Thickness,4
+473,Uniformity of Cell Size,1
+473,Uniformity of Cell Shape,1
+473,Marginal Adhesion,1
+473,Single Epithelial Cell Size,2
+473,Bare Nuclei,1
+473,Bland Chromatin,1
+473,Normal Nucleoli,1
+473,Mitoses,1
+473,class,2
+474,index,475
+474,Clump Thickness,5
+474,Uniformity of Cell Size,1
+474,Uniformity of Cell Shape,1
+474,Marginal Adhesion,1
+474,Single Epithelial Cell Size,2
+474,Bare Nuclei,1
+474,Bland Chromatin,1
+474,Normal Nucleoli,1
+474,Mitoses,1
+474,class,2
+475,index,476
+475,Clump Thickness,3
+475,Uniformity of Cell Size,1
+475,Uniformity of Cell Shape,1
+475,Marginal Adhesion,1
+475,Single Epithelial Cell Size,2
+475,Bare Nuclei,1
+475,Bland Chromatin,1
+475,Normal Nucleoli,1
+475,Mitoses,1
+475,class,2
+476,index,477
+476,Clump Thickness,4
+476,Uniformity of Cell Size,1
+476,Uniformity of Cell Shape,2
+476,Marginal Adhesion,1
+476,Single Epithelial Cell Size,2
+476,Bare Nuclei,1
+476,Bland Chromatin,1
+476,Normal Nucleoli,1
+476,Mitoses,1
+476,class,2
+477,index,478
+477,Clump Thickness,4
+477,Uniformity of Cell Size,1
+477,Uniformity of Cell Shape,1
+477,Marginal Adhesion,1
+477,Single Epithelial Cell Size,2
+477,Bare Nuclei,1
+477,Bland Chromatin,1
+477,Normal Nucleoli,1
+477,Mitoses,1
+477,class,2
+478,index,479
+478,Clump Thickness,5
+478,Uniformity of Cell Size,2
+478,Uniformity of Cell Shape,1
+478,Marginal Adhesion,1
+478,Single Epithelial Cell Size,2
+478,Bare Nuclei,1
+478,Bland Chromatin,1
+478,Normal Nucleoli,1
+478,Mitoses,1
+478,class,2
+479,index,480
+479,Clump Thickness,4
+479,Uniformity of Cell Size,8
+479,Uniformity of Cell Shape,7
+479,Marginal Adhesion,10
+479,Single Epithelial Cell Size,4
+479,Bare Nuclei,10
+479,Bland Chromatin,7
+479,Normal Nucleoli,5
+479,Mitoses,1
+479,class,4
+480,index,481
+480,Clump Thickness,5
+480,Uniformity of Cell Size,1
+480,Uniformity of Cell Shape,1
+480,Marginal Adhesion,1
+480,Single Epithelial Cell Size,1
+480,Bare Nuclei,1
+480,Bland Chromatin,1
+480,Normal Nucleoli,1
+480,Mitoses,1
+480,class,2
+481,index,482
+481,Clump Thickness,5
+481,Uniformity of Cell Size,3
+481,Uniformity of Cell Shape,2
+481,Marginal Adhesion,4
+481,Single Epithelial Cell Size,2
+481,Bare Nuclei,1
+481,Bland Chromatin,1
+481,Normal Nucleoli,1
+481,Mitoses,1
+481,class,2
+482,index,483
+482,Clump Thickness,9
+482,Uniformity of Cell Size,10
+482,Uniformity of Cell Shape,10
+482,Marginal Adhesion,10
+482,Single Epithelial Cell Size,10
+482,Bare Nuclei,5
+482,Bland Chromatin,10
+482,Normal Nucleoli,10
+482,Mitoses,10
+482,class,4
+483,index,484
+483,Clump Thickness,8
+483,Uniformity of Cell Size,7
+483,Uniformity of Cell Shape,8
+483,Marginal Adhesion,5
+483,Single Epithelial Cell Size,5
+483,Bare Nuclei,10
+483,Bland Chromatin,9
+483,Normal Nucleoli,10
+483,Mitoses,1
+483,class,4
+484,index,485
+484,Clump Thickness,5
+484,Uniformity of Cell Size,1
+484,Uniformity of Cell Shape,2
+484,Marginal Adhesion,1
+484,Single Epithelial Cell Size,2
+484,Bare Nuclei,1
+484,Bland Chromatin,1
+484,Normal Nucleoli,1
+484,Mitoses,1
+484,class,2
+485,index,486
+485,Clump Thickness,1
+485,Uniformity of Cell Size,1
+485,Uniformity of Cell Shape,1
+485,Marginal Adhesion,3
+485,Single Epithelial Cell Size,1
+485,Bare Nuclei,3
+485,Bland Chromatin,1
+485,Normal Nucleoli,1
+485,Mitoses,1
+485,class,2
+486,index,487
+486,Clump Thickness,3
+486,Uniformity of Cell Size,1
+486,Uniformity of Cell Shape,1
+486,Marginal Adhesion,1
+486,Single Epithelial Cell Size,1
+486,Bare Nuclei,1
+486,Bland Chromatin,2
+486,Normal Nucleoli,1
+486,Mitoses,1
+486,class,2
+487,index,488
+487,Clump Thickness,10
+487,Uniformity of Cell Size,10
+487,Uniformity of Cell Shape,10
+487,Marginal Adhesion,10
+487,Single Epithelial Cell Size,6
+487,Bare Nuclei,10
+487,Bland Chromatin,8
+487,Normal Nucleoli,1
+487,Mitoses,5
+487,class,4
+488,index,489
+488,Clump Thickness,3
+488,Uniformity of Cell Size,6
+488,Uniformity of Cell Shape,4
+488,Marginal Adhesion,10
+488,Single Epithelial Cell Size,3
+488,Bare Nuclei,3
+488,Bland Chromatin,3
+488,Normal Nucleoli,4
+488,Mitoses,1
+488,class,4
+489,index,490
+489,Clump Thickness,6
+489,Uniformity of Cell Size,3
+489,Uniformity of Cell Shape,2
+489,Marginal Adhesion,1
+489,Single Epithelial Cell Size,3
+489,Bare Nuclei,4
+489,Bland Chromatin,4
+489,Normal Nucleoli,1
+489,Mitoses,1
+489,class,4
+490,index,491
+490,Clump Thickness,1
+490,Uniformity of Cell Size,1
+490,Uniformity of Cell Shape,1
+490,Marginal Adhesion,1
+490,Single Epithelial Cell Size,2
+490,Bare Nuclei,1
+490,Bland Chromatin,1
+490,Normal Nucleoli,1
+490,Mitoses,1
+490,class,2
+491,index,492
+491,Clump Thickness,5
+491,Uniformity of Cell Size,8
+491,Uniformity of Cell Shape,9
+491,Marginal Adhesion,4
+491,Single Epithelial Cell Size,3
+491,Bare Nuclei,10
+491,Bland Chromatin,7
+491,Normal Nucleoli,1
+491,Mitoses,1
+491,class,4
+492,index,493
+492,Clump Thickness,4
+492,Uniformity of Cell Size,1
+492,Uniformity of Cell Shape,1
+492,Marginal Adhesion,1
+492,Single Epithelial Cell Size,1
+492,Bare Nuclei,1
+492,Bland Chromatin,2
+492,Normal Nucleoli,1
+492,Mitoses,1
+492,class,2
+493,index,494
+493,Clump Thickness,5
+493,Uniformity of Cell Size,10
+493,Uniformity of Cell Shape,10
+493,Marginal Adhesion,10
+493,Single Epithelial Cell Size,6
+493,Bare Nuclei,10
+493,Bland Chromatin,6
+493,Normal Nucleoli,5
+493,Mitoses,2
+493,class,4
+494,index,495
+494,Clump Thickness,5
+494,Uniformity of Cell Size,1
+494,Uniformity of Cell Shape,2
+494,Marginal Adhesion,10
+494,Single Epithelial Cell Size,4
+494,Bare Nuclei,5
+494,Bland Chromatin,2
+494,Normal Nucleoli,1
+494,Mitoses,1
+494,class,2
+495,index,496
+495,Clump Thickness,3
+495,Uniformity of Cell Size,1
+495,Uniformity of Cell Shape,1
+495,Marginal Adhesion,1
+495,Single Epithelial Cell Size,1
+495,Bare Nuclei,1
+495,Bland Chromatin,2
+495,Normal Nucleoli,1
+495,Mitoses,1
+495,class,2
+496,index,497
+496,Clump Thickness,1
+496,Uniformity of Cell Size,1
+496,Uniformity of Cell Shape,1
+496,Marginal Adhesion,1
+496,Single Epithelial Cell Size,1
+496,Bare Nuclei,1
+496,Bland Chromatin,1
+496,Normal Nucleoli,1
+496,Mitoses,1
+496,class,2
+497,index,498
+497,Clump Thickness,4
+497,Uniformity of Cell Size,2
+497,Uniformity of Cell Shape,1
+497,Marginal Adhesion,1
+497,Single Epithelial Cell Size,2
+497,Bare Nuclei,1
+497,Bland Chromatin,1
+497,Normal Nucleoli,1
+497,Mitoses,1
+497,class,2
+498,index,499
+498,Clump Thickness,4
+498,Uniformity of Cell Size,1
+498,Uniformity of Cell Shape,1
+498,Marginal Adhesion,1
+498,Single Epithelial Cell Size,2
+498,Bare Nuclei,1
+498,Bland Chromatin,2
+498,Normal Nucleoli,1
+498,Mitoses,1
+498,class,2
+499,index,500
+499,Clump Thickness,4
+499,Uniformity of Cell Size,1
+499,Uniformity of Cell Shape,1
+499,Marginal Adhesion,1
+499,Single Epithelial Cell Size,2
+499,Bare Nuclei,1
+499,Bland Chromatin,2
+499,Normal Nucleoli,1
+499,Mitoses,1
+499,class,2
+500,index,501
+500,Clump Thickness,6
+500,Uniformity of Cell Size,1
+500,Uniformity of Cell Shape,1
+500,Marginal Adhesion,1
+500,Single Epithelial Cell Size,2
+500,Bare Nuclei,1
+500,Bland Chromatin,3
+500,Normal Nucleoli,1
+500,Mitoses,1
+500,class,2
+501,index,502
+501,Clump Thickness,4
+501,Uniformity of Cell Size,1
+501,Uniformity of Cell Shape,1
+501,Marginal Adhesion,1
+501,Single Epithelial Cell Size,2
+501,Bare Nuclei,1
+501,Bland Chromatin,2
+501,Normal Nucleoli,1
+501,Mitoses,1
+501,class,2
+502,index,503
+502,Clump Thickness,4
+502,Uniformity of Cell Size,1
+502,Uniformity of Cell Shape,1
+502,Marginal Adhesion,2
+502,Single Epithelial Cell Size,2
+502,Bare Nuclei,1
+502,Bland Chromatin,2
+502,Normal Nucleoli,1
+502,Mitoses,1
+502,class,2
+503,index,504
+503,Clump Thickness,4
+503,Uniformity of Cell Size,1
+503,Uniformity of Cell Shape,1
+503,Marginal Adhesion,1
+503,Single Epithelial Cell Size,2
+503,Bare Nuclei,1
+503,Bland Chromatin,3
+503,Normal Nucleoli,1
+503,Mitoses,1
+503,class,2
+504,index,505
+504,Clump Thickness,1
+504,Uniformity of Cell Size,1
+504,Uniformity of Cell Shape,1
+504,Marginal Adhesion,1
+504,Single Epithelial Cell Size,2
+504,Bare Nuclei,1
+504,Bland Chromatin,1
+504,Normal Nucleoli,1
+504,Mitoses,1
+504,class,2
+505,index,506
+505,Clump Thickness,3
+505,Uniformity of Cell Size,3
+505,Uniformity of Cell Shape,1
+505,Marginal Adhesion,1
+505,Single Epithelial Cell Size,2
+505,Bare Nuclei,1
+505,Bland Chromatin,1
+505,Normal Nucleoli,1
+505,Mitoses,1
+505,class,2
+506,index,507
+506,Clump Thickness,8
+506,Uniformity of Cell Size,10
+506,Uniformity of Cell Shape,10
+506,Marginal Adhesion,10
+506,Single Epithelial Cell Size,7
+506,Bare Nuclei,5
+506,Bland Chromatin,4
+506,Normal Nucleoli,8
+506,Mitoses,7
+506,class,4
+507,index,508
+507,Clump Thickness,1
+507,Uniformity of Cell Size,1
+507,Uniformity of Cell Shape,1
+507,Marginal Adhesion,1
+507,Single Epithelial Cell Size,2
+507,Bare Nuclei,4
+507,Bland Chromatin,1
+507,Normal Nucleoli,1
+507,Mitoses,1
+507,class,2
+508,index,509
+508,Clump Thickness,5
+508,Uniformity of Cell Size,1
+508,Uniformity of Cell Shape,1
+508,Marginal Adhesion,1
+508,Single Epithelial Cell Size,2
+508,Bare Nuclei,1
+508,Bland Chromatin,1
+508,Normal Nucleoli,1
+508,Mitoses,1
+508,class,2
+509,index,510
+509,Clump Thickness,2
+509,Uniformity of Cell Size,1
+509,Uniformity of Cell Shape,1
+509,Marginal Adhesion,1
+509,Single Epithelial Cell Size,2
+509,Bare Nuclei,1
+509,Bland Chromatin,1
+509,Normal Nucleoli,1
+509,Mitoses,1
+509,class,2
+510,index,511
+510,Clump Thickness,1
+510,Uniformity of Cell Size,1
+510,Uniformity of Cell Shape,1
+510,Marginal Adhesion,1
+510,Single Epithelial Cell Size,2
+510,Bare Nuclei,1
+510,Bland Chromatin,1
+510,Normal Nucleoli,1
+510,Mitoses,1
+510,class,2
+511,index,512
+511,Clump Thickness,5
+511,Uniformity of Cell Size,1
+511,Uniformity of Cell Shape,1
+511,Marginal Adhesion,1
+511,Single Epithelial Cell Size,2
+511,Bare Nuclei,1
+511,Bland Chromatin,2
+511,Normal Nucleoli,1
+511,Mitoses,1
+511,class,2
+512,index,513
+512,Clump Thickness,5
+512,Uniformity of Cell Size,1
+512,Uniformity of Cell Shape,1
+512,Marginal Adhesion,1
+512,Single Epithelial Cell Size,2
+512,Bare Nuclei,1
+512,Bland Chromatin,1
+512,Normal Nucleoli,1
+512,Mitoses,1
+512,class,2
+513,index,514
+513,Clump Thickness,3
+513,Uniformity of Cell Size,1
+513,Uniformity of Cell Shape,1
+513,Marginal Adhesion,1
+513,Single Epithelial Cell Size,1
+513,Bare Nuclei,1
+513,Bland Chromatin,2
+513,Normal Nucleoli,1
+513,Mitoses,1
+513,class,2
+514,index,515
+514,Clump Thickness,6
+514,Uniformity of Cell Size,6
+514,Uniformity of Cell Shape,7
+514,Marginal Adhesion,10
+514,Single Epithelial Cell Size,3
+514,Bare Nuclei,10
+514,Bland Chromatin,8
+514,Normal Nucleoli,10
+514,Mitoses,2
+514,class,4
+515,index,516
+515,Clump Thickness,4
+515,Uniformity of Cell Size,10
+515,Uniformity of Cell Shape,4
+515,Marginal Adhesion,7
+515,Single Epithelial Cell Size,3
+515,Bare Nuclei,10
+515,Bland Chromatin,9
+515,Normal Nucleoli,10
+515,Mitoses,1
+515,class,4
+516,index,517
+516,Clump Thickness,1
+516,Uniformity of Cell Size,1
+516,Uniformity of Cell Shape,1
+516,Marginal Adhesion,1
+516,Single Epithelial Cell Size,1
+516,Bare Nuclei,1
+516,Bland Chromatin,1
+516,Normal Nucleoli,1
+516,Mitoses,1
+516,class,2
+517,index,518
+517,Clump Thickness,1
+517,Uniformity of Cell Size,1
+517,Uniformity of Cell Shape,1
+517,Marginal Adhesion,1
+517,Single Epithelial Cell Size,1
+517,Bare Nuclei,1
+517,Bland Chromatin,2
+517,Normal Nucleoli,1
+517,Mitoses,1
+517,class,2
+518,index,519
+518,Clump Thickness,3
+518,Uniformity of Cell Size,1
+518,Uniformity of Cell Shape,2
+518,Marginal Adhesion,2
+518,Single Epithelial Cell Size,2
+518,Bare Nuclei,1
+518,Bland Chromatin,1
+518,Normal Nucleoli,1
+518,Mitoses,1
+518,class,2
+519,index,520
+519,Clump Thickness,4
+519,Uniformity of Cell Size,7
+519,Uniformity of Cell Shape,8
+519,Marginal Adhesion,3
+519,Single Epithelial Cell Size,4
+519,Bare Nuclei,10
+519,Bland Chromatin,9
+519,Normal Nucleoli,1
+519,Mitoses,1
+519,class,4
+520,index,521
+520,Clump Thickness,1
+520,Uniformity of Cell Size,1
+520,Uniformity of Cell Shape,1
+520,Marginal Adhesion,1
+520,Single Epithelial Cell Size,3
+520,Bare Nuclei,1
+520,Bland Chromatin,1
+520,Normal Nucleoli,1
+520,Mitoses,1
+520,class,2
+521,index,522
+521,Clump Thickness,4
+521,Uniformity of Cell Size,1
+521,Uniformity of Cell Shape,1
+521,Marginal Adhesion,1
+521,Single Epithelial Cell Size,3
+521,Bare Nuclei,1
+521,Bland Chromatin,1
+521,Normal Nucleoli,1
+521,Mitoses,1
+521,class,2
+522,index,523
+522,Clump Thickness,10
+522,Uniformity of Cell Size,4
+522,Uniformity of Cell Shape,5
+522,Marginal Adhesion,4
+522,Single Epithelial Cell Size,3
+522,Bare Nuclei,5
+522,Bland Chromatin,7
+522,Normal Nucleoli,3
+522,Mitoses,1
+522,class,4
+523,index,524
+523,Clump Thickness,7
+523,Uniformity of Cell Size,5
+523,Uniformity of Cell Shape,6
+523,Marginal Adhesion,10
+523,Single Epithelial Cell Size,4
+523,Bare Nuclei,10
+523,Bland Chromatin,5
+523,Normal Nucleoli,3
+523,Mitoses,1
+523,class,4
+524,index,525
+524,Clump Thickness,3
+524,Uniformity of Cell Size,1
+524,Uniformity of Cell Shape,1
+524,Marginal Adhesion,1
+524,Single Epithelial Cell Size,2
+524,Bare Nuclei,1
+524,Bland Chromatin,2
+524,Normal Nucleoli,1
+524,Mitoses,1
+524,class,2
+525,index,526
+525,Clump Thickness,3
+525,Uniformity of Cell Size,1
+525,Uniformity of Cell Shape,1
+525,Marginal Adhesion,2
+525,Single Epithelial Cell Size,2
+525,Bare Nuclei,1
+525,Bland Chromatin,1
+525,Normal Nucleoli,1
+525,Mitoses,1
+525,class,2
+526,index,527
+526,Clump Thickness,4
+526,Uniformity of Cell Size,1
+526,Uniformity of Cell Shape,1
+526,Marginal Adhesion,1
+526,Single Epithelial Cell Size,2
+526,Bare Nuclei,1
+526,Bland Chromatin,1
+526,Normal Nucleoli,1
+526,Mitoses,1
+526,class,2
+527,index,528
+527,Clump Thickness,4
+527,Uniformity of Cell Size,1
+527,Uniformity of Cell Shape,1
+527,Marginal Adhesion,1
+527,Single Epithelial Cell Size,2
+527,Bare Nuclei,1
+527,Bland Chromatin,3
+527,Normal Nucleoli,1
+527,Mitoses,1
+527,class,2
+528,index,529
+528,Clump Thickness,6
+528,Uniformity of Cell Size,1
+528,Uniformity of Cell Shape,3
+528,Marginal Adhesion,2
+528,Single Epithelial Cell Size,2
+528,Bare Nuclei,1
+528,Bland Chromatin,1
+528,Normal Nucleoli,1
+528,Mitoses,1
+528,class,2
+529,index,530
+529,Clump Thickness,4
+529,Uniformity of Cell Size,1
+529,Uniformity of Cell Shape,1
+529,Marginal Adhesion,1
+529,Single Epithelial Cell Size,1
+529,Bare Nuclei,1
+529,Bland Chromatin,2
+529,Normal Nucleoli,1
+529,Mitoses,1
+529,class,2
+530,index,531
+530,Clump Thickness,7
+530,Uniformity of Cell Size,4
+530,Uniformity of Cell Shape,4
+530,Marginal Adhesion,3
+530,Single Epithelial Cell Size,4
+530,Bare Nuclei,10
+530,Bland Chromatin,6
+530,Normal Nucleoli,9
+530,Mitoses,1
+530,class,4
+531,index,532
+531,Clump Thickness,4
+531,Uniformity of Cell Size,2
+531,Uniformity of Cell Shape,2
+531,Marginal Adhesion,1
+531,Single Epithelial Cell Size,2
+531,Bare Nuclei,1
+531,Bland Chromatin,2
+531,Normal Nucleoli,1
+531,Mitoses,1
+531,class,2
+532,index,533
+532,Clump Thickness,1
+532,Uniformity of Cell Size,1
+532,Uniformity of Cell Shape,1
+532,Marginal Adhesion,1
+532,Single Epithelial Cell Size,1
+532,Bare Nuclei,1
+532,Bland Chromatin,3
+532,Normal Nucleoli,1
+532,Mitoses,1
+532,class,2
+533,index,534
+533,Clump Thickness,3
+533,Uniformity of Cell Size,1
+533,Uniformity of Cell Shape,1
+533,Marginal Adhesion,1
+533,Single Epithelial Cell Size,2
+533,Bare Nuclei,1
+533,Bland Chromatin,2
+533,Normal Nucleoli,1
+533,Mitoses,1
+533,class,2
+534,index,535
+534,Clump Thickness,2
+534,Uniformity of Cell Size,1
+534,Uniformity of Cell Shape,1
+534,Marginal Adhesion,1
+534,Single Epithelial Cell Size,2
+534,Bare Nuclei,1
+534,Bland Chromatin,2
+534,Normal Nucleoli,1
+534,Mitoses,1
+534,class,2
+535,index,536
+535,Clump Thickness,1
+535,Uniformity of Cell Size,1
+535,Uniformity of Cell Shape,3
+535,Marginal Adhesion,2
+535,Single Epithelial Cell Size,2
+535,Bare Nuclei,1
+535,Bland Chromatin,3
+535,Normal Nucleoli,1
+535,Mitoses,1
+535,class,2
+536,index,537
+536,Clump Thickness,5
+536,Uniformity of Cell Size,1
+536,Uniformity of Cell Shape,1
+536,Marginal Adhesion,1
+536,Single Epithelial Cell Size,2
+536,Bare Nuclei,1
+536,Bland Chromatin,3
+536,Normal Nucleoli,1
+536,Mitoses,1
+536,class,2
+537,index,538
+537,Clump Thickness,5
+537,Uniformity of Cell Size,1
+537,Uniformity of Cell Shape,2
+537,Marginal Adhesion,1
+537,Single Epithelial Cell Size,2
+537,Bare Nuclei,1
+537,Bland Chromatin,3
+537,Normal Nucleoli,1
+537,Mitoses,1
+537,class,2
+538,index,539
+538,Clump Thickness,4
+538,Uniformity of Cell Size,1
+538,Uniformity of Cell Shape,1
+538,Marginal Adhesion,1
+538,Single Epithelial Cell Size,2
+538,Bare Nuclei,1
+538,Bland Chromatin,2
+538,Normal Nucleoli,1
+538,Mitoses,1
+538,class,2
+539,index,540
+539,Clump Thickness,6
+539,Uniformity of Cell Size,1
+539,Uniformity of Cell Shape,1
+539,Marginal Adhesion,1
+539,Single Epithelial Cell Size,2
+539,Bare Nuclei,1
+539,Bland Chromatin,2
+539,Normal Nucleoli,1
+539,Mitoses,1
+539,class,2
+540,index,541
+540,Clump Thickness,5
+540,Uniformity of Cell Size,1
+540,Uniformity of Cell Shape,1
+540,Marginal Adhesion,1
+540,Single Epithelial Cell Size,2
+540,Bare Nuclei,2
+540,Bland Chromatin,2
+540,Normal Nucleoli,1
+540,Mitoses,1
+540,class,2
+541,index,542
+541,Clump Thickness,3
+541,Uniformity of Cell Size,1
+541,Uniformity of Cell Shape,1
+541,Marginal Adhesion,1
+541,Single Epithelial Cell Size,2
+541,Bare Nuclei,1
+541,Bland Chromatin,1
+541,Normal Nucleoli,1
+541,Mitoses,1
+541,class,2
+542,index,543
+542,Clump Thickness,5
+542,Uniformity of Cell Size,3
+542,Uniformity of Cell Shape,1
+542,Marginal Adhesion,1
+542,Single Epithelial Cell Size,2
+542,Bare Nuclei,1
+542,Bland Chromatin,1
+542,Normal Nucleoli,1
+542,Mitoses,1
+542,class,2
+543,index,544
+543,Clump Thickness,4
+543,Uniformity of Cell Size,1
+543,Uniformity of Cell Shape,1
+543,Marginal Adhesion,1
+543,Single Epithelial Cell Size,2
+543,Bare Nuclei,1
+543,Bland Chromatin,2
+543,Normal Nucleoli,1
+543,Mitoses,1
+543,class,2
+544,index,545
+544,Clump Thickness,2
+544,Uniformity of Cell Size,1
+544,Uniformity of Cell Shape,3
+544,Marginal Adhesion,2
+544,Single Epithelial Cell Size,2
+544,Bare Nuclei,1
+544,Bland Chromatin,2
+544,Normal Nucleoli,1
+544,Mitoses,1
+544,class,2
+545,index,546
+545,Clump Thickness,5
+545,Uniformity of Cell Size,1
+545,Uniformity of Cell Shape,1
+545,Marginal Adhesion,1
+545,Single Epithelial Cell Size,2
+545,Bare Nuclei,1
+545,Bland Chromatin,2
+545,Normal Nucleoli,1
+545,Mitoses,1
+545,class,2
+546,index,547
+546,Clump Thickness,6
+546,Uniformity of Cell Size,10
+546,Uniformity of Cell Shape,10
+546,Marginal Adhesion,10
+546,Single Epithelial Cell Size,4
+546,Bare Nuclei,10
+546,Bland Chromatin,7
+546,Normal Nucleoli,10
+546,Mitoses,1
+546,class,4
+547,index,548
+547,Clump Thickness,2
+547,Uniformity of Cell Size,1
+547,Uniformity of Cell Shape,1
+547,Marginal Adhesion,1
+547,Single Epithelial Cell Size,1
+547,Bare Nuclei,1
+547,Bland Chromatin,1
+547,Normal Nucleoli,1
+547,Mitoses,1
+547,class,2
+548,index,549
+548,Clump Thickness,3
+548,Uniformity of Cell Size,1
+548,Uniformity of Cell Shape,1
+548,Marginal Adhesion,1
+548,Single Epithelial Cell Size,1
+548,Bare Nuclei,1
+548,Bland Chromatin,1
+548,Normal Nucleoli,1
+548,Mitoses,1
+548,class,2
+549,index,550
+549,Clump Thickness,7
+549,Uniformity of Cell Size,8
+549,Uniformity of Cell Shape,3
+549,Marginal Adhesion,7
+549,Single Epithelial Cell Size,4
+549,Bare Nuclei,5
+549,Bland Chromatin,7
+549,Normal Nucleoli,8
+549,Mitoses,2
+549,class,4
+550,index,551
+550,Clump Thickness,3
+550,Uniformity of Cell Size,1
+550,Uniformity of Cell Shape,1
+550,Marginal Adhesion,1
+550,Single Epithelial Cell Size,2
+550,Bare Nuclei,1
+550,Bland Chromatin,2
+550,Normal Nucleoli,1
+550,Mitoses,1
+550,class,2
+551,index,552
+551,Clump Thickness,1
+551,Uniformity of Cell Size,1
+551,Uniformity of Cell Shape,1
+551,Marginal Adhesion,1
+551,Single Epithelial Cell Size,2
+551,Bare Nuclei,1
+551,Bland Chromatin,3
+551,Normal Nucleoli,1
+551,Mitoses,1
+551,class,2
+552,index,553
+552,Clump Thickness,3
+552,Uniformity of Cell Size,2
+552,Uniformity of Cell Shape,2
+552,Marginal Adhesion,2
+552,Single Epithelial Cell Size,2
+552,Bare Nuclei,1
+552,Bland Chromatin,4
+552,Normal Nucleoli,2
+552,Mitoses,1
+552,class,2
+553,index,554
+553,Clump Thickness,4
+553,Uniformity of Cell Size,4
+553,Uniformity of Cell Shape,2
+553,Marginal Adhesion,1
+553,Single Epithelial Cell Size,2
+553,Bare Nuclei,5
+553,Bland Chromatin,2
+553,Normal Nucleoli,1
+553,Mitoses,2
+553,class,2
+554,index,555
+554,Clump Thickness,3
+554,Uniformity of Cell Size,1
+554,Uniformity of Cell Shape,1
+554,Marginal Adhesion,1
+554,Single Epithelial Cell Size,2
+554,Bare Nuclei,1
+554,Bland Chromatin,1
+554,Normal Nucleoli,1
+554,Mitoses,1
+554,class,2
+555,index,556
+555,Clump Thickness,4
+555,Uniformity of Cell Size,3
+555,Uniformity of Cell Shape,1
+555,Marginal Adhesion,1
+555,Single Epithelial Cell Size,2
+555,Bare Nuclei,1
+555,Bland Chromatin,4
+555,Normal Nucleoli,8
+555,Mitoses,1
+555,class,2
+556,index,557
+556,Clump Thickness,5
+556,Uniformity of Cell Size,2
+556,Uniformity of Cell Shape,2
+556,Marginal Adhesion,2
+556,Single Epithelial Cell Size,1
+556,Bare Nuclei,1
+556,Bland Chromatin,2
+556,Normal Nucleoli,1
+556,Mitoses,1
+556,class,2
+557,index,558
+557,Clump Thickness,5
+557,Uniformity of Cell Size,1
+557,Uniformity of Cell Shape,1
+557,Marginal Adhesion,3
+557,Single Epithelial Cell Size,2
+557,Bare Nuclei,1
+557,Bland Chromatin,1
+557,Normal Nucleoli,1
+557,Mitoses,1
+557,class,2
+558,index,559
+558,Clump Thickness,2
+558,Uniformity of Cell Size,1
+558,Uniformity of Cell Shape,1
+558,Marginal Adhesion,1
+558,Single Epithelial Cell Size,2
+558,Bare Nuclei,1
+558,Bland Chromatin,2
+558,Normal Nucleoli,1
+558,Mitoses,1
+558,class,2
+559,index,560
+559,Clump Thickness,5
+559,Uniformity of Cell Size,1
+559,Uniformity of Cell Shape,1
+559,Marginal Adhesion,1
+559,Single Epithelial Cell Size,2
+559,Bare Nuclei,1
+559,Bland Chromatin,2
+559,Normal Nucleoli,1
+559,Mitoses,1
+559,class,2
+560,index,561
+560,Clump Thickness,5
+560,Uniformity of Cell Size,1
+560,Uniformity of Cell Shape,1
+560,Marginal Adhesion,1
+560,Single Epithelial Cell Size,2
+560,Bare Nuclei,1
+560,Bland Chromatin,3
+560,Normal Nucleoli,1
+560,Mitoses,1
+560,class,2
+561,index,562
+561,Clump Thickness,5
+561,Uniformity of Cell Size,1
+561,Uniformity of Cell Shape,1
+561,Marginal Adhesion,1
+561,Single Epithelial Cell Size,2
+561,Bare Nuclei,1
+561,Bland Chromatin,3
+561,Normal Nucleoli,1
+561,Mitoses,1
+561,class,2
+562,index,563
+562,Clump Thickness,1
+562,Uniformity of Cell Size,1
+562,Uniformity of Cell Shape,1
+562,Marginal Adhesion,1
+562,Single Epithelial Cell Size,2
+562,Bare Nuclei,1
+562,Bland Chromatin,3
+562,Normal Nucleoli,1
+562,Mitoses,1
+562,class,2
+563,index,564
+563,Clump Thickness,3
+563,Uniformity of Cell Size,1
+563,Uniformity of Cell Shape,1
+563,Marginal Adhesion,1
+563,Single Epithelial Cell Size,2
+563,Bare Nuclei,1
+563,Bland Chromatin,2
+563,Normal Nucleoli,1
+563,Mitoses,1
+563,class,2
+564,index,565
+564,Clump Thickness,4
+564,Uniformity of Cell Size,1
+564,Uniformity of Cell Shape,1
+564,Marginal Adhesion,1
+564,Single Epithelial Cell Size,2
+564,Bare Nuclei,1
+564,Bland Chromatin,3
+564,Normal Nucleoli,2
+564,Mitoses,1
+564,class,2
+565,index,566
+565,Clump Thickness,5
+565,Uniformity of Cell Size,7
+565,Uniformity of Cell Shape,10
+565,Marginal Adhesion,10
+565,Single Epithelial Cell Size,5
+565,Bare Nuclei,10
+565,Bland Chromatin,10
+565,Normal Nucleoli,10
+565,Mitoses,1
+565,class,4
+566,index,567
+566,Clump Thickness,3
+566,Uniformity of Cell Size,1
+566,Uniformity of Cell Shape,2
+566,Marginal Adhesion,1
+566,Single Epithelial Cell Size,2
+566,Bare Nuclei,1
+566,Bland Chromatin,3
+566,Normal Nucleoli,1
+566,Mitoses,1
+566,class,2
+567,index,568
+567,Clump Thickness,4
+567,Uniformity of Cell Size,1
+567,Uniformity of Cell Shape,1
+567,Marginal Adhesion,1
+567,Single Epithelial Cell Size,2
+567,Bare Nuclei,3
+567,Bland Chromatin,2
+567,Normal Nucleoli,1
+567,Mitoses,1
+567,class,2
+568,index,569
+568,Clump Thickness,8
+568,Uniformity of Cell Size,4
+568,Uniformity of Cell Shape,4
+568,Marginal Adhesion,1
+568,Single Epithelial Cell Size,6
+568,Bare Nuclei,10
+568,Bland Chromatin,2
+568,Normal Nucleoli,5
+568,Mitoses,2
+568,class,4
+569,index,570
+569,Clump Thickness,10
+569,Uniformity of Cell Size,10
+569,Uniformity of Cell Shape,8
+569,Marginal Adhesion,10
+569,Single Epithelial Cell Size,6
+569,Bare Nuclei,5
+569,Bland Chromatin,10
+569,Normal Nucleoli,3
+569,Mitoses,1
+569,class,4
+570,index,571
+570,Clump Thickness,8
+570,Uniformity of Cell Size,10
+570,Uniformity of Cell Shape,4
+570,Marginal Adhesion,4
+570,Single Epithelial Cell Size,8
+570,Bare Nuclei,10
+570,Bland Chromatin,8
+570,Normal Nucleoli,2
+570,Mitoses,1
+570,class,4
+571,index,572
+571,Clump Thickness,7
+571,Uniformity of Cell Size,6
+571,Uniformity of Cell Shape,10
+571,Marginal Adhesion,5
+571,Single Epithelial Cell Size,3
+571,Bare Nuclei,10
+571,Bland Chromatin,9
+571,Normal Nucleoli,10
+571,Mitoses,2
+571,class,4
+572,index,573
+572,Clump Thickness,3
+572,Uniformity of Cell Size,1
+572,Uniformity of Cell Shape,1
+572,Marginal Adhesion,1
+572,Single Epithelial Cell Size,2
+572,Bare Nuclei,1
+572,Bland Chromatin,2
+572,Normal Nucleoli,1
+572,Mitoses,1
+572,class,2
+573,index,574
+573,Clump Thickness,1
+573,Uniformity of Cell Size,1
+573,Uniformity of Cell Shape,1
+573,Marginal Adhesion,1
+573,Single Epithelial Cell Size,2
+573,Bare Nuclei,1
+573,Bland Chromatin,2
+573,Normal Nucleoli,1
+573,Mitoses,1
+573,class,2
+574,index,575
+574,Clump Thickness,10
+574,Uniformity of Cell Size,9
+574,Uniformity of Cell Shape,7
+574,Marginal Adhesion,3
+574,Single Epithelial Cell Size,4
+574,Bare Nuclei,2
+574,Bland Chromatin,7
+574,Normal Nucleoli,7
+574,Mitoses,1
+574,class,4
+575,index,576
+575,Clump Thickness,5
+575,Uniformity of Cell Size,1
+575,Uniformity of Cell Shape,2
+575,Marginal Adhesion,1
+575,Single Epithelial Cell Size,2
+575,Bare Nuclei,1
+575,Bland Chromatin,3
+575,Normal Nucleoli,1
+575,Mitoses,1
+575,class,2
+576,index,577
+576,Clump Thickness,5
+576,Uniformity of Cell Size,1
+576,Uniformity of Cell Shape,1
+576,Marginal Adhesion,1
+576,Single Epithelial Cell Size,2
+576,Bare Nuclei,1
+576,Bland Chromatin,2
+576,Normal Nucleoli,1
+576,Mitoses,1
+576,class,2
+577,index,578
+577,Clump Thickness,1
+577,Uniformity of Cell Size,1
+577,Uniformity of Cell Shape,1
+577,Marginal Adhesion,1
+577,Single Epithelial Cell Size,2
+577,Bare Nuclei,1
+577,Bland Chromatin,2
+577,Normal Nucleoli,1
+577,Mitoses,1
+577,class,2
+578,index,579
+578,Clump Thickness,1
+578,Uniformity of Cell Size,1
+578,Uniformity of Cell Shape,1
+578,Marginal Adhesion,1
+578,Single Epithelial Cell Size,2
+578,Bare Nuclei,1
+578,Bland Chromatin,2
+578,Normal Nucleoli,1
+578,Mitoses,1
+578,class,2
+579,index,580
+579,Clump Thickness,1
+579,Uniformity of Cell Size,1
+579,Uniformity of Cell Shape,1
+579,Marginal Adhesion,1
+579,Single Epithelial Cell Size,2
+579,Bare Nuclei,1
+579,Bland Chromatin,3
+579,Normal Nucleoli,1
+579,Mitoses,1
+579,class,2
+580,index,581
+580,Clump Thickness,5
+580,Uniformity of Cell Size,1
+580,Uniformity of Cell Shape,2
+580,Marginal Adhesion,1
+580,Single Epithelial Cell Size,2
+580,Bare Nuclei,1
+580,Bland Chromatin,2
+580,Normal Nucleoli,1
+580,Mitoses,1
+580,class,2
+581,index,582
+581,Clump Thickness,5
+581,Uniformity of Cell Size,7
+581,Uniformity of Cell Shape,10
+581,Marginal Adhesion,6
+581,Single Epithelial Cell Size,5
+581,Bare Nuclei,10
+581,Bland Chromatin,7
+581,Normal Nucleoli,5
+581,Mitoses,1
+581,class,4
+582,index,583
+582,Clump Thickness,6
+582,Uniformity of Cell Size,10
+582,Uniformity of Cell Shape,5
+582,Marginal Adhesion,5
+582,Single Epithelial Cell Size,4
+582,Bare Nuclei,10
+582,Bland Chromatin,6
+582,Normal Nucleoli,10
+582,Mitoses,1
+582,class,4
+583,index,584
+583,Clump Thickness,3
+583,Uniformity of Cell Size,1
+583,Uniformity of Cell Shape,1
+583,Marginal Adhesion,1
+583,Single Epithelial Cell Size,2
+583,Bare Nuclei,1
+583,Bland Chromatin,1
+583,Normal Nucleoli,1
+583,Mitoses,1
+583,class,2
+584,index,585
+584,Clump Thickness,5
+584,Uniformity of Cell Size,1
+584,Uniformity of Cell Shape,1
+584,Marginal Adhesion,6
+584,Single Epithelial Cell Size,3
+584,Bare Nuclei,1
+584,Bland Chromatin,1
+584,Normal Nucleoli,1
+584,Mitoses,1
+584,class,2
+585,index,586
+585,Clump Thickness,1
+585,Uniformity of Cell Size,1
+585,Uniformity of Cell Shape,1
+585,Marginal Adhesion,1
+585,Single Epithelial Cell Size,2
+585,Bare Nuclei,1
+585,Bland Chromatin,1
+585,Normal Nucleoli,1
+585,Mitoses,1
+585,class,2
+586,index,587
+586,Clump Thickness,8
+586,Uniformity of Cell Size,10
+586,Uniformity of Cell Shape,10
+586,Marginal Adhesion,10
+586,Single Epithelial Cell Size,6
+586,Bare Nuclei,10
+586,Bland Chromatin,10
+586,Normal Nucleoli,10
+586,Mitoses,1
+586,class,4
+587,index,588
+587,Clump Thickness,5
+587,Uniformity of Cell Size,1
+587,Uniformity of Cell Shape,1
+587,Marginal Adhesion,1
+587,Single Epithelial Cell Size,2
+587,Bare Nuclei,1
+587,Bland Chromatin,2
+587,Normal Nucleoli,2
+587,Mitoses,1
+587,class,2
+588,index,589
+588,Clump Thickness,9
+588,Uniformity of Cell Size,8
+588,Uniformity of Cell Shape,8
+588,Marginal Adhesion,9
+588,Single Epithelial Cell Size,6
+588,Bare Nuclei,3
+588,Bland Chromatin,4
+588,Normal Nucleoli,1
+588,Mitoses,1
+588,class,4
+589,index,590
+589,Clump Thickness,5
+589,Uniformity of Cell Size,1
+589,Uniformity of Cell Shape,1
+589,Marginal Adhesion,1
+589,Single Epithelial Cell Size,2
+589,Bare Nuclei,1
+589,Bland Chromatin,1
+589,Normal Nucleoli,1
+589,Mitoses,1
+589,class,2
+590,index,591
+590,Clump Thickness,4
+590,Uniformity of Cell Size,10
+590,Uniformity of Cell Shape,8
+590,Marginal Adhesion,5
+590,Single Epithelial Cell Size,4
+590,Bare Nuclei,1
+590,Bland Chromatin,10
+590,Normal Nucleoli,1
+590,Mitoses,1
+590,class,4
+591,index,592
+591,Clump Thickness,2
+591,Uniformity of Cell Size,5
+591,Uniformity of Cell Shape,7
+591,Marginal Adhesion,6
+591,Single Epithelial Cell Size,4
+591,Bare Nuclei,10
+591,Bland Chromatin,7
+591,Normal Nucleoli,6
+591,Mitoses,1
+591,class,4
+592,index,593
+592,Clump Thickness,10
+592,Uniformity of Cell Size,3
+592,Uniformity of Cell Shape,4
+592,Marginal Adhesion,5
+592,Single Epithelial Cell Size,3
+592,Bare Nuclei,10
+592,Bland Chromatin,4
+592,Normal Nucleoli,1
+592,Mitoses,1
+592,class,4
+593,index,594
+593,Clump Thickness,5
+593,Uniformity of Cell Size,1
+593,Uniformity of Cell Shape,2
+593,Marginal Adhesion,1
+593,Single Epithelial Cell Size,2
+593,Bare Nuclei,1
+593,Bland Chromatin,1
+593,Normal Nucleoli,1
+593,Mitoses,1
+593,class,2
+594,index,595
+594,Clump Thickness,4
+594,Uniformity of Cell Size,8
+594,Uniformity of Cell Shape,6
+594,Marginal Adhesion,3
+594,Single Epithelial Cell Size,4
+594,Bare Nuclei,10
+594,Bland Chromatin,7
+594,Normal Nucleoli,1
+594,Mitoses,1
+594,class,4
+595,index,596
+595,Clump Thickness,5
+595,Uniformity of Cell Size,1
+595,Uniformity of Cell Shape,1
+595,Marginal Adhesion,1
+595,Single Epithelial Cell Size,2
+595,Bare Nuclei,1
+595,Bland Chromatin,2
+595,Normal Nucleoli,1
+595,Mitoses,1
+595,class,2
+596,index,597
+596,Clump Thickness,4
+596,Uniformity of Cell Size,1
+596,Uniformity of Cell Shape,2
+596,Marginal Adhesion,1
+596,Single Epithelial Cell Size,2
+596,Bare Nuclei,1
+596,Bland Chromatin,2
+596,Normal Nucleoli,1
+596,Mitoses,1
+596,class,2
+597,index,598
+597,Clump Thickness,5
+597,Uniformity of Cell Size,1
+597,Uniformity of Cell Shape,3
+597,Marginal Adhesion,1
+597,Single Epithelial Cell Size,2
+597,Bare Nuclei,1
+597,Bland Chromatin,3
+597,Normal Nucleoli,1
+597,Mitoses,1
+597,class,2
+598,index,599
+598,Clump Thickness,3
+598,Uniformity of Cell Size,1
+598,Uniformity of Cell Shape,1
+598,Marginal Adhesion,1
+598,Single Epithelial Cell Size,2
+598,Bare Nuclei,1
+598,Bland Chromatin,2
+598,Normal Nucleoli,1
+598,Mitoses,1
+598,class,2
+599,index,600
+599,Clump Thickness,5
+599,Uniformity of Cell Size,2
+599,Uniformity of Cell Shape,4
+599,Marginal Adhesion,1
+599,Single Epithelial Cell Size,1
+599,Bare Nuclei,1
+599,Bland Chromatin,1
+599,Normal Nucleoli,1
+599,Mitoses,1
+599,class,2
+600,index,601
+600,Clump Thickness,3
+600,Uniformity of Cell Size,1
+600,Uniformity of Cell Shape,1
+600,Marginal Adhesion,1
+600,Single Epithelial Cell Size,2
+600,Bare Nuclei,1
+600,Bland Chromatin,2
+600,Normal Nucleoli,1
+600,Mitoses,1
+600,class,2
+601,index,602
+601,Clump Thickness,1
+601,Uniformity of Cell Size,1
+601,Uniformity of Cell Shape,1
+601,Marginal Adhesion,1
+601,Single Epithelial Cell Size,1
+601,Bare Nuclei,1
+601,Bland Chromatin,2
+601,Normal Nucleoli,1
+601,Mitoses,1
+601,class,2
+602,index,603
+602,Clump Thickness,4
+602,Uniformity of Cell Size,1
+602,Uniformity of Cell Shape,1
+602,Marginal Adhesion,1
+602,Single Epithelial Cell Size,2
+602,Bare Nuclei,1
+602,Bland Chromatin,2
+602,Normal Nucleoli,1
+602,Mitoses,1
+602,class,2
+603,index,604
+603,Clump Thickness,5
+603,Uniformity of Cell Size,4
+603,Uniformity of Cell Shape,6
+603,Marginal Adhesion,8
+603,Single Epithelial Cell Size,4
+603,Bare Nuclei,1
+603,Bland Chromatin,8
+603,Normal Nucleoli,10
+603,Mitoses,1
+603,class,4
+604,index,605
+604,Clump Thickness,5
+604,Uniformity of Cell Size,3
+604,Uniformity of Cell Shape,2
+604,Marginal Adhesion,8
+604,Single Epithelial Cell Size,5
+604,Bare Nuclei,10
+604,Bland Chromatin,8
+604,Normal Nucleoli,1
+604,Mitoses,2
+604,class,4
+605,index,606
+605,Clump Thickness,10
+605,Uniformity of Cell Size,5
+605,Uniformity of Cell Shape,10
+605,Marginal Adhesion,3
+605,Single Epithelial Cell Size,5
+605,Bare Nuclei,8
+605,Bland Chromatin,7
+605,Normal Nucleoli,8
+605,Mitoses,3
+605,class,4
+606,index,607
+606,Clump Thickness,4
+606,Uniformity of Cell Size,1
+606,Uniformity of Cell Shape,1
+606,Marginal Adhesion,2
+606,Single Epithelial Cell Size,2
+606,Bare Nuclei,1
+606,Bland Chromatin,1
+606,Normal Nucleoli,1
+606,Mitoses,1
+606,class,2
+607,index,608
+607,Clump Thickness,1
+607,Uniformity of Cell Size,1
+607,Uniformity of Cell Shape,1
+607,Marginal Adhesion,1
+607,Single Epithelial Cell Size,2
+607,Bare Nuclei,1
+607,Bland Chromatin,1
+607,Normal Nucleoli,1
+607,Mitoses,1
+607,class,2
+608,index,609
+608,Clump Thickness,5
+608,Uniformity of Cell Size,10
+608,Uniformity of Cell Shape,10
+608,Marginal Adhesion,10
+608,Single Epithelial Cell Size,10
+608,Bare Nuclei,10
+608,Bland Chromatin,10
+608,Normal Nucleoli,1
+608,Mitoses,1
+608,class,4
+609,index,610
+609,Clump Thickness,5
+609,Uniformity of Cell Size,1
+609,Uniformity of Cell Shape,1
+609,Marginal Adhesion,1
+609,Single Epithelial Cell Size,2
+609,Bare Nuclei,1
+609,Bland Chromatin,1
+609,Normal Nucleoli,1
+609,Mitoses,1
+609,class,2
+610,index,611
+610,Clump Thickness,10
+610,Uniformity of Cell Size,4
+610,Uniformity of Cell Shape,3
+610,Marginal Adhesion,10
+610,Single Epithelial Cell Size,3
+610,Bare Nuclei,10
+610,Bland Chromatin,7
+610,Normal Nucleoli,1
+610,Mitoses,2
+610,class,4
+611,index,612
+611,Clump Thickness,5
+611,Uniformity of Cell Size,10
+611,Uniformity of Cell Shape,10
+611,Marginal Adhesion,10
+611,Single Epithelial Cell Size,5
+611,Bare Nuclei,2
+611,Bland Chromatin,8
+611,Normal Nucleoli,5
+611,Mitoses,1
+611,class,4
+612,index,613
+612,Clump Thickness,8
+612,Uniformity of Cell Size,10
+612,Uniformity of Cell Shape,10
+612,Marginal Adhesion,10
+612,Single Epithelial Cell Size,6
+612,Bare Nuclei,10
+612,Bland Chromatin,10
+612,Normal Nucleoli,10
+612,Mitoses,10
+612,class,4
+613,index,614
+613,Clump Thickness,2
+613,Uniformity of Cell Size,3
+613,Uniformity of Cell Shape,1
+613,Marginal Adhesion,1
+613,Single Epithelial Cell Size,2
+613,Bare Nuclei,1
+613,Bland Chromatin,2
+613,Normal Nucleoli,1
+613,Mitoses,1
+613,class,2
+614,index,615
+614,Clump Thickness,2
+614,Uniformity of Cell Size,1
+614,Uniformity of Cell Shape,1
+614,Marginal Adhesion,1
+614,Single Epithelial Cell Size,1
+614,Bare Nuclei,1
+614,Bland Chromatin,2
+614,Normal Nucleoli,1
+614,Mitoses,1
+614,class,2
+615,index,616
+615,Clump Thickness,4
+615,Uniformity of Cell Size,1
+615,Uniformity of Cell Shape,3
+615,Marginal Adhesion,1
+615,Single Epithelial Cell Size,2
+615,Bare Nuclei,1
+615,Bland Chromatin,2
+615,Normal Nucleoli,1
+615,Mitoses,1
+615,class,2
+616,index,617
+616,Clump Thickness,3
+616,Uniformity of Cell Size,1
+616,Uniformity of Cell Shape,1
+616,Marginal Adhesion,1
+616,Single Epithelial Cell Size,2
+616,Bare Nuclei,1
+616,Bland Chromatin,2
+616,Normal Nucleoli,1
+616,Mitoses,1
+616,class,2
+617,index,618
+617,Clump Thickness,1
+617,Uniformity of Cell Size,1
+617,Uniformity of Cell Shape,1
+617,Marginal Adhesion,1
+617,Single Epithelial Cell Size,1
+617,Bare Nuclei,?
+617,Bland Chromatin,1
+617,Normal Nucleoli,1
+617,Mitoses,1
+617,class,2
+618,index,619
+618,Clump Thickness,4
+618,Uniformity of Cell Size,1
+618,Uniformity of Cell Shape,1
+618,Marginal Adhesion,1
+618,Single Epithelial Cell Size,2
+618,Bare Nuclei,1
+618,Bland Chromatin,2
+618,Normal Nucleoli,1
+618,Mitoses,1
+618,class,2
+619,index,620
+619,Clump Thickness,5
+619,Uniformity of Cell Size,1
+619,Uniformity of Cell Shape,1
+619,Marginal Adhesion,1
+619,Single Epithelial Cell Size,2
+619,Bare Nuclei,1
+619,Bland Chromatin,2
+619,Normal Nucleoli,1
+619,Mitoses,1
+619,class,2
+620,index,621
+620,Clump Thickness,3
+620,Uniformity of Cell Size,1
+620,Uniformity of Cell Shape,1
+620,Marginal Adhesion,1
+620,Single Epithelial Cell Size,2
+620,Bare Nuclei,1
+620,Bland Chromatin,2
+620,Normal Nucleoli,1
+620,Mitoses,1
+620,class,2
+621,index,622
+621,Clump Thickness,6
+621,Uniformity of Cell Size,3
+621,Uniformity of Cell Shape,3
+621,Marginal Adhesion,3
+621,Single Epithelial Cell Size,3
+621,Bare Nuclei,2
+621,Bland Chromatin,6
+621,Normal Nucleoli,1
+621,Mitoses,1
+621,class,2
+622,index,623
+622,Clump Thickness,7
+622,Uniformity of Cell Size,1
+622,Uniformity of Cell Shape,2
+622,Marginal Adhesion,3
+622,Single Epithelial Cell Size,2
+622,Bare Nuclei,1
+622,Bland Chromatin,2
+622,Normal Nucleoli,1
+622,Mitoses,1
+622,class,2
+623,index,624
+623,Clump Thickness,1
+623,Uniformity of Cell Size,1
+623,Uniformity of Cell Shape,1
+623,Marginal Adhesion,1
+623,Single Epithelial Cell Size,2
+623,Bare Nuclei,1
+623,Bland Chromatin,1
+623,Normal Nucleoli,1
+623,Mitoses,1
+623,class,2
+624,index,625
+624,Clump Thickness,5
+624,Uniformity of Cell Size,1
+624,Uniformity of Cell Shape,1
+624,Marginal Adhesion,2
+624,Single Epithelial Cell Size,1
+624,Bare Nuclei,1
+624,Bland Chromatin,2
+624,Normal Nucleoli,1
+624,Mitoses,1
+624,class,2
+625,index,626
+625,Clump Thickness,3
+625,Uniformity of Cell Size,1
+625,Uniformity of Cell Shape,3
+625,Marginal Adhesion,1
+625,Single Epithelial Cell Size,3
+625,Bare Nuclei,4
+625,Bland Chromatin,1
+625,Normal Nucleoli,1
+625,Mitoses,1
+625,class,2
+626,index,627
+626,Clump Thickness,4
+626,Uniformity of Cell Size,6
+626,Uniformity of Cell Shape,6
+626,Marginal Adhesion,5
+626,Single Epithelial Cell Size,7
+626,Bare Nuclei,6
+626,Bland Chromatin,7
+626,Normal Nucleoli,7
+626,Mitoses,3
+626,class,4
+627,index,628
+627,Clump Thickness,2
+627,Uniformity of Cell Size,1
+627,Uniformity of Cell Shape,1
+627,Marginal Adhesion,1
+627,Single Epithelial Cell Size,2
+627,Bare Nuclei,5
+627,Bland Chromatin,1
+627,Normal Nucleoli,1
+627,Mitoses,1
+627,class,2
+628,index,629
+628,Clump Thickness,2
+628,Uniformity of Cell Size,1
+628,Uniformity of Cell Shape,1
+628,Marginal Adhesion,1
+628,Single Epithelial Cell Size,2
+628,Bare Nuclei,1
+628,Bland Chromatin,1
+628,Normal Nucleoli,1
+628,Mitoses,1
+628,class,2
+629,index,630
+629,Clump Thickness,4
+629,Uniformity of Cell Size,1
+629,Uniformity of Cell Shape,1
+629,Marginal Adhesion,1
+629,Single Epithelial Cell Size,2
+629,Bare Nuclei,1
+629,Bland Chromatin,1
+629,Normal Nucleoli,1
+629,Mitoses,1
+629,class,2
+630,index,631
+630,Clump Thickness,6
+630,Uniformity of Cell Size,2
+630,Uniformity of Cell Shape,3
+630,Marginal Adhesion,1
+630,Single Epithelial Cell Size,2
+630,Bare Nuclei,1
+630,Bland Chromatin,1
+630,Normal Nucleoli,1
+630,Mitoses,1
+630,class,2
+631,index,632
+631,Clump Thickness,5
+631,Uniformity of Cell Size,1
+631,Uniformity of Cell Shape,1
+631,Marginal Adhesion,1
+631,Single Epithelial Cell Size,2
+631,Bare Nuclei,1
+631,Bland Chromatin,2
+631,Normal Nucleoli,1
+631,Mitoses,1
+631,class,2
+632,index,633
+632,Clump Thickness,1
+632,Uniformity of Cell Size,1
+632,Uniformity of Cell Shape,1
+632,Marginal Adhesion,1
+632,Single Epithelial Cell Size,2
+632,Bare Nuclei,1
+632,Bland Chromatin,1
+632,Normal Nucleoli,1
+632,Mitoses,1
+632,class,2
+633,index,634
+633,Clump Thickness,8
+633,Uniformity of Cell Size,7
+633,Uniformity of Cell Shape,4
+633,Marginal Adhesion,4
+633,Single Epithelial Cell Size,5
+633,Bare Nuclei,3
+633,Bland Chromatin,5
+633,Normal Nucleoli,10
+633,Mitoses,1
+633,class,4
+634,index,635
+634,Clump Thickness,3
+634,Uniformity of Cell Size,1
+634,Uniformity of Cell Shape,1
+634,Marginal Adhesion,1
+634,Single Epithelial Cell Size,2
+634,Bare Nuclei,1
+634,Bland Chromatin,1
+634,Normal Nucleoli,1
+634,Mitoses,1
+634,class,2
+635,index,636
+635,Clump Thickness,3
+635,Uniformity of Cell Size,1
+635,Uniformity of Cell Shape,4
+635,Marginal Adhesion,1
+635,Single Epithelial Cell Size,2
+635,Bare Nuclei,1
+635,Bland Chromatin,1
+635,Normal Nucleoli,1
+635,Mitoses,1
+635,class,2
+636,index,637
+636,Clump Thickness,10
+636,Uniformity of Cell Size,10
+636,Uniformity of Cell Shape,7
+636,Marginal Adhesion,8
+636,Single Epithelial Cell Size,7
+636,Bare Nuclei,1
+636,Bland Chromatin,10
+636,Normal Nucleoli,10
+636,Mitoses,3
+636,class,4
+637,index,638
+637,Clump Thickness,4
+637,Uniformity of Cell Size,2
+637,Uniformity of Cell Shape,4
+637,Marginal Adhesion,3
+637,Single Epithelial Cell Size,2
+637,Bare Nuclei,2
+637,Bland Chromatin,2
+637,Normal Nucleoli,1
+637,Mitoses,1
+637,class,2
+638,index,639
+638,Clump Thickness,4
+638,Uniformity of Cell Size,1
+638,Uniformity of Cell Shape,1
+638,Marginal Adhesion,1
+638,Single Epithelial Cell Size,2
+638,Bare Nuclei,1
+638,Bland Chromatin,1
+638,Normal Nucleoli,1
+638,Mitoses,1
+638,class,2
+639,index,640
+639,Clump Thickness,5
+639,Uniformity of Cell Size,1
+639,Uniformity of Cell Shape,1
+639,Marginal Adhesion,3
+639,Single Epithelial Cell Size,2
+639,Bare Nuclei,1
+639,Bland Chromatin,1
+639,Normal Nucleoli,1
+639,Mitoses,1
+639,class,2
+640,index,641
+640,Clump Thickness,4
+640,Uniformity of Cell Size,1
+640,Uniformity of Cell Shape,1
+640,Marginal Adhesion,3
+640,Single Epithelial Cell Size,2
+640,Bare Nuclei,1
+640,Bland Chromatin,1
+640,Normal Nucleoli,1
+640,Mitoses,1
+640,class,2
+641,index,642
+641,Clump Thickness,3
+641,Uniformity of Cell Size,1
+641,Uniformity of Cell Shape,1
+641,Marginal Adhesion,1
+641,Single Epithelial Cell Size,2
+641,Bare Nuclei,1
+641,Bland Chromatin,2
+641,Normal Nucleoli,1
+641,Mitoses,1
+641,class,2
+642,index,643
+642,Clump Thickness,3
+642,Uniformity of Cell Size,1
+642,Uniformity of Cell Shape,1
+642,Marginal Adhesion,1
+642,Single Epithelial Cell Size,2
+642,Bare Nuclei,1
+642,Bland Chromatin,2
+642,Normal Nucleoli,1
+642,Mitoses,1
+642,class,2
+643,index,644
+643,Clump Thickness,1
+643,Uniformity of Cell Size,1
+643,Uniformity of Cell Shape,1
+643,Marginal Adhesion,1
+643,Single Epithelial Cell Size,2
+643,Bare Nuclei,1
+643,Bland Chromatin,1
+643,Normal Nucleoli,1
+643,Mitoses,1
+643,class,2
+644,index,645
+644,Clump Thickness,2
+644,Uniformity of Cell Size,1
+644,Uniformity of Cell Shape,1
+644,Marginal Adhesion,1
+644,Single Epithelial Cell Size,2
+644,Bare Nuclei,1
+644,Bland Chromatin,1
+644,Normal Nucleoli,1
+644,Mitoses,1
+644,class,2
+645,index,646
+645,Clump Thickness,3
+645,Uniformity of Cell Size,1
+645,Uniformity of Cell Shape,1
+645,Marginal Adhesion,1
+645,Single Epithelial Cell Size,2
+645,Bare Nuclei,1
+645,Bland Chromatin,2
+645,Normal Nucleoli,1
+645,Mitoses,1
+645,class,2
+646,index,647
+646,Clump Thickness,1
+646,Uniformity of Cell Size,2
+646,Uniformity of Cell Shape,2
+646,Marginal Adhesion,1
+646,Single Epithelial Cell Size,2
+646,Bare Nuclei,1
+646,Bland Chromatin,1
+646,Normal Nucleoli,1
+646,Mitoses,1
+646,class,2
+647,index,648
+647,Clump Thickness,1
+647,Uniformity of Cell Size,1
+647,Uniformity of Cell Shape,1
+647,Marginal Adhesion,3
+647,Single Epithelial Cell Size,2
+647,Bare Nuclei,1
+647,Bland Chromatin,1
+647,Normal Nucleoli,1
+647,Mitoses,1
+647,class,2
+648,index,649
+648,Clump Thickness,5
+648,Uniformity of Cell Size,10
+648,Uniformity of Cell Shape,10
+648,Marginal Adhesion,10
+648,Single Epithelial Cell Size,10
+648,Bare Nuclei,2
+648,Bland Chromatin,10
+648,Normal Nucleoli,10
+648,Mitoses,10
+648,class,4
+649,index,650
+649,Clump Thickness,3
+649,Uniformity of Cell Size,1
+649,Uniformity of Cell Shape,1
+649,Marginal Adhesion,1
+649,Single Epithelial Cell Size,2
+649,Bare Nuclei,1
+649,Bland Chromatin,2
+649,Normal Nucleoli,1
+649,Mitoses,1
+649,class,2
+650,index,651
+650,Clump Thickness,3
+650,Uniformity of Cell Size,1
+650,Uniformity of Cell Shape,1
+650,Marginal Adhesion,2
+650,Single Epithelial Cell Size,3
+650,Bare Nuclei,4
+650,Bland Chromatin,1
+650,Normal Nucleoli,1
+650,Mitoses,1
+650,class,2
+651,index,652
+651,Clump Thickness,1
+651,Uniformity of Cell Size,2
+651,Uniformity of Cell Shape,1
+651,Marginal Adhesion,3
+651,Single Epithelial Cell Size,2
+651,Bare Nuclei,1
+651,Bland Chromatin,2
+651,Normal Nucleoli,1
+651,Mitoses,1
+651,class,2
+652,index,653
+652,Clump Thickness,5
+652,Uniformity of Cell Size,1
+652,Uniformity of Cell Shape,1
+652,Marginal Adhesion,1
+652,Single Epithelial Cell Size,2
+652,Bare Nuclei,1
+652,Bland Chromatin,2
+652,Normal Nucleoli,2
+652,Mitoses,1
+652,class,2
+653,index,654
+653,Clump Thickness,4
+653,Uniformity of Cell Size,1
+653,Uniformity of Cell Shape,1
+653,Marginal Adhesion,1
+653,Single Epithelial Cell Size,2
+653,Bare Nuclei,1
+653,Bland Chromatin,2
+653,Normal Nucleoli,1
+653,Mitoses,1
+653,class,2
+654,index,655
+654,Clump Thickness,3
+654,Uniformity of Cell Size,1
+654,Uniformity of Cell Shape,1
+654,Marginal Adhesion,1
+654,Single Epithelial Cell Size,2
+654,Bare Nuclei,1
+654,Bland Chromatin,3
+654,Normal Nucleoli,1
+654,Mitoses,1
+654,class,2
+655,index,656
+655,Clump Thickness,3
+655,Uniformity of Cell Size,1
+655,Uniformity of Cell Shape,1
+655,Marginal Adhesion,1
+655,Single Epithelial Cell Size,2
+655,Bare Nuclei,1
+655,Bland Chromatin,2
+655,Normal Nucleoli,1
+655,Mitoses,1
+655,class,2
+656,index,657
+656,Clump Thickness,5
+656,Uniformity of Cell Size,1
+656,Uniformity of Cell Shape,1
+656,Marginal Adhesion,1
+656,Single Epithelial Cell Size,2
+656,Bare Nuclei,1
+656,Bland Chromatin,2
+656,Normal Nucleoli,1
+656,Mitoses,1
+656,class,2
+657,index,658
+657,Clump Thickness,5
+657,Uniformity of Cell Size,4
+657,Uniformity of Cell Shape,5
+657,Marginal Adhesion,1
+657,Single Epithelial Cell Size,8
+657,Bare Nuclei,1
+657,Bland Chromatin,3
+657,Normal Nucleoli,6
+657,Mitoses,1
+657,class,2
+658,index,659
+658,Clump Thickness,7
+658,Uniformity of Cell Size,8
+658,Uniformity of Cell Shape,8
+658,Marginal Adhesion,7
+658,Single Epithelial Cell Size,3
+658,Bare Nuclei,10
+658,Bland Chromatin,7
+658,Normal Nucleoli,2
+658,Mitoses,3
+658,class,4
+659,index,660
+659,Clump Thickness,1
+659,Uniformity of Cell Size,1
+659,Uniformity of Cell Shape,1
+659,Marginal Adhesion,1
+659,Single Epithelial Cell Size,2
+659,Bare Nuclei,1
+659,Bland Chromatin,1
+659,Normal Nucleoli,1
+659,Mitoses,1
+659,class,2
+660,index,661
+660,Clump Thickness,1
+660,Uniformity of Cell Size,1
+660,Uniformity of Cell Shape,1
+660,Marginal Adhesion,1
+660,Single Epithelial Cell Size,2
+660,Bare Nuclei,1
+660,Bland Chromatin,2
+660,Normal Nucleoli,1
+660,Mitoses,1
+660,class,2
+661,index,662
+661,Clump Thickness,4
+661,Uniformity of Cell Size,1
+661,Uniformity of Cell Shape,1
+661,Marginal Adhesion,1
+661,Single Epithelial Cell Size,2
+661,Bare Nuclei,1
+661,Bland Chromatin,3
+661,Normal Nucleoli,1
+661,Mitoses,1
+661,class,2
+662,index,663
+662,Clump Thickness,1
+662,Uniformity of Cell Size,1
+662,Uniformity of Cell Shape,3
+662,Marginal Adhesion,1
+662,Single Epithelial Cell Size,2
+662,Bare Nuclei,1
+662,Bland Chromatin,2
+662,Normal Nucleoli,1
+662,Mitoses,1
+662,class,2
+663,index,664
+663,Clump Thickness,1
+663,Uniformity of Cell Size,1
+663,Uniformity of Cell Shape,3
+663,Marginal Adhesion,1
+663,Single Epithelial Cell Size,2
+663,Bare Nuclei,1
+663,Bland Chromatin,2
+663,Normal Nucleoli,1
+663,Mitoses,1
+663,class,2
+664,index,665
+664,Clump Thickness,3
+664,Uniformity of Cell Size,1
+664,Uniformity of Cell Shape,1
+664,Marginal Adhesion,3
+664,Single Epithelial Cell Size,2
+664,Bare Nuclei,1
+664,Bland Chromatin,2
+664,Normal Nucleoli,1
+664,Mitoses,1
+664,class,2
+665,index,666
+665,Clump Thickness,1
+665,Uniformity of Cell Size,1
+665,Uniformity of Cell Shape,1
+665,Marginal Adhesion,1
+665,Single Epithelial Cell Size,2
+665,Bare Nuclei,1
+665,Bland Chromatin,1
+665,Normal Nucleoli,1
+665,Mitoses,1
+665,class,2
+666,index,667
+666,Clump Thickness,5
+666,Uniformity of Cell Size,2
+666,Uniformity of Cell Shape,2
+666,Marginal Adhesion,2
+666,Single Epithelial Cell Size,2
+666,Bare Nuclei,1
+666,Bland Chromatin,1
+666,Normal Nucleoli,1
+666,Mitoses,2
+666,class,2
+667,index,668
+667,Clump Thickness,3
+667,Uniformity of Cell Size,1
+667,Uniformity of Cell Shape,1
+667,Marginal Adhesion,1
+667,Single Epithelial Cell Size,2
+667,Bare Nuclei,1
+667,Bland Chromatin,3
+667,Normal Nucleoli,1
+667,Mitoses,1
+667,class,2
+668,index,669
+668,Clump Thickness,5
+668,Uniformity of Cell Size,7
+668,Uniformity of Cell Shape,4
+668,Marginal Adhesion,1
+668,Single Epithelial Cell Size,6
+668,Bare Nuclei,1
+668,Bland Chromatin,7
+668,Normal Nucleoli,10
+668,Mitoses,3
+668,class,4
+669,index,670
+669,Clump Thickness,5
+669,Uniformity of Cell Size,10
+669,Uniformity of Cell Shape,10
+669,Marginal Adhesion,8
+669,Single Epithelial Cell Size,5
+669,Bare Nuclei,5
+669,Bland Chromatin,7
+669,Normal Nucleoli,10
+669,Mitoses,1
+669,class,4
+670,index,671
+670,Clump Thickness,3
+670,Uniformity of Cell Size,10
+670,Uniformity of Cell Shape,7
+670,Marginal Adhesion,8
+670,Single Epithelial Cell Size,5
+670,Bare Nuclei,8
+670,Bland Chromatin,7
+670,Normal Nucleoli,4
+670,Mitoses,1
+670,class,4
+671,index,672
+671,Clump Thickness,3
+671,Uniformity of Cell Size,2
+671,Uniformity of Cell Shape,1
+671,Marginal Adhesion,2
+671,Single Epithelial Cell Size,2
+671,Bare Nuclei,1
+671,Bland Chromatin,3
+671,Normal Nucleoli,1
+671,Mitoses,1
+671,class,2
+672,index,673
+672,Clump Thickness,2
+672,Uniformity of Cell Size,1
+672,Uniformity of Cell Shape,1
+672,Marginal Adhesion,1
+672,Single Epithelial Cell Size,2
+672,Bare Nuclei,1
+672,Bland Chromatin,3
+672,Normal Nucleoli,1
+672,Mitoses,1
+672,class,2
+673,index,674
+673,Clump Thickness,5
+673,Uniformity of Cell Size,3
+673,Uniformity of Cell Shape,2
+673,Marginal Adhesion,1
+673,Single Epithelial Cell Size,3
+673,Bare Nuclei,1
+673,Bland Chromatin,1
+673,Normal Nucleoli,1
+673,Mitoses,1
+673,class,2
+674,index,675
+674,Clump Thickness,1
+674,Uniformity of Cell Size,1
+674,Uniformity of Cell Shape,1
+674,Marginal Adhesion,1
+674,Single Epithelial Cell Size,2
+674,Bare Nuclei,1
+674,Bland Chromatin,2
+674,Normal Nucleoli,1
+674,Mitoses,1
+674,class,2
+675,index,676
+675,Clump Thickness,4
+675,Uniformity of Cell Size,1
+675,Uniformity of Cell Shape,4
+675,Marginal Adhesion,1
+675,Single Epithelial Cell Size,2
+675,Bare Nuclei,1
+675,Bland Chromatin,1
+675,Normal Nucleoli,1
+675,Mitoses,1
+675,class,2
+676,index,677
+676,Clump Thickness,1
+676,Uniformity of Cell Size,1
+676,Uniformity of Cell Shape,2
+676,Marginal Adhesion,1
+676,Single Epithelial Cell Size,2
+676,Bare Nuclei,1
+676,Bland Chromatin,2
+676,Normal Nucleoli,1
+676,Mitoses,1
+676,class,2
+677,index,678
+677,Clump Thickness,5
+677,Uniformity of Cell Size,1
+677,Uniformity of Cell Shape,1
+677,Marginal Adhesion,1
+677,Single Epithelial Cell Size,2
+677,Bare Nuclei,1
+677,Bland Chromatin,1
+677,Normal Nucleoli,1
+677,Mitoses,1
+677,class,2
+678,index,679
+678,Clump Thickness,1
+678,Uniformity of Cell Size,1
+678,Uniformity of Cell Shape,1
+678,Marginal Adhesion,1
+678,Single Epithelial Cell Size,2
+678,Bare Nuclei,1
+678,Bland Chromatin,1
+678,Normal Nucleoli,1
+678,Mitoses,1
+678,class,2
+679,index,680
+679,Clump Thickness,2
+679,Uniformity of Cell Size,1
+679,Uniformity of Cell Shape,1
+679,Marginal Adhesion,1
+679,Single Epithelial Cell Size,2
+679,Bare Nuclei,1
+679,Bland Chromatin,1
+679,Normal Nucleoli,1
+679,Mitoses,1
+679,class,2
+680,index,681
+680,Clump Thickness,10
+680,Uniformity of Cell Size,10
+680,Uniformity of Cell Shape,10
+680,Marginal Adhesion,10
+680,Single Epithelial Cell Size,5
+680,Bare Nuclei,10
+680,Bland Chromatin,10
+680,Normal Nucleoli,10
+680,Mitoses,7
+680,class,4
+681,index,682
+681,Clump Thickness,5
+681,Uniformity of Cell Size,10
+681,Uniformity of Cell Shape,10
+681,Marginal Adhesion,10
+681,Single Epithelial Cell Size,4
+681,Bare Nuclei,10
+681,Bland Chromatin,5
+681,Normal Nucleoli,6
+681,Mitoses,3
+681,class,4
+682,index,683
+682,Clump Thickness,5
+682,Uniformity of Cell Size,1
+682,Uniformity of Cell Shape,1
+682,Marginal Adhesion,1
+682,Single Epithelial Cell Size,2
+682,Bare Nuclei,1
+682,Bland Chromatin,3
+682,Normal Nucleoli,2
+682,Mitoses,1
+682,class,2
+683,index,684
+683,Clump Thickness,1
+683,Uniformity of Cell Size,1
+683,Uniformity of Cell Shape,1
+683,Marginal Adhesion,1
+683,Single Epithelial Cell Size,2
+683,Bare Nuclei,1
+683,Bland Chromatin,1
+683,Normal Nucleoli,1
+683,Mitoses,1
+683,class,2
+684,index,685
+684,Clump Thickness,1
+684,Uniformity of Cell Size,1
+684,Uniformity of Cell Shape,1
+684,Marginal Adhesion,1
+684,Single Epithelial Cell Size,2
+684,Bare Nuclei,1
+684,Bland Chromatin,1
+684,Normal Nucleoli,1
+684,Mitoses,1
+684,class,2
+685,index,686
+685,Clump Thickness,1
+685,Uniformity of Cell Size,1
+685,Uniformity of Cell Shape,1
+685,Marginal Adhesion,1
+685,Single Epithelial Cell Size,2
+685,Bare Nuclei,1
+685,Bland Chromatin,1
+685,Normal Nucleoli,1
+685,Mitoses,1
+685,class,2
+686,index,687
+686,Clump Thickness,1
+686,Uniformity of Cell Size,1
+686,Uniformity of Cell Shape,1
+686,Marginal Adhesion,1
+686,Single Epithelial Cell Size,2
+686,Bare Nuclei,1
+686,Bland Chromatin,1
+686,Normal Nucleoli,1
+686,Mitoses,1
+686,class,2
+687,index,688
+687,Clump Thickness,3
+687,Uniformity of Cell Size,1
+687,Uniformity of Cell Shape,1
+687,Marginal Adhesion,1
+687,Single Epithelial Cell Size,2
+687,Bare Nuclei,1
+687,Bland Chromatin,2
+687,Normal Nucleoli,3
+687,Mitoses,1
+687,class,2
+688,index,689
+688,Clump Thickness,4
+688,Uniformity of Cell Size,1
+688,Uniformity of Cell Shape,1
+688,Marginal Adhesion,1
+688,Single Epithelial Cell Size,2
+688,Bare Nuclei,1
+688,Bland Chromatin,1
+688,Normal Nucleoli,1
+688,Mitoses,1
+688,class,2
+689,index,690
+689,Clump Thickness,1
+689,Uniformity of Cell Size,1
+689,Uniformity of Cell Shape,1
+689,Marginal Adhesion,1
+689,Single Epithelial Cell Size,2
+689,Bare Nuclei,1
+689,Bland Chromatin,1
+689,Normal Nucleoli,1
+689,Mitoses,8
+689,class,2
+690,index,691
+690,Clump Thickness,1
+690,Uniformity of Cell Size,1
+690,Uniformity of Cell Shape,1
+690,Marginal Adhesion,3
+690,Single Epithelial Cell Size,2
+690,Bare Nuclei,1
+690,Bland Chromatin,1
+690,Normal Nucleoli,1
+690,Mitoses,1
+690,class,2
+691,index,692
+691,Clump Thickness,5
+691,Uniformity of Cell Size,10
+691,Uniformity of Cell Shape,10
+691,Marginal Adhesion,5
+691,Single Epithelial Cell Size,4
+691,Bare Nuclei,5
+691,Bland Chromatin,4
+691,Normal Nucleoli,4
+691,Mitoses,1
+691,class,4
+692,index,693
+692,Clump Thickness,3
+692,Uniformity of Cell Size,1
+692,Uniformity of Cell Shape,1
+692,Marginal Adhesion,1
+692,Single Epithelial Cell Size,2
+692,Bare Nuclei,1
+692,Bland Chromatin,1
+692,Normal Nucleoli,1
+692,Mitoses,1
+692,class,2
+693,index,694
+693,Clump Thickness,3
+693,Uniformity of Cell Size,1
+693,Uniformity of Cell Shape,1
+693,Marginal Adhesion,1
+693,Single Epithelial Cell Size,2
+693,Bare Nuclei,1
+693,Bland Chromatin,2
+693,Normal Nucleoli,1
+693,Mitoses,2
+693,class,2
+694,index,695
+694,Clump Thickness,3
+694,Uniformity of Cell Size,1
+694,Uniformity of Cell Shape,1
+694,Marginal Adhesion,1
+694,Single Epithelial Cell Size,3
+694,Bare Nuclei,2
+694,Bland Chromatin,1
+694,Normal Nucleoli,1
+694,Mitoses,1
+694,class,2
+695,index,696
+695,Clump Thickness,2
+695,Uniformity of Cell Size,1
+695,Uniformity of Cell Shape,1
+695,Marginal Adhesion,1
+695,Single Epithelial Cell Size,2
+695,Bare Nuclei,1
+695,Bland Chromatin,1
+695,Normal Nucleoli,1
+695,Mitoses,1
+695,class,2
+696,index,697
+696,Clump Thickness,5
+696,Uniformity of Cell Size,10
+696,Uniformity of Cell Shape,10
+696,Marginal Adhesion,3
+696,Single Epithelial Cell Size,7
+696,Bare Nuclei,3
+696,Bland Chromatin,8
+696,Normal Nucleoli,10
+696,Mitoses,2
+696,class,4
+697,index,698
+697,Clump Thickness,4
+697,Uniformity of Cell Size,8
+697,Uniformity of Cell Shape,6
+697,Marginal Adhesion,4
+697,Single Epithelial Cell Size,3
+697,Bare Nuclei,4
+697,Bland Chromatin,10
+697,Normal Nucleoli,6
+697,Mitoses,1
+697,class,4
+698,index,699
+698,Clump Thickness,4
+698,Uniformity of Cell Size,8
+698,Uniformity of Cell Shape,8
+698,Marginal Adhesion,5
+698,Single Epithelial Cell Size,4
+698,Bare Nuclei,5
+698,Bland Chromatin,10
+698,Normal Nucleoli,4
+698,Mitoses,1
+698,class,4

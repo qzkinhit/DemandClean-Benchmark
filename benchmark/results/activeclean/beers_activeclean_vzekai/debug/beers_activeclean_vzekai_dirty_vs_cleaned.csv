@@ -1,0 +1,696 @@
+Attribute,Index,Dirty Value,Cleaned Value
+ounces,1,12.0 oz,12
+ounces,8,12.0 ounce,12
+ounces,9,12.0 oz.,12
+ounces,12,12.0 oz.,12
+ounces,15,12.0 ounce,12
+ounces,16,12.0 ounce,12
+ounces,17,12.0 oz.,12
+ounces,20,12.0 oz.,12
+ounces,23,12.0 oz.,12
+ounces,27,12.0 oz.,12
+ounces,38,12.0 oz.,12
+ounces,43,12.0 oz,12
+ounces,46,12.0 oz.,12
+ounces,54,16.0 oz.,16
+ounces,56,16.0 ounce,16
+ounces,59,16.0 oz,16
+ounces,63,12.0 oz,12
+ounces,74,16.0 oz,16
+ounces,75,16.0 ounce,16
+ounces,76,16.0 oz,16
+ounces,86,12.0 oz.,12
+ounces,90,12.0 oz.,12
+ounces,92,16.0 oz,16
+ounces,93,16.0 oz.,16
+ounces,105,12.0 oz,12
+ounces,106,12.0 ounce,12
+ounces,108,12.0 oz,12
+ounces,115,12.0 ounce,12
+ounces,124,16.0 oz.,16
+ounces,127,12.0 ounce,12
+ounces,129,16.0 oz.,16
+ounces,130,16.0 oz. alumi-tek,16
+ounces,134,12.0 oz,12
+ounces,144,16.0 oz. silo can,16
+ounces,152,16.0 oz.,16
+ounces,153,16.0 oz,16
+ounces,154,12.0 oz.,12
+ounces,155,12.0 oz,12
+ounces,160,12.0 oz.,12
+ounces,161,12.0 ounce,12
+ounces,172,12.0 oz.,12
+ounces,176,12.0 oz.,12
+ounces,178,12.0 ounce,12
+ounces,185,12.0 oz.,12
+ounces,186,12.0 oz.,12
+ounces,199,12.0 oz,12
+ounces,200,12.0 ounce,12
+ounces,204,12.0 oz,12
+ounces,208,12.0 ounce,12
+ounces,211,12.0 oz.,12
+ounces,217,12.0 ounce,12
+ounces,221,16.0 oz.,16
+ounces,224,12.0 oz.,12
+ounces,228,12.0 oz.,12
+ounces,231,12.0 oz.,12
+ounces,233,12.0 ounce,12
+ounces,234,12.0 oz,12
+ounces,238,12.0 oz,12
+ounces,243,16.0 oz,16
+ounces,248,16.0 ounce,16
+ounces,257,12.0 oz.,12
+ounces,261,12.0 ounce,12
+ounces,265,12.0 oz.,12
+ounces,267,16.0 oz,16
+ounces,269,16.0 oz.,16
+ounces,270,16.0 oz.,16
+ounces,271,16.0 oz.,16
+ounces,273,12.0 oz,12
+ounces,274,12.0 oz,12
+ounces,283,12.0 oz.,12
+ounces,286,12.0 oz,12
+ounces,292,12.0 oz,12
+ounces,295,12.0 oz. alumi-tek,12
+ounces,302,12.0 ounce,12
+ounces,316,12.0 oz.,12
+ounces,317,12.0 oz.,12
+ounces,321,12.0 oz.,12
+ounces,324,12.0 oz.,12
+ounces,325,12.0 oz.,12
+ounces,330,12.0 oz. alumi-tek,12
+ounces,336,12.0 ounce,12
+ounces,347,12.0 oz.,12
+ounces,349,16.0 ounce,16
+ounces,376,12.0 oz,12
+ounces,379,12.0 oz.,12
+ounces,382,12.0 oz,12
+ounces,384,12.0 oz.,12
+ounces,396,16.0 oz. alumi-tek,16
+ounces,399,16.0 oz,16
+ounces,410,16.0 ounce,16
+ounces,411,16.0 oz.,16
+ounces,413,16.0 oz,16
+ounces,421,16.0 oz.,16
+ounces,424,16.0 ounce,16
+ounces,425,16.0 oz,16
+ounces,429,16.0 ounce,16
+ounces,431,16.0 oz,16
+ounces,432,16.0 ounce,16
+ounces,434,16.0 oz,16
+ounces,439,16.0 oz,16
+ounces,451,12.0 oz.,12
+ounces,453,16.0 oz,16
+ounces,464,16.0 oz,16
+ounces,467,16.0 oz,16
+ounces,468,16.0 oz,16
+ounces,470,16.0 oz.,16
+ounces,476,16.0 oz.,16
+ounces,483,16.0 ounce,16
+ounces,490,12.0 oz.,12
+ounces,498,16.0 oz.,16
+ounces,504,16.0 ounce,16
+ounces,509,12.0 ounce,12
+ounces,519,12.0 oz.,12
+ounces,533,12.0 ounce,12
+ounces,537,12.0 oz.,12
+ounces,538,12.0 ounce,12
+ounces,540,12.0 ounce,12
+ounces,547,12.0 oz.,12
+ounces,552,12.0 oz.,12
+ounces,558,12.0 oz. alumi-tek,12
+ounces,560,12.0 oz.,12
+ounces,561,12.0 oz.,12
+ounces,562,16.0 ounce,16
+ounces,568,16.0 oz,16
+ounces,575,12.0 oz. alumi-tek,12
+ounces,582,24.0 oz,24
+ounces,585,12.0 oz,12
+ounces,587,16.0 oz. alumi-tek,16
+ounces,591,16.0 ounce,16
+ounces,594,16.0 ounce,16
+ounces,599,12.0 oz.,12
+ounces,603,12.0 oz.,12
+ounces,605,12.0 oz. alumi-tek,12
+ounces,607,12.0 ounce,12
+ounces,609,12.0 oz.,12
+ounces,614,12.0 oz,12
+ounces,620,12.0 oz.,12
+ounces,622,12.0 oz,12
+ounces,629,12.0 oz.,12
+ounces,633,16.0 oz,16
+ounces,642,16.0 ounce,16
+ounces,644,12.0 oz.,12
+ounces,648,12.0 oz,12
+ounces,649,12.0 ounce,12
+ounces,650,16.0 oz.,16
+ounces,653,12.0 oz.,12
+ounces,654,12.0 oz,12
+ounces,657,12.0 ounce,12
+ounces,658,12.0 oz.,12
+ounces,659,12.0 ounce,12
+ounces,662,12.0 ounce,12
+ounces,668,12.0 oz.,12
+ounces,672,12.0 oz.,12
+ounces,677,16.0 oz,16
+ounces,682,12.0 oz,12
+ounces,683,12.0 oz,12
+ounces,691,16.0 ounce,16
+ounces,697,12.0 oz.,12
+ounces,708,12.0 oz.,12
+ounces,710,12.0 oz,12
+ounces,713,12.0 oz.,12
+ounces,718,12.0 oz.,12
+ounces,720,12.0 ounce,12
+ounces,722,12.0 oz.,12
+ounces,725,16.0 oz,16
+ounces,726,16.0 oz,16
+ounces,734,16.0 ounce,16
+ounces,737,12.0 oz,12
+ounces,739,12.0 ounce,12
+ounces,744,16.0 ounce,16
+ounces,745,16.0 ounce,16
+ounces,747,16.0 oz.,16
+ounces,749,16.0 ounce,16
+ounces,755,12.0 oz. alumi-tek,12
+ounces,766,16.0 oz,16
+ounces,771,12.0 oz.,12
+ounces,775,12.0 oz,12
+ounces,777,16.0 oz,16
+ounces,791,16.0 oz.,16
+ounces,794,12.0 oz.,12
+ounces,797,16.0 oz.,16
+ounces,798,16.0 ounce,16
+ounces,801,16.0 ounce,16
+ounces,802,16.0 ounce,16
+ounces,808,12.0 oz,12
+ounces,811,16.0 ounce,16
+ounces,813,12.0 ounce,12
+ounces,818,12.0 ounce,12
+ounces,819,12.0 oz. alumi-tek,12
+ounces,823,12.0 oz.,12
+ounces,824,12.0 oz.,12
+ounces,826,12.0 ounce,12
+ounces,845,12.0 oz,12
+ounces,852,12.0 oz. alumi-tek,12
+ounces,856,12.0 oz.,12
+ounces,862,12.0 oz. alumi-tek,12
+ounces,875,12.0 ounce,12
+ounces,881,12.0 oz,12
+ounces,882,12.0 oz.,12
+ounces,885,16.0 oz. alumi-tek,16
+ounces,889,12.0 ounce,12
+ounces,890,12.0 oz,12
+ounces,902,16.0 oz.,16
+ounces,904,16.0 oz.,16
+ounces,907,12.0 ounce,12
+ounces,920,12.0 oz.,12
+ounces,921,12.0 ounce,12
+ounces,941,16.0 oz,16
+ounces,947,16.0 oz.,16
+ounces,956,12.0 oz.,12
+ounces,961,12.0 oz,12
+ounces,977,16.0 oz.,16
+ounces,982,12.0 ounce,12
+ounces,984,12.0 oz,12
+ounces,988,16.0 ounce,16
+ounces,990,12.0 oz.,12
+ounces,995,16.0 ounce,16
+ounces,1002,12.0 oz,12
+ounces,1003,12.0 ounce,12
+ounces,1013,12.0 oz,12
+ounces,1018,12.0 ounce,12
+ounces,1022,12.0 oz.,12
+ounces,1031,12.0 oz.,12
+ounces,1035,19.2 oz.,19.2
+ounces,1040,16.0 ounce,16
+ounces,1043,12.0 oz.,12
+ounces,1045,16.0 oz,16
+ounces,1047,12.0 ounce,12
+ounces,1056,16.0 oz,16
+ounces,1057,16.0 oz.,16
+ounces,1060,12.0 oz,12
+ounces,1073,12.0 oz.,12
+ounces,1076,16.0 ounce,16
+ounces,1079,16.0 ounce,16
+ounces,1090,16.0 oz.,16
+ounces,1096,16.0 oz.,16
+ounces,1098,12.0 oz.,12
+ounces,1108,12.0 oz,12
+ounces,1120,12.0 oz.,12
+ounces,1122,12.0 ounce,12
+ounces,1130,12.0 oz,12
+ounces,1134,12.0 oz.,12
+ounces,1135,12.0 oz,12
+ounces,1137,12.0 oz.,12
+ounces,1138,12.0 oz,12
+ounces,1147,12.0 oz.,12
+ounces,1150,12.0 oz. alumi-tek,12
+ounces,1151,12.0 oz.,12
+ounces,1154,12.0 oz,12
+ounces,1155,12.0 oz.,12
+ounces,1160,12.0 oz. alumi-tek,12
+ounces,1161,12.0 oz,12
+ounces,1166,16.0 ounce,16
+ounces,1168,12.0 oz.,12
+ounces,1171,12.0 oz,12
+ounces,1172,12.0 oz. alumi-tek,12
+ounces,1183,16.0 oz,16
+ounces,1187,16.0 oz.,16
+ounces,1188,16.0 oz.,16
+ounces,1190,12.0 oz.,12
+ounces,1208,16.0 oz.,16
+ounces,1209,12.0 oz,12
+ounces,1219,12.0 oz,12
+ounces,1223,12.0 ounce,12
+ounces,1231,16.0 ounce,16
+ounces,1233,16.0 ounce,16
+ounces,1243,12.0 oz,12
+ounces,1244,12.0 oz.,12
+ounces,1252,12.0 oz.,12
+ounces,1254,12.0 oz.,12
+ounces,1257,12.0 oz.,12
+ounces,1258,12.0 ounce,12
+ounces,1259,12.0 ounce,12
+ounces,1265,12.0 oz,12
+ounces,1267,12.0 oz,12
+ounces,1275,12.0 oz.,12
+ounces,1279,16.0 oz.,16
+ounces,1280,16.0 oz.,16
+ounces,1284,16.0 oz.,16
+ounces,1288,12.0 oz.,12
+ounces,1294,12.0 oz.,12
+ounces,1323,12.0 oz.,12
+ounces,1325,12.0 ounce,12
+ounces,1327,12.0 ounce,12
+ounces,1344,24.0 ounce,24
+ounces,1350,12.0 ounce,12
+ounces,1367,12.0 oz.,12
+ounces,1371,24.0 oz.,24
+ounces,1378,32.0 oz.,32
+ounces,1379,16.0 oz.,16
+ounces,1384,24.0 oz. alumi-tek,24
+ounces,1386,16.0 oz.,16
+ounces,1392,16.0 oz.,16
+ounces,1393,16.0 ounce,16
+ounces,1399,12.0 ounce,12
+ounces,1408,12.0 oz,12
+ounces,1412,12.0 oz.,12
+ounces,1414,12.0 oz.,12
+ounces,1416,12.0 ounce,12
+ounces,1419,12.0 oz,12
+ounces,1431,16.0 oz.,16
+ounces,1433,16.0 oz,16
+ounces,1436,16.0 oz.,16
+ounces,1437,12.0 oz,12
+ounces,1445,12.0 ounce,12
+ounces,1447,12.0 oz.,12
+ounces,1448,12.0 oz.,12
+ounces,1449,12.0 oz.,12
+ounces,1459,12.0 ounce,12
+ounces,1468,16.0 oz.,16
+ounces,1472,12.0 oz.,12
+ounces,1480,12.0 oz. alumi-tek,12
+ounces,1483,12.0 oz,12
+ounces,1487,16.0 oz,16
+ounces,1499,16.0 oz.,16
+ounces,1502,16.0 oz.,16
+ounces,1505,12.0 ounce,12
+ounces,1509,12.0 oz.,12
+ounces,1512,12.0 oz,12
+ounces,1513,12.0 ounce,12
+ounces,1515,12.0 oz.,12
+ounces,1522,12.0 oz.,12
+ounces,1525,12.0 oz.,12
+ounces,1536,16.0 oz.,16
+ounces,1541,16.0 oz.,16
+ounces,1545,16.0 oz.,16
+ounces,1547,16.0 oz,16
+ounces,1548,16.0 oz.,16
+ounces,1554,16.0 oz,16
+ounces,1564,16.0 ounce,16
+ounces,1573,16.0 oz,16
+ounces,1575,12.0 ounce,12
+ounces,1576,16.0 ounce,16
+ounces,1578,12.0 oz.,12
+ounces,1581,12.0 ounce,12
+ounces,1587,12.0 oz.,12
+ounces,1588,12.0 oz.,12
+ounces,1596,12.0 oz,12
+ounces,1614,12.0 oz.,12
+ounces,1619,12.0 ounce,12
+ounces,1621,12.0 oz.,12
+ounces,1631,12.0 ounce,12
+ounces,1632,12.0 oz.,12
+ounces,1633,12.0 oz.,12
+ounces,1634,12.0 oz.,12
+ounces,1645,12.0 oz.,12
+ounces,1649,12.0 oz.,12
+ounces,1650,12.0 ounce,12
+ounces,1652,16.0 ounce,16
+ounces,1665,12.0 oz.,12
+ounces,1666,12.0 ounce,12
+ounces,1668,12.0 oz.,12
+ounces,1672,12.0 ounce,12
+ounces,1673,12.0 oz.,12
+ounces,1675,12.0 oz.,12
+ounces,1680,12.0 oz,12
+ounces,1683,12.0 oz.,12
+ounces,1684,12.0 oz.,12
+ounces,1686,12.0 oz,12
+ounces,1693,12.0 oz.,12
+ounces,1696,16.0 oz.,16
+ounces,1699,16.0 ounce,16
+ounces,1701,12.0 oz.,12
+ounces,1702,12.0 oz,12
+ounces,1703,16.0 ounce,16
+ounces,1704,16.0 oz.,16
+ounces,1705,16.0 ounce,16
+ounces,1706,16.0 ounce,16
+ounces,1712,16.0 oz.,16
+ounces,1719,12.0 oz,12
+ounces,1736,12.0 oz.,12
+ounces,1737,16.0 oz. alumi-tek,16
+ounces,1745,12.0 oz.,12
+ounces,1754,12.0 oz,12
+ounces,1758,12.0 ounce,12
+ounces,1761,16.0 oz.,16
+ounces,1771,12.0 ounce,12
+ounces,1776,12.0 oz.,12
+ounces,1780,12.0 oz.,12
+ounces,1782,16.0 ounce,16
+ounces,1785,12.0 oz.,12
+ounces,1786,12.0 ounce,12
+ounces,1787,12.0 oz.,12
+ounces,1788,16.0 ounce,16
+ounces,1789,16.0 oz,16
+ounces,1800,12.0 ounce,12
+ounces,1813,12.0 oz.,12
+ounces,1815,12.0 oz.,12
+ounces,1833,16.0 ounce,16
+ounces,1836,16.0 ounce,16
+ounces,1843,12.0 oz.,12
+ounces,1848,12.0 oz.,12
+ounces,1852,16.0 oz.,16
+ounces,1856,12.0 oz.,12
+ounces,1859,12.0 oz,12
+ounces,1862,24.0 ounce,24
+ounces,1869,16.0 oz.,16
+ounces,1875,12.0 oz,12
+ounces,1883,12.0 oz,12
+ounces,1884,12.0 oz.,12
+ounces,1898,12.0 ounce,12
+ounces,1905,12.0 oz.,12
+ounces,1908,12.0 oz. alumi-tek,12
+ounces,1910,12.0 ounce,12
+ounces,1913,12.0 oz.,12
+ounces,1916,12.0 oz. alumi-tek,12
+ounces,1917,12.0 oz.,12
+ounces,1922,12.0 ounce,12
+ounces,1923,12.0 oz. alumi-tek,12
+ounces,1940,16.0 oz. alumi-tek,16
+ounces,1950,12.0 oz.,12
+ounces,1951,16.0 oz,16
+ounces,1954,16.0 ounce,16
+ounces,1962,16.0 oz.,16
+ounces,1963,12.0 oz,12
+ounces,1965,12.0 oz,12
+ounces,1968,12.0 oz.,12
+ounces,1970,16.0 oz,16
+ounces,1971,16.0 oz,16
+ounces,1975,16.0 oz.,16
+ounces,1977,12.0 oz,12
+ounces,1980,12.0 oz.,12
+ounces,1981,12.0 oz,12
+ounces,1982,12.0 oz.,12
+ounces,1983,12.0 ounce,12
+ounces,1984,12.0 ounce,12
+ounces,1986,16.0 oz,16
+ounces,1999,12.0 oz.,12
+ounces,2003,16.0 oz.,16
+ounces,2011,12.0 ounce,12
+ounces,2016,12.0 oz,12
+ounces,2017,16.0 ounce,16
+ounces,2024,12.0 oz.,12
+ounces,2029,12.0 oz.,12
+ounces,2038,16.0 ounce,16
+ounces,2051,16.0 oz.,16
+ounces,2060,16.0 oz,16
+ounces,2061,16.0 oz,16
+ounces,2063,16.0 oz.,16
+ounces,2067,16.0 oz,16
+ounces,2086,12.0 oz,12
+ounces,2090,12.0 oz,12
+ounces,2103,12.0 ounce,12
+ounces,2106,16.0 oz.,16
+ounces,2107,16.0 oz.,16
+ounces,2110,16.0 oz,16
+ounces,2113,16.0 ounce,16
+ounces,2116,12.0 ounce,12
+ounces,2119,16.0 oz.,16
+ounces,2122,16.0 oz. alumi-tek,16
+ounces,2135,12.0 ounce,12
+ounces,2138,12.0 oz,12
+ounces,2142,16.0 oz.,16
+ounces,2159,16.0 oz,16
+ounces,2160,16.0 oz.,16
+ounces,2161,16.0 oz,16
+ounces,2168,16.0 oz.,16
+ounces,2172,12.0 oz,12
+ounces,2179,12.0 oz,12
+ounces,2183,16.0 oz.,16
+ounces,2191,16.0 oz.,16
+ounces,2192,16.0 ounce,16
+ounces,2197,12.0 ounce,12
+ounces,2199,12.0 oz,12
+ounces,2201,12.0 oz.,12
+ounces,2205,12.0 oz.,12
+ounces,2220,16.0 ounce,16
+ounces,2221,12.0 ounce,12
+ounces,2230,12.0 ounce,12
+ounces,2231,12.0 ounce,12
+ounces,2235,12.0 ounce,12
+ounces,2236,16.0 oz,16
+ounces,2246,12.0 oz,12
+ounces,2247,16.0 oz.,16
+ounces,2250,12.0 oz,12
+ounces,2259,12.0 oz.,12
+ounces,2273,12.0 oz.,12
+ounces,2277,16.0 oz. alumi-tek,16
+ounces,2281,19.2 oz.,19.2
+ounces,2283,19.2 oz.,19.2
+ounces,2284,12.0 oz.,12
+ounces,2286,19.2 oz,19.2
+ounces,2296,12.0 ounce,12
+ounces,2298,12.0 oz,12
+ounces,2302,12.0 ounce,12
+ounces,2306,12.0 ounce,12
+ounces,2317,12.0 oz. alumi-tek,12
+ounces,2330,12.0 oz.,12
+ounces,2331,16.0 oz,16
+ounces,2340,12.0 ounce,12
+ounces,2348,12.0 ounce,12
+ounces,2360,12.0 oz.,12
+ounces,2361,12.0 oz. alumi-tek,12
+ounces,2364,12.0 oz.,12
+ounces,2365,12.0 oz,12
+ounces,2369,12.0 ounce,12
+ounces,2374,12.0 oz,12
+ounces,2381,16.0 oz,16
+ounces,2392,12.0 oz.,12
+ounces,2397,12.0 oz.,12
+abv,15,0.06%,0.061
+abv,27,0.05%,0.049
+abv,56,0.05%,0.046
+abv,115,0.07%,0.069
+abv,124,0.05%,0.05
+abv,152,0.06%,0.055
+abv,155,0.05%,0.05
+abv,176,0.05%,0.049
+abv,185,0.05%,0.052
+abv,211,0.05%,0.049
+abv,231,0.06%,0.06
+abv,238,0.06%,0.056
+abv,321,0.06%,0.06
+abv,376,0.06%,0.055
+abv,421,0.07%,0.067
+abv,434,0.09%,0.09
+abv,464,0.08%,0.08
+abv,468,0.06%,0.062
+abv,476,0.07%,0.065
+abv,483,0.07%,0.068
+abv,538,0.05%,0.052
+abv,547,0.06%,0.057
+abv,568,0.07%,0.068
+abv,585,0.07%,0.07
+abv,609,0.07%,0.07
+abv,620,0.05%,0.05
+abv,629,0.04%,0.038
+abv,649,0.05%,0.05
+abv,650,0.05%,0.048
+abv,654,0.08%,0.075
+abv,662,0.05%,0.045
+abv,668,0.06%,0.055
+abv,682,0.05%,0.05
+abv,691,0.07%,0.072
+abv,697,0.08%,0.075
+abv,713,0.05%,0.05
+abv,718,0.05%,0.05
+abv,720,0.05%,0.049
+abv,771,0.06%,0.055
+abv,775,0.06%,0.063
+abv,791,0.06%,0.055
+abv,826,0.06%,0.062
+abv,845,0.08%,0.076
+abv,852,0.04%,0.04
+abv,881,0.07%,0.065
+abv,882,0.05%,0.053
+abv,885,0.07%,0.07
+abv,920,0.04%,0.042
+abv,921,0.05%,0.052
+abv,947,0.06%,0.062
+abv,956,0.07%,0.073
+abv,977,0.06%,0.06
+abv,990,0.06%,0.06
+abv,995,0.05%,0.05
+abv,1022,0.05%,0.05
+abv,1035,0.06%,0.064
+abv,1045,0.08%,0.08
+abv,1056,0.07%,0.066
+abv,1060,0.06%,0.058
+abv,1079,0.04%,0.039
+abv,1090,0.07%,0.066
+abv,1122,0.07%,0.067
+abv,1138,0.06%,0.06
+abv,1150,0.07%,0.066
+abv,1151,0.10%,0.095
+abv,1154,0.07%,0.066
+abv,1166,0.07%,0.065
+abv,1183,0.05%,0.046
+abv,1190,0.07%,0.066
+abv,1233,0.05%,0.048
+abv,1257,0.07%,0.065
+abv,1265,0.05%,0.05
+abv,1280,0.10%,0.097
+abv,1284,0.08%,0.08
+abv,1288,0.07%,0.065
+abv,1294,0.05%,0.045
+abv,1344,0.08%,0.075
+abv,1431,0.05%,0.053
+abv,1447,0.06%,0.056
+abv,1449,0.06%,0.055
+abv,1472,0.05%,0.05
+abv,1480,0.05%,0.052
+abv,1483,0.04%,0.042
+abv,1487,0.06%,0.055
+abv,1502,0.06%,0.063
+abv,1513,0.07%,0.067
+abv,1522,0.09%,0.092
+abv,1545,0.05%,0.053
+abv,1547,0.07%,0.067
+abv,1573,0.09%,0.09
+abv,1576,0.08%,0.08
+abv,1588,0.08%,0.08
+abv,1596,0.05%,0.052
+abv,1619,0.05%,0.05
+abv,1631,0.07%,0.065
+abv,1665,0.05%,0.05
+abv,1675,0.06%,0.058
+abv,1686,0.05%,0.051
+abv,1696,0.07%,0.07
+abv,1705,0.08%,0.08
+abv,1712,0.07%,0.07
+abv,1736,0.05%,0.048
+abv,1771,0.07%,0.071
+abv,1776,0.06%,0.063
+abv,1785,0.05%,0.052
+abv,1786,0.05%,0.048
+abv,1787,0.07%,0.069
+abv,1789,0.09%,0.091
+abv,1815,0.08%,0.08
+abv,1833,0.07%,0.07
+abv,1869,0.06%,0.063
+abv,1875,0.09%,0.091
+abv,1884,0.07%,0.068
+abv,1898,0.05%,0.049
+abv,1910,0.05%,0.049
+abv,1917,0.05%,0.054
+abv,1977,0.10%,0.096
+abv,1984,0.05%,0.05
+abv,1999,0.05%,0.052
+abv,2003,0.05%,0.047
+abv,2011,0.06%,0.057
+abv,2017,0.05%,0.051
+abv,2024,0.07%,0.072
+abv,2038,0.10%,0.099
+abv,2063,0.09%,0.091
+abv,2067,0.10%,0.099
+abv,2090,0.06%,0.059
+abv,2103,0.05%,0.049
+abv,2107,0.06%,0.056
+abv,2110,0.04%,0.044
+abv,2113,0.05%,0.05
+abv,2142,0.10%,0.096
+abv,2172,0.04%,0.041
+abv,2191,0.06%,0.055
+abv,2205,0.06%,0.055
+abv,2221,0.05%,0.054
+abv,2250,0.05%,0.048
+abv,2259,0.04%,0.04
+abv,2273,0.04%,0.042
+abv,2298,0.07%,0.065
+abv,2369,0.05%,0.045
+city,231,duluth mn,duluth
+city,382,denver co,denver
+city,411,grand rapids mi,grand rapids
+city,467,reno nv,reno
+city,509,ashland or,ashland
+city,519,cambridge ma,cambridge
+city,585,charlottesville va,charlottesville
+city,794,buellton ca,buellton
+city,890,pineland me,pineland
+city,941,aurora in,aurora
+city,1040,mill valley ca,mill valley
+city,1060,pittsburgh pa,pittsburgh
+city,1076,portland or,portland
+city,1138,stevens point wi,stevens point
+city,1188,albuquerque nm,albuquerque
+city,1288,fort worth tx,fort worth
+city,1431,portland or,portland
+city,1588,lyons co,lyons
+city,1621,portland me,portland
+city,1736,cincinnati oh,cincinnati
+city,1852,chico ca,chico
+city,1884,durango co,durango
+city,1980,chicago il,chicago
+city,2061,indianapolis in,indianapolis
+city,2113,manhattan ks,manhattan
+city,2205,idaho springs co,idaho springs
+city,2365,lake barrington il,lake barrington
+state,231,empty,mn
+state,382,empty,co
+state,411,empty,mi
+state,467,empty,nv
+state,509,empty,or
+state,519,empty,ma
+state,585,empty,va
+state,794,empty,ca
+state,890,empty,me
+state,941,empty,in
+state,1040,empty,ca
+state,1060,empty,pa
+state,1076,empty,or
+state,1138,empty,wi
+state,1188,empty,nm
+state,1288,empty,tx
+state,1431,empty,or
+state,1588,empty,co
+state,1621,empty,me
+state,1736,empty,oh
+state,1852,empty,ca
+state,1884,empty,co
+state,1980,empty,il
+state,2061,empty,in
+state,2113,empty,ks
+state,2205,empty,co
+state,2365,empty,il

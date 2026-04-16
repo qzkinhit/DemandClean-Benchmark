@@ -1,0 +1,246 @@
+Preprocessing missing values...
+
+============================================================
+Running CtxPipe with dirty file: Data/bike/dirty_index.csv
+Task name: bike_ctxpipe_vzekai
+Model tag: ctx_50000
+============================================================
+
+2026-01-31 21:12:58.224 | DEBUG    | config:makedirs:108 - making dir: /home/qianzekai/Clean4MLBaseline/logs/ctxpipe-3linear
+2026-01-31 21:12:58.224 | DEBUG    | config:makedirs:108 - making dir: /home/qianzekai/Clean4MLBaseline/exp/ctxpipe-3linear
+2026-01-31 21:12:58.224 | DEBUG    | config:makedirs:108 - making dir: /home/qianzekai/Clean4MLBaseline/Methods/ctxpipe/models/ctxpipe-3linear
+2026-01-31 21:12:58.363 | WARNING  | ctxpipe.info:_check_and_create_empty_files:54 - creating empty info file at /home/qianzekai/Clean4MLBaseline/results/ctxpipe/bike_ctxpipe_vzekai/aipipe/datasetinfo.json
+2026-01-31 21:12:58.363 | WARNING  | ctxpipe.info:_check_and_create_empty_files:54 - creating empty info file at /home/qianzekai/Clean4MLBaseline/results/ctxpipe/bike_ctxpipe_vzekai/aipipe/classification_task_dic.json
+2026-01-31 21:12:58.363 | WARNING  | ctxpipe.info:_check_and_create_empty_files:61 - creating empty info file at /home/qianzekai/Clean4MLBaseline/results/ctxpipe/bike_ctxpipe_vzekai/aipipe/test_index.json
+2026-01-31 21:12:58.986 | DEBUG    | ctxpipe.env.enviroment:step:107 - adding step blank...
+[CtxPipe Adapter] Using device: CPU (CUDA not available)
+没有指定错误比例，仅进行原数据集的空值替换，不添加错误
+已将注入错误的文件保存到: Data/bike/clean_index.csv
+没有指定错误比例，仅进行原数据集的空值替换，不添加错误
+已将注入错误的文件保存到: Data/bike/dirty_index.csv
+[CtxPipe Adapter] Detected index column. Removing for processing.
+[CtxPipe Adapter] Using label column: 14 (registered)
+[CtxPipe Adapter] Converted 'empty' strings to actual empty values for NaN detection.
+[CtxPipe Adapter] Generating pipeline with model tag: ctx_50000
+[0;33;40mstart run AIPipe:[0m
+taskid: 0, predictor: <LogisticRegression>, metric: <ctxpipe.env.metric.AccuracyMetric object at 0x7af4cb86a040>, default: False
+DQN Forward
+data torch.Size([1, 3300]) tensor([[ 2.0000,  0.8486, 14.0000,  ...,  0.0000,  0.0000,  0.0000]])
+C MTML: torch.Size([1, 6]) tensor([[6.3520, 6.9201, 6.3393, 6.4133]], grad_fn=<SliceBackward0>)
+C +BAS: torch.Size([1, 6]) tensor([[6.7739, 7.5458, 6.3479, 6.9718]], grad_fn=<SliceBackward0>)
+C GATE: torch.Size([1, 6]) tensor([[0.9989, 0.9995, 0.9983, 0.9991]], grad_fn=<SliceBackward0>)
+----------------------------------------
+Before gate: tensor([ 0.7657, -0.0117,  0.6390, -0.2297,  0.6127,  0.8617],
+       grad_fn=<SelectBackward0>)
+Context: tensor([ 0.9677,  0.0621,  0.9816, -0.9881,  0.9918,  0.5416],
+       grad_fn=<SelectBackward0>)
+Gate: tensor([0.9989, 0.9995, 0.9983, 0.9991, 0.9989, 0.9994],
+       grad_fn=<SelectBackward0>)
+Context after gate: tensor([ 0.9678,  0.0626,  0.9816, -0.9863,  0.9918,  0.5418],
+       grad_fn=<SelectBackward0>)
+With context: tensor([     0.7410,     -0.0007,      0.6273,      0.2265,      0.6077,
+             0.4669], grad_fn=<SelectBackward0>)
+executing function _do_add_step
+2026-01-31 21:12:59.409 | DEBUG    | ctxpipe.env.enviroment:step:107 - adding step blank...
+executing function _do_add_step
+2026-01-31 21:12:59.740 | DEBUG    | ctxpipe.env.enviroment:step:107 - adding step blank...
+executing function _do_add_step
+2026-01-31 21:13:00.479 | DEBUG    | ctxpipe.env.enviroment:step:107 - adding step MaxAbsScaler...
+RnnDQN Forward
+C MTML: torch.Size([1, 9]) tensor([[9.3728, 9.4217, 8.8335, 8.6857]], grad_fn=<SliceBackward0>)
+C +BAS: torch.Size([1, 9]) tensor([[9.8390, 9.7149, 9.3301, 8.9358]], grad_fn=<SliceBackward0>)
+C GATE: torch.Size([1, 9]) tensor([[0.9999, 0.9999, 0.9999, 0.9999]], grad_fn=<SliceBackward0>)
+----------------------------------------
+Before gate: tensor([ 0.7896,  0.8791,  0.7786,  0.8172, -0.2091,  0.8580,  0.7677,  0.7910,
+        -0.3105], grad_fn=<SelectBackward0>)
+Context: tensor([ 0.9741,  0.9379,  0.9334,  0.9825, -0.9866,  0.9202,  0.9784,  0.9868,
+        -0.9824], grad_fn=<SelectBackward0>)
+Gate: tensor([0.9999, 0.9999, 0.9999, 0.9999, 0.9998, 0.9999, 0.9999, 1.0000, 0.9999],
+       grad_fn=<SelectBackward0>)
+Context after gate: tensor([ 0.9741,  0.9379,  0.9334,  0.9825, -0.9863,  0.9202,  0.9784,  0.9868,
+        -0.9823], grad_fn=<SelectBackward0>)
+With context: tensor([0.7692, 0.8245, 0.7267, 0.8029, 0.2063, 0.7895, 0.7511, 0.7806, 0.3050],
+       grad_fn=<SelectBackward0>)
+executing function _do_add_step
+2026-01-31 21:13:01.302 | DEBUG    | ctxpipe.env.enviroment:step:107 - adding step InteractionFeatures...
+RnnDQN Forward
+C MTML: torch.Size([1, 8]) tensor([[5.8502, 5.5387, 5.7982, 5.3112]], grad_fn=<SliceBackward0>)
+C +BAS: torch.Size([1, 8]) tensor([[6.2161, 6.1510, 6.1589, 5.6847]], grad_fn=<SliceBackward0>)
+C GATE: torch.Size([1, 8]) tensor([[0.9980, 0.9979, 0.9979, 0.9966]], grad_fn=<SliceBackward0>)
+----------------------------------------
+Before gate: tensor([ 0.7517,  0.8275,  0.8639, -0.2729,  0.6452,  0.6309,  0.8313, -0.2450],
+       grad_fn=<SelectBackward0>)
+Context: tensor([ 0.8625,  0.8402,  0.7582, -0.9780,  0.9776,  0.9913,  0.6549, -0.9916],
+       grad_fn=<SelectBackward0>)
+Gate: tensor([0.9980, 0.9979, 0.9979, 0.9966, 0.9976, 0.9980, 0.9980, 0.9975],
+       grad_fn=<SelectBackward0>)
+Context after gate: tensor([ 0.8628,  0.8405,  0.7587, -0.9713,  0.9776,  0.9913,  0.6556, -0.9867],
+       grad_fn=<SelectBackward0>)
+With context: tensor([0.6485, 0.6955, 0.6554, 0.2651, 0.6307, 0.6254, 0.5450, 0.2418],
+       grad_fn=<SelectBackward0>)
+executing function _do_add_step
+2026-01-31 21:13:03.057 | DEBUG    | ctxpipe.env.enviroment:step:107 - adding step blank...
+RnnDQN Forward
+C MTML: torch.Size([1, 2]) tensor([[-10.2414, -11.2061]], grad_fn=<SliceBackward0>)
+C +BAS: torch.Size([1, 2]) tensor([[-8.3321, -9.3613]], grad_fn=<SliceBackward0>)
+C GATE: torch.Size([1, 2]) tensor([[    0.0002,     0.0001]], grad_fn=<SliceBackward0>)
+----------------------------------------
+Before gate: tensor([0.7539, 0.7786], grad_fn=<SelectBackward0>)
+Context: tensor([    0.0002,     0.0001], grad_fn=<SelectBackward0>)
+Gate: tensor([    0.0002,     0.0001], grad_fn=<SelectBackward0>)
+Context after gate: tensor([0.9998, 0.9999], grad_fn=<SelectBackward0>)
+With context: tensor([0.7537, 0.7786], grad_fn=<SelectBackward0>)
+executing function _do_add_step
+2026-01-31 21:13:04.740 | INFO     | ctxpipe.env.pipeline:evaluate:290 - evaluating [<blank>, <blank>, <blank>, <MaxAbsScaler>, <InteractionFeatures>, <blank>] using predictor LogisticRegression...
+2026-01-31 21:13:04.928 | ERROR    | ctxpipe.env.pipeline:evaluate:320 - evaluating [<blank>, <blank>, <blank>, <MaxAbsScaler>, <InteractionFeatures>, <blank>] using predictor LogisticRegression failed with error cannot unpack non-iterable FunctionTimedOut object
+
+CtxPipe output saved to: results/ctxpipe/bike_ctxpipe_vzekai/bike_ctxpipe_vzekai_cleaned.csv
+Pipeline info saved to: results/ctxpipe/bike_ctxpipe_vzekai/bike_ctxpipe_vzekai_pipeline_info.txt
+
+============================================================
+CtxPipe Results:
+============================================================
+AI Sequence: ['blank', 'blank', 'blank', 'MaxAbsScaler', 'InteractionFeatures', 'blank']
+ML Score: -1.0000
+Execution Time: 7.21 seconds
+============================================================
+
+============================================================
+Traditional Data Cleaning Evaluation
+Note: CtxPipe is designed for ML data preparation,
+      traditional cleaning metrics may not be applicable.
+============================================================
+
+Traditional Evaluation Results:
+Accuracy: 0.0
+Recall: 0.0
+F1 Score: 0.0
+EDR: 0.0
+Hybrid Distance: 0.4115586345713895
+R-EDR: 0.0
+Time: 7.21s
+Speed: 0.0415 seconds/100num
+
+============================================================
+调用统一测评模块 getScoreML
+============================================================
+[1;34m[21:14:22][0m[1;33m WARNING Snoopy may use all CPU cores! Set env. variable 'SNOOPY_LIMIT_CPU' to 'y' to limit CPU usage. [0m[1;34m(__init__ -> _init_tf_pytorch on MainThread)[0m
+
+getScoreML统一测评完成
+
+============================================================
+CtxPipe finished successfully!
+Results saved to: results/ctxpipe/bike_ctxpipe_vzekai
+============================================================
+
+taskid: 0, predictor: <RandomForestClassifier>, metric: <ctxpipe.env.metric.AccuracyMetric object at 0x7af4cb86a040>, default: False
+DQN Forward
+data torch.Size([1, 3300]) tensor([[ 2.0000,  0.8486, 14.0000,  ...,  0.0000,  0.0000,  0.0000]])
+C MTML: torch.Size([1, 6]) tensor([[6.2998, 6.8648, 6.2885, 6.3637]], grad_fn=<SliceBackward0>)
+C +BAS: torch.Size([1, 6]) tensor([[6.7217, 7.4905, 6.2971, 6.9221]], grad_fn=<SliceBackward0>)
+C GATE: torch.Size([1, 6]) tensor([[0.9988, 0.9994, 0.9982, 0.9990]], grad_fn=<SliceBackward0>)
+----------------------------------------
+Before gate: tensor([ 0.7578, -0.0181,  0.6291, -0.2241,  0.6029,  0.8555],
+       grad_fn=<SelectBackward0>)
+Context: tensor([ 0.9678,  0.0459,  0.9792, -0.9872,  0.9919,  0.5650],
+       grad_fn=<SelectBackward0>)
+Gate: tensor([0.9988, 0.9994, 0.9982, 0.9990, 0.9988, 0.9994],
+       grad_fn=<SelectBackward0>)
+Context after gate: tensor([ 0.9679,  0.0465,  0.9793, -0.9852,  0.9920,  0.5653],
+       grad_fn=<SelectBackward0>)
+With context: tensor([ 0.7334, -0.0008,  0.6161,  0.2208,  0.5980,  0.4836],
+       grad_fn=<SelectBackward0>)
+[0;32;40msucceed[0m
+
+
+dataset: bike_ctxpipe_vzekai
+accuracy of AIPipe: -1
+[CtxPipe Adapter] Applying generated pipeline to data...
+[CtxPipe Adapter] Data shape: (17379, 15), Num cols: 15, Cat cols: 0
+[CtxPipe Adapter] Num columns: ['dteday', 'season', 'yr', 'mnth', 'hr', 'holiday', 'weekday', 'workingday', 'weathersit', 'temp', 'atemp', 'hum', 'windspeed', 'casual', 'cnt']
+[CtxPipe Adapter] AI Sequence: ['blank', 'blank', 'blank', 'MaxAbsScaler', 'InteractionFeatures', 'blank']
+[CtxPipe Adapter] Skipped MaxAbsScaler (not imputation, would change data values)
+[CtxPipe Adapter] Skipped InteractionFeatures (not imputation, would change data values)
+[CtxPipe Adapter] Pipeline applied successfully.
+没有指定错误比例，仅进行原数据集的空值替换，不添加错误
+已将注入错误的文件保存到: results/ctxpipe/bike_ctxpipe_vzekai/bike_ctxpipe_vzekai_cleaned.csv
+修复准确率: 0.0, 修复召回率: 0.0, F1值: 0.0
+========================================
+错误减少率 (EDR): 0.0
+========================================
+混合距离 (Hybrid Distance): 0.4115586345713895
+========================================
+基于条目的错误减少率 (R-EDR): 0.0
+========================================
+numeric: Index(['dteday', 'season', 'yr', 'mnth', 'hr', 'holiday', 'weekday',
+       'workingday', 'weathersit', 'temp', 'atemp', 'hum', 'windspeed',
+       'casual', 'registered', 'cnt'],
+      dtype='object')
+categorical: (none)
+列级平均RMSE (数值列, 归一化): 20.698670
+  dteday: 0.899367
+  season: 41.106570
+  yr: 0.869426
+  mnth: 1.646402
+  hr: 0.868667
+  holiday: 277.692694
+  weekday: 0.895391
+  workingday: 1.006198
+  weathersit: 0.881992
+  temp: 0.930405
+  atemp: 0.830908
+  hum: 0.878016
+  windspeed: 0.867359
+  casual: 0.914173
+  registered: 0.891156
+  cnt: 0.000000
+列级平均F1: N/A (无类别列)
+========================================
+调试文件已保存到: results/ctxpipe/bike_ctxpipe_vzekai/debug
+修复准确率: 0.0, 修复召回率: 0.0, F1值: 0.0
+========================================
+错误减少率 (EDR): 0.0
+========================================
+混合距离 (Hybrid Distance): 0.4115586345713895
+========================================
+基于条目的错误减少率 (R-EDR): 0.0
+========================================
+numeric: Index(['dteday', 'season', 'yr', 'mnth', 'hr', 'holiday', 'weekday',
+       'workingday', 'weathersit', 'temp', 'atemp', 'hum', 'windspeed',
+       'casual', 'registered', 'cnt'],
+      dtype='object')
+categorical: (none)
+列级平均RMSE (数值列, 归一化): 20.698670
+  dteday: 0.899367
+  season: 41.106570
+  yr: 0.869426
+  mnth: 1.646402
+  hr: 0.868667
+  holiday: 277.692694
+  weekday: 0.895391
+  workingday: 1.006198
+  weathersit: 0.881992
+  temp: 0.930405
+  atemp: 0.830908
+  hum: 0.878016
+  windspeed: 0.867359
+  casual: 0.914173
+  registered: 0.891156
+  cnt: 0.000000
+列级平均F1: N/A (无类别列)
+========================================
+RF - MSE: 1367.0748, R2: 0.9568, MAE: 10.1381, RMSE: 36.9740
+LR - MSE: 10663.9498, R2: 0.6632, MAE: 66.2942, RMSE: 103.2664
+RIDGE - MSE: 10663.9329, R2: 0.6632, MAE: 66.2969, RMSE: 103.2663
+LASSO - MSE: 10653.5823, R2: 0.6636, MAE: 66.3477, RMSE: 103.2162
+KNN - MSE: 5885.9471, R2: 0.8141, MAE: 49.5083, RMSE: 76.7199
+GB - MSE: 1752.6228, R2: 0.9447, MAE: 15.9688, RMSE: 41.8643
+
+容忍度计算结果:
+  P_do_nothing (脏数据性能): -4012.2852
+  P_demand_clean (清洗后性能): -4012.2852
+  P_repair_all (完全修复性能): -7.8371
+  先验容忍度 (Tolerance_prior): 1.0000
+  后验容忍度 (Tolerance_post): 0.0000
+Snoopy模块可用，正在评估数据质量上界...
+数据集较大 (17379 行)，对Snoopy评估进行采样到 10000 行

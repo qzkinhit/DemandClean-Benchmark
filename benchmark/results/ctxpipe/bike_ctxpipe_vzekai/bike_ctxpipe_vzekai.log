@@ -1,0 +1,46 @@
+Preprocessing missing values...
+============================================================
+Running CtxPipe with dirty file: Data/bike/dirty_index.csv
+Task name: bike_ctxpipe_vzekai
+Model tag: ctx_50000
+============================================================
+
+
+CtxPipe output saved to: results/ctxpipe/bike_ctxpipe_vzekai/bike_ctxpipe_vzekai_cleaned.csv
+Pipeline info saved to: results/ctxpipe/bike_ctxpipe_vzekai/bike_ctxpipe_vzekai_pipeline_info.txt
+
+============================================================
+CtxPipe Results:
+============================================================
+AI Sequence: ['blank', 'blank', 'blank', 'MaxAbsScaler', 'InteractionFeatures', 'blank']
+ML Score: -1.0000
+Execution Time: 7.21 seconds
+============================================================
+
+============================================================
+Traditional Data Cleaning Evaluation
+Note: CtxPipe is designed for ML data preparation,
+      traditional cleaning metrics may not be applicable.
+============================================================
+
+Traditional Evaluation Results:
+Accuracy: 0.0
+Recall: 0.0
+F1 Score: 0.0
+EDR: 0.0
+Hybrid Distance: 0.4115586345713895
+R-EDR: 0.0
+Time: 7.21s
+Speed: 0.0415 seconds/100num
+
+============================================================
+调用统一测评模块 getScoreML
+============================================================
+
+getScoreML统一测评完成
+
+============================================================
+CtxPipe finished successfully!
+Results saved to: results/ctxpipe/bike_ctxpipe_vzekai
+============================================================
+

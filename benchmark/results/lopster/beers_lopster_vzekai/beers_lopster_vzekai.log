@@ -1,0 +1,57 @@
+============================================================
+Lopster 数据清洗
+============================================================
+数据集: beers
+数据路径: Data
+任务名称: beers_lopster_vzekai
+潜在维度: 120
+训练轮数: 100
+------------------------------------------------------------
+
+准备 Lopster 数据格式（输出到 results 目录，不修改原始数据）...
+  源文件: clean_index.csv, dirty_index.csv
+  Lopster 数据目录: /home/qianzekai/Clean4MLBaseline/results/lopster/beers_lopster_vzekai/lopster_data/beers
+
+生成 Lopster 训练数据 (无 index):
+  - 移除 index 列
+  - 转换为数值列: ['ounces', 'abv', 'ibu', 'brewery_id(带单位)']
+  - 保存到: /home/qianzekai/Clean4MLBaseline/results/lopster/beers_lopster_vzekai/lopster_data/beers/clean.csv
+  - 形状: (2410, 11) → (2410, 10)
+
+生成 Lopster 清洗数据 (无 index):
+  - 移除 index 列
+  - 转换为数值列: ['ounces(带单位)', 'abv(带单位)', 'ibu', 'brewery_id(带单位)']
+  - 保存到: /home/qianzekai/Clean4MLBaseline/results/lopster/beers_lopster_vzekai/lopster_data/beers/dirty01.csv
+  - 形状: (2410, 11) → (2410, 10)
+
+生成测评用数据 (带 index，编码后):
+  - clean_encoded.csv: /home/qianzekai/Clean4MLBaseline/results/lopster/beers_lopster_vzekai/clean_encoded.csv
+  - dirty_encoded.csv: /home/qianzekai/Clean4MLBaseline/results/lopster/beers_lopster_vzekai/dirty_encoded.csv
+
+Lopster 数据准备完成!
+
+使用预处理数据: /home/qianzekai/Clean4MLBaseline/results/lopster/beers_lopster_vzekai/lopster_data/beers
+------------------------------------------------------------
+执行时间: 43.69 秒
+执行状态: 成功
+真值使用成本: 2410 行 (用于训练VAE)
+
+后处理 Lopster 输出...
+  Lopster 输出行数: 2410
+  原始数据行数: 2410
+  还原 ID/日期列: ['brewery_id', 'beer_name']
+  还原 index 列
+  最终列顺序: ['index', 'id', 'beer_name', 'style', 'ounces', 'abv', 'ibu', 'brewery_id', 'brewery_name', 'city', 'state']
+  保存到: /home/qianzekai/Clean4MLBaseline/results/lopster/beers_lopster_vzekai/beers_lopster_vzekai_cleaned.csv
+  最终行数: 2410
+
+============================================================
+调用统一测评模块 getScoreML
+============================================================
+使用编码后的数据进行测评（确保格式一致）:
+  - dirty: /home/qianzekai/Clean4MLBaseline/results/lopster/beers_lopster_vzekai/dirty_encoded.csv
+  - cleaned: /home/qianzekai/Clean4MLBaseline/results/lopster/beers_lopster_vzekai/beers_lopster_vzekai_cleaned.csv
+  - clean: /home/qianzekai/Clean4MLBaseline/results/lopster/beers_lopster_vzekai/clean_encoded.csv
+
+结果已保存到: /home/qianzekai/Clean4MLBaseline/results/lopster/beers_lopster_vzekai
+============================================================

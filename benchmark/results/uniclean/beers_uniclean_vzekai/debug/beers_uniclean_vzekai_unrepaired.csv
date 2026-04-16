@@ -1,0 +1,28 @@
+Attribute,Index,Dirty Value,Clean Value
+style,1052,16.0 oz. alumi-tek,16
+style,1555,32.0 oz.,32
+brewery_id,41,67,267
+city,91,madison wi,madison
+city,122,hayward wi,hayward
+city,135,denton tx,denton
+city,310,canton ma,canton
+city,387,plainfield in,plainfield
+city,452,tampa bay fl,tampa bay
+city,519,cambridge ma,cambridge
+city,543,mooresville nc,mooresville
+city,544,mooresville nc,mooresville
+city,837,latrobe pa,latrobe
+city,890,pineland me,pineland
+city,1188,albuquerque nm,albuquerque
+city,1240,portland or,portland
+city,1375,san diego ca,san diego
+city,1377,san diego ca,san diego
+city,1621,portland me,portland
+city,1739,portland me,portland
+city,2136,athens ga,athens
+state,91,empty,wi
+state,310,empty,ma
+state,387,empty,in
+state,837,empty,pa
+state,890,empty,me
+state,2136,empty,ga

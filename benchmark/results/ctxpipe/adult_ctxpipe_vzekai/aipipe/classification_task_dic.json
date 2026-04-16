@@ -1,0 +1,1 @@
+{"0": {"dataset": "adult", "csv_file": "ctxpipe_war7k38n.csv", "label": "13", "model": "LogisticRegression", "task_name": "adult_ctxpipe_vzekai"}}

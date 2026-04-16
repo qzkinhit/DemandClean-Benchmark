@@ -1,0 +1,18 @@
+============================================================
+CtxPipe Pipeline Information
+============================================================
+
+Task Name: har_ctxpipe_vzekai
+Model Tag: ctx_50000
+Execution Time: 14.35 seconds
+
+Selected AI Sequence:
+  1. ImputerNumMode
+  2. ImputerCatMode
+  3. LabelEncoder
+  4. VarianceThreshold
+  5. PowerTransformer
+  6. RandomTreesEmbedding
+
+ML Model Score: -1.0000
+Logical Pipeline: None

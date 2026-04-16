@@ -1,0 +1,54 @@
+============================================================
+Lopster 数据清洗
+============================================================
+数据集: adult
+数据路径: Data
+任务名称: adult_lopster_vzekai
+潜在维度: 120
+训练轮数: 100
+------------------------------------------------------------
+
+准备 Lopster 数据格式（输出到 results 目录，不修改原始数据）...
+  源文件: clean_index.csv, dirty_index.csv
+  Lopster 数据目录: /home/qianzekai/Clean4MLBaseline/results/lopster/adult_lopster_vzekai/lopster_data/adult
+
+生成 Lopster 训练数据 (无 index):
+  - 移除 index 列
+  - 保存到: /home/qianzekai/Clean4MLBaseline/results/lopster/adult_lopster_vzekai/lopster_data/adult/clean.csv
+  - 形状: (45222, 16) → (45222, 15)
+
+生成 Lopster 清洗数据 (无 index):
+  - 移除 index 列
+  - 保存到: /home/qianzekai/Clean4MLBaseline/results/lopster/adult_lopster_vzekai/lopster_data/adult/dirty01.csv
+  - 形状: (45222, 16) → (45222, 15)
+
+生成测评用数据 (带 index，编码后):
+  - clean_encoded.csv: /home/qianzekai/Clean4MLBaseline/results/lopster/adult_lopster_vzekai/clean_encoded.csv
+  - dirty_encoded.csv: /home/qianzekai/Clean4MLBaseline/results/lopster/adult_lopster_vzekai/dirty_encoded.csv
+
+Lopster 数据准备完成!
+
+使用预处理数据: /home/qianzekai/Clean4MLBaseline/results/lopster/adult_lopster_vzekai/lopster_data/adult
+------------------------------------------------------------
+执行时间: 597.75 秒
+执行状态: 成功
+真值使用成本: 45222 行 (用于训练VAE)
+
+后处理 Lopster 输出...
+  Lopster 输出行数: 45222
+  原始数据行数: 45222
+  还原 index 列
+  最终列顺序: ['index', 'age', 'workclass', 'fnlwgt', 'education', 'educational_num', 'marital_status', 'occupation', 'relationship', 'race', 'gender', 'capital_gain', 'capital_loss', 'hours_per_week', 'native_country', 'income']
+  保存到: /home/qianzekai/Clean4MLBaseline/results/lopster/adult_lopster_vzekai/adult_lopster_vzekai_cleaned.csv
+  最终行数: 45222
+
+============================================================
+调用统一测评模块 getScoreML
+============================================================
+使用编码后的数据进行测评（确保格式一致）:
+  - dirty: /home/qianzekai/Clean4MLBaseline/results/lopster/adult_lopster_vzekai/dirty_encoded.csv
+  - cleaned: /home/qianzekai/Clean4MLBaseline/results/lopster/adult_lopster_vzekai/adult_lopster_vzekai_cleaned.csv
+  - clean: /home/qianzekai/Clean4MLBaseline/results/lopster/adult_lopster_vzekai/clean_encoded.csv
+
+结果已保存到: /home/qianzekai/Clean4MLBaseline/results/lopster/adult_lopster_vzekai
+============================================================

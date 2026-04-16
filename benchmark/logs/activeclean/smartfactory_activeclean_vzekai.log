@@ -1,0 +1,132 @@
+============================================================
+ActiveClean 数据清洗
+============================================================
+脏数据: Data/smartfactory/dirty_index.csv
+干净数据: Data/smartfactory/clean_index.csv
+任务名称: smartfactory_activeclean_vzekai
+------------------------------------------------------------
+清洗后数据已保存到: results/activeclean/smartfactory_activeclean_vzekai/smartfactory_activeclean_vzekai_output.csv
+------------------------------------------------------------
+执行时间: 4.67 秒
+真值使用量 (Ground Truth Cost): 500
+
+============================================================
+调用统一测评模块 getScoreML
+============================================================
+2026-01-29 20:58:20.838573: W tensorflow/compiler/xla/stream_executor/platform/default/dso_loader.cc:64] Could not load dynamic library 'libnvinfer.so.7'; dlerror: libnvinfer.so.7: cannot open shared object file: No such file or directory
+2026-01-29 20:58:20.838633: W tensorflow/compiler/xla/stream_executor/platform/default/dso_loader.cc:64] Could not load dynamic library 'libnvinfer_plugin.so.7'; dlerror: libnvinfer_plugin.so.7: cannot open shared object file: No such file or directory
+2026-01-29 20:58:20.838639: W tensorflow/compiler/tf2tensorrt/utils/py_utils.cc:38] TF-TRT Warning: Cannot dlopen some TensorRT libraries. If you would like to use Nvidia GPU with TensorRT, please make sure the missing libraries mentioned above are installed properly.
+[1;34m[20:58:21][0m[1;33m WARNING Snoopy may use all CPU cores! Set env. variable 'SNOOPY_LIMIT_CPU' to 'y' to limit CPU usage. [0m[1;34m(__init__ -> _init_tf_pytorch on MainThread)[0m
+2026-01-29 20:58:21.810462: E tensorflow/compiler/xla/stream_executor/cuda/cuda_driver.cc:267] failed call to cuInit: CUDA_ERROR_NO_DEVICE: no CUDA-capable device is detected
+结果已保存到: results/activeclean/smartfactory_activeclean_vzekai
+日志文件: results/activeclean/smartfactory_activeclean_vzekai/smartfactory_activeclean_vzekai.log
+============================================================
+[ActiveClean Wrapper] 检测到非数值列，自动进行向量化...
+[ActiveClean Wrapper] 向量化完成，编码列: ['i_w_blo_weg', 'o_w_blo_power', 'o_w_blo_voltage', 'i_w_bhl_weg', 'o_w_bhl_power', 'o_w_bhl_voltage', 'i_w_bhr_weg', 'o_w_bhr_power', 'o_w_bhr_voltage', 'i_w_bru_weg', 'o_w_bru_power', 'o_w_bru_voltage', 'i_w_hr_weg', 'o_w_hr_power', 'o_w_hr_voltage', 'i_w_hl_weg', 'o_w_hl_power', 'o_w_hl_voltage']
+[ActiveClean Wrapper] 数据集: 23645 行, 23645 脏行, 0 干净行
+[ActiveClean] Initialization
+[ActiveClean] 检测到分类任务，类别数: 2
+[ActiveClean] Number Cleaned So Far: 50
+[ActiveClean] Internal Accuracy: 0.7188
+[ActiveClean] Number Cleaned So Far: 100
+[ActiveClean] Internal Accuracy: 0.6560
+[ActiveClean] Number Cleaned So Far: 150
+[ActiveClean] Internal Accuracy: 0.7602
+[ActiveClean] Number Cleaned So Far: 200
+[ActiveClean] Internal Accuracy: 0.7598
+[ActiveClean] Number Cleaned So Far: 250
+[ActiveClean] Internal Accuracy: 0.7602
+[ActiveClean] Number Cleaned So Far: 300
+[ActiveClean] Internal Accuracy: 0.7570
+[ActiveClean] Number Cleaned So Far: 350
+[ActiveClean] Internal Accuracy: 0.7619
+[ActiveClean] Number Cleaned So Far: 400
+[ActiveClean] Internal Accuracy: 0.7190
+[ActiveClean] Number Cleaned So Far: 450
+[ActiveClean] Internal Accuracy: 0.5377
+[ActiveClean] Final - Number Cleaned: 500
+[ActiveClean Wrapper] 清洗完成: 500 行被替换为干净数据
+======================================================================
+Clean4MLBaseline 统一测评 - smartfactory_activeclean_vzekai
+======================================================================
+
+[1/5] 传统清洗指标
+--------------------------------------------------
+调试文件已保存到: results/activeclean/smartfactory_activeclean_vzekai/debug
+修复准确率: 1.0, 修复召回率: 0.022557451008036092, F1值: 0.04411967461308505
+========================================
+错误减少率 (EDR): 0.022557451008036092
+========================================
+混合距离 (Hybrid Distance): 0.0
+========================================
+基于条目的错误减少率 (R-EDR): 0.022557451008036092
+========================================
+numeric: Index(['i_w_blo_weg', 'o_w_blo_power', 'o_w_blo_voltage', 'i_w_bhl_weg',
+       'o_w_bhl_power', 'o_w_bhl_voltage', 'i_w_bhr_weg', 'o_w_bhr_power',
+       'o_w_bhr_voltage', 'i_w_bru_weg', 'o_w_bru_power', 'o_w_bru_voltage',
+       'i_w_hr_weg', 'o_w_hr_power', 'o_w_hr_voltage', 'i_w_hl_weg',
+       'o_w_hl_power', 'o_w_hl_voltage', 'labels'],
+      dtype='object')
+categorical: (none)
+列级平均RMSE (数值列, 归一化): 0.157364
+  i_w_blo_weg: 0.125577
+  o_w_blo_power: 0.148385
+  o_w_blo_voltage: 0.138087
+  i_w_bhl_weg: 0.133503
+  o_w_bhl_power: 0.162141
+  o_w_bhl_voltage: 0.171974
+  i_w_bhr_weg: 0.130580
+  o_w_bhr_power: 0.153522
+  o_w_bhr_voltage: 0.151032
+  i_w_bru_weg: 0.229189
+  o_w_bru_power: 0.142735
+  o_w_bru_voltage: 0.171360
+  i_w_hr_weg: 0.184346
+  o_w_hr_power: 0.238074
+  o_w_hr_voltage: 0.127318
+  i_w_hl_weg: 0.184195
+  o_w_hl_power: 0.253009
+  o_w_hl_voltage: 0.144898
+  labels: 0.000000
+列级平均F1: N/A (无类别列)
+========================================
+
+[2/5] 下游任务性能 (classification)
+--------------------------------------------------
+RF - Accuracy: 0.9674, F1: 0.9670, Precision: 0.9673, Recall: 0.9674
+LR - Accuracy: 0.7744, F1: 0.6813, Precision: 0.7751, Recall: 0.7744
+SVM - Accuracy: 0.7843, F1: 0.7069, Precision: 0.7925, Recall: 0.7843
+KNN - Accuracy: 0.7968, F1: 0.7887, Precision: 0.7844, Recall: 0.7968
+DT - Accuracy: 0.9351, F1: 0.9355, Precision: 0.9361, Recall: 0.9351
+GB - Accuracy: 0.8141, F1: 0.7689, Precision: 0.8221, Recall: 0.8141
+
+[3/5] 模型容忍度
+--------------------------------------------------
+
+容忍度计算结果:
+  P_do_nothing (脏数据性能): 0.7484
+  P_demand_clean (清洗后性能): 0.7659
+  P_repair_all (完全修复性能): 0.9816
+  先验容忍度 (Tolerance_prior): 1.0235
+  后验容忍度 (Tolerance_post): 0.0752
+
+[4/5] Snoopy上界评估
+--------------------------------------------------
+Snoopy模块可用，正在评估数据质量上界...
+  脏数据上界: 0.7223
+  清洗后上界: 0.7211
+  干净数据上界: 0.7010
+  上界提升比例: 0.0557
+
+[5/5] 真值使用成本
+--------------------------------------------------
+  方法类型: Type 3 (需迭代交互)
+  实际真值使用: 500
+  理想最小成本: 9000
+  总修改单元格: 9000
+  正确修复: 9000
+  错误修复: 0
+
+======================================================================
+测评完成，结果已保存到: results/activeclean/smartfactory_activeclean_vzekai/smartfactory_activeclean_vzekai_report.txt
+======================================================================

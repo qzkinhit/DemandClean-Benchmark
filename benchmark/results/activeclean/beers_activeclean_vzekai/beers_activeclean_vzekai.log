@@ -1,0 +1,18 @@
+============================================================
+ActiveClean 数据清洗
+============================================================
+脏数据: Data/beers/dirty_index.csv
+干净数据: Data/beers/clean_index.csv
+任务名称: beers_activeclean_vzekai
+------------------------------------------------------------
+清洗后数据已保存到: results/activeclean/beers_activeclean_vzekai/beers_activeclean_vzekai_output.csv
+------------------------------------------------------------
+执行时间: 1.06 秒
+真值使用量 (Ground Truth Cost): 500
+
+============================================================
+调用统一测评模块 getScoreML
+============================================================
+结果已保存到: results/activeclean/beers_activeclean_vzekai
+日志文件: results/activeclean/beers_activeclean_vzekai/beers_activeclean_vzekai.log
+============================================================

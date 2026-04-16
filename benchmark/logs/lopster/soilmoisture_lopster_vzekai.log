@@ -1,0 +1,288 @@
+============================================================
+Lopster 数据清洗
+============================================================
+数据集: soilmoisture
+数据路径: Data
+任务名称: soilmoisture_lopster_vzekai
+潜在维度: 120
+训练轮数: 100
+------------------------------------------------------------
+
+准备 Lopster 数据格式（输出到 results 目录，不修改原始数据）...
+  源文件: clean_index.csv, dirty_index.csv
+  Lopster 数据目录: /home/qianzekai/Clean4MLBaseline/results/lopster/soilmoisture_lopster_vzekai/lopster_data/soilmoisture
+
+生成 Lopster 训练数据 (无 index):
+  - 移除 index 列
+  - 保存到: /home/qianzekai/Clean4MLBaseline/results/lopster/soilmoisture_lopster_vzekai/lopster_data/soilmoisture/clean.csv
+  - 形状: (679, 129) → (679, 128)
+
+生成 Lopster 清洗数据 (无 index):
+  - 移除 index 列
+  - 转换为数值列: ['datetime', '458', '462', '466', '470', '474', '478', '482', '486', '490', '494', '498', '502', '518', '522', '530', '534', '538', '546', '550', '554', '558', '562', '570', '574', '578', '582', '586', '590', '594', '598', '602', '606', '610', '614', '618', '622', '626', '630', '634', '638', '642', '646', '650', '654', '662', '666', '670', '674', '682', '686', '690', '698', '706', '710', '714', '718', '726', '730', '738', '742', '758', '762', '766', '770', '774', '778', '782', '790', '798', '802', '806', '810', '814', '818', '826', '830', '834', '838', '842', '846', '850', '854', '858', '862', '866', '878', '886', '890', '894', '906', '910', '914', '922', '926', '930', '934', '942', '946', '950']
+  - 保存到: /home/qianzekai/Clean4MLBaseline/results/lopster/soilmoisture_lopster_vzekai/lopster_data/soilmoisture/dirty01.csv
+  - 形状: (679, 129) → (679, 128)
+
+生成测评用数据 (带 index，编码后):
+  - clean_encoded.csv: /home/qianzekai/Clean4MLBaseline/results/lopster/soilmoisture_lopster_vzekai/clean_encoded.csv
+  - dirty_encoded.csv: /home/qianzekai/Clean4MLBaseline/results/lopster/soilmoisture_lopster_vzekai/dirty_encoded.csv
+
+Lopster 数据准备完成!
+
+使用预处理数据: /home/qianzekai/Clean4MLBaseline/results/lopster/soilmoisture_lopster_vzekai/lopster_data/soilmoisture
+2026-01-31 03:53:30.420990: I tensorflow/core/platform/cpu_feature_guard.cc:193] This TensorFlow binary is optimized with oneAPI Deep Neural Network Library (oneDNN) to use the following CPU instructions in performance-critical operations:  AVX2 AVX512F AVX512_VNNI FMA
+To enable them in other operations, rebuild TensorFlow with the appropriate compiler flags.
+2026-01-31 03:53:30.536041: I tensorflow/core/util/port.cc:104] oneDNN custom operations are on. You may see slightly different numerical results due to floating-point round-off errors from different computation orders. To turn them off, set the environment variable `TF_ENABLE_ONEDNN_OPTS=0`.
+2026-01-31 03:53:30.539660: W tensorflow/compiler/xla/stream_executor/platform/default/dso_loader.cc:64] Could not load dynamic library 'libcudart.so.11.0'; dlerror: libcudart.so.11.0: cannot open shared object file: No such file or directory
+2026-01-31 03:53:30.539676: I tensorflow/compiler/xla/stream_executor/cuda/cudart_stub.cc:29] Ignore above cudart dlerror if you do not have a GPU set up on your machine.
+2026-01-31 03:53:31.096652: W tensorflow/compiler/xla/stream_executor/platform/default/dso_loader.cc:64] Could not load dynamic library 'libnvinfer.so.7'; dlerror: libnvinfer.so.7: cannot open shared object file: No such file or directory
+2026-01-31 03:53:31.096708: W tensorflow/compiler/xla/stream_executor/platform/default/dso_loader.cc:64] Could not load dynamic library 'libnvinfer_plugin.so.7'; dlerror: libnvinfer_plugin.so.7: cannot open shared object file: No such file or directory
+2026-01-31 03:53:31.096715: W tensorflow/compiler/tf2tensorrt/utils/py_utils.cc:38] TF-TRT Warning: Cannot dlopen some TensorRT libraries. If you would like to use Nvidia GPU with TensorRT, please make sure the missing libraries mentioned above are installed properly.
+2026-01-31 03:53:32.057266: E tensorflow/compiler/xla/stream_executor/cuda/cuda_driver.cc:267] failed call to cuInit: CUDA_ERROR_NO_DEVICE: no CUDA-capable device is detected
+2026-01-31 03:53:32.057290: I tensorflow/compiler/xla/stream_executor/cuda/cuda_diagnostics.cc:156] kernel driver does not appear to be running on this host (user-NF5280M6): /proc/driver/nvidia/version does not exist
+2026-01-31 03:53:32.057604: I tensorflow/core/platform/cpu_feature_guard.cc:193] This TensorFlow binary is optimized with oneAPI Deep Neural Network Library (oneDNN) to use the following CPU instructions in performance-critical operations:  AVX2 AVX512F AVX512_VNNI FMA
+To enable them in other operations, rebuild TensorFlow with the appropriate compiler flags.
+WARNING:tensorflow:5 out of the last 5 calls to <function pfor.<locals>.f at 0x7be13a705710> triggered tf.function retracing. Tracing is expensive and the excessive number of tracings could be due to (1) creating @tf.function repeatedly in a loop, (2) passing tensors with different shapes, (3) passing Python objects instead of tensors. For (1), please define your @tf.function outside of the loop. For (2), @tf.function has reduce_retracing=True option that can avoid unnecessary retracing. For (3), please refer to https://www.tensorflow.org/guide/function#controlling_retracing and https://www.tensorflow.org/api_docs/python/tf/function for  more details.
+WARNING:tensorflow:6 out of the last 6 calls to <function pfor.<locals>.f at 0x7be1353c7ef0> triggered tf.function retracing. Tracing is expensive and the excessive number of tracings could be due to (1) creating @tf.function repeatedly in a loop, (2) passing tensors with different shapes, (3) passing Python objects instead of tensors. For (1), please define your @tf.function outside of the loop. For (2), @tf.function has reduce_retracing=True option that can avoid unnecessary retracing. For (3), please refer to https://www.tensorflow.org/guide/function#controlling_retracing and https://www.tensorflow.org/api_docs/python/tf/function for  more details.
+------------------------------------------------------------
+执行时间: 201.81 秒
+执行状态: 成功
+真值使用成本: 679 行 (用于训练VAE)
+
+后处理 Lopster 输出...
+  Lopster 输出行数: 679
+  原始数据行数: 679
+  还原 ID/日期列: ['datetime']
+  还原 index 列
+  最终列顺序: ['index', 'datetime', 'soil_temperature', '454', '458', '462', '466', '470', '474', '478', '482', '486', '490', '494', '498', '502', '506', '510', '514', '518', '522', '526', '530', '534', '538', '542', '546', '550', '554', '558', '562', '566', '570', '574', '578', '582', '586', '590', '594', '598', '602', '606', '610', '614', '618', '622', '626', '630', '634', '638', '642', '646', '650', '654', '658', '662', '666', '670', '674', '678', '682', '686', '690', '694', '698', '702', '706', '710', '714', '718', '722', '726', '730', '734', '738', '742', '746', '750', '754', '758', '762', '766', '770', '774', '778', '782', '786', '790', '794', '798', '802', '806', '810', '814', '818', '822', '826', '830', '834', '838', '842', '846', '850', '854', '858', '862', '866', '870', '874', '878', '882', '886', '890', '894', '898', '902', '906', '910', '914', '918', '922', '926', '930', '934', '938', '942', '946', '950', 'soil_moisture']
+  保存到: /home/qianzekai/Clean4MLBaseline/results/lopster/soilmoisture_lopster_vzekai/soilmoisture_lopster_vzekai_cleaned.csv
+  最终行数: 679
+
+============================================================
+调用统一测评模块 getScoreML
+============================================================
+使用编码后的数据进行测评（确保格式一致）:
+  - dirty: /home/qianzekai/Clean4MLBaseline/results/lopster/soilmoisture_lopster_vzekai/dirty_encoded.csv
+  - cleaned: /home/qianzekai/Clean4MLBaseline/results/lopster/soilmoisture_lopster_vzekai/soilmoisture_lopster_vzekai_cleaned.csv
+  - clean: /home/qianzekai/Clean4MLBaseline/results/lopster/soilmoisture_lopster_vzekai/clean_encoded.csv
+[1;34m[03:57:03][0m[1;33m WARNING Snoopy may use all CPU cores! Set env. variable 'SNOOPY_LIMIT_CPU' to 'y' to limit CPU usage. [0m[1;34m(__init__ -> _init_tf_pytorch on MainThread)[0m
+
+结果已保存到: /home/qianzekai/Clean4MLBaseline/results/lopster/soilmoisture_lopster_vzekai
+============================================================
+TensorFlow version: 2.11.0
+Clean数据总量: 679 行
+使用比例: 100.0%
+实际使用: 679 行
+Unique Values per column:
+  soil_temperature    165
+454                 679
+458                 679
+462                 679
+466                 679
+                   ... 
+938                 679
+942                 679
+946                 679
+950                 679
+soil_moisture       506
+Length: 127, dtype: int64
+numeric: Index(['datetime', 'soil_temperature', '454', '458', '462', '466', '470',
+       '474', '478', '482',
+       ...
+       '918', '922', '926', '930', '934', '938', '942', '946', '950',
+       'soil_moisture'],
+      dtype='object', length=128)
+categorical: Index([], dtype='object')
+======================================================================
+Clean4MLBaseline 统一测评 - soilmoisture_lopster_vzekai
+======================================================================
+
+[1/5] 传统清洗指标
+--------------------------------------------------
+调试文件已保存到: /home/qianzekai/Clean4MLBaseline/results/lopster/soilmoisture_lopster_vzekai/debug
+修复准确率: 0.0, 修复召回率: 0.0, F1值: 0.0
+========================================
+错误减少率 (EDR): -2.322441762128085
+========================================
+混合距离 (Hybrid Distance): 0.7788752658205758
+========================================
+基于条目的错误减少率 (R-EDR): 0.0
+========================================
+numeric: Index(['datetime', 'soil_temperature', '454', '458', '462', '466', '470',
+       '474', '478', '482',
+       ...
+       '918', '922', '926', '930', '934', '938', '942', '946', '950',
+       'soil_moisture'],
+      dtype='object', length=128)
+categorical: (none)
+列级平均RMSE (数值列, 归一化): 6.658062
+  datetime: 311.430437
+  soil_temperature: 1.299578
+  454: 3.852754
+  458: 4.090856
+  462: 4.074536
+  466: 4.037993
+  470: 3.984066
+  474: 3.947564
+  478: 3.911015
+  482: 3.888048
+  486: 3.874154
+  490: 3.889319
+  494: 3.856930
+  498: 3.839339
+  502: 3.829020
+  506: 3.834656
+  510: 3.819044
+  514: 3.813993
+  518: 3.830609
+  522: 3.853947
+  526: 3.867528
+  530: 3.864373
+  534: 3.864025
+  538: 3.872250
+  542: 3.875766
+  546: 3.885234
+  550: 3.897831
+  554: 3.902208
+  558: 3.907477
+  562: 3.916165
+  566: 3.927684
+  570: 3.936930
+  574: 3.950383
+  578: 3.960526
+  582: 3.964890
+  586: 3.969589
+  590: 3.970045
+  594: 3.977401
+  598: 3.978297
+  602: 3.983626
+  606: 3.987839
+  610: 3.984198
+  614: 3.981029
+  618: 3.977100
+  622: 3.968988
+  626: 3.971503
+  630: 3.977887
+  634: 3.980646
+  638: 3.982457
+  642: 3.989401
+  646: 3.993807
+  650: 3.999037
+  654: 4.005229
+  658: 4.013740
+  662: 4.019927
+  666: 4.031326
+  670: 4.042453
+  674: 4.051819
+  678: 4.047785
+  682: 4.043677
+  686: 4.048427
+  690: 4.064577
+  694: 4.097984
+  698: 4.141096
+  702: 4.181124
+  706: 4.213624
+  710: 4.238461
+  714: 4.257452
+  718: 4.276161
+  722: 4.299237
+  726: 4.323334
+  730: 4.341798
+  734: 4.359041
+  738: 4.378041
+  742: 4.393775
+  746: 4.414158
+  750: 4.426434
+  754: 4.433609
+  758: 4.438491
+  762: 4.443166
+  766: 4.454072
+  770: 4.470386
+  774: 4.487801
+  778: 4.505182
+  782: 4.519777
+  786: 4.537249
+  790: 4.558629
+  794: 4.578705
+  798: 4.594950
+  802: 4.605659
+  806: 4.608919
+  810: 4.610659
+  814: 4.613163
+  818: 4.621277
+  822: 4.628902
+  826: 4.639787
+  830: 4.658033
+  834: 4.672958
+  838: 4.686256
+  842: 4.702088
+  846: 4.717544
+  850: 4.732190
+  854: 4.750424
+  858: 4.767523
+  862: 4.781519
+  866: 4.794554
+  870: 4.806591
+  874: 4.821615
+  878: 4.832900
+  882: 4.848500
+  886: 4.860840
+  890: 4.878870
+  894: 4.890286
+  898: 4.906803
+  902: 4.924848
+  906: 4.940643
+  910: 4.950743
+  914: 4.961724
+  918: 4.966629
+  922: 4.970200
+  926: 4.970643
+  930: 4.960044
+  934: 4.940909
+  938: 4.925734
+  942: 4.909565
+  946: 4.890542
+  950: 4.858414
+  soil_moisture: 1.666777
+列级平均F1: N/A (无类别列)
+========================================
+
+[2/5] 下游任务性能 (regression)
+--------------------------------------------------
+RF - MSE: 2.6761, R2: 0.8132, MAE: 0.7077, RMSE: 1.6359
+LR - MSE: 12.5968, R2: 0.1205, MAE: 2.7970, RMSE: 3.5492
+RIDGE - MSE: 12.5967, R2: 0.1205, MAE: 2.7971, RMSE: 3.5492
+LASSO - MSE: 13.6347, R2: 0.0480, MAE: 2.9571, RMSE: 3.6925
+KNN - MSE: 8.3511, R2: 0.4169, MAE: 1.8373, RMSE: 2.8898
+GB - MSE: 3.1220, R2: 0.7820, MAE: 1.0435, RMSE: 1.7669
+
+[3/5] 模型容忍度
+--------------------------------------------------
+
+容忍度计算结果:
+  P_do_nothing (脏数据性能): -3.3643
+  P_demand_clean (清洗后性能): -10.5719
+  P_repair_all (完全修复性能): -0.8688
+  先验容忍度 (Tolerance_prior): 3.1423
+  后验容忍度 (Tolerance_post): -2.8882
+
+[4/5] Snoopy上界评估
+--------------------------------------------------
+Snoopy模块可用，正在评估数据质量上界...
+  脏数据上界: 5.0489
+  清洗后上界: 6.5782
+  干净数据上界: 8.7752
+  上界提升比例: 0.4104
+
+[5/5] 真值使用成本
+--------------------------------------------------
+  方法类型: Type 2 (需验证集)
+  实际真值使用: 679
+  理想最小成本: 0
+  总修改单元格: 86236
+  正确修复: 0
+  错误修复: 86236
+
+======================================================================
+测评完成，结果已保存到: /home/qianzekai/Clean4MLBaseline/results/lopster/soilmoisture_lopster_vzekai/soilmoisture_lopster_vzekai_report.txt
+======================================================================

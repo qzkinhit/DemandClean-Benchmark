@@ -1,0 +1,31 @@
+ActiveClean 清洗结果评估
+============================================================
+
+执行时间: 0.91 秒
+方法类型: model-oriented
+自动化级别: 3 (需要迭代交互)
+真值使用量 (Ground Truth Cost): 500
+
+------------------------------------------------------------
+ActiveClean 详细报告:
+------------------------------------------------------------
+[ActiveClean] Initialization
+[ActiveClean] Number Cleaned So Far: 50
+[ActiveClean] Internal Accuracy: 0.6571
+[ActiveClean] Number Cleaned So Far: 100
+[ActiveClean] Internal Accuracy: 0.6357
+[ActiveClean] Number Cleaned So Far: 150
+[ActiveClean] Internal Accuracy: 0.6714
+[ActiveClean] Number Cleaned So Far: 200
+[ActiveClean] Internal Accuracy: 0.7143
+[ActiveClean] Number Cleaned So Far: 250
+[ActiveClean] Internal Accuracy: 0.6786
+[ActiveClean] Number Cleaned So Far: 300
+[ActiveClean] Internal Accuracy: 0.3571
+[ActiveClean] Number Cleaned So Far: 350
+[ActiveClean] Internal Accuracy: 0.6857
+[ActiveClean] Number Cleaned So Far: 400
+[ActiveClean] Internal Accuracy: 0.6929
+[ActiveClean] Number Cleaned So Far: 450
+[ActiveClean] Internal Accuracy: 0.7214
+[ActiveClean] Final - Number Cleaned: 500

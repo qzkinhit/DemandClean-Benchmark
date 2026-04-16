@@ -1,0 +1,79 @@
+============================================================
+20:38:29 - [ INFO] - ============================================================
+HoloClean 数据清洗
+20:38:29 - [ INFO] - HoloClean 数据清洗
+============================================================
+20:38:29 - [ INFO] - ============================================================
+脏数据: Data/har/dirty_index.csv
+20:38:29 - [ INFO] - 脏数据: Data/har/dirty_index.csv
+约束文件: Data/har/rules.txt
+20:38:29 - [ INFO] - 约束文件: Data/har/rules.txt
+任务名称: har_holoclean_vzekai
+20:38:29 - [ INFO] - 任务名称: har_holoclean_vzekai
+数据库: holo
+20:38:29 - [ INFO] - 数据库: holo
+------------------------------------------------------------
+20:38:29 - [ INFO] - ------------------------------------------------------------
+Step 1: 统一缺失值标记...
+20:38:29 - [ INFO] - Step 1: 统一缺失值标记...
+Step 2: 移除索引列...
+20:38:29 - [ INFO] - Step 2: 移除索引列...
+Step 3: 转换clean数据为HoloClean格式...
+20:38:30 - [ INFO] - Step 3: 转换clean数据为HoloClean格式...
+Step 4: 初始化HoloClean...
+20:38:30 - [ INFO] - Step 4: 初始化HoloClean...
+20:38:30 - [DEBUG] - initiating session with parameters: {'db_user': 'holocleanuser', 'db_pwd': 'abcd1234', 'db_host': 'localhost', 'db_name': 'holo', 'threads': 1, 'timeout': 180000, 'seed': 45, 'learning_rate': 0.001, 'optimizer': 'adam', 'epochs': 10, 'weight_decay': 0.01, 'momentum': 0.0, 'batch_size': 1, 'weak_label_thresh': 0.99, 'domain_thresh_1': 0, 'domain_thresh_2': 0, 'max_domain': 10000, 'cor_strength': 0.6, 'nb_cor_strength': 0.8, 'feature_norm': False, 'weight_norm': False, 'estimator_epochs': 3, 'estimator_batch_size': 32, 'verbose': True, 'bias': False, 'print_fw': True, 'debug_mode': False}
+Step 5: 加载数据到HoloClean...
+20:38:30 - [ INFO] - Step 5: 加载数据到HoloClean...
+20:38:30 - [ INFO] - Loaded 70000 rows with 350000 cells
+20:38:41 - [DEBUG] - Time to create index: 0.15 secs
+20:38:41 - [DEBUG] - Time to create index: 0.11 secs
+20:38:41 - [DEBUG] - Time to create index: 0.10 secs
+20:38:41 - [DEBUG] - Time to create index: 0.04 secs
+20:38:41 - [ INFO] - DONE Loading dirty_holoclean.csv
+20:38:41 - [DEBUG] - Time to load dataset: 11.10 secs
+Step 6: 加载约束规则...
+20:38:41 - [ INFO] - Step 6: 加载约束规则...
+解析到 1 条DC规则
+20:38:41 - [ INFO] - 解析到 1 条DC规则
+20:38:41 - [DEBUG] - OPENED constraints file successfully
+20:38:41 - [DEBUG] - DONE pre-processing constraint: t1&t2&EQ(t1.gt,t2.gt)&GT(t1.z,9.8)&LT(t2.z,7.0)
+20:38:41 - [DEBUG] - DONE extracting tuples from constraint: t1&t2&EQ(t1.gt,t2.gt)&GT(t1.z,9.8)&LT(t2.z,7.0)
+20:38:41 - [DEBUG] - DONE parsing predicate: EQ(t1.gt,t2.gt)
+20:38:41 - [ERROR] - predicate GT(t1.z,9.8)
+20:38:41 - [ERROR] - FAILED to load constraints from file temp_dc_rules.txt
+执行出错: Tuple name 9 not defined in GT(t1.z,9.8)
+20:38:41 - [ERROR] - 执行出错: Tuple name 9 not defined in GT(t1.z,9.8)
+Traceback (most recent call last):
+  File "MethodsRunScript/run_holoclean/run_holoclean_base.py", line 305, in main
+    hc.load_dcs(dc_file_path)
+  File "/home/qianzekai/Clean4MLBaseline/MethodsRunScript/run_holoclean/../../Methods/HoloClean/holoclean.py", line 303, in load_dcs
+    status, load_time = self.dc_parser.load_denial_constraints(fpath)
+  File "/home/qianzekai/Clean4MLBaseline/MethodsRunScript/run_holoclean/../../Methods/HoloClean/dcparser/dcparser.py", line 45, in load_denial_constraints
+    self.dcs.append(DenialConstraint(line,attrs))
+  File "/home/qianzekai/Clean4MLBaseline/MethodsRunScript/run_holoclean/../../Methods/HoloClean/dcparser/constraint.py", line 71, in __init__
+    self.predicates.append(Predicate(split[i], self.tuple_names, schema))
+  File "/home/qianzekai/Clean4MLBaseline/MethodsRunScript/run_holoclean/../../Methods/HoloClean/dcparser/constraint.py", line 104, in __init__
+    self.components = self.parse_components(predicate_string)
+  File "/home/qianzekai/Clean4MLBaseline/MethodsRunScript/run_holoclean/../../Methods/HoloClean/dcparser/constraint.py", line 171, in parse_components
+    raise Exception('Tuple name ' + str_so_far + ' not defined in ' + predicate_string)
+Exception: Tuple name 9 not defined in GT(t1.z,9.8)
+------------------------------------------------------------
+20:38:41 - [ INFO] - ------------------------------------------------------------
+执行时间: 12.43 秒
+20:38:41 - [ INFO] - 执行时间: 12.43 秒
+执行状态: 失败
+20:38:41 - [ INFO] - 执行状态: 失败
+真值使用成本: 0 (全自动)
+20:38:41 - [ INFO] - 真值使用成本: 0 (全自动)
+
+结果已保存到: results/holoclean/har_holoclean_vzekai
+20:38:41 - [ INFO] - 
+结果已保存到: results/holoclean/har_holoclean_vzekai
+============================================================
+20:38:41 - [ INFO] - ============================================================
+没有指定错误比例，仅进行原数据集的空值替换，不添加错误
+已将注入错误的文件保存到: results/holoclean/har_holoclean_vzekai/dirty_ori_empty.csv
+没有指定错误比例，仅进行原数据集的空值替换，不添加错误
+已将注入错误的文件保存到: results/holoclean/har_holoclean_vzekai/clean_ori_empty.csv
+转换完成，结果已保存到 results/holoclean/har_holoclean_vzekai/clean_holoclean.csv

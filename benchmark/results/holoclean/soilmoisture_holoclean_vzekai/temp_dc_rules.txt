@@ -1,0 +1,1 @@
+t1&t2&EQ(t1.soil_temperature,t2.soil_temperature)&IQ(t1.soil_moisture,t2.soil_moisture)

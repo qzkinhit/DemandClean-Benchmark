@@ -1,0 +1,157 @@
+============================================================
+Baran/Raha 数据清洗
+============================================================
+脏数据: Data/smartfactory/dirty_index.csv
+干净数据: Data/smartfactory/clean_index.csv
+任务名称: smartfactory_raha_baran_vzekai
+标注预算: 20
+------------------------------------------------------------
+============================================================
+阶段1: Raha错误检测
+============================================================
+检测到错误单元格: 425610
+检测 Precision: 1.0000
+检测 Recall: 1.0000
+检测 F1: 1.0000
+============================================================
+阶段2: Baran错误修复
+============================================================
+------------------------------------------------------------------------
+---------------------Initialize the Dataset Object----------------------
+------------------------------------------------------------------------
+------------------------------------------------------------------------
+--------------------Initialize Error Corrector Models-------------------
+------------------------------------------------------------------------
+The error corrector models are initialized.
+------------------------------------------------------------------------
+--------------Iterative Tuple Sampling, Labeling, and Learning----------
+------------------------------------------------------------------------
+Tuple 19377 is sampled.
+Tuple 19377 is labeled.
+The error corrector models are updated with new labeled tuple 19377.
+918522 pairs of (a data error, a potential correction) are featurized.
+84% (355663 / 425610) of data errors are corrected.
+------------------------------------------------------------------------
+Tuple 21837 is sampled.
+Tuple 21837 is labeled.
+The error corrector models are updated with new labeled tuple 21837.
+1578232 pairs of (a data error, a potential correction) are featurized.
+92% (389857 / 425610) of data errors are corrected.
+------------------------------------------------------------------------
+Tuple 6114 is sampled.
+Tuple 6114 is labeled.
+The error corrector models are updated with new labeled tuple 6114.
+2119064 pairs of (a data error, a potential correction) are featurized.
+92% (392767 / 425610) of data errors are corrected.
+------------------------------------------------------------------------
+Tuple 21421 is sampled.
+Tuple 21421 is labeled.
+The error corrector models are updated with new labeled tuple 21421.
+3165563 pairs of (a data error, a potential correction) are featurized.
+99% (420457 / 425610) of data errors are corrected.
+------------------------------------------------------------------------
+Tuple 18901 is sampled.
+Tuple 18901 is labeled.
+The error corrector models are updated with new labeled tuple 18901.
+3528879 pairs of (a data error, a potential correction) are featurized.
+99% (420460 / 425610) of data errors are corrected.
+------------------------------------------------------------------------
+Tuple 10902 is sampled.
+Tuple 10902 is labeled.
+The error corrector models are updated with new labeled tuple 10902.
+4351586 pairs of (a data error, a potential correction) are featurized.
+99% (420888 / 425610) of data errors are corrected.
+------------------------------------------------------------------------
+Tuple 1830 is sampled.
+Tuple 1830 is labeled.
+The error corrector models are updated with new labeled tuple 1830.
+5089855 pairs of (a data error, a potential correction) are featurized.
+99% (420889 / 425610) of data errors are corrected.
+------------------------------------------------------------------------
+Tuple 2553 is sampled.
+Tuple 2553 is labeled.
+The error corrector models are updated with new labeled tuple 2553.
+5720966 pairs of (a data error, a potential correction) are featurized.
+99% (420890 / 425610) of data errors are corrected.
+------------------------------------------------------------------------
+Tuple 11523 is sampled.
+Tuple 11523 is labeled.
+The error corrector models are updated with new labeled tuple 11523.
+6422609 pairs of (a data error, a potential correction) are featurized.
+99% (420891 / 425610) of data errors are corrected.
+------------------------------------------------------------------------
+Tuple 23533 is sampled.
+Tuple 23533 is labeled.
+The error corrector models are updated with new labeled tuple 23533.
+6821956 pairs of (a data error, a potential correction) are featurized.
+99% (420892 / 425610) of data errors are corrected.
+------------------------------------------------------------------------
+Tuple 8809 is sampled.
+Tuple 8809 is labeled.
+The error corrector models are updated with new labeled tuple 8809.
+7584644 pairs of (a data error, a potential correction) are featurized.
+99% (420893 / 425610) of data errors are corrected.
+------------------------------------------------------------------------
+Tuple 23011 is sampled.
+Tuple 23011 is labeled.
+The error corrector models are updated with new labeled tuple 23011.
+7928253 pairs of (a data error, a potential correction) are featurized.
+99% (420894 / 425610) of data errors are corrected.
+------------------------------------------------------------------------
+Tuple 1356 is sampled.
+Tuple 1356 is labeled.
+The error corrector models are updated with new labeled tuple 1356.
+8257402 pairs of (a data error, a potential correction) are featurized.
+99% (420895 / 425610) of data errors are corrected.
+------------------------------------------------------------------------
+Tuple 18460 is sampled.
+Tuple 18460 is labeled.
+The error corrector models are updated with new labeled tuple 18460.
+8717849 pairs of (a data error, a potential correction) are featurized.
+99% (420896 / 425610) of data errors are corrected.
+------------------------------------------------------------------------
+Tuple 5317 is sampled.
+Tuple 5317 is labeled.
+The error corrector models are updated with new labeled tuple 5317.
+9123942 pairs of (a data error, a potential correction) are featurized.
+99% (420897 / 425610) of data errors are corrected.
+------------------------------------------------------------------------
+Tuple 14015 is sampled.
+Tuple 14015 is labeled.
+The error corrector models are updated with new labeled tuple 14015.
+9877784 pairs of (a data error, a potential correction) are featurized.
+99% (420898 / 425610) of data errors are corrected.
+------------------------------------------------------------------------
+Tuple 8635 is sampled.
+Tuple 8635 is labeled.
+The error corrector models are updated with new labeled tuple 8635.
+10252509 pairs of (a data error, a potential correction) are featurized.
+99% (420899 / 425610) of data errors are corrected.
+------------------------------------------------------------------------
+Tuple 16563 is sampled.
+Tuple 16563 is labeled.
+The error corrector models are updated with new labeled tuple 16563.
+10515635 pairs of (a data error, a potential correction) are featurized.
+99% (420900 / 425610) of data errors are corrected.
+------------------------------------------------------------------------
+Tuple 20284 is sampled.
+Tuple 20284 is labeled.
+The error corrector models are updated with new labeled tuple 20284.
+------------------------------------------------------------
+执行时间: 54922.31 秒
+执行状态: 成功
+标注预算: 20
+真值使用成本: 20 (Type 3: 迭代交互)
+
+============================================================
+调用统一测评模块 getScoreML
+============================================================
+警告: 无法导入getScoreML模块: No module named 'tools.getScoreML'
+
+结果已保存到: results/raha_baran/smartfactory_raha_baran_vzekai
+============================================================
+10801270 pairs of (a data error, a potential correction) are featurized.
+99% (420901 / 425610) of data errors are corrected.
+------------------------------------------------------------------------
+修复单元格数: 420901
+修复后数据已保存: results/raha_baran/smartfactory_raha_baran_vzekai/smartfactory_raha_baran_vzekai_cleaned.csv

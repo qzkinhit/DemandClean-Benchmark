@@ -1,0 +1,21 @@
+Attribute: index, MSE: nan, Jaccard: 0.0
+Attribute: i_w_blo_weg, MSE: nan, Jaccard: 0.0
+Attribute: o_w_blo_power, MSE: nan, Jaccard: 0.0
+Attribute: o_w_blo_voltage, MSE: nan, Jaccard: 0.40299684810535374
+Attribute: i_w_bhl_weg, MSE: nan, Jaccard: 0.0
+Attribute: o_w_bhl_power, MSE: nan, Jaccard: 0.0
+Attribute: o_w_bhl_voltage, MSE: nan, Jaccard: 0.2305035292071138
+Attribute: i_w_bhr_weg, MSE: nan, Jaccard: 0.0
+Attribute: o_w_bhr_power, MSE: nan, Jaccard: 0.0
+Attribute: o_w_bhr_voltage, MSE: nan, Jaccard: 0.1843095056711006
+Attribute: i_w_bru_weg, MSE: nan, Jaccard: 0.0
+Attribute: o_w_bru_power, MSE: nan, Jaccard: 0.0
+Attribute: o_w_bru_voltage, MSE: nan, Jaccard: 0.204757835789234
+Attribute: i_w_hr_weg, MSE: nan, Jaccard: 0.0
+Attribute: o_w_hr_power, MSE: nan, Jaccard: 0.0
+Attribute: o_w_hr_voltage, MSE: nan, Jaccard: 0.0
+Attribute: i_w_hl_weg, MSE: nan, Jaccard: 0.3903324539256616
+Attribute: o_w_hl_power, MSE: nan, Jaccard: 0.0
+Attribute: o_w_hl_voltage, MSE: nan, Jaccard: 0.0
+Attribute: labels, MSE: nan, Jaccard: 0.0
+加权混合距离: 0.035322504317461596

@@ -1,0 +1,323 @@
+============================================================
+UniClean 数据清洗
+============================================================
+脏数据: Data/soilmoisture/dirty_index.csv
+数据集: soilmoisture
+任务名称: soilmoisture_uniclean_vzekai
+------------------------------------------------------------
+从规则文件加载清洗器: Data/soilmoisture/rules.txt
+成功加载 10 个清洗器
+26/01/31 07:12:12 WARN Utils: Your hostname, user-NF5280M6 resolves to a loopback address: 127.0.1.1; using 192.168.31.8 instead (on interface ens1f0np0)
+26/01/31 07:12:12 WARN Utils: Set SPARK_LOCAL_IP if you need to bind to another address
+26/01/31 07:12:22 WARN NativeCodeLoader: Unable to load native-hadoop library for your platform... using builtin-java classes where applicable
+Using Spark's default log4j profile: org/apache/spark/log4j-defaults.properties
+Setting default log level to "WARN".
+To adjust logging level use sc.setLogLevel(newLevel). For SparkR, use setLogLevel(newLevel).
+26/01/31 07:12:28 WARN package: Truncated the string representation of a plan since it was too large. This behavior can be adjusted by setting 'spark.sql.debug.maxToStringFields'.
+WARNING:root:No partitioning rule specified, processing might be slow
+WARNING:root:No partitioning rule specified, processing might be slow
+WARNING:root:No partitioning rule specified, processing might be slow
+WARNING:root:No partitioning rule specified, processing might be slow
+WARNING:root:No partitioning rule specified, processing might be slow
+WARNING:root:No partitioning rule specified, processing might be slow
+WARNING:root:No partitioning rule specified, processing might be slow
+WARNING:root:No partitioning rule specified, processing might be slow
+WARNING:root:No partitioning rule specified, processing might be slow
+WARNING:root:No partitioning rule specified, processing might be slow
+------------------------------------------------------------
+INFO:soilmoisture_uniclean_vzekai:------------------------------------------------------------
+执行时间: 40.05 秒
+INFO:soilmoisture_uniclean_vzekai:执行时间: 40.05 秒
+执行状态: 成功
+INFO:soilmoisture_uniclean_vzekai:执行状态: 成功
+清洗器数量: 10
+INFO:soilmoisture_uniclean_vzekai:清洗器数量: 10
+真值使用成本: 0 (全自动)
+INFO:soilmoisture_uniclean_vzekai:真值使用成本: 0 (全自动)
+
+============================================================
+INFO:soilmoisture_uniclean_vzekai:
+============================================================
+调用统一测评模块 getScoreML
+INFO:soilmoisture_uniclean_vzekai:调用统一测评模块 getScoreML
+============================================================
+INFO:soilmoisture_uniclean_vzekai:============================================================
+2026-01-31 07:13:08.854330: W tensorflow/compiler/xla/stream_executor/platform/default/dso_loader.cc:64] Could not load dynamic library 'libnvinfer.so.7'; dlerror: libnvinfer.so.7: cannot open shared object file: No such file or directory
+2026-01-31 07:13:08.854397: W tensorflow/compiler/xla/stream_executor/platform/default/dso_loader.cc:64] Could not load dynamic library 'libnvinfer_plugin.so.7'; dlerror: libnvinfer_plugin.so.7: cannot open shared object file: No such file or directory
+2026-01-31 07:13:08.854404: W tensorflow/compiler/tf2tensorrt/utils/py_utils.cc:38] TF-TRT Warning: Cannot dlopen some TensorRT libraries. If you would like to use Nvidia GPU with TensorRT, please make sure the missing libraries mentioned above are installed properly.
+[1;34m[07:13:09][0m[1;33m WARNING Snoopy may use all CPU cores! Set env. variable 'SNOOPY_LIMIT_CPU' to 'y' to limit CPU usage. [0m[1;34m(__init__ -> _init_tf_pytorch on MainThread)[0m
+2026-01-31 07:13:09.322702: E tensorflow/compiler/xla/stream_executor/cuda/cuda_driver.cc:267] failed call to cuInit: CUDA_ERROR_NO_DEVICE: no CUDA-capable device is detected
+
+结果已保存到: results/uniclean/soilmoisture_uniclean_vzekai
+INFO:soilmoisture_uniclean_vzekai:
+结果已保存到: results/uniclean/soilmoisture_uniclean_vzekai
+============================================================
+INFO:soilmoisture_uniclean_vzekai:============================================================
+UniClean开始清洗，数据量: 679
+清洗器数量: 10
+初始化清洗器和分析依赖关系...
+处理单属性清洗算子：
+处理单属性清洗算子：[Number:(domain=soil_moisture, format=[-inf, inf])]
+开始清洗属性 soil_moisture 的数据
+属性 soil_moisture 的数据大小: 506
+应用 soil_moisture 的清洗规则，编辑规则数量: 506
+读入数据大小：679
+处理了 506 条规则，更新数据...
+所有编辑规则已更新完成
+处理单属性清洗算子：[Number:(domain=soil_temperature, format=[-inf, inf])]
+开始清洗属性 soil_temperature 的数据
+属性 soil_temperature 的数据大小: 354
+应用 soil_temperature 的清洗规则，编辑规则数量: 354
+读入数据大小：679
+处理了 354 条规则，更新数据...
+所有编辑规则已更新完成
+处理单属性清洗算子：[Number:(domain=454, format=[-inf, inf])]
+开始清洗属性 454 的数据
+属性 454 的数据大小: 679
+应用 454 的清洗规则，编辑规则数量: 679
+读入数据大小：679
+处理了 679 条规则，更新数据...
+所有编辑规则已更新完成
+处理单属性清洗算子：[Number:(domain=550, format=[-inf, inf])]
+开始清洗属性 550 的数据
+属性 550 的数据大小: 679
+应用 550 的清洗规则，编辑规则数量: 678
+读入数据大小：679
+处理了 678 条规则，更新数据...
+所有编辑规则已更新完成
+处理单属性清洗算子：[Number:(domain=650, format=[-inf, inf])]
+开始清洗属性 650 的数据
+属性 650 的数据大小: 679
+应用 650 的清洗规则，编辑规则数量: 678
+读入数据大小：679
+处理了 678 条规则，更新数据...
+所有编辑规则已更新完成
+处理单属性清洗算子：[Number:(domain=750, format=[-inf, inf])]
+开始清洗属性 750 的数据
+属性 750 的数据大小: 679
+应用 750 的清洗规则，编辑规则数量: 679
+读入数据大小：679
+处理了 679 条规则，更新数据...
+所有编辑规则已更新完成
+处理单属性清洗算子：[Number:(domain=850, format=[-inf, inf])]
+开始清洗属性 850 的数据
+属性 850 的数据大小: 678
+应用 850 的清洗规则，编辑规则数量: 677
+读入数据大小：679
+处理了 677 条规则，更新数据...
+所有编辑规则已更新完成
+处理单属性清洗算子：[Number:(domain=950, format=[-inf, inf])]
+开始清洗属性 950 的数据
+属性 950 的数据大小: 677
+应用 950 的清洗规则，编辑规则数量: 676
+读入数据大小：679
+处理了 676 条规则，更新数据...
+所有编辑规则已更新完成
+处理单属性清洗算子：[Outlier:(domain=soil_moisture, outliers= set())]
+开始清洗属性 soil_moisture 的数据
+属性 soil_moisture 的数据大小: 506
+属性 soil_moisture 没有可应用的清洗规则。
+处理单属性清洗算子：[Outlier:(domain=soil_temperature, outliers= set())]
+开始清洗属性 soil_temperature 的数据
+属性 soil_temperature 的数据大小: 354
+属性 soil_temperature 没有可应用的清洗规则。
+执行层级和目标模型分类...
+执行层级 (并行组): []
+目标模型分类: {}
+
+清洗规则溯源分析:
+
+清洗流程展示:
+======================================================================
+Clean4MLBaseline 统一测评 - soilmoisture_uniclean_vzekai
+======================================================================
+
+[1/5] 传统清洗指标
+--------------------------------------------------
+调试文件已保存到: results/uniclean/soilmoisture_uniclean_vzekai/debug
+修复准确率: 0.0, 修复召回率: 0.0, F1值: 0.0
+========================================
+错误减少率 (EDR): 0.0
+========================================
+混合距离 (Hybrid Distance): 0.22795909576792617
+========================================
+基于条目的错误减少率 (R-EDR): 0.0
+========================================
+numeric: Index(['datetime', 'soil_temperature', '454', '458', '462', '466', '470',
+       '474', '478', '482',
+       ...
+       '918', '922', '926', '930', '934', '938', '942', '946', '950',
+       'soil_moisture'],
+      dtype='object', length=128)
+categorical: (none)
+列级平均RMSE (数值列, 归一化): 4.578899
+  datetime: 311.430437
+  soil_temperature: 2.242505
+  454: 2.393852
+  458: 2.186353
+  462: 2.137844
+  466: 2.530025
+  470: 2.269383
+  474: 2.248456
+  478: 2.099924
+  482: 2.105687
+  486: 2.355347
+  490: 2.224192
+  494: 2.019910
+  498: 2.119167
+  502: 2.204516
+  506: 2.359721
+  510: 2.247141
+  514: 2.183693
+  518: 2.372831
+  522: 2.390441
+  526: 2.010066
+  530: 1.979445
+  534: 2.070589
+  538: 2.242576
+  542: 2.070171
+  546: 2.246240
+  550: 2.116058
+  554: 2.342615
+  558: 2.220952
+  562: 2.239427
+  566: 2.193497
+  570: 2.230773
+  574: 2.116274
+  578: 1.978680
+  582: 2.059760
+  586: 2.136275
+  590: 2.313622
+  594: 2.164925
+  598: 2.122880
+  602: 2.404049
+  606: 2.332976
+  610: 2.235445
+  614: 2.207865
+  618: 2.213021
+  622: 2.226407
+  626: 2.361848
+  630: 2.183991
+  634: 2.076927
+  638: 1.978158
+  642: 2.366119
+  646: 2.221360
+  650: 2.194142
+  654: 2.150456
+  658: 2.337562
+  662: 2.031934
+  666: 2.223297
+  670: 2.255528
+  674: 1.852020
+  678: 1.971906
+  682: 1.936224
+  686: 2.285690
+  690: 2.206235
+  694: 2.363635
+  698: 2.201578
+  702: 2.214251
+  706: 2.212666
+  710: 2.135337
+  714: 2.024973
+  718: 2.067324
+  722: 2.159293
+  726: 2.161008
+  730: 2.226870
+  734: 2.240759
+  738: 2.339868
+  742: 2.382670
+  746: 1.956797
+  750: 1.976396
+  754: 2.104229
+  758: 2.200618
+  762: 2.163922
+  766: 2.351168
+  770: 2.141631
+  774: 2.097950
+  778: 2.019083
+  782: 2.276540
+  786: 2.079727
+  790: 2.180176
+  794: 2.368967
+  798: 2.269737
+  802: 2.064196
+  806: 2.081483
+  810: 2.142450
+  814: 2.163328
+  818: 2.328359
+  822: 2.129253
+  826: 2.174067
+  830: 1.937129
+  834: 2.186168
+  838: 2.278224
+  842: 2.146551
+  846: 2.248917
+  850: 2.157512
+  854: 2.255372
+  858: 2.136886
+  862: 2.249485
+  866: 2.236651
+  870: 2.086701
+  874: 2.345684
+  878: 2.112459
+  882: 2.311855
+  886: 2.133786
+  890: 2.335990
+  894: 2.150543
+  898: 2.184277
+  902: 1.924444
+  906: 2.132098
+  910: 2.180362
+  914: 2.027222
+  918: 2.197173
+  922: 1.925631
+  926: 2.214766
+  930: 1.935050
+  934: 2.095229
+  938: 2.303686
+  942: 2.123708
+  946: 2.221732
+  950: 2.094027
+  soil_moisture: 0.000000
+列级平均F1: N/A (无类别列)
+========================================
+
+[2/5] 下游任务性能 (regression)
+--------------------------------------------------
+RF - MSE: 2.7148, R2: 0.8105, MAE: 1.1605, RMSE: 1.6477
+LR - MSE: 8.1480, R2: 0.4311, MAE: 2.0836, RMSE: 2.8545
+RIDGE - MSE: 8.1372, R2: 0.4319, MAE: 2.0822, RMSE: 2.8526
+LASSO - MSE: 9.8579, R2: 0.3117, MAE: 2.4715, RMSE: 3.1397
+KNN - MSE: 5.2765, R2: 0.6316, MAE: 1.5678, RMSE: 2.2971
+GB - MSE: 3.4124, R2: 0.7617, MAE: 1.2966, RMSE: 1.8473
+
+[3/5] 模型容忍度
+--------------------------------------------------
+
+容忍度计算结果:
+  P_do_nothing (脏数据性能): -4.8276
+  P_demand_clean (清洗后性能): -4.7915
+  P_repair_all (完全修复性能): -0.8688
+  先验容忍度 (Tolerance_prior): 0.9925
+  后验容忍度 (Tolerance_post): 0.0091
+
+[4/5] Snoopy上界评估
+--------------------------------------------------
+Snoopy模块可用，正在评估数据质量上界...
+  脏数据上界: 5.0025
+  清洗后上界: 5.0059
+  干净数据上界: 8.7752
+  上界提升比例: 0.0009
+
+[5/5] 真值使用成本
+--------------------------------------------------
+  方法类型: Type 1 (全自动)
+  实际真值使用: 0
+  理想最小成本: 0
+  总修改单元格: 5
+  正确修复: 0
+  错误修复: 5
+
+======================================================================
+测评完成，结果已保存到: results/uniclean/soilmoisture_uniclean_vzekai/soilmoisture_uniclean_vzekai_report.txt
+======================================================================

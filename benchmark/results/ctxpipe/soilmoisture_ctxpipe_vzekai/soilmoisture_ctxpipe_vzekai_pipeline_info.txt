@@ -1,0 +1,18 @@
+============================================================
+CtxPipe Pipeline Information
+============================================================
+
+Task Name: soilmoisture_ctxpipe_vzekai
+Model Tag: ctx_50000
+Execution Time: 11.89 seconds
+
+Selected AI Sequence:
+  1. ImputerMean
+  2. blank
+  3. blank
+  4. PowerTransformer
+  5. RandomTreesEmbedding
+  6. VarianceThreshold
+
+ML Model Score: -1.0000
+Logical Pipeline: None

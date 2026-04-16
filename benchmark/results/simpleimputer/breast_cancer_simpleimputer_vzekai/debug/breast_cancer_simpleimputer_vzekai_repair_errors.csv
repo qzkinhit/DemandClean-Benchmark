@@ -1,0 +1,112 @@
+Attribute,Index,Dirty Value,Cleaned Value,Clean Value
+Clump Thickness,56,empty,1,10
+Clump Thickness,60,empty,1,9
+Clump Thickness,69,empty,1,8
+Clump Thickness,294,empty,1,10
+Clump Thickness,313,empty,1,8
+Clump Thickness,352,empty,1,2
+Clump Thickness,420,empty,1,2
+Clump Thickness,445,empty,1,5
+Clump Thickness,475,empty,1,5
+Clump Thickness,499,empty,1,4
+Clump Thickness,512,empty,1,5
+Clump Thickness,514,empty,1,3
+Clump Thickness,622,empty,1,6
+Clump Thickness,623,empty,1,7
+Clump Thickness,672,empty,1,3
+Clump Thickness,680,empty,1,2
+Clump Thickness,696,empty,1,2
+Uniformity of Cell Size,33,empty,1,7
+Uniformity of Cell Size,41,empty,1,6
+Uniformity of Cell Size,44,empty,1,6
+Uniformity of Cell Size,51,empty,1,5
+Uniformity of Cell Size,125,empty,1,4
+Uniformity of Cell Size,263,empty,1,8
+Uniformity of Cell Size,265,empty,1,9
+Uniformity of Cell Size,361,empty,1,10
+Uniformity of Cell Size,421,empty,1,2
+Uniformity of Cell Size,431,empty,1,3
+Uniformity of Cell Size,566,empty,1,7
+Uniformity of Cell Size,587,empty,1,10
+Uniformity of Cell Size,649,empty,1,10
+Uniformity of Cell Shape,16,empty,1,6
+Uniformity of Cell Shape,39,empty,1,4
+Uniformity of Cell Shape,45,empty,1,10
+Uniformity of Cell Shape,50,empty,1,7
+Uniformity of Cell Shape,77,empty,1,4
+Uniformity of Cell Shape,110,empty,1,4
+Uniformity of Cell Shape,153,empty,1,8
+Uniformity of Cell Shape,252,empty,1,4
+Uniformity of Cell Shape,382,empty,1,3
+Uniformity of Cell Shape,419,empty,1,2
+Uniformity of Cell Shape,480,empty,1,7
+Uniformity of Cell Shape,571,empty,1,4
+Uniformity of Cell Shape,597,empty,1,2
+Marginal Adhesion,239,empty,1,8
+Marginal Adhesion,264,empty,1,10
+Marginal Adhesion,267,empty,1,3
+Marginal Adhesion,300,empty,1,6
+Marginal Adhesion,572,empty,1,5
+Single Epithelial Cell Size,112,empty,2,5
+Single Epithelial Cell Size,219,empty,2,6
+Single Epithelial Cell Size,255,empty,2,10
+Single Epithelial Cell Size,289,empty,2,4
+Single Epithelial Cell Size,330,empty,2,5
+Single Epithelial Cell Size,337,empty,2,4
+Single Epithelial Cell Size,359,empty,2,8
+Single Epithelial Cell Size,367,empty,2,8
+Single Epithelial Cell Size,531,empty,2,4
+Single Epithelial Cell Size,592,empty,2,4
+Bare Nuclei,6,empty,1,10
+Bare Nuclei,22,empty,1,7
+Bare Nuclei,24,?,1,?
+Bare Nuclei,66,empty,1,2
+Bare Nuclei,74,empty,1,10
+Bare Nuclei,85,empty,1,9
+Bare Nuclei,88,empty,1,10
+Bare Nuclei,118,empty,1,10
+Bare Nuclei,123,empty,1,10
+Bare Nuclei,140,?,1,?
+Bare Nuclei,146,?,1,?
+Bare Nuclei,159,?,1,?
+Bare Nuclei,165,?,1,?
+Bare Nuclei,250,?,1,?
+Bare Nuclei,276,empty,1,?
+Bare Nuclei,293,?,1,?
+Bare Nuclei,295,?,1,?
+Bare Nuclei,298,?,1,?
+Bare Nuclei,316,?,1,?
+Bare Nuclei,322,?,1,?
+Bare Nuclei,412,?,1,?
+Bare Nuclei,508,empty,1,4
+Bare Nuclei,583,empty,1,10
+Bare Nuclei,618,?,1,?
+Bland Chromatin,9,empty,3,1
+Bland Chromatin,29,empty,3,2
+Bland Chromatin,37,empty,3,8
+Bland Chromatin,141,empty,3,1
+Bland Chromatin,206,empty,3,7
+Bland Chromatin,327,empty,3,5
+Bland Chromatin,341,empty,3,7
+Bland Chromatin,348,empty,3,1
+Bland Chromatin,368,empty,3,8
+Bland Chromatin,385,empty,3,1
+Bland Chromatin,399,empty,3,2
+Bland Chromatin,405,empty,3,1
+Bland Chromatin,454,empty,3,10
+Bland Chromatin,491,empty,3,1
+Bland Chromatin,523,empty,3,7
+Bland Chromatin,564,empty,3,2
+Bland Chromatin,569,empty,3,2
+Normal Nucleoli,54,empty,1,3
+Normal Nucleoli,102,empty,1,5
+Normal Nucleoli,152,empty,1,4
+Normal Nucleoli,167,empty,1,10
+Normal Nucleoli,201,empty,1,8
+Normal Nucleoli,235,empty,1,6
+Normal Nucleoli,256,empty,1,6
+Normal Nucleoli,298,empty,1,3
+Normal Nucleoli,627,empty,1,7
+Normal Nucleoli,659,empty,1,2
+Mitoses,309,empty,1,4
+Mitoses,456,empty,1,2

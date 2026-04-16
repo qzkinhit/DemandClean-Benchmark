@@ -1,0 +1,12 @@
+Traditional Data Cleaning Evaluation Results:
+Accuracy: 0.49473684210526314
+Recall: 0.17938931297709923
+F1 Score: 0.26330532208979274
+EDR: 0.17938931297709923
+Hybrid Distance: 0.1692740368375214
+R-EDR: 0.15789473684210525
+Time: 5.25981330871582
+Speed: 0.7524768681996882 seconds/100num
+
+CtxPipe-specific Metrics:
+ML Score: -1.0000

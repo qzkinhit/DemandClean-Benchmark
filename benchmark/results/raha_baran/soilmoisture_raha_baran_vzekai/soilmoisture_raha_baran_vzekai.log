@@ -1,0 +1,37 @@
+============================================================
+Baran/Raha 数据清洗
+============================================================
+脏数据: Data/soilmoisture/dirty_index.csv
+干净数据: Data/soilmoisture/clean_index.csv
+任务名称: soilmoisture_raha_baran_vzekai
+标注预算: 20
+列拆分阈值: 30
+并行进程数限制: 2
+------------------------------------------------------------
+数据集列数 (129) 超过阈值 (30)，启用列拆分模式
+检测到高维数据集: 129 列，将拆分处理
+拆分为 5 个子集，每组最多 30 列
+临时目录: /tmp/baran_split_soilmoisture_raha_baran_vzekai_bv8jr4j7
+  Split 0: 处理 30 列 (datetime...562)
+  Split 1: 处理 30 列 (566...682)
+  Split 2: 处理 30 列 (686...802)
+  Split 3: 处理 30 列 (806...922)
+  Split 4: 处理 8 列 (926...soil_moisture)
+合并所有子集结果...
+合并结果已保存: results/raha_baran/soilmoisture_raha_baran_vzekai/soilmoisture_raha_baran_vzekai_cleaned.csv
+已清理临时目录: /tmp/baran_split_soilmoisture_raha_baran_vzekai_bv8jr4j7
+------------------------------------------------------------
+执行时间: 1116.14 秒
+执行状态: 成功
+拆分数量: 5
+总检测单元格: 27688
+总修复单元格: 1549
+标注预算: 20
+真值使用成本: 100 (Type 3: 迭代交互)
+
+============================================================
+调用统一测评模块 getScoreML
+============================================================
+
+结果已保存到: results/raha_baran/soilmoisture_raha_baran_vzekai
+============================================================

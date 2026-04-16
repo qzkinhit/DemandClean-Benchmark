@@ -1,0 +1,106 @@
+2026-01-29 19:57:42,096 - INFO - ============================================================
+2026-01-29 19:57:42,096 - INFO - MLImputer 数据清洗 (mice)
+2026-01-29 19:57:42,096 - INFO - ============================================================
+2026-01-29 19:57:42,096 - INFO - 脏数据: Data/breast_cancer/dirty_index.csv
+2026-01-29 19:57:42,096 - INFO - 干净数据: Data/breast_cancer/clean_index.csv
+2026-01-29 19:57:42,096 - INFO - 任务名称: breast_cancer_mlimputer_vzekai
+2026-01-29 19:57:42,096 - INFO - 插补方法: mice
+2026-01-29 19:57:42,096 - INFO - ------------------------------------------------------------
+2026-01-29 19:57:42,207 - INFO - 修复后数据已保存: results/mlimputer/breast_cancer_mlimputer_vzekai/breast_cancer_mlimputer_vzekai_cleaned.csv
+2026-01-29 19:57:42,207 - INFO - ------------------------------------------------------------
+2026-01-29 19:57:42,207 - INFO - 执行时间: 0.11 秒
+2026-01-29 19:57:42,207 - INFO - 执行状态: 成功
+2026-01-29 19:57:42,207 - INFO - 填充单元格数: 223
+2026-01-29 19:57:42,207 - INFO - 真值使用成本: 0 (全自动)
+2026-01-29 19:57:42,207 - INFO - 
+2026-01-29 19:57:42,207 - INFO - ============================================================
+2026-01-29 19:57:42,207 - INFO - 调用统一测评模块 getScoreML
+2026-01-29 19:57:42,208 - INFO - ============================================================
+2026-01-29 19:57:45.347297: W tensorflow/compiler/xla/stream_executor/platform/default/dso_loader.cc:64] Could not load dynamic library 'libnvinfer.so.7'; dlerror: libnvinfer.so.7: cannot open shared object file: No such file or directory
+2026-01-29 19:57:45.347359: W tensorflow/compiler/xla/stream_executor/platform/default/dso_loader.cc:64] Could not load dynamic library 'libnvinfer_plugin.so.7'; dlerror: libnvinfer_plugin.so.7: cannot open shared object file: No such file or directory
+2026-01-29 19:57:45.347367: W tensorflow/compiler/tf2tensorrt/utils/py_utils.cc:38] TF-TRT Warning: Cannot dlopen some TensorRT libraries. If you would like to use Nvidia GPU with TensorRT, please make sure the missing libraries mentioned above are installed properly.
+[1;34m[19:57:45][0m[1;33m WARNING Snoopy may use all CPU cores! Set env. variable 'SNOOPY_LIMIT_CPU' to 'y' to limit CPU usage. [0m[1;34m(__init__ -> _init_tf_pytorch on MainThread)[0m
+2026-01-29 19:57:45.916665: E tensorflow/compiler/xla/stream_executor/cuda/cuda_driver.cc:267] failed call to cuInit: CUDA_ERROR_NO_DEVICE: no CUDA-capable device is detected
+2026-01-29 19:57:52,356 - INFO - 结果已保存到: results/mlimputer/breast_cancer_mlimputer_vzekai
+2026-01-29 19:57:52,356 - INFO - 日志文件: results/mlimputer/breast_cancer_mlimputer_vzekai/breast_cancer_mlimputer_vzekai.log
+2026-01-29 19:57:52,357 - INFO - ============================================================
+[IterativeImputer] Completing matrix with shape (699, 11)
+[IterativeImputer] Ending imputation round 1/10, elapsed time 0.01
+[IterativeImputer] Change: 8.892815506234024, scaled tolerance: 0.6990000000000001 
+[IterativeImputer] Ending imputation round 2/10, elapsed time 0.03
+[IterativeImputer] Change: 0.36932074360244016, scaled tolerance: 0.6990000000000001 
+[IterativeImputer] Early stopping criterion reached.
+======================================================================
+Clean4MLBaseline 统一测评 - breast_cancer_mlimputer_vzekai
+======================================================================
+
+[1/5] 传统清洗指标
+--------------------------------------------------
+调试文件已保存到: results/mlimputer/breast_cancer_mlimputer_vzekai/debug
+修复准确率: 0.25112107623318386, 修复召回率: 0.10687022900763359, F1值: 0.14993306555383443
+========================================
+错误减少率 (EDR): 0.08206106870229007
+========================================
+混合距离 (Hybrid Distance): 0.17695452800105316
+========================================
+基于条目的错误减少率 (R-EDR): 0.07518796992481203
+========================================
+numeric: Index(['Clump Thickness', 'Uniformity of Cell Size',
+       'Uniformity of Cell Shape', 'Marginal Adhesion',
+       'Single Epithelial Cell Size', 'Bland Chromatin', 'Normal Nucleoli',
+       'Mitoses', 'class'],
+      dtype='object')
+categorical: Index(['Bare Nuclei'], dtype='object')
+列级平均RMSE (数值列, 归一化): 2.111534
+  Clump Thickness: 3.699689
+  Uniformity of Cell Size: 1.983878
+  Uniformity of Cell Shape: 1.844756
+  Marginal Adhesion: 1.486669
+  Single Epithelial Cell Size: 2.387800
+  Bland Chromatin: 3.039008
+  Normal Nucleoli: 1.956370
+  Mitoses: 2.297434
+  class: 0.308207
+列级平均F1 (类别列, weighted): 0.919589
+  Bare Nuclei: 0.919589
+========================================
+
+[2/5] 下游任务性能 (classification)
+--------------------------------------------------
+RF - Accuracy: 0.9571, F1: 0.9571, Precision: 0.9571, Recall: 0.9571
+LR - Accuracy: 0.9000, F1: 0.8980, Precision: 0.8998, Recall: 0.9000
+SVM - Accuracy: 0.9286, F1: 0.9290, Precision: 0.9298, Recall: 0.9286
+KNN - Accuracy: 0.9286, F1: 0.9276, Precision: 0.9285, Recall: 0.9286
+DT - Accuracy: 0.9071, F1: 0.9079, Precision: 0.9095, Recall: 0.9071
+GB - Accuracy: 0.9500, F1: 0.9501, Precision: 0.9504, Recall: 0.9500
+
+[3/5] 模型容忍度
+--------------------------------------------------
+
+容忍度计算结果:
+  P_do_nothing (脏数据性能): 0.9640
+  P_demand_clean (清洗后性能): 0.9856
+  P_repair_all (完全修复性能): 0.9712
+  先验容忍度 (Tolerance_prior): 1.0224
+  后验容忍度 (Tolerance_post): 3.0000
+
+[4/5] Snoopy上界评估
+--------------------------------------------------
+Snoopy模块可用，正在评估数据质量上界...
+  脏数据上界: 0.9371
+  清洗后上界: 0.9214
+  干净数据上界: 0.9557
+  上界提升比例: -0.8473
+
+[5/5] 真值使用成本
+--------------------------------------------------
+  方法类型: Type 1 (全自动)
+  实际真值使用: 0
+  理想最小成本: 14
+  总修改单元格: 922
+  正确修复: 14
+  错误修复: 908
+
+======================================================================
+测评完成，结果已保存到: results/mlimputer/breast_cancer_mlimputer_vzekai/breast_cancer_mlimputer_vzekai_report.txt
+======================================================================

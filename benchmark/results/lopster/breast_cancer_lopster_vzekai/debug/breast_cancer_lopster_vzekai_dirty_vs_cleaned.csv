@@ -1,0 +1,3931 @@
+Attribute,Index,Dirty Value,Cleaned Value
+Clump Thickness,1,5,4
+Clump Thickness,2,5,6
+Clump Thickness,5,4,3
+Clump Thickness,7,1,3
+Clump Thickness,8,2,3
+Clump Thickness,9,2,3
+Clump Thickness,10,4,3
+Clump Thickness,11,5,4
+Clump Thickness,12,2,3
+Clump Thickness,14,1,2
+Clump Thickness,16,7,6
+Clump Thickness,17,4,3
+Clump Thickness,18,4,3
+Clump Thickness,19,10,9
+Clump Thickness,20,6,4
+Clump Thickness,22,10,7
+Clump Thickness,24,5,6
+Clump Thickness,25,1,2
+Clump Thickness,28,5,4
+Clump Thickness,29,2,3
+Clump Thickness,30,1,3
+Clump Thickness,32,2,3
+Clump Thickness,33,10,8
+Clump Thickness,34,2,3
+Clump Thickness,36,2,4
+Clump Thickness,37,1,5
+Clump Thickness,38,6,4
+Clump Thickness,39,5,7
+Clump Thickness,40,2,5
+Clump Thickness,42,10,6
+Clump Thickness,43,6,8
+Clump Thickness,45,10,7
+Clump Thickness,46,1,4
+Clump Thickness,47,3,6
+Clump Thickness,48,1,2
+Clump Thickness,49,4,3
+Clump Thickness,50,7,6
+Clump Thickness,51,9,7
+Clump Thickness,53,10,7
+Clump Thickness,54,5,6
+Clump Thickness,55,10,8
+Clump Thickness,56,nan,6
+Clump Thickness,58,8,6
+Clump Thickness,59,5,6
+Clump Thickness,60,nan,5
+Clump Thickness,61,5,6
+Clump Thickness,62,1,2
+Clump Thickness,64,6,5
+Clump Thickness,65,1,2
+Clump Thickness,66,1,4
+Clump Thickness,67,4,3
+Clump Thickness,68,5,6
+Clump Thickness,69,nan,6
+Clump Thickness,70,1,2
+Clump Thickness,71,5,4
+Clump Thickness,74,9,7
+Clump Thickness,75,10,8
+Clump Thickness,76,1,3
+Clump Thickness,77,1,2
+Clump Thickness,78,5,4
+Clump Thickness,80,2,3
+Clump Thickness,81,2,3
+Clump Thickness,82,4,3
+Clump Thickness,83,5,4
+Clump Thickness,85,3,6
+Clump Thickness,87,3,6
+Clump Thickness,88,3,6
+Clump Thickness,90,2,3
+Clump Thickness,91,1,2
+Clump Thickness,93,4,3
+Clump Thickness,94,1,3
+Clump Thickness,95,2,3
+Clump Thickness,96,1,2
+Clump Thickness,97,2,3
+Clump Thickness,98,5,4
+Clump Thickness,101,10,7
+Clump Thickness,102,2,5
+Clump Thickness,103,44,6
+Clump Thickness,104,8,7
+Clump Thickness,105,10,9
+Clump Thickness,106,7,6
+Clump Thickness,107,10,9
+Clump Thickness,108,1,6
+Clump Thickness,109,1,2
+Clump Thickness,111,1,3
+Clump Thickness,112,8,7
+Clump Thickness,113,10,8
+Clump Thickness,114,10,9
+Clump Thickness,116,1,3
+Clump Thickness,117,8,5
+Clump Thickness,118,44,9
+Clump Thickness,119,1,3
+Clump Thickness,121,1,2
+Clump Thickness,123,10,8
+Clump Thickness,124,5,7
+Clump Thickness,125,3,6
+Clump Thickness,126,1,2
+Clump Thickness,129,8,7
+Clump Thickness,130,11,6
+Clump Thickness,131,5,4
+Clump Thickness,132,2,4
+Clump Thickness,133,5,7
+Clump Thickness,136,5,4
+Clump Thickness,139,4,3
+Clump Thickness,140,1,2
+Clump Thickness,142,22,6
+Clump Thickness,143,9,8
+Clump Thickness,144,1,3
+Clump Thickness,145,2,3
+Clump Thickness,146,1,3
+Clump Thickness,147,3,6
+Clump Thickness,148,1,4
+Clump Thickness,149,3,4
+Clump Thickness,151,1,3
+Clump Thickness,153,10,8
+Clump Thickness,155,1,2
+Clump Thickness,156,5,7
+Clump Thickness,157,1,3
+Clump Thickness,158,2,3
+Clump Thickness,159,1,3
+Clump Thickness,160,9,8
+Clump Thickness,161,10,9
+Clump Thickness,162,4,3
+Clump Thickness,164,1,3
+Clump Thickness,165,5,4
+Clump Thickness,166,4,3
+Clump Thickness,167,3,6
+Clump Thickness,168,10,8
+Clump Thickness,170,nan,3
+Clump Thickness,172,11,5
+Clump Thickness,173,1,2
+Clump Thickness,174,6,8
+Clump Thickness,176,5,7
+Clump Thickness,177,2,3
+Clump Thickness,178,5,7
+Clump Thickness,179,4,5
+Clump Thickness,181,1,2
+Clump Thickness,183,6,4
+Clump Thickness,184,5,7
+Clump Thickness,187,1,6
+Clump Thickness,188,10,9
+Clump Thickness,189,5,7
+Clump Thickness,190,1,3
+Clump Thickness,191,10,9
+Clump Thickness,193,5,4
+Clump Thickness,194,1,3
+Clump Thickness,196,4,3
+Clump Thickness,197,8,7
+Clump Thickness,198,6,4
+Clump Thickness,199,1,2
+Clump Thickness,201,99,10
+Clump Thickness,202,10,9
+Clump Thickness,203,1,2
+Clump Thickness,204,5,4
+Clump Thickness,205,1,2
+Clump Thickness,206,5,8
+Clump Thickness,207,10,8
+Clump Thickness,208,1,2
+Clump Thickness,209,1,2
+Clump Thickness,210,5,4
+Clump Thickness,213,1,2
+Clump Thickness,214,10,9
+Clump Thickness,215,10,9
+Clump Thickness,216,5,7
+Clump Thickness,217,1,2
+Clump Thickness,218,1,3
+Clump Thickness,219,6,7
+Clump Thickness,220,6,5
+Clump Thickness,221,nan,5
+Clump Thickness,222,10,8
+Clump Thickness,223,4,5
+Clump Thickness,225,10,8
+Clump Thickness,226,nan,4
+Clump Thickness,227,10,9
+Clump Thickness,228,88,9
+Clump Thickness,229,1,2
+Clump Thickness,232,6,7
+Clump Thickness,233,88,7
+Clump Thickness,234,10,8
+Clump Thickness,235,3,4
+Clump Thickness,236,3,4
+Clump Thickness,237,10,9
+Clump Thickness,238,9,8
+Clump Thickness,240,10,7
+Clump Thickness,241,5,4
+Clump Thickness,243,2,3
+Clump Thickness,244,1,3
+Clump Thickness,245,1,3
+Clump Thickness,246,5,4
+Clump Thickness,249,4,5
+Clump Thickness,251,1,2
+Clump Thickness,252,10,8
+Clump Thickness,253,5,6
+Clump Thickness,254,7,8
+Clump Thickness,255,9,8
+Clump Thickness,256,5,6
+Clump Thickness,260,5,6
+Clump Thickness,261,10,8
+Clump Thickness,262,5,7
+Clump Thickness,264,10,8
+Clump Thickness,266,5,4
+Clump Thickness,267,1,5
+Clump Thickness,268,3,6
+Clump Thickness,269,10,8
+Clump Thickness,270,1,3
+Clump Thickness,271,8,7
+Clump Thickness,272,5,4
+Clump Thickness,273,3,5
+Clump Thickness,274,7,6
+Clump Thickness,275,2,3
+Clump Thickness,276,10,6
+Clump Thickness,278,1,2
+Clump Thickness,279,1,2
+Clump Thickness,280,10,8
+Clump Thickness,283,1,4
+Clump Thickness,284,10,8
+Clump Thickness,287,10,9
+Clump Thickness,290,5,7
+Clump Thickness,291,1,3
+Clump Thickness,292,1,2
+Clump Thickness,293,88,8
+Clump Thickness,294,nan,6
+Clump Thickness,295,1,2
+Clump Thickness,296,5,7
+Clump Thickness,299,8,5
+Clump Thickness,300,9,7
+Clump Thickness,301,8,7
+Clump Thickness,302,1,4
+Clump Thickness,303,10,9
+Clump Thickness,304,1,2
+Clump Thickness,305,88,8
+Clump Thickness,306,10,8
+Clump Thickness,307,1,2
+Clump Thickness,308,1,2
+Clump Thickness,309,7,6
+Clump Thickness,310,3,5
+Clump Thickness,311,2,3
+Clump Thickness,312,1,3
+Clump Thickness,313,nan,5
+Clump Thickness,314,1,2
+Clump Thickness,315,1,2
+Clump Thickness,316,4,6
+Clump Thickness,317,5,6
+Clump Thickness,318,6,8
+Clump Thickness,319,1,3
+Clump Thickness,320,4,5
+Clump Thickness,324,5,6
+Clump Thickness,325,1,2
+Clump Thickness,327,10,6
+Clump Thickness,328,1,4
+Clump Thickness,329,8,7
+Clump Thickness,330,10,8
+Clump Thickness,331,10,8
+Clump Thickness,333,5,4
+Clump Thickness,334,5,6
+Clump Thickness,335,8,7
+Clump Thickness,336,1,4
+Clump Thickness,338,1,2
+Clump Thickness,339,1,2
+Clump Thickness,340,88,9
+Clump Thickness,341,10,7
+Clump Thickness,342,1,2
+Clump Thickness,344,1,2
+Clump Thickness,346,nan,3
+Clump Thickness,348,1,2
+Clump Thickness,349,3,6
+Clump Thickness,350,4,5
+Clump Thickness,351,5,4
+Clump Thickness,352,nan,3
+Clump Thickness,353,3,5
+Clump Thickness,354,2,7
+Clump Thickness,355,1,2
+Clump Thickness,356,4,3
+Clump Thickness,359,8,7
+Clump Thickness,360,10,7
+Clump Thickness,361,6,7
+Clump Thickness,362,3,7
+Clump Thickness,363,3,4
+Clump Thickness,365,2,3
+Clump Thickness,366,2,3
+Clump Thickness,367,6,8
+Clump Thickness,368,5,7
+Clump Thickness,369,1,3
+Clump Thickness,370,1,2
+Clump Thickness,372,1,2
+Clump Thickness,374,5,4
+Clump Thickness,375,3,4
+Clump Thickness,376,1,2
+Clump Thickness,377,1,2
+Clump Thickness,378,1,2
+Clump Thickness,379,3,4
+Clump Thickness,380,5,6
+Clump Thickness,381,1,2
+Clump Thickness,382,10,8
+Clump Thickness,385,2,3
+Clump Thickness,389,2,3
+Clump Thickness,390,5,4
+Clump Thickness,391,1,2
+Clump Thickness,392,10,8
+Clump Thickness,394,1,2
+Clump Thickness,398,4,3
+Clump Thickness,400,1,3
+Clump Thickness,401,3,6
+Clump Thickness,403,5,4
+Clump Thickness,404,3,4
+Clump Thickness,405,1,3
+Clump Thickness,406,1,2
+Clump Thickness,408,1,2
+Clump Thickness,409,2,3
+Clump Thickness,411,1,2
+Clump Thickness,412,1,2
+Clump Thickness,413,10,9
+Clump Thickness,414,5,4
+Clump Thickness,415,8,7
+Clump Thickness,416,3,4
+Clump Thickness,418,11,5
+Clump Thickness,419,3,4
+Clump Thickness,420,nan,4
+Clump Thickness,421,3,4
+Clump Thickness,424,5,4
+Clump Thickness,427,5,4
+Clump Thickness,428,8,7
+Clump Thickness,429,1,2
+Clump Thickness,430,2,3
+Clump Thickness,431,1,2
+Clump Thickness,432,5,4
+Clump Thickness,433,5,4
+Clump Thickness,435,6,7
+Clump Thickness,436,10,9
+Clump Thickness,437,10,8
+Clump Thickness,438,4,3
+Clump Thickness,440,5,4
+Clump Thickness,441,10,8
+Clump Thickness,443,nan,4
+Clump Thickness,444,1,2
+Clump Thickness,445,nan,4
+Clump Thickness,446,2,3
+Clump Thickness,447,1,4
+Clump Thickness,448,55,6
+Clump Thickness,449,1,2
+Clump Thickness,450,5,7
+Clump Thickness,451,8,4
+Clump Thickness,452,5,4
+Clump Thickness,454,4,6
+Clump Thickness,455,2,3
+Clump Thickness,456,10,6
+Clump Thickness,457,10,9
+Clump Thickness,458,8,7
+Clump Thickness,459,5,4
+Clump Thickness,460,5,4
+Clump Thickness,461,5,4
+Clump Thickness,462,7,5
+Clump Thickness,463,6,4
+Clump Thickness,464,4,3
+Clump Thickness,465,4,3
+Clump Thickness,466,10,8
+Clump Thickness,467,10,8
+Clump Thickness,468,6,7
+Clump Thickness,470,1,2
+Clump Thickness,472,6,4
+Clump Thickness,473,6,4
+Clump Thickness,475,nan,3
+Clump Thickness,477,4,3
+Clump Thickness,478,4,3
+Clump Thickness,479,5,4
+Clump Thickness,480,4,6
+Clump Thickness,481,55,6
+Clump Thickness,482,5,4
+Clump Thickness,485,5,4
+Clump Thickness,486,1,2
+Clump Thickness,489,3,6
+Clump Thickness,490,6,5
+Clump Thickness,491,1,2
+Clump Thickness,492,5,7
+Clump Thickness,494,5,8
+Clump Thickness,497,1,2
+Clump Thickness,499,nan,3
+Clump Thickness,500,4,3
+Clump Thickness,501,6,4
+Clump Thickness,502,4,3
+Clump Thickness,504,44,6
+Clump Thickness,505,1,2
+Clump Thickness,508,1,2
+Clump Thickness,509,5,4
+Clump Thickness,510,2,4
+Clump Thickness,511,1,2
+Clump Thickness,512,nan,4
+Clump Thickness,513,55,6
+Clump Thickness,514,nan,3
+Clump Thickness,516,4,6
+Clump Thickness,517,1,2
+Clump Thickness,518,1,2
+Clump Thickness,520,10,9
+Clump Thickness,521,1,2
+Clump Thickness,522,4,5
+Clump Thickness,523,1,4
+Clump Thickness,527,4,3
+Clump Thickness,528,4,3
+Clump Thickness,529,6,4
+Clump Thickness,530,4,3
+Clump Thickness,532,4,3
+Clump Thickness,533,1,2
+Clump Thickness,535,2,3
+Clump Thickness,536,1,3
+Clump Thickness,537,5,4
+Clump Thickness,538,5,4
+Clump Thickness,540,6,4
+Clump Thickness,541,5,4
+Clump Thickness,542,3,4
+Clump Thickness,543,5,4
+Clump Thickness,544,3,4
+Clump Thickness,545,2,3
+Clump Thickness,546,5,4
+Clump Thickness,547,6,8
+Clump Thickness,552,1,2
+Clump Thickness,556,44,6
+Clump Thickness,557,5,4
+Clump Thickness,558,5,4
+Clump Thickness,559,2,3
+Clump Thickness,560,5,4
+Clump Thickness,561,5,4
+Clump Thickness,562,5,4
+Clump Thickness,563,1,3
+Clump Thickness,565,4,5
+Clump Thickness,566,5,7
+Clump Thickness,569,8,6
+Clump Thickness,570,10,9
+Clump Thickness,573,3,4
+Clump Thickness,574,1,3
+Clump Thickness,575,10,8
+Clump Thickness,576,5,4
+Clump Thickness,577,5,4
+Clump Thickness,578,1,2
+Clump Thickness,579,5,4
+Clump Thickness,580,1,3
+Clump Thickness,581,5,4
+Clump Thickness,582,1,5
+Clump Thickness,585,5,4
+Clump Thickness,586,1,2
+Clump Thickness,588,55,6
+Clump Thickness,589,9,8
+Clump Thickness,590,5,4
+Clump Thickness,591,4,6
+Clump Thickness,592,2,6
+Clump Thickness,593,10,8
+Clump Thickness,594,55,6
+Clump Thickness,595,4,5
+Clump Thickness,596,5,4
+Clump Thickness,600,5,4
+Clump Thickness,602,1,3
+Clump Thickness,604,5,6
+Clump Thickness,605,5,6
+Clump Thickness,606,10,8
+Clump Thickness,607,4,3
+Clump Thickness,608,1,2
+Clump Thickness,610,5,4
+Clump Thickness,611,10,8
+Clump Thickness,612,5,7
+Clump Thickness,614,2,3
+Clump Thickness,618,1,3
+Clump Thickness,619,4,3
+Clump Thickness,620,5,4
+Clump Thickness,621,3,4
+Clump Thickness,622,nan,4
+Clump Thickness,623,nan,5
+Clump Thickness,624,1,2
+Clump Thickness,626,3,4
+Clump Thickness,627,4,6
+Clump Thickness,628,2,3
+Clump Thickness,629,2,3
+Clump Thickness,632,5,4
+Clump Thickness,633,1,2
+Clump Thickness,634,8,7
+Clump Thickness,636,3,4
+Clump Thickness,637,10,8
+Clump Thickness,640,5,4
+Clump Thickness,641,4,3
+Clump Thickness,644,1,2
+Clump Thickness,645,2,3
+Clump Thickness,646,3,4
+Clump Thickness,647,nan,4
+Clump Thickness,648,1,2
+Clump Thickness,649,5,7
+Clump Thickness,652,1,2
+Clump Thickness,656,3,4
+Clump Thickness,657,5,4
+Clump Thickness,659,77,10
+Clump Thickness,660,1,2
+Clump Thickness,661,nan,3
+Clump Thickness,663,1,2
+Clump Thickness,664,1,2
+Clump Thickness,666,1,2
+Clump Thickness,667,5,4
+Clump Thickness,668,33,6
+Clump Thickness,670,5,7
+Clump Thickness,671,6,7
+Clump Thickness,672,nan,4
+Clump Thickness,673,2,3
+Clump Thickness,674,5,4
+Clump Thickness,675,1,2
+Clump Thickness,676,4,5
+Clump Thickness,677,1,2
+Clump Thickness,678,5,4
+Clump Thickness,679,1,2
+Clump Thickness,680,nan,3
+Clump Thickness,682,5,7
+Clump Thickness,683,5,4
+Clump Thickness,684,1,3
+Clump Thickness,685,1,2
+Clump Thickness,686,1,3
+Clump Thickness,688,3,4
+Clump Thickness,689,4,3
+Clump Thickness,690,1,3
+Clump Thickness,691,nan,4
+Clump Thickness,692,5,7
+Clump Thickness,696,nan,3
+Clump Thickness,698,4,6
+Clump Thickness,699,4,6
+Uniformity of Cell Size,1,1,2
+Uniformity of Cell Size,2,4,5
+Uniformity of Cell Size,3,1,2
+Uniformity of Cell Size,4,8,4
+Uniformity of Cell Size,5,1,2
+Uniformity of Cell Size,6,10,7
+Uniformity of Cell Size,7,1,2
+Uniformity of Cell Size,8,1,2
+Uniformity of Cell Size,9,1,2
+Uniformity of Cell Size,11,1,2
+Uniformity of Cell Size,14,nan,2
+Uniformity of Cell Size,16,4,5
+Uniformity of Cell Size,17,1,2
+Uniformity of Cell Size,18,1,2
+Uniformity of Cell Size,20,1,2
+Uniformity of Cell Size,21,4,6
+Uniformity of Cell Size,22,5,7
+Uniformity of Cell Size,26,2,4
+Uniformity of Cell Size,27,2,3
+Uniformity of Cell Size,28,1,2
+Uniformity of Cell Size,29,1,3
+Uniformity of Cell Size,30,1,2
+Uniformity of Cell Size,33,nan,6
+Uniformity of Cell Size,35,1,2
+Uniformity of Cell Size,36,1,2
+Uniformity of Cell Size,37,10,5
+Uniformity of Cell Size,38,2,3
+Uniformity of Cell Size,39,4,7
+Uniformity of Cell Size,41,nan,6
+Uniformity of Cell Size,43,10,7
+Uniformity of Cell Size,44,nan,4
+Uniformity of Cell Size,45,10,5
+Uniformity of Cell Size,46,1,3
+Uniformity of Cell Size,47,7,6
+Uniformity of Cell Size,50,1,5
+Uniformity of Cell Size,51,nan,5
+Uniformity of Cell Size,52,3,4
+Uniformity of Cell Size,53,3,5
+Uniformity of Cell Size,54,5,7
+Uniformity of Cell Size,55,5,6
+Uniformity of Cell Size,57,10,6
+Uniformity of Cell Size,58,2,4
+Uniformity of Cell Size,59,2,3
+Uniformity of Cell Size,60,5,4
+Uniformity of Cell Size,61,3,5
+Uniformity of Cell Size,62,1,3
+Uniformity of Cell Size,63,10,7
+Uniformity of Cell Size,64,3,5
+Uniformity of Cell Size,66,4,5
+Uniformity of Cell Size,67,1,2
+Uniformity of Cell Size,68,3,6
+Uniformity of Cell Size,69,3,7
+Uniformity of Cell Size,71,1,2
+Uniformity of Cell Size,72,10,6
+Uniformity of Cell Size,73,33,3
+Uniformity of Cell Size,74,4,6
+Uniformity of Cell Size,75,66,5
+Uniformity of Cell Size,76,1,3
+Uniformity of Cell Size,78,3,2
+Uniformity of Cell Size,79,1,2
+Uniformity of Cell Size,82,1,2
+Uniformity of Cell Size,84,1,2
+Uniformity of Cell Size,85,5,7
+Uniformity of Cell Size,86,10,6
+Uniformity of Cell Size,87,3,5
+Uniformity of Cell Size,89,1,4
+Uniformity of Cell Size,93,1,2
+Uniformity of Cell Size,94,1,2
+Uniformity of Cell Size,97,1,2
+Uniformity of Cell Size,98,1,2
+Uniformity of Cell Size,100,5,7
+Uniformity of Cell Size,101,3,6
+Uniformity of Cell Size,102,3,4
+Uniformity of Cell Size,103,1,2
+Uniformity of Cell Size,104,2,5
+Uniformity of Cell Size,106,3,5
+Uniformity of Cell Size,107,10,7
+Uniformity of Cell Size,108,6,7
+Uniformity of Cell Size,111,3,2
+Uniformity of Cell Size,112,6,5
+Uniformity of Cell Size,113,3,5
+Uniformity of Cell Size,114,10,7
+Uniformity of Cell Size,115,33,3
+Uniformity of Cell Size,116,1,2
+Uniformity of Cell Size,118,5,6
+Uniformity of Cell Size,123,10,7
+Uniformity of Cell Size,124,3,6
+Uniformity of Cell Size,125,nan,7
+Uniformity of Cell Size,127,5,6
+Uniformity of Cell Size,130,1,2
+Uniformity of Cell Size,131,1,2
+Uniformity of Cell Size,132,1,2
+Uniformity of Cell Size,133,10,7
+Uniformity of Cell Size,134,1,2
+Uniformity of Cell Size,135,1,2
+Uniformity of Cell Size,136,1,2
+Uniformity of Cell Size,137,1,2
+Uniformity of Cell Size,139,1,2
+Uniformity of Cell Size,140,nan,2
+Uniformity of Cell Size,142,1,2
+Uniformity of Cell Size,144,nan,3
+Uniformity of Cell Size,145,1,2
+Uniformity of Cell Size,146,1,2
+Uniformity of Cell Size,148,11,4
+Uniformity of Cell Size,149,1,4
+Uniformity of Cell Size,150,88,8
+Uniformity of Cell Size,151,1,2
+Uniformity of Cell Size,152,2,5
+Uniformity of Cell Size,153,10,6
+Uniformity of Cell Size,154,1,3
+Uniformity of Cell Size,156,5,7
+Uniformity of Cell Size,159,1,2
+Uniformity of Cell Size,160,9,6
+Uniformity of Cell Size,162,1,2
+Uniformity of Cell Size,164,1,2
+Uniformity of Cell Size,165,1,2
+Uniformity of Cell Size,166,1,2
+Uniformity of Cell Size,170,1,2
+Uniformity of Cell Size,172,1,2
+Uniformity of Cell Size,176,8,7
+Uniformity of Cell Size,178,10,6
+Uniformity of Cell Size,179,1,4
+Uniformity of Cell Size,180,3,4
+Uniformity of Cell Size,182,11,2
+Uniformity of Cell Size,183,1,2
+Uniformity of Cell Size,185,7,6
+Uniformity of Cell Size,187,5,6
+Uniformity of Cell Size,188,5,7
+Uniformity of Cell Size,189,8,7
+Uniformity of Cell Size,191,10,8
+Uniformity of Cell Size,192,5,7
+Uniformity of Cell Size,193,1,2
+Uniformity of Cell Size,196,1,2
+Uniformity of Cell Size,197,4,6
+Uniformity of Cell Size,198,1,2
+Uniformity of Cell Size,200,nan,2
+Uniformity of Cell Size,204,1,2
+Uniformity of Cell Size,206,10,7
+Uniformity of Cell Size,207,10,6
+Uniformity of Cell Size,210,1,2
+Uniformity of Cell Size,211,10,8
+Uniformity of Cell Size,212,10,7
+Uniformity of Cell Size,214,10,8
+Uniformity of Cell Size,215,10,8
+Uniformity of Cell Size,216,7,6
+Uniformity of Cell Size,218,1,2
+Uniformity of Cell Size,219,10,7
+Uniformity of Cell Size,221,1,4
+Uniformity of Cell Size,222,6,7
+Uniformity of Cell Size,223,1,2
+Uniformity of Cell Size,224,5,6
+Uniformity of Cell Size,225,5,6
+Uniformity of Cell Size,226,1,3
+Uniformity of Cell Size,227,5,7
+Uniformity of Cell Size,228,9,7
+Uniformity of Cell Size,230,10,8
+Uniformity of Cell Size,231,4,5
+Uniformity of Cell Size,232,8,6
+Uniformity of Cell Size,233,4,5
+Uniformity of Cell Size,234,4,5
+Uniformity of Cell Size,235,3,2
+Uniformity of Cell Size,236,1,2
+Uniformity of Cell Size,238,8,6
+Uniformity of Cell Size,239,10,7
+Uniformity of Cell Size,240,4,6
+Uniformity of Cell Size,241,1,2
+Uniformity of Cell Size,244,1,2
+Uniformity of Cell Size,245,1,2
+Uniformity of Cell Size,246,1,2
+Uniformity of Cell Size,247,10,8
+Uniformity of Cell Size,248,4,5
+Uniformity of Cell Size,249,1,3
+Uniformity of Cell Size,250,1,2
+Uniformity of Cell Size,251,2,1
+Uniformity of Cell Size,252,4,5
+Uniformity of Cell Size,253,33,5
+Uniformity of Cell Size,254,10,7
+Uniformity of Cell Size,255,10,6
+Uniformity of Cell Size,256,6,5
+Uniformity of Cell Size,260,7,5
+Uniformity of Cell Size,262,10,7
+Uniformity of Cell Size,263,nan,8
+Uniformity of Cell Size,264,4,5
+Uniformity of Cell Size,265,nan,8
+Uniformity of Cell Size,266,1,2
+Uniformity of Cell Size,267,10,5
+Uniformity of Cell Size,269,8,6
+Uniformity of Cell Size,270,1,2
+Uniformity of Cell Size,271,4,5
+Uniformity of Cell Size,272,1,2
+Uniformity of Cell Size,273,3,4
+Uniformity of Cell Size,274,2,3
+Uniformity of Cell Size,276,1,3
+Uniformity of Cell Size,282,11,3
+Uniformity of Cell Size,285,4,5
+Uniformity of Cell Size,286,10,8
+Uniformity of Cell Size,288,1,2
+Uniformity of Cell Size,289,1,4
+Uniformity of Cell Size,290,6,8
+Uniformity of Cell Size,291,1,2
+Uniformity of Cell Size,293,8,6
+Uniformity of Cell Size,296,5,7
+Uniformity of Cell Size,297,3,4
+Uniformity of Cell Size,298,4,3
+Uniformity of Cell Size,299,2,3
+Uniformity of Cell Size,300,1,5
+Uniformity of Cell Size,301,4,6
+Uniformity of Cell Size,302,1,2
+Uniformity of Cell Size,305,1,6
+Uniformity of Cell Size,306,8,6
+Uniformity of Cell Size,309,8,5
+Uniformity of Cell Size,310,1,2
+Uniformity of Cell Size,312,1,2
+Uniformity of Cell Size,316,6,4
+Uniformity of Cell Size,317,5,4
+Uniformity of Cell Size,319,1,3
+Uniformity of Cell Size,322,1,2
+Uniformity of Cell Size,323,1,2
+Uniformity of Cell Size,324,4,5
+Uniformity of Cell Size,327,1,4
+Uniformity of Cell Size,328,1,3
+Uniformity of Cell Size,329,10,5
+Uniformity of Cell Size,330,4,5
+Uniformity of Cell Size,331,4,6
+Uniformity of Cell Size,332,1,2
+Uniformity of Cell Size,335,6,5
+Uniformity of Cell Size,336,1,2
+Uniformity of Cell Size,338,nan,2
+Uniformity of Cell Size,340,5,6
+Uniformity of Cell Size,341,3,4
+Uniformity of Cell Size,344,nan,1
+Uniformity of Cell Size,345,6,7
+Uniformity of Cell Size,346,1,2
+Uniformity of Cell Size,347,2,3
+Uniformity of Cell Size,349,4,5
+Uniformity of Cell Size,350,2,5
+Uniformity of Cell Size,351,1,4
+Uniformity of Cell Size,352,1,2
+Uniformity of Cell Size,353,4,5
+Uniformity of Cell Size,356,1,2
+Uniformity of Cell Size,358,10,8
+Uniformity of Cell Size,359,10,5
+Uniformity of Cell Size,360,3,5
+Uniformity of Cell Size,361,nan,8
+Uniformity of Cell Size,362,10,6
+Uniformity of Cell Size,363,2,4
+Uniformity of Cell Size,366,1,2
+Uniformity of Cell Size,367,10,7
+Uniformity of Cell Size,371,3,2
+Uniformity of Cell Size,372,nan,2
+Uniformity of Cell Size,373,1,4
+Uniformity of Cell Size,374,1,2
+Uniformity of Cell Size,379,1,3
+Uniformity of Cell Size,380,33,3
+Uniformity of Cell Size,386,3,2
+Uniformity of Cell Size,390,1,2
+Uniformity of Cell Size,392,8,7
+Uniformity of Cell Size,395,22,2
+Uniformity of Cell Size,398,1,2
+Uniformity of Cell Size,399,1,2
+Uniformity of Cell Size,400,1,2
+Uniformity of Cell Size,401,10,7
+Uniformity of Cell Size,403,3,2
+Uniformity of Cell Size,404,1,3
+Uniformity of Cell Size,405,2,3
+Uniformity of Cell Size,407,22,2
+Uniformity of Cell Size,409,3,2
+Uniformity of Cell Size,410,4,2
+Uniformity of Cell Size,412,10,2
+Uniformity of Cell Size,413,10,7
+Uniformity of Cell Size,414,1,3
+Uniformity of Cell Size,418,1,2
+Uniformity of Cell Size,420,3,2
+Uniformity of Cell Size,421,nan,2
+Uniformity of Cell Size,422,10,8
+Uniformity of Cell Size,423,3,2
+Uniformity of Cell Size,424,1,4
+Uniformity of Cell Size,426,10,8
+Uniformity of Cell Size,428,7,6
+Uniformity of Cell Size,431,nan,1
+Uniformity of Cell Size,432,1,2
+Uniformity of Cell Size,433,1,3
+Uniformity of Cell Size,435,9,5
+Uniformity of Cell Size,436,8,6
+Uniformity of Cell Size,437,10,6
+Uniformity of Cell Size,438,1,2
+Uniformity of Cell Size,439,1,2
+Uniformity of Cell Size,440,1,2
+Uniformity of Cell Size,441,4,7
+Uniformity of Cell Size,442,2,3
+Uniformity of Cell Size,443,1,2
+Uniformity of Cell Size,445,1,2
+Uniformity of Cell Size,446,3,1
+Uniformity of Cell Size,447,1,2
+Uniformity of Cell Size,448,1,2
+Uniformity of Cell Size,450,7,8
+Uniformity of Cell Size,451,1,2
+Uniformity of Cell Size,452,1,3
+Uniformity of Cell Size,453,1,2
+Uniformity of Cell Size,454,5,6
+Uniformity of Cell Size,455,3,1
+Uniformity of Cell Size,456,2,3
+Uniformity of Cell Size,457,6,7
+Uniformity of Cell Size,459,1,2
+Uniformity of Cell Size,460,1,2
+Uniformity of Cell Size,461,1,2
+Uniformity of Cell Size,462,1,2
+Uniformity of Cell Size,463,1,2
+Uniformity of Cell Size,464,1,2
+Uniformity of Cell Size,465,1,2
+Uniformity of Cell Size,466,9,7
+Uniformity of Cell Size,467,6,7
+Uniformity of Cell Size,468,66,7
+Uniformity of Cell Size,469,1,3
+Uniformity of Cell Size,470,1,3
+Uniformity of Cell Size,471,1,3
+Uniformity of Cell Size,472,1,2
+Uniformity of Cell Size,474,1,3
+Uniformity of Cell Size,475,1,2
+Uniformity of Cell Size,477,1,2
+Uniformity of Cell Size,478,1,2
+Uniformity of Cell Size,480,88,6
+Uniformity of Cell Size,481,1,2
+Uniformity of Cell Size,482,3,2
+Uniformity of Cell Size,484,7,8
+Uniformity of Cell Size,485,1,2
+Uniformity of Cell Size,488,10,8
+Uniformity of Cell Size,489,6,4
+Uniformity of Cell Size,492,8,7
+Uniformity of Cell Size,494,10,7
+Uniformity of Cell Size,495,1,4
+Uniformity of Cell Size,499,1,2
+Uniformity of Cell Size,500,1,2
+Uniformity of Cell Size,501,1,2
+Uniformity of Cell Size,502,1,2
+Uniformity of Cell Size,504,1,2
+Uniformity of Cell Size,506,5,2
+Uniformity of Cell Size,507,10,7
+Uniformity of Cell Size,509,1,2
+Uniformity of Cell Size,510,1,2
+Uniformity of Cell Size,512,3,2
+Uniformity of Cell Size,513,nan,3
+Uniformity of Cell Size,515,6,7
+Uniformity of Cell Size,516,10,5
+Uniformity of Cell Size,519,1,2
+Uniformity of Cell Size,522,1,3
+Uniformity of Cell Size,524,5,7
+Uniformity of Cell Size,525,1,3
+Uniformity of Cell Size,527,1,2
+Uniformity of Cell Size,528,1,2
+Uniformity of Cell Size,529,1,2
+Uniformity of Cell Size,531,4,5
+Uniformity of Cell Size,535,1,3
+Uniformity of Cell Size,536,1,2
+Uniformity of Cell Size,537,1,2
+Uniformity of Cell Size,538,1,2
+Uniformity of Cell Size,539,1,3
+Uniformity of Cell Size,540,1,2
+Uniformity of Cell Size,541,1,2
+Uniformity of Cell Size,542,1,2
+Uniformity of Cell Size,543,3,2
+Uniformity of Cell Size,544,1,3
+Uniformity of Cell Size,545,1,2
+Uniformity of Cell Size,546,1,2
+Uniformity of Cell Size,547,10,8
+Uniformity of Cell Size,550,8,6
+Uniformity of Cell Size,551,1,2
+Uniformity of Cell Size,554,4,3
+Uniformity of Cell Size,558,1,2
+Uniformity of Cell Size,560,1,2
+Uniformity of Cell Size,561,1,2
+Uniformity of Cell Size,562,1,2
+Uniformity of Cell Size,565,1,2
+Uniformity of Cell Size,566,nan,7
+Uniformity of Cell Size,567,1,2
+Uniformity of Cell Size,568,1,2
+Uniformity of Cell Size,569,4,5
+Uniformity of Cell Size,570,10,8
+Uniformity of Cell Size,571,10,6
+Uniformity of Cell Size,572,6,7
+Uniformity of Cell Size,573,1,2
+Uniformity of Cell Size,575,9,5
+Uniformity of Cell Size,576,1,2
+Uniformity of Cell Size,577,1,2
+Uniformity of Cell Size,579,1,2
+Uniformity of Cell Size,580,1,2
+Uniformity of Cell Size,581,1,2
+Uniformity of Cell Size,583,10,5
+Uniformity of Cell Size,585,1,2
+Uniformity of Cell Size,587,nan,8
+Uniformity of Cell Size,588,1,2
+Uniformity of Cell Size,589,8,6
+Uniformity of Cell Size,590,1,2
+Uniformity of Cell Size,591,10,6
+Uniformity of Cell Size,592,5,6
+Uniformity of Cell Size,593,3,5
+Uniformity of Cell Size,594,1,3
+Uniformity of Cell Size,595,8,5
+Uniformity of Cell Size,596,1,3
+Uniformity of Cell Size,597,1,2
+Uniformity of Cell Size,598,11,3
+Uniformity of Cell Size,602,1,2
+Uniformity of Cell Size,603,1,2
+Uniformity of Cell Size,604,4,6
+Uniformity of Cell Size,605,3,5
+Uniformity of Cell Size,606,1,6
+Uniformity of Cell Size,607,1,2
+Uniformity of Cell Size,610,1,2
+Uniformity of Cell Size,611,4,6
+Uniformity of Cell Size,612,10,7
+Uniformity of Cell Size,614,3,1
+Uniformity of Cell Size,615,1,2
+Uniformity of Cell Size,616,1,2
+Uniformity of Cell Size,617,1,2
+Uniformity of Cell Size,618,1,3
+Uniformity of Cell Size,619,1,2
+Uniformity of Cell Size,620,1,3
+Uniformity of Cell Size,621,1,2
+Uniformity of Cell Size,622,1,3
+Uniformity of Cell Size,623,1,2
+Uniformity of Cell Size,625,11,2
+Uniformity of Cell Size,626,1,2
+Uniformity of Cell Size,628,1,3
+Uniformity of Cell Size,629,1,3
+Uniformity of Cell Size,630,nan,2
+Uniformity of Cell Size,632,1,2
+Uniformity of Cell Size,634,7,6
+Uniformity of Cell Size,636,1,2
+Uniformity of Cell Size,637,10,7
+Uniformity of Cell Size,639,1,3
+Uniformity of Cell Size,640,1,2
+Uniformity of Cell Size,641,1,2
+Uniformity of Cell Size,643,1,2
+Uniformity of Cell Size,645,1,2
+Uniformity of Cell Size,646,1,3
+Uniformity of Cell Size,649,nan,8
+Uniformity of Cell Size,653,1,3
+Uniformity of Cell Size,654,1,2
+Uniformity of Cell Size,655,1,2
+Uniformity of Cell Size,656,1,3
+Uniformity of Cell Size,657,1,2
+Uniformity of Cell Size,658,4,5
+Uniformity of Cell Size,659,8,7
+Uniformity of Cell Size,661,1,2
+Uniformity of Cell Size,662,1,2
+Uniformity of Cell Size,665,1,3
+Uniformity of Cell Size,668,1,2
+Uniformity of Cell Size,669,7,4
+Uniformity of Cell Size,670,10,6
+Uniformity of Cell Size,671,10,7
+Uniformity of Cell Size,672,2,3
+Uniformity of Cell Size,674,3,2
+Uniformity of Cell Size,676,1,3
+Uniformity of Cell Size,678,1,2
+Uniformity of Cell Size,680,1,2
+Uniformity of Cell Size,681,10,9
+Uniformity of Cell Size,682,10,7
+Uniformity of Cell Size,683,1,2
+Uniformity of Cell Size,684,1,2
+Uniformity of Cell Size,685,nan,1
+Uniformity of Cell Size,686,1,2
+Uniformity of Cell Size,688,1,2
+Uniformity of Cell Size,689,1,2
+Uniformity of Cell Size,690,1,2
+Uniformity of Cell Size,692,10,6
+Uniformity of Cell Size,695,1,2
+Uniformity of Cell Size,696,1,2
+Uniformity of Cell Size,697,10,5
+Uniformity of Cell Size,698,8,5
+Uniformity of Cell Size,699,8,6
+Uniformity of Cell Shape,1,1,2
+Uniformity of Cell Shape,2,4,5
+Uniformity of Cell Shape,3,1,2
+Uniformity of Cell Shape,4,8,4
+Uniformity of Cell Shape,5,1,2
+Uniformity of Cell Shape,6,10,8
+Uniformity of Cell Shape,7,1,2
+Uniformity of Cell Shape,9,1,3
+Uniformity of Cell Shape,10,1,2
+Uniformity of Cell Shape,13,3,4
+Uniformity of Cell Shape,14,1,2
+Uniformity of Cell Shape,15,2,7
+Uniformity of Cell Shape,16,nan,4
+Uniformity of Cell Shape,19,7,6
+Uniformity of Cell Shape,20,1,2
+Uniformity of Cell Shape,21,2,5
+Uniformity of Cell Shape,22,5,6
+Uniformity of Cell Shape,24,5,4
+Uniformity of Cell Shape,26,3,4
+Uniformity of Cell Shape,27,1,2
+Uniformity of Cell Shape,29,1,3
+Uniformity of Cell Shape,30,3,2
+Uniformity of Cell Shape,33,7,6
+Uniformity of Cell Shape,35,2,1
+Uniformity of Cell Shape,36,7,3
+Uniformity of Cell Shape,37,10,5
+Uniformity of Cell Shape,38,1,2
+Uniformity of Cell Shape,39,nan,6
+Uniformity of Cell Shape,40,3,5
+Uniformity of Cell Shape,41,6,5
+Uniformity of Cell Shape,42,3,4
+Uniformity of Cell Shape,43,10,7
+Uniformity of Cell Shape,44,5,3
+Uniformity of Cell Shape,45,nan,6
+Uniformity of Cell Shape,46,11,3
+Uniformity of Cell Shape,47,7,5
+Uniformity of Cell Shape,49,1,2
+Uniformity of Cell Shape,50,nan,5
+Uniformity of Cell Shape,51,8,5
+Uniformity of Cell Shape,52,3,4
+Uniformity of Cell Shape,53,6,4
+Uniformity of Cell Shape,54,5,7
+Uniformity of Cell Shape,55,5,6
+Uniformity of Cell Shape,56,6,5
+Uniformity of Cell Shape,57,10,6
+Uniformity of Cell Shape,59,3,4
+Uniformity of Cell Shape,60,5,4
+Uniformity of Cell Shape,62,1,3
+Uniformity of Cell Shape,63,10,7
+Uniformity of Cell Shape,66,2,5
+Uniformity of Cell Shape,68,3,5
+Uniformity of Cell Shape,69,8,6
+Uniformity of Cell Shape,71,3,2
+Uniformity of Cell Shape,72,2,8
+Uniformity of Cell Shape,73,1,4
+Uniformity of Cell Shape,74,5,6
+Uniformity of Cell Shape,75,4,5
+Uniformity of Cell Shape,77,nan,2
+Uniformity of Cell Shape,78,1,2
+Uniformity of Cell Shape,80,1,2
+Uniformity of Cell Shape,83,1,2
+Uniformity of Cell Shape,84,1,2
+Uniformity of Cell Shape,86,6,7
+Uniformity of Cell Shape,87,6,4
+Uniformity of Cell Shape,89,1,3
+Uniformity of Cell Shape,94,1,3
+Uniformity of Cell Shape,95,1,2
+Uniformity of Cell Shape,97,nan,2
+Uniformity of Cell Shape,98,1,2
+Uniformity of Cell Shape,99,9,6
+Uniformity of Cell Shape,100,6,7
+Uniformity of Cell Shape,101,5,6
+Uniformity of Cell Shape,104,33,5
+Uniformity of Cell Shape,105,10,9
+Uniformity of Cell Shape,107,10,7
+Uniformity of Cell Shape,108,8,7
+Uniformity of Cell Shape,110,nan,6
+Uniformity of Cell Shape,111,1,2
+Uniformity of Cell Shape,113,3,5
+Uniformity of Cell Shape,114,10,8
+Uniformity of Cell Shape,115,2,3
+Uniformity of Cell Shape,118,5,7
+Uniformity of Cell Shape,120,1,2
+Uniformity of Cell Shape,122,1,2
+Uniformity of Cell Shape,123,10,8
+Uniformity of Cell Shape,127,3,5
+Uniformity of Cell Shape,130,1,3
+Uniformity of Cell Shape,131,3,2
+Uniformity of Cell Shape,132,1,3
+Uniformity of Cell Shape,136,1,2
+Uniformity of Cell Shape,137,nan,2
+Uniformity of Cell Shape,140,1,2
+Uniformity of Cell Shape,142,1,2
+Uniformity of Cell Shape,144,1,3
+Uniformity of Cell Shape,145,1,2
+Uniformity of Cell Shape,146,3,2
+Uniformity of Cell Shape,148,1,3
+Uniformity of Cell Shape,149,1,4
+Uniformity of Cell Shape,150,7,9
+Uniformity of Cell Shape,151,1,2
+Uniformity of Cell Shape,153,nan,6
+Uniformity of Cell Shape,154,1,3
+Uniformity of Cell Shape,155,nan,2
+Uniformity of Cell Shape,156,55,6
+Uniformity of Cell Shape,159,1,2
+Uniformity of Cell Shape,160,10,7
+Uniformity of Cell Shape,164,1,3
+Uniformity of Cell Shape,165,1,2
+Uniformity of Cell Shape,166,1,2
+Uniformity of Cell Shape,167,7,6
+Uniformity of Cell Shape,168,10,7
+Uniformity of Cell Shape,170,1,2
+Uniformity of Cell Shape,172,1,2
+Uniformity of Cell Shape,174,10,9
+Uniformity of Cell Shape,178,10,7
+Uniformity of Cell Shape,179,1,3
+Uniformity of Cell Shape,180,3,4
+Uniformity of Cell Shape,182,1,3
+Uniformity of Cell Shape,183,1,2
+Uniformity of Cell Shape,184,8,6
+Uniformity of Cell Shape,185,6,5
+Uniformity of Cell Shape,187,8,5
+Uniformity of Cell Shape,188,6,7
+Uniformity of Cell Shape,189,4,7
+Uniformity of Cell Shape,191,10,8
+Uniformity of Cell Shape,192,10,7
+Uniformity of Cell Shape,193,1,2
+Uniformity of Cell Shape,197,4,6
+Uniformity of Cell Shape,198,1,2
+Uniformity of Cell Shape,200,1,2
+Uniformity of Cell Shape,201,7,6
+Uniformity of Cell Shape,202,8,7
+Uniformity of Cell Shape,204,1,2
+Uniformity of Cell Shape,207,9,6
+Uniformity of Cell Shape,212,8,7
+Uniformity of Cell Shape,215,10,8
+Uniformity of Cell Shape,216,8,6
+Uniformity of Cell Shape,218,1,2
+Uniformity of Cell Shape,221,11,3
+Uniformity of Cell Shape,222,4,6
+Uniformity of Cell Shape,223,1,2
+Uniformity of Cell Shape,224,6,5
+Uniformity of Cell Shape,225,5,7
+Uniformity of Cell Shape,226,1,3
+Uniformity of Cell Shape,227,7,6
+Uniformity of Cell Shape,228,9,7
+Uniformity of Cell Shape,230,10,8
+Uniformity of Cell Shape,231,7,5
+Uniformity of Cell Shape,233,6,4
+Uniformity of Cell Shape,236,4,2
+Uniformity of Cell Shape,238,8,7
+Uniformity of Cell Shape,239,10,7
+Uniformity of Cell Shape,240,3,6
+Uniformity of Cell Shape,241,3,2
+Uniformity of Cell Shape,242,1,2
+Uniformity of Cell Shape,244,1,2
+Uniformity of Cell Shape,245,1,2
+Uniformity of Cell Shape,246,1,2
+Uniformity of Cell Shape,247,10,8
+Uniformity of Cell Shape,248,4,5
+Uniformity of Cell Shape,249,1,4
+Uniformity of Cell Shape,251,2,1
+Uniformity of Cell Shape,252,nan,3
+Uniformity of Cell Shape,253,3,5
+Uniformity of Cell Shape,254,10,7
+Uniformity of Cell Shape,255,10,6
+Uniformity of Cell Shape,256,6,5
+Uniformity of Cell Shape,260,7,5
+Uniformity of Cell Shape,261,8,5
+Uniformity of Cell Shape,262,10,8
+Uniformity of Cell Shape,263,9,6
+Uniformity of Cell Shape,264,4,6
+Uniformity of Cell Shape,265,11,7
+Uniformity of Cell Shape,266,4,2
+Uniformity of Cell Shape,267,6,5
+Uniformity of Cell Shape,268,5,4
+Uniformity of Cell Shape,269,8,7
+Uniformity of Cell Shape,270,1,2
+Uniformity of Cell Shape,271,7,5
+Uniformity of Cell Shape,272,1,2
+Uniformity of Cell Shape,273,5,6
+Uniformity of Cell Shape,274,4,3
+Uniformity of Cell Shape,276,3,2
+Uniformity of Cell Shape,280,7,5
+Uniformity of Cell Shape,282,1,3
+Uniformity of Cell Shape,283,3,5
+Uniformity of Cell Shape,284,6,4
+Uniformity of Cell Shape,286,10,8
+Uniformity of Cell Shape,289,3,5
+Uniformity of Cell Shape,290,6,7
+Uniformity of Cell Shape,291,8,2
+Uniformity of Cell Shape,293,8,6
+Uniformity of Cell Shape,296,7,6
+Uniformity of Cell Shape,299,1,2
+Uniformity of Cell Shape,300,2,5
+Uniformity of Cell Shape,301,10,6
+Uniformity of Cell Shape,302,1,2
+Uniformity of Cell Shape,303,10,8
+Uniformity of Cell Shape,306,4,6
+Uniformity of Cell Shape,307,1,2
+Uniformity of Cell Shape,309,2,6
+Uniformity of Cell Shape,310,1,2
+Uniformity of Cell Shape,312,1,2
+Uniformity of Cell Shape,313,4,5
+Uniformity of Cell Shape,316,5,7
+Uniformity of Cell Shape,319,1,3
+Uniformity of Cell Shape,321,3,5
+Uniformity of Cell Shape,323,1,2
+Uniformity of Cell Shape,324,6,4
+Uniformity of Cell Shape,327,1,3
+Uniformity of Cell Shape,328,11,3
+Uniformity of Cell Shape,329,3,6
+Uniformity of Cell Shape,330,1,4
+Uniformity of Cell Shape,331,7,5
+Uniformity of Cell Shape,332,1,3
+Uniformity of Cell Shape,334,1,4
+Uniformity of Cell Shape,335,1,4
+Uniformity of Cell Shape,336,1,2
+Uniformity of Cell Shape,338,1,2
+Uniformity of Cell Shape,344,1,2
+Uniformity of Cell Shape,345,4,7
+Uniformity of Cell Shape,348,1,2
+Uniformity of Cell Shape,349,4,5
+Uniformity of Cell Shape,350,3,5
+Uniformity of Cell Shape,351,4,3
+Uniformity of Cell Shape,352,1,2
+Uniformity of Cell Shape,353,5,4
+Uniformity of Cell Shape,354,10,8
+Uniformity of Cell Shape,356,1,2
+Uniformity of Cell Shape,357,3,4
+Uniformity of Cell Shape,358,10,8
+Uniformity of Cell Shape,359,5,7
+Uniformity of Cell Shape,361,10,8
+Uniformity of Cell Shape,362,3,6
+Uniformity of Cell Shape,363,2,3
+Uniformity of Cell Shape,366,1,2
+Uniformity of Cell Shape,367,10,8
+Uniformity of Cell Shape,369,3,2
+Uniformity of Cell Shape,370,3,2
+Uniformity of Cell Shape,371,1,2
+Uniformity of Cell Shape,372,3,2
+Uniformity of Cell Shape,373,2,3
+Uniformity of Cell Shape,374,1,2
+Uniformity of Cell Shape,375,2,3
+Uniformity of Cell Shape,376,nan,2
+Uniformity of Cell Shape,379,7,3
+Uniformity of Cell Shape,382,nan,5
+Uniformity of Cell Shape,386,2,3
+Uniformity of Cell Shape,387,6,5
+Uniformity of Cell Shape,390,1,2
+Uniformity of Cell Shape,395,3,4
+Uniformity of Cell Shape,398,1,2
+Uniformity of Cell Shape,399,1,2
+Uniformity of Cell Shape,401,8,7
+Uniformity of Cell Shape,403,3,2
+Uniformity of Cell Shape,404,1,3
+Uniformity of Cell Shape,405,1,3
+Uniformity of Cell Shape,407,2,4
+Uniformity of Cell Shape,412,1,3
+Uniformity of Cell Shape,413,10,8
+Uniformity of Cell Shape,414,2,3
+Uniformity of Cell Shape,415,6,5
+Uniformity of Cell Shape,416,2,3
+Uniformity of Cell Shape,417,8,6
+Uniformity of Cell Shape,418,1,2
+Uniformity of Cell Shape,419,nan,3
+Uniformity of Cell Shape,420,1,2
+Uniformity of Cell Shape,421,2,3
+Uniformity of Cell Shape,422,10,8
+Uniformity of Cell Shape,426,10,8
+Uniformity of Cell Shape,427,6,3
+Uniformity of Cell Shape,428,8,6
+Uniformity of Cell Shape,431,1,2
+Uniformity of Cell Shape,432,1,2
+Uniformity of Cell Shape,433,1,2
+Uniformity of Cell Shape,435,1,4
+Uniformity of Cell Shape,436,10,5
+Uniformity of Cell Shape,437,10,6
+Uniformity of Cell Shape,439,3,2
+Uniformity of Cell Shape,441,3,5
+Uniformity of Cell Shape,442,2,3
+Uniformity of Cell Shape,444,1,2
+Uniformity of Cell Shape,445,1,2
+Uniformity of Cell Shape,446,1,2
+Uniformity of Cell Shape,447,1,2
+Uniformity of Cell Shape,448,1,2
+Uniformity of Cell Shape,450,9,7
+Uniformity of Cell Shape,452,1,2
+Uniformity of Cell Shape,454,5,6
+Uniformity of Cell Shape,455,1,2
+Uniformity of Cell Shape,457,5,6
+Uniformity of Cell Shape,458,9,6
+Uniformity of Cell Shape,460,3,2
+Uniformity of Cell Shape,463,1,2
+Uniformity of Cell Shape,466,8,7
+Uniformity of Cell Shape,468,6,7
+Uniformity of Cell Shape,469,1,2
+Uniformity of Cell Shape,470,2,3
+Uniformity of Cell Shape,471,1,2
+Uniformity of Cell Shape,472,1,2
+Uniformity of Cell Shape,473,1,2
+Uniformity of Cell Shape,474,1,3
+Uniformity of Cell Shape,477,2,3
+Uniformity of Cell Shape,479,1,2
+Uniformity of Cell Shape,480,nan,7
+Uniformity of Cell Shape,481,1,2
+Uniformity of Cell Shape,483,10,9
+Uniformity of Cell Shape,484,8,7
+Uniformity of Cell Shape,488,10,8
+Uniformity of Cell Shape,489,4,5
+Uniformity of Cell Shape,490,2,3
+Uniformity of Cell Shape,492,9,6
+Uniformity of Cell Shape,494,10,7
+Uniformity of Cell Shape,498,1,2
+Uniformity of Cell Shape,501,1,2
+Uniformity of Cell Shape,504,1,2
+Uniformity of Cell Shape,506,1,2
+Uniformity of Cell Shape,507,10,8
+Uniformity of Cell Shape,510,1,2
+Uniformity of Cell Shape,512,1,2
+Uniformity of Cell Shape,513,1,2
+Uniformity of Cell Shape,515,7,6
+Uniformity of Cell Shape,516,4,6
+Uniformity of Cell Shape,519,2,1
+Uniformity of Cell Shape,520,8,6
+Uniformity of Cell Shape,522,11,3
+Uniformity of Cell Shape,523,5,4
+Uniformity of Cell Shape,524,66,7
+Uniformity of Cell Shape,525,1,2
+Uniformity of Cell Shape,529,3,2
+Uniformity of Cell Shape,531,4,6
+Uniformity of Cell Shape,532,1,2
+Uniformity of Cell Shape,535,1,2
+Uniformity of Cell Shape,536,3,2
+Uniformity of Cell Shape,537,1,2
+Uniformity of Cell Shape,539,11,3
+Uniformity of Cell Shape,540,1,2
+Uniformity of Cell Shape,542,1,3
+Uniformity of Cell Shape,543,1,2
+Uniformity of Cell Shape,544,1,2
+Uniformity of Cell Shape,545,3,2
+Uniformity of Cell Shape,546,1,2
+Uniformity of Cell Shape,547,10,7
+Uniformity of Cell Shape,550,3,7
+Uniformity of Cell Shape,554,2,3
+Uniformity of Cell Shape,556,1,3
+Uniformity of Cell Shape,561,1,2
+Uniformity of Cell Shape,562,1,2
+Uniformity of Cell Shape,563,nan,2
+Uniformity of Cell Shape,565,1,2
+Uniformity of Cell Shape,566,10,6
+Uniformity of Cell Shape,569,4,5
+Uniformity of Cell Shape,570,88,9
+Uniformity of Cell Shape,571,nan,6
+Uniformity of Cell Shape,572,10,6
+Uniformity of Cell Shape,573,1,2
+Uniformity of Cell Shape,574,1,2
+Uniformity of Cell Shape,575,7,6
+Uniformity of Cell Shape,580,1,2
+Uniformity of Cell Shape,582,10,6
+Uniformity of Cell Shape,583,5,7
+Uniformity of Cell Shape,585,1,2
+Uniformity of Cell Shape,587,10,7
+Uniformity of Cell Shape,588,1,3
+Uniformity of Cell Shape,589,8,6
+Uniformity of Cell Shape,591,8,6
+Uniformity of Cell Shape,592,7,4
+Uniformity of Cell Shape,595,6,5
+Uniformity of Cell Shape,596,1,2
+Uniformity of Cell Shape,597,nan,2
+Uniformity of Cell Shape,598,3,4
+Uniformity of Cell Shape,600,6,2
+Uniformity of Cell Shape,602,1,2
+Uniformity of Cell Shape,603,1,3
+Uniformity of Cell Shape,604,6,5
+Uniformity of Cell Shape,605,2,5
+Uniformity of Cell Shape,606,10,6
+Uniformity of Cell Shape,609,10,8
+Uniformity of Cell Shape,611,3,5
+Uniformity of Cell Shape,612,10,7
+Uniformity of Cell Shape,614,1,2
+Uniformity of Cell Shape,617,nan,2
+Uniformity of Cell Shape,618,1,3
+Uniformity of Cell Shape,620,nan,3
+Uniformity of Cell Shape,621,1,3
+Uniformity of Cell Shape,625,1,3
+Uniformity of Cell Shape,626,3,2
+Uniformity of Cell Shape,628,1,2
+Uniformity of Cell Shape,629,nan,3
+Uniformity of Cell Shape,630,1,2
+Uniformity of Cell Shape,631,3,2
+Uniformity of Cell Shape,634,4,6
+Uniformity of Cell Shape,636,4,2
+Uniformity of Cell Shape,637,7,8
+Uniformity of Cell Shape,638,4,3
+Uniformity of Cell Shape,639,1,3
+Uniformity of Cell Shape,643,1,2
+Uniformity of Cell Shape,645,nan,2
+Uniformity of Cell Shape,646,1,2
+Uniformity of Cell Shape,648,nan,2
+Uniformity of Cell Shape,649,10,8
+Uniformity of Cell Shape,652,1,2
+Uniformity of Cell Shape,653,11,3
+Uniformity of Cell Shape,655,nan,2
+Uniformity of Cell Shape,656,1,2
+Uniformity of Cell Shape,658,5,4
+Uniformity of Cell Shape,659,8,7
+Uniformity of Cell Shape,662,1,2
+Uniformity of Cell Shape,663,3,2
+Uniformity of Cell Shape,664,3,2
+Uniformity of Cell Shape,665,1,2
+Uniformity of Cell Shape,669,4,6
+Uniformity of Cell Shape,670,10,7
+Uniformity of Cell Shape,671,7,6
+Uniformity of Cell Shape,672,1,2
+Uniformity of Cell Shape,676,10,3
+Uniformity of Cell Shape,677,2,1
+Uniformity of Cell Shape,682,10,7
+Uniformity of Cell Shape,683,1,2
+Uniformity of Cell Shape,684,1,2
+Uniformity of Cell Shape,685,1,2
+Uniformity of Cell Shape,686,1,3
+Uniformity of Cell Shape,688,1,2
+Uniformity of Cell Shape,690,1,3
+Uniformity of Cell Shape,692,10,7
+Uniformity of Cell Shape,694,1,2
+Uniformity of Cell Shape,695,1,2
+Uniformity of Cell Shape,697,1,6
+Uniformity of Cell Shape,698,6,5
+Uniformity of Cell Shape,699,8,6
+Marginal Adhesion,3,1,2
+Marginal Adhesion,4,1,3
+Marginal Adhesion,5,3,2
+Marginal Adhesion,6,8,6
+Marginal Adhesion,7,11,4
+Marginal Adhesion,9,1,2
+Marginal Adhesion,14,1,2
+Marginal Adhesion,15,10,5
+Marginal Adhesion,19,6,5
+Marginal Adhesion,21,10,5
+Marginal Adhesion,22,3,4
+Marginal Adhesion,24,1,3
+Marginal Adhesion,25,1,2
+Marginal Adhesion,26,4,3
+Marginal Adhesion,27,nan,2
+Marginal Adhesion,29,1,2
+Marginal Adhesion,30,1,2
+Marginal Adhesion,33,3,4
+Marginal Adhesion,37,1,4
+Marginal Adhesion,38,1,2
+Marginal Adhesion,39,9,4
+Marginal Adhesion,40,3,4
+Marginal Adhesion,41,9,4
+Marginal Adhesion,43,2,5
+Marginal Adhesion,44,6,4
+Marginal Adhesion,46,1,3
+Marginal Adhesion,47,4,5
+Marginal Adhesion,49,3,2
+Marginal Adhesion,50,2,4
+Marginal Adhesion,51,1,4
+Marginal Adhesion,52,4,3
+Marginal Adhesion,53,2,4
+Marginal Adhesion,54,8,5
+Marginal Adhesion,55,6,5
+Marginal Adhesion,56,3,4
+Marginal Adhesion,57,1,4
+Marginal Adhesion,58,nan,4
+Marginal Adhesion,59,1,3
+Marginal Adhesion,60,2,3
+Marginal Adhesion,61,5,4
+Marginal Adhesion,63,1,5
+Marginal Adhesion,64,1,3
+Marginal Adhesion,66,1,3
+Marginal Adhesion,68,1,4
+Marginal Adhesion,69,3,5
+Marginal Adhesion,70,1,2
+Marginal Adhesion,72,8,6
+Marginal Adhesion,73,2,4
+Marginal Adhesion,74,10,5
+Marginal Adhesion,75,1,4
+Marginal Adhesion,76,11,3
+Marginal Adhesion,79,1,2
+Marginal Adhesion,80,1,2
+Marginal Adhesion,81,1,2
+Marginal Adhesion,83,1,2
+Marginal Adhesion,84,1,2
+Marginal Adhesion,85,8,5
+Marginal Adhesion,86,1,5
+Marginal Adhesion,88,6,5
+Marginal Adhesion,89,1,2
+Marginal Adhesion,90,2,1
+Marginal Adhesion,91,1,2
+Marginal Adhesion,92,2,1
+Marginal Adhesion,94,1,2
+Marginal Adhesion,95,nan,2
+Marginal Adhesion,96,1,2
+Marginal Adhesion,97,2,1
+Marginal Adhesion,99,2,6
+Marginal Adhesion,100,10,5
+Marginal Adhesion,101,1,4
+Marginal Adhesion,102,4,3
+Marginal Adhesion,103,1,2
+Marginal Adhesion,104,1,4
+Marginal Adhesion,105,10,6
+Marginal Adhesion,107,8,6
+Marginal Adhesion,108,10,5
+Marginal Adhesion,112,3,4
+Marginal Adhesion,113,10,5
+Marginal Adhesion,114,3,5
+Marginal Adhesion,115,1,3
+Marginal Adhesion,117,1,2
+Marginal Adhesion,118,10,5
+Marginal Adhesion,120,1,2
+Marginal Adhesion,122,1,2
+Marginal Adhesion,123,2,5
+Marginal Adhesion,124,8,5
+Marginal Adhesion,125,7,5
+Marginal Adhesion,127,7,5
+Marginal Adhesion,130,1,2
+Marginal Adhesion,132,1,2
+Marginal Adhesion,133,10,5
+Marginal Adhesion,134,1,2
+Marginal Adhesion,136,1,2
+Marginal Adhesion,139,1,2
+Marginal Adhesion,140,1,2
+Marginal Adhesion,141,1,2
+Marginal Adhesion,144,1,2
+Marginal Adhesion,145,nan,2
+Marginal Adhesion,146,1,2
+Marginal Adhesion,147,2,4
+Marginal Adhesion,148,1,3
+Marginal Adhesion,150,4,6
+Marginal Adhesion,151,1,2
+Marginal Adhesion,152,11,4
+Marginal Adhesion,153,6,5
+Marginal Adhesion,154,1,2
+Marginal Adhesion,156,6,5
+Marginal Adhesion,159,1,2
+Marginal Adhesion,160,3,5
+Marginal Adhesion,161,4,5
+Marginal Adhesion,165,1,2
+Marginal Adhesion,166,1,2
+Marginal Adhesion,167,8,5
+Marginal Adhesion,168,10,5
+Marginal Adhesion,172,1,2
+Marginal Adhesion,174,10,7
+Marginal Adhesion,178,3,5
+Marginal Adhesion,179,10,4
+Marginal Adhesion,182,1,2
+Marginal Adhesion,184,8,6
+Marginal Adhesion,185,4,5
+Marginal Adhesion,187,6,5
+Marginal Adhesion,188,10,6
+Marginal Adhesion,189,10,6
+Marginal Adhesion,190,1,2
+Marginal Adhesion,191,8,6
+Marginal Adhesion,192,10,5
+Marginal Adhesion,193,nan,2
+Marginal Adhesion,197,5,4
+Marginal Adhesion,198,4,3
+Marginal Adhesion,200,1,2
+Marginal Adhesion,201,5,6
+Marginal Adhesion,202,4,5
+Marginal Adhesion,203,1,2
+Marginal Adhesion,204,1,2
+Marginal Adhesion,205,1,2
+Marginal Adhesion,206,9,5
+Marginal Adhesion,207,3,5
+Marginal Adhesion,211,10,7
+Marginal Adhesion,212,8,6
+Marginal Adhesion,214,10,7
+Marginal Adhesion,215,10,7
+Marginal Adhesion,216,7,5
+Marginal Adhesion,219,77,6
+Marginal Adhesion,220,1,2
+Marginal Adhesion,221,2,3
+Marginal Adhesion,222,3,6
+Marginal Adhesion,224,3,4
+Marginal Adhesion,225,6,5
+Marginal Adhesion,227,4,5
+Marginal Adhesion,230,3,6
+Marginal Adhesion,235,1,2
+Marginal Adhesion,237,2,5
+Marginal Adhesion,239,nan,5
+Marginal Adhesion,240,2,4
+Marginal Adhesion,241,3,2
+Marginal Adhesion,242,3,2
+Marginal Adhesion,244,nan,3
+Marginal Adhesion,245,11,3
+Marginal Adhesion,247,8,6
+Marginal Adhesion,248,1,4
+Marginal Adhesion,249,1,2
+Marginal Adhesion,250,1,2
+Marginal Adhesion,252,10,5
+Marginal Adhesion,253,5,4
+Marginal Adhesion,254,2,5
+Marginal Adhesion,255,1,4
+Marginal Adhesion,256,2,4
+Marginal Adhesion,260,1,3
+Marginal Adhesion,261,1,4
+Marginal Adhesion,263,4,5
+Marginal Adhesion,264,nan,5
+Marginal Adhesion,265,10,5
+Marginal Adhesion,267,nan,4
+Marginal Adhesion,268,2,3
+Marginal Adhesion,269,2,5
+Marginal Adhesion,270,11,3
+Marginal Adhesion,271,1,3
+Marginal Adhesion,273,2,4
+Marginal Adhesion,274,1,2
+Marginal Adhesion,275,1,2
+Marginal Adhesion,279,1,2
+Marginal Adhesion,280,3,4
+Marginal Adhesion,282,2,3
+Marginal Adhesion,283,10,4
+Marginal Adhesion,284,1,3
+Marginal Adhesion,285,10,5
+Marginal Adhesion,286,10,7
+Marginal Adhesion,287,10,6
+Marginal Adhesion,289,1,3
+Marginal Adhesion,290,8,5
+Marginal Adhesion,291,1,2
+Marginal Adhesion,292,1,2
+Marginal Adhesion,293,1,4
+Marginal Adhesion,294,6,4
+Marginal Adhesion,296,8,6
+Marginal Adhesion,299,1,2
+Marginal Adhesion,300,nan,3
+Marginal Adhesion,302,1,2
+Marginal Adhesion,303,7,6
+Marginal Adhesion,304,1,2
+Marginal Adhesion,305,9,5
+Marginal Adhesion,306,4,5
+Marginal Adhesion,307,1,2
+Marginal Adhesion,308,1,2
+Marginal Adhesion,309,6,5
+Marginal Adhesion,312,1,2
+Marginal Adhesion,313,1,4
+Marginal Adhesion,316,6,4
+Marginal Adhesion,317,2,4
+Marginal Adhesion,318,8,6
+Marginal Adhesion,319,1,2
+Marginal Adhesion,321,2,4
+Marginal Adhesion,322,1,2
+Marginal Adhesion,323,1,2
+Marginal Adhesion,324,10,6
+Marginal Adhesion,326,1,2
+Marginal Adhesion,328,1,3
+Marginal Adhesion,329,2,4
+Marginal Adhesion,331,2,4
+Marginal Adhesion,332,1,3
+Marginal Adhesion,334,6,4
+Marginal Adhesion,335,3,4
+Marginal Adhesion,336,1,2
+Marginal Adhesion,337,8,5
+Marginal Adhesion,338,1,2
+Marginal Adhesion,342,1,2
+Marginal Adhesion,345,8,5
+Marginal Adhesion,348,1,2
+Marginal Adhesion,349,10,4
+Marginal Adhesion,350,5,4
+Marginal Adhesion,351,3,2
+Marginal Adhesion,354,10,5
+Marginal Adhesion,357,1,3
+Marginal Adhesion,358,7,6
+Marginal Adhesion,359,3,4
+Marginal Adhesion,361,10,6
+Marginal Adhesion,362,10,5
+Marginal Adhesion,363,1,2
+Marginal Adhesion,364,2,3
+Marginal Adhesion,367,10,6
+Marginal Adhesion,368,10,6
+Marginal Adhesion,371,1,2
+Marginal Adhesion,372,1,2
+Marginal Adhesion,373,1,2
+Marginal Adhesion,375,1,3
+Marginal Adhesion,379,4,3
+Marginal Adhesion,380,1,3
+Marginal Adhesion,382,6,5
+Marginal Adhesion,385,1,2
+Marginal Adhesion,387,3,4
+Marginal Adhesion,392,4,5
+Marginal Adhesion,395,1,3
+Marginal Adhesion,399,1,2
+Marginal Adhesion,400,1,2
+Marginal Adhesion,401,7,6
+Marginal Adhesion,404,1,2
+Marginal Adhesion,407,1,3
+Marginal Adhesion,410,1,2
+Marginal Adhesion,412,nan,3
+Marginal Adhesion,414,11,3
+Marginal Adhesion,415,2,4
+Marginal Adhesion,416,6,3
+Marginal Adhesion,418,1,2
+Marginal Adhesion,422,7,6
+Marginal Adhesion,423,1,2
+Marginal Adhesion,424,1,2
+Marginal Adhesion,426,10,6
+Marginal Adhesion,427,1,2
+Marginal Adhesion,428,2,4
+Marginal Adhesion,432,3,2
+Marginal Adhesion,433,11,3
+Marginal Adhesion,434,3,2
+Marginal Adhesion,435,5,4
+Marginal Adhesion,436,nan,4
+Marginal Adhesion,437,1,4
+Marginal Adhesion,439,3,2
+Marginal Adhesion,441,10,6
+Marginal Adhesion,442,4,2
+Marginal Adhesion,443,3,2
+Marginal Adhesion,445,6,3
+Marginal Adhesion,447,1,2
+Marginal Adhesion,450,8,6
+Marginal Adhesion,451,3,2
+Marginal Adhesion,452,11,3
+Marginal Adhesion,453,3,2
+Marginal Adhesion,454,8,5
+Marginal Adhesion,457,8,6
+Marginal Adhesion,458,6,5
+Marginal Adhesion,461,3,2
+Marginal Adhesion,463,3,2
+Marginal Adhesion,466,1,5
+Marginal Adhesion,467,2,4
+Marginal Adhesion,469,11,3
+Marginal Adhesion,470,1,2
+Marginal Adhesion,472,3,2
+Marginal Adhesion,477,1,2
+Marginal Adhesion,480,10,6
+Marginal Adhesion,482,4,3
+Marginal Adhesion,483,10,7
+Marginal Adhesion,486,3,2
+Marginal Adhesion,488,10,7
+Marginal Adhesion,489,10,5
+Marginal Adhesion,490,1,2
+Marginal Adhesion,491,1,2
+Marginal Adhesion,492,4,5
+Marginal Adhesion,494,10,6
+Marginal Adhesion,495,10,3
+Marginal Adhesion,497,nan,2
+Marginal Adhesion,504,1,2
+Marginal Adhesion,506,1,2
+Marginal Adhesion,507,10,6
+Marginal Adhesion,510,nan,3
+Marginal Adhesion,512,1,2
+Marginal Adhesion,515,10,5
+Marginal Adhesion,516,7,5
+Marginal Adhesion,520,3,4
+Marginal Adhesion,522,1,3
+Marginal Adhesion,524,10,6
+Marginal Adhesion,525,1,2
+Marginal Adhesion,526,2,1
+Marginal Adhesion,531,3,4
+Marginal Adhesion,535,1,2
+Marginal Adhesion,537,nan,2
+Marginal Adhesion,539,1,3
+Marginal Adhesion,542,1,2
+Marginal Adhesion,543,1,2
+Marginal Adhesion,544,11,3
+Marginal Adhesion,546,1,2
+Marginal Adhesion,547,10,7
+Marginal Adhesion,550,77,5
+Marginal Adhesion,552,1,2
+Marginal Adhesion,554,nan,3
+Marginal Adhesion,556,1,2
+Marginal Adhesion,558,3,2
+Marginal Adhesion,562,1,2
+Marginal Adhesion,564,1,2
+Marginal Adhesion,566,10,6
+Marginal Adhesion,569,1,4
+Marginal Adhesion,570,10,7
+Marginal Adhesion,571,4,5
+Marginal Adhesion,572,nan,4
+Marginal Adhesion,574,1,2
+Marginal Adhesion,575,3,4
+Marginal Adhesion,576,1,2
+Marginal Adhesion,580,1,2
+Marginal Adhesion,581,nan,2
+Marginal Adhesion,583,3,5
+Marginal Adhesion,585,6,3
+Marginal Adhesion,587,10,6
+Marginal Adhesion,588,nan,3
+Marginal Adhesion,589,9,5
+Marginal Adhesion,592,6,4
+Marginal Adhesion,595,3,4
+Marginal Adhesion,596,11,3
+Marginal Adhesion,598,1,3
+Marginal Adhesion,600,1,2
+Marginal Adhesion,602,nan,3
+Marginal Adhesion,603,1,2
+Marginal Adhesion,604,8,5
+Marginal Adhesion,605,8,5
+Marginal Adhesion,606,3,5
+Marginal Adhesion,609,10,7
+Marginal Adhesion,611,10,6
+Marginal Adhesion,612,10,6
+Marginal Adhesion,613,10,5
+Marginal Adhesion,614,1,2
+Marginal Adhesion,616,1,2
+Marginal Adhesion,618,1,2
+Marginal Adhesion,620,1,2
+Marginal Adhesion,621,1,2
+Marginal Adhesion,625,2,3
+Marginal Adhesion,628,1,2
+Marginal Adhesion,629,1,2
+Marginal Adhesion,630,1,2
+Marginal Adhesion,637,8,6
+Marginal Adhesion,641,3,2
+Marginal Adhesion,643,nan,2
+Marginal Adhesion,646,11,3
+Marginal Adhesion,648,3,2
+Marginal Adhesion,649,10,6
+Marginal Adhesion,651,2,1
+Marginal Adhesion,652,3,2
+Marginal Adhesion,653,1,3
+Marginal Adhesion,656,11,3
+Marginal Adhesion,658,1,3
+Marginal Adhesion,659,7,6
+Marginal Adhesion,662,1,2
+Marginal Adhesion,665,3,2
+Marginal Adhesion,667,2,1
+Marginal Adhesion,669,1,3
+Marginal Adhesion,670,8,6
+Marginal Adhesion,671,8,6
+Marginal Adhesion,673,1,2
+Marginal Adhesion,674,1,2
+Marginal Adhesion,676,1,2
+Marginal Adhesion,681,10,7
+Marginal Adhesion,682,10,6
+Marginal Adhesion,683,nan,2
+Marginal Adhesion,686,nan,2
+Marginal Adhesion,688,1,2
+Marginal Adhesion,690,1,2
+Marginal Adhesion,691,3,2
+Marginal Adhesion,697,3,4
+Single Epithelial Cell Size,2,7,4
+Single Epithelial Cell Size,4,2,4
+Single Epithelial Cell Size,6,7,5
+Single Epithelial Cell Size,7,2,3
+Single Epithelial Cell Size,11,1,2
+Single Epithelial Cell Size,13,2,3
+Single Epithelial Cell Size,15,7,6
+Single Epithelial Cell Size,16,6,4
+Single Epithelial Cell Size,19,4,5
+Single Epithelial Cell Size,22,6,5
+Single Epithelial Cell Size,24,2,3
+Single Epithelial Cell Size,26,2,3
+Single Epithelial Cell Size,27,1,2
+Single Epithelial Cell Size,29,22,4
+Single Epithelial Cell Size,30,2,3
+Single Epithelial Cell Size,31,1,2
+Single Epithelial Cell Size,33,8,5
+Single Epithelial Cell Size,37,6,5
+Single Epithelial Cell Size,38,1,3
+Single Epithelial Cell Size,39,22,5
+Single Epithelial Cell Size,40,6,4
+Single Epithelial Cell Size,41,6,4
+Single Epithelial Cell Size,42,3,4
+Single Epithelial Cell Size,43,8,6
+Single Epithelial Cell Size,44,1,3
+Single Epithelial Cell Size,45,2,5
+Single Epithelial Cell Size,47,4,5
+Single Epithelial Cell Size,51,2,4
+Single Epithelial Cell Size,52,2,3
+Single Epithelial Cell Size,53,3,4
+Single Epithelial Cell Size,54,10,6
+Single Epithelial Cell Size,55,8,5
+Single Epithelial Cell Size,56,4,5
+Single Epithelial Cell Size,57,3,5
+Single Epithelial Cell Size,58,5,4
+Single Epithelial Cell Size,59,6,4
+Single Epithelial Cell Size,60,2,3
+Single Epithelial Cell Size,61,3,4
+Single Epithelial Cell Size,63,10,6
+Single Epithelial Cell Size,64,5,4
+Single Epithelial Cell Size,66,3,4
+Single Epithelial Cell Size,68,8,5
+Single Epithelial Cell Size,69,4,5
+Single Epithelial Cell Size,72,10,7
+Single Epithelial Cell Size,73,2,3
+Single Epithelial Cell Size,74,6,5
+Single Epithelial Cell Size,75,3,4
+Single Epithelial Cell Size,81,1,2
+Single Epithelial Cell Size,85,8,6
+Single Epithelial Cell Size,86,10,7
+Single Epithelial Cell Size,87,5,4
+Single Epithelial Cell Size,88,5,6
+Single Epithelial Cell Size,89,22,4
+Single Epithelial Cell Size,94,2,3
+Single Epithelial Cell Size,99,10,7
+Single Epithelial Cell Size,100,5,6
+Single Epithelial Cell Size,101,10,6
+Single Epithelial Cell Size,102,5,4
+Single Epithelial Cell Size,103,2,3
+Single Epithelial Cell Size,104,6,4
+Single Epithelial Cell Size,105,10,7
+Single Epithelial Cell Size,106,3,4
+Single Epithelial Cell Size,107,nan,5
+Single Epithelial Cell Size,108,8,5
+Single Epithelial Cell Size,110,3,4
+Single Epithelial Cell Size,111,2,3
+Single Epithelial Cell Size,112,nan,4
+Single Epithelial Cell Size,113,2,4
+Single Epithelial Cell Size,114,10,5
+Single Epithelial Cell Size,117,2,3
+Single Epithelial Cell Size,118,4,5
+Single Epithelial Cell Size,119,4,3
+Single Epithelial Cell Size,123,10,6
+Single Epithelial Cell Size,124,8,5
+Single Epithelial Cell Size,125,9,5
+Single Epithelial Cell Size,127,4,5
+Single Epithelial Cell Size,130,10,4
+Single Epithelial Cell Size,132,2,3
+Single Epithelial Cell Size,133,8,7
+Single Epithelial Cell Size,140,1,2
+Single Epithelial Cell Size,143,4,5
+Single Epithelial Cell Size,144,22,4
+Single Epithelial Cell Size,147,6,4
+Single Epithelial Cell Size,148,3,4
+Single Epithelial Cell Size,149,8,4
+Single Epithelial Cell Size,150,10,7
+Single Epithelial Cell Size,151,1,2
+Single Epithelial Cell Size,152,6,5
+Single Epithelial Cell Size,153,4,5
+Single Epithelial Cell Size,157,nan,3
+Single Epithelial Cell Size,161,5,6
+Single Epithelial Cell Size,164,1,2
+Single Epithelial Cell Size,167,8,5
+Single Epithelial Cell Size,168,6,7
+Single Epithelial Cell Size,170,1,2
+Single Epithelial Cell Size,172,2,3
+Single Epithelial Cell Size,175,3,5
+Single Epithelial Cell Size,176,10,6
+Single Epithelial Cell Size,178,8,6
+Single Epithelial Cell Size,180,6,4
+Single Epithelial Cell Size,181,1,2
+Single Epithelial Cell Size,184,5,6
+Single Epithelial Cell Size,185,4,5
+Single Epithelial Cell Size,186,1,2
+Single Epithelial Cell Size,188,6,7
+Single Epithelial Cell Size,189,5,6
+Single Epithelial Cell Size,190,nan,3
+Single Epithelial Cell Size,192,10,6
+Single Epithelial Cell Size,194,nan,3
+Single Epithelial Cell Size,197,4,5
+Single Epithelial Cell Size,201,5,6
+Single Epithelial Cell Size,202,10,5
+Single Epithelial Cell Size,206,6,7
+Single Epithelial Cell Size,207,2,4
+Single Epithelial Cell Size,208,1,2
+Single Epithelial Cell Size,209,1,2
+Single Epithelial Cell Size,210,1,2
+Single Epithelial Cell Size,211,5,6
+Single Epithelial Cell Size,212,4,5
+Single Epithelial Cell Size,215,3,6
+Single Epithelial Cell Size,216,5,6
+Single Epithelial Cell Size,218,nan,3
+Single Epithelial Cell Size,219,nan,5
+Single Epithelial Cell Size,222,10,6
+Single Epithelial Cell Size,223,1,2
+Single Epithelial Cell Size,224,3,4
+Single Epithelial Cell Size,225,3,4
+Single Epithelial Cell Size,226,22,4
+Single Epithelial Cell Size,227,44,6
+Single Epithelial Cell Size,228,3,5
+Single Epithelial Cell Size,229,1,2
+Single Epithelial Cell Size,230,10,6
+Single Epithelial Cell Size,231,3,4
+Single Epithelial Cell Size,233,3,4
+Single Epithelial Cell Size,239,6,8
+Single Epithelial Cell Size,240,3,4
+Single Epithelial Cell Size,241,2,3
+Single Epithelial Cell Size,242,1,2
+Single Epithelial Cell Size,247,5,6
+Single Epithelial Cell Size,248,22,5
+Single Epithelial Cell Size,249,nan,3
+Single Epithelial Cell Size,252,2,4
+Single Epithelial Cell Size,253,3,5
+Single Epithelial Cell Size,254,8,6
+Single Epithelial Cell Size,255,nan,3
+Single Epithelial Cell Size,256,4,5
+Single Epithelial Cell Size,260,5,4
+Single Epithelial Cell Size,262,10,7
+Single Epithelial Cell Size,264,6,4
+Single Epithelial Cell Size,265,10,6
+Single Epithelial Cell Size,266,2,3
+Single Epithelial Cell Size,267,3,5
+Single Epithelial Cell Size,269,3,5
+Single Epithelial Cell Size,270,nan,3
+Single Epithelial Cell Size,271,2,4
+Single Epithelial Cell Size,273,3,4
+Single Epithelial Cell Size,280,3,4
+Single Epithelial Cell Size,283,2,4
+Single Epithelial Cell Size,285,2,4
+Single Epithelial Cell Size,286,8,6
+Single Epithelial Cell Size,287,10,9
+Single Epithelial Cell Size,289,nan,4
+Single Epithelial Cell Size,293,2,5
+Single Epithelial Cell Size,294,2,4
+Single Epithelial Cell Size,296,6,5
+Single Epithelial Cell Size,298,2,3
+Single Epithelial Cell Size,299,5,3
+Single Epithelial Cell Size,300,4,5
+Single Epithelial Cell Size,301,4,5
+Single Epithelial Cell Size,303,9,7
+Single Epithelial Cell Size,305,3,4
+Single Epithelial Cell Size,306,4,5
+Single Epithelial Cell Size,313,10,5
+Single Epithelial Cell Size,315,1,2
+Single Epithelial Cell Size,316,7,6
+Single Epithelial Cell Size,318,6,7
+Single Epithelial Cell Size,319,5,4
+Single Epithelial Cell Size,320,6,4
+Single Epithelial Cell Size,321,5,6
+Single Epithelial Cell Size,324,2,4
+Single Epithelial Cell Size,327,2,3
+Single Epithelial Cell Size,329,6,5
+Single Epithelial Cell Size,330,nan,4
+Single Epithelial Cell Size,335,3,4
+Single Epithelial Cell Size,337,nan,4
+Single Epithelial Cell Size,339,1,2
+Single Epithelial Cell Size,340,2,4
+Single Epithelial Cell Size,345,10,6
+Single Epithelial Cell Size,348,1,2
+Single Epithelial Cell Size,349,5,4
+Single Epithelial Cell Size,350,3,4
+Single Epithelial Cell Size,351,2,3
+Single Epithelial Cell Size,353,7,4
+Single Epithelial Cell Size,354,9,7
+Single Epithelial Cell Size,357,2,3
+Single Epithelial Cell Size,358,10,7
+Single Epithelial Cell Size,359,nan,5
+Single Epithelial Cell Size,360,3,4
+Single Epithelial Cell Size,361,10,7
+Single Epithelial Cell Size,363,44,4
+Single Epithelial Cell Size,364,2,3
+Single Epithelial Cell Size,367,nan,6
+Single Epithelial Cell Size,368,5,6
+Single Epithelial Cell Size,369,nan,3
+Single Epithelial Cell Size,370,1,2
+Single Epithelial Cell Size,372,2,3
+Single Epithelial Cell Size,373,22,4
+Single Epithelial Cell Size,375,nan,3
+Single Epithelial Cell Size,378,1,2
+Single Epithelial Cell Size,382,2,4
+Single Epithelial Cell Size,387,2,4
+Single Epithelial Cell Size,392,3,5
+Single Epithelial Cell Size,394,1,2
+Single Epithelial Cell Size,395,nan,3
+Single Epithelial Cell Size,400,2,3
+Single Epithelial Cell Size,401,6,7
+Single Epithelial Cell Size,403,2,3
+Single Epithelial Cell Size,404,22,4
+Single Epithelial Cell Size,405,2,3
+Single Epithelial Cell Size,409,2,3
+Single Epithelial Cell Size,412,1,2
+Single Epithelial Cell Size,414,2,3
+Single Epithelial Cell Size,415,3,4
+Single Epithelial Cell Size,417,10,5
+Single Epithelial Cell Size,419,2,3
+Single Epithelial Cell Size,420,5,3
+Single Epithelial Cell Size,421,2,3
+Single Epithelial Cell Size,422,10,7
+Single Epithelial Cell Size,423,2,3
+Single Epithelial Cell Size,424,22,4
+Single Epithelial Cell Size,426,10,6
+Single Epithelial Cell Size,428,4,5
+Single Epithelial Cell Size,432,4,3
+Single Epithelial Cell Size,433,2,3
+Single Epithelial Cell Size,435,5,4
+Single Epithelial Cell Size,439,2,3
+Single Epithelial Cell Size,441,4,5
+Single Epithelial Cell Size,442,2,3
+Single Epithelial Cell Size,447,nan,3
+Single Epithelial Cell Size,449,1,2
+Single Epithelial Cell Size,450,6,7
+Single Epithelial Cell Size,451,1,2
+Single Epithelial Cell Size,452,2,3
+Single Epithelial Cell Size,454,6,5
+Single Epithelial Cell Size,467,4,5
+Single Epithelial Cell Size,468,4,6
+Single Epithelial Cell Size,469,2,3
+Single Epithelial Cell Size,471,1,2
+Single Epithelial Cell Size,473,1,2
+Single Epithelial Cell Size,474,22,4
+Single Epithelial Cell Size,479,nan,3
+Single Epithelial Cell Size,480,4,6
+Single Epithelial Cell Size,481,1,2
+Single Epithelial Cell Size,482,2,3
+Single Epithelial Cell Size,483,10,9
+Single Epithelial Cell Size,486,1,2
+Single Epithelial Cell Size,487,1,2
+Single Epithelial Cell Size,488,6,7
+Single Epithelial Cell Size,489,3,4
+Single Epithelial Cell Size,492,3,5
+Single Epithelial Cell Size,493,1,2
+Single Epithelial Cell Size,494,6,7
+Single Epithelial Cell Size,495,4,3
+Single Epithelial Cell Size,496,1,2
+Single Epithelial Cell Size,497,1,2
+Single Epithelial Cell Size,498,nan,3
+Single Epithelial Cell Size,504,2,3
+Single Epithelial Cell Size,507,7,8
+Single Epithelial Cell Size,513,2,3
+Single Epithelial Cell Size,514,1,2
+Single Epithelial Cell Size,515,3,4
+Single Epithelial Cell Size,516,3,5
+Single Epithelial Cell Size,517,1,2
+Single Epithelial Cell Size,518,1,2
+Single Epithelial Cell Size,520,4,5
+Single Epithelial Cell Size,523,3,4
+Single Epithelial Cell Size,524,4,5
+Single Epithelial Cell Size,530,1,2
+Single Epithelial Cell Size,531,nan,4
+Single Epithelial Cell Size,533,1,2
+Single Epithelial Cell Size,535,22,4
+Single Epithelial Cell Size,536,2,3
+Single Epithelial Cell Size,542,2,3
+Single Epithelial Cell Size,544,2,3
+Single Epithelial Cell Size,545,2,3
+Single Epithelial Cell Size,547,4,6
+Single Epithelial Cell Size,548,1,2
+Single Epithelial Cell Size,549,1,2
+Single Epithelial Cell Size,550,4,5
+Single Epithelial Cell Size,551,4,3
+Single Epithelial Cell Size,553,2,3
+Single Epithelial Cell Size,554,2,3
+Single Epithelial Cell Size,556,2,3
+Single Epithelial Cell Size,557,1,2
+Single Epithelial Cell Size,566,3,5
+Single Epithelial Cell Size,569,6,5
+Single Epithelial Cell Size,570,6,7
+Single Epithelial Cell Size,571,8,5
+Single Epithelial Cell Size,575,2,4
+Single Epithelial Cell Size,582,5,6
+Single Epithelial Cell Size,583,4,5
+Single Epithelial Cell Size,588,2,3
+Single Epithelial Cell Size,589,6,4
+Single Epithelial Cell Size,591,4,5
+Single Epithelial Cell Size,592,nan,5
+Single Epithelial Cell Size,593,3,4
+Single Epithelial Cell Size,595,4,5
+Single Epithelial Cell Size,596,2,3
+Single Epithelial Cell Size,600,1,2
+Single Epithelial Cell Size,602,1,2
+Single Epithelial Cell Size,603,2,3
+Single Epithelial Cell Size,604,4,5
+Single Epithelial Cell Size,609,10,6
+Single Epithelial Cell Size,611,3,5
+Single Epithelial Cell Size,612,5,6
+Single Epithelial Cell Size,613,6,7
+Single Epithelial Cell Size,615,1,2
+Single Epithelial Cell Size,616,2,3
+Single Epithelial Cell Size,618,11,4
+Single Epithelial Cell Size,620,5,3
+Single Epithelial Cell Size,621,2,3
+Single Epithelial Cell Size,625,1,2
+Single Epithelial Cell Size,627,77,6
+Single Epithelial Cell Size,628,nan,3
+Single Epithelial Cell Size,629,2,3
+Single Epithelial Cell Size,638,2,3
+Single Epithelial Cell Size,639,22,4
+Single Epithelial Cell Size,646,2,3
+Single Epithelial Cell Size,648,2,3
+Single Epithelial Cell Size,649,10,7
+Single Epithelial Cell Size,654,nan,3
+Single Epithelial Cell Size,656,2,3
+Single Epithelial Cell Size,658,8,4
+Single Epithelial Cell Size,659,3,5
+Single Epithelial Cell Size,662,nan,3
+Single Epithelial Cell Size,669,2,4
+Single Epithelial Cell Size,670,5,6
+Single Epithelial Cell Size,671,5,6
+Single Epithelial Cell Size,672,6,3
+Single Epithelial Cell Size,676,2,3
+Single Epithelial Cell Size,681,5,6
+Single Epithelial Cell Size,682,4,6
+Single Epithelial Cell Size,684,6,3
+Single Epithelial Cell Size,686,2,3
+Single Epithelial Cell Size,688,2,3
+Single Epithelial Cell Size,690,2,3
+Single Epithelial Cell Size,692,2,5
+Single Epithelial Cell Size,695,3,2
+Single Epithelial Cell Size,697,7,5
+Single Epithelial Cell Size,698,3,4
+Single Epithelial Cell Size,699,4,5
+Bare Nuclei,1,1,2
+Bare Nuclei,2,10,5
+Bare Nuclei,5,1,2
+Bare Nuclei,6,nan,8
+Bare Nuclei,7,10,6
+Bare Nuclei,8,nan,2
+Bare Nuclei,9,1,2
+Bare Nuclei,11,1,2
+Bare Nuclei,13,3,4
+Bare Nuclei,14,3,1
+Bare Nuclei,15,9,8
+Bare Nuclei,16,1,4
+Bare Nuclei,17,1,2
+Bare Nuclei,19,10,8
+Bare Nuclei,20,1,2
+Bare Nuclei,21,10,8
+Bare Nuclei,22,nan,7
+Bare Nuclei,24,nan,5
+Bare Nuclei,26,7,6
+Bare Nuclei,27,1,3
+Bare Nuclei,28,1,2
+Bare Nuclei,29,1,2
+Bare Nuclei,30,1,2
+Bare Nuclei,33,5,7
+Bare Nuclei,36,1,2
+Bare Nuclei,37,1,6
+Bare Nuclei,38,1,3
+Bare Nuclei,39,10,8
+Bare Nuclei,40,7,6
+Bare Nuclei,41,1,5
+Bare Nuclei,42,3,4
+Bare Nuclei,43,10,7
+Bare Nuclei,44,1,3
+Bare Nuclei,46,1,2
+Bare Nuclei,47,9,7
+Bare Nuclei,49,1,2
+Bare Nuclei,50,8,6
+Bare Nuclei,51,3,6
+Bare Nuclei,54,8,7
+Bare Nuclei,56,5,6
+Bare Nuclei,58,1,5
+Bare Nuclei,59,10,5
+Bare Nuclei,60,2,5
+Bare Nuclei,61,3,6
+Bare Nuclei,62,2,3
+Bare Nuclei,64,2,4
+Bare Nuclei,66,nan,5
+Bare Nuclei,68,10,7
+Bare Nuclei,69,9,7
+Bare Nuclei,71,1,2
+Bare Nuclei,72,2,7
+Bare Nuclei,73,1,3
+Bare Nuclei,74,nan,6
+Bare Nuclei,75,4,5
+Bare Nuclei,76,2,3
+Bare Nuclei,78,1,2
+Bare Nuclei,79,3,2
+Bare Nuclei,82,1,2
+Bare Nuclei,84,2,1
+Bare Nuclei,85,nan,8
+Bare Nuclei,86,4,8
+Bare Nuclei,87,8,6
+Bare Nuclei,88,nan,7
+Bare Nuclei,89,1,2
+Bare Nuclei,94,1,2
+Bare Nuclei,97,1,2
+Bare Nuclei,98,1,2
+Bare Nuclei,99,6,7
+Bare Nuclei,100,10,9
+Bare Nuclei,101,5,6
+Bare Nuclei,103,1,3
+Bare Nuclei,104,3,6
+Bare Nuclei,105,1,7
+Bare Nuclei,106,3,5
+Bare Nuclei,107,10,8
+Bare Nuclei,108,10,8
+Bare Nuclei,110,9,7
+Bare Nuclei,112,9,6
+Bare Nuclei,113,10,9
+Bare Nuclei,116,5,2
+Bare Nuclei,117,2,3
+Bare Nuclei,118,nan,7
+Bare Nuclei,119,3,1
+Bare Nuclei,120,2,1
+Bare Nuclei,122,2,1
+Bare Nuclei,123,nan,8
+Bare Nuclei,124,10,8
+Bare Nuclei,125,7,8
+Bare Nuclei,127,10,8
+Bare Nuclei,129,10,8
+Bare Nuclei,131,1,2
+Bare Nuclei,132,1,2
+Bare Nuclei,133,10,8
+Bare Nuclei,137,1,2
+Bare Nuclei,140,nan,2
+Bare Nuclei,142,1,2
+Bare Nuclei,143,55,8
+Bare Nuclei,144,5,1
+Bare Nuclei,146,nan,3
+Bare Nuclei,147,88,6
+Bare Nuclei,148,10,2
+Bare Nuclei,149,1,4
+Bare Nuclei,150,10,7
+Bare Nuclei,152,10,9
+Bare Nuclei,153,5,6
+Bare Nuclei,156,10,8
+Bare Nuclei,159,nan,2
+Bare Nuclei,160,1,6
+Bare Nuclei,161,10,8
+Bare Nuclei,164,3,2
+Bare Nuclei,165,nan,2
+Bare Nuclei,166,2,1
+Bare Nuclei,167,10,8
+Bare Nuclei,168,1,6
+Bare Nuclei,172,1,2
+Bare Nuclei,174,10,9
+Bare Nuclei,175,10,7
+Bare Nuclei,176,10,8
+Bare Nuclei,178,1,7
+Bare Nuclei,179,1,5
+Bare Nuclei,180,1,4
+Bare Nuclei,183,1,2
+Bare Nuclei,184,10,8
+Bare Nuclei,185,10,7
+Bare Nuclei,187,8,7
+Bare Nuclei,188,10,8
+Bare Nuclei,190,1,2
+Bare Nuclei,191,8,9
+Bare Nuclei,192,10,8
+Bare Nuclei,193,1,2
+Bare Nuclei,197,7,6
+Bare Nuclei,198,1,2
+Bare Nuclei,201,10,8
+Bare Nuclei,202,10,7
+Bare Nuclei,207,5,6
+Bare Nuclei,210,1,2
+Bare Nuclei,211,10,9
+Bare Nuclei,214,10,9
+Bare Nuclei,216,5,7
+Bare Nuclei,218,1,2
+Bare Nuclei,219,4,8
+Bare Nuclei,220,1,4
+Bare Nuclei,221,1,3
+Bare Nuclei,222,10,7
+Bare Nuclei,224,8,7
+Bare Nuclei,225,10,9
+Bare Nuclei,226,1,2
+Bare Nuclei,227,10,8
+Bare Nuclei,228,5,7
+Bare Nuclei,230,10,8
+Bare Nuclei,232,8,6
+Bare Nuclei,233,1,4
+Bare Nuclei,234,10,8
+Bare Nuclei,235,1,2
+Bare Nuclei,236,nan,3
+Bare Nuclei,237,10,8
+Bare Nuclei,238,2,6
+Bare Nuclei,239,9,8
+Bare Nuclei,240,10,8
+Bare Nuclei,241,2,3
+Bare Nuclei,242,1,2
+Bare Nuclei,244,5,2
+Bare Nuclei,245,1,3
+Bare Nuclei,247,10,9
+Bare Nuclei,248,9,6
+Bare Nuclei,249,1,3
+Bare Nuclei,250,nan,2
+Bare Nuclei,252,10,9
+Bare Nuclei,253,10,5
+Bare Nuclei,254,10,7
+Bare Nuclei,255,8,7
+Bare Nuclei,256,10,6
+Bare Nuclei,260,8,4
+Bare Nuclei,261,10,7
+Bare Nuclei,262,1,8
+Bare Nuclei,263,10,8
+Bare Nuclei,264,10,7
+Bare Nuclei,265,3,6
+Bare Nuclei,266,1,2
+Bare Nuclei,267,10,5
+Bare Nuclei,268,10,6
+Bare Nuclei,269,4,7
+Bare Nuclei,270,1,3
+Bare Nuclei,271,10,7
+Bare Nuclei,272,1,2
+Bare Nuclei,273,10,6
+Bare Nuclei,274,4,5
+Bare Nuclei,276,nan,3
+Bare Nuclei,280,7,6
+Bare Nuclei,282,nan,3
+Bare Nuclei,283,1,4
+Bare Nuclei,284,10,7
+Bare Nuclei,285,10,9
+Bare Nuclei,286,3,9
+Bare Nuclei,287,10,8
+Bare Nuclei,289,11,7
+Bare Nuclei,290,10,8
+Bare Nuclei,291,1,2
+Bare Nuclei,293,nan,5
+Bare Nuclei,294,10,7
+Bare Nuclei,295,nan,2
+Bare Nuclei,296,10,8
+Bare Nuclei,297,5,4
+Bare Nuclei,298,nan,3
+Bare Nuclei,300,10,7
+Bare Nuclei,301,4,7
+Bare Nuclei,303,10,8
+Bare Nuclei,305,10,9
+Bare Nuclei,306,10,8
+Bare Nuclei,309,3,7
+Bare Nuclei,310,55,4
+Bare Nuclei,313,1,5
+Bare Nuclei,316,nan,5
+Bare Nuclei,317,10,6
+Bare Nuclei,318,8,9
+Bare Nuclei,319,1,3
+Bare Nuclei,320,5,4
+Bare Nuclei,321,10,7
+Bare Nuclei,322,nan,2
+Bare Nuclei,324,10,8
+Bare Nuclei,327,10,6
+Bare Nuclei,328,1,3
+Bare Nuclei,329,4,5
+Bare Nuclei,330,10,7
+Bare Nuclei,331,8,6
+Bare Nuclei,332,11,5
+Bare Nuclei,333,1,2
+Bare Nuclei,334,10,7
+Bare Nuclei,335,10,6
+Bare Nuclei,337,10,8
+Bare Nuclei,340,10,8
+Bare Nuclei,341,10,6
+Bare Nuclei,345,10,8
+Bare Nuclei,347,11,4
+Bare Nuclei,349,1,4
+Bare Nuclei,350,8,6
+Bare Nuclei,351,1,3
+Bare Nuclei,353,3,5
+Bare Nuclei,354,10,8
+Bare Nuclei,357,3,4
+Bare Nuclei,359,4,7
+Bare Nuclei,360,7,6
+Bare Nuclei,361,10,9
+Bare Nuclei,362,10,8
+Bare Nuclei,363,3,2
+Bare Nuclei,364,3,4
+Bare Nuclei,367,1,8
+Bare Nuclei,368,10,9
+Bare Nuclei,371,1,2
+Bare Nuclei,373,1,2
+Bare Nuclei,374,1,2
+Bare Nuclei,375,1,4
+Bare Nuclei,378,nan,2
+Bare Nuclei,379,1,2
+Bare Nuclei,380,1,4
+Bare Nuclei,381,nan,2
+Bare Nuclei,382,10,8
+Bare Nuclei,386,1,2
+Bare Nuclei,387,10,7
+Bare Nuclei,388,nan,3
+Bare Nuclei,392,10,9
+Bare Nuclei,395,1,3
+Bare Nuclei,400,1,2
+Bare Nuclei,401,9,8
+Bare Nuclei,402,nan,2
+Bare Nuclei,403,1,2
+Bare Nuclei,404,4,2
+Bare Nuclei,405,1,3
+Bare Nuclei,407,1,2
+Bare Nuclei,410,1,2
+Bare Nuclei,412,nan,2
+Bare Nuclei,413,4,7
+Bare Nuclei,414,1,3
+Bare Nuclei,415,10,7
+Bare Nuclei,417,10,7
+Bare Nuclei,418,1,2
+Bare Nuclei,420,1,2
+Bare Nuclei,422,10,9
+Bare Nuclei,423,1,2
+Bare Nuclei,424,1,2
+Bare Nuclei,426,1,9
+Bare Nuclei,427,1,2
+Bare Nuclei,428,2,6
+Bare Nuclei,432,1,3
+Bare Nuclei,433,1,2
+Bare Nuclei,434,1,2
+Bare Nuclei,435,8,5
+Bare Nuclei,436,10,7
+Bare Nuclei,437,1,6
+Bare Nuclei,439,1,2
+Bare Nuclei,441,10,8
+Bare Nuclei,442,4,2
+Bare Nuclei,443,3,2
+Bare Nuclei,444,2,1
+Bare Nuclei,445,1,2
+Bare Nuclei,448,1,2
+Bare Nuclei,450,10,8
+Bare Nuclei,451,1,2
+Bare Nuclei,452,1,2
+Bare Nuclei,453,1,2
+Bare Nuclei,454,10,8
+Bare Nuclei,456,6,5
+Bare Nuclei,457,10,8
+Bare Nuclei,458,3,6
+Bare Nuclei,460,1,2
+Bare Nuclei,461,1,2
+Bare Nuclei,462,5,3
+Bare Nuclei,463,1,2
+Bare Nuclei,466,4,8
+Bare Nuclei,467,10,7
+Bare Nuclei,468,10,7
+Bare Nuclei,469,1,2
+Bare Nuclei,470,1,3
+Bare Nuclei,472,1,2
+Bare Nuclei,474,1,2
+Bare Nuclei,476,nan,2
+Bare Nuclei,477,1,2
+Bare Nuclei,479,1,2
+Bare Nuclei,480,10,8
+Bare Nuclei,481,1,2
+Bare Nuclei,482,1,2
+Bare Nuclei,483,55,10
+Bare Nuclei,484,10,8
+Bare Nuclei,485,1,2
+Bare Nuclei,486,3,2
+Bare Nuclei,488,10,8
+Bare Nuclei,489,3,5
+Bare Nuclei,492,10,7
+Bare Nuclei,494,10,9
+Bare Nuclei,495,5,4
+Bare Nuclei,498,1,2
+Bare Nuclei,499,1,2
+Bare Nuclei,500,1,2
+Bare Nuclei,501,1,2
+Bare Nuclei,502,1,2
+Bare Nuclei,503,1,2
+Bare Nuclei,504,1,2
+Bare Nuclei,507,5,7
+Bare Nuclei,508,nan,2
+Bare Nuclei,510,1,2
+Bare Nuclei,513,1,2
+Bare Nuclei,515,10,8
+Bare Nuclei,516,1,7
+Bare Nuclei,519,nan,2
+Bare Nuclei,520,10,7
+Bare Nuclei,522,1,3
+Bare Nuclei,524,10,8
+Bare Nuclei,525,nan,2
+Bare Nuclei,529,1,2
+Bare Nuclei,530,1,2
+Bare Nuclei,531,10,7
+Bare Nuclei,535,1,2
+Bare Nuclei,537,1,2
+Bare Nuclei,538,1,2
+Bare Nuclei,539,nan,3
+Bare Nuclei,540,1,2
+Bare Nuclei,544,1,3
+Bare Nuclei,547,10,9
+Bare Nuclei,550,2,6
+Bare Nuclei,553,1,2
+Bare Nuclei,554,5,3
+Bare Nuclei,557,1,2
+Bare Nuclei,558,1,2
+Bare Nuclei,560,1,2
+Bare Nuclei,561,1,2
+Bare Nuclei,565,11,4
+Bare Nuclei,566,10,9
+Bare Nuclei,568,3,2
+Bare Nuclei,569,1,4
+Bare Nuclei,570,5,9
+Bare Nuclei,571,10,6
+Bare Nuclei,572,10,7
+Bare Nuclei,573,1,3
+Bare Nuclei,575,2,7
+Bare Nuclei,577,1,2
+Bare Nuclei,579,1,2
+Bare Nuclei,580,1,3
+Bare Nuclei,581,1,2
+Bare Nuclei,582,10,7
+Bare Nuclei,583,nan,7
+Bare Nuclei,585,1,2
+Bare Nuclei,587,10,9
+Bare Nuclei,588,1,3
+Bare Nuclei,589,3,6
+Bare Nuclei,591,1,7
+Bare Nuclei,592,10,7
+Bare Nuclei,593,10,7
+Bare Nuclei,594,1,2
+Bare Nuclei,595,1,6
+Bare Nuclei,596,1,2
+Bare Nuclei,597,1,2
+Bare Nuclei,598,1,3
+Bare Nuclei,600,1,2
+Bare Nuclei,602,1,2
+Bare Nuclei,604,1,7
+Bare Nuclei,605,10,8
+Bare Nuclei,607,1,2
+Bare Nuclei,611,10,9
+Bare Nuclei,612,2,7
+Bare Nuclei,613,10,8
+Bare Nuclei,615,nan,2
+Bare Nuclei,616,1,2
+Bare Nuclei,618,nan,1
+Bare Nuclei,619,1,2
+Bare Nuclei,620,1,2
+Bare Nuclei,621,1,2
+Bare Nuclei,622,2,3
+Bare Nuclei,623,11,4
+Bare Nuclei,625,1,2
+Bare Nuclei,626,1,2
+Bare Nuclei,628,5,3
+Bare Nuclei,629,1,3
+Bare Nuclei,631,1,2
+Bare Nuclei,632,1,2
+Bare Nuclei,634,3,6
+Bare Nuclei,636,1,2
+Bare Nuclei,637,1,7
+Bare Nuclei,639,1,2
+Bare Nuclei,641,1,2
+Bare Nuclei,643,1,2
+Bare Nuclei,646,1,3
+Bare Nuclei,648,1,2
+Bare Nuclei,649,1,7
+Bare Nuclei,651,4,2
+Bare Nuclei,653,1,3
+Bare Nuclei,656,1,3
+Bare Nuclei,657,1,2
+Bare Nuclei,658,1,4
+Bare Nuclei,659,10,9
+Bare Nuclei,661,1,2
+Bare Nuclei,665,1,3
+Bare Nuclei,667,1,2
+Bare Nuclei,668,nan,3
+Bare Nuclei,669,1,5
+Bare Nuclei,670,5,7
+Bare Nuclei,672,1,2
+Bare Nuclei,674,1,2
+Bare Nuclei,676,1,4
+Bare Nuclei,682,10,9
+Bare Nuclei,683,1,2
+Bare Nuclei,686,1,2
+Bare Nuclei,688,1,2
+Bare Nuclei,690,1,2
+Bare Nuclei,691,1,2
+Bare Nuclei,692,5,7
+Bare Nuclei,697,3,7
+Bare Nuclei,698,4,5
+Bare Nuclei,699,5,6
+Bland Chromatin,2,33,5
+Bland Chromatin,3,8,4
+Bland Chromatin,4,3,4
+Bland Chromatin,6,9,6
+Bland Chromatin,9,nan,3
+Bland Chromatin,13,3,4
+Bland Chromatin,15,5,6
+Bland Chromatin,19,4,5
+Bland Chromatin,22,7,6
+Bland Chromatin,24,7,4
+Bland Chromatin,26,3,4
+Bland Chromatin,27,2,3
+Bland Chromatin,29,nan,3
+Bland Chromatin,30,1,3
+Bland Chromatin,33,7,5
+Bland Chromatin,36,2,3
+Bland Chromatin,37,nan,5
+Bland Chromatin,38,7,4
+Bland Chromatin,40,7,5
+Bland Chromatin,41,7,5
+Bland Chromatin,42,2,4
+Bland Chromatin,43,7,5
+Bland Chromatin,44,3,4
+Bland Chromatin,45,8,6
+Bland Chromatin,46,2,3
+Bland Chromatin,47,4,5
+Bland Chromatin,50,3,5
+Bland Chromatin,51,9,4
+Bland Chromatin,52,3,4
+Bland Chromatin,53,4,5
+Bland Chromatin,54,7,6
+Bland Chromatin,55,7,5
+Bland Chromatin,56,3,4
+Bland Chromatin,57,3,6
+Bland Chromatin,58,5,4
+Bland Chromatin,59,5,4
+Bland Chromatin,60,5,4
+Bland Chromatin,61,4,5
+Bland Chromatin,62,2,3
+Bland Chromatin,63,3,5
+Bland Chromatin,69,8,5
+Bland Chromatin,73,7,4
+Bland Chromatin,75,3,4
+Bland Chromatin,76,4,3
+Bland Chromatin,80,4,3
+Bland Chromatin,81,7,3
+Bland Chromatin,84,7,3
+Bland Chromatin,85,7,6
+Bland Chromatin,86,4,6
+Bland Chromatin,88,6,5
+Bland Chromatin,92,1,2
+Bland Chromatin,97,1,2
+Bland Chromatin,99,2,5
+Bland Chromatin,101,3,4
+Bland Chromatin,102,2,4
+Bland Chromatin,103,3,2
+Bland Chromatin,104,7,4
+Bland Chromatin,105,8,7
+Bland Chromatin,106,3,4
+Bland Chromatin,107,4,6
+Bland Chromatin,108,5,6
+Bland Chromatin,110,7,5
+Bland Chromatin,111,5,4
+Bland Chromatin,112,3,4
+Bland Chromatin,113,7,5
+Bland Chromatin,114,8,5
+Bland Chromatin,116,1,2
+Bland Chromatin,118,7,6
+Bland Chromatin,119,1,2
+Bland Chromatin,120,5,3
+Bland Chromatin,123,55,6
+Bland Chromatin,125,8,6
+Bland Chromatin,127,7,5
+Bland Chromatin,129,1,4
+Bland Chromatin,132,3,2
+Bland Chromatin,133,3,6
+Bland Chromatin,135,1,2
+Bland Chromatin,137,2,3
+Bland Chromatin,138,1,2
+Bland Chromatin,141,nan,3
+Bland Chromatin,142,1,2
+Bland Chromatin,143,4,5
+Bland Chromatin,144,1,3
+Bland Chromatin,146,2,3
+Bland Chromatin,148,2,3
+Bland Chromatin,151,33,4
+Bland Chromatin,152,1,5
+Bland Chromatin,153,8,5
+Bland Chromatin,154,1,3
+Bland Chromatin,155,1,2
+Bland Chromatin,156,3,5
+Bland Chromatin,159,11,4
+Bland Chromatin,161,5,6
+Bland Chromatin,164,1,2
+Bland Chromatin,167,3,5
+Bland Chromatin,168,3,5
+Bland Chromatin,170,1,2
+Bland Chromatin,171,1,2
+Bland Chromatin,174,10,7
+Bland Chromatin,175,6,4
+Bland Chromatin,176,5,6
+Bland Chromatin,178,5,6
+Bland Chromatin,179,33,5
+Bland Chromatin,180,3,4
+Bland Chromatin,182,1,3
+Bland Chromatin,184,7,6
+Bland Chromatin,187,7,6
+Bland Chromatin,189,9,6
+Bland Chromatin,197,77,6
+Bland Chromatin,199,1,2
+Bland Chromatin,201,7,5
+Bland Chromatin,202,8,5
+Bland Chromatin,206,nan,6
+Bland Chromatin,207,3,5
+Bland Chromatin,212,7,6
+Bland Chromatin,214,7,8
+Bland Chromatin,215,10,6
+Bland Chromatin,219,8,6
+Bland Chromatin,220,33,4
+Bland Chromatin,222,9,6
+Bland Chromatin,223,2,3
+Bland Chromatin,224,7,5
+Bland Chromatin,225,7,5
+Bland Chromatin,227,8,6
+Bland Chromatin,230,9,6
+Bland Chromatin,232,8,6
+Bland Chromatin,234,4,5
+Bland Chromatin,237,4,6
+Bland Chromatin,238,4,6
+Bland Chromatin,239,3,6
+Bland Chromatin,240,5,6
+Bland Chromatin,241,2,3
+Bland Chromatin,244,5,3
+Bland Chromatin,251,1,2
+Bland Chromatin,253,3,4
+Bland Chromatin,254,7,5
+Bland Chromatin,255,3,6
+Bland Chromatin,256,3,5
+Bland Chromatin,257,1,2
+Bland Chromatin,260,3,4
+Bland Chromatin,262,10,6
+Bland Chromatin,263,77,6
+Bland Chromatin,267,4,5
+Bland Chromatin,268,7,4
+Bland Chromatin,269,8,6
+Bland Chromatin,271,3,5
+Bland Chromatin,273,7,4
+Bland Chromatin,274,3,4
+Bland Chromatin,276,2,3
+Bland Chromatin,277,1,2
+Bland Chromatin,280,3,5
+Bland Chromatin,285,3,5
+Bland Chromatin,286,10,7
+Bland Chromatin,287,4,6
+Bland Chromatin,290,4,5
+Bland Chromatin,291,1,2
+Bland Chromatin,294,2,4
+Bland Chromatin,296,7,5
+Bland Chromatin,298,2,3
+Bland Chromatin,300,7,5
+Bland Chromatin,301,7,6
+Bland Chromatin,302,33,4
+Bland Chromatin,305,3,4
+Bland Chromatin,306,nan,6
+Bland Chromatin,309,8,6
+Bland Chromatin,310,5,4
+Bland Chromatin,312,10,4
+Bland Chromatin,314,1,2
+Bland Chromatin,316,4,5
+Bland Chromatin,317,4,5
+Bland Chromatin,318,8,6
+Bland Chromatin,319,3,4
+Bland Chromatin,320,7,5
+Bland Chromatin,321,7,5
+Bland Chromatin,324,4,5
+Bland Chromatin,327,nan,4
+Bland Chromatin,328,2,3
+Bland Chromatin,329,3,5
+Bland Chromatin,330,7,4
+Bland Chromatin,331,6,4
+Bland Chromatin,335,3,4
+Bland Chromatin,336,11,4
+Bland Chromatin,337,3,5
+Bland Chromatin,340,4,5
+Bland Chromatin,341,nan,4
+Bland Chromatin,343,1,2
+Bland Chromatin,344,1,2
+Bland Chromatin,345,9,6
+Bland Chromatin,346,1,2
+Bland Chromatin,347,1,3
+Bland Chromatin,348,nan,3
+Bland Chromatin,349,3,5
+Bland Chromatin,350,7,5
+Bland Chromatin,351,1,3
+Bland Chromatin,354,4,6
+Bland Chromatin,357,3,4
+Bland Chromatin,359,4,6
+Bland Chromatin,360,3,5
+Bland Chromatin,361,8,6
+Bland Chromatin,363,2,3
+Bland Chromatin,364,22,4
+Bland Chromatin,368,nan,6
+Bland Chromatin,369,1,2
+Bland Chromatin,370,2,3
+Bland Chromatin,372,1,2
+Bland Chromatin,375,22,4
+Bland Chromatin,376,1,2
+Bland Chromatin,379,2,3
+Bland Chromatin,380,3,4
+Bland Chromatin,381,1,2
+Bland Chromatin,382,7,5
+Bland Chromatin,384,1,2
+Bland Chromatin,385,nan,3
+Bland Chromatin,386,1,2
+Bland Chromatin,387,7,5
+Bland Chromatin,394,1,2
+Bland Chromatin,395,2,3
+Bland Chromatin,398,1,2
+Bland Chromatin,399,nan,3
+Bland Chromatin,400,1,2
+Bland Chromatin,401,9,6
+Bland Chromatin,402,1,2
+Bland Chromatin,403,2,3
+Bland Chromatin,404,1,3
+Bland Chromatin,405,nan,3
+Bland Chromatin,407,2,3
+Bland Chromatin,412,2,3
+Bland Chromatin,413,8,7
+Bland Chromatin,415,6,5
+Bland Chromatin,417,77,6
+Bland Chromatin,420,1,2
+Bland Chromatin,425,1,2
+Bland Chromatin,426,10,7
+Bland Chromatin,427,1,3
+Bland Chromatin,428,5,6
+Bland Chromatin,432,nan,3
+Bland Chromatin,433,2,3
+Bland Chromatin,434,1,2
+Bland Chromatin,436,1,5
+Bland Chromatin,437,2,5
+Bland Chromatin,438,1,2
+Bland Chromatin,439,1,3
+Bland Chromatin,440,1,2
+Bland Chromatin,441,10,6
+Bland Chromatin,442,1,3
+Bland Chromatin,443,1,2
+Bland Chromatin,444,1,2
+Bland Chromatin,446,1,2
+Bland Chromatin,447,11,4
+Bland Chromatin,448,1,2
+Bland Chromatin,450,8,6
+Bland Chromatin,452,1,3
+Bland Chromatin,453,1,2
+Bland Chromatin,454,nan,5
+Bland Chromatin,455,1,2
+Bland Chromatin,456,1,3
+Bland Chromatin,457,8,6
+Bland Chromatin,458,3,5
+Bland Chromatin,459,1,2
+Bland Chromatin,460,1,2
+Bland Chromatin,461,1,2
+Bland Chromatin,462,1,2
+Bland Chromatin,463,1,2
+Bland Chromatin,464,1,2
+Bland Chromatin,465,1,2
+Bland Chromatin,466,77,6
+Bland Chromatin,467,9,6
+Bland Chromatin,468,7,6
+Bland Chromatin,469,1,3
+Bland Chromatin,470,2,3
+Bland Chromatin,471,2,3
+Bland Chromatin,472,1,2
+Bland Chromatin,473,1,2
+Bland Chromatin,475,1,2
+Bland Chromatin,476,1,2
+Bland Chromatin,477,8,4
+Bland Chromatin,478,1,2
+Bland Chromatin,479,1,2
+Bland Chromatin,480,7,6
+Bland Chromatin,481,1,2
+Bland Chromatin,482,1,2
+Bland Chromatin,483,10,7
+Bland Chromatin,484,9,6
+Bland Chromatin,485,1,2
+Bland Chromatin,486,1,2
+Bland Chromatin,488,8,7
+Bland Chromatin,489,3,4
+Bland Chromatin,491,nan,3
+Bland Chromatin,492,7,5
+Bland Chromatin,495,2,3
+Bland Chromatin,497,1,2
+Bland Chromatin,498,1,2
+Bland Chromatin,505,1,2
+Bland Chromatin,506,1,2
+Bland Chromatin,507,4,6
+Bland Chromatin,508,1,2
+Bland Chromatin,509,1,2
+Bland Chromatin,510,11,4
+Bland Chromatin,511,1,2
+Bland Chromatin,513,1,2
+Bland Chromatin,514,1,2
+Bland Chromatin,515,8,6
+Bland Chromatin,516,9,6
+Bland Chromatin,519,1,2
+Bland Chromatin,520,9,5
+Bland Chromatin,521,1,2
+Bland Chromatin,522,1,3
+Bland Chromatin,523,nan,4
+Bland Chromatin,525,22,4
+Bland Chromatin,526,1,2
+Bland Chromatin,527,1,2
+Bland Chromatin,528,1,2
+Bland Chromatin,529,1,2
+Bland Chromatin,531,6,5
+Bland Chromatin,535,2,3
+Bland Chromatin,539,2,3
+Bland Chromatin,542,1,2
+Bland Chromatin,543,1,2
+Bland Chromatin,544,2,3
+Bland Chromatin,545,2,3
+Bland Chromatin,549,1,2
+Bland Chromatin,550,7,6
+Bland Chromatin,553,4,3
+Bland Chromatin,554,2,3
+Bland Chromatin,555,1,2
+Bland Chromatin,558,1,2
+Bland Chromatin,562,nan,3
+Bland Chromatin,564,nan,3
+Bland Chromatin,566,10,6
+Bland Chromatin,569,nan,4
+Bland Chromatin,570,10,6
+Bland Chromatin,571,8,5
+Bland Chromatin,572,9,5
+Bland Chromatin,574,8,4
+Bland Chromatin,575,7,5
+Bland Chromatin,576,nan,3
+Bland Chromatin,582,7,6
+Bland Chromatin,584,1,2
+Bland Chromatin,585,1,2
+Bland Chromatin,586,1,2
+Bland Chromatin,587,10,7
+Bland Chromatin,589,4,5
+Bland Chromatin,590,1,2
+Bland Chromatin,591,10,6
+Bland Chromatin,592,1,4
+Bland Chromatin,594,1,2
+Bland Chromatin,595,7,4
+Bland Chromatin,596,2,3
+Bland Chromatin,597,2,3
+Bland Chromatin,600,1,2
+Bland Chromatin,602,22,4
+Bland Chromatin,604,8,6
+Bland Chromatin,605,8,5
+Bland Chromatin,606,7,6
+Bland Chromatin,607,1,2
+Bland Chromatin,608,1,2
+Bland Chromatin,609,10,6
+Bland Chromatin,610,1,2
+Bland Chromatin,611,7,5
+Bland Chromatin,612,8,6
+Bland Chromatin,613,1,6
+Bland Chromatin,618,1,3
+Bland Chromatin,622,6,4
+Bland Chromatin,623,2,3
+Bland Chromatin,624,1,2
+Bland Chromatin,625,2,3
+Bland Chromatin,626,1,2
+Bland Chromatin,627,7,5
+Bland Chromatin,628,11,4
+Bland Chromatin,629,1,3
+Bland Chromatin,630,1,2
+Bland Chromatin,631,1,2
+Bland Chromatin,633,1,2
+Bland Chromatin,635,1,2
+Bland Chromatin,636,1,2
+Bland Chromatin,637,10,7
+Bland Chromatin,638,2,3
+Bland Chromatin,640,1,2
+Bland Chromatin,641,1,2
+Bland Chromatin,644,1,2
+Bland Chromatin,645,1,2
+Bland Chromatin,646,2,3
+Bland Chromatin,647,1,2
+Bland Chromatin,648,1,2
+Bland Chromatin,649,10,6
+Bland Chromatin,651,1,2
+Bland Chromatin,653,2,3
+Bland Chromatin,656,2,3
+Bland Chromatin,659,7,6
+Bland Chromatin,660,1,2
+Bland Chromatin,665,2,3
+Bland Chromatin,666,1,2
+Bland Chromatin,667,1,2
+Bland Chromatin,669,7,5
+Bland Chromatin,670,7,5
+Bland Chromatin,671,7,6
+Bland Chromatin,674,1,2
+Bland Chromatin,676,1,3
+Bland Chromatin,678,1,2
+Bland Chromatin,679,1,2
+Bland Chromatin,680,1,2
+Bland Chromatin,681,10,7
+Bland Chromatin,682,5,6
+Bland Chromatin,684,1,2
+Bland Chromatin,685,1,2
+Bland Chromatin,686,1,2
+Bland Chromatin,687,1,2
+Bland Chromatin,688,2,3
+Bland Chromatin,689,1,2
+Bland Chromatin,690,1,2
+Bland Chromatin,691,1,2
+Bland Chromatin,692,44,6
+Bland Chromatin,693,1,2
+Bland Chromatin,695,1,2
+Bland Chromatin,696,1,2
+Bland Chromatin,697,8,6
+Bland Chromatin,698,10,5
+Bland Chromatin,699,10,6
+Normal Nucleoli,1,1,2
+Normal Nucleoli,2,2,4
+Normal Nucleoli,3,1,2
+Normal Nucleoli,4,7,4
+Normal Nucleoli,5,nan,2
+Normal Nucleoli,6,2,6
+Normal Nucleoli,8,1,2
+Normal Nucleoli,9,1,2
+Normal Nucleoli,10,1,2
+Normal Nucleoli,14,1,2
+Normal Nucleoli,16,3,5
+Normal Nucleoli,17,1,2
+Normal Nucleoli,19,1,5
+Normal Nucleoli,20,1,2
+Normal Nucleoli,21,4,5
+Normal Nucleoli,22,10,7
+Normal Nucleoli,23,1,2
+Normal Nucleoli,24,3,4
+Normal Nucleoli,26,6,5
+Normal Nucleoli,27,11,4
+Normal Nucleoli,28,1,2
+Normal Nucleoli,29,1,2
+Normal Nucleoli,30,1,2
+Normal Nucleoli,33,4,5
+Normal Nucleoli,35,1,2
+Normal Nucleoli,36,1,2
+Normal Nucleoli,37,9,6
+Normal Nucleoli,38,1,3
+Normal Nucleoli,39,6,5
+Normal Nucleoli,41,8,6
+Normal Nucleoli,42,5,4
+Normal Nucleoli,43,3,6
+Normal Nucleoli,44,1,3
+Normal Nucleoli,45,10,7
+Normal Nucleoli,46,1,2
+Normal Nucleoli,47,8,7
+Normal Nucleoli,49,1,2
+Normal Nucleoli,50,8,5
+Normal Nucleoli,51,1,4
+Normal Nucleoli,53,10,6
+Normal Nucleoli,54,nan,6
+Normal Nucleoli,55,1,4
+Normal Nucleoli,56,6,5
+Normal Nucleoli,57,9,6
+Normal Nucleoli,58,1,4
+Normal Nucleoli,59,1,3
+Normal Nucleoli,60,1,3
+Normal Nucleoli,61,10,6
+Normal Nucleoli,62,11,4
+Normal Nucleoli,63,33,7
+Normal Nucleoli,64,9,4
+Normal Nucleoli,66,33,6
+Normal Nucleoli,68,99,7
+Normal Nucleoli,69,9,7
+Normal Nucleoli,71,1,2
+Normal Nucleoli,74,8,7
+Normal Nucleoli,75,2,4
+Normal Nucleoli,76,2,3
+Normal Nucleoli,78,1,2
+Normal Nucleoli,79,1,2
+Normal Nucleoli,81,1,2
+Normal Nucleoli,82,1,2
+Normal Nucleoli,83,1,2
+Normal Nucleoli,84,1,2
+Normal Nucleoli,85,10,8
+Normal Nucleoli,86,10,7
+Normal Nucleoli,88,8,7
+Normal Nucleoli,89,1,2
+Normal Nucleoli,90,1,2
+Normal Nucleoli,92,1,2
+Normal Nucleoli,94,1,2
+Normal Nucleoli,97,1,2
+Normal Nucleoli,98,1,2
+Normal Nucleoli,99,9,6
+Normal Nucleoli,100,9,8
+Normal Nucleoli,101,10,5
+Normal Nucleoli,102,nan,3
+Normal Nucleoli,104,1,5
+Normal Nucleoli,105,8,7
+Normal Nucleoli,106,2,4
+Normal Nucleoli,107,1,5
+Normal Nucleoli,108,7,6
+Normal Nucleoli,110,8,6
+Normal Nucleoli,112,1,3
+Normal Nucleoli,113,3,4
+Normal Nucleoli,114,1,6
+Normal Nucleoli,115,1,3
+Normal Nucleoli,117,2,3
+Normal Nucleoli,119,1,2
+Normal Nucleoli,120,1,2
+Normal Nucleoli,122,1,2
+Normal Nucleoli,123,3,6
+Normal Nucleoli,124,3,4
+Normal Nucleoli,125,10,8
+Normal Nucleoli,129,6,5
+Normal Nucleoli,130,1,4
+Normal Nucleoli,131,1,2
+Normal Nucleoli,132,1,2
+Normal Nucleoli,133,6,7
+Normal Nucleoli,135,1,2
+Normal Nucleoli,136,3,2
+Normal Nucleoli,137,1,2
+Normal Nucleoli,138,1,2
+Normal Nucleoli,139,nan,2
+Normal Nucleoli,140,1,2
+Normal Nucleoli,143,3,5
+Normal Nucleoli,144,1,2
+Normal Nucleoli,146,1,2
+Normal Nucleoli,147,nan,3
+Normal Nucleoli,148,1,2
+Normal Nucleoli,149,8,5
+Normal Nucleoli,150,8,7
+Normal Nucleoli,151,1,2
+Normal Nucleoli,152,nan,4
+Normal Nucleoli,153,1,5
+Normal Nucleoli,154,11,4
+Normal Nucleoli,155,1,2
+Normal Nucleoli,156,1,5
+Normal Nucleoli,159,1,3
+Normal Nucleoli,160,10,7
+Normal Nucleoli,161,7,6
+Normal Nucleoli,165,1,2
+Normal Nucleoli,167,nan,5
+Normal Nucleoli,168,1,6
+Normal Nucleoli,171,1,2
+Normal Nucleoli,174,10,9
+Normal Nucleoli,175,1,4
+Normal Nucleoli,176,7,6
+Normal Nucleoli,178,10,7
+Normal Nucleoli,179,nan,3
+Normal Nucleoli,180,1,4
+Normal Nucleoli,182,1,3
+Normal Nucleoli,183,1,2
+Normal Nucleoli,184,8,7
+Normal Nucleoli,185,1,5
+Normal Nucleoli,187,10,7
+Normal Nucleoli,188,7,8
+Normal Nucleoli,189,10,8
+Normal Nucleoli,190,3,2
+Normal Nucleoli,191,10,8
+Normal Nucleoli,192,10,7
+Normal Nucleoli,193,1,2
+Normal Nucleoli,197,8,6
+Normal Nucleoli,198,1,2
+Normal Nucleoli,200,1,2
+Normal Nucleoli,201,nan,5
+Normal Nucleoli,202,1,6
+Normal Nucleoli,206,10,8
+Normal Nucleoli,211,11,9
+Normal Nucleoli,212,7,6
+Normal Nucleoli,214,10,9
+Normal Nucleoli,216,1,5
+Normal Nucleoli,218,3,2
+Normal Nucleoli,219,10,8
+Normal Nucleoli,220,1,3
+Normal Nucleoli,221,1,2
+Normal Nucleoli,222,10,7
+Normal Nucleoli,224,4,5
+Normal Nucleoli,225,9,7
+Normal Nucleoli,226,1,2
+Normal Nucleoli,227,9,7
+Normal Nucleoli,228,7,6
+Normal Nucleoli,230,10,8
+Normal Nucleoli,232,9,7
+Normal Nucleoli,233,3,4
+Normal Nucleoli,234,1,4
+Normal Nucleoli,235,nan,2
+Normal Nucleoli,236,1,2
+Normal Nucleoli,238,10,7
+Normal Nucleoli,239,10,7
+Normal Nucleoli,240,33,6
+Normal Nucleoli,241,3,2
+Normal Nucleoli,245,1,2
+Normal Nucleoli,246,1,2
+Normal Nucleoli,247,8,7
+Normal Nucleoli,248,3,4
+Normal Nucleoli,249,6,3
+Normal Nucleoli,250,1,2
+Normal Nucleoli,251,1,2
+Normal Nucleoli,252,1,4
+Normal Nucleoli,254,3,6
+Normal Nucleoli,255,3,5
+Normal Nucleoli,256,nan,5
+Normal Nucleoli,257,1,2
+Normal Nucleoli,258,1,2
+Normal Nucleoli,261,1,4
+Normal Nucleoli,262,6,8
+Normal Nucleoli,263,8,7
+Normal Nucleoli,265,3,6
+Normal Nucleoli,267,3,5
+Normal Nucleoli,268,1,4
+Normal Nucleoli,269,7,6
+Normal Nucleoli,270,1,3
+Normal Nucleoli,271,9,5
+Normal Nucleoli,272,1,2
+Normal Nucleoli,273,1,4
+Normal Nucleoli,274,3,4
+Normal Nucleoli,276,1,2
+Normal Nucleoli,277,1,2
+Normal Nucleoli,280,3,5
+Normal Nucleoli,282,1,3
+Normal Nucleoli,284,3,4
+Normal Nucleoli,285,8,6
+Normal Nucleoli,287,10,9
+Normal Nucleoli,288,1,2
+Normal Nucleoli,289,10,6
+Normal Nucleoli,290,10,8
+Normal Nucleoli,291,1,2
+Normal Nucleoli,293,10,6
+Normal Nucleoli,296,4,5
+Normal Nucleoli,297,7,4
+Normal Nucleoli,298,nan,2
+Normal Nucleoli,299,1,2
+Normal Nucleoli,300,7,5
+Normal Nucleoli,301,10,7
+Normal Nucleoli,302,1,2
+Normal Nucleoli,303,10,8
+Normal Nucleoli,305,3,4
+Normal Nucleoli,306,10,7
+Normal Nucleoli,307,nan,2
+Normal Nucleoli,309,8,7
+Normal Nucleoli,312,1,2
+Normal Nucleoli,314,nan,2
+Normal Nucleoli,316,9,6
+Normal Nucleoli,317,3,5
+Normal Nucleoli,318,9,8
+Normal Nucleoli,319,11,4
+Normal Nucleoli,320,3,4
+Normal Nucleoli,321,4,5
+Normal Nucleoli,322,1,2
+Normal Nucleoli,323,nan,2
+Normal Nucleoli,324,1,3
+Normal Nucleoli,326,3,2
+Normal Nucleoli,328,1,2
+Normal Nucleoli,329,10,7
+Normal Nucleoli,330,1,4
+Normal Nucleoli,331,1,4
+Normal Nucleoli,334,3,4
+Normal Nucleoli,336,1,2
+Normal Nucleoli,337,4,5
+Normal Nucleoli,340,3,4
+Normal Nucleoli,341,1,3
+Normal Nucleoli,344,1,2
+Normal Nucleoli,345,5,6
+Normal Nucleoli,346,1,2
+Normal Nucleoli,347,3,2
+Normal Nucleoli,348,3,2
+Normal Nucleoli,349,3,4
+Normal Nucleoli,351,11,4
+Normal Nucleoli,352,1,2
+Normal Nucleoli,353,6,4
+Normal Nucleoli,354,9,8
+Normal Nucleoli,358,3,7
+Normal Nucleoli,359,10,7
+Normal Nucleoli,361,10,9
+Normal Nucleoli,362,1,5
+Normal Nucleoli,363,1,3
+Normal Nucleoli,364,1,3
+Normal Nucleoli,366,nan,2
+Normal Nucleoli,367,10,8
+Normal Nucleoli,368,9,8
+Normal Nucleoli,369,1,2
+Normal Nucleoli,371,1,2
+Normal Nucleoli,372,1,2
+Normal Nucleoli,373,1,3
+Normal Nucleoli,374,1,2
+Normal Nucleoli,375,1,3
+Normal Nucleoli,376,1,2
+Normal Nucleoli,379,2,3
+Normal Nucleoli,380,1,4
+Normal Nucleoli,382,8,7
+Normal Nucleoli,387,nan,4
+Normal Nucleoli,388,1,2
+Normal Nucleoli,392,99,8
+Normal Nucleoli,393,1,2
+Normal Nucleoli,394,1,0
+Normal Nucleoli,395,1,3
+Normal Nucleoli,396,1,2
+Normal Nucleoli,398,3,2
+Normal Nucleoli,400,1,2
+Normal Nucleoli,401,3,6
+Normal Nucleoli,403,1,2
+Normal Nucleoli,404,1,2
+Normal Nucleoli,405,2,3
+Normal Nucleoli,407,1,3
+Normal Nucleoli,409,1,2
+Normal Nucleoli,410,1,2
+Normal Nucleoli,412,1,2
+Normal Nucleoli,413,5,7
+Normal Nucleoli,414,1,3
+Normal Nucleoli,415,6,5
+Normal Nucleoli,416,5,4
+Normal Nucleoli,417,2,6
+Normal Nucleoli,418,1,2
+Normal Nucleoli,420,1,2
+Normal Nucleoli,421,1,2
+Normal Nucleoli,422,22,9
+Normal Nucleoli,423,3,2
+Normal Nucleoli,424,1,3
+Normal Nucleoli,425,1,2
+Normal Nucleoli,426,10,7
+Normal Nucleoli,427,1,2
+Normal Nucleoli,428,10,6
+Normal Nucleoli,433,1,3
+Normal Nucleoli,434,1,2
+Normal Nucleoli,435,2,3
+Normal Nucleoli,436,1,4
+Normal Nucleoli,437,8,6
+Normal Nucleoli,438,1,2
+Normal Nucleoli,439,1,2
+Normal Nucleoli,440,1,2
+Normal Nucleoli,441,nan,5
+Normal Nucleoli,442,1,3
+Normal Nucleoli,443,1,2
+Normal Nucleoli,445,1,2
+Normal Nucleoli,446,1,2
+Normal Nucleoli,447,1,2
+Normal Nucleoli,450,10,8
+Normal Nucleoli,451,1,2
+Normal Nucleoli,452,1,2
+Normal Nucleoli,453,1,2
+Normal Nucleoli,454,7,6
+Normal Nucleoli,455,1,2
+Normal Nucleoli,456,1,3
+Normal Nucleoli,458,10,7
+Normal Nucleoli,459,1,2
+Normal Nucleoli,460,1,2
+Normal Nucleoli,461,1,2
+Normal Nucleoli,463,1,2
+Normal Nucleoli,464,2,1
+Normal Nucleoli,465,1,2
+Normal Nucleoli,466,10,8
+Normal Nucleoli,467,7,6
+Normal Nucleoli,469,1,2
+Normal Nucleoli,470,11,4
+Normal Nucleoli,471,8,3
+Normal Nucleoli,472,1,2
+Normal Nucleoli,474,1,2
+Normal Nucleoli,475,1,2
+Normal Nucleoli,477,1,2
+Normal Nucleoli,478,1,2
+Normal Nucleoli,479,1,2
+Normal Nucleoli,482,1,2
+Normal Nucleoli,483,10,8
+Normal Nucleoli,484,10,8
+Normal Nucleoli,485,nan,2
+Normal Nucleoli,488,1,6
+Normal Nucleoli,490,1,3
+Normal Nucleoli,492,nan,5
+Normal Nucleoli,494,5,6
+Normal Nucleoli,495,1,2
+Normal Nucleoli,498,1,2
+Normal Nucleoli,499,1,2
+Normal Nucleoli,500,1,2
+Normal Nucleoli,501,1,2
+Normal Nucleoli,502,1,2
+Normal Nucleoli,503,1,2
+Normal Nucleoli,506,1,2
+Normal Nucleoli,507,8,7
+Normal Nucleoli,508,1,2
+Normal Nucleoli,509,1,2
+Normal Nucleoli,510,1,2
+Normal Nucleoli,512,1,2
+Normal Nucleoli,515,10,7
+Normal Nucleoli,516,10,7
+Normal Nucleoli,519,1,2
+Normal Nucleoli,520,1,5
+Normal Nucleoli,521,1,2
+Normal Nucleoli,522,1,3
+Normal Nucleoli,523,3,4
+Normal Nucleoli,524,3,5
+Normal Nucleoli,525,2,3
+Normal Nucleoli,526,1,2
+Normal Nucleoli,527,1,2
+Normal Nucleoli,528,1,2
+Normal Nucleoli,529,1,2
+Normal Nucleoli,531,9,6
+Normal Nucleoli,532,1,2
+Normal Nucleoli,534,1,2
+Normal Nucleoli,535,1,2
+Normal Nucleoli,537,1,2
+Normal Nucleoli,538,1,2
+Normal Nucleoli,539,1,2
+Normal Nucleoli,540,1,2
+Normal Nucleoli,541,1,2
+Normal Nucleoli,543,1,2
+Normal Nucleoli,544,1,2
+Normal Nucleoli,545,nan,2
+Normal Nucleoli,546,nan,2
+Normal Nucleoli,547,10,8
+Normal Nucleoli,550,8,7
+Normal Nucleoli,551,1,2
+Normal Nucleoli,554,1,2
+Normal Nucleoli,555,1,2
+Normal Nucleoli,556,8,4
+Normal Nucleoli,557,1,2
+Normal Nucleoli,558,1,2
+Normal Nucleoli,560,1,2
+Normal Nucleoli,561,1,2
+Normal Nucleoli,562,1,2
+Normal Nucleoli,566,10,8
+Normal Nucleoli,568,1,2
+Normal Nucleoli,570,3,6
+Normal Nucleoli,571,2,5
+Normal Nucleoli,572,1,5
+Normal Nucleoli,573,1,2
+Normal Nucleoli,574,1,2
+Normal Nucleoli,575,7,6
+Normal Nucleoli,576,3,2
+Normal Nucleoli,577,1,2
+Normal Nucleoli,579,1,2
+Normal Nucleoli,580,1,2
+Normal Nucleoli,581,1,2
+Normal Nucleoli,582,5,6
+Normal Nucleoli,583,10,7
+Normal Nucleoli,584,1,2
+Normal Nucleoli,585,1,2
+Normal Nucleoli,587,10,8
+Normal Nucleoli,589,1,5
+Normal Nucleoli,590,1,2
+Normal Nucleoli,591,11,8
+Normal Nucleoli,592,6,5
+Normal Nucleoli,593,1,3
+Normal Nucleoli,595,1,5
+Normal Nucleoli,596,1,3
+Normal Nucleoli,597,1,2
+Normal Nucleoli,598,1,3
+Normal Nucleoli,599,1,2
+Normal Nucleoli,601,1,2
+Normal Nucleoli,602,1,2
+Normal Nucleoli,603,1,2
+Normal Nucleoli,604,10,7
+Normal Nucleoli,605,3,5
+Normal Nucleoli,606,8,6
+Normal Nucleoli,607,1,2
+Normal Nucleoli,609,1,6
+Normal Nucleoli,610,1,2
+Normal Nucleoli,611,1,4
+Normal Nucleoli,612,5,7
+Normal Nucleoli,613,10,7
+Normal Nucleoli,614,1,2
+Normal Nucleoli,616,1,2
+Normal Nucleoli,617,1,2
+Normal Nucleoli,618,1,2
+Normal Nucleoli,619,1,2
+Normal Nucleoli,620,1,2
+Normal Nucleoli,621,1,2
+Normal Nucleoli,622,1,3
+Normal Nucleoli,625,1,3
+Normal Nucleoli,626,1,2
+Normal Nucleoli,627,nan,5
+Normal Nucleoli,628,1,3
+Normal Nucleoli,629,11,4
+Normal Nucleoli,630,1,2
+Normal Nucleoli,631,1,2
+Normal Nucleoli,632,1,2
+Normal Nucleoli,634,10,7
+Normal Nucleoli,636,1,2
+Normal Nucleoli,637,10,8
+Normal Nucleoli,638,1,2
+Normal Nucleoli,639,1,2
+Normal Nucleoli,640,1,2
+Normal Nucleoli,641,1,2
+Normal Nucleoli,642,1,2
+Normal Nucleoli,643,1,2
+Normal Nucleoli,645,1,2
+Normal Nucleoli,646,1,2
+Normal Nucleoli,647,1,2
+Normal Nucleoli,648,1,2
+Normal Nucleoli,649,10,8
+Normal Nucleoli,650,1,2
+Normal Nucleoli,651,1,2
+Normal Nucleoli,652,1,2
+Normal Nucleoli,654,1,2
+Normal Nucleoli,655,1,2
+Normal Nucleoli,656,1,2
+Normal Nucleoli,657,1,2
+Normal Nucleoli,658,6,4
+Normal Nucleoli,659,nan,5
+Normal Nucleoli,661,1,2
+Normal Nucleoli,662,1,2
+Normal Nucleoli,665,10,4
+Normal Nucleoli,667,1,2
+Normal Nucleoli,668,1,2
+Normal Nucleoli,669,10,6
+Normal Nucleoli,670,1,5
+Normal Nucleoli,671,4,6
+Normal Nucleoli,672,1,2
+Normal Nucleoli,674,1,2
+Normal Nucleoli,676,11,4
+Normal Nucleoli,678,1,2
+Normal Nucleoli,680,1,2
+Normal Nucleoli,681,10,9
+Normal Nucleoli,684,1,2
+Normal Nucleoli,685,1,2
+Normal Nucleoli,686,1,2
+Normal Nucleoli,687,1,2
+Normal Nucleoli,689,1,2
+Normal Nucleoli,691,1,2
+Normal Nucleoli,692,4,6
+Normal Nucleoli,693,1,2
+Normal Nucleoli,695,nan,2
+Normal Nucleoli,696,1,2
+Normal Nucleoli,697,10,7
+Normal Nucleoli,698,6,5
+Normal Nucleoli,699,4,6
+Mitoses,2,1,2
+Mitoses,4,1,2
+Mitoses,6,1,2
+Mitoses,9,5,2
+Mitoses,16,1,2
+Mitoses,21,4,3
+Mitoses,22,1,2
+Mitoses,29,1,2
+Mitoses,37,1,2
+Mitoses,39,1,2
+Mitoses,40,1,2
+Mitoses,41,1,2
+Mitoses,45,1,2
+Mitoses,47,1,2
+Mitoses,51,5,4
+Mitoses,52,1,2
+Mitoses,54,7,5
+Mitoses,55,1,2
+Mitoses,56,1,2
+Mitoses,57,1,2
+Mitoses,58,4,3
+Mitoses,59,nan,1
+Mitoses,61,1,2
+Mitoses,63,1,3
+Mitoses,64,1,2
+Mitoses,66,10,4
+Mitoses,68,1,2
+Mitoses,69,8,5
+Mitoses,72,10,5
+Mitoses,74,1,2
+Mitoses,85,2,3
+Mitoses,86,10,6
+Mitoses,87,1,2
+Mitoses,88,3,4
+Mitoses,89,1,2
+Mitoses,94,11,3
+Mitoses,99,10,5
+Mitoses,101,2,3
+Mitoses,105,8,6
+Mitoses,106,7,4
+Mitoses,107,1,2
+Mitoses,108,1,3
+Mitoses,111,2,1
+Mitoses,114,1,2
+Mitoses,118,8,5
+Mitoses,124,1,2
+Mitoses,125,1,3
+Mitoses,127,5,4
+Mitoses,130,1,2
+Mitoses,132,11,3
+Mitoses,133,3,4
+Mitoses,144,1,2
+Mitoses,145,4,2
+Mitoses,149,1,2
+Mitoses,150,7,6
+Mitoses,153,1,2
+Mitoses,160,6,5
+Mitoses,161,1,2
+Mitoses,164,77,2
+Mitoses,165,nan,1
+Mitoses,168,10,5
+Mitoses,174,7,6
+Mitoses,176,1,2
+Mitoses,178,3,4
+Mitoses,184,1,2
+Mitoses,187,1,2
+Mitoses,188,10,5
+Mitoses,189,1,3
+Mitoses,191,1,3
+Mitoses,202,1,2
+Mitoses,204,nan,2
+Mitoses,207,1,2
+Mitoses,211,6,5
+Mitoses,212,1,2
+Mitoses,215,1,2
+Mitoses,217,nan,1
+Mitoses,221,1,2
+Mitoses,222,1,2
+Mitoses,224,11,5
+Mitoses,226,1,2
+Mitoses,227,1,2
+Mitoses,228,1,2
+Mitoses,230,1,3
+Mitoses,231,1,2
+Mitoses,232,2,3
+Mitoses,233,1,2
+Mitoses,237,10,6
+Mitoses,239,10,5
+Mitoses,247,1,2
+Mitoses,248,1,2
+Mitoses,249,11,3
+Mitoses,252,3,2
+Mitoses,255,1,2
+Mitoses,260,1,2
+Mitoses,263,1,2
+Mitoses,264,1,2
+Mitoses,267,2,3
+Mitoses,269,8,5
+Mitoses,273,11,4
+Mitoses,276,1,2
+Mitoses,280,8,4
+Mitoses,283,1,2
+Mitoses,286,3,4
+Mitoses,287,10,6
+Mitoses,289,1,2
+Mitoses,293,1,2
+Mitoses,296,1,2
+Mitoses,297,1,2
+Mitoses,301,1,2
+Mitoses,303,10,6
+Mitoses,305,1,2
+Mitoses,309,nan,3
+Mitoses,313,1,2
+Mitoses,316,7,5
+Mitoses,318,1,3
+Mitoses,319,1,2
+Mitoses,320,1,2
+Mitoses,321,66,5
+Mitoses,325,nan,1
+Mitoses,327,1,2
+Mitoses,329,1,2
+Mitoses,330,1,2
+Mitoses,337,1,2
+Mitoses,340,1,2
+Mitoses,349,1,2
+Mitoses,350,1,2
+Mitoses,353,1,2
+Mitoses,357,3,2
+Mitoses,358,8,6
+Mitoses,361,10,6
+Mitoses,362,4,3
+Mitoses,363,1,2
+Mitoses,364,1,2
+Mitoses,367,7,5
+Mitoses,373,nan,2
+Mitoses,375,1,2
+Mitoses,379,nan,2
+Mitoses,380,nan,2
+Mitoses,382,4,3
+Mitoses,386,3,2
+Mitoses,387,1,2
+Mitoses,392,1,2
+Mitoses,394,nan,1
+Mitoses,395,3,2
+Mitoses,400,11,3
+Mitoses,401,8,5
+Mitoses,404,1,2
+Mitoses,413,11,6
+Mitoses,414,1,2
+Mitoses,415,1,2
+Mitoses,416,1,2
+Mitoses,417,nan,2
+Mitoses,419,2,1
+Mitoses,422,nan,3
+Mitoses,424,1,2
+Mitoses,426,1,3
+Mitoses,428,1,2
+Mitoses,433,1,2
+Mitoses,436,1,2
+Mitoses,437,1,2
+Mitoses,441,1,2
+Mitoses,442,11,3
+Mitoses,444,3,1
+Mitoses,450,1,3
+Mitoses,451,nan,2
+Mitoses,452,1,2
+Mitoses,454,1,2
+Mitoses,456,nan,2
+Mitoses,457,1,2
+Mitoses,458,1,3
+Mitoses,467,1,2
+Mitoses,468,2,3
+Mitoses,469,1,2
+Mitoses,470,nan,2
+Mitoses,474,1,2
+Mitoses,480,1,2
+Mitoses,482,nan,2
+Mitoses,483,10,6
+Mitoses,484,1,2
+Mitoses,488,5,4
+Mitoses,489,nan,2
+Mitoses,492,1,2
+Mitoses,494,2,3
+Mitoses,495,1,2
+Mitoses,507,7,5
+Mitoses,515,2,3
+Mitoses,516,1,2
+Mitoses,520,1,2
+Mitoses,522,1,2
+Mitoses,524,1,3
+Mitoses,531,1,2
+Mitoses,535,1,2
+Mitoses,539,1,2
+Mitoses,542,11,3
+Mitoses,547,1,3
+Mitoses,550,2,3
+Mitoses,554,2,1
+Mitoses,566,1,2
+Mitoses,570,nan,3
+Mitoses,571,1,2
+Mitoses,575,1,2
+Mitoses,582,1,2
+Mitoses,583,1,2
+Mitoses,587,1,3
+Mitoses,589,1,2
+Mitoses,591,1,3
+Mitoses,592,1,2
+Mitoses,593,1,2
+Mitoses,595,1,2
+Mitoses,596,1,2
+Mitoses,603,11,3
+Mitoses,604,1,2
+Mitoses,609,1,3
+Mitoses,611,2,3
+Mitoses,612,1,2
+Mitoses,613,10,5
+Mitoses,616,11,3
+Mitoses,618,1,2
+Mitoses,621,11,3
+Mitoses,634,1,2
+Mitoses,635,nan,1
+Mitoses,637,3,4
+Mitoses,639,1,2
+Mitoses,649,10,6
+Mitoses,658,1,2
+Mitoses,659,1,2
+Mitoses,667,2,1
+Mitoses,668,1,2
+Mitoses,670,1,2
+Mitoses,671,1,2
+Mitoses,681,7,6
+Mitoses,686,11,2
+Mitoses,690,8,2
+Mitoses,692,nan,2
+Mitoses,694,2,1
+Mitoses,697,2,3
+Mitoses,698,1,2
+Mitoses,699,1,2
+class,2,2,3
+class,3,2,3
+class,4,2,3
+class,7,2,3
+class,13,4,3
+class,16,4,3
+class,21,4,3
+class,24,4,3
+class,26,4,3
+class,29,2,3
+class,30,4,2
+class,33,4,3
+class,38,4,3
+class,40,4,3
+class,41,2,3
+class,42,4,3
+class,44,4,3
+class,50,4,3
+class,51,4,3
+class,52,4,3
+class,53,4,3
+class,54,4,3
+class,56,4,3
+class,58,4,3
+class,59,4,3
+class,60,4,3
+class,61,4,3
+class,64,2,3
+class,66,4,3
+class,68,4,3
+class,73,2,3
+class,75,4,3
+class,87,4,3
+class,89,2,3
+class,101,4,3
+class,102,4,3
+class,103,2,3
+class,104,4,3
+class,106,4,3
+class,112,4,3
+class,113,4,3
+class,115,2,3
+class,117,2,3
+class,124,4,3
+class,129,4,3
+class,144,2,3
+class,146,4,2
+class,147,4,3
+class,148,2,3
+class,149,2,3
+class,152,4,3
+class,167,4,3
+class,175,4,3
+class,179,2,3
+class,180,4,3
+class,185,4,3
+class,192,2,4
+class,197,2,4
+class,216,4,3
+class,221,2,3
+class,223,4,2
+class,226,2,3
+class,231,4,3
+class,232,2,4
+class,233,4,3
+class,234,4,3
+class,248,4,3
+class,253,2,3
+class,256,4,3
+class,260,2,3
+class,268,4,3
+class,271,4,3
+class,273,4,3
+class,274,4,3
+class,276,2,3
+class,280,4,3
+class,283,4,3
+class,284,4,3
+class,289,4,3
+class,294,4,3
+class,297,2,3
+class,300,4,3
+class,303,2,4
+class,310,2,3
+class,313,4,3
+class,316,2,3
+class,317,4,3
+class,319,2,3
+class,320,2,3
+class,324,4,3
+class,327,4,3
+class,329,4,3
+class,330,4,3
+class,331,4,3
+class,332,4,3
+class,334,4,3
+class,335,4,3
+class,337,4,3
+class,341,4,3
+class,347,2,3
+class,349,4,3
+class,350,4,3
+class,353,2,3
+class,357,4,3
+class,360,4,3
+class,363,2,3
+class,373,2,3
+class,380,2,3
+class,387,4,3
+class,395,2,3
+class,404,2,3
+class,405,4,2
+class,412,2,3
+class,416,2,3
+class,424,2,3
+class,435,2,3
+class,456,4,3
+class,489,4,3
+class,490,4,3
+class,495,2,3
+class,504,2,3
+class,513,2,3
+class,515,2,4
+class,523,4,3
+class,539,2,3
+class,556,2,3
+class,565,2,3
+class,569,4,3
+class,573,4,2
+class,580,4,2
+class,588,2,3
+class,592,4,3
+class,593,4,3
+class,594,2,3
+class,595,4,3
+class,598,2,3
+class,605,4,3
+class,618,2,3
+class,623,2,3
+class,627,4,3
+class,653,2,3
+class,658,2,3
+class,668,2,3
+class,669,4,3
+class,676,2,3
+class,688,4,2
+class,698,2,3

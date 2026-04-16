@@ -1,0 +1,1 @@
+t1&t2&EQ(t1.education,t2.education)&IQ(t1.educational_num,t2.educational_num)

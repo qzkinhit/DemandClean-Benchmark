@@ -1,0 +1,46 @@
+
+============================================================
+Running CtxPipe with dirty file: Data/breast_cancer/dirty_index.csv
+Task name: breast_cancer_ctxpipe_vzekai
+Model tag: ctx_50000
+============================================================
+
+
+CtxPipe output saved to: results/ctxpipe/breast_cancer_ctxpipe_vzekai/breast_cancer_ctxpipe_vzekai_cleaned.csv
+Pipeline info saved to: results/ctxpipe/breast_cancer_ctxpipe_vzekai/breast_cancer_ctxpipe_vzekai_pipeline_info.txt
+
+============================================================
+CtxPipe Results:
+============================================================
+AI Sequence: ['ImputerNumMode', 'ImputerCatMode', 'LabelEncoder', 'blank', 'PowerTransformer', 'RandomTreesEmbedding']
+ML Score: -1.0000
+Execution Time: 5.26 seconds
+============================================================
+
+============================================================
+Traditional Data Cleaning Evaluation
+Note: CtxPipe is designed for ML data preparation,
+      traditional cleaning metrics may not be applicable.
+============================================================
+
+Traditional Evaluation Results:
+Accuracy: 0.49473684210526314
+Recall: 0.17938931297709923
+F1 Score: 0.26330532208979274
+EDR: 0.17938931297709923
+Hybrid Distance: 0.1692740368375214
+R-EDR: 0.15789473684210525
+Time: 5.26s
+Speed: 0.7525 seconds/100num
+
+============================================================
+调用统一测评模块 getScoreML
+============================================================
+
+getScoreML统一测评完成
+
+============================================================
+CtxPipe finished successfully!
+Results saved to: results/ctxpipe/breast_cancer_ctxpipe_vzekai
+============================================================
+
