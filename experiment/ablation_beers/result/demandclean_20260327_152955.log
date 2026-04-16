@@ -1,0 +1,58 @@
+[2026-03-27 15:29:55,656] INFO - demandclean: ==================================================
+[2026-03-27 15:29:55,656] INFO - demandclean: DemandClean 训练开始
+[2026-03-27 15:29:55,656] INFO - demandclean:   检测器模式: oracle
+[2026-03-27 15:29:55,656] INFO - demandclean:   训练模式: clean_base
+[2026-03-27 15:29:55,656] INFO - demandclean:   Agent类型: single
+[2026-03-27 15:29:55,656] INFO - demandclean:   推理模式: single_phase
+[2026-03-27 15:29:55,656] INFO - demandclean:   FD规则: 0
+[2026-03-27 15:29:55,656] INFO - demandclean:   丰富规则: 无
+[2026-03-27 15:29:55,656] INFO - demandclean: ==================================================
+[2026-03-27 15:29:55,656] INFO - demandclean: 
+[Step 1] 初始化错误检测器...
+[2026-03-27 15:29:55,656] INFO - demandclean: 
+[Step 2] 训练 DQN Agent...
+[2026-03-27 15:29:55,656] INFO - demandclean: 开始训练 (single Agent, mode=clean_base)
+[2026-03-27 15:29:55,656] INFO - demandclean:   任务类型: classification
+[2026-03-27 15:29:55,656] INFO - demandclean:   模型类型: svm
+[2026-03-27 15:29:55,656] INFO - demandclean:   原始数据: 843 行
+[2026-03-27 15:29:55,657] INFO - demandclean:   基准数据: 817 行 (NaN-free)
+[2026-03-27 15:29:56,620] INFO - demandclean:   ErrorInjector: rich_rules=False, domain=0, cfd=0, fd=0
+[2026-03-27 15:29:56,620] INFO - demandclean:   Oracle 模式: reward 使用干净验证集 (281 行)
+[2026-03-27 15:29:56,620] INFO - demandclean:   开始训练 DQN (600 episodes, 起始轮=0)...
+[2026-03-27 15:29:56,629] INFO - demandclean:   Reward 评估间隔: N=10 (错误数=220, 约 23 次评估/episode)
+[2026-03-27 15:30:20,043] INFO - demandclean:   Episode 50/600: Score=0.7972, Best=0.8149, Eps=0.778
+[2026-03-27 15:30:20,044] INFO - demandclean:     Actions: {'no_action': 53, 'repair_value': 99, 'delete': 72, 'replace_nearby': 51}
+[2026-03-27 15:30:42,494] INFO - demandclean:   Episode 100/600: Score=0.7972, Best=0.8185, Eps=0.606
+[2026-03-27 15:30:42,494] INFO - demandclean:     Actions: {'no_action': 32, 'repair_value': 152, 'delete': 49, 'replace_nearby': 51}
+[2026-03-27 15:31:05,465] INFO - demandclean:   Episode 150/600: Score=0.7972, Best=0.8185, Eps=0.471
+[2026-03-27 15:31:05,465] INFO - demandclean:     Actions: {'no_action': 34, 'repair_value': 107, 'delete': 29, 'replace_nearby': 24}
+[2026-03-27 15:31:28,761] INFO - demandclean:   Episode 200/600: Score=0.8007, Best=0.8185, Eps=0.367
+[2026-03-27 15:31:28,762] INFO - demandclean:     Actions: {'no_action': 24, 'repair_value': 169, 'delete': 41, 'replace_nearby': 26}
+[2026-03-27 15:31:51,431] INFO - demandclean:   Episode 250/600: Score=0.8114, Best=0.8185, Eps=0.286
+[2026-03-27 15:31:51,431] INFO - demandclean:     Actions: {'no_action': 13, 'repair_value': 154, 'delete': 61, 'replace_nearby': 15}
+[2026-03-27 15:32:14,953] INFO - demandclean:   Episode 300/600: Score=0.8114, Best=0.8185, Eps=0.222
+[2026-03-27 15:32:14,954] INFO - demandclean:     Actions: {'no_action': 10, 'repair_value': 189, 'delete': 45, 'replace_nearby': 60}
+[2026-03-27 15:32:36,391] INFO - demandclean:   Episode 350/600: Score=0.8114, Best=0.8185, Eps=0.173
+[2026-03-27 15:32:36,391] INFO - demandclean:     Actions: {'no_action': 16, 'repair_value': 116, 'delete': 53, 'replace_nearby': 8}
+[2026-03-27 15:32:58,183] INFO - demandclean:   Episode 400/600: Score=0.8114, Best=0.8185, Eps=0.135
+[2026-03-27 15:32:58,183] INFO - demandclean:     Actions: {'no_action': 20, 'repair_value': 201, 'delete': 77, 'replace_nearby': 7}
+[2026-03-27 15:33:19,807] INFO - demandclean:   Episode 450/600: Score=0.8114, Best=0.8221, Eps=0.105
+[2026-03-27 15:33:19,807] INFO - demandclean:     Actions: {'no_action': 16, 'repair_value': 148, 'delete': 49, 'replace_nearby': 31}
+[2026-03-27 15:33:42,474] INFO - demandclean:   Episode 500/600: Score=0.8149, Best=0.8221, Eps=0.100
+[2026-03-27 15:33:42,474] INFO - demandclean:     Actions: {'no_action': 21, 'repair_value': 152, 'delete': 61, 'replace_nearby': 6}
+[2026-03-27 15:34:03,774] INFO - demandclean:   Episode 550/600: Score=0.8007, Best=0.8221, Eps=0.100
+[2026-03-27 15:34:03,775] INFO - demandclean:     Actions: {'no_action': 51, 'repair_value': 73, 'delete': 42, 'replace_nearby': 2}
+[2026-03-27 15:34:24,898] INFO - demandclean:   Episode 600/600: Score=0.8078, Best=0.8256, Eps=0.100
+[2026-03-27 15:34:24,898] INFO - demandclean:     Actions: {'no_action': 37, 'repair_value': 75, 'delete': 67, 'replace_nearby': 91}
+[2026-03-27 15:34:24,899] INFO - demandclean: 
+已恢复最佳模型权重 (Episode 591, Score=0.8256, Cost=72)
+[2026-03-27 15:34:24,899] INFO - demandclean: 
+训练完成! 最佳分数: 0.8256 (共 600 episodes)
+[2026-03-27 15:34:24,899] INFO - demandclean:   最佳动作分布: {'no_action': 26, 'repair_value': 72, 'delete': 106, 'replace_nearby': 56}
+[2026-03-27 15:34:24,899] INFO - demandclean: 
+训练完成!
+[2026-03-27 15:34:24,908] INFO - demandclean: 模型已保存: /Users/qianzekai/PycharmProjects/TolerDM/experiment/ablation_beers/model/demandfix_dqn.pt
+[2026-03-27 15:34:24,908] INFO - demandclean: 
+==================================================
+[2026-03-27 15:34:24,908] INFO - demandclean: 单阶段推理
+[2026-03-27 15:34:24,908] INFO - demandclean: ==================================================

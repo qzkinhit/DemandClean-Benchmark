@@ -1,0 +1,2 @@
+name,veracity,diversity,accuracy,n_samples,no_action,repair_value,delete,replace_nearby
+DemandFix_0,0.9805527123848515,1.0430604982206404,0.8625592417061612,977,0,43,428,20

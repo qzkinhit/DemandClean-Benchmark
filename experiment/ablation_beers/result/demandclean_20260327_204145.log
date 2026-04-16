@@ -1,0 +1,50 @@
+[2026-03-27 20:41:45,018] INFO - demandclean: ==================================================
+[2026-03-27 20:41:45,018] INFO - demandclean: DemandClean 训练开始
+[2026-03-27 20:41:45,018] INFO - demandclean:   检测器模式: oracle
+[2026-03-27 20:41:45,018] INFO - demandclean:   训练模式: clean_base
+[2026-03-27 20:41:45,018] INFO - demandclean:   Agent类型: dueling_two_stage
+[2026-03-27 20:41:45,018] INFO - demandclean:   推理模式: single_phase
+[2026-03-27 20:41:45,019] INFO - demandclean:   FD规则: 0
+[2026-03-27 20:41:45,019] INFO - demandclean:   丰富规则: 无
+[2026-03-27 20:41:45,019] INFO - demandclean: ==================================================
+[2026-03-27 20:41:45,019] INFO - demandclean: 
+[Step 1] 初始化错误检测器...
+[2026-03-27 20:41:45,019] INFO - demandclean: 
+[Step 2] 训练 DQN Agent...
+[2026-03-27 20:41:45,019] INFO - demandclean: 开始训练 (dueling_two_stage Agent, mode=clean_base)
+[2026-03-27 20:41:45,019] INFO - demandclean:   任务类型: classification
+[2026-03-27 20:41:45,019] INFO - demandclean:   模型类型: svm
+[2026-03-27 20:41:45,019] INFO - demandclean:   原始数据: 843 行
+[2026-03-27 20:41:45,019] INFO - demandclean:   基准数据: 817 行 (NaN-free)
+[2026-03-27 20:41:45,020] INFO - demandclean:   ErrorInjector: rich_rules=False, domain=0, cfd=0, fd=0
+[2026-03-27 20:41:45,020] INFO - demandclean:   Oracle 模式: reward 使用干净验证集 (281 行)
+[2026-03-27 20:41:45,020] INFO - demandclean:   开始训练 DQN (400 episodes, 起始轮=0)...
+[2026-03-27 20:41:45,026] INFO - demandclean:   Reward 评估间隔: N=10 (错误数=292, 约 30 次评估/episode)
+[2026-03-27 20:41:59,410] INFO - demandclean:   Episode 50/400: Score=0.7936, Best=0.8078, Eps=0.778
+[2026-03-27 20:41:59,411] INFO - demandclean:     Actions: {'no_action': 53, 'repair_value': 76, 'delete': 84, 'replace_nearby': 37}
+[2026-03-27 20:42:13,727] INFO - demandclean:   Episode 100/400: Score=0.8007, Best=0.8114, Eps=0.606
+[2026-03-27 20:42:13,728] INFO - demandclean:     Actions: {'no_action': 59, 'repair_value': 97, 'delete': 79, 'replace_nearby': 66}
+[2026-03-27 20:42:27,391] INFO - demandclean:   Episode 150/400: Score=0.8007, Best=0.8149, Eps=0.471
+[2026-03-27 20:42:27,391] INFO - demandclean:     Actions: {'no_action': 26, 'repair_value': 60, 'delete': 42, 'replace_nearby': 41}
+[2026-03-27 20:42:40,973] INFO - demandclean:   Episode 200/400: Score=0.7972, Best=0.8185, Eps=0.367
+[2026-03-27 20:42:40,973] INFO - demandclean:     Actions: {'no_action': 24, 'repair_value': 82, 'delete': 22, 'replace_nearby': 55}
+[2026-03-27 20:42:55,035] INFO - demandclean:   Episode 250/400: Score=0.7972, Best=0.8185, Eps=0.286
+[2026-03-27 20:42:55,035] INFO - demandclean:     Actions: {'no_action': 29, 'repair_value': 126, 'delete': 46, 'replace_nearby': 63}
+[2026-03-27 20:43:09,550] INFO - demandclean:   Episode 300/400: Score=0.8007, Best=0.8185, Eps=0.222
+[2026-03-27 20:43:09,550] INFO - demandclean:     Actions: {'no_action': 19, 'repair_value': 109, 'delete': 17, 'replace_nearby': 79}
+[2026-03-27 20:43:24,357] INFO - demandclean:   Episode 350/400: Score=0.8149, Best=0.8185, Eps=0.173
+[2026-03-27 20:43:24,357] INFO - demandclean:     Actions: {'no_action': 14, 'repair_value': 129, 'delete': 30, 'replace_nearby': 78}
+[2026-03-27 20:43:38,714] INFO - demandclean:   Episode 400/400: Score=0.7972, Best=0.8185, Eps=0.135
+[2026-03-27 20:43:38,714] INFO - demandclean:     Actions: {'no_action': 13, 'repair_value': 96, 'delete': 9, 'replace_nearby': 90}
+[2026-03-27 20:43:38,714] INFO - demandclean: 
+已恢复最佳模型权重 (Episode 368, Score=0.8185, Cost=61)
+[2026-03-27 20:43:38,714] INFO - demandclean: 
+训练完成! 最佳分数: 0.8185 (共 400 episodes)
+[2026-03-27 20:43:38,714] INFO - demandclean:   最佳动作分布: {'no_action': 13, 'repair_value': 61, 'delete': 12, 'replace_nearby': 164}
+[2026-03-27 20:43:38,715] INFO - demandclean: 
+训练完成!
+[2026-03-27 20:43:38,720] INFO - demandclean: 模型已保存: /Users/qianzekai/PycharmProjects/TolerDM/experiment/ablation_beers/model/semi_supervised_dueling.pt
+[2026-03-27 20:43:38,720] INFO - demandclean: 
+==================================================
+[2026-03-27 20:43:38,720] INFO - demandclean: 单阶段推理
+[2026-03-27 20:43:38,720] INFO - demandclean: ==================================================

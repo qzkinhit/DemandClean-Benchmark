@@ -1,0 +1,50 @@
+[2026-03-26 18:18:40,339] INFO - demandclean: ==================================================
+[2026-03-26 18:18:40,339] INFO - demandclean: DemandClean 训练开始
+[2026-03-26 18:18:40,339] INFO - demandclean:   检测器模式: oracle
+[2026-03-26 18:18:40,339] INFO - demandclean:   训练模式: clean_base
+[2026-03-26 18:18:40,339] INFO - demandclean:   Agent类型: single
+[2026-03-26 18:18:40,339] INFO - demandclean:   推理模式: single_phase
+[2026-03-26 18:18:40,339] INFO - demandclean:   FD规则: 0
+[2026-03-26 18:18:40,339] INFO - demandclean:   丰富规则: 无
+[2026-03-26 18:18:40,339] INFO - demandclean: ==================================================
+[2026-03-26 18:18:40,339] INFO - demandclean: 
+[Step 1] 初始化错误检测器...
+[2026-03-26 18:18:40,339] INFO - demandclean: 
+[Step 2] 训练 DQN Agent...
+[2026-03-26 18:18:40,339] INFO - demandclean: 开始训练 (single Agent, mode=clean_base)
+[2026-03-26 18:18:40,340] INFO - demandclean:   任务类型: classification
+[2026-03-26 18:18:40,340] INFO - demandclean:   模型类型: svm
+[2026-03-26 18:18:40,340] INFO - demandclean:   原始数据: 843 行
+[2026-03-26 18:18:40,340] INFO - demandclean:   基准数据: 817 行 (NaN-free)
+[2026-03-26 18:18:40,985] INFO - demandclean:   ErrorInjector: rich_rules=False, domain=0, cfd=0, fd=0
+[2026-03-26 18:18:40,985] INFO - demandclean:   Oracle 模式: reward 使用干净验证集 (281 行)
+[2026-03-26 18:18:40,985] INFO - demandclean:   开始训练 DQN (400 episodes, 起始轮=0)...
+[2026-03-26 18:18:40,994] INFO - demandclean:   Reward 评估间隔: N=1 (错误数=220, 约 221 次评估/episode)
+[2026-03-26 18:20:12,355] INFO - demandclean:   Episode 50/400: Score=0.8007, Best=0.8149, Eps=0.778
+[2026-03-26 18:20:12,356] INFO - demandclean:     Actions: {'no_action': 53, 'repair_value': 67, 'delete': 46, 'replace_nearby': 84}
+[2026-03-26 18:21:40,254] INFO - demandclean:   Episode 100/400: Score=0.8007, Best=0.8185, Eps=0.606
+[2026-03-26 18:21:40,255] INFO - demandclean:     Actions: {'no_action': 33, 'repair_value': 30, 'delete': 29, 'replace_nearby': 135}
+[2026-03-26 18:23:06,063] INFO - demandclean:   Episode 150/400: Score=0.7900, Best=0.8185, Eps=0.471
+[2026-03-26 18:23:06,064] INFO - demandclean:     Actions: {'no_action': 32, 'repair_value': 45, 'delete': 32, 'replace_nearby': 138}
+[2026-03-26 18:24:32,275] INFO - demandclean:   Episode 200/400: Score=0.7189, Best=0.8185, Eps=0.367
+[2026-03-26 18:24:32,275] INFO - demandclean:     Actions: {'no_action': 53, 'repair_value': 17, 'delete': 26, 'replace_nearby': 158}
+[2026-03-26 18:26:03,179] INFO - demandclean:   Episode 250/400: Score=0.7544, Best=0.8185, Eps=0.286
+[2026-03-26 18:26:03,179] INFO - demandclean:     Actions: {'no_action': 67, 'repair_value': 19, 'delete': 16, 'replace_nearby': 177}
+[2026-03-26 18:27:32,787] INFO - demandclean:   Episode 300/400: Score=0.8114, Best=0.8185, Eps=0.222
+[2026-03-26 18:27:32,787] INFO - demandclean:     Actions: {'no_action': 11, 'repair_value': 48, 'delete': 18, 'replace_nearby': 177}
+[2026-03-26 18:29:04,738] INFO - demandclean:   Episode 350/400: Score=0.8078, Best=0.8185, Eps=0.173
+[2026-03-26 18:29:04,739] INFO - demandclean:     Actions: {'no_action': 17, 'repair_value': 15, 'delete': 191, 'replace_nearby': 12}
+[2026-03-26 18:30:37,426] INFO - demandclean:   Episode 400/400: Score=0.7189, Best=0.8185, Eps=0.135
+[2026-03-26 18:30:37,427] INFO - demandclean:     Actions: {'no_action': 130, 'repair_value': 53, 'delete': 7, 'replace_nearby': 52}
+[2026-03-26 18:30:37,427] INFO - demandclean: 
+已恢复最佳模型权重 (Episode 345, Score=0.8185, Cost=11)
+[2026-03-26 18:30:37,427] INFO - demandclean: 
+训练完成! 最佳分数: 0.8185 (共 400 episodes)
+[2026-03-26 18:30:37,427] INFO - demandclean:   最佳动作分布: {'no_action': 19, 'repair_value': 11, 'delete': 164, 'replace_nearby': 15}
+[2026-03-26 18:30:37,427] INFO - demandclean: 
+训练完成!
+[2026-03-26 18:30:37,447] INFO - demandclean: 模型已保存: /Users/qianzekai/PycharmProjects/TolerDM/experiment/ablation_beers/model/demandfix_dqn.pt
+[2026-03-26 18:30:37,448] INFO - demandclean: 
+==================================================
+[2026-03-26 18:30:37,448] INFO - demandclean: 单阶段推理
+[2026-03-26 18:30:37,448] INFO - demandclean: ==================================================

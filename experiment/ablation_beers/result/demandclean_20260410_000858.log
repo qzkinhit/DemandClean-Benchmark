@@ -1,0 +1,5 @@
+[2026-04-10 00:08:58,846] INFO - demandclean: 模型已加载: /Users/qianzekai/PycharmProjects/TolerDM/run_demandclean/../experiment/ablation_beers/model/full_unsupervised_single.pt
+[2026-04-10 00:08:58,847] INFO - demandclean: 
+==================================================
+[2026-04-10 00:08:58,847] INFO - demandclean: 单阶段推理
+[2026-04-10 00:08:58,847] INFO - demandclean: ==================================================
