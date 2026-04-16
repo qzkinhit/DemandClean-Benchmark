@@ -1,0 +1,26 @@
+# Dataset: adult
+# Rules configuration for HoloClean, UniClean, and Horizon
+#
+# Dataset description: UCI Adult Census Income dataset
+# Contains demographic and employment information
+
+[HOLOCLEAN_DC]
+t1&t2&EQ(t1.education,t2.education)&IQ(t1.educational_num,t2.educational_num)
+
+[UNICLEAN]
+Number("age")
+Number("fnlwgt")
+Number("educational_num")
+Number("capital_gain")
+Number("capital_loss")
+Number("hours_per_week")
+
+[HORIZON_FD]
+education => educational_num
+
+[MSE_ATTRIBUTES]
+age
+fnlwgt
+capital_gain
+capital_loss
+hours_per_week

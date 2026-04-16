@@ -1,0 +1,176 @@
+{
+
+  "adult": {
+    "id_cols": [],
+    "cat_cols": [
+      "workclass",
+      "education",
+      "marital_status",
+      "occupation",
+      "relationship",
+      "gender",
+      "native_country",
+      "race"
+    ],
+    "date_cols": [],
+    "target": "income",
+    "float_cols": [],
+    "allow_negatives": []
+  },
+  "bike": {
+    "id_cols": [],
+    "cat_cols": [],
+    "date_cols": [
+      "dteday"
+    ],
+    "target": "cnt",
+    "float_cols": [
+      "temp",
+      "atemp",
+      "hum",
+      "windspeed"
+    ],
+    "allow_negatives": []
+  },
+  "beers": {
+    "id_cols": [
+      "brewery_id",
+      "beer_name"
+    ],
+    "cat_cols": [
+      "city",
+      "state",
+      "brewery_name",
+      "style"
+    ],
+    "date_cols": [],
+    "target": "style",
+    "float_cols": [
+      "abv",
+      "ibu",
+      "ounces"
+    ],
+    "allow_negatives": []
+  },
+  "breast_cancer": {
+    "id_cols": [],
+    "cat_cols": [],
+    "date_cols": [],
+    "target": "class",
+    "float_cols": [],
+    "allow_negatives": []
+  },
+  "har": {
+    "id_cols": [],
+    "cat_cols": ["gt"],
+    "date_cols": [],
+    "target": "gt",
+    "float_cols": [
+      "x",
+      "y",
+      "z"
+    ],
+    "allow_negatives": [
+      "x",
+      "y",
+      "z"
+    ]
+  },
+  "nasa": {
+    "id_cols": [],
+    "cat_cols": [],
+    "date_cols": [],
+    "target": "sound_pressure_level",
+    "float_cols": [
+      "frequency",
+      "angle",
+      "chord_length",
+      "velocity",
+      "thickness",
+      "sound_pressure_level"
+    ],
+    "allow_negatives": []
+  },
+  "smartfactory": {
+    "id_cols": [],
+    "cat_cols": [],
+    "date_cols": [],
+    "target": "labels",
+    "float_cols": [],
+    "allow_negatives": [
+      "i_w_bhr_weg",
+      "i_w_blo_weg",
+      "i_w_bru_weg",
+      "i_w_hr_weg",
+      "i_w_hl_weg",
+      "i_w_bhl_weg"
+    ]
+  },
+  "soilmoisture": {
+    "id_cols": [],
+    "cat_cols": [],
+    "date_cols": [
+      "datetime"
+    ],
+    "target": "soil_moisture",
+    "float_cols": [],
+    "allow_negatives": []
+  },
+  "mercedes": {
+    "id_cols": [],
+    "cat_cols": [
+      "X0",
+      "X1",
+      "X2",
+      "X3",
+      "X4",
+      "X5",
+      "X6",
+      "X8"
+    ],
+    "date_cols": [],
+    "target": "y",
+    "float_cols": [
+      "y"
+    ],
+    "allow_negatives": []
+  },
+  "1_hospitals": {
+    "id_cols": [
+      "ProviderNumber"
+    ],
+    "cat_cols": [
+      "HospitalName",
+      "HospitalOwner",
+      "City",
+      "State",
+      "Address1",
+      "Address2",
+      "Address3",
+      "CountyName",
+      "EmergencyService",
+      "Condition",
+      "MeasureName",
+      "HospitalType",
+      "MeasureCode",
+      "Stateavg",
+      "Score",
+      "Sample"
+    ],
+    "date_cols": [],
+    "target": "HospitalType",
+    "float_cols": [
+      "PhoneNumber",
+      "ZipCode"
+    ],
+    "allow_negatives": []
+  },
+  "empty": {
+    "id_cols": [],
+    "cat_cols": [],
+    "date_cols": [],
+    "target": "label",
+    "float_cols": [],
+    "allow_negatives": []
+  }
+}

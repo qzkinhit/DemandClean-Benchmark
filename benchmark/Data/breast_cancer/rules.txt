@@ -1,0 +1,32 @@
+# Dataset: breast_cancer
+# Rules configuration for HoloClean, UniClean, and Horizon
+#
+# Dataset description: Wisconsin Breast Cancer diagnostic data
+# Contains cell nuclei measurements from fine needle aspirate images
+#
+# 医学知识：细胞大小均匀性和形状均匀性高度相关
+# 细胞特征组合可以决定诊断结果
+
+[HOLOCLEAN_DC]
+t1&t2&EQ(t1.class,t2.class)&LT(t1.Mitoses,t2.Mitoses)&GT(t1.Clump Thickness,t2.Clump Thickness)
+
+[UNICLEAN]
+Number("Clump Thickness")
+Number("Uniformity of Cell Size")
+Number("Uniformity of Cell Shape")
+Number("Marginal Adhesion")
+Number("Single Epithelial Cell Size")
+Number("Bare Nuclei")
+Number("Bland Chromatin")
+Number("Normal Nucleoli")
+Number("Mitoses")
+
+[HORIZON_FD]
+# 细胞大小和形状的均匀性通常高度相关
+Uniformity of Cell Size => Uniformity of Cell Shape
+
+[MSE_ATTRIBUTES]
+Clump Thickness
+Uniformity of Cell Size
+Uniformity of Cell Shape
+Bare Nuclei

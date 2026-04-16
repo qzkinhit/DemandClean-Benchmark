@@ -1,0 +1,37 @@
+# Dataset: nasa
+# Rules configuration for HoloClean, UniClean, and Horizon
+#
+# Dataset description: NASA Airfoil Self-Noise prediction
+# Contains physical measurements for sound pressure prediction
+#
+# 发现的FD关系：thickness可以近似决定其他实验参数
+# （同一厚度的翼型通常在相同条件下测试）
+
+[HOLOCLEAN_DC]
+t1&t2&EQ(t1.thickness,t2.thickness)&IQ(t1.angle,t2.angle)
+t1&t2&EQ(t1.thickness,t2.thickness)&IQ(t1.chord_length,t2.chord_length)
+t1&t2&EQ(t1.thickness,t2.thickness)&IQ(t1.velocity,t2.velocity)
+
+[UNICLEAN]
+Number("frequency")
+Number("angle")
+Number("chord_length")
+Number("velocity")
+Number("thickness")
+Number("sound_pressure_level")
+AttrRelation(["thickness"], ["angle"], "0")
+AttrRelation(["thickness"], ["chord_length"], "1")
+AttrRelation(["thickness"], ["velocity"], "2")
+
+[HORIZON_FD]
+thickness => angle
+thickness => chord_length
+thickness => velocity
+
+[MSE_ATTRIBUTES]
+frequency
+angle
+chord_length
+velocity
+thickness
+sound_pressure_level

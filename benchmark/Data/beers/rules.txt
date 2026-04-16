@@ -1,0 +1,39 @@
+# Dataset: beers
+# Rules configuration for HoloClean, UniClean, and Horizon
+#
+# Format Description:
+# [HOLOCLEAN_DC] - Denial Constraints for HoloClean
+#   t1&t2&OPERATION(t1.attr1,t2.attr2)
+#   Operations: EQ (=), IQ (<>), LT (<), GT (>), LTE (<=), GTE (>=)
+#
+# [UNICLEAN] - Cleaners for UniClean
+#   Number(attr) - numeric value cleaning
+#   AttrRelation([lhs], [rhs], name) - functional dependency
+#   Pattern(attr, regex, name) - pattern matching
+#   Outlier(attr, [], name) - outlier detection
+#
+# [HORIZON_FD] - Functional Dependencies for Horizon
+#   LHS => RHS (arrow format)
+
+[HOLOCLEAN_DC]
+t1&t2&EQ(t1.brewery_id,t2.brewery_id)&IQ(t1.brewery_name,t2.brewery_name)
+t1&t2&EQ(t1.brewery_id,t2.brewery_id)&IQ(t1.city,t2.city)
+t1&t2&EQ(t1.brewery_id,t2.brewery_id)&IQ(t1.state,t2.state)
+t1&t2&EQ(t1.city,t2.city)&IQ(t1.state,t2.state)
+
+[UNICLEAN]
+Number("ounces")
+Number("abv")
+AttrRelation(["brewery_id"], ["brewery_name"], "0")
+AttrRelation(["brewery_id"], ["city"], "1")
+AttrRelation(["brewery_id"], ["state"], "2")
+
+[HORIZON_FD]
+brewery_id => brewery_name
+brewery_id => city
+brewery_id => state
+city => state
+
+[MSE_ATTRIBUTES]
+ibu
+abv

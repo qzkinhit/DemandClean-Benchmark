@@ -1,0 +1,40 @@
+# Dataset: smartfactory
+# Rules configuration for HoloClean, UniClean, and Horizon
+#
+# Dataset description: Industrial sensor data from manufacturing
+# Contains input (i_) and output (o_) measurements for various stations
+# Station naming: blo=blower, bhl=belt-left, bhr=belt-right, bru=brush, hr=heater-right, hl=heater-left
+
+[HOLOCLEAN_DC]
+# 仅使用NullDetector进行基础空值填充
+
+[UNICLEAN]
+AttrRelation(["i_w_hr_weg"], ["i_w_hl_weg"], "0")
+AttrRelation(["o_w_blo_power"], ["o_w_blo_voltage"], "0")
+AttrRelation(["o_w_bhr_power"], ["o_w_bhr_voltage"], "0")
+AttrRelation(["o_w_bru_power"], ["o_w_bru_voltage"], "0")
+AttrRelation(["o_w_bhl_power"], ["o_w_bhl_voltage"], "0")
+
+[HORIZON_FD]
+i_w_blo_weg => o_w_blo_power
+i_w_blo_weg => o_w_blo_voltage
+i_w_bhl_weg => o_w_bhl_power
+i_w_bhl_weg => o_w_bhl_voltage
+i_w_bhr_weg => o_w_bhr_power
+i_w_bhr_weg => o_w_bhr_voltage
+i_w_bru_weg => o_w_bru_power
+i_w_bru_weg => o_w_bru_voltage
+i_w_hr_weg => o_w_hr_power
+i_w_hr_weg => o_w_hr_voltage
+i_w_hl_weg => o_w_hl_power
+i_w_hl_weg => o_w_hl_voltage
+
+[MSE_ATTRIBUTES]
+o_w_blo_power
+o_w_blo_voltage
+o_w_bhl_power
+o_w_bhl_voltage
+o_w_bhr_power
+o_w_bhr_voltage
+o_w_bru_power
+o_w_bru_voltage

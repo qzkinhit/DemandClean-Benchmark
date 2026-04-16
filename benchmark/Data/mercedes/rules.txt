@@ -1,0 +1,30 @@
+# Dataset: mercedes
+# Rules configuration for HoloClean, UniClean, and Horizon
+#
+# Dataset description: Anonymized vehicle testing time prediction
+# Contains hundreds of anonymized categorical and binary features (X0-X385)
+#
+# 发现的近似FD关系：X0和X2可以近似决定X4（配置类型相关）
+
+[HOLOCLEAN_DC]
+t1&t2&EQ(t1.X0,t2.X0)&IQ(t1.X4,t2.X4)
+t1&t2&EQ(t1.X2,t2.X2)&IQ(t1.X4,t2.X4)
+
+[UNICLEAN]
+Number("y")
+AttrRelation(["X0"], ["X4"], "0")
+Pattern("X0", "^[a-z]{1,2}$", "x0")
+Pattern("X1", "^[a-z]{1,2}$", "x1")
+Pattern("X2", "^[a-z]{1,2}$", "x2")
+Pattern("X3", "^[a-z]{1,2}$", "x3")
+Pattern("X4", "^[a-z]{1,2}$", "x4")
+Pattern("X5", "^[a-z]{1,2}$", "x5")
+Pattern("X6", "^[a-z]{1,2}$", "x6")
+Pattern("X8", "^[a-z]{1,2}$", "x8")
+
+[HORIZON_FD]
+X0 => X4
+X2 => X4
+
+[MSE_ATTRIBUTES]
+y

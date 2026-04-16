@@ -1,0 +1,33 @@
+# Dataset: soilmoisture
+# Rules configuration for HoloClean, UniClean, and Horizon
+#
+# Dataset description: Hyperspectral remote sensing data for soil moisture prediction
+# Contains spectral reflectance values at different wavelengths (454nm - 950nm)
+#
+# 物理约束：相邻波段的反射率应该相似（光谱连续性）
+# 土壤温度和湿度在短时间内应保持相对稳定
+
+[HOLOCLEAN_DC]
+# 清空DC规则避免域爆炸和内存问题
+# soilmoisture在featurizing阶段容易OOM
+
+[UNICLEAN]
+Number("soil_moisture")
+Number("soil_temperature")
+Number("454")
+Number("550")
+Number("650")
+Number("750")
+Number("850")
+Number("950")
+Outlier("soil_moisture", [], "moisture_outlier")
+Outlier("soil_temperature", [], "temp_outlier")
+
+[HORIZON_FD]
+# 相同温度条件下，土壤湿度测量应该一致
+# 注意：这是近似关系，实际数据中可能有噪声
+soil_temperature => soil_moisture
+
+[MSE_ATTRIBUTES]
+soil_moisture
+soil_temperature

@@ -1,0 +1,31 @@
+# Dataset: har
+# Rules configuration for HoloClean, UniClean, and Horizon
+#
+# Dataset description: Human Activity Recognition from smartphone sensors
+# Contains accelerometer measurements (x, y, z) and activity label (gt)
+#
+# 注意：传感器数据本质上是独立测量，没有严格的FD关系
+# 以下规则基于物理约束：静止状态(stand)时z轴应接近重力加速度
+
+[HOLOCLEAN_DC]
+# 相同活动类型的数据应有相似的传感器模式
+# 注意：移除数字常量，使用相对比较
+t1&t2&EQ(t1.gt,t2.gt)&IQ(t1.z,t2.z)
+
+[UNICLEAN]
+Number("x")
+Number("y")
+Number("z")
+Outlier("x", [], "x_outlier")
+Outlier("y", [], "y_outlier")
+Outlier("z", [], "z_outlier")
+
+[HORIZON_FD]
+# 基于活动类型的弱FD：相同活动应有相似的z值范围
+# 注意：这是近似关系，用于辅助数据清洗
+gt => z
+
+[MSE_ATTRIBUTES]
+x
+y
+z

@@ -1,0 +1,28 @@
+# Dataset: bike
+# Rules configuration for HoloClean, UniClean, and Horizon
+#
+# Dataset description: Bike sharing demand with weather data
+# Contains temporal and weather features
+
+[HOLOCLEAN_DC]
+t1&t2&EQ(t1.mnth,t2.mnth)&IQ(t1.season,t2.season)
+
+[UNICLEAN]
+Number("temp")
+Number("atemp")
+Number("hum")
+Number("windspeed")
+Number("casual")
+Number("registered")
+Number("cnt")
+AttrRelation(["mnth"], ["season"], "0")
+
+[HORIZON_FD]
+mnth => season
+
+[MSE_ATTRIBUTES]
+temp
+atemp
+hum
+windspeed
+cnt
