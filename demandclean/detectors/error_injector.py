@@ -1,16 +1,19 @@
 """
-错误注入器
-==========
+Error injector
+==============
 
-在数据上注入各类错误用于自监督训练。
+Inject different kinds of errors into data for self-supervised training.
 
-设计理念: 错误注入 = 检测的逆过程
-  - 语义错误: 基于规则（DOMAIN/CFD/FD）反向注入，模拟 RAHA 检测不到的逻辑违规
-  - 句法错误: RAHA-aware 统计驱动（OD-Gaussian/Histogram/PVD），不使用规则
-  - 标签错误: 条件性注入，镜像检测器发现的标签翻转模式
-  - 缺失值:   直接设为 NaN
+Design: error injection is the inverse of detection.
+  - Semantic errors: rule-based reverse injection (DOMAIN/CFD/FD), simulating
+    logical violations that RAHA cannot detect.
+  - Syntactic errors: RAHA-aware, statistics-driven (OD-Gaussian/Histogram/PVD);
+    no rules involved.
+  - Label errors: conditional injection that mirrors the label-flip pattern
+    observed by the detector.
+  - Missing values: simply set to NaN.
 
-错误类型编码:
+Error type codes:
   0 = missing, 1 = semantic, 2 = syntactic, 3 = label_noise
 """
 
@@ -24,21 +27,21 @@ from ..utils.edit_distance import generate_typo, find_nearest_known, find_top_k_
 
 
 # ============================================================================
-# 标签错误模式分析
+# Label-error pattern analysis
 # ============================================================================
 
 @dataclass
 class LabelErrorPattern:
-    """检测到的标签错误模式"""
+    """Label-error pattern observed by the detector."""
     flip_matrix: Dict[Tuple, int] = field(default_factory=dict)  # (from_class, to_class) -> count
     error_rate: float = 0.0
     is_symmetric: bool = True
     unique_classes: List = field(default_factory=list)
-    # 回归任务扩展字段
+    # Extra fields for regression tasks
     is_regression: bool = False
-    noise_std: float = 0.0      # 估计的标签噪声标准差
-    label_mean: float = 0.0     # 标签均值
-    label_std: float = 1.0      # 标签标准差
+    noise_std: float = 0.0      # estimated label-noise std
+    label_mean: float = 0.0     # label mean
+    label_std: float = 1.0      # label std
 
 
 def analyze_label_error_pattern(
@@ -46,16 +49,18 @@ def analyze_label_error_pattern(
     y_dirty: np.ndarray,
     task_type: str = 'classification',
 ) -> LabelErrorPattern:
-    """分析检测到的标签错误模式
+    """Analyze the label-error pattern returned by the detector.
 
     Args:
-        detected_label_errors: 检测器返回的标签错误列表
-            格式: [(row_idx, col=-1, ...), ...] 或 [{'idx': ..., 'col': -1}, ...]
-        y_dirty: 脏标签向量
-        task_type: 任务类型 ('classification' 或 'regression')
+        detected_label_errors: label errors returned by the detector,
+            formatted as [(row_idx, col=-1, ...), ...] or
+            [{'idx': ..., 'col': -1}, ...]
+        y_dirty: dirty label vector
+        task_type: 'classification' or 'regression'
 
     Returns:
-        LabelErrorPattern 描述翻转分布（分类）或噪声分布（回归）
+        LabelErrorPattern describing the flip distribution (classification) or
+        noise distribution (regression).
     """
     pattern = LabelErrorPattern()
     valid_y = y_dirty[~np.isnan(y_dirty)]
@@ -65,7 +70,7 @@ def analyze_label_error_pattern(
     if not detected_label_errors:
         return pattern
 
-    # 提取错误行索引
+    # Extract error row indices
     error_indices = set()
     for item in detected_label_errors:
         if isinstance(item, (list, tuple)):
@@ -80,21 +85,22 @@ def analyze_label_error_pattern(
     pattern.error_rate = total_errors / max(1, len(y_dirty))
 
     # ============================================================
-    # 回归任务: 估计噪声标准差而非构建 flip_matrix
+    # Regression: estimate noise std rather than building a flip_matrix
     # ============================================================
     if task_type == 'regression':
         pattern.is_regression = True
         pattern.label_mean = float(np.mean(valid_y))
         pattern.label_std = float(np.std(valid_y)) + 1e-8
 
-        # 用被标记为错误的标签与全局分布的偏差估计噪声量级
+        # Estimate noise magnitude from how much error-flagged labels deviate
+        # from the global distribution.
         error_labels = np.array([y_dirty[i] for i in error_indices
                                   if i < len(y_dirty) and not np.isnan(y_dirty[i])])
         if len(error_labels) > 0:
-            # 估计: 错误标签偏离全局均值的标准差作为噪声量级
+            # Estimate: half the mean absolute deviation (conservative).
             deviations = np.abs(error_labels - pattern.label_mean)
-            pattern.noise_std = float(np.mean(deviations)) * 0.5  # 保守估计
-            # 下限: 至少是标签标准差的 10%
+            pattern.noise_std = float(np.mean(deviations)) * 0.5  # conservative
+            # Lower bound: at least 10% of the label std
             pattern.noise_std = max(pattern.noise_std, pattern.label_std * 0.1)
         else:
             pattern.noise_std = pattern.label_std * 0.2
@@ -102,9 +108,9 @@ def analyze_label_error_pattern(
         return pattern
 
     # ============================================================
-    # 分类任务: 构建 flip_matrix（原有逻辑）
+    # Classification: build the flip_matrix (original logic)
     # ============================================================
-    # 统计各类的错误占比
+    # Per-class error counts
     class_error_count = defaultdict(int)
     for idx in error_indices:
         if idx < len(y_dirty) and not np.isnan(y_dirty[idx]):
@@ -120,7 +126,7 @@ def analyze_label_error_pattern(
             pattern.flip_matrix[(c1, c0)] = n_c1_err
         pattern.is_symmetric = abs(n_c0_err - n_c1_err) < max(1, total_errors * 0.3)
     else:
-        # 多分类: 均匀翻转到其他类
+        # Multi-class: uniformly flip to every other class
         for cls_from, count in class_error_count.items():
             others = [c for c in unique_classes if c != cls_from]
             per_other = max(1, count // len(others)) if others else 0
@@ -131,18 +137,20 @@ def analyze_label_error_pattern(
 
 
 # ============================================================================
-# ErrorInjector 主类
+# ErrorInjector main class
 # ============================================================================
 
 class ErrorInjector:
     """
-    错误注入器
+    Error injector.
 
-    在基准数据上注入四类错误用于训练：
-    - 缺失值 (type=0): 将值设为 NaN
-    - 语义错误 (type=1): 基于规则反向注入（DOMAIN/CFD/FD），无规则时随机替换
-    - 句法错误 (type=2): RAHA-aware 统计驱动（OD-Gaussian/Histogram/PVD 模拟）
-    - 标签错误 (type=3): 条件性标签翻转，镜像检测到的模式
+    Injects four types of errors onto the base data for training:
+    - Missing (type=0): set the value to NaN.
+    - Semantic (type=1): rule-based reverse injection (DOMAIN/CFD/FD);
+      falls back to random replacement when no rules are available.
+    - Syntactic (type=2): RAHA-aware, statistics-driven (simulating
+      OD-Gaussian / Histogram / PVD).
+    - Label (type=3): conditional label flips that mirror the detected pattern.
     """
 
     def __init__(self, X_base: np.ndarray, y_base: np.ndarray,
@@ -155,20 +163,21 @@ class ErrorInjector:
                  dirty_df: Optional[Any] = None,
                  label_col: Optional[str] = None):
         """
-        初始化错误注入器
+        Initialize the error injector.
 
         Args:
-            X_base: 基准数据（删除空缺值后的脏数据，当作相对干净的）
-            y_base: 标签
-            fd_rules: FD规则列表 [("lhs_col", "rhs_col"), ...]
-            column_names: 数据列名列表
-            rich_rules: 丰富规则字典（来自 rule_parser.rules_to_dict()）
-                        包含 domain_rules, cfd_rules 等
-            label_encoders: {col_name: LabelEncoder} 编码工具
-            scaler: StandardScaler 标准化工具
-            categorical_cols: 分类列名集合
-            dirty_df: 原始 CSV 空间 dirty DataFrame
-            label_col: 标签列名
+            X_base: base data (dirty data with missing rows removed, treated as
+                relatively clean)
+            y_base: labels
+            fd_rules: list of FD rules [("lhs_col", "rhs_col"), ...]
+            column_names: list of data column names
+            rich_rules: rich-rules dict (from rule_parser.rules_to_dict()),
+                containing domain_rules, cfd_rules, etc.
+            label_encoders: {col_name: LabelEncoder} encoders
+            scaler: StandardScaler
+            categorical_cols: set of categorical column names
+            dirty_df: dirty DataFrame in the raw CSV space
+            label_col: label column name
         """
         self.X_base = X_base.copy()
         self.y_base = y_base.copy()
@@ -176,7 +185,7 @@ class ErrorInjector:
         self.column_names = column_names or []
         self.rich_rules = rich_rules
 
-        # 编码工具
+        # Encoders
         self.label_encoders = label_encoders or {}
         self.scaler = scaler
         self.categorical_cols = categorical_cols or set()
@@ -184,7 +193,7 @@ class ErrorInjector:
         self.label_col = label_col
         self._has_encoding_tools = bool(self.scaler is not None)
 
-        # 计算统计量
+        # Compute column statistics
         self.col_means = np.nanmean(X_base, axis=0)
         self.col_stds = np.nanstd(X_base, axis=0)
         self.col_percentiles: Dict[int, Tuple[float, float]] = {}
@@ -199,43 +208,46 @@ class ErrorInjector:
                     np.percentile(valid, 99),
                 )
 
-        # 构建 FD 列索引映射
+        # Build the FD column-index map
         self.fd_col_pairs: List[Tuple[List[int], int]] = []
         self._build_fd_index()
 
-        # FD 主键列集合（高频 LHS：出现在 ≥2 条 FD 规则中的列）
-        # 理论上句法注入应避开这些列以防止 FD 检测级联误报，
-        # 但实测发现排除后错误集中在分类列上，RAHA 过度检测（8→150+），
-        # 导致总体 FP 反而增加。暂时禁用，保留架构供后续优化。
+        # FD primary-key column set (high-frequency LHS: columns appearing in
+        # >=2 FD rules). In principle syntactic injection should avoid these
+        # columns to prevent cascading FD false positives, but empirically
+        # excluding them concentrates errors in categorical columns and causes
+        # RAHA to over-detect (8 -> 150+), increasing overall FP. Disabled for
+        # now; architecture is kept for future tuning.
         from collections import Counter
         lhs_counter = Counter()
         for lhs_indices, _rhs_idx in self.fd_col_pairs:
             for li in lhs_indices:
                 lhs_counter[li] += 1
-        self._fd_lhs_cols: Set[int] = set()  # 禁用: 启用会恶化 RAHA
-        # 启用版本: {col for col, cnt in lhs_counter.items() if cnt >= 2}
+        self._fd_lhs_cols: Set[int] = set()  # disabled: enabling hurts RAHA
+        # Enabled version: {col for col, cnt in lhs_counter.items() if cnt >= 2}
 
-        # 构建 DOMAIN/CFD/DC 列索引映射
+        # Build DOMAIN / CFD / DC column-index maps
         self._domain_col_map: Dict[int, Dict] = {}   # col_idx -> domain_rule_dict
         self._cfd_col_map: Dict[str, List[Dict]] = {} # class_val -> [cfd_rule_dict, ...]
-        self._dc_rule_list: List[Dict] = []            # DC 规则字典列表
+        self._dc_rule_list: List[Dict] = []            # list of DC-rule dicts
         if self.rich_rules and self.rich_rules.get('has_rich_rules'):
             self._build_rich_rule_index()
 
-        # 如果有编码工具，将规则值预转换到 LE+SS 空间
+        # When encoders are available, pre-convert rule values into LE+SS space
         if self._has_encoding_tools:
             self._convert_rules_to_encoded_space()
 
-        # 分类列: col_idx → 原始字符串值列表（来自 LabelEncoder.classes_）
-        # 用于分类列 typo 注入（逆变换 + typo + 正变换）
+        # Categorical columns: col_idx -> list of original string values
+        # (from LabelEncoder.classes_). Used by typo injection
+        # (inverse-transform -> typo -> forward-transform).
         self._cat_col_original_values: Dict[int, List[str]] = {}
         self._cat_col_idx_set: Set[int] = set()
         self._build_categorical_col_map()
 
     def _build_categorical_col_map(self):
-        """构建分类列索引 → 原始字符串值列表的映射
+        """Build the map: categorical col_idx -> list of original string values.
 
-        前置条件: self.label_encoders, self.categorical_cols, self.column_names
+        Preconditions: self.label_encoders, self.categorical_cols, self.column_names.
         """
         if not self.label_encoders or not self.categorical_cols or not self.column_names:
             return
@@ -250,24 +262,26 @@ class ErrorInjector:
                 continue
 
             known_values = list(le.classes_)
-            if len(known_values) >= 2:  # 至少 2 个类别才有意义
+            if len(known_values) >= 2:  # at least 2 categories are required
                 self._cat_col_original_values[col_idx] = known_values
                 self._cat_col_idx_set.add(col_idx)
 
     def _generate_categorical_typo_encoded(
             self, col: int, current_encoded: float
     ) -> Optional[float]:
-        """为分类列生成句法异常：随机替换为另一个合法 LE 类别
+        """Generate a syntactic anomaly for a categorical column by randomly
+        substituting another valid LE category.
 
-        训练-推理一致性: dirty-fit LE 下，推理时 typo 是合法 LE 整数，
-        训练时注入的错误也应该是合法 LE 整数（不再用 OOV 极端值）。
+        Training/inference consistency: under a dirty-fit LE, typos at inference
+        time are valid LE integers, so injected errors during training must also
+        be valid LE integers (no more OOV extreme values).
 
         Args:
-            col: 列索引
-            current_encoded: 当前 LE+SS 编码值
+            col: column index
+            current_encoded: current LE+SS encoded value
 
         Returns:
-            新编码值，或 None
+            New encoded value, or None.
         """
         if col not in self._cat_col_original_values:
             return None
@@ -280,13 +294,13 @@ class ErrorInjector:
         if n_classes < 2:
             return None
 
-        # 逆变换获取当前 LE 整数
+        # Inverse-transform to recover the current LE integer
         scaler_mean = self.scaler.mean_[col]
         scaler_scale = self.scaler.scale_[col]
         current_le = int(round(current_encoded * scaler_scale + scaler_mean))
         current_le = max(0, min(current_le, n_classes - 1))
 
-        # 随机选一个不同的合法 LE 整数
+        # Randomly pick a different valid LE integer
         new_le = current_le
         for _ in range(20):
             new_le = np.random.randint(0, n_classes)
@@ -295,12 +309,12 @@ class ErrorInjector:
         if new_le == current_le:
             return None
 
-        # LE → SS 编码
+        # LE -> SS encoding
         new_encoded = (new_le - scaler_mean) / scaler_scale
         return float(new_encoded)
 
     def _build_fd_index(self):
-        """构建 FD 规则的列索引映射"""
+        """Build the FD rule column-index map."""
         if not self.fd_rules or not self.column_names:
             return
 
@@ -320,18 +334,18 @@ class ErrorInjector:
                     self.fd_col_pairs.append((lhs_indices, rhs_idx))
 
     def _build_rich_rule_index(self):
-        """构建 DOMAIN/CFD 规则的列索引映射"""
+        """Build DOMAIN / CFD rule column-index maps."""
         if not self.rich_rules:
             return
 
-        # DOMAIN 规则 → 列索引
+        # DOMAIN rules -> column index
         for rule in self.rich_rules.get('domain_rules', []):
             col_name = rule.get('column', '')
             if col_name in self.column_names:
                 col_idx = self.column_names.index(col_name)
                 self._domain_col_map[col_idx] = rule
 
-        # CFD 规则 → 按标签值分组（支持任意标签列名）
+        # CFD rules -> grouped by label value (supports any label column name)
         label_names = {'class'}
         if self.label_col:
             label_names.add(self.label_col)
@@ -341,20 +355,23 @@ class ErrorInjector:
                     self._cfd_col_map.setdefault(val, []).append(rule)
                     break
 
-        # DC 规则（已是序列化后的字典列表）
+        # DC rules (already a serialized list of dicts)
         self._dc_rule_list = self.rich_rules.get('dc_rules', [])
 
     def _convert_rules_to_encoded_space(self):
-        """将规则值从 CSV 原始空间预转换到 LE+SS 编码空间
+        """Pre-convert rule values from raw CSV space to LE+SS encoded space.
 
-        解决核心问题: rules.txt 中的 DOMAIN/CFD 规则值是原始 CSV 字符串空间，
-        但 ErrorInjector 操作的数据是经过 LabelEncoder + StandardScaler 编码的。
+        Problem: DOMAIN/CFD rule values in rules.txt are in the raw CSV string
+        space, while ErrorInjector operates on data encoded with
+        LabelEncoder + StandardScaler.
 
-        转换策略:
-          - DOMAIN ENUM: 用 LabelEncoder 转换枚举值列表 → LE 整数，
-                        再用 StandardScaler 转到 LE+SS 空间
-          - DOMAIN INT/FLOAT: 用 StandardScaler 转换 min_val/max_val 到 LE+SS 空间
-          - CFD class_val: 用 LabelEncoder 转换 class 标签值到 LE 空间
+        Strategy:
+          - DOMAIN ENUM: use LabelEncoder to convert the enum list -> LE integers,
+                        then StandardScaler -> LE+SS space.
+          - DOMAIN INT/FLOAT: use StandardScaler to convert min_val/max_val
+                              -> LE+SS space.
+          - CFD class_val: use LabelEncoder to convert the class label value
+                           -> LE space.
         """
         if not self.scaler:
             return
@@ -362,32 +379,35 @@ class ErrorInjector:
         scaler_mean = self.scaler.mean_
         scaler_scale = self.scaler.scale_
 
-        # --- 转换 DOMAIN 规则 ---
+        # --- Convert DOMAIN rules ---
         for col_idx, rule in self._domain_col_map.items():
             col_name = rule.get('column', '')
 
             if rule.get('dtype') == 'ENUM':
-                # ENUM: 如果是分类列（有 LabelEncoder），转换枚举值
+                # ENUM: if it is a categorical column (has a LabelEncoder),
+                # convert the enum values.
                 if col_name in self.label_encoders and col_name in self.categorical_cols:
                     le = self.label_encoders[col_name]
                     enum_vals = rule.get('enum_vals', [])
                     if enum_vals:
                         try:
-                            # 将原始字符串枚举值转为 LE 编码整数
+                            # Convert raw-string enum values to LE integers
                             le_vals = le.transform(enum_vals)
-                            # 再通过 StandardScaler 转到 LE+SS 空间
+                            # Then StandardScaler -> LE+SS space
                             if col_idx < len(scaler_mean):
                                 ss_vals = (le_vals - scaler_mean[col_idx]) / scaler_scale[col_idx]
-                                # 存储编码后的枚举范围（用于注入时生成越界值）
+                                # Store the encoded enum range (used to generate
+                                # out-of-range injections).
                                 rule['_encoded_enum_max'] = float(np.max(ss_vals))
                                 rule['_encoded_enum_min'] = float(np.min(ss_vals))
-                                rule['_encoded_enum_step'] = scaler_scale[col_idx]  # 1 个原始单位在 SS 空间的步长
+                                rule['_encoded_enum_step'] = scaler_scale[col_idx]  # SS-space step per raw unit
                                 rule['_encoding_converted'] = True
                         except (ValueError, KeyError):
-                            # 某些枚举值不在 LabelEncoder 类别中（如新出现的错误值）
+                            # Some enum values are absent from the LabelEncoder
+                            # (e.g. novel erroneous values).
                             rule['_encoding_converted'] = False
                 else:
-                    # 纯数值 ENUM（不需要 LabelEncoder）
+                    # Numeric-only ENUM (no LabelEncoder required)
                     try:
                         num_vals = [float(v) for v in rule.get('enum_vals', [])]
                         if num_vals and col_idx < len(scaler_mean):
@@ -400,17 +420,17 @@ class ErrorInjector:
                         rule['_encoding_converted'] = False
 
             elif rule.get('min_val') is not None and rule.get('max_val') is not None:
-                # INT/FLOAT: 转换 min_val, max_val 到 LE+SS 空间
+                # INT/FLOAT: convert min_val, max_val into LE+SS space
                 if col_idx < len(scaler_mean):
                     original_min = rule['min_val']
                     original_max = rule['max_val']
                     rule['_encoded_min'] = (original_min - scaler_mean[col_idx]) / scaler_scale[col_idx]
                     rule['_encoded_max'] = (original_max - scaler_mean[col_idx]) / scaler_scale[col_idx]
-                    # 原始空间 1 个单位对应的 SS 空间步长
+                    # SS-space step corresponding to 1 raw-space unit
                     rule['_encoded_unit_step'] = 1.0 / scaler_scale[col_idx]
                     rule['_encoding_converted'] = True
 
-        # --- 转换 CFD 规则的 class_val ---
+        # --- Convert CFD rules' class_val ---
         if self.label_col and self.label_col in self.label_encoders:
             le = self.label_encoders[self.label_col]
             new_cfd_map: Dict[str, List[Dict]] = {}
@@ -423,14 +443,14 @@ class ErrorInjector:
                         rule['_encoded_class_val'] = encoded_key
                     new_cfd_map.setdefault(encoded_key, []).extend(rules)
                 except (ValueError, KeyError):
-                    # class_val 不在 LabelEncoder 中，保持原样
+                    # class_val is not in the LabelEncoder; keep it as-is
                     new_cfd_map.setdefault(class_val, []).extend(rules)
             self._cfd_col_map = new_cfd_map
 
-        # --- 转换 DC 规则的 clause value 到 LE+SS 空间 ---
+        # --- Convert DC rule clause values into LE+SS space ---
         for dc_rule in self._dc_rule_list:
             if dc_rule.get('_encoding_converted'):
-                continue  # 已转换过
+                continue  # already converted
 
             all_cols_valid = True
             for clause in dc_rule.get('clauses', []):
@@ -445,7 +465,7 @@ class ErrorInjector:
                     raw_val = clause.get('value', 0.0)
 
                     if col_idx < len(scaler_mean):
-                        # 分类列先通过 LabelEncoder
+                        # Categorical columns go through LabelEncoder first
                         if col_name in self.label_encoders and col_name in self.categorical_cols:
                             try:
                                 le = self.label_encoders[col_name]
@@ -469,8 +489,8 @@ class ErrorInjector:
                     col2_idx = self.column_names.index(col2_name)
                     raw_threshold = clause.get('value', 0.0)
 
-                    # abs_diff 的 threshold 是差值，需要考虑两列的 scale
-                    # 近似处理: 使用两列 scale 的平均值
+                    # The abs_diff threshold is a difference, so both columns'
+                    # scales must be considered; we approximate with the mean.
                     if col1_idx < len(scaler_scale) and col2_idx < len(scaler_scale):
                         avg_scale = (scaler_scale[col1_idx] + scaler_scale[col2_idx]) / 2.0
                         encoded_threshold = raw_threshold / avg_scale if avg_scale > 1e-10 else raw_threshold
@@ -484,10 +504,12 @@ class ErrorInjector:
             dc_rule['_encoding_converted'] = all_cols_valid
 
     def _has_cfd_for_label(self) -> bool:
-        """检查是否有 CFD 规则覆盖标签列（用于决定是否从语义预算中分配标签注入）
+        """Return True if any CFD rule covers the label column.
 
-        只要 CFD 规则的 conditions 中包含标签列（如 class=X => ...），
-        AutoDetector 就能通过 CFD 推断检测到标签翻转。
+        Used to decide whether to allocate label injection from the semantic
+        budget. Any CFD rule whose conditions include the label column
+        (e.g. class=X => ...) lets AutoDetector detect label flips via CFD
+        inference.
         """
         if not self.rich_rules or not self.rich_rules.get('has_rich_rules'):
             return False
@@ -500,7 +522,7 @@ class ErrorInjector:
         return False
 
     # ====================================================================
-    # 公共接口
+    # Public interface
     # ====================================================================
 
     def inject_errors(self,
@@ -512,27 +534,33 @@ class ErrorInjector:
                       strict_semantic: bool = False,
                       ) -> Tuple[np.ndarray, np.ndarray, Dict[str, List]]:
         """
-        在基准数据上注入错误
+        Inject errors on top of the base data.
 
-        错误分类（与 AutoDetector 检测通道一致）:
-          - syntactic: 值域/格式异常 = DOMAIN 违规 + RAHA-aware 统计异常
-          - semantic: 逻辑关系违反 = FD + CFD + DC 违规
-          - missing: 缺失值
-          - label_noise: 标签翻转
+        Error taxonomy (aligned with AutoDetector detection channels):
+          - syntactic: value-range / format anomalies = DOMAIN violations +
+            RAHA-aware statistical anomalies.
+          - semantic: logical violations = FD + CFD + DC violations.
+          - missing: missing values.
+          - label_noise: label flips.
 
         Args:
-            missing_rate: 缺失值比例
-            semantic_rate: 语义错误比例（包含标签预算，如果有 CFD 标签规则）
-            syntactic_rate: 句法错误比例（包含 DOMAIN 违规 + RAHA-aware）
-            label_rate: 标签错误比例（已废弃，标签预算现从 semantic_rate 中分配）
-            label_pattern: 标签错误模式（来自检测器分析或均匀翻转矩阵）
-            strict_semantic: 严格模式 — 不 fallback 到不可检测的随机语义注入
+            missing_rate: fraction of missing values to inject
+            semantic_rate: fraction of semantic errors (includes the label
+                budget when CFD label rules exist)
+            syntactic_rate: fraction of syntactic errors (DOMAIN violations +
+                RAHA-aware)
+            label_rate: deprecated label-error fraction; the label budget is
+                now allocated from semantic_rate
+            label_pattern: label-error pattern (from detector analysis or a
+                uniform flip matrix)
+            strict_semantic: strict mode — never fall back to undetectable
+                random semantic injection
 
         Returns:
             (X_dirty, y_dirty, injected_errors)
-            - X_dirty: 注入错误后的特征数据
-            - y_dirty: 注入错误后的标签
-            - injected_errors: 注入的错误信息
+            - X_dirty: features after injection
+            - y_dirty: labels after injection
+            - injected_errors: metadata
                 {
                     'missing': [(idx, col, original_val), ...],
                     'semantic': [(idx, col, original_val, new_val), ...],
@@ -552,31 +580,33 @@ class ErrorInjector:
         }
         used_indices: Set[Tuple[int, int]] = set()
 
-        # 1. 注入缺失值
+        # 1. Inject missing values
         n_missing = int(n_samples * missing_rate)
         self._inject_missing(X_dirty, n_missing, used_indices, injected)
 
-        # 2. 注入语义错误 + 标签错误
-        #    语义 = CFD + DC + FD（逻辑关系违反），不含 DOMAIN
+        # 2. Inject semantic + label errors
+        #    Semantic = CFD + DC + FD (logical violations); DOMAIN is excluded.
         n_semantic_total = int(n_samples * semantic_rate)
 
-        # 标签预算策略:
-        #   - label_rate > 0（旧调用方式，如 trainer.py）: 独立于语义预算
-        #   - label_rate == 0（新调用方式）: 从语义预算中分配（需有 CFD 标签规则）
+        # Label-budget strategy:
+        #   - label_rate > 0 (legacy callers, e.g. trainer.py): independent
+        #     of the semantic budget.
+        #   - label_rate == 0 (new callers): take ~20% from semantic_rate
+        #     when CFD label rules exist.
         has_label_rules = self._has_cfd_for_label()
         n_label = 0
         label_from_semantic = False
         if label_rate > 0 and label_pattern is not None:
-            # 向后兼容: 使用显式 label_rate，独立于语义预算
+            # Backward compatible: use explicit label_rate, independent budget
             n_label = int(n_samples * label_rate)
         elif has_label_rules and label_pattern is not None:
-            # 新逻辑: 从语义预算中分配 ~20%
+            # New logic: allocate ~20% from the semantic budget
             n_label = max(1, int(n_semantic_total * 0.2))
             label_from_semantic = True
 
         n_semantic = n_semantic_total - n_label if label_from_semantic else n_semantic_total
 
-        # 特征列语义注入（不含 DOMAIN，仅 CFD + DC + FD）
+        # Feature-column semantic injection (CFD + DC + FD only; no DOMAIN)
         if self.rich_rules and self.rich_rules.get('has_rich_rules'):
             count = self._inject_semantic_no_domain(X_dirty, y_dirty, n_semantic, used_indices, injected)
             remaining = n_semantic - count
@@ -591,23 +621,25 @@ class ErrorInjector:
         elif not strict_semantic:
             self._inject_random_semantic(X_dirty, n_semantic, used_indices, injected)
 
-        # 3. 注入句法错误 = DOMAIN 违规 + RAHA-aware 统计异常
+        # 3. Inject syntactic errors = DOMAIN violations + RAHA-aware anomalies
         n_syntactic = int(n_samples * syntactic_rate)
 
-        # DOMAIN 违规（占句法预算的 30%，有 DOMAIN 规则时）
+        # DOMAIN violations (30% of the syntactic budget when rules exist)
         n_domain = 0
         if self._domain_col_map:
             n_domain = int(n_syntactic * 0.3)
             self._inject_domain_violations(X_dirty, n_domain, used_indices, injected)
 
-        # RAHA-aware 统计异常（剩余句法预算）
+        # RAHA-aware statistical anomalies (remaining syntactic budget)
         n_raha_syntactic = n_syntactic - n_domain
         self._inject_raha_aware_syntactic(X_dirty, n_raha_syntactic, used_indices, injected)
 
-        # 4. 标签错误（从语义预算分配，仅 CFD 标签规则存在时）
+        # 4. Label errors (allocated from the semantic budget; only when CFD
+        #    label rules exist).
         if n_label > 0 and label_pattern is not None:
-            # 收集已有特征错误的行（标签注入应避开这些行，
-            # 否则检测端的"特征受损行排除"会过滤掉这些 TP）
+            # Collect rows already carrying feature errors. Label injection
+            # must avoid them; otherwise the detector's "feature-damaged row
+            # exclusion" filters these out as TPs.
             feature_damaged_rows: Set[int] = set()
             for item in injected['missing']:
                 feature_damaged_rows.add(item[0])
@@ -630,15 +662,16 @@ class ErrorInjector:
                         label_rate: float = 0.0,
                         label_pattern: Optional[LabelErrorPattern] = None,
                         ) -> Tuple[np.ndarray, np.ndarray, Dict[str, List]]:
-        """在脏数据上注入额外错误（自监督训练用）
+        """Inject additional errors on top of dirty data (for self-supervised training).
 
-        只在未被检测器标记且非 NaN 的单元格上注入。
+        Only injects into cells that are neither flagged by the detector nor NaN.
 
         Args:
-            X_dirty: 原始脏数据（全量，含已检测错误）
-            y_dirty: 原始脏标签
-            detected_cells: 检测器已标记的位置集合 {(row, col), ...}
-            其他参数同 inject_errors
+            X_dirty: full dirty data (including detected errors)
+            y_dirty: dirty labels
+            detected_cells: set of positions already flagged by the detector,
+                {(row, col), ...}
+            The remaining parameters match inject_errors.
 
         Returns:
             (X_augmented, y_augmented, injected_new)
@@ -653,18 +686,18 @@ class ErrorInjector:
             'syntactic': [],
             'label_noise': [],
         }
-        # 已检测位置 + NaN 位置都不可注入
+        # Neither already-detected positions nor NaN cells may be re-injected
         used_indices = set(detected_cells)
         for i in range(n_samples):
             for j in range(n_features):
                 if np.isnan(X_aug[i, j]):
                     used_indices.add((i, j))
 
-        # 注入逻辑与 inject_errors 完全一致
+        # Injection logic is identical to inject_errors
         n_missing = int(n_samples * missing_rate)
         self._inject_missing(X_aug, n_missing, used_indices, injected)
 
-        # 语义 = CFD + DC + FD（不含 DOMAIN）
+        # Semantic = CFD + DC + FD (no DOMAIN)
         n_semantic = int(n_samples * semantic_rate)
         if self.rich_rules and self.rich_rules.get('has_rich_rules'):
             count = self._inject_semantic_no_domain(X_aug, y_aug, n_semantic, used_indices, injected)
@@ -678,7 +711,7 @@ class ErrorInjector:
         else:
             self._inject_random_semantic(X_aug, n_semantic, used_indices, injected)
 
-        # 句法 = DOMAIN + RAHA-aware
+        # Syntactic = DOMAIN + RAHA-aware
         n_syntactic = int(n_samples * syntactic_rate)
         n_domain = 0
         if self._domain_col_map:
@@ -693,13 +726,13 @@ class ErrorInjector:
         return X_aug, y_aug, injected
 
     # ====================================================================
-    # 1. 缺失值注入
+    # 1. Missing-value injection
     # ====================================================================
 
     def _inject_missing(self, X_dirty: np.ndarray, n_missing: int,
                         used_indices: Set[Tuple[int, int]],
                         injected: Dict[str, List]):
-        """注入缺失值 (type=0)"""
+        """Inject missing values (type=0)."""
         n_samples, n_features = X_dirty.shape
         for _ in range(n_missing):
             idx = np.random.randint(0, n_samples)
@@ -711,38 +744,40 @@ class ErrorInjector:
                 used_indices.add((idx, col))
 
     # ====================================================================
-    # 2. 语义错误注入（基于规则 — DOMAIN/CFD/DC/FD）
+    # 2. Semantic-error injection (rule-based: DOMAIN/CFD/DC/FD)
     # ====================================================================
 
     def _inject_rule_based_semantic(self, X_dirty: np.ndarray, y_dirty: np.ndarray,
                                      n_semantic: int,
                                      used_indices: Set[Tuple[int, int]],
                                      injected: Dict[str, List]) -> int:
-        """基于 DOMAIN + CFD + DC 规则反向注入语义错误（向后兼容）
+        """Rule-based reverse injection of semantic errors with DOMAIN + CFD +
+        DC + FD (kept for backward compatibility).
 
-        注意: 新的 inject_errors() 不再调用此方法，改用 _inject_semantic_no_domain()。
-        保留此方法用于 inject_on_dirty() 等旧接口。
+        Note: the new inject_errors() no longer calls this method and uses
+        _inject_semantic_no_domain() instead. Retained for legacy callers such
+        as inject_on_dirty().
 
-        优先级: DOMAIN 违规 (40%) > CFD 违规 (30%) > DC 违规 (30%) > FD 补充
+        Priority: DOMAIN (40%) > CFD (30%) > DC (30%) > FD fallback.
 
         Returns:
-            实际注入数量
+            Number of errors actually injected.
         """
         total_injected = 0
 
-        # DOMAIN 违规注入（占比 40%）
+        # DOMAIN violations (40%)
         n_domain = int(n_semantic * 0.4)
         if self._domain_col_map:
             total_injected += self._inject_domain_violations(
                 X_dirty, n_domain, used_indices, injected)
 
-        # CFD 违规注入（占比 30%）
+        # CFD violations (30%)
         n_cfd = int(n_semantic * 0.3)
         if self._cfd_col_map:
             total_injected += self._inject_cfd_violations(
                 X_dirty, y_dirty, n_cfd, used_indices, injected)
 
-        # DC 违规注入（剩余全给 DC）
+        # DC violations (remainder)
         n_dc = n_semantic - total_injected
         if self._dc_rule_list:
             total_injected += self._inject_dc_violations(
@@ -754,26 +789,26 @@ class ErrorInjector:
                                     n_semantic: int,
                                     used_indices: Set[Tuple[int, int]],
                                     injected: Dict[str, List]) -> int:
-        """仅 CFD + DC 的语义注入（DOMAIN 已移到 syntactic）
+        """Semantic injection with CFD + DC only (DOMAIN has moved to syntactic).
 
-        与 AutoDetector 的 semantic 通道对齐:
+        Aligned with AutoDetector's semantic channel:
           - AutoDetector semantic = FD + CFD + DC
           - ErrorInjector semantic = CFD + DC + FD
 
-        CFD 50% > DC 50% > FD 补充
+        CFD 50% > DC 50% > FD fallback.
 
         Returns:
-            实际注入数量
+            Number of errors actually injected.
         """
         total_injected = 0
 
-        # CFD 违规注入（占比 50%）
+        # CFD violations (50%)
         n_cfd = int(n_semantic * 0.5)
         if self._cfd_col_map:
             total_injected += self._inject_cfd_violations(
                 X_dirty, y_dirty, n_cfd, used_indices, injected)
 
-        # DC 违规注入（剩余全给 DC）
+        # DC violations (remainder)
         n_dc = n_semantic - total_injected
         if self._dc_rule_list:
             total_injected += self._inject_dc_violations(
@@ -784,16 +819,18 @@ class ErrorInjector:
     def _inject_domain_violations(self, X_dirty: np.ndarray, n_target: int,
                                    used_indices: Set[Tuple[int, int]],
                                    injected: Dict[str, List]) -> int:
-        """注入 DOMAIN 违规（超出合法值域）→ 归类为 syntactic
+        """Inject DOMAIN violations (values outside the valid range);
+        classified as syntactic.
 
-        与 AutoDetector 一致: DOMAIN 检测在 syntactic 通道 (Stage 2c)，
-        因此注入也放入 injected['syntactic']。
+        Aligned with AutoDetector: DOMAIN detection runs on the syntactic
+        channel (Stage 2c), so injections also land in injected['syntactic'].
 
-        如果有编码工具，使用预转换到 LE+SS 空间的边界值生成越界值。
-        否则（无编码工具），使用原始规则值（向后兼容）。
+        When encoders are available, uses boundary values pre-converted into
+        LE+SS space to generate out-of-range values. Otherwise (no encoders),
+        falls back to the raw rule values for backward compatibility.
 
-        INT [1, 10] → 在 LE+SS 空间中注入超出 [encoded_min, encoded_max] 的值
-        ENUM {a, b, c} → 在 LE+SS 空间中注入超出 [encoded_enum_min, encoded_enum_max] 的值
+        INT [1, 10]     -> inject values outside [encoded_min, encoded_max] in LE+SS space
+        ENUM {a, b, c}  -> inject values outside [encoded_enum_min, encoded_enum_max] in LE+SS space
         """
         n_samples = len(X_dirty)
         count = 0
@@ -802,7 +839,7 @@ class ErrorInjector:
         if not domain_cols:
             return 0
 
-        for _ in range(n_target * 3):  # 多尝试
+        for _ in range(n_target * 3):  # extra retries
             if count >= n_target:
                 break
 
@@ -818,14 +855,15 @@ class ErrorInjector:
 
             if rule.get('dtype') == 'ENUM':
                 if rule.get('_encoding_converted'):
-                    # 使用预转换的编码空间范围
+                    # Use the pre-converted encoded-space range
                     max_encoded = rule['_encoded_enum_max']
-                    # 在 LE+SS 空间中，一个原始枚举单位 ≈ 1/scaler_scale
+                    # In LE+SS space, one raw-enum unit ~ 1/scaler_scale
                     step = rule.get('_encoded_enum_step', 1.0)
                     unit_step = 1.0 / step if step > 0 else 0.5
                     new_val = max_encoded + np.random.choice([1, 2, 3]) * unit_step
                 else:
-                    # 无编码工具或转换失败：用数据矩阵中该列的实际值范围
+                    # No encoders or conversion failed: use the actual value
+                    # range from this column of the data matrix.
                     col_vals = self.X_base[:, col_idx]
                     valid_vals = col_vals[~np.isnan(col_vals)]
                     if len(valid_vals) > 0:
@@ -837,18 +875,19 @@ class ErrorInjector:
 
             elif rule.get('min_val') is not None and rule.get('max_val') is not None:
                 if rule.get('_encoding_converted'):
-                    # 使用预转换的编码空间边界
+                    # Use the pre-converted encoded-space bounds
                     encoded_min = rule['_encoded_min']
                     encoded_max = rule['_encoded_max']
                     unit_step = rule.get('_encoded_unit_step', 0.5)
                     if np.random.random() < 0.5:
-                        # 超出上界
+                        # Above the upper bound
                         new_val = encoded_max + np.random.randint(1, 6) * unit_step
                     else:
-                        # 超出下界
+                        # Below the lower bound
                         new_val = encoded_min - np.random.randint(1, 6) * unit_step
                 else:
-                    # 无编码工具：使用原始值（向后兼容，可能不准确）
+                    # No encoders: use raw values (backward compatible; may be
+                    # less accurate).
                     min_v = rule['min_val']
                     max_v = rule['max_val']
                     if np.random.random() < 0.5:
@@ -859,7 +898,8 @@ class ErrorInjector:
             if new_val is not None and abs(new_val - original_val) > 1e-6:
                 X_dirty[idx, col_idx] = new_val
                 noise = new_val - original_val
-                # DOMAIN 违规归类为 syntactic（与 AutoDetector Stage 2c 一致）
+                # DOMAIN violations are classified as syntactic (aligned with
+                # AutoDetector Stage 2c).
                 injected['syntactic'].append((idx, col_idx, original_val, noise))
                 used_indices.add((idx, col_idx))
                 count += 1
@@ -870,26 +910,26 @@ class ErrorInjector:
                                 n_target: int,
                                 used_indices: Set[Tuple[int, int]],
                                 injected: Dict[str, List]) -> int:
-        """注入 CFD 违规（条件函数依赖违反）
+        """Inject CFD violations (conditional-functional-dependency violations).
 
         Example: class=2, n_anomaly<=2 => CT EXCESS >= 5 FROM_BASELINE 5
-        → 在 class=2 的行中，将 CT 注入为 baseline + threshold + rand(0,2)
+        -> in rows with class=2, inject CT = baseline + threshold + rand(0, 2).
         """
         n_samples = len(X_dirty)
         count = 0
 
-        # 按 class 值分组行索引
+        # Group row indices by class value
         class_row_map: Dict[str, List[int]] = defaultdict(list)
         for i in range(n_samples):
             if not np.isnan(y_dirty[i]):
-                # 使用通用字符串转换（回归标签可能是浮点值）
+                # Use a generic string conversion (regression labels may be floats)
                 try:
                     class_key = str(int(y_dirty[i])) if y_dirty[i] == int(y_dirty[i]) else str(y_dirty[i])
                 except (ValueError, OverflowError):
                     class_key = str(y_dirty[i])
                 class_row_map[class_key].append(i)
 
-        # 遍历所有 CFD 规则
+        # Iterate over all CFD rules
         all_cfd_rules = []
         for class_val, rules in self._cfd_col_map.items():
             for rule in rules:
@@ -928,15 +968,15 @@ class ErrorInjector:
 
                 original_val = X_dirty[row_idx, col_idx]
 
-                # threshold 和 baseline 需要转换到 LE+SS 空间
+                # threshold and baseline must be mapped into LE+SS space
                 if rule.get('_encoding_converted') or self._has_encoding_tools:
-                    # 使用编码空间的值
+                    # Use values in encoded space
                     if self.scaler is not None and col_idx < len(self.scaler.mean_):
-                        # 将 baseline 和 threshold 从原始空间转到 LE+SS 空间
+                        # Map baseline and threshold from raw space into LE+SS
                         mean_j = self.scaler.mean_[col_idx]
                         scale_j = self.scaler.scale_[col_idx]
                         encoded_baseline = (baseline - mean_j) / scale_j
-                        encoded_threshold = threshold / scale_j  # threshold 是差值，只需除以 scale
+                        encoded_threshold = threshold / scale_j  # threshold is a difference; divide by scale
                         encoded_delta = np.random.uniform(0, 2) / scale_j
                     else:
                         encoded_baseline = baseline
@@ -954,23 +994,24 @@ class ErrorInjector:
                 else:
                     continue
 
-                # DOMAIN 范围限制: 确保原始空间值在 DOMAIN 内
-                # 防止被 DOMAIN 通道截获为句法错误（应为语义错误）
+                # DOMAIN-range clamping: keep the raw value inside DOMAIN to
+                # avoid being flagged as syntactic by the DOMAIN channel
+                # (this should be a semantic error).
                 if col_idx in self._domain_col_map:
                     domain_rule = self._domain_col_map[col_idx]
                     enc_min = domain_rule.get('_encoded_min')
                     enc_max = domain_rule.get('_encoded_max')
                     if enc_min is not None and enc_max is not None:
-                        # 留一点余量避免边界精度问题
-                        # margin = 1% DOMAIN 范围，避免边界精度问题
+                        # Leave some margin to avoid boundary-precision issues.
+                        # margin = 1% of the DOMAIN range.
                         margin = abs(enc_max - enc_min) * 0.01
                         clamped = max(enc_min + margin, min(enc_max - margin, new_val))
-                        # 确保 clamped 后仍满足 CFD 检测阈值
+                        # Ensure the clamped value still exceeds the CFD threshold
                         if direction == 'EXCESS':
                             if clamped - encoded_baseline >= encoded_threshold:
                                 new_val = clamped
                             else:
-                                continue  # 无法在 DOMAIN 内满足 CFD 阈值
+                                continue  # cannot meet the CFD threshold inside DOMAIN
                         elif direction == 'DEFICIT':
                             if encoded_baseline - clamped >= encoded_threshold:
                                 new_val = clamped
@@ -989,17 +1030,19 @@ class ErrorInjector:
     def _inject_dc_violations(self, X_dirty: np.ndarray, n_target: int,
                                used_indices: Set[Tuple[int, int]],
                                injected: Dict[str, List]) -> int:
-        """注入 DC (Denial Constraint) 违规
+        """Inject DC (Denial Constraint) violations.
 
-        DC 使用 denial 语义: 当所有 clauses 都成立时 = 约束被违反。
-        注入 = 使约束被违反 = 让所有 clauses 都成立。
+        DC uses denial semantics: when every clause holds, the constraint is
+        violated. Injection = force a violation = make all clauses hold.
 
-        策略:
-          1. 找到当前不违反约束的行（至少有一个 clause 不成立）
-          2. 对 MARK 列: 修改 MARK 列的值使所有 clause 都成立
-          3. 对 abs_diff 类型（无 MARK）: 修改其中一列使差值超过阈值
+        Strategy:
+          1. Find rows that currently do NOT violate the constraint (at least
+             one clause does not hold).
+          2. For the MARK column: change its value so every clause holds.
+          3. For abs_diff type (no MARK): change one of the two columns so the
+             difference exceeds the threshold.
 
-        所有操作在编码空间(numpy数组)上进行。
+        All operations happen in encoded space (the numpy array).
         """
         n_samples = len(X_dirty)
         count = 0
@@ -1007,10 +1050,10 @@ class ErrorInjector:
         if not self._dc_rule_list:
             return 0
 
-        # 过滤出已成功编码转换的 DC 规则
+        # Keep only DC rules that were successfully encoded
         valid_dc_rules = [r for r in self._dc_rule_list if r.get('_encoding_converted')]
 
-        # 调试日志: DC 规则注入状态
+        # Debug log: DC rule injection status
         import logging
         _dc_logger = logging.getLogger('demandclean.error_injector')
         _dc_logger.debug(
@@ -1020,7 +1063,8 @@ class ErrorInjector:
         if not valid_dc_rules:
             return 0
 
-        # 规则数多于预算时随机抽样，避免每条规则分不到 1 个
+        # When there are more rules than the budget, sample to avoid giving
+        # every rule a quota of zero.
         if len(valid_dc_rules) > n_target:
             valid_dc_rules = list(np.random.choice(
                 valid_dc_rules, size=n_target, replace=False))
@@ -1037,7 +1081,7 @@ class ErrorInjector:
             if not clauses:
                 continue
 
-            # 分发到不同的注入子策略
+            # Dispatch to the appropriate sub-strategy
             if mark_cols:
                 injected_count = self._inject_dc_mark_violation(
                     X_dirty, clauses, mark_cols,
@@ -1045,7 +1089,7 @@ class ErrorInjector:
                     used_indices, injected)
                 count += injected_count
             else:
-                # 无 MARK 列: 检查是否有 abs_diff 类型
+                # No MARK column: check whether abs_diff clauses are present
                 abs_diff_clauses = [c for c in clauses if c.get('type') == 'abs_diff']
                 if abs_diff_clauses:
                     injected_count = self._inject_dc_abs_diff_violation(
@@ -1062,21 +1106,24 @@ class ErrorInjector:
                                    n_target: int,
                                    used_indices: Set[Tuple[int, int]],
                                    injected: Dict[str, List]) -> int:
-        """DC 注入: 有 MARK 列的情况
+        """DC injection when MARK columns exist.
 
-        找到满足非 MARK 条件但不满足 MARK 条件的行（当前合法行），
-        然后修改 MARK 列使所有条件都成立（制造违规）。
+        Find rows that satisfy all non-MARK clauses but not the MARK clause
+        (currently legal rows) and modify the MARK column so every clause
+        holds (forcing a violation).
 
-        示例: EQ(holiday, 1) & NEQ(workingday, 0) & MARK(workingday)
-          - 找 holiday=1 且 workingday=0 的行（当前合法，因为 NEQ(workingday,0) 不成立）
-          - 把 workingday 改为非0值（如1），使 NEQ(workingday,0) 成立 → 约束被违反
+        Example: EQ(holiday, 1) & NEQ(workingday, 0) & MARK(workingday)
+          - Find rows with holiday=1 and workingday=0 (legal today because
+            NEQ(workingday, 0) does not hold).
+          - Set workingday to a non-zero value (e.g. 1) so NEQ(workingday, 0)
+            holds -> the constraint is violated.
         """
         n_samples = len(X_dirty)
         count = 0
 
-        # 分离非 MARK 子句和 MARK 子句
+        # Separate non-MARK and MARK clauses
         non_mark_clauses = []
-        mark_clauses = []  # MARK 列对应的条件子句
+        mark_clauses = []  # clauses that reference MARK columns
 
         for clause in clauses:
             col_name = clause.get('col', '')
@@ -1085,18 +1132,18 @@ class ErrorInjector:
             else:
                 non_mark_clauses.append(clause)
 
-        # 解析 MARK 列的列索引
+        # Resolve MARK column indices
         mark_col_indices = []
         for mc in mark_cols:
             if mc in self.column_names:
                 mark_col_indices.append(self.column_names.index(mc))
             else:
-                return 0  # MARK 列不在特征中，跳过
+                return 0  # MARK column is not among the features; skip
 
         if not mark_col_indices:
             return 0
 
-        # 找到满足所有非 MARK 条件的候选行
+        # Find candidate rows that satisfy every non-MARK clause
         candidate_rows = []
         for i in range(n_samples):
             all_non_mark_satisfied = True
@@ -1106,15 +1153,17 @@ class ErrorInjector:
                     break
 
             if all_non_mark_satisfied:
-                # 检查 MARK 条件是否不满足（当前合法 = 不违反约束）
+                # Check that the MARK clause does NOT hold
+                # (currently legal = not violating the constraint).
                 any_mark_unsatisfied = False
                 for clause in mark_clauses:
                     if not self._evaluate_clause(X_dirty, i, clause):
                         any_mark_unsatisfied = True
                         break
 
-                # 如果没有 mark_clauses（MARK 列没有对应的条件子句），
-                # 也将其作为候选（可以直接注入使约束违反）
+                # If there are no mark_clauses (MARK columns without a clause),
+                # still treat the row as a candidate — an injection can force
+                # a violation directly.
                 if any_mark_unsatisfied or not mark_clauses:
                     candidate_rows.append(i)
 
@@ -1127,7 +1176,7 @@ class ErrorInjector:
             if count >= n_target:
                 break
 
-            # 对每个 MARK 列，生成使对应 clause 成立的值
+            # For each MARK column, compute a value that makes its clause hold
             for mc_idx, mark_col_name in zip(mark_col_indices, mark_cols):
                 if (row_idx, mc_idx) in used_indices or np.isnan(X_dirty[row_idx, mc_idx]):
                     continue
@@ -1141,7 +1190,7 @@ class ErrorInjector:
                     injected['semantic'].append((row_idx, mc_idx, original_val, new_val))
                     used_indices.add((row_idx, mc_idx))
                     count += 1
-                    break  # 每行只注入一个 MARK 列
+                    break  # at most one MARK column per row
 
         return count
 
@@ -1150,11 +1199,11 @@ class ErrorInjector:
                                        n_target: int,
                                        used_indices: Set[Tuple[int, int]],
                                        injected: Dict[str, List]) -> int:
-        """DC 注入: abs_diff 类型（无 MARK 列）
+        """DC injection for abs_diff clauses (no MARK column).
 
-        示例: GT(ABS(t1.col1 - t1.col2), threshold)
-          - 找 |col1-col2| <= threshold 的行（当前合法）
-          - 修改 col1 使 |col1-col2| > threshold（制造违规）
+        Example: GT(ABS(t1.col1 - t1.col2), threshold)
+          - Find rows with |col1 - col2| <= threshold (currently legal).
+          - Change col1 so |col1 - col2| > threshold (force a violation).
         """
         n_samples = len(X_dirty)
         count = 0
@@ -1171,7 +1220,8 @@ class ErrorInjector:
             if col1_idx is None or col2_idx is None or encoded_threshold is None:
                 continue
 
-            # 找当前不违反约束的行（clause 不成立 = 合法）
+            # Find rows that currently do not violate the constraint
+            # (clause does not hold = legal).
             candidate_rows = []
             for i in range(n_samples):
                 if (i, col1_idx) in used_indices or (i, col2_idx) in used_indices:
@@ -1181,7 +1231,7 @@ class ErrorInjector:
 
                 abs_diff = abs(X_dirty[i, col1_idx] - X_dirty[i, col2_idx])
 
-                # clause 不成立 = 当前合法（不违反约束）
+                # Clause does not hold = legal (no violation)
                 clause_holds = self._eval_comparison(abs_diff, op, encoded_threshold)
                 if not clause_holds:
                     candidate_rows.append(i)
@@ -1197,7 +1247,7 @@ class ErrorInjector:
                 if clause_count >= per_clause or count >= n_target:
                     break
 
-                # 选择修改 col1（随机也可以选 col2）
+                # Pick col1 or col2 at random to modify
                 target_col = col1_idx if np.random.random() < 0.5 else col2_idx
                 other_col = col2_idx if target_col == col1_idx else col1_idx
 
@@ -1207,29 +1257,29 @@ class ErrorInjector:
                 original_val = X_dirty[row_idx, target_col]
                 other_val = X_dirty[row_idx, other_col]
 
-                # 使 |target - other| > threshold
-                # 设 target = other + threshold + delta (或 other - threshold - delta)
+                # Make |target - other| > threshold.
+                # target = other + threshold + delta (or other - threshold - delta)
                 delta = encoded_threshold * np.random.uniform(0.1, 0.5)
                 if np.random.random() < 0.5:
                     new_val = other_val + encoded_threshold + delta
                 else:
                     new_val = other_val - encoded_threshold - delta
 
-                # DOMAIN 范围限制: 确保注入值在 DOMAIN 内
-                # 防止被 DOMAIN 通道截获为句法错误
+                # DOMAIN-range clamping: keep the injected value inside DOMAIN
+                # so the DOMAIN channel does not reclassify it as syntactic.
                 if target_col in self._domain_col_map:
                     domain_rule = self._domain_col_map[target_col]
                     enc_min = domain_rule.get('_encoded_min')
                     enc_max = domain_rule.get('_encoded_max')
                     if enc_min is not None and enc_max is not None:
-                        # margin = 1% DOMAIN 范围，避免边界精度问题
+                        # 1% margin to avoid boundary-precision issues
                         margin = abs(enc_max - enc_min) * 0.01
                         clamped = max(enc_min + margin, min(enc_max - margin, new_val))
-                        # 确保 clamped 后仍满足 DC 违规条件
+                        # Ensure the clamped value still violates the DC
                         if abs(clamped - other_val) > encoded_threshold:
                             new_val = clamped
                         else:
-                            continue  # 无法在 DOMAIN 内违反 DC 约束 → 跳过
+                            continue  # cannot violate the DC inside DOMAIN -> skip
 
                 if abs(new_val - original_val) > 1e-6:
                     X_dirty[row_idx, target_col] = new_val
@@ -1242,15 +1292,15 @@ class ErrorInjector:
 
     def _evaluate_clause(self, X_dirty: np.ndarray, row_idx: int,
                           clause: Dict) -> bool:
-        """评估单个 DC clause 在指定行上是否成立
+        """Evaluate a single DC clause on the given row.
 
         Args:
-            X_dirty: 数据矩阵（编码空间）
-            row_idx: 行索引
-            clause: DC clause 字典
+            X_dirty: data matrix (encoded space)
+            row_idx: row index
+            clause: DC clause dict
 
         Returns:
-            True 如果 clause 条件成立
+            True when the clause holds.
         """
         ctype = clause.get('type', '')
 
@@ -1284,16 +1334,16 @@ class ErrorInjector:
     @staticmethod
     def _eval_comparison(val: float, op: str, threshold: float,
                           tol: float = 1e-4) -> bool:
-        """评估比较操作
+        """Evaluate a comparison operator.
 
         Args:
-            val: 左值
-            op: 操作符 (EQ, NEQ, GT, GTE, LT, LTE)
-            threshold: 右值
-            tol: EQ/NEQ 的容差（编码空间浮点比较）
+            val: left-hand value
+            op: operator (EQ, NEQ, GT, GTE, LT, LTE)
+            threshold: right-hand value
+            tol: tolerance for EQ/NEQ (float comparison in encoded space)
 
         Returns:
-            比较结果
+            The comparison result.
         """
         if op == 'EQ':
             return abs(val - threshold) < tol
@@ -1312,21 +1362,22 @@ class ErrorInjector:
     def _compute_dc_mark_value(self, X_dirty: np.ndarray, row_idx: int,
                                 mark_col_idx: int, mark_col_name: str,
                                 clauses: List[Dict]) -> Optional[float]:
-        """计算 MARK 列应注入的值，使得所有 clauses 都成立
+        """Compute the value to inject in the MARK column so every clause holds.
 
-        找到 MARK 列对应的 clause，计算满足该 clause 的值。
+        Locates the clause tied to the MARK column and derives a value that
+        satisfies it.
 
         Args:
-            X_dirty: 数据矩阵
-            row_idx: 行索引
-            mark_col_idx: MARK 列的列索引
-            mark_col_name: MARK 列名
-            clauses: 所有条件子句
+            X_dirty: data matrix
+            row_idx: row index
+            mark_col_idx: column index of the MARK column
+            mark_col_name: name of the MARK column
+            clauses: all condition clauses
 
         Returns:
-            应注入的编码空间值，或 None
+            The encoded-space value to inject, or None.
         """
-        # 找到 MARK 列对应的 clause
+        # Find the clause that references the MARK column
         target_clause = None
         for clause in clauses:
             if clause.get('type') == 'simple' and clause.get('col') == mark_col_name:
@@ -1334,12 +1385,13 @@ class ErrorInjector:
                 break
 
         if target_clause is None:
-            # MARK 列没有对应的条件子句
-            # 尝试使用该列的其他值来制造某种违规
+            # No clause directly references this MARK column.
+            # Fall back to picking a different value in the column to create
+            # some kind of violation.
             col_vals = self.all_values.get(mark_col_idx, np.array([]))
             if len(col_vals) > 1:
                 current_val = X_dirty[row_idx, mark_col_idx]
-                # 随机选一个不同的值
+                # Randomly pick a different value
                 new_val = np.random.choice(col_vals)
                 attempts = 0
                 while abs(new_val - current_val) < 1e-4 and attempts < 10:
@@ -1352,7 +1404,7 @@ class ErrorInjector:
         encoded_val = target_clause.get('_encoded_value')
         op = target_clause.get('op', 'EQ')
         scaler_scale = target_clause.get('_scaler_scale', 1.0)
-        # 一个原始单位在编码空间中的步长
+        # Encoded-space step corresponding to one raw unit
         unit_step = 1.0 / scaler_scale if scaler_scale > 1e-10 else 0.5
 
         if encoded_val is None:
@@ -1360,37 +1412,37 @@ class ErrorInjector:
 
         current_val = X_dirty[row_idx, mark_col_idx]
 
-        # 根据 op 计算使条件成立的值
+        # Compute a value that makes the clause hold, based on `op`
         if op == 'EQ':
-            # 需要让 col == val → 直接设为 encoded_val
+            # Need col == val -> set to encoded_val
             return float(encoded_val)
 
         elif op == 'NEQ':
-            # 需要让 col != val → 设为 encoded_val + offset
+            # Need col != val -> encoded_val + offset
             offset = unit_step * np.random.choice([1, 2, -1, -2])
             new_val = encoded_val + offset
-            # 确保确实 != encoded_val
+            # Ensure it is indeed != encoded_val
             if abs(new_val - encoded_val) < 1e-4:
                 new_val = encoded_val + unit_step
             return float(new_val)
 
         elif op == 'GT':
-            # 需要让 col > val → 设为 val + delta
+            # Need col > val -> val + delta
             delta = unit_step * np.random.uniform(1, 3)
             return float(encoded_val + delta)
 
         elif op == 'GTE':
-            # 需要让 col >= val → 设为 val + small delta
+            # Need col >= val -> val + small delta
             delta = unit_step * np.random.uniform(0, 2)
             return float(encoded_val + delta)
 
         elif op == 'LT':
-            # 需要让 col < val → 设为 val - delta
+            # Need col < val -> val - delta
             delta = unit_step * np.random.uniform(1, 3)
             return float(encoded_val - delta)
 
         elif op == 'LTE':
-            # 需要让 col <= val → 设为 val - small delta
+            # Need col <= val -> val - small delta
             delta = unit_step * np.random.uniform(0, 2)
             return float(encoded_val - delta)
 
@@ -1400,13 +1452,16 @@ class ErrorInjector:
                                used_indices: Set[Tuple[int, int]],
                                injected: Dict[str, List],
                                strict: bool = False):
-        """注入违反 FD 规则的语义错误（组间交换 RHS 值）
+        """Inject semantic errors that violate FD rules by swapping RHS values
+        across groups.
 
-        关键设计: 每个 FD 组最多注入严格少于半数的行，保证原始值仍是多数投票
-        中的 majority，使注入的行能被 detect_fd_violations() 正确检出。
+        Key design: at most strictly fewer than half of the rows in each FD
+        group are injected, so the original value remains the majority vote
+        and detect_fd_violations() can still flag the injected rows.
 
         Args:
-            strict: 严格模式 — 剩余预算不 fallback 到 _inject_random_semantic
+            strict: strict mode — any remaining budget is not forwarded to
+                _inject_random_semantic.
         """
         if not self.fd_col_pairs:
             return
@@ -1428,7 +1483,8 @@ class ErrorInjector:
                 key = tuple(lhs_vals.tolist())
                 groups[key].append(i)
 
-            # 只选 ≥3 的组（确保注入 1 行后原始值仍严格多数）
+            # Keep groups with >=3 rows so the original value stays strictly
+            # in the majority after a single injection.
             group_keys = [k for k in groups if len(groups[k]) >= 3]
             if len(group_keys) < 2:
                 if not strict:
@@ -1443,7 +1499,8 @@ class ErrorInjector:
                 if rule_injected >= per_rule_budget:
                     break
                 rows = groups[gk]
-                # 每组最多注入 floor((n-1)/2) 行，保证原始值严格多数
+                # At most floor((n-1)/2) rows per group so the original value
+                # remains a strict majority.
                 max_per_group = max(1, (len(rows) - 1) // 2)
 
                 other_key = group_keys[(i + 1) % len(group_keys)]
@@ -1477,7 +1534,7 @@ class ErrorInjector:
                                          col: int,
                                          used_indices: Set[Tuple[int, int]],
                                          injected: Dict[str, List]):
-        """对指定列进行随机语义错误注入"""
+        """Random semantic injection restricted to a single column."""
         n_samples = len(X_dirty)
         count = 0
         for _ in range(n * 3):
@@ -1501,7 +1558,7 @@ class ErrorInjector:
     def _inject_random_semantic(self, X_dirty: np.ndarray, n_semantic: int,
                                  used_indices: Set[Tuple[int, int]],
                                  injected: Dict[str, List]):
-        """无规则时的随机语义错误注入（用同列其他值替换）"""
+        """Random semantic injection when no rules exist (replace with another value from the same column)."""
         n_samples, n_features = X_dirty.shape
         for _ in range(n_semantic):
             idx = np.random.randint(0, n_samples)
@@ -1520,50 +1577,51 @@ class ErrorInjector:
                     used_indices.add((idx, col))
 
     # ====================================================================
-    # 3. 句法错误注入（RAHA-aware 统计驱动，不使用规则）
+    # 3. Syntactic-error injection (RAHA-aware, statistics-driven; no rules)
     # ====================================================================
 
     def _inject_raha_aware_syntactic(self, X_dirty: np.ndarray, n_syntactic: int,
                                       used_indices: Set[Tuple[int, int]],
                                       injected: Dict[str, List]):
-        """RAHA-aware 句法错误注入
+        """RAHA-aware syntactic-error injection.
 
-        三种子策略模拟 RAHA 检测的逆过程:
-          A (40%): OD-Gaussian 可检测 → 注入 2~4σ 偏离
-          B (30%): OD-Histogram 可检测 → 注入极端分位数外的值
-          C (30%): PVD 可检测 → 量级异常模拟（*10, *11, 符号翻转）
+        Three sub-strategies mirror RAHA detection in reverse:
+          A (40%): detectable by OD-Gaussian      -> 2~4 sigma deviations
+          B (30%): detectable by OD-Histogram     -> values outside extreme quantiles
+          C (30%): detectable by PVD              -> magnitude anomalies (*10, *11, sign flip)
 
-        避开 FD LHS 列以防止 FD 检测产生级联误报。
+        Avoid FD LHS columns to prevent cascading false positives from FD detection.
         """
         n_samples, n_features = X_dirty.shape
 
-        # 句法注入可用列 = 全部列 - FD LHS 列
+        # Eligible syntactic columns = all columns minus FD LHS columns
         eligible_cols = [c for c in range(n_features) if c not in self._fd_lhs_cols]
         if not eligible_cols:
-            eligible_cols = list(range(n_features))  # 全是 LHS 时退化
+            eligible_cols = list(range(n_features))  # degrade when all columns are LHS
 
-        # 按比例分配
+        # Allocate budget across strategies
         n_gaussian = int(n_syntactic * 0.4)
         n_histogram = int(n_syntactic * 0.3)
         n_pvd = n_syntactic - n_gaussian - n_histogram
 
-        # 策略 A: OD-Gaussian (3~5 sigma 偏离)
+        # Strategy A: OD-Gaussian (3~5 sigma deviations)
         self._inject_syntactic_gaussian(X_dirty, n_gaussian, used_indices, injected, eligible_cols)
 
-        # 策略 B: OD-Histogram (0.3~1.0 倍 IQR99 偏移)
+        # Strategy B: OD-Histogram (0.3~1.0x IQR99 offsets)
         self._inject_syntactic_histogram(X_dirty, n_histogram, used_indices, injected, eligible_cols)
 
-        # 策略 C: PVD (量级异常模拟)
+        # Strategy C: PVD (magnitude anomalies)
         self._inject_syntactic_pvd(X_dirty, n_pvd, used_indices, injected, eligible_cols)
 
     def _inject_syntactic_gaussian(self, X_dirty: np.ndarray, n: int,
                                     used_indices: Set[Tuple[int, int]],
                                     injected: Dict[str, List],
                                     eligible_cols: Optional[List[int]] = None):
-        """策略 A: 注入 3~5σ 偏离值（让 RAHA 的 OD-Gaussian 模型能可靠检测到）
+        """Strategy A: inject 3~5 sigma deviations, reliably detectable by RAHA's OD-Gaussian.
 
-        量级说明: 3-5σ 在标准正态下的概率 < 0.3%，足以被 z-score 检测器发现，
-        同时不会过于极端导致 RAHA 元分类器对标注样本过拟合。
+        Rationale: 3~5 sigma has probability <0.3% under the standard normal,
+        enough for a z-score detector to flag without being so extreme that
+        RAHA's meta-classifier overfits labeled samples.
         """
         n_samples, n_features = X_dirty.shape
         if eligible_cols is None:
@@ -1572,7 +1630,7 @@ class ErrorInjector:
             idx = np.random.randint(0, n_samples)
             col = eligible_cols[np.random.randint(0, len(eligible_cols))]
             if (idx, col) not in used_indices and not np.isnan(X_dirty[idx, col]):
-                # 分类列走 typo 路径
+                # Categorical columns go through the typo path
                 if col in self._cat_col_idx_set:
                     original_val = X_dirty[idx, col]
                     new_val = self._generate_categorical_typo_encoded(col, original_val)
@@ -1581,13 +1639,13 @@ class ErrorInjector:
                         X_dirty[idx, col] = new_val
                         injected['syntactic'].append((idx, col, original_val, noise))
                         used_indices.add((idx, col))
-                    continue  # 跳过数值列逻辑
+                    continue  # skip numeric-column logic
 
                 original_val = X_dirty[idx, col]
                 std = self.col_stds[col] if not np.isnan(self.col_stds[col]) else 1.0
                 if std < 1e-10:
                     std = 1.0
-                # 3~5 sigma 偏移（适中量级，避免 RAHA 过拟合）
+                # 3~5 sigma offset (moderate; avoids RAHA overfitting)
                 sigma_mult = np.random.uniform(3.0, 5.0)
                 direction = np.random.choice([-1, 1])
                 noise = direction * sigma_mult * std
@@ -1599,9 +1657,10 @@ class ErrorInjector:
                                      used_indices: Set[Tuple[int, int]],
                                      injected: Dict[str, List],
                                      eligible_cols: Optional[List[int]] = None):
-        """策略 B: 注入极端分位数外的值（让 RAHA 的 OD-Histogram 模型能可靠检测到）
+        """Strategy B: inject values outside extreme quantiles, reliably detectable by OD-Histogram.
 
-        量级: 0.3~1.0 倍 IQR99 偏移（适中，确保在分位数边界外但不会过于极端）
+        Magnitude: 0.3~1.0x IQR99 offset — past the quantile boundary without
+        being overly extreme.
         """
         n_samples, n_features = X_dirty.shape
         if eligible_cols is None:
@@ -1610,7 +1669,7 @@ class ErrorInjector:
             idx = np.random.randint(0, n_samples)
             col = eligible_cols[np.random.randint(0, len(eligible_cols))]
             if (idx, col) not in used_indices and not np.isnan(X_dirty[idx, col]):
-                # 分类列走 typo 路径
+                # Categorical columns go through the typo path
                 if col in self._cat_col_idx_set:
                     original_val = X_dirty[idx, col]
                     new_val = self._generate_categorical_typo_encoded(col, original_val)
@@ -1619,22 +1678,22 @@ class ErrorInjector:
                         X_dirty[idx, col] = new_val
                         injected['syntactic'].append((idx, col, original_val, noise))
                         used_indices.add((idx, col))
-                    continue  # 跳过数值列逻辑
+                    continue  # skip numeric-column logic
 
                 original_val = X_dirty[idx, col]
 
                 if col in self.col_percentiles:
                     p1, p99 = self.col_percentiles[col]
                     prange = max(abs(p99 - p1), 1e-6)
-                    # 0.3~1.0 倍 IQR99 偏移（超出分位数但不过于极端）
+                    # 0.3~1.0x IQR99 offset (past the quantile but not extreme)
                     offset = prange * np.random.uniform(0.3, 1.0)
 
                     if np.random.random() < 0.5:
-                        new_val = p99 + offset  # 超出 99% 分位
+                        new_val = p99 + offset  # above the 99th percentile
                     else:
-                        new_val = p1 - offset   # 低于 1% 分位
+                        new_val = p1 - offset   # below the 1st percentile
                 else:
-                    # 无分位数信息时回退到 Gaussian
+                    # Fall back to Gaussian when percentile info is missing
                     std = self.col_stds[col] if not np.isnan(self.col_stds[col]) else 1.0
                     new_val = original_val + np.random.choice([-1, 1]) * 3 * std
 
@@ -1647,11 +1706,12 @@ class ErrorInjector:
                                used_indices: Set[Tuple[int, int]],
                                injected: Dict[str, List],
                                eligible_cols: Optional[List[int]] = None):
-        """策略 C: 量级异常模拟（模拟字符级异常在数值空间的效果）
+        """Strategy C: magnitude-anomaly simulation (character-level anomalies
+        recreated in numeric space).
 
-        - val * 10 (多一位数字)
-        - round(val) * 11 (双位重复 33, 55, 88)
-        - -abs(val) (符号翻转)
+        - val * 10 (extra digit)
+        - round(val) * 11 (double-digit repeats like 33, 55, 88)
+        - -abs(val) (sign flip)
         """
         n_samples, n_features = X_dirty.shape
         if eligible_cols is None:
@@ -1660,7 +1720,7 @@ class ErrorInjector:
             idx = np.random.randint(0, n_samples)
             col = eligible_cols[np.random.randint(0, len(eligible_cols))]
             if (idx, col) not in used_indices and not np.isnan(X_dirty[idx, col]):
-                # 分类列走 typo 路径
+                # Categorical columns go through the typo path
                 if col in self._cat_col_idx_set:
                     original_val = X_dirty[idx, col]
                     new_val = self._generate_categorical_typo_encoded(col, original_val)
@@ -1669,7 +1729,7 @@ class ErrorInjector:
                         X_dirty[idx, col] = new_val
                         injected['syntactic'].append((idx, col, original_val, noise))
                         used_indices.add((idx, col))
-                    continue  # 跳过数值列逻辑
+                    continue  # skip numeric-column logic
 
                 original_val = X_dirty[idx, col]
 
@@ -1678,38 +1738,42 @@ class ErrorInjector:
                     new_val = original_val * 10
                 elif strategy == 'double_digit':
                     base = max(1, abs(int(round(original_val))))
-                    new_val = base * 11.0  # e.g., 3 → 33, 5 → 55
+                    new_val = base * 11.0  # e.g., 3 -> 33, 5 -> 55
                 else:  # sign_flip
                     new_val = -abs(original_val) if original_val > 0 else abs(original_val) + 1
 
                 noise = new_val - original_val
-                if abs(noise) > 1e-6:  # 确保确实改变了值
+                if abs(noise) > 1e-6:  # ensure the value actually changed
                     X_dirty[idx, col] = new_val
                     injected['syntactic'].append((idx, col, original_val, noise))
                     used_indices.add((idx, col))
 
     # ====================================================================
-    # 4. 标签错误注入（条件性，镜像检测模式）
+    # 4. Label-error injection (conditional; mirrors the detected pattern)
     # ====================================================================
 
     def _inject_label_noise(self, y_dirty: np.ndarray, n_label: int,
                              label_pattern: LabelErrorPattern,
                              injected: Dict[str, List],
                              exclude_rows: Optional[Set[int]] = None):
-        """根据检测到的标签错误模式注入标签噪声（规则感知）
+        """Inject label noise according to the detected label-error pattern
+        (rule-aware).
 
-        条件性注入: 只在检测器发现标签错误时才调用此方法。
-        - 分类: 优先翻转规则覆盖的行，再按 flip_matrix 翻转
-        - 回归: 加高斯噪声 (std = 估计的 noise_std)
+        Conditional: this method is only called when the detector found label
+        errors.
+        - Classification: flip rule-covered rows first, then follow the
+          flip_matrix.
+        - Regression: add Gaussian noise with std = estimated noise_std.
 
         Args:
-            exclude_rows: 应排除的行索引集合（已有特征错误的行）
+            exclude_rows: row indices to skip (rows already carrying feature
+                errors).
         """
         n_samples = len(y_dirty)
         if n_label <= 0:
             return
 
-        # 回归任务: 高斯噪声注入
+        # Regression: Gaussian-noise injection
         if label_pattern.is_regression:
             valid_indices = [i for i in range(n_samples)
                              if not np.isnan(y_dirty[i])
@@ -1723,7 +1787,7 @@ class ErrorInjector:
                 if count >= n_label:
                     break
                 original_val = y_dirty[idx]
-                # 高斯噪声
+                # Gaussian noise
                 noise = np.random.normal(0, noise_std)
                 new_val = original_val + noise
                 if abs(noise) > 1e-8:
@@ -1732,7 +1796,7 @@ class ErrorInjector:
                     count += 1
             return
 
-        # 分类任务: 规则感知翻转
+        # Classification: rule-aware flipping
         if not label_pattern.unique_classes:
             return
 
@@ -1742,13 +1806,13 @@ class ErrorInjector:
         if not valid_indices:
             return
 
-        # 找到规则覆盖的候选行（编码空间）
+        # Find rule-covered candidate rows (in encoded space)
         rule_aware = self._find_encoded_rule_aware_candidates(y_dirty, valid_indices)
 
-        # 优先翻转规则覆盖的行
+        # Flip rule-covered rows first
         priority_order = rule_aware + [
             i for i in valid_indices if i not in set(rule_aware)]
-        np.random.shuffle(valid_indices)  # 非规则部分随机化
+        np.random.shuffle(valid_indices)  # randomize the non-rule tail
 
         count = 0
         for idx in priority_order:
@@ -1769,28 +1833,31 @@ class ErrorInjector:
         y: np.ndarray,
         valid_indices: List[int],
     ) -> List[int]:
-        """在编码空间中找到规则感知的标签翻转候选
+        """Find rule-aware label-flip candidates in encoded space.
 
-        遍历 CFD 规则，找到当前标签与规则期望不同但满足特征条件的行。
-        翻转后这些行满足完整规则条件，能被检测到。
+        Walk CFD rules to find rows whose current label differs from the
+        rule-expected label but whose feature conditions already hold. After
+        flipping, such rows satisfy the full rule and are detectable.
 
-        编码空间无法方便地检查全部特征条件（分类列需逆编码），
-        因此仅检查标签方向是否有规则覆盖，保证翻转方向正确。
+        Checking every feature condition in encoded space is awkward
+        (categorical columns would require inverse encoding), so only the
+        label direction is checked for rule coverage — enough to ensure the
+        flip direction is correct.
 
         Returns:
-            候选行索引列表（已随机打乱）
+            Shuffled list of candidate row indices.
         """
         candidates = set()
 
-        # 收集所有有标签规则覆盖的方向
-        covered_directions = set()  # 规则期望的标签值（翻转后的目标值）
+        # Collect every label direction covered by some rule
+        covered_directions = set()  # rule-expected label values (post-flip targets)
         for class_val_str in self._cfd_col_map.keys():
             try:
                 covered_directions.add(float(class_val_str))
             except (ValueError, TypeError):
                 continue
 
-        # DC 标签规则
+        # DC label rules
         label_names = {'class'}
         if self.label_col:
             label_names.add(self.label_col)
@@ -1815,12 +1882,14 @@ class ErrorInjector:
         if not covered_directions:
             return []
 
-        # 对每个有规则覆盖的方向，收集当前标签不等于该值的行（翻转后匹配）
+        # For each rule-covered direction, collect rows whose current label
+        # differs from the target value (so after flipping they match).
         for idx in valid_indices:
             current_label = y[idx]
             for target_val in covered_directions:
                 if abs(current_label - target_val) > 1e-6:
-                    # 当前标签 ≠ target_val，翻转后 = target_val，规则能覆盖
+                    # current_label != target_val; after flipping it matches
+                    # and a rule will cover it.
                     candidates.add(idx)
                     break
 
@@ -1830,9 +1899,9 @@ class ErrorInjector:
 
     def _sample_flip(self, current_label: float,
                      pattern: LabelErrorPattern) -> Optional[float]:
-        """按检测到的翻转分布采样目标类别"""
+        """Sample a target class according to the detected flip distribution."""
         if pattern.flip_matrix:
-            # 收集从 current_label 出发的翻转目标
+            # Gather flip targets starting from current_label
             targets = []
             weights = []
             for (from_cls, to_cls), cnt in pattern.flip_matrix.items():
@@ -1845,23 +1914,23 @@ class ErrorInjector:
                 weights /= weights.sum()
                 return np.random.choice(targets, p=weights)
 
-        # 无 flip_matrix 时：随机翻转到其他类
+        # No flip_matrix: flip to any other class at random
         others = [c for c in pattern.unique_classes if abs(c - current_label) > 1e-6]
         if others:
             return np.random.choice(others)
         return None
 
     # ====================================================================
-    # 错误列表构建
+    # Error-list construction
     # ====================================================================
 
     def build_error_list(self,
                          injected: Dict[str, List]) -> List[Dict]:
         """
-        将注入的错误转换为清洗环境需要的格式
+        Convert injected errors into the format expected by the cleaning env.
 
         Args:
-            injected: inject_errors 返回的错误信息
+            injected: the error dict returned by inject_errors
 
         Returns:
             error_list: [{'idx', 'col', 'type', 'repair_value'}, ...]
@@ -1907,11 +1976,11 @@ class ErrorInjector:
         return error_list
 
     # ====================================================================
-    # 统计信息
+    # Statistics
     # ====================================================================
 
     def get_stats(self) -> Dict:
-        """获取统计信息"""
+        """Return summary statistics."""
         return {
             'n_samples': len(self.X_base),
             'n_features': self.X_base.shape[1],
@@ -1925,7 +1994,7 @@ class ErrorInjector:
         }
 
     # ====================================================================
-    # CSV 空间注入（直接操作 DataFrame 字符串）
+    # CSV-space injection (operate directly on DataFrame strings)
     # ====================================================================
 
     def inject_csv_space(
@@ -1940,22 +2009,24 @@ class ErrorInjector:
         protected_cols: Optional[Set[str]] = None,
         label_pattern: Optional['LabelErrorPattern'] = None,
     ) -> Tuple[pd.DataFrame, Dict[str, List]]:
-        """在原始 CSV 字符串空间注入错误
+        """Inject errors directly into the raw CSV string space.
 
-        与编码空间版 inject_errors() 对齐，但直接操作 DataFrame 字符串值，
-        消除 LE+SS 编码/逆编码引入的浮点精度损失和格式差异。
+        Aligned with inject_errors() on encoded space, but operates on
+        DataFrame strings to eliminate the float precision and format drift
+        introduced by LE+SS encoding/decoding.
 
         Args:
-            clean_df: 干净 CSV DataFrame（原始格式）
-            feature_cols: 特征列名列表
-            label_col: 标签列名
-            categorical_cols: 分类列名集合
-            missing_rate / semantic_rate / syntactic_rate: 各类错误注入率
-            protected_cols: 受保护列（排除句法注入，如 FD 高频 LHS 列）
-            label_pattern: 标签错误模式
+            clean_df: clean CSV DataFrame (raw format)
+            feature_cols: feature column names
+            label_col: label column name
+            categorical_cols: set of categorical column names
+            missing_rate / semantic_rate / syntactic_rate: per-type injection rates
+            protected_cols: protected columns (excluded from syntactic
+                injection, e.g. high-frequency FD LHS columns)
+            label_pattern: label-error pattern
 
         Returns:
-            (dirty_df, injected) — injected 格式:
+            (dirty_df, injected) — `injected` has the format:
             {
                 'missing': [(row_idx, col_name, original_str), ...],
                 'semantic': [(row_idx, col_name, original_str, new_str), ...],
@@ -1973,17 +2044,17 @@ class ErrorInjector:
             'syntactic': [],
             'label_noise': [],
         }
-        # 已注入位置: (row_idx, col_name)
+        # Positions already injected: (row_idx, col_name)
         used: Set[Tuple[int, str]] = set()
 
-        # 1. 缺失值注入
+        # 1. Missing-value injection
         n_missing = int(n_samples * missing_rate)
         self._csv_inject_missing(dirty_df, n_missing, feature_cols, used, injected)
 
-        # 2. 语义错误注入 (FD/CFD 违规)
+        # 2. Semantic-error injection (FD/CFD violations)
         n_semantic_total = int(n_samples * semantic_rate)
 
-        # 标签预算策略（与编码空间版一致）
+        # Label-budget strategy (matches the encoded-space path)
         has_label_rules = self._has_cfd_for_label()
         n_label = 0
         label_from_semantic = False
@@ -1996,13 +2067,13 @@ class ErrorInjector:
             dirty_df, n_semantic, feature_cols, label_col,
             categorical_cols, used, injected)
 
-        # 3. 句法错误注入
+        # 3. Syntactic-error injection
         n_syntactic = int(n_samples * syntactic_rate)
         self._csv_inject_syntactic(
             dirty_df, n_syntactic, feature_cols,
             categorical_cols, protected_cols, used, injected)
 
-        # 4. 标签错误注入
+        # 4. Label-error injection
         if n_label > 0 and label_pattern is not None:
             self._csv_inject_label(dirty_df, n_label, label_col, label_pattern, injected)
 
@@ -2016,7 +2087,7 @@ class ErrorInjector:
         used: Set[Tuple[int, str]],
         injected: Dict[str, List],
     ):
-        """CSV 空间缺失值注入：将单元格设为空字符串"""
+        """CSV-space missing-value injection: set cells to empty strings."""
         n_samples = len(df)
         n_cols = len(feature_cols)
         for _ in range(n * 3):
@@ -2043,20 +2114,21 @@ class ErrorInjector:
         used: Set[Tuple[int, str]],
         injected: Dict[str, List],
     ):
-        """CSV 空间语义错误注入
+        """CSV-space semantic-error injection.
 
-        三种注入源按优先级依次使用:
-          1. FD 规则: 组间交换 RHS 值
-          2. DC abs_diff 规则: 修改单列使 |col1-col2| > threshold
-          3. CFD 特征规则: 修改特征值使之偏离类内基线
+        Three sources tried in priority order:
+          1. FD rules: swap RHS values across groups.
+          2. DC abs_diff rules: modify one column so |col1-col2| > threshold.
+          3. CFD feature rules: modify feature values so they drift from the
+             in-class baseline.
         """
         count = 0
 
-        # --- 1. FD 规则注入 ---
+        # --- 1. FD-rule injection ---
         if self.fd_rules and self.column_names:
             count += self._csv_inject_semantic_fd(df, n, feature_cols, used, injected)
 
-        # --- 2. DC abs_diff 规则注入 ---
+        # --- 2. DC abs_diff injection ---
         remaining = n - count
         if remaining > 0 and self.rich_rules and self.rich_rules.get('dc_rules'):
             count += self._csv_inject_semantic_dc(
@@ -2072,7 +2144,7 @@ class ErrorInjector:
         used: Set[Tuple[int, str]],
         injected: Dict[str, List],
     ) -> int:
-        """FD 规则: 组间交换 RHS 字符串值"""
+        """FD rules: swap RHS string values across groups."""
         count = 0
         if not self.fd_rules:
             return 0
@@ -2149,19 +2221,19 @@ class ErrorInjector:
         used: Set[Tuple[int, str]],
         injected: Dict[str, List],
     ) -> int:
-        """DC abs_diff 规则在 CSV 空间注入语义违规
+        """Inject DC abs_diff semantic violations in CSV space.
 
-        对 GT(ABS(t1.col1 - t1.col2), threshold) 类型规则:
-          - 找当前 |col1-col2| <= threshold 的行（合法行）
-          - 修改 col1 或 col2 使差值 > threshold（制造违规）
-          - 尊重 DOMAIN 约束（如 INT [1,10]）
+        For GT(ABS(t1.col1 - t1.col2), threshold) rules:
+          - Find legal rows with |col1 - col2| <= threshold.
+          - Change col1 or col2 so the difference exceeds the threshold.
+          - Respect DOMAIN constraints (e.g. INT [1, 10]).
         """
         dc_rules = self.rich_rules.get('dc_rules', [])
         if not dc_rules:
             return 0
 
-        # 预构建 DOMAIN 范围 (col_name → (min, max))
-        # rich_rules 中的 domain_rules 是 dict 列表（经 rules_to_dict 转换）
+        # Pre-build DOMAIN bounds (col_name -> (min, max)).
+        # domain_rules inside rich_rules are dicts produced by rules_to_dict.
         domain_bounds: Dict[str, Tuple[float, float]] = {}
         if self.rich_rules.get('domain_rules'):
             for dr in self.rich_rules['domain_rules']:
@@ -2178,9 +2250,9 @@ class ErrorInjector:
             if count >= n:
                 break
 
-            # rich_rules 中的 dc_rules 是 dict 列表（经 rules_to_dict 转换）
+            # dc_rules inside rich_rules are dicts produced by rules_to_dict
             clauses = dc_rule['clauses'] if isinstance(dc_rule, dict) else dc_rule.clauses
-            # 只处理无 MARK 的纯 abs_diff 规则
+            # Only handle pure abs_diff rules without MARK
             if len(clauses) != 1 or clauses[0].get('type') != 'abs_diff':
                 continue
             mark_cols = dc_rule.get('mark_cols', []) if isinstance(dc_rule, dict) else dc_rule.mark_cols
@@ -2194,7 +2266,7 @@ class ErrorInjector:
             if col1 not in df.columns or col2 not in df.columns:
                 continue
 
-            # 收集合法行
+            # Collect currently legal rows
             candidates = []
             for i in range(len(df)):
                 if (i, col1) in used or (i, col2) in used:
@@ -2214,33 +2286,33 @@ class ErrorInjector:
                 if rule_count >= per_rule_budget or count >= n:
                     break
 
-                # 随机选择修改 col1 或 col2
+                # Pick col1 or col2 at random to modify
                 target_col = col1 if np.random.random() < 0.5 else col2
                 other_val = v2 if target_col == col1 else v1
 
-                # 计算新值: 使 |new - other| > threshold
+                # New value: make |new - other| > threshold
                 delta = threshold * np.random.uniform(0.2, 0.8)
                 if np.random.random() < 0.5:
                     new_val = other_val + threshold + delta
                 else:
                     new_val = other_val - threshold - delta
 
-                # DOMAIN 约束
+                # DOMAIN clamping
                 if target_col in domain_bounds:
                     lo, hi = domain_bounds[target_col]
                     new_val = max(lo, min(hi, new_val))
-                    # 检查 clamp 后是否仍违规
+                    # Does the clamped value still violate the rule?
                     if abs(new_val - other_val) <= threshold:
-                        # 尝试另一个方向
+                        # Try the other direction
                         new_val = other_val + threshold + delta
                         new_val = max(lo, min(hi, new_val))
                         if abs(new_val - other_val) <= threshold:
                             new_val = other_val - threshold - delta
                             new_val = max(lo, min(hi, new_val))
                             if abs(new_val - other_val) <= threshold:
-                                continue  # 无法在 DOMAIN 内制造违规
+                                continue  # cannot produce a DOMAIN-valid violation
 
-                # 判断是否为整数列（看原始值格式）
+                # Detect integer-typed columns via the original string format
                 original_str = str(df.at[df.index[idx], target_col]).strip()
                 try:
                     int(original_str)
@@ -2268,18 +2340,18 @@ class ErrorInjector:
         used: Set[Tuple[int, str]],
         injected: Dict[str, List],
     ):
-        """CSV 空间句法错误注入
+        """CSV-space syntactic-error injection.
 
-        数值列: 3-5σ 偏离 / ×10 / 符号翻转
-        分类列: 直接 generate_typo()
-        DOMAIN 违规: 超出规则定义的值域
+        Numeric columns: 3-5 sigma deviation / x10 / sign flip.
+        Categorical columns: generate_typo().
+        DOMAIN violations: values outside the rule-defined range.
         """
         n_samples = len(df)
         eligible_cols = [c for c in feature_cols if c not in protected_cols]
         if not eligible_cols:
             eligible_cols = list(feature_cols)
 
-        # 收集每列的 CSV 空间统计量（数值列）
+        # Gather per-column CSV-space statistics (numeric columns)
         col_stats: Dict[str, Dict] = {}
         for col_name in eligible_cols:
             if col_name in categorical_cols:
@@ -2293,9 +2365,9 @@ class ErrorInjector:
                     'p99': float(vals.quantile(0.99)),
                 }
 
-        # DOMAIN 违规部分（30% 预算）
+        # DOMAIN violations (30% of the budget)
         n_domain = 0
-        domain_cols_csv = {}  # col_name → domain_rule
+        domain_cols_csv = {}  # col_name -> domain_rule
         if self.rich_rules and self.rich_rules.get('has_rich_rules'):
             for rule in self.rich_rules.get('domain_rules', []):
                 col_name = rule.get('column', '')
@@ -2306,11 +2378,11 @@ class ErrorInjector:
                 self._csv_inject_domain(df, n_domain, domain_cols_csv, categorical_cols,
                                         used, injected)
 
-        # 统计异常部分（剩余预算）
+        # Statistical anomalies (remaining budget)
         n_stat = n - n_domain
         count = 0
 
-        # 按策略分配: 40% gaussian, 30% histogram, 30% pvd
+        # Per-strategy allocation: 40% gaussian, 30% histogram, 30% pvd
         n_gaussian = int(n_stat * 0.4)
         n_histogram = int(n_stat * 0.3)
         n_pvd = n_stat - n_gaussian - n_histogram
@@ -2329,7 +2401,8 @@ class ErrorInjector:
                 if original == '' or original.lower() in ('nan', 'none'):
                     continue
 
-                # 分类列: 格式异常注入（短字符串）或 typo（长字符串）
+                # Categorical columns: format-anomaly injection for short
+                # strings, or typo for long strings.
                 if col_name in categorical_cols:
                     new_val = self._generate_csv_categorical_anomaly(original, col_name)
                     if new_val != original:
@@ -2339,7 +2412,7 @@ class ErrorInjector:
                         count += 1
                     continue
 
-                # 数值列
+                # Numeric columns
                 try:
                     orig_float = float(original)
                 except (ValueError, TypeError):
@@ -2377,7 +2450,7 @@ class ErrorInjector:
                         new_float = -abs(orig_float) if orig_float > 0 else abs(orig_float) + 1
 
                 if new_float is not None and abs(new_float - orig_float) > 1e-6:
-                    # 保持原始列的整数/浮点格式
+                    # Preserve the column's integer / float format
                     if '.' not in original and original.lstrip('-').isdigit():
                         new_str = str(int(round(new_float)))
                     else:
@@ -2390,24 +2463,27 @@ class ErrorInjector:
     def _generate_csv_categorical_anomaly(
         self, original: str, col_name: str
     ) -> str:
-        """为分类列生成格式异常值（CSV 空间）
+        """Generate a format-anomaly value for a categorical column (CSV space).
 
-        对短字符串(len<=2): 使用格式异常注入，确保 RAHA/DOMAIN 能检测:
-          - 数字混入: "a" → "a1", "az" → "a2z"
-          - 特殊字符: "a" → "a_", "az" → "a-z"
-          - 重复字符: "a" → "aa", "az" → "azz"
+        Short strings (len<=2): use format-anomaly injection so both RAHA and
+        DOMAIN can detect it:
+          - digit injection: "a" -> "a1", "az" -> "a2z"
+          - special character: "a" -> "a_", "az" -> "a-z"
+          - repeated character: "a" -> "aa", "az" -> "azz"
 
-        对长字符串(len>=3): 标准 generate_typo()，但验证结果不在 ENUM 中。
-        如果 typo 后仍是合法值，则 fallback 到格式异常注入。
+        Long strings (len>=3): standard generate_typo(), verifying the result
+        is not in the ENUM. If the typo still produces a legal value, fall
+        back to format-anomaly injection.
 
         Args:
-            original: 原始字符串值
-            col_name: 列名（用于查 DOMAIN 规则中的 ENUM 列表）
+            original: raw string value
+            col_name: column name (used to look up the DOMAIN ENUM list)
 
         Returns:
-            异常值字符串（保证与 original 不同）
+            Anomalous string (guaranteed to differ from original).
         """
-        # 获取该列的 ENUM 合法值列表（用于验证注入值确实不在合法范围内）
+        # Fetch the column's valid ENUM values (used to confirm the injected
+        # value really is out of range).
         enum_vals = set()
         if self.rich_rules and self.rich_rules.get('has_rich_rules'):
             for rule in self.rich_rules.get('domain_rules', []):
@@ -2415,35 +2491,35 @@ class ErrorInjector:
                     enum_vals = set(str(v) for v in rule.get('enum_vals', []))
                     break
 
-        # 短字符串策略: 直接格式异常注入
+        # Short-string strategy: direct format-anomaly injection
         if len(original) <= 2:
             return self._format_anomaly(original, enum_vals)
 
-        # 长字符串策略: 先尝试 generate_typo
+        # Long-string strategy: try generate_typo first
         new_val = generate_typo(original)
-        # 验证: typo 结果不应在 ENUM 中（否则 DOMAIN 检测不到）
+        # Validate: the typo must not be in the ENUM (otherwise DOMAIN cannot detect it)
         if new_val != original and (not enum_vals or new_val not in enum_vals):
             return new_val
 
-        # Fallback: 格式异常注入
+        # Fallback: format-anomaly injection
         return self._format_anomaly(original, enum_vals)
 
     @staticmethod
     def _format_anomaly(original: str, enum_vals: set) -> str:
-        """生成格式异常值
+        """Generate a format-anomaly value.
 
-        四种策略随机选择，确保结果不在 ENUM 中:
-          1. 数字混入: 在随机位置插入数字
-          2. 特殊字符: 添加下划线/连字符
-          3. 重复字符: 重复末尾字符
-          4. 空格混入: 中间加空格
+        Pick a strategy at random, ensuring the result is not in the ENUM:
+          1. digit: insert a digit at a random position.
+          2. special character: append an underscore / hyphen.
+          3. repeat: repeat the final character.
+          4. space: insert a space somewhere in the middle.
 
         Args:
-            original: 原始字符串
-            enum_vals: ENUM 合法值集合
+            original: original string
+            enum_vals: set of valid ENUM values
 
         Returns:
-            异常值（保证与 original 不同，且尽量不在 enum_vals 中）
+            An anomalous value (guaranteed != original, and preferably not in enum_vals).
         """
         import random as _rng
 
@@ -2455,24 +2531,24 @@ class ErrorInjector:
 
         for strategy in strategies:
             if strategy == 'digit':
-                # 在末尾插入数字
+                # Append a digit at the end
                 digit = str(_rng.randint(1, 9))
                 candidate = original + digit
             elif strategy == 'special':
-                # 添加下划线
+                # Append an underscore
                 candidate = original + '_'
             elif strategy == 'repeat':
-                # 重复末尾字符
+                # Repeat the last character
                 candidate = original + original[-1]
             else:  # space
-                # 中间加空格
+                # Insert a space in the middle
                 pos = _rng.randint(1, len(original) - 1)
                 candidate = original[:pos] + ' ' + original[pos:]
 
             if candidate != original and candidate not in enum_vals:
                 return candidate
 
-        # 兜底: 原值 + 数字后缀
+        # Final fallback: original value + digit suffix
         return original + '1'
 
     def _csv_inject_domain(
@@ -2484,7 +2560,7 @@ class ErrorInjector:
         used: Set[Tuple[int, str]],
         injected: Dict[str, List],
     ):
-        """CSV 空间 DOMAIN 违规注入（超出规则定义的合法值域）"""
+        """CSV-space DOMAIN-violation injection (values outside the rule-defined range)."""
         n_samples = len(df)
         col_names = list(domain_cols.keys())
         count = 0
@@ -2506,7 +2582,7 @@ class ErrorInjector:
             if rule.get('dtype') == 'ENUM':
                 enum_vals = rule.get('enum_vals', [])
                 if enum_vals and col_name in categorical_cols:
-                    # 生成不在枚举中的 typo 值
+                    # Generate a typo that is not in the enum
                     new_str = generate_typo(original)
                     if new_str in enum_vals:
                         new_str = original + '_invalid'
@@ -2521,7 +2597,7 @@ class ErrorInjector:
                     new_float = max_v + np.random.randint(1, 6)
                 else:
                     new_float = min_v - np.random.randint(1, 6)
-                # 保持整数/浮点格式
+                # Preserve integer / float format
                 if '.' not in original and original.lstrip('-').isdigit():
                     new_str = str(int(round(new_float)))
                 else:
@@ -2541,10 +2617,11 @@ class ErrorInjector:
         label_pattern: 'LabelErrorPattern',
         injected: Dict[str, List],
     ):
-        """CSV 空间标签错误注入（规则感知）
+        """CSV-space label-error injection (rule-aware).
 
-        分类任务: 优先翻转满足 CFD/DC 标签规则条件的行（确保翻转后规则能检测到）
-        回归: 加高斯噪声（不变）
+        Classification: flip rows that satisfy CFD/DC label-rule conditions first
+            (so the rule detects the flip post hoc).
+        Regression: add Gaussian noise (unchanged).
         """
         if label_col not in df.columns:
             return
@@ -2580,18 +2657,18 @@ class ErrorInjector:
                     injected['label_noise'].append((idx, label_col, original, new_str))
                     count += 1
         else:
-            # 分类任务: 规则感知标签注入
+            # Classification: rule-aware label injection
             label_values = [str(df.at[df.index[i], label_col])
                             for i in valid_indices]
             unique_labels = list(set(label_values))
             if len(unique_labels) < 2:
                 return
 
-            # 收集规则覆盖的行（翻转后至少有一条规则能检测到）
+            # Collect rule-covered rows (post-flip, at least one rule detects them)
             rule_aware_indices = self._find_rule_aware_label_candidates(
                 df, label_col, valid_indices, unique_labels)
 
-            # 优先翻转规则覆盖的行，再随机翻转其余行
+            # Flip rule-covered rows first, then randomly flip the rest
             priority_order = rule_aware_indices + [
                 i for i in valid_indices if i not in set(rule_aware_indices)]
 
@@ -2614,29 +2691,30 @@ class ErrorInjector:
         valid_indices: List[int],
         unique_labels: List[str],
     ) -> List[int]:
-        """找到翻转后至少有一条 CFD/DC 标签规则能检测到的行
+        """Find rows whose label flip will trigger at least one CFD/DC label rule.
 
-        对于每条 CFD 标签规则 (conditions 中包含标签列):
-          - 找满足非标签条件的行
-          - 翻转标签后，该行满足完整条件 → 规则能检测到
+        For each CFD label rule (conditions include the label column):
+          - Find rows satisfying the non-label conditions.
+          - After flipping the label the row meets every condition, and the
+            rule detects it.
 
         Example:
-          规则: income=1, capital_gain>=5000 => income EXCESS >= 1
-          当前行: income=0 (高收入), capital_gain=8000
-          → 翻转后 income=1，满足条件，规则能检测
+          rule: income=1, capital_gain>=5000 => income EXCESS >= 1
+          current row: income=0 (high income), capital_gain=8000
+          -> after flipping income=1 the conditions hold and the rule fires.
 
         Returns:
-            规则覆盖的候选行索引列表（已随机打乱）
+            Shuffled list of candidate row indices covered by rules.
         """
         candidates = set()
 
         if not self.rich_rules or not self.rich_rules.get('has_rich_rules'):
             return []
 
-        # 遍历 CFD 规则
+        # Walk CFD rules
         for rule in self.rich_rules.get('cfd_rules', []):
             conditions = rule.get('conditions', [])
-            # 找标签条件和非标签条件
+            # Split conditions into label vs. non-label
             label_conds = []
             feature_conds = []
             for col, op, val in conditions:
@@ -2646,9 +2724,9 @@ class ErrorInjector:
                     feature_conds.append((col, op, val))
 
             if not label_conds:
-                continue  # 不涉及标签列的规则跳过
+                continue  # rules that do not touch the label column are skipped
 
-            # 确定规则期望的标签值
+            # Identify the expected label value
             rule_label_val = None
             for col, op, val in label_conds:
                 if op == '=':
@@ -2658,24 +2736,25 @@ class ErrorInjector:
             if rule_label_val is None:
                 continue
 
-            # 找当前标签不等于规则期望值（翻转后等于）且满足特征条件的行
+            # Find rows whose current label != rule value (so it equals the
+            # rule value after flipping) and whose feature conditions hold.
             for idx in valid_indices:
                 current_label = str(df.at[df.index[idx], label_col])
                 if current_label == rule_label_val:
-                    continue  # 当前已满足标签条件 — 翻转反而会移出覆盖范围
+                    continue  # already satisfies the label condition; flipping would break coverage
 
-                # 检查非标签特征条件
+                # Check non-label feature conditions
                 if self._csv_check_feature_conditions(df, idx, feature_conds):
                     candidates.add(idx)
 
-        # DC 标签规则 (MARK 列是标签列)
+        # DC label rules (MARK column is the label column)
         for dc_rule in self.rich_rules.get('dc_rules', []):
             mark_cols = dc_rule.get('mark_cols', [])
             if label_col not in mark_cols and 'class' not in mark_cols:
                 continue
 
             clauses = dc_rule.get('clauses', [])
-            # 找标签 EQ 条件
+            # Find the label EQ condition
             label_eq_val = None
             non_label_clauses = []
             for clause in clauses:
@@ -2695,7 +2774,7 @@ class ErrorInjector:
                 if current_label == label_eq_str:
                     continue
 
-                # 检查非标签条件
+                # Check non-label clauses
                 all_ok = True
                 for clause in non_label_clauses:
                     col = clause.get('col', '')
@@ -2724,26 +2803,26 @@ class ErrorInjector:
     def _csv_check_feature_conditions(
         df: pd.DataFrame, idx: int, conditions: List[Tuple]
     ) -> bool:
-        """检查一行是否满足所有特征条件 (CSV 空间)
+        """Check whether a row satisfies every feature condition (CSV space).
 
         Args:
             df: DataFrame
-            idx: 行索引
+            idx: row index
             conditions: [(col, op, val), ...]
 
         Returns:
-            True 如果所有条件都满足
+            True when every condition holds.
         """
         for col, op, val in conditions:
             if col == 'n_anomaly':
-                continue  # n_anomaly 是动态计算的伪列，跳过
+                continue  # n_anomaly is a dynamically computed pseudo-column; skip
             if col not in df.columns:
                 return False
             try:
                 cell_val = float(df.at[df.index[idx], col])
                 threshold = float(val)
             except (ValueError, TypeError):
-                # 字符串比较
+                # Fall back to string comparison
                 cell_str = str(df.at[df.index[idx], col])
                 if op == '=':
                     if cell_str != val:

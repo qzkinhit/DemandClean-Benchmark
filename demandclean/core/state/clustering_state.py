@@ -1,13 +1,14 @@
 """
-聚类任务状态提取器
-==================
+State extractor for clustering tasks
+====================================
 
-专为聚类任务（KMeans等）设计的状态特征提取器。
+State-feature extractor tailored to clustering tasks (e.g. KMeans).
 
-与分类/回归的核心差异：
-- distance_to_boundary: 使用簇间 margin（最近 vs 次近中心距离差）
-- feature_importance: 基于聚类中心对各特征维度的区分度
-- 聚类无"标签"概念，col==-1 的错误按照特征重要性均值处理
+Key differences from classification / regression:
+- distance_to_boundary uses cluster-margin (nearest vs. second-nearest center distance gap)
+- feature_importance is derived from how much each dimension separates cluster centers
+- Clustering has no concept of labels, so col == -1 errors use the mean of
+  feature importances.
 """
 
 from typing import Dict, Any, Set
@@ -18,14 +19,16 @@ from .state_extractor import StateExtractor
 
 class ClusteringStateExtractor(StateExtractor):
     """
-    聚类任务的状态特征提取器
+    State-feature extractor for clustering tasks.
 
-    关键语义差异：
-    1. distance_to_boundary 表示样本到簇边界的距离（margin）
-       - margin 大 → 深入某簇内部 → 删除/修改风险较小
-       - margin 小 → 接近簇边界 → 修改可能导致簇分配翻转
-    2. 聚类中标签错误（col==-1）意味着真实簇标签与聚类结果不一致
-       - 但这类错误在聚类中不直接"修复"标签，而是通过清洗特征来改善聚类质量
+    Key semantics:
+    1. distance_to_boundary is the distance from the sample to the cluster boundary (margin).
+       - Large margin -> deep inside a cluster -> low risk of changing assignment on edit
+       - Small margin -> near a cluster boundary -> editing may flip the cluster assignment
+    2. A label error (col == -1) in clustering means the true cluster label disagrees
+       with the clustering result.
+       - Such errors are not repaired directly at the label level; instead we clean
+         features to improve clustering quality.
     """
 
     def extract(self,
@@ -34,36 +37,38 @@ class ClusteringStateExtractor(StateExtractor):
                 error: Dict[str, Any],
                 deleted_rows: Set[int]) -> np.ndarray:
         """
-        提取 8 维状态特征向量
+        Build the 8-dim state feature vector.
 
         Args:
-            X_current: 当前数据矩阵
-            y: 簇标签（聚类中可能是真实标签或聚类预测标签）
-            error: 当前错误信息 {'idx', 'col', 'type', ...}
-            deleted_rows: 已删除的行集合
+            X_current: current data matrix
+            y: cluster labels (either true labels or clustering predictions)
+            error: current error info {'idx', 'col', 'type', ...}
+            deleted_rows: set of already-deleted row indices
 
         Returns:
-            8 维状态向量
+            8-dim state vector.
         """
         idx = error.get('idx', 0)
         col = error.get('col', 0)
         error_type = error.get('type', 0)
 
-        # 如果该行已删除，返回 8 维零向量（全局特征由 _get_state 追加）
+        # If the row has been deleted, return an 8-dim zero vector (global
+        # features are appended by _get_state).
         if idx in deleted_rows:
             return np.zeros(8, dtype=np.float32)
 
-        # 标签错误标记 (col == -1, type == 3)
+        # Label-error flag (col == -1, type == 3)
         is_label_error = (col == -1)
 
-        # 1. error_type (归一化到 [0, 1])
+        # 1. error_type (normalized to [0, 1])
         # type: 0=missing, 1=semantic, 2=syntactic, 3=label_noise
         error_type_norm = min(error_type / 3.0, 1.0)
 
         # 2. feature_importance
         if is_label_error:
-            # 聚类中"标签错误"意味着该样本在错误的簇中
-            # 重要性取所有特征的最大值（因为不知道哪个特征导致了错误分配）
+            # A clustering "label error" means the sample is in the wrong cluster.
+            # Use the maximum feature importance since we don't know which feature
+            # caused the misassignment.
             if self.feature_importance is not None and len(self.feature_importance) > 0:
                 feat_imp = float(np.max(self.feature_importance))
             else:
@@ -73,9 +78,9 @@ class ClusteringStateExtractor(StateExtractor):
         else:
             feat_imp = 0.5
 
-        # 3. distance_to_boundary (聚类: 簇间 margin)
+        # 3. distance_to_boundary (clustering: cluster margin)
         if is_label_error:
-            # 标签错误: 用所有特征维度的平均边界距离
+            # Label error: average boundary distance across feature dimensions
             distance_norm = self._get_avg_boundary_distance(X_current, idx)
         else:
             distance_norm = self.get_distance_to_boundary(X_current, idx, col)
@@ -99,7 +104,7 @@ class ClusteringStateExtractor(StateExtractor):
         else:
             col_err_rate = 0.0
 
-        # 7-8. sample_retention 和 var_retention
+        # 7-8. sample_retention and var_retention
         if is_label_error:
             keep_mask = np.array([i not in deleted_rows for i in range(len(X_current))])
             sample_retention = keep_mask.sum() / max(len(X_current), 1)
@@ -125,13 +130,15 @@ class ClusteringStateExtractor(StateExtractor):
                                   idx: int,
                                   col: int) -> float:
         """
-        获取到聚类边界的归一化距离
+        Return the normalized distance to the cluster boundary.
 
-        聚类中"边界"= 簇间分界面：
-        - 使用 KMeansAdapter.get_distance_to_boundary()
-          返回 (次近中心距离 - 最近中心距离) / max_margin
-        - 值大 → 深入簇内部，修改该特征不太可能改变簇分配
-        - 值小 → 接近簇边界，修改该特征可能导致簇分配翻转
+        For clustering, "boundary" is the inter-cluster decision surface:
+        - Uses KMeansAdapter.get_distance_to_boundary(), which returns
+          (second_nearest_center_dist - nearest_center_dist) / max_margin.
+        - Large value -> deep inside a cluster; editing the feature is unlikely
+          to change cluster assignment.
+        - Small value -> near a cluster boundary; editing the feature may flip
+          the cluster assignment.
         """
         if not self.model_adapter.is_fitted:
             return 0.5
@@ -148,8 +155,9 @@ class ClusteringStateExtractor(StateExtractor):
                                     X_current: np.ndarray,
                                     idx: int) -> float:
         """
-        获取样本到簇边界的平均距离
+        Return the average distance of a sample to the cluster boundary.
 
-        用于标签错误场景，因为标签错误不对应特定特征列。
+        Used for the label-error case, since label errors do not correspond to
+        any particular feature column.
         """
         return self.get_distance_to_boundary(X_current, idx, 0)

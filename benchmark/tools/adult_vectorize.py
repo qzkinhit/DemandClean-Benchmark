@@ -6,7 +6,7 @@ from sklearn.pipeline import Pipeline
 import argparse
 from scipy.sparse import hstack
 
-# 解析命令行参数
+# Parse command-line arguments.
 def parse_arguments():
     parser = argparse.ArgumentParser(description='Adult dataset vectorization and label conversion.')
     parser.add_argument('--input', type=str, required=True, help='Path to the input CSV file (cleaned Adult dataset).')
@@ -14,30 +14,30 @@ def parse_arguments():
     args = parser.parse_args()
     return args
 
-# 主函数
+# Main function.
 def main():
-    # 解析命令行参数
+    # Parse command-line arguments.
     args = parse_arguments()
 
-    # 加载 Adult 数据集
+    # Load the Adult dataset.
     file_path = args.input
     df = pd.read_csv(file_path)
 
-    # 将 'income' 列的 '<50K' 映射为 0， '>50K' 映射为 1
+    # Map the 'income' column: '<=50K' -> 0, '>50K' -> 1.
     df['income'] = df['income'].apply(lambda x: 0.0 if x == '<=50K' else 1.0)
 
-    # 分离特征和标签
-    X = df.drop(columns=['income'])  # 特征
-    y = df['income']  # 标签
+    # Separate features and labels.
+    X = df.drop(columns=['income'])  # features
+    y = df['income']  # label
 
-    # 定义数值型特征和类别型特征
+    # Define numeric and categorical feature columns.
     numeric_features = ['age', 'fnlwgt', 'education-num', 'hours-per-week', 'capital-gain', 'capital-loss']
     categorical_features = ['workclass', 'education', 'marital-status', 'occupation', 'relationship', 'race', 'sex', 'native-country']
 
-    # 处理数值特征
+    # Numeric feature transformer.
     numeric_transformer = StandardScaler()
 
-    # 对类别特征进行TF-IDF向量化
+    # TF-IDF vectorize the categorical features.
     tfidf_vectorizers = {}
     tfidf_features = []
 
@@ -47,31 +47,31 @@ def main():
         tfidf_vectorizers[col] = vectorizer
         tfidf_features.append(tfidf_feature)
 
-    # 将所有类别特征的TF-IDF特征合并
+    # Concatenate TF-IDF features across all categorical columns.
     X_tfidf = hstack(tfidf_features)
 
-    # 对数值特征进行标准化
+    # Standardize numeric features.
     X_numeric = numeric_transformer.fit_transform(df[numeric_features])
 
-    # 将数值特征和TF-IDF特征合并
+    # Combine numeric and TF-IDF features.
     X_final = hstack([X_numeric, X_tfidf])
 
-    # 将特征矩阵转换为 DataFrame
+    # Convert the feature matrix to a DataFrame.
     numeric_columns = numeric_features
     tfidf_columns = [f"{col}_tfidf_{i}" for col in categorical_features for i in range(tfidf_vectorizers[col].idf_.shape[0])]
     all_columns = numeric_columns + tfidf_columns
 
     X_transformed_df = pd.DataFrame(X_final.toarray(), columns=all_columns)
 
-    # 添加标签列
+    # Append the label column.
     X_transformed_df['income'] = y.reset_index(drop=True)
 
-    # 保存向量化后的数据到 CSV 文件
+    # Save the vectorized data as CSV.
     output_file_path = args.output
     X_transformed_df.to_csv(output_file_path, index=False)
 
-    # 输出文件路径
-    print(f"向量化后的数据已保存为: {output_file_path}")
+    # Print the output path.
+    print(f"Vectorized data saved to: {output_file_path}")
 
 if __name__ == '__main__':
     main()

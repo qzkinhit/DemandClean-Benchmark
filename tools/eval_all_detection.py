@@ -1,13 +1,14 @@
 #!/usr/bin/env python3
 """
-统一评估所有 baseline 的错误检测性能（Detection F1）。
+Uniform evaluation of error-detection performance (Detection F1) for all baselines.
 
-方法：对比 dirty vs cleaned 推断检测到的错误单元格，与 dirty vs clean (GT) 比较。
-使用数值容差比较，避免 "1.0" vs "1" 等格式差异导致的误判。
+Approach: compare dirty vs. cleaned to infer detected error cells, then compare
+against dirty vs. clean (ground truth). Uses numeric tolerance comparison to
+avoid format-driven false mismatches such as "1.0" vs "1".
 
-输出：
-  - summary/detector_comparison_all.csv  (详细版: dataset × method × P/R/F1)
-  - 更新 summary/detector_comparison.csv (宽格式，含所有 baseline + DC)
+Outputs:
+  - summary/detector_comparison_all.csv  (detailed: dataset x method x P/R/F1)
+  - updates summary/detector_comparison.csv (wide format, all baselines + DC)
 """
 import os, csv, glob
 import pandas as pd
@@ -25,12 +26,12 @@ BASELINES = [
     'raha_baran', 'repairall', 'simpleimputer', 'uniclean',
 ]
 
-# 有独立检测器的方法
+# Methods that ship their own detector
 HAS_DETECTOR = {'holoclean', 'raha_baran', 'lopster', 'boostclean'}
 
 
 def values_are_equal(dirty_val, clean_val, rtol=1e-5):
-    """数值容差比较，避免 '1.0' vs '1' 等格式差异。"""
+    """Numeric tolerance comparison to avoid format-driven mismatches like '1.0' vs '1'."""
     s_dirty = str(dirty_val).strip()
     s_clean = str(clean_val).strip()
     if s_dirty == s_clean:
@@ -46,10 +47,10 @@ def values_are_equal(dirty_val, clean_val, rtol=1e-5):
 
 
 def calc_detection_f1(dirty_df, clean_df, cleaned_df, feat_cols):
-    """计算检测 P/R/F1。
+    """Compute detection P/R/F1.
 
-    GT errors:  dirty[r,c] != clean[r,c]  (用数值容差)
-    Detected:   dirty[r,c] != cleaned[r,c] (用数值容差)
+    GT errors: dirty[r,c] != clean[r,c]   (with numeric tolerance)
+    Detected:  dirty[r,c] != cleaned[r,c] (with numeric tolerance)
     """
     gt_errors = set()
     detected = set()
@@ -78,7 +79,7 @@ def calc_detection_f1(dirty_df, clean_df, cleaned_df, feat_cols):
 
 
 def find_cleaned_csv(baseline, dataset):
-    """查找 baseline 的 cleaned CSV 路径。"""
+    """Locate the cleaned-CSV path produced by a baseline."""
     patterns = [
         os.path.join(C4ML_ROOT, 'results', baseline,
                      f'{dataset}_{baseline}_vzekai',
@@ -133,7 +134,7 @@ def main():
 
             cleaned_df = pd.read_csv(cleaned_path, low_memory=False)
 
-            # 对齐列名
+            # Align column names
             for col in feat_cols:
                 if col not in cleaned_df.columns:
                     cleaned_df[col] = dirty_df[col]

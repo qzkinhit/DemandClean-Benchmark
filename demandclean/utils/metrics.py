@@ -1,8 +1,8 @@
 """
-评估指标
-========
+Evaluation Metrics
+==================
 
-分类和回归任务的评估指标计算。
+Metric computation for classification and regression tasks.
 """
 
 from typing import Dict, Any, Optional, Tuple
@@ -10,33 +10,33 @@ import numpy as np
 
 
 class Metrics:
-    """评估指标计算工具类"""
+    """Evaluation metric utilities."""
 
     @staticmethod
     def classification_score(y_true: np.ndarray, y_pred: np.ndarray) -> float:
         """
-        计算分类准确率
+        Compute classification accuracy.
 
         Args:
-            y_true: 真实标签
-            y_pred: 预测标签
+            y_true: Ground-truth labels
+            y_pred: Predicted labels
 
         Returns:
-            准确率 [0, 1]
+            Accuracy in [0, 1]
         """
         return np.mean(y_true == y_pred)
 
     @staticmethod
     def regression_score(y_true: np.ndarray, y_pred: np.ndarray) -> float:
         """
-        计算回归得分（负 MSE）
+        Compute regression score (negative MSE).
 
         Args:
-            y_true: 真实值
-            y_pred: 预测值
+            y_true: Ground-truth values
+            y_pred: Predicted values
 
         Returns:
-            负 MSE（越接近 0 越好）
+            Negative MSE (closer to 0 is better)
         """
         mse = np.mean((y_true - y_pred) ** 2)
         return -mse
@@ -44,14 +44,14 @@ class Metrics:
     @staticmethod
     def r2_score(y_true: np.ndarray, y_pred: np.ndarray) -> float:
         """
-        计算 R2 决定系数
+        Compute the R2 coefficient of determination.
 
         Args:
-            y_true: 真实值
-            y_pred: 预测值
+            y_true: Ground-truth values
+            y_pred: Predicted values
 
         Returns:
-            R2 值
+            R2 value
         """
         ss_res = np.sum((y_true - y_pred) ** 2)
         ss_tot = np.sum((y_true - np.mean(y_true)) ** 2)
@@ -66,19 +66,19 @@ class Metrics:
                      col: int = 1,
                      tolerance: float = 0.01) -> float:
         """
-        计算数据真实性
+        Compute data authenticity.
 
-        真实性 = 正确值数量 / 当前行数
+        Authenticity = number of correct values / current number of rows.
 
         Args:
-            X_result: 清洗后的数据
-            X_clean: 干净数据
-            keep_mask: 保留行的掩码
-            col: 比较的列索引
-            tolerance: 容差阈值
+            X_result: Cleaned data
+            X_clean: Clean reference data
+            keep_mask: Mask indicating kept rows
+            col: Column index to compare
+            tolerance: Tolerance threshold
 
         Returns:
-            真实性 [0, 1]
+            Authenticity in [0, 1]
         """
         if len(X_result) == 0:
             return 0.0
@@ -103,16 +103,16 @@ class Metrics:
                   keep_mask: Optional[np.ndarray] = None,
                   col: int = 1) -> Tuple[float, float, float]:
         """
-        计算数据多样性
+        Compute data diversity.
 
-        多样性 = 样本保留率 × 方差保留率
+        Diversity = sample retention rate x variance retention rate.
 
         Args:
-            X_result: 清洗后的数据
-            X_clean: 干净数据
-            X_dirty: 脏数据
-            keep_mask: 保留行的掩码
-            col: 计算方差的列索引
+            X_result: Cleaned data
+            X_clean: Clean reference data
+            X_dirty: Dirty data
+            keep_mask: Mask indicating kept rows
+            col: Column index used to compute variance
 
         Returns:
             (diversity, sample_retention, var_retention)
@@ -123,10 +123,10 @@ class Metrics:
         if n_result == 0:
             return 0.0, 0.0, 0.0
 
-        # 样本保留率
+        # Sample retention rate
         sample_retention = n_result / n_total
 
-        # 方差保留率
+        # Variance retention rate
         if n_result < 2:
             return 0.0, sample_retention, 0.0
 
@@ -156,24 +156,24 @@ class Metrics:
                     keep_mask: Optional[np.ndarray] = None,
                     col: int = 1) -> Dict[str, Any]:
         """
-        计算所有指标
+        Compute all metrics.
 
         Args:
-            X_result: 清洗后的特征
-            y_result: 清洗后的标签
-            X_clean: 干净特征
-            y_clean: 干净标签
-            X_dirty: 脏特征
-            keep_mask: 保留行的掩码
-            col: 计算指标的列索引
+            X_result: Cleaned features
+            y_result: Cleaned labels
+            X_clean: Clean features
+            y_clean: Clean labels
+            X_dirty: Dirty features
+            keep_mask: Mask indicating kept rows
+            col: Column index used for metrics
 
         Returns:
-            包含所有指标的字典
+            Dictionary containing all metrics
         """
-        # 真实性
+        # Authenticity
         auth = Metrics.authenticity(X_result, X_clean, keep_mask, col)
 
-        # 多样性
+        # Diversity
         div, sample_ret, var_ret = Metrics.diversity(
             X_result, X_clean, X_dirty, keep_mask, col
         )
@@ -190,13 +190,13 @@ class Metrics:
     @staticmethod
     def action_distribution(action_counts: Dict[str, int]) -> Dict[str, float]:
         """
-        计算动作分布百分比
+        Compute the action-distribution percentages.
 
         Args:
-            action_counts: 动作计数字典
+            action_counts: Action count dictionary
 
         Returns:
-            动作百分比字典
+            Action percentage dictionary
         """
         total = sum(action_counts.values())
         if total == 0:

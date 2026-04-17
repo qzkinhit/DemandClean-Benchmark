@@ -1,9 +1,9 @@
 """
-Rules Parser - 统一规则文件解析器
+Rules Parser - unified rule-file parser
 
-解析Data/{dataset}/rules.txt文件，为不同baseline提取对应的规则。
+Parses Data/{dataset}/rules.txt and extracts the relevant rules per baseline.
 
-文件格式:
+File format:
 [HOLOCLEAN_DC]
 t1&t2&EQ(t1.attr1,t2.attr2)&IQ(t1.attr3,t2.attr3)
 
@@ -26,13 +26,13 @@ from typing import List, Dict, Optional, Tuple
 
 def parse_rules_file(rules_path: str) -> Dict[str, List[str]]:
     """
-    解析统一规则文件
+    Parse a unified rules file.
 
     Args:
-        rules_path: rules.txt文件路径
+        rules_path: path to the rules.txt file
 
     Returns:
-        字典，key为section名称，value为规则列表
+        dict mapping section names to their rule lists
     """
     if not os.path.exists(rules_path):
         return {}
@@ -44,11 +44,11 @@ def parse_rules_file(rules_path: str) -> Dict[str, List[str]]:
         for line in f:
             line = line.strip()
 
-            # 跳过空行和注释
+            # Skip empty lines and comments.
             if not line or line.startswith('#'):
                 continue
 
-            # 检测section标题
+            # Detect section headers.
             if line.startswith('[') and line.endswith(']'):
                 current_section = line[1:-1]
                 sections[current_section] = []
@@ -59,33 +59,33 @@ def parse_rules_file(rules_path: str) -> Dict[str, List[str]]:
 
 
 def get_holoclean_dcs(rules_path: str) -> List[str]:
-    """获取HoloClean的Denial Constraints"""
+    """Return the HoloClean Denial Constraints."""
     sections = parse_rules_file(rules_path)
     return sections.get('HOLOCLEAN_DC', [])
 
 
 def get_uniclean_cleaners(rules_path: str) -> List[str]:
-    """获取UniClean的cleaner定义字符串"""
+    """Return the UniClean cleaner definition strings."""
     sections = parse_rules_file(rules_path)
     return sections.get('UNICLEAN', [])
 
 
 def get_horizon_fds(rules_path: str) -> List[Tuple[str, str]]:
     """
-    获取Horizon的功能依赖规则
+    Return the Horizon functional dependency rules.
 
     Returns:
-        列表，每项为(lhs, rhs)元组
+        list of (lhs, rhs) tuples
     """
     sections = parse_rules_file(rules_path)
     fds = []
 
     for line in sections.get('HORIZON_FD', []):
-        # 支持 => 和 ⇒ 两种格式
+        # Accept both '=>' and the Unicode double-arrow as separators.
         if '=>' in line:
             parts = line.split('=>')
-        elif '⇒' in line:
-            parts = line.split('⇒')
+        elif '\u21d2' in line:
+            parts = line.split('\u21d2')
         else:
             continue
 
@@ -98,22 +98,22 @@ def get_horizon_fds(rules_path: str) -> List[Tuple[str, str]]:
 
 
 def get_mse_attributes(rules_path: str) -> List[str]:
-    """获取MSE评估属性列表"""
+    """Return the MSE evaluation attribute list."""
     sections = parse_rules_file(rules_path)
     return sections.get('MSE_ATTRIBUTES', [])
 
 
 def parse_uniclean_cleaner(cleaner_str: str):
     """
-    解析UniClean cleaner字符串为可执行对象
+    Parse a UniClean cleaner string into an executable object.
 
     Args:
-        cleaner_str: 如 'Number("age")' 或 'AttrRelation(["a"], ["b"], "0")'
+        cleaner_str: e.g. 'Number("age")' or 'AttrRelation(["a"], ["b"], "0")'
 
     Returns:
-        UniClean cleaner对象
+        UniClean cleaner object
     """
-    # 动态导入UniClean cleaners
+    # Import UniClean cleaners lazily.
     try:
         from SampleScrubber.cleaner.single import Number, Pattern, Outlier, Date
         from SampleScrubber.cleaner.multiple import AttrRelation
@@ -123,7 +123,7 @@ def parse_uniclean_cleaner(cleaner_str: str):
         from SampleScrubber.cleaner.single import Number, Pattern, Outlier, Date
         from SampleScrubber.cleaner.multiple import AttrRelation
 
-    # 安全执行cleaner定义
+    # Evaluate the cleaner definition in a restricted namespace.
     local_vars = {
         'Number': Number,
         'Pattern': Pattern,
@@ -141,13 +141,13 @@ def parse_uniclean_cleaner(cleaner_str: str):
 
 def get_uniclean_cleaner_objects(rules_path: str) -> List:
     """
-    获取UniClean cleaner对象列表
+    Return the list of UniClean cleaner objects.
 
     Args:
-        rules_path: rules.txt文件路径
+        rules_path: path to the rules.txt file
 
     Returns:
-        cleaner对象列表
+        list of cleaner objects
     """
     cleaner_strs = get_uniclean_cleaners(rules_path)
     cleaners = []
@@ -162,14 +162,14 @@ def get_uniclean_cleaner_objects(rules_path: str) -> List:
 
 def write_holoclean_dc_file(rules_path: str, output_path: str) -> str:
     """
-    从统一规则文件提取HoloClean DC并写入单独文件
+    Extract HoloClean DCs from the unified rules file and write them to a standalone file.
 
     Args:
-        rules_path: 统一规则文件路径
-        output_path: 输出DC文件路径
+        rules_path: path to the unified rules file
+        output_path: output DC file path
 
     Returns:
-        输出文件路径
+        output file path
     """
     dcs = get_holoclean_dcs(rules_path)
 
@@ -182,14 +182,14 @@ def write_holoclean_dc_file(rules_path: str, output_path: str) -> str:
 
 def write_horizon_fd_file(rules_path: str, output_path: str) -> str:
     """
-    从统一规则文件提取Horizon FD并写入单独文件
+    Extract Horizon FDs from the unified rules file and write them to a standalone file.
 
     Args:
-        rules_path: 统一规则文件路径
-        output_path: 输出FD文件路径
+        rules_path: path to the unified rules file
+        output_path: output FD file path
 
     Returns:
-        输出文件路径
+        output file path
     """
     fds = get_horizon_fds(rules_path)
 
@@ -200,24 +200,24 @@ def write_horizon_fd_file(rules_path: str, output_path: str) -> str:
     return output_path
 
 
-# 便捷函数
+# Convenience helper
 def get_dataset_rules(dataset_name: str, data_dir: str = 'Data') -> Dict[str, List[str]]:
     """
-    获取指定数据集的所有规则
+    Return all rules for a given dataset.
 
     Args:
-        dataset_name: 数据集名称
-        data_dir: 数据根目录
+        dataset_name: dataset name
+        data_dir: data root directory
 
     Returns:
-        规则字典
+        rules dict
     """
     rules_path = os.path.join(data_dir, dataset_name, 'rules.txt')
     return parse_rules_file(rules_path)
 
 
 if __name__ == '__main__':
-    # 测试
+    # Quick test.
     import sys
     if len(sys.argv) > 1:
         rules_path = sys.argv[1]

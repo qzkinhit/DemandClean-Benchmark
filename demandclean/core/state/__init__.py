@@ -1,4 +1,4 @@
-"""状态提取器模块"""
+"""State extractor module"""
 
 from .state_extractor import StateExtractor
 from .classification_state import ClassificationStateExtractor

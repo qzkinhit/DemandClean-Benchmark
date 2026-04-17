@@ -1,4 +1,4 @@
-"""检测器模块"""
+"""Detector module"""
 
 from .error_injector import ErrorInjector, LabelErrorPattern, analyze_label_error_pattern
 from .auto_detector import AutoDetector, RahaBasedDetector, RuleBasedDetector

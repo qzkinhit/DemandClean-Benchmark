@@ -1,48 +1,48 @@
-# 数据集：Breast_Cancer
+# Dataset: Breast_Cancer
 
-## 基本信息
+## Basic Information
 
-| 项目 | 值 |
-|------|-----|
-| 任务类型 | 分类 (Classification) |
-| 目标列 | `class` |
-| 数据规模 | 699 条记录 × 11 属性 |
-| 索引文件 | `clean_with_index.csv`, `dirty_with_index.csv` |
+| Item | Value |
+|------|-------|
+| Task type | Classification |
+| Target column | `class` |
+| Size | 699 records x 11 attributes |
+| Indexed files | `clean_with_index.csv`, `dirty_with_index.csv` |
 
-## 列定义
+## Column Definitions
 
-### 索引列 (Index)
-| 列名 | 说明 |
-|------|------|
-| `index` | 行索引，不参与模型训练 |
+### Index column
+| Column | Description |
+|--------|-------------|
+| `index` | row index, not used for model training |
 
-### 特征列 (Features) - 共9列
-| 属性名 | 类型 | 说明 |
-|--------|------|------|
-| Clump Thickness | 数值 | 细胞团厚度 (1-10) |
-| Uniformity of Cell Size | 数值 | 细胞大小均匀性 (1-10) |
-| Uniformity of Cell Shape | 数值 | 细胞形状均匀性 (1-10) |
-| Marginal Adhesion | 数值 | 边缘粘附性 (1-10) |
-| Single Epithelial Cell Size | 数值 | 单上皮细胞大小 (1-10) |
-| Bare Nuclei | 数值 | 裸核 (1-10) |
-| Bland Chromatin | 数值 | 平淡染色质 (1-10) |
-| Normal Nucleoli | 数值 | 正常核仁 (1-10) |
-| Mitoses | 数值 | 有丝分裂 (1-10) |
+### Feature columns (9 total)
+| Attribute | Type | Description |
+|-----------|------|-------------|
+| Clump Thickness | Numeric | Clump thickness (1-10) |
+| Uniformity of Cell Size | Numeric | Cell size uniformity (1-10) |
+| Uniformity of Cell Shape | Numeric | Cell shape uniformity (1-10) |
+| Marginal Adhesion | Numeric | Marginal adhesion (1-10) |
+| Single Epithelial Cell Size | Numeric | Single epithelial cell size (1-10) |
+| Bare Nuclei | Numeric | Bare nuclei (1-10) |
+| Bland Chromatin | Numeric | Bland chromatin (1-10) |
+| Normal Nucleoli | Numeric | Normal nucleoli (1-10) |
+| Mitoses | Numeric | Mitoses (1-10) |
 
-### 目标列 (Label)
-| 属性名 | 类型 | 说明 |
-|--------|------|------|
-| class | 二分类 | 肿瘤类型 (2:良性, 4:恶性) |
+### Label column
+| Attribute | Type | Description |
+|-----------|------|-------------|
+| class | Binary | Tumor class (2: benign, 4: malignant) |
 
-## 错误信息
-- **错误类型**: 缺失值(Missing Values), 异常值(Outliers), 拼写错误(Typos)
-- **错误条目数**: 453
-- **错误单元格数**: 631
+## Error Information
+- **Error types**: Missing values, outliers, typos
+- **Error entry count**: 453
+- **Error cell count**: 631
 
-## 数据来源
+## Source
 Wolberg, W. Breast Cancer Wisconsin (Original). https://archive.ics.uci.edu/dataset/15/breast+cancer+wisconsin+original. 1990.
 
-## 运行命令示例
+## Example Command
 
 ```bash
 python MethodsRunScript/run_deleteall/run_deleteall_base.py \

@@ -8,121 +8,120 @@ import numpy as np
 def calculate_all_metrics(clean, dirty, cleaned, attributes, output_path, task_name, index_attribute='index', calculate_precision_recall=True,
                           calculate_edr=True, calculate_hybrid=True, calculate_r_edr=True, mse_attributes=[], relax=True):
     """
-    计算多个指标的统一函数，包括修复准确率和召回率、EDR、混合距离以及基于条目的 R-EDR。
+    Compute multiple metrics in one call: repair precision/recall, EDR, hybrid distance,
+    and record-based R-EDR.
 
-    :param clean: 干净数据 DataFrame
-    :param dirty: 脏数据 DataFrame
-    :param cleaned: 清洗后数据 DataFrame
-    :param attributes: 指定的属性集合
-    :param output_path: 保存结果的目录路径
-    :param task_name: 任务名称
-    :param calculate_precision_recall: 是否计算修复的准确率和召回率
-    :param calculate_edr: 是否计算错误减少率（EDR）
-    :param calculate_hybrid: 是否计算混合距离指标
-    :param calculate_r_edr: 是否计算基于条目的错误减少率（R-EDR）
-    :param relax: 比对时是否忽略大小写(有些baseline系统（例如holoclean），强制清洗后的数据统一变成小写字母)
-    :return: 所有计算的指标值
+    :param clean: clean-data DataFrame
+    :param dirty: dirty-data DataFrame
+    :param cleaned: cleaned-data DataFrame
+    :param attributes: attributes to evaluate
+    :param output_path: directory to save results
+    :param task_name: task name
+    :param calculate_precision_recall: whether to compute repair precision/recall
+    :param calculate_edr: whether to compute error reduction rate (EDR)
+    :param calculate_hybrid: whether to compute the hybrid-distance metric
+    :param calculate_r_edr: whether to compute record-based error reduction rate (R-EDR)
+    :param relax: ignore case when comparing (some baselines, e.g. HoloClean, force lowercase output)
+    :return: all computed metrics
     """
     results = {}
 
-    # 计算准确率和召回率
+    # Precision / recall
     if calculate_precision_recall:
         try:
             accuracy, recall = calculate_accuracy_and_recall(clean, dirty, cleaned, attributes, output_path, task_name,
                                                              index_attribute=index_attribute, relax=relax)
-            results['accuracy'] = accuracy       # 历史兼容：实际是 precision = TP/(TP+FP)
-            results['precision'] = accuracy      # 显式 precision 字段
+            results['accuracy'] = accuracy       # legacy: this is actually precision = TP/(TP+FP)
+            results['precision'] = accuracy      # explicit precision
             results['recall'] = recall
             f1_score = calF1(accuracy, recall)
             results['f1_score'] = f1_score
-            print(f"修复准确率: {accuracy}, 修复召回率: {recall}, F1值: {f1_score}")
+            print(f"Repair precision: {accuracy}, repair recall: {recall}, F1: {f1_score}")
             print("=" * 40)
         except Exception as e:
-            print(f"准确率/召回率计算出错: {e}")
+            print(f"Precision/recall failed: {e}")
 
-    # 计算EDR
+    # EDR
     if calculate_edr:
         try:
             edr = get_edr(clean, dirty, cleaned, attributes, output_path, task_name, index_attribute=index_attribute, relax=relax)
             results['edr'] = edr
-            print(f"错误减少率 (EDR): {edr}")
+            print(f"Error reduction rate (EDR): {edr}")
             print("=" * 40)
         except Exception as e:
-            print(f"EDR计算出错: {e}")
+            print(f"EDR failed: {e}")
 
-    # 计算混合距离
+    # Hybrid distance
     if calculate_hybrid:
         try:
             hybrid_distance = get_hybrid_distance(clean, cleaned, attributes, output_path, task_name,
                                                   index_attribute=index_attribute, mse_attributes=mse_attributes, relax=relax)
             results['hybrid_distance'] = hybrid_distance
-            print(f"混合距离 (Hybrid Distance): {hybrid_distance}")
+            print(f"Hybrid distance: {hybrid_distance}")
             print("=" * 40)
         except Exception as e:
-            print(f"混合距离计算出错: {e}")
+            print(f"Hybrid distance failed: {e}")
 
-    # 计算基于条目的 R-EDR
+    # Record-based R-EDR
     if calculate_r_edr:
         try:
             r_edr = get_record_based_edr(clean, dirty, cleaned, output_path, task_name, index_attribute=index_attribute, relax=relax)
             results['r_edr'] = r_edr
-            print(f"基于条目的错误减少率 (R-EDR): {r_edr}")
+            print(f"Record-based error reduction rate (R-EDR): {r_edr}")
             print("=" * 40)
         except Exception as e:
-            print(f"R-EDR计算出错: {e}")
+            print(f"R-EDR failed: {e}")
 
     return results
 
 def normalize_value(value):
     """
-    将数值规范化为字符串格式，去掉小数点及其后的零
-    :param value: 要规范化的值
-    :return: 规范化后的字符串
+    Normalize a value into its string form, stripping trailing zeros after the decimal point.
+
+    :param value: value to normalize
+    :return: normalized string
     """
     try:
-        # 尝试将值转换为浮点数，再转换为整数，然后转换为字符串
+        # Parse as float, coerce to int when integral, then stringify
         float_value = float(value)
         if float_value.is_integer():
-            return str(int(float_value))  # 去掉小数点及其后的零
+            return str(int(float_value))  # drop decimal zeros
         else:
             return str(float_value)
     except ValueError:
-        # 如果值无法转换为浮点数，则返回原始值的字符串形式
+        # Non-numeric values fall back to their string form
         return str(value)
 
 
 def default_distance_func(value1, value2):
     """
-    默认的距离计算函数：
-    如果两个值不同，则距离为1；
-    如果两个值相同，则距离为0。
+    Default distance: 1 if the values differ, 0 if they match.
     """
     return (value1 != value2).sum()
 
 def record_based_distance_func(row1, row2):
     """
-    基于条目的距离计算函数：
-    遍历每一行中的每一个值，如果任意一个值不相同，则返回1；
-    如果所有值都相同，则返回0。
+    Record-based distance: 1 if any column differs between the two rows, 0 otherwise.
     """
     for val1, val2 in zip(row1, row2):
         if val1 != val2:
-            return 1  # 只要有一个值不相同，立即返回1
-    return 0  # 如果所有值都相同，返回0
+            return 1  # differ on any column -> 1
+    return 0  # all columns match -> 0
 def calF1(precision, recall):
     """
-    计算F1值
+    Compute F1.
 
-    :param precision: 精度
-    :param recall: 召回率
-    :return: F1值
+    :param precision: precision
+    :param recall: recall
+    :return: F1
     """
     return 2 * precision * recall / (precision + recall + 1e-10)
 
 
 def calculate_accuracy_and_recall(clean, dirty, cleaned, attributes, output_path, task_name, index_attribute='index', relax=False):
     """
-    计算指定属性集合下的修复准确率和召回率，并将结果输出到文件中，同时生成差异 CSV 文件。
+    Compute repair precision and recall over the given attributes, writing results to files
+    and producing diff CSVs.
     """
     import os
     import sys
@@ -130,7 +129,7 @@ def calculate_accuracy_and_recall(clean, dirty, cleaned, attributes, output_path
 
     os.makedirs(output_path, exist_ok=True)
 
-    # 定义输出文件路径
+    # Output file paths
     out_path = os.path.join(output_path, f"{task_name}_evaluation.txt")
     clean_dirty_diff_path = os.path.join(output_path, f"{task_name}_clean_vs_dirty.csv")
     dirty_cleaned_diff_path = os.path.join(output_path, f"{task_name}_dirty_vs_cleaned.csv")
@@ -138,21 +137,21 @@ def calculate_accuracy_and_recall(clean, dirty, cleaned, attributes, output_path
     repair_errors_path = os.path.join(output_path, f"{task_name}_repair_errors.csv")
     unrepaired_path = os.path.join(output_path, f"{task_name}_unrepaired.csv")
 
-    # 备份原始的标准输出
+    # Back up the original stdout
     original_stdout = sys.stdout
 
-    # 将指定的属性设置为索引
+    # Index by the chosen attribute
     clean = clean.set_index(index_attribute, drop=False)
     dirty = dirty.set_index(index_attribute, drop=False)
     cleaned = cleaned.set_index(index_attribute, drop=False)
 
-    # 如果忽略大小写，将所有值转换为小写
+    # Case-insensitive comparison when relax is set
     if relax:
         clean = clean.map(lambda x: x.lower() if isinstance(x, str) else x)
         dirty = dirty.map(lambda x: x.lower() if isinstance(x, str) else x)
         cleaned = cleaned.map(lambda x: x.lower() if isinstance(x, str) else x)
 
-    # 重定向输出到文件（用 try/finally 确保 stdout 恢复）
+    # Redirect stdout to the output file (try/finally ensures stdout is restored)
     try:
         with open(out_path, 'w', encoding='utf-8') as f:
             sys.stdout = f
@@ -221,35 +220,35 @@ def calculate_accuracy_and_recall(clean, dirty, cleaned, attributes, output_path
                 total_true_positives += true_positives
                 total_false_positives += false_positives
                 total_true_negatives += true_negatives
-                print("Attribute:", attribute, "修复正确的数据:", true_positives, "修复错误的数据:", false_positives,
-                      "应该修复的数据:", true_negatives)
+                print("Attribute:", attribute, "correctly repaired:", true_positives, "incorrectly repaired:", false_positives,
+                      "should be repaired:", true_negatives)
                 print("=" * 40)
 
             accuracy = total_true_positives / (total_true_positives + total_false_positives) if (total_true_positives + total_false_positives) > 0 else 0
             recall = total_true_positives / total_true_negatives if total_true_negatives > 0 else 0
 
-            print(f"修复准确率: {accuracy}")
-            print(f"修复召回率: {recall}")
+            print(f"Repair precision: {accuracy}")
+            print(f"Repair recall: {recall}")
     finally:
         sys.stdout = original_stdout
 
-    # 保存差异数据到 CSV 文件
+    # Save diff data as CSV
     clean_dirty_diff.to_csv(clean_dirty_diff_path, index=False)
     dirty_cleaned_diff.to_csv(dirty_cleaned_diff_path, index=False)
     clean_cleaned_diff.to_csv(clean_cleaned_diff_path, index=False)
     repair_errors.to_csv(repair_errors_path, index=False)
     unrepaired.to_csv(unrepaired_path, index=False)
 
-    print(f"差异文件已保存到:\n{clean_dirty_diff_path}\n{dirty_cleaned_diff_path}\n{clean_cleaned_diff_path}")
-    print(f"修复错误数据文件已保存到: {repair_errors_path}")
-    print(f"未修复但是应该修复数据文件已保存到: {unrepaired_path}")
+    print(f"Diff files saved:\n{clean_dirty_diff_path}\n{dirty_cleaned_diff_path}\n{clean_cleaned_diff_path}")
+    print(f"Incorrectly repaired file saved: {repair_errors_path}")
+    print(f"Unrepaired-but-should-repair file saved: {unrepaired_path}")
 
     return accuracy, recall
 
 
 def get_edr(clean, dirty, cleaned, attributes, output_path, task_name, index_attribute='index', distance_func=default_distance_func, relax=False):
     """
-    计算指定属性集合下的错误减少率 (EDR)，并将结果输出到文件中。
+    Compute the error reduction rate (EDR) over the given attributes and write results to a file.
     """
     os.makedirs(output_path, exist_ok=True)
     out_path = os.path.join(output_path, f"{task_name}_edr_evaluation.txt")
@@ -297,18 +296,18 @@ def get_edr(clean, dirty, cleaned, attributes, output_path, task_name, index_att
             else:
                 edr = (total_distance_dirty_to_clean - total_distance_repaired_to_clean) / total_distance_dirty_to_clean
 
-            print(f"总的脏数据到干净数据距离: {total_distance_dirty_to_clean}")
-            print(f"总的修复后数据到干净数据距离: {total_distance_repaired_to_clean}")
-            print(f"错误减少率 (EDR): {edr}")
+            print(f"Total distance dirty-to-clean: {total_distance_dirty_to_clean}")
+            print(f"Total distance repaired-to-clean: {total_distance_repaired_to_clean}")
+            print(f"Error reduction rate (EDR): {edr}")
     finally:
         sys.stdout = original_stdout
 
-    print(f"EDR 结果已保存到: {out_path}")
+    print(f"EDR results saved: {out_path}")
     return edr
 
 def get_hybrid_distance(clean, cleaned, attributes, output_path, task_name, index_attribute='index', mse_attributes=[], w1=0.5, w2=0.5, relax=False):
     """
-    计算混合距离指标，包括MSE和Jaccard距离，并将结果输出到文件中。
+    Compute the hybrid-distance metric (MSE + Jaccard) and write results to a file.
     """
     os.makedirs(output_path, exist_ok=True)
     out_path = os.path.join(output_path, f"{task_name}_hybrid_distance_evaluation.txt")
@@ -337,7 +336,8 @@ def get_hybrid_distance(clean, cleaned, attributes, output_path, task_name, inde
                     try:
                         clean_float = clean_values.astype(float)
                         cleaned_float = cleaned_values.astype(float)
-                        # Min-Max 归一化：基于 clean 的值域，避免不同量纲导致 MSE 不可比
+                        # Min-max normalize against the clean range so that
+                        # columns with different scales produce comparable MSEs.
                         col_min = clean_float.min()
                         col_max = clean_float.max()
                         col_range = col_max - col_min
@@ -345,12 +345,12 @@ def get_hybrid_distance(clean, cleaned, attributes, output_path, task_name, inde
                             clean_norm = (clean_float - col_min) / col_range
                             cleaned_norm = (cleaned_float - col_min) / col_range
                         else:
-                            # 值域为零（常量列），直接用原值
+                            # Zero range (constant column): use raw values
                             clean_norm = clean_float
                             cleaned_norm = cleaned_float
                         mse = mean_squared_error(clean_norm, cleaned_norm)
                     except ValueError:
-                        print(f"检查你指定的属性 {attribute} 是否为数值型！")
+                        print(f"Check whether attribute {attribute} is numeric.")
                         mse = np.nan
                 else:
                     mse = np.nan
@@ -364,7 +364,7 @@ def get_hybrid_distance(clean, cleaned, attributes, output_path, task_name, inde
                             average='macro'
                         )
                     except ValueError:
-                        print(f"无法计算Jaccard距离，因为 {attribute} 不是类别型数据")
+                        print(f"Cannot compute Jaccard distance: {attribute} is not categorical")
                         jaccard = np.nan
                 else:
                     jaccard = np.nan
@@ -385,16 +385,17 @@ def get_hybrid_distance(clean, cleaned, attributes, output_path, task_name, inde
                 avg_mse = total_mse / attribute_count if attribute_count > 0 else 0
                 avg_jaccard = total_jaccard / attribute_count if attribute_count > 0 else 0
                 hybrid_distance = w1 * avg_mse + w2 * avg_jaccard
-                print(f"加权混合距离: {hybrid_distance}")
+                print(f"Weighted hybrid distance: {hybrid_distance}")
     finally:
         sys.stdout = original_stdout
 
-    print(f"混合距离结果已保存到: {out_path}")
+    print(f"Hybrid distance results saved: {out_path}")
     return hybrid_distance
 
 def get_record_based_edr(clean, dirty, cleaned, output_path, task_name, index_attribute='index', relax=False):
     """
-    计算基于条目的错误减少率 (R-EDR)，并将每条记录的距离和最终的 R-EDR 输出到文件中。
+    Compute the record-based error reduction rate (R-EDR) and write per-record
+    distances plus the final R-EDR to a file.
     """
     os.makedirs(output_path, exist_ok=True)
     out_path = os.path.join(output_path, f"{task_name}_record_based_edr_evaluation.txt")
@@ -412,7 +413,7 @@ def get_record_based_edr(clean, dirty, cleaned, output_path, task_name, index_at
     total_distance_dirty_to_clean = 0
     total_distance_repaired_to_clean = 0
 
-    # 三方 index 交集: 当 cleaned 删除了部分行时, 只在共有行上计算
+    # Three-way index intersection: if cleaned dropped some rows, only compute on common rows
     common_indices = clean.index.intersection(dirty.index).intersection(cleaned.index)
 
     try:
@@ -440,13 +441,13 @@ def get_record_based_edr(clean, dirty, cleaned, output_path, task_name, index_at
             else:
                 r_edr = (total_distance_dirty_to_clean - total_distance_repaired_to_clean) / total_distance_dirty_to_clean
 
-            print(f"总的脏数据到干净数据距离: {total_distance_dirty_to_clean}")
-            print(f"总的修复后数据到干净数据距离: {total_distance_repaired_to_clean}")
-            print(f"基于条目的错误减少率 (R-EDR): {r_edr}")
+            print(f"Total distance dirty-to-clean: {total_distance_dirty_to_clean}")
+            print(f"Total distance repaired-to-clean: {total_distance_repaired_to_clean}")
+            print(f"Record-based error reduction rate (R-EDR): {r_edr}")
     finally:
         sys.stdout = original_stdout
 
-    print(f"R-EDR 结果已保存到: {out_path}")
+    print(f"R-EDR results saved: {out_path}")
     return r_edr
 
 def calculate_all_metrics_TEST():
@@ -475,14 +476,14 @@ def calculate_all_metrics_TEST():
     output_path = './temp_test_output'
     task_name = 'test_task'
     results = calculate_all_metrics(clean_df, dirty_df, cleaned_df, attributes, output_path, task_name, index_attribute='index1', mse_attributes=['Attribute3'])
-    print("测试结果:")
+    print("Test results:")
     print(f"Accuracy: {results.get('accuracy')}")
     print(f"Recall: {results.get('recall')}")
     print(f"F1 Score: {results.get('f1_score')}")
     print(f"EDR: {results.get('edr')}")
     print(f"Hybrid Distance: {results.get('hybrid_distance')}")
     print(f"R-EDR: {results.get('r_edr')}")
-    print("测试通过！")
+    print("Test passed.")
 
 if __name__ == "__main__":
     clean_path = '../Data/1_hospitals/clean_index.csv'

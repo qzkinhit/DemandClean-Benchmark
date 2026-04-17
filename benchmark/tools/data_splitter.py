@@ -1,10 +1,10 @@
 """
-data_splitter.py - DemandClean 对齐的数据划分模块
+data_splitter.py - DemandClean-aligned data splitting module
 
-提供与 DemandClean (run_demandclean_base.py:2659-2663) 完全相同的
-seed=42, 60/20/20 训练/验证/测试集划分。
+Provides the same seed=42, 60/20/20 train/val/test split as DemandClean
+(run_demandclean_base.py:2659-2663).
 
-所有 run_xxx_base.py 脚本均可调用此模块，确保划分一致性。
+All run_xxx_base.py scripts can import from this module to keep the split consistent.
 
 Usage:
     from tools.data_splitter import get_demandclean_split
@@ -28,19 +28,19 @@ TRAIN_RATIO = 0.6  # 60% train, 20% val, 20% test
 
 def compute_split_indices(n_total: int, seed: int = SEED):
     """
-    计算与 DemandClean 完全相同的 60/20/20 划分索引。
+    Compute the same 60/20/20 split indices as DemandClean.
 
-    对应 run_demandclean_base.py:2659-2663:
+    Matches run_demandclean_base.py:2659-2663:
         all_idx = np.arange(n_total)
         train_idx, temp_idx = train_test_split(all_idx, test_size=0.4, random_state=42)
         val_idx, test_idx = train_test_split(temp_idx, test_size=0.5, random_state=42)
 
     Args:
-        n_total: 数据集总行数
-        seed: 随机种子（默认42）
+        n_total: total number of rows
+        seed: random seed (default 42)
 
     Returns:
-        (train_idx, val_idx, test_idx) 三个 numpy 数组
+        (train_idx, val_idx, test_idx) numpy arrays
     """
     all_idx = np.arange(n_total)
     train_idx, temp_idx = train_test_split(all_idx, test_size=0.4, random_state=seed)
@@ -51,29 +51,29 @@ def compute_split_indices(n_total: int, seed: int = SEED):
 def get_demandclean_split(dirty_path: str, clean_path: str,
                            seed: int = SEED) -> Dict:
     """
-    读取数据并返回与 DemandClean 完全相同的 60/20/20 划分。
+    Load the data and return a 60/20/20 split identical to DemandClean's.
 
     Args:
-        dirty_path: 脏数据 CSV 路径
-        clean_path: 干净数据 CSV 路径
-        seed: 随机种子
+        dirty_path: path to the dirty CSV
+        clean_path: path to the clean CSV
+        seed: random seed
 
     Returns:
-        字典包含:
-        - train_idx, val_idx, test_idx: 划分索引
-        - dirty_train: 脏数据训练集 (60%)
-        - clean_train: 干净数据训练集 (60%)
-        - clean_val: 干净数据验证集 (20%)
-        - clean_test: 干净数据测试集 (20%)
-        - dirty_full: 全量脏数据
-        - clean_full: 全量干净数据
-        - n_total: 总行数
+        dict containing:
+        - train_idx, val_idx, test_idx: split indices
+        - dirty_train: dirty training set (60%)
+        - clean_train: clean training set (60%)
+        - clean_val: clean validation set (20%)
+        - clean_test: clean test set (20%)
+        - dirty_full: full dirty data
+        - clean_full: full clean data
+        - n_total: total number of rows
     """
     dirty_df = pd.read_csv(dirty_path)
     clean_df = pd.read_csv(clean_path)
 
     assert len(dirty_df) == len(clean_df), \
-        f"脏数据({len(dirty_df)}行)与干净数据({len(clean_df)}行)行数不一致"
+        f"Dirty ({len(dirty_df)} rows) and clean ({len(clean_df)} rows) row counts differ"
 
     n_total = len(dirty_df)
     train_idx, val_idx, test_idx = compute_split_indices(n_total, seed)
@@ -98,7 +98,7 @@ def get_demandclean_split(dirty_path: str, clean_path: str,
 
 
 def save_split_csvs(split: Dict, output_dir: str, prefix: str = ''):
-    """将划分后的子集保存为 CSV 文件"""
+    """Save the split subsets as CSV files."""
     os.makedirs(output_dir, exist_ok=True)
 
     for key in ['dirty_train', 'clean_train', 'clean_val', 'clean_test']:
@@ -109,34 +109,34 @@ def save_split_csvs(split: Dict, output_dir: str, prefix: str = ''):
 def verify_split_consistency(dirty_path: str, clean_path: str,
                               demandclean_dirty_train_path: Optional[str] = None):
     """
-    验证划分与 DemandClean 一致。
+    Verify that the split matches DemandClean's.
 
-    如果 DemandClean 已生成 dirty_train_60pct.csv，可以传入进行对比。
+    If DemandClean has already produced dirty_train_60pct.csv, pass it in to diff.
     """
     split = get_demandclean_split(dirty_path, clean_path)
-    print(f"总行数: {split['n_total']}")
-    print(f"训练集: {split['n_train']} ({split['n_train']/split['n_total']*100:.1f}%)")
-    print(f"验证集: {split['n_val']} ({split['n_val']/split['n_total']*100:.1f}%)")
-    print(f"测试集: {split['n_test']} ({split['n_test']/split['n_total']*100:.1f}%)")
+    print(f"Total rows: {split['n_total']}")
+    print(f"Train: {split['n_train']} ({split['n_train']/split['n_total']*100:.1f}%)")
+    print(f"Val:   {split['n_val']} ({split['n_val']/split['n_total']*100:.1f}%)")
+    print(f"Test:  {split['n_test']} ({split['n_test']/split['n_total']*100:.1f}%)")
 
     if demandclean_dirty_train_path and os.path.exists(demandclean_dirty_train_path):
         dc_train = pd.read_csv(demandclean_dirty_train_path)
         our_train = split['dirty_train']
         if len(dc_train) == len(our_train):
             match = (dc_train.values == our_train.values).all()
-            print(f"\n与 DemandClean dirty_train_60pct.csv 对比: {'完全一致 ✓' if match else '不一致 ✗'}")
+            print(f"\nDiff vs. DemandClean dirty_train_60pct.csv: {'exact match' if match else 'mismatch'}")
         else:
-            print(f"\n行数不一致: DemandClean={len(dc_train)}, ours={len(our_train)}")
+            print(f"\nRow count mismatch: DemandClean={len(dc_train)}, ours={len(our_train)}")
 
     return split
 
 
 if __name__ == '__main__':
     import argparse
-    parser = argparse.ArgumentParser(description='验证 DemandClean 数据划分')
-    parser.add_argument('--dirty', required=True, help='脏数据路径')
-    parser.add_argument('--clean', required=True, help='干净数据路径')
-    parser.add_argument('--dc_train', default=None, help='DemandClean 的 dirty_train_60pct.csv 路径（可选）')
+    parser = argparse.ArgumentParser(description='Verify the DemandClean data split')
+    parser.add_argument('--dirty', required=True, help='Path to the dirty data')
+    parser.add_argument('--clean', required=True, help='Path to the clean data')
+    parser.add_argument('--dc_train', default=None, help='Path to DemandClean dirty_train_60pct.csv (optional)')
     args = parser.parse_args()
 
     verify_split_consistency(args.dirty, args.clean, args.dc_train)

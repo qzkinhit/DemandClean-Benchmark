@@ -1,9 +1,9 @@
 #!/usr/bin/env python3
 """
-评估 har 数据集在 ReplaceAll 清洗后的 Agglomerative Clustering silhouette。
-har 有 70k 行，Agglo O(n²) 内存无法全量跑，采样 10k 行评估。
+Evaluate Agglomerative Clustering silhouette on HAR after ReplaceAll cleaning.
+HAR has 70k rows; Agglo's O(n^2) memory rules out a full run, so we sample 10k.
 
-用法: python tools/eval_har_agglo_replaceall.py
+Usage: python tools/eval_har_agglo_replaceall.py
 """
 import sys, os
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
@@ -15,9 +15,9 @@ from sklearn.cluster import AgglomerativeClustering, KMeans
 from sklearn.metrics import silhouette_score
 
 SEED = 42
-SAMPLE_SIZE = 10000  # Agglo O(n²) 内存, 70k 全量 ~37GB, 采样 10k
+SAMPLE_SIZE = 10000  # Agglo O(n^2) memory; 70k full run ~37GB, so sample 10k
 
-# 加载数据
+# Load data
 data_dir = os.path.join(os.path.dirname(__file__), '..', 'data', 'har')
 dirty = pd.read_csv(os.path.join(data_dir, 'dirty_index.csv'))
 clean = pd.read_csv(os.path.join(data_dir, 'clean_index.csv'))
@@ -47,7 +47,7 @@ def replaceall(dirty_df, clean_df):
                 continue
             if not pd.isna(dv) and not pd.isna(cv) and abs(dv - cv) > 1e-6:
                 errors.append((i, col))
-    print(f"Oracle 检测到 {len(errors)} 个错误")
+    print(f"Oracle detected {len(errors)} errors")
 
     from sklearn.neighbors import NearestNeighbors
     X_num = dirty_df[feature_cols].apply(pd.to_numeric, errors='coerce').fillna(0).values
@@ -63,22 +63,22 @@ def replaceall(dirty_df, clean_df):
         cleaned.at[cleaned.index[row_idx], col_name] = np.mean(vals)
     return cleaned
 
-print("=== 执行 ReplaceAll (Oracle + VEC) ===")
+print("=== Running ReplaceAll (Oracle + VEC) ===")
 cleaned_df = replaceall(dirty, clean)
 
-# 固定采样索引, 保证三组数据用同样的行
+# Fix sampling indices so all three datasets use the same rows
 np.random.seed(SEED)
 sample_idx = np.random.choice(len(dirty), size=min(SAMPLE_SIZE, len(dirty)), replace=False)
 sample_idx.sort()
 
-print(f"\n=== 采样 {len(sample_idx)} 行评估 (Agglo O(n²) 无法全量 70k) ===")
+print(f"\n=== Evaluating {len(sample_idx)} sampled rows (Agglo O(n^2) rules out full 70k) ===")
 
 for tag, df in [('NoFix (dirty)', dirty), ('ReplaceAll (cleaned)', cleaned_df), ('RepairAll (clean)', clean)]:
     df_sample = df.iloc[sample_idx]
     X, y = preprocess(df_sample)
     n_clusters = len(np.unique(y))
 
-    # KMeans (对照)
+    # KMeans (reference)
     km = KMeans(n_clusters=n_clusters, random_state=SEED, n_init=10)
     km_pred = km.fit_predict(X)
     km_sil = silhouette_score(X, km_pred, random_state=SEED)
@@ -92,8 +92,8 @@ for tag, df in [('NoFix (dirty)', dirty), ('ReplaceAll (cleaned)', cleaned_df), 
     print(f"  KMeans    silhouette = {km_sil:.6f}")
     print(f"  Agglo     silhouette = {agglo_sil:.6f}")
 
-# 同时跑全量 KMeans 作为对照
-print("\n=== 全量 70k KMeans (对照) ===")
+# Also run full-size KMeans as a reference
+print("\n=== Full 70k KMeans (reference) ===")
 for tag, df in [('NoFix', dirty), ('ReplaceAll', cleaned_df), ('RepairAll', clean)]:
     X, y = preprocess(df)
     n_clusters = len(np.unique(y))
@@ -102,6 +102,6 @@ for tag, df in [('NoFix', dirty), ('ReplaceAll', cleaned_df), ('RepairAll', clea
     km_sil = silhouette_score(X, km_pred, sample_size=10000, random_state=SEED)
     print(f"  {tag}: KMeans sil = {km_sil:.6f}")
 
-print("\n=== 完成 ===")
-print("Table 3 har Repl 列应填入 Agglo silhouette (采样值)")
+print("\n=== Done ===")
+print("Fill Table 3's HAR Repl column with the Agglo silhouette (sampled value)")
 

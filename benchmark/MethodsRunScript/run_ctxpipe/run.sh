@@ -1,8 +1,8 @@
 #!/bin/bash
 # ============================================================
-# CtxPipe Baseline 完整测评脚本
-# 使用预训练模型 ctx_50000 进行推理
-# 支持 --dataset 参数和 VERSION 环境变量
+# CtxPipe Baseline end-to-end evaluation script.
+# Uses the pretrained model ctx_50000 for inference.
+# Supports --dataset argument and the VERSION environment variable.
 # ============================================================
 
 set -e
@@ -13,7 +13,7 @@ cd "$PROJECT_ROOT"
 
 VERSION="${VERSION:-}"
 
-# 解析命令行参数
+# Parse command-line arguments.
 SELECTED_DATASET=""
 while [[ $# -gt 0 ]]; do
     case $1 in
@@ -24,11 +24,11 @@ while [[ $# -gt 0 ]]; do
 done
 
 echo "============================================================"
-echo "CtxPipe Baseline 完整测评"
-echo "项目根目录: $PROJECT_ROOT"
-echo "版本标识: ${VERSION:-无}"
-echo "指定数据集: ${SELECTED_DATASET:-全部}"
-echo "开始时间: $(date)"
+echo "CtxPipe Baseline end-to-end evaluation"
+echo "Project root: $PROJECT_ROOT"
+echo "Version tag: ${VERSION:-none}"
+echo "Selected dataset: ${SELECTED_DATASET:-all}"
+echo "Start time: $(date)"
 echo "============================================================"
 
 source $HOME/miniconda3/etc/profile.d/conda.sh
@@ -37,8 +37,8 @@ conda activate ctxpipe-pt112
 mkdir -p logs/ctxpipe
 mkdir -p results/ctxpipe
 
-# 数据集配置: 数据集名称|标签列|标签索引|任务类型|mse属性
-# 注意: label_index是包含index列后的列位置（从0开始）
+# Dataset configuration: dataset|label|label_index|task_type|mse_attrs
+# Note: label_index is the 0-based column index after the index column is included.
 declare -a ALL_DATASETS=(
     "adult|income|14|classification|age,fnlwgt,capital_gain,capital_loss,hours_per_week"
     "beers|style|4|classification|ibu,abv"
@@ -67,7 +67,7 @@ for dataset_config in "${ALL_DATASETS[@]}"; do
     fi
 
     echo "------------------------------------------------------------"
-    echo "数据集: $dataset | 标签: $label_column | 索引: $label_index | 任务: $task_type"
+    echo "Dataset: $dataset | Label: $label_column | Index: $label_index | Task: $task_type"
     echo "------------------------------------------------------------"
 
     case $task_type in
@@ -82,8 +82,8 @@ for dataset_config in "${ALL_DATASETS[@]}"; do
     task_name="${dataset}_ctxpipe${VERSION:+_$VERSION}"
     log_file="logs/ctxpipe/${task_name}.log"
 
-    [[ ! -f "$dirty_path" ]] && echo "跳过: $dirty_path 不存在" && failed=$((failed + 1)) && continue
-    [[ ! -f "$clean_path" ]] && echo "跳过: $clean_path 不存在" && failed=$((failed + 1)) && continue
+    [[ ! -f "$dirty_path" ]] && echo "Skipping: $dirty_path does not exist" && failed=$((failed + 1)) && continue
+    [[ ! -f "$clean_path" ]] && echo "Skipping: $clean_path does not exist" && failed=$((failed + 1)) && continue
 
     cmd="python MethodsRunScript/run_ctxpipe/run_ctxpipe_base.py \
         --dirty_path $dirty_path --clean_path $clean_path \
@@ -94,15 +94,15 @@ for dataset_config in "${ALL_DATASETS[@]}"; do
 
     [[ -n "$mse_attrs" ]] && cmd="$cmd --mse_attributes $(echo $mse_attrs | tr ',' ' ')"
 
-    echo "日志: $log_file"
+    echo "Log: $log_file"
     total=$((total + 1))
     if eval "$cmd" 2>&1 | tee "$log_file"; then
-        echo "✓ 成功: $dataset"; success=$((success + 1))
+        echo "[OK] $dataset"; success=$((success + 1))
     else
-        echo "✗ 失败: $dataset"; failed=$((failed + 1))
+        echo "[FAIL] $dataset"; failed=$((failed + 1))
     fi
 done
 
 echo "============================================================"
-echo "CtxPipe 测评完成: 总计=$total 成功=$success 失败=$failed"
+echo "CtxPipe evaluation done: total=$total success=$success failed=$failed"
 echo "============================================================"

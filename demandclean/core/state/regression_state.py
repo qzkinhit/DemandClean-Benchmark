@@ -1,6 +1,6 @@
 """
-回归任务状态提取器
-==================
+State extractor for regression tasks
+====================================
 """
 
 from typing import Dict, Any, Set
@@ -11,9 +11,9 @@ from .state_extractor import StateExtractor
 
 class RegressionStateExtractor(StateExtractor):
     """
-    回归任务的状态特征提取器
+    State-feature extractor for regression tasks.
 
-    使用预测值与均值的偏差作为 distance_to_boundary
+    Uses the deviation of the prediction from the mean as distance_to_boundary.
     """
 
     def extract(self,
@@ -22,44 +22,46 @@ class RegressionStateExtractor(StateExtractor):
                 error: Dict[str, Any],
                 deleted_rows: Set[int]) -> np.ndarray:
         """
-        提取状态特征向量
+        Build the state feature vector.
 
         Args:
-            X_current: 当前数据矩阵
-            y: 标签
-            error: 当前错误信息 {'idx', 'col', 'type', ...}
-            deleted_rows: 已删除的行集合
+            X_current: current data matrix
+            y: labels
+            error: current error info {'idx', 'col', 'type', ...}
+            deleted_rows: set of already-deleted row indices
 
         Returns:
-            8 维状态向量
+            8-dim state vector.
         """
         idx = error.get('idx', 0)
         col = error.get('col', 0)
         error_type = error.get('type', 0)
 
-        # 如果该行已删除，返回 8 维零向量（全局特征由 _get_state 追加）
+        # If the row has been deleted, return an 8-dim zero vector (global
+        # features are appended by _get_state).
         if idx in deleted_rows:
             return np.zeros(8, dtype=np.float32)
 
-        # 标签错误标记 (col == -1, type == 3)
+        # Label-error flag (col == -1, type == 3)
         is_label_error = (col == -1)
 
-        # 1. error_type (归一化到 [0, 1])
+        # 1. error_type (normalized to [0, 1])
         # type: 0=missing, 1=semantic, 2=syntactic, 3=label_noise
         error_type_norm = min(error_type / 3.0, 1.0)
 
         # 2. feature_importance
         if is_label_error:
-            # 标签错误：重要性设为 1.0（标签是最重要的）
+            # Label error: set to 1.0 (the label is the most important signal)
             feat_imp = 1.0
         elif self.feature_importance is not None and 0 <= col < len(self.feature_importance):
             feat_imp = self.feature_importance[col]
         else:
             feat_imp = 0.5
 
-        # 3. distance_to_boundary (回归任务使用影响度)
+        # 3. distance_to_boundary (for regression, this is an influence measure)
         if is_label_error:
-            # 标签错误：使用该样本到均值的距离（取第一个特征列作为代理）
+            # Label error: use the distance of this sample to the mean,
+            # proxied via the first feature column.
             distance_norm = self.get_distance_to_boundary(X_current, idx, 0)
         else:
             distance_norm = self.get_distance_to_boundary(X_current, idx, col)
@@ -71,22 +73,22 @@ class RegressionStateExtractor(StateExtractor):
         # 5. col_index
         n_cols = X_current.shape[1] if X_current.ndim > 1 else 1
         if is_label_error:
-            # 标签列用 1.0 表示（超出特征列范围的标记）
+            # Mark the label column as 1.0 (beyond the feature-column range)
             col_norm = 1.0
         else:
             col_norm = col / (n_cols - 1) if n_cols > 1 else 0
 
         # 6. col_error_rate
         if is_label_error:
-            col_err_rate = 0.5  # 标签错误使用中等错误率
+            col_err_rate = 0.5  # use a mid-range error rate for label errors
         elif self.col_error_rate is not None and 0 <= col < len(self.col_error_rate):
             col_err_rate = self.col_error_rate[col]
         else:
             col_err_rate = 0.0
 
-        # 7-8. sample_retention 和 var_retention
+        # 7-8. sample_retention and var_retention
         if is_label_error:
-            # 标签错误不影响特征列的方差，使用整体保留率
+            # Label errors do not affect feature-column variance; use overall retention
             keep_mask = np.array([i not in deleted_rows for i in range(len(X_current))])
             sample_retention = keep_mask.sum() / max(len(X_current), 1)
             var_retention = 1.0
@@ -111,13 +113,13 @@ class RegressionStateExtractor(StateExtractor):
                                   idx: int,
                                   col: int) -> float:
         """
-        获取到"边界"的归一化距离
+        Return the normalized distance to the "boundary".
 
-        回归任务中，"边界"重新定义为：
-        该数据点预测值对模型的影响程度
+        For regression the "boundary" is redefined as the influence of this
+        data point on the model.
 
-        预测值接近均值 -> 影响小 -> 距离小
-        预测值偏离均值 -> 影响大 -> 距离大
+        Prediction close to the mean  -> low influence -> small distance
+        Prediction far from the mean  -> high influence -> large distance
         """
         if not self.model_adapter.is_fitted:
             return 0.5

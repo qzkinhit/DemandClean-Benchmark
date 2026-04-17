@@ -1,4 +1,4 @@
-"""配置模块"""
+"""Configuration module"""
 
 from .config import (
     DemandCleanConfig, TaskType, ModelType, AgentType,

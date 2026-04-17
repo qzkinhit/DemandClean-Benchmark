@@ -1,4 +1,4 @@
-"""推理模块"""
+"""Inference module"""
 
 from .single_phase import SinglePhaseInference
 from .two_phase import TwoPhaseInference

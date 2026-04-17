@@ -1,57 +1,57 @@
-# 数据集：SmartFactory
+# Dataset: SmartFactory
 
-## 基本信息
+## Basic Information
 
-| 项目 | 值 |
-|------|-----|
-| 任务类型 | 分类 (Classification) |
-| 目标列 | `labels` |
-| 数据规模 | 23,645 条记录 × 19 属性 |
-| 索引文件 | `clean_with_index.csv`, `dirty_with_index.csv` |
+| Item | Value |
+|------|-------|
+| Task type | Classification |
+| Target column | `labels` |
+| Size | 23,645 records x 19 attributes |
+| Indexed files | `clean_with_index.csv`, `dirty_with_index.csv` |
 
-## 列定义
+## Column Definitions
 
-### 索引列 (Index)
-| 列名 | 说明 |
-|------|------|
-| `index` | 行索引，不参与模型训练 |
+### Index column
+| Column | Description |
+|--------|-------------|
+| `index` | row index, not used for model training |
 
-### 特征列 (Features) - 共18列
-| 属性名 | 类型 | 说明 |
-|--------|------|------|
-| i_w_blo_weg | 数值 | 左下传感器输入位移 |
-| o_w_blo_power | 数值 | 左下传感器输出功率 |
-| o_w_blo_voltage | 数值 | 左下传感器输出电压 |
-| i_w_bhl_weg | 数值 | 左后传感器输入位移 |
-| o_w_bhl_power | 数值 | 左后传感器输出功率 |
-| o_w_bhl_voltage | 数值 | 左后传感器输出电压 |
-| i_w_bhr_weg | 数值 | 右后传感器输入位移 |
-| o_w_bhr_power | 数值 | 右后传感器输出功率 |
-| o_w_bhr_voltage | 数值 | 右后传感器输出电压 |
-| i_w_bru_weg | 数值 | 右下传感器输入位移 |
-| o_w_bru_power | 数值 | 右下传感器输出功率 |
-| o_w_bru_voltage | 数值 | 右下传感器输出电压 |
-| i_w_hr_weg | 数值 | 右传感器输入位移 |
-| o_w_hr_power | 数值 | 右传感器输出功率 |
-| o_w_hr_voltage | 数值 | 右传感器输出电压 |
-| i_w_hl_weg | 数值 | 左传感器输入位移 |
-| o_w_hl_power | 数值 | 左传感器输出功率 |
-| o_w_hl_voltage | 数值 | 左传感器输出电压 |
+### Feature columns (18 total)
+| Attribute | Type | Description |
+|-----------|------|-------------|
+| i_w_blo_weg | Numeric | Bottom-left sensor input displacement |
+| o_w_blo_power | Numeric | Bottom-left sensor output power |
+| o_w_blo_voltage | Numeric | Bottom-left sensor output voltage |
+| i_w_bhl_weg | Numeric | Back-left sensor input displacement |
+| o_w_bhl_power | Numeric | Back-left sensor output power |
+| o_w_bhl_voltage | Numeric | Back-left sensor output voltage |
+| i_w_bhr_weg | Numeric | Back-right sensor input displacement |
+| o_w_bhr_power | Numeric | Back-right sensor output power |
+| o_w_bhr_voltage | Numeric | Back-right sensor output voltage |
+| i_w_bru_weg | Numeric | Bottom-right sensor input displacement |
+| o_w_bru_power | Numeric | Bottom-right sensor output power |
+| o_w_bru_voltage | Numeric | Bottom-right sensor output voltage |
+| i_w_hr_weg | Numeric | Right sensor input displacement |
+| o_w_hr_power | Numeric | Right sensor output power |
+| o_w_hr_voltage | Numeric | Right sensor output voltage |
+| i_w_hl_weg | Numeric | Left sensor input displacement |
+| o_w_hl_power | Numeric | Left sensor output power |
+| o_w_hl_voltage | Numeric | Left sensor output voltage |
 
-### 目标列 (Label)
-| 属性名 | 类型 | 说明 |
-|--------|------|------|
-| labels | 多分类 | 设备状态标签 |
+### Label column
+| Attribute | Type | Description |
+|-----------|------|-------------|
+| labels | Multiclass | Equipment status label |
 
-## 错误信息
-- **错误类型**: 缺失值(Missing Value), 异常值(Outlier)
-- **错误条目数**: 7,093
-- **错误单元格数**: 7,093
+## Error Information
+- **Error types**: Missing values, outliers
+- **Error entry count**: 7,093
+- **Error cell count**: 7,093
 
-## 数据来源
+## Source
 Oliver Birgelen, Alexander; Niggemann. Smart Factory: High Storage System Data for Energy Optimization. https://www.kaggle.com/inIT-OWL/high-storage-system-data-for-energy-optimization. 2018.
 
-## 运行命令示例
+## Example Command
 
 ```bash
 python MethodsRunScript/run_deleteall/run_deleteall_base.py \

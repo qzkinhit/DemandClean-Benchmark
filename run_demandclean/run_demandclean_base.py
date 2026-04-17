@@ -1,8 +1,8 @@
 """
-DemandClean 统一运行脚本
-========================
+DemandClean unified runner
+==========================
 
-支持 8 种版本组合（2 检测器 x 2 Agent x 2 推理模式）:
+Supports 8 version combinations (2 detectors x 2 agents x 2 inference modes):
   v1: oracle + dueling_two_stage + single_phase
   v2: oracle + dueling_two_stage + two_phase
   v3: oracle + single_stage      + single_phase
@@ -12,10 +12,10 @@ DemandClean 统一运行脚本
   v7: auto   + single_stage      + single_phase
   v8: auto   + single_stage      + two_phase
 
-每个版本完整流程:
-  训练 -> 推理 -> 5种Baseline评估 -> 容忍度评估 -> 检测器准确率 -> Shapley分析 -> 训练曲线
+Full pipeline per version:
+  train -> inference -> 5 baseline evaluations -> tolerance eval -> detector accuracy -> Shapley analysis -> training curves
 
-用法:
+Usage:
     python run_demandclean_base.py --dataset beers --n_episodes 300
     python run_demandclean_base.py --dataset beers --n_episodes 300 --all_datasets
 """
@@ -35,7 +35,7 @@ from sklearn.preprocessing import LabelEncoder, StandardScaler
 
 warnings.filterwarnings("ignore")
 
-# 编辑距离安全编码
+# Edit-distance safe encoding
 try:
     from demandclean.utils.edit_distance import find_nearest_known as _find_nearest_known
 except ImportError:
@@ -43,19 +43,19 @@ except ImportError:
 
 
 # =========================================================================
-# TeeLogger: 同时输出到终端和日志文件
+# TeeLogger: mirrors output to terminal and log file
 # =========================================================================
 class TeeLogger:
-    """将 stdout/stderr 同时写入终端和日志文件（容错版）"""
+    """Write stdout/stderr to both terminal and log file (fault-tolerant)."""
 
     def __init__(self, log_path: str, stream=None):
         self.terminal = stream or sys.stdout
         os.makedirs(os.path.dirname(log_path), exist_ok=True)
-        self.log_file = open(log_path, 'w', encoding='utf-8', buffering=1)  # 行缓冲
+        self.log_file = open(log_path, 'w', encoding='utf-8', buffering=1)  # line buffered
 
     @property
     def _file_ok(self):
-        """检查 log_file 是否仍然可写"""
+        """Check whether log_file is still writable."""
         try:
             return self.log_file is not None and not self.log_file.closed
         except Exception:
@@ -65,7 +65,7 @@ class TeeLogger:
         try:
             self.terminal.write(message)
         except Exception:
-            # terminal 也挂了，尝试原始 stdout
+            # terminal is gone too; fall back to original stdout
             if sys.__stdout__ is not None and not sys.__stdout__.closed:
                 sys.__stdout__.write(message)
         if self._file_ok:
@@ -73,7 +73,7 @@ class TeeLogger:
                 self.log_file.write(message)
                 self.log_file.flush()
             except (ValueError, IOError, OSError):
-                pass  # 静默失败，降级为仅终端输出
+                pass  # silent failure; degrade to terminal-only output
 
     def flush(self):
         try:
@@ -97,24 +97,24 @@ class TeeLogger:
         return self.terminal.fileno()
 
 # =========================================================================
-# 项目根目录
+# Project root
 # =========================================================================
 _SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
 _PROJECT_ROOT = os.path.abspath(os.path.join(_SCRIPT_DIR, '..'))
 if _PROJECT_ROOT not in sys.path:
     sys.path.insert(0, _PROJECT_ROOT)
 
-# DEBUG: 打印 sys.path 前几项（仅主进程）
+# DEBUG: print first few sys.path entries (main process only)
 if __name__ == "__main__":
     print(f"[DEBUG] _PROJECT_ROOT={_PROJECT_ROOT}", file=sys.stderr)
 try:
     import tools as _t
-    pass  # 静默检查
+    pass  # silent check
 except Exception:
     pass
 
 # =========================================================================
-# 关键导入
+# Core imports
 # =========================================================================
 from demandclean.api import DemandClean
 from demandclean.config import (
@@ -130,30 +130,30 @@ from demandclean.tools.tolerance_analysis import (
 )
 from demandclean.tools.shapley_analysis import run_full_shapley_analysis
 
-# 延迟导入: 避免 multiprocessing spawn 模式重执行主脚本时失败
-# RAHA 使用 multiprocessing，子进程会重新加载主模块
+# Lazy import: avoid failing when multiprocessing spawn reruns the main script.
+# RAHA uses multiprocessing, so child processes reload this module.
 try:
     from tools.rules_parser import get_horizon_fds
 except (ModuleNotFoundError, ImportError):
-    # 子进程中不需要此模块
+    # Not needed inside child processes.
     get_horizon_fds = None
 
 
 # ============================================================================
-# 版本开关（8 个）
+# Version switches (8 total)
 # ============================================================================
 ENABLE_ORACLE_DUELING_SINGLE_PHASE = False  # v1
 ENABLE_ORACLE_DUELING_TWO_PHASE   = False  # v2
 ENABLE_ORACLE_PLAIN_SINGLE_PHASE  = False  # v3
 ENABLE_ORACLE_PLAIN_TWO_PHASE     = False  # v4
-ENABLE_AUTO_DUELING_SINGLE_PHASE  = True   # v5 (默认版本)
+ENABLE_AUTO_DUELING_SINGLE_PHASE  = True   # v5 (default)
 ENABLE_AUTO_DUELING_TWO_PHASE     = False  # v6
 ENABLE_AUTO_PLAIN_SINGLE_PHASE    = False  # v7
 ENABLE_AUTO_PLAIN_TWO_PHASE       = False  # v8
 
 
 # ============================================================================
-# VERSION_CONFIGS: 每个版本的配置字典
+# VERSION_CONFIGS: per-version configuration dict
 # ============================================================================
 VERSION_CONFIGS = {
     'v1_oracle_dueling_single': {
@@ -216,16 +216,16 @@ VERSION_CONFIGS = {
 
 
 # ============================================================================
-# 数据集配置
+# Dataset configuration
 # ============================================================================
 DATASETS = {
     'beers': {
         'task_type': 'classification',
         'model_type': 'random_forest',
         'label_col': 'style',
-        # beer_name/brewery_name/city/state 是文本；ounces/abv 虽含'empty'但本质数值
+        # beer_name/brewery_name/city/state are text; ounces/abv contain 'empty' but are numeric
         'categorical_cols': {'beer_name', 'brewery_name', 'city', 'state'},
-        'protected_cols': {'brewery_name'},  # FD LHS: brewery_name → city, brewery_name → state
+        'protected_cols': {'brewery_name'},  # FD LHS: brewery_name -> city, brewery_name -> state
     },
     'adult': {
         'task_type': 'classification',
@@ -239,21 +239,21 @@ DATASETS = {
         'task_type': 'regression',
         'model_type': 'random_forest',
         'label_col': 'cnt',
-        'categorical_cols': set(),  # 全部数值列
+        'categorical_cols': set(),  # all numeric columns
         'protected_cols': set(),
     },
     'breast_cancer': {
         'task_type': 'classification',
         'model_type': 'random_forest',
         'label_col': 'class',
-        'categorical_cols': set(),  # 全部 INT [1,10] 数值列
+        'categorical_cols': set(),  # all INT [1,10] numeric columns
         'protected_cols': set(),
     },
     'har': {
         'task_type': 'clustering',
         'model_type': 'kmeans',
         'label_col': 'gt',
-        'categorical_cols': set(),  # x/y/z 全部 FLOAT
+        'categorical_cols': set(),  # x/y/z all FLOAT
         'protected_cols': set(),
     },
     'mercedes': {
@@ -267,61 +267,61 @@ DATASETS = {
         'task_type': 'regression',
         'model_type': 'ridge',
         'label_col': 'sound_pressure_level',
-        'categorical_cols': set(),  # frequency/angle/chord_length/velocity 本质数值
+        'categorical_cols': set(),  # frequency/angle/chord_length/velocity are numeric
         'protected_cols': set(),
     },
     'smartfactory': {
         'task_type': 'classification',
         'model_type': 'random_forest',
         'label_col': 'labels',
-        'categorical_cols': set(),  # 全部 INT 传感器数值
+        'categorical_cols': set(),  # all INT sensor readings
         'protected_cols': set(),
     },
     'soilmoisture': {
         'task_type': 'regression',
         'model_type': 'ridge',
         'label_col': 'soil_moisture',
-        'categorical_cols': set(),  # 全部 FLOAT 光谱波段
+        'categorical_cols': set(),  # all FLOAT spectral bands
         'protected_cols': set(),
     },
 }
 
-# 评估用的模型简称列表（分类 / 回归 / 聚类 各两个）
+# Short model names for evaluation (classification / regression / clustering, two each)
 EVAL_MODELS_CLASSIFICATION = ['rf', 'lr']
 EVAL_MODELS_REGRESSION = ['rf', 'ridge']
-EVAL_MODELS_CLUSTERING = ['kmeans']  # AgglomerativeClustering O(n²~n³) 大数据集不可接受，仅用 KMeans
+EVAL_MODELS_CLUSTERING = ['kmeans']  # AgglomerativeClustering O(n^2~n^3) too costly on large datasets; KMeans only
 
-# 训练时 reward 评估用的轻量化模型参数（按 model_type 分配）
-# 每步 reward 评估需要 fit+evaluate，必须保证速度；baseline 评估使用独立标准模型不受影响
+# Lightweight model kwargs for reward evaluation during training (by model_type).
+# Each step's reward eval runs fit+evaluate and must stay fast; baseline evaluation uses independent standard models.
 REWARD_MODEL_KWARGS = {
     'random_forest': {'n_estimators': 10, 'max_depth': 8},
     'xgboost':       {'n_estimators': 10, 'max_depth': 3},
     'xgboost_reg':   {'n_estimators': 10, 'max_depth': 3},
-    'ridge':         {},  # 线性模型已足够轻量
-    'linear':        {},  # 线性模型已足够轻量
-    'svm':           {},  # 线性核 SVM 在小数据集上可接受
-    'kmeans':        {'n_init': 3},  # 减少 KMeans 初始化次数
+    'ridge':         {},  # linear models already lightweight
+    'linear':        {},  # linear models already lightweight
+    'svm':           {},  # linear kernel SVM is fine on small datasets
+    'kmeans':        {'n_init': 3},  # fewer KMeans initializations
 }
 
 
 # ============================================================================
-# 数据预处理
+# Data preprocessing
 # ============================================================================
 def preprocess_data(dataset_name: str, dirty_df: pd.DataFrame = None, clean_df: pd.DataFrame = None):
     """
-    读取并预处理指定数据集。
+    Load and preprocess the specified dataset.
 
-    步骤:
-      1. 读取 dirty_with_index.csv 和 clean_with_index.csv（或使用传入的 DataFrame）
-      2. 将 "empty"/"Empty"/"EMPTY" 替换为 NaN
-      3. LabelEncoder 仅在 dirty 数据上 fit（不依赖 clean）
-      4. StandardScaler 仅在 dirty 数据上 fit
-      5. 自动推导并解析 FD 规则
+    Steps:
+      1. Read dirty_with_index.csv and clean_with_index.csv (or use supplied DataFrames)
+      2. Replace "empty"/"Empty"/"EMPTY" with NaN
+      3. Fit LabelEncoder on dirty data only (not on clean)
+      4. Fit StandardScaler on dirty data only
+      5. Auto-derive and parse FD rules
 
     Args:
-        dataset_name: 数据集名称 (如 'beers')
-        dirty_df: 可选的脏数据 DataFrame（传入时不从文件读取）
-        clean_df: 可选的干净数据 DataFrame（传入时用于编码；None 则不编码 clean）
+        dataset_name: dataset name (e.g. 'beers')
+        dirty_df: optional dirty-data DataFrame (skip file read if provided)
+        clean_df: optional clean-data DataFrame (used for encoding; None skips clean encoding)
 
     Returns:
         (X_dirty_scaled, y_dirty, X_clean_scaled_or_None, y_clean_or_None,
@@ -333,7 +333,7 @@ def preprocess_data(dataset_name: str, dirty_df: pd.DataFrame = None, clean_df: 
     ds_cfg = DATASETS[dataset_name]
     label_col = ds_cfg['label_col']
 
-    # --- 路径 ---
+    # --- Paths ---
     data_dir = os.path.join(_PROJECT_ROOT, 'data', dataset_name)
     dirty_path = os.path.join(data_dir, 'dirty_index.csv')
     clean_path = os.path.join(data_dir, 'clean_index.csv')
@@ -343,27 +343,27 @@ def preprocess_data(dataset_name: str, dirty_df: pd.DataFrame = None, clean_df: 
         clean_path = os.path.join(data_dir, 'clean_with_index.csv')
     rules_path = os.path.join(data_dir, 'rules.txt')
 
-    # --- 读取（或使用传入的 DataFrame）---
-    read_clean_from_file = (dirty_df is None and clean_df is None)  # 默认行为：都从文件读
+    # --- Load (or use supplied DataFrame) ---
+    read_clean_from_file = (dirty_df is None and clean_df is None)  # default: read both from files
     if dirty_df is None:
         dirty_df = pd.read_csv(dirty_path)
     if clean_df is None and read_clean_from_file:
         clean_df = pd.read_csv(clean_path)
-    # 确保 dirty_df 有干净的列名
+    # Ensure dirty_df has clean column names
     dirty_df.columns = [c.strip().strip('\ufeff') for c in dirty_df.columns]
     if clean_df is not None:
         clean_df.columns = [c.strip().strip('\ufeff') for c in clean_df.columns]
 
-    # --- 替换 empty 为 NaN ---
+    # --- Replace empty with NaN ---
     dirty_df.replace(['empty', 'Empty', 'EMPTY', 'nan', 'NaN', 'NULL', 'null'], np.nan, inplace=True)
     if clean_df is not None:
         clean_df.replace(['empty', 'Empty', 'EMPTY', 'nan', 'NaN', 'NULL', 'null'], np.nan, inplace=True)
 
-    # --- 确定特征列 ---
+    # --- Determine feature columns ---
     drop_cols = [c for c in ['index', 'id', label_col] if c in dirty_df.columns]
     feature_cols = [c for c in dirty_df.columns if c not in drop_cols]
 
-    # --- 识别分类列 vs 数值列 ---
+    # --- Identify categorical vs numeric columns ---
     config_cat_cols = ds_cfg.get('categorical_cols')
     if config_cat_cols is not None:
         categorical_cols = set(config_cat_cols) & set(feature_cols)
@@ -382,18 +382,18 @@ def preprocess_data(dataset_name: str, dirty_df: pd.DataFrame = None, clean_df: 
             except (ValueError, TypeError):
                 categorical_cols.add(col)
 
-    # --- 编码函数 ---
-    # LabelEncoder 仅在 dirty 数据上 fit（不依赖 clean）
+    # --- Encoding helpers ---
+    # LabelEncoder is fit on dirty data only (no dependency on clean)
     label_encoders = {}
 
     def encode_df(df, feature_cols, label_col, fit_le=False):
-        """编码 DataFrame 的特征和标签，返回 (X, y)
+        """Encode features and label of a DataFrame, returning (X, y).
 
         Args:
-            df: 待编码的 DataFrame
-            feature_cols: 特征列名列表
-            label_col: 标签列名
-            fit_le: 是否 fit LabelEncoder（仅 dirty 数据设为 True）
+            df: DataFrame to encode
+            feature_cols: list of feature column names
+            label_col: label column name
+            fit_le: whether to fit LabelEncoder (set True only for dirty data)
         """
         X_df = df[feature_cols].copy()
         y_series = df[label_col].copy()
@@ -402,7 +402,7 @@ def preprocess_data(dataset_name: str, dirty_df: pd.DataFrame = None, clean_df: 
             if col in categorical_cols:
                 if col not in label_encoders and fit_le:
                     le = LabelEncoder()
-                    # 仅用 dirty 数据 fit LE
+                    # Fit LE on dirty data only
                     all_vals = dirty_df[col].dropna().astype(str).unique()
                     le.fit(all_vals)
                     label_encoders[col] = le
@@ -421,7 +421,7 @@ def preprocess_data(dataset_name: str, dirty_df: pd.DataFrame = None, clean_df: 
                         nearest = _find_nearest_known(val, _kl, threshold=0.3)
                         if nearest is not None:
                             return _le.transform([nearest])[0]
-                        return np.nan  # dirty-fit LE 下此行不会执行
+                        return np.nan  # unreachable when LE is dirty-fit
 
                     X_df.loc[~nan_mask, col] = non_nan_values.map(_safe_encode)
                 else:
@@ -430,7 +430,7 @@ def preprocess_data(dataset_name: str, dirty_df: pd.DataFrame = None, clean_df: 
             else:
                 X_df[col] = pd.to_numeric(X_df[col], errors='coerce')
 
-        # 编码标签
+        # Encode label
         label_is_categorical = False
         if fit_le:
             combined_labels = dirty_df[label_col].dropna()
@@ -470,16 +470,16 @@ def preprocess_data(dataset_name: str, dirty_df: pd.DataFrame = None, clean_df: 
         y = y_series.values.astype(float)
         return X, y
 
-    # 编码 dirty（同时 fit LE）
+    # Encode dirty (also fits LE)
     X_dirty, y_dirty = encode_df(dirty_df, feature_cols, label_col, fit_le=True)
 
-    # 编码 clean（使用已 fit 的 LE）
+    # Encode clean (using already-fit LE)
     X_clean_scaled = None
     y_clean = None
     if clean_df is not None:
         X_clean, y_clean = encode_df(clean_df, feature_cols, label_col, fit_le=False)
 
-    # --- 标准化（仅在 dirty 数据上 fit）---
+    # --- Standardize (fit on dirty only) ---
     scaler = StandardScaler()
     X_dirty_for_fit = X_dirty.copy()
     col_means = np.nanmean(X_dirty_for_fit, axis=0)
@@ -488,7 +488,7 @@ def preprocess_data(dataset_name: str, dirty_df: pd.DataFrame = None, clean_df: 
         X_dirty_for_fit[mask, j] = col_means[j] if not np.isnan(col_means[j]) else 0.0
     scaler.fit(X_dirty_for_fit)
 
-    # 对 dirty 标准化（保留 NaN 位置）
+    # Standardize dirty (preserving NaN positions)
     def scale_with_nan(X, scaler):
         X_out = X.copy()
         col_m = np.nanmean(X_out, axis=0)
@@ -503,7 +503,7 @@ def preprocess_data(dataset_name: str, dirty_df: pd.DataFrame = None, clean_df: 
 
     X_dirty_scaled = scale_with_nan(X_dirty, scaler)
 
-    # 对 clean 标准化（如果有）
+    # Standardize clean (if available)
     if clean_df is not None:
         X_clean_for_scale = X_clean.copy()
         col_means_c = np.nanmean(X_clean_for_scale, axis=0)
@@ -512,23 +512,23 @@ def preprocess_data(dataset_name: str, dirty_df: pd.DataFrame = None, clean_df: 
             X_clean_for_scale[mask, j] = col_means_c[j] if not np.isnan(col_means_c[j]) else 0.0
         X_clean_scaled = scaler.transform(X_clean_for_scale)
 
-    # --- 解析 FD 规则 ---
+    # --- Parse FD rules ---
     fd_rules = []
     if os.path.exists(rules_path) and get_horizon_fds is not None:
         try:
             fd_rules = get_horizon_fds(rules_path)
         except Exception as e:
-            print(f"  [警告] 解析FD规则失败: {e}")
+            print(f"  [warn] FD rule parse failed: {e}")
 
-    print(f"  数据集: {dataset_name}")
-    print(f"  脏数据: {X_dirty_scaled.shape}")
+    print(f"  Dataset: {dataset_name}")
+    print(f"  Dirty:   {X_dirty_scaled.shape}")
     if X_clean_scaled is not None:
-        print(f"  干净数据: {X_clean_scaled.shape}")
-    print(f"  特征列: {len(feature_cols)}, 标签列: {label_col}")
-    print(f"  分类列: {categorical_cols if categorical_cols else '(无)'}")
-    print(f"  LE fit: 仅 dirty ({len(dirty_df)} 行)")
-    print(f"  SS fit: 仅 dirty ({len(dirty_df)} 行)")
-    print(f"  FD规则: {len(fd_rules)} 条")
+        print(f"  Clean:   {X_clean_scaled.shape}")
+    print(f"  Features: {len(feature_cols)}, label: {label_col}")
+    print(f"  Categorical cols: {categorical_cols if categorical_cols else '(none)'}")
+    print(f"  LE fit: dirty only ({len(dirty_df)} rows)")
+    print(f"  SS fit: dirty only ({len(dirty_df)} rows)")
+    print(f"  FD rules: {len(fd_rules)}")
 
     csv_columns = list(dirty_df.columns)
 
@@ -543,23 +543,23 @@ def preprocess_data(dataset_name: str, dirty_df: pd.DataFrame = None, clean_df: 
 
 
 # ============================================================================
-# encode_subset: 用已有的 LE/SS 编码一个数据子集（val/test）
+# encode_subset: encode a val/test subset using pre-fit LE/SS
 # ============================================================================
 def encode_subset(df, feature_cols, label_col, label_encoders, scaler,
                   categorical_cols, dataset_name=None):
-    """用已有的 LE/SS 编码一个数据子集（val/test），返回 (X_scaled, y)
+    """Encode a val/test subset with already-fit LE/SS; return (X_scaled, y).
 
     Args:
-        df: 待编码的 DataFrame
-        feature_cols: 特征列名列表
-        label_col: 标签列名
-        label_encoders: 已 fit 的 {col_name: LabelEncoder}
-        scaler: 已 fit 的 StandardScaler
-        categorical_cols: 分类列名集合
-        dataset_name: 可选，用于日志
+        df: DataFrame to encode
+        feature_cols: feature column names
+        label_col: label column name
+        label_encoders: already-fit {col_name: LabelEncoder}
+        scaler: already-fit StandardScaler
+        categorical_cols: set of categorical column names
+        dataset_name: optional; used for logs
 
     Returns:
-        (X_scaled, y) — 标准化后的特征矩阵和标签数组
+        (X_scaled, y) — standardized feature matrix and label array
     """
     df = df.copy()
     df.columns = [c.strip().strip('\ufeff') for c in df.columns]
@@ -600,7 +600,7 @@ def encode_subset(df, feature_cols, label_col, label_encoders, scaler,
         else:
             X_df[col] = pd.to_numeric(X_df[col], errors='coerce')
 
-    # 编码标签
+    # Encode label
     if label_col in label_encoders:
         le_label = label_encoders[label_col]
         nan_mask_y = y_series.isna()
@@ -625,7 +625,7 @@ def encode_subset(df, feature_cols, label_col, label_encoders, scaler,
     X = X_df.values.astype(float)
     y = y_series.values.astype(float)
 
-    # 标准化（NaN 安全）
+    # Standardize (NaN-safe)
     X_out = X.copy()
     col_m = np.nanmean(X_out, axis=0)
     for j in range(X_out.shape[1]):
@@ -637,19 +637,19 @@ def encode_subset(df, feature_cols, label_col, label_encoders, scaler,
 
 
 # ============================================================================
-# 可视化: 训练曲线 (4子图)
+# Visualization: training curves (4 subplots)
 # ============================================================================
 def plot_training_curves(history: dict, save_dir: str, version_name: str,
                          resume_episode: int = 0):
     """
-    绘制训练过程的 6 张子图 (3×2):
+    Plot six training-process subplots (3x2):
       Score, Reward, Epsilon, Action Count, Action Ratio, Q-Value Uncertainty
 
     Args:
-        history: 训练历史字典
-        save_dir: 保存目录
-        version_name: 版本名称
-        resume_episode: 续训起点 episode（0=无续训）
+        history: training history dict
+        save_dir: output directory
+        version_name: version name
+        resume_episode: resume start episode (0 = no resume)
     """
     import matplotlib
     matplotlib.use('Agg')
@@ -661,7 +661,7 @@ def plot_training_curves(history: dict, save_dir: str, version_name: str,
     episodes = history.get('episode', list(range(1, len(history.get('score', [])) + 1)))
 
     def _split_old_new(data, eps_list, resume_ep):
-        """分割续训前后的数据"""
+        """Split data into pre-/post-resume segments."""
         if resume_ep <= 0 or not eps_list:
             return [], [], data, eps_list
         old_data, old_eps, new_data, new_eps = [], [], [], []
@@ -675,13 +675,13 @@ def plot_training_curves(history: dict, save_dir: str, version_name: str,
         return old_data, old_eps, new_data, new_eps
 
     def _plot_with_resume(ax, episodes_list, data, color, resume_ep, label=None):
-        """续训感知绘图：旧数据灰色虚线，新数据彩色实线"""
+        """Resume-aware plotting: old data gray dashed, new data colored solid."""
         old_d, old_e, new_d, new_e = _split_old_new(data, episodes_list, resume_ep)
         if old_d:
             ax.plot(old_e, old_d, alpha=0.25, color='gray', linestyle='--')
         if new_d:
             ax.plot(new_e, new_d, alpha=0.3, color=color, label=label)
-        # 续训标记线
+        # Resume marker line
         if resume_ep > 0 and old_d and new_d:
             ax.axvline(x=resume_ep, color='gray', linestyle=':', alpha=0.5, linewidth=1)
 
@@ -737,7 +737,7 @@ def plot_training_curves(history: dict, save_dir: str, version_name: str,
     ax.legend(fontsize=7)
     ax.grid(True, alpha=0.3)
 
-    # --- Action Ratio (堆叠面积图) ---
+    # --- Action Ratio (stacked area chart) ---
     ax = axes[2, 0]
     action_keys = ['no_action', 'repair_value', 'delete', 'replace_nearby']
     action_colors = ['gray', 'blue', 'red', 'orange']
@@ -745,9 +745,9 @@ def plot_training_curves(history: dict, save_dir: str, version_name: str,
     for key in action_keys:
         vals = history.get(key, [])
         action_arrays.append(np.array(vals) if vals else np.zeros(len(episodes)))
-    # 计算占比
+    # Compute ratios
     total = np.sum(action_arrays, axis=0)
-    total = np.where(total > 0, total, 1)  # 避免除零
+    total = np.where(total > 0, total, 1)  # avoid divide-by-zero
     ratios = [arr / total for arr in action_arrays]
     if len(ratios[0]) > 0:
         ax.stackplot(episodes[:len(ratios[0])], *ratios,
@@ -764,7 +764,7 @@ def plot_training_curves(history: dict, save_dir: str, version_name: str,
     q_std = history.get('q_std', [])
     if q_std and any(v > 0 for v in q_std):
         _plot_with_resume(ax, episodes[:len(q_std)], q_std, 'purple', resume_episode, label='Q-Std')
-        # 动作概率熵
+        # Action probability entropy
         action_probs = history.get('action_probs', [])
         if action_probs:
             entropies = []
@@ -794,32 +794,32 @@ def plot_training_curves(history: dict, save_dir: str, version_name: str,
     path = os.path.join(save_dir, f'{version_name}_training_curves.png')
     plt.savefig(path, dpi=150)
     plt.close()
-    print(f"  [可视化] 训练曲线已保存: {path}")
+    print(f"  [viz] training curves saved: {path}")
 
 
 # ============================================================================
-# 可视化: 散点图 (分类用PCA散点, 回归用实际vs预测)
+# Visualization: scatter plots (PCA for classification, actual-vs-predicted for regression)
 # ============================================================================
 def compute_auth_div(X_result, X_clean, X_dirty):
     """
-    计算 Authenticity (真实性) 和 Diversity (多样性)
+    Compute Authenticity and Diversity.
 
-    参考: real_beers_experiment_with_detector.py:692-722
+    Ref: real_beers_experiment_with_detector.py:692-722
 
     Args:
-        X_result: 策略处理后的数据 (可能行数 < X_clean)
-        X_clean: 干净数据 (全量)
-        X_dirty: 脏数据 (全量)
+        X_result: data after policy processing (row count may be < X_clean)
+        X_clean: clean data (full)
+        X_dirty: dirty data (full)
 
     Returns:
-        (auth, div) — 真实性 [0,1] 和 多样性 [0,1]
+        (auth, div) — authenticity [0,1] and diversity [0,1]
     """
     n = len(X_result)
     n_total = len(X_clean)
     if n == 0:
         return 0.0, 0.0
 
-    # 真实性: 修复后数据与干净数据的逐行一致比例
+    # Authenticity: fraction of rows matching clean data exactly
     compare_len = min(n, n_total)
     correct = 0
     for i in range(compare_len):
@@ -827,7 +827,7 @@ def compute_auth_div(X_result, X_clean, X_dirty):
             correct += 1
     auth = correct / n if n > 0 else 0.0
 
-    # 多样性: 样本保留率 × 噪声保留率
+    # Diversity: sample retention rate x noise retention rate
     sample_ret = n / n_total
     X_dirty_valid = X_dirty[~np.isnan(X_dirty).any(axis=1)]
     if len(X_result) > 1 and len(X_dirty_valid) > 1:
@@ -846,7 +846,7 @@ def compute_auth_div(X_result, X_clean, X_dirty):
 
 
 def _safe_nan(X):
-    """NaN 安全处理: 用列均值填充 NaN"""
+    """NaN-safe: fill NaN with column means."""
     X_c = X.copy()
     col_means = np.nanmean(X_c, axis=0)
     for j in range(X_c.shape[1]):
@@ -857,10 +857,10 @@ def _safe_nan(X):
 
 
 # ============================================================================
-# 5种Baseline评估 + 可视化
+# 5 baseline evaluations + visualization
 # ============================================================================
 def _knn_label_estimate(X, y, idx, deleted_rows, task_type, k=5):
-    """KNN 标签估计（从 CleaningEnv._get_majority_label 简化）"""
+    """KNN label estimate (simplified from CleaningEnv._get_majority_label)."""
     X_filled = X.copy()
     col_means = np.nanmean(X_filled, axis=0)
     for j in range(X_filled.shape[1]):
@@ -908,56 +908,56 @@ def evaluate_and_visualize(
     value_estimator=None,
 ):
     """
-    评估 6 种 baseline 并生成决策边界对比图:
+    Evaluate 6 baselines and plot a comparison figure:
       NoFix, DeleteAll, DeleteFix, ReplaceAll, DemandClean, FullFix
 
     Args:
-        gt_cost: DemandClean 使用的真值成本 (ground_truth_used)
+        gt_cost: ground-truth cost used by DemandClean (ground_truth_used)
 
     Returns:
-        (baseline_results, vis_time) — 评估指标字典 + 可视化耗时(秒)
+        (baseline_results, vis_time) — metric dict + visualization time (s)
     """
     from sklearn.model_selection import train_test_split
     from sklearn.metrics import accuracy_score, f1_score, mean_squared_error, r2_score
 
     def safe_prepare(X, y, name):
-        """NaN 安全处理: 去掉含 NaN 的行（X 或 y），用列均值填充其余 NaN"""
+        """NaN-safe: drop rows with NaN in X or y; fill remaining NaN with column means."""
         X_c = X.copy()
         y_c = y.copy() if len(y) == len(X) else y[:len(X)].copy()
-        # 对齐长度
+        # Align lengths
         min_len = min(len(X_c), len(y_c))
         X_c = X_c[:min_len]
         y_c = y_c[:min_len]
-        # 去掉 y 中的 NaN
+        # Drop NaN in y
         y_valid = ~np.isnan(y_c)
         X_c = X_c[y_valid]
         y_c = y_c[y_valid]
-        # 去掉 X 中全 NaN 的行
+        # Drop all-NaN rows in X
         x_valid = ~np.isnan(X_c).all(axis=1)
         X_c = X_c[x_valid]
         y_c = y_c[x_valid]
-        # 用列均值填充剩余 NaN
+        # Fill remaining NaN with column means
         col_means = np.nanmean(X_c, axis=0)
         for j in range(X_c.shape[1]):
             mask = np.isnan(X_c[:, j])
             X_c[mask, j] = col_means[j] if not np.isnan(col_means[j]) else 0.0
         return X_c, y_c
 
-    # --- 准备各 baseline 的数据 ---
+    # --- Prepare data for each baseline ---
 
-    # NoFix: 直接用脏数据
+    # NoFix: use dirty data directly
     X_nofix, y_nofix = safe_prepare(X_dirty, y_dirty, 'NoFix')
 
-    # FullFix: 直接用干净数据
+    # FullFix: use clean data directly
     X_fullfix, y_fullfix = safe_prepare(X_clean, y_clean, 'FullFix')
 
-    # DeleteAll: 删除所有含 NaN 的行
+    # DeleteAll: drop rows containing any NaN
     nan_mask = ~np.isnan(X_dirty).any(axis=1)
     X_delete = X_dirty[nan_mask].copy()
     y_delete = y_dirty[nan_mask].copy()
     X_delete, y_delete = safe_prepare(X_delete, y_delete, 'DeleteAll')
 
-    # ReplaceAll: 用 VE 估值替换所有检出错误单元格
+    # ReplaceAll: replace every detected error cell with VE-estimated value
     X_replace = X_dirty.copy()
     y_replace = y_dirty.copy()
     if value_estimator is not None and detected_errors is not None:
@@ -976,7 +976,7 @@ def evaluate_and_visualize(
                 else:
                     continue
                 if col_err == -1:
-                    # 标签错误: KNN 多数投票
+                    # Label error: KNN majority vote
                     y_replace[idx_err] = _knn_label_estimate(
                         X_replace, y_replace, idx_err, deleted_rows, task_type)
                 else:
@@ -985,16 +985,16 @@ def evaluate_and_visualize(
                             X_replace, idx_err, col_err, deleted_rows, col_means)
                 ve_count += 1
         ve_time = time.time() - t_ve
-        print(f"  ReplaceAll VE 估值: {ve_count} 个错误, {ve_time:.1f}s")
+        print(f"  ReplaceAll VE estimation: {ve_count} errors, {ve_time:.1f}s")
     X_replace, y_replace = safe_prepare(X_replace, y_replace, 'ReplaceAll')
 
-    # DemandClean: 系统清洗后的结果
+    # DemandClean: result from our system
     X_dc, y_dc = safe_prepare(X_result, y_result, 'DemandClean')
 
-    # DeleteFix: 删除检测器标记为有错误的行（至少保留 20% 数据）
+    # DeleteFix: drop rows flagged by the detector (keep at least 20% of data)
     X_dfix, y_dfix = None, None
     if detected_errors is not None:
-        # 收集所有被检测到有错误的行索引
+        # Collect indices of all rows detected as having errors
         error_row_set = set()
         for err_type in ('missing', 'semantic', 'syntactic', 'label_noise'):
             for item in detected_errors.get(err_type, []):
@@ -1004,13 +1004,13 @@ def evaluate_and_visualize(
                     error_row_set.add(int(item['idx']))
 
         n_total = len(X_dirty)
-        min_keep = max(10, int(n_total * 0.2))  # 至少保留 20%
+        min_keep = max(10, int(n_total * 0.2))  # keep at least 20%
 
         if len(error_row_set) <= n_total - min_keep:
-            # 删除所有检测到的错误行
+            # Drop every detected error row
             keep_mask = np.array([i not in error_row_set for i in range(n_total)])
         else:
-            # 删除过多，按类型优先级排序：优先删标签噪声和缺失值（高置信度）
+            # Too many to drop; prioritize label noise and missing values (higher confidence)
             from collections import Counter
             row_error_count = Counter()
             for err_type in ('label_noise', 'missing', 'syntactic', 'semantic'):
@@ -1019,7 +1019,7 @@ def evaluate_and_visualize(
                         row_error_count[int(item[0])] += 1
                     elif isinstance(item, dict) and 'idx' in item:
                         row_error_count[int(item['idx'])] += 1
-            # 按错误数量降序排列，取前 (n_total - min_keep) 个
+            # Sort rows by descending error count; take first (n_total - min_keep)
             max_delete = n_total - min_keep
             sorted_rows = sorted(row_error_count.keys(),
                                  key=lambda r: row_error_count[r], reverse=True)
@@ -1029,7 +1029,7 @@ def evaluate_and_visualize(
         X_dfix_raw = X_dirty[keep_mask].copy()
         y_dfix_raw = y_dirty[keep_mask].copy()
         X_dfix, y_dfix = safe_prepare(X_dfix_raw, y_dfix_raw, 'DeleteFix')
-        print(f"  DeleteFix: 删除 {n_total - keep_mask.sum()} 行, 保留 {keep_mask.sum()} 行")
+        print(f"  DeleteFix: dropped {n_total - keep_mask.sum()} rows, kept {keep_mask.sum()} rows")
 
     datasets = {
         'NoFix': (X_nofix, y_nofix),
@@ -1041,32 +1041,32 @@ def evaluate_and_visualize(
     datasets['DemandClean'] = (X_dc, y_dc)
     datasets['FullFix'] = (X_fullfix, y_fullfix)
 
-    # --- 统一测试集（从 clean 数据固定划分）---
-    # Oracle 模式: 使用外部提供的测试集; 默认: 从 clean 数据 80/20 划分
+    # --- Unified test set (fixed split from clean data) ---
+    # Oracle mode: use externally supplied test set; default: 80/20 split from clean data
     if oracle_test_X is not None and oracle_test_y is not None:
         X_test_common, y_test_common = safe_prepare(
             oracle_test_X, oracle_test_y, 'OracleTest')
-        print(f"  统一测试集 (Oracle): {len(X_test_common)} 行")
-        # Oracle 模式下所有 baseline 用全部传入数据训练（不再内部划分）
+        print(f"  Unified test set (Oracle): {len(X_test_common)} rows")
+        # In Oracle mode every baseline trains on all passed-in data (no internal split)
         n_total_rows = len(X_clean)
         train_indices = np.arange(n_total_rows)
-        test_indices = None  # 不使用
+        test_indices = None  # unused
     else:
-        # 所有 baseline 共享同一个测试集，确保公平比较
+        # All baselines share the same test set for fair comparison
         n_total_rows = len(X_clean)
         all_indices = np.arange(n_total_rows)
         train_indices, test_indices = train_test_split(
             all_indices, test_size=0.2, random_state=42
         )
 
-        # 公共测试集（clean 数据）
+        # Common test set (clean data)
         X_test_common_raw = X_clean[test_indices].copy()
         y_test_common_raw = y_clean[test_indices].copy()
         X_test_common, y_test_common = safe_prepare(
             X_test_common_raw, y_test_common_raw, 'CommonTest')
-        print(f"  统一测试集: {len(X_test_common)} 行 (从 {n_total_rows} 行 clean 数据固定划分)")
+        print(f"  Unified test set: {len(X_test_common)} rows (fixed split from {n_total_rows} clean rows)")
 
-    # 选择评估模型
+    # Select evaluation models
     if task_type == 'classification':
         eval_models = EVAL_MODELS_CLASSIFICATION
     elif task_type == 'clustering':
@@ -1077,49 +1077,49 @@ def evaluate_and_visualize(
     results_all = {}
 
     print(f"\n{'='*60}")
-    print(f"Baseline 对比评估 - {version_name}")
+    print(f"Baseline comparison - {version_name}")
     print(f"{'='*60}")
 
     for ds_name, (X_ds, y_ds) in datasets.items():
         t_bl = time.time()
         if len(X_ds) < 10:
-            print(f"  {ds_name}: 数据不足({len(X_ds)}行)，跳过")
+            print(f"  {ds_name}: too few rows ({len(X_ds)}), skipped")
             results_all[ds_name] = {}
             continue
 
         ds_results = {'n_samples': len(X_ds), 'n_test': len(y_test_common)}
 
         try:
-            # 构建训练数据：Oracle 模式用全量（已在外部划分），否则用 train_indices 子集
+            # Build training data: Oracle mode uses full input (already split externally); otherwise use train_indices subset
             if oracle_test_X is not None:
-                # Oracle 模式: 传入的数据已是 train 子集
+                # Oracle mode: inputs are already the train subset
                 X_train_raw = X_ds
                 y_train_raw = y_ds
             elif len(X_ds) == n_total_rows:
                 X_train_raw = X_ds[train_indices]
                 y_train_raw = y_ds[train_indices]
             else:
-                # DeleteAll/DeleteFix 行数不同，用全部数据训练
+                # DeleteAll/DeleteFix have different row counts; train on all
                 X_train_raw = X_ds
                 y_train_raw = y_ds
 
             X_train, y_train = safe_prepare(X_train_raw, y_train_raw, ds_name)
 
             if len(X_train) < 10:
-                print(f"  {ds_name}: 训练数据不足({len(X_train)}行)，跳过")
+                print(f"  {ds_name}: too few training rows ({len(X_train)}), skipped")
                 results_all[ds_name] = {}
                 continue
 
-            # 数据已在 preprocess_data 中经过 LE+SS 标准化，直接使用
-            # 不再二次 StandardScaler（避免双重标准化导致与 Step 9 不一致）
+            # Data already went through LE+SS in preprocess_data; use as-is.
+            # No second StandardScaler (avoids double standardization drifting from Step 9).
             X_train_scaled = X_train
             X_test_scaled = X_test_common
 
             if task_type == 'clustering':
-                # 聚类评估：fit_predict 全量，不使用 train/test split
+                # Clustering: fit_predict on all data, no train/test split
                 from sklearn.cluster import KMeans as _KMeans
                 from sklearn.metrics import silhouette_score as _sil_score, adjusted_rand_score as _ari_score
-                # 聚类用原始全量数据（已标准化，不再二次处理）
+                # Clustering uses full (already standardized) data without reprocessing
                 X_clust_prepared, _ = safe_prepare(X_ds, y_ds, ds_name + '_clust')
                 n_clusters = len(np.unique(y_ds[~np.isnan(y_ds)]))
                 n_rows = len(X_clust_prepared)
@@ -1168,14 +1168,14 @@ def evaluate_and_visualize(
                     except Exception as e:
                         ds_results[f'{model_name}_error'] = str(e)
 
-            # (可视化在评估循环之后统一完成)
+            # (visualization is done once after the evaluation loop)
 
         except Exception as e:
             ds_results['error'] = str(e)
 
         results_all[ds_name] = ds_results
 
-        # 打印主要指标（含耗时）
+        # Print main metrics (with elapsed time)
         bl_time = time.time() - t_bl
         metric_str = ' | '.join(
             f'{k}={v}' for k, v in ds_results.items()
@@ -1183,9 +1183,9 @@ def evaluate_and_visualize(
         )
         print(f"  {ds_name:15s}: {metric_str} | {bl_time:.1f}s")
 
-    # --- 计算 Auth/Div/Cost 并写入各 baseline 的结果 ---
+    # --- Compute Auth/Div/Cost and attach to each baseline's results ---
     n_total = len(X_clean)
-    # 各 baseline 的 cost 定义
+    # Cost per baseline
     n_detected = 0
     if detected_errors is not None:
         err_set = set()
@@ -1225,20 +1225,20 @@ def evaluate_and_visualize(
 
 
 # ============================================================================
-# Baseline 对比柱状图
+# Baseline comparison bar chart
 # ============================================================================
 def plot_baseline_comparison(results_all: dict, save_dir: str,
                               version_name: str, task_type: str,
                               primary_model: str):
     """
-    柱状图对比各 Baseline 的主要指标
+    Bar chart comparing the main metric across baselines.
 
     Args:
-        results_all: evaluate_and_visualize 的返回结果
-        save_dir: 保存目录
-        version_name: 版本名称
-        task_type: 任务类型
-        primary_model: 主要模型简称 (如 'rf')
+        results_all: return value of evaluate_and_visualize
+        save_dir: output directory
+        version_name: version name
+        task_type: task type
+        primary_model: short model name (e.g. 'rf')
     """
     import matplotlib
     matplotlib.use('Agg')
@@ -1286,11 +1286,11 @@ def plot_baseline_comparison(results_all: dict, save_dir: str,
     path = os.path.join(save_dir, f'{version_name}_baseline_comparison.png')
     plt.savefig(path, dpi=150)
     plt.close()
-    print(f"  [可视化] Baseline 对比图已保存: {path}")
+    print(f"  [viz] baseline comparison saved: {path}")
 
 
 # ============================================================================
-# 逆转换: 将标准化后的 numpy 还原为原始 CSV 格式
+# Inverse transform: numpy -> original CSV format
 # ============================================================================
 def _inverse_transform_to_csv(
     X_result: np.ndarray,
@@ -1305,43 +1305,43 @@ def _inverse_transform_to_csv(
     keep_mask=None,
 ) -> pd.DataFrame:
     """
-    将 DemandClean 输出的标准化 numpy 数组逆转换为原始 CSV 格式的 DataFrame。
+    Convert DemandClean's standardized numpy arrays back to a DataFrame in original CSV format.
 
-    策略:
-      1. 以原始 dirty_df 为基础（保留 index 列和原始值格式）
-      2. 根据 keep_mask 筛选保留的行
-      3. 对标准化的 X_result 做 scaler.inverse_transform
-      4. 对编码的分类列做 LabelEncoder.inverse_transform
-      5. 对标签列也做逆转换
+    Strategy:
+      1. Start from original dirty_df (keeping index column and raw formatting)
+      2. Filter rows by keep_mask
+      3. scaler.inverse_transform on standardized X_result
+      4. LabelEncoder.inverse_transform on encoded categorical columns
+      5. Inverse-transform the label column as well
 
     Args:
-        X_result: 清洗后的标准化特征矩阵 (n_kept, n_features)
-        y_result: 清洗后的标签向量 (n_kept,)
-        feature_cols: 特征列名列表
-        label_col: 标签列名
-        scaler: StandardScaler 对象
-        label_encoders: {col_name: LabelEncoder} 字典
-        categorical_cols: 分类列名集合
-        dirty_df: 原始脏数据 DataFrame（含 index 列）
-        inference_mode: 推理模式
-        keep_mask: 布尔数组，标识原始行中哪些被保留
+        X_result: cleaned standardized feature matrix (n_kept, n_features)
+        y_result: cleaned label vector (n_kept,)
+        feature_cols: feature column names
+        label_col: label column name
+        scaler: StandardScaler
+        label_encoders: {col_name: LabelEncoder}
+        categorical_cols: set of categorical column names
+        dirty_df: original dirty DataFrame (with index column)
+        inference_mode: inference mode
+        keep_mask: boolean array marking which original rows are kept
 
     Returns:
-        原始格式的 cleaned DataFrame（与 dirty_df 同格式，含 index 列）
+        Cleaned DataFrame in original format (columns match dirty_df, includes index)
     """
     n_result = len(X_result)
 
-    # 边界情况: agent 删除了所有行 → 返回空 DataFrame（保持列结构与 dirty_df 一致）
+    # Edge case: agent deleted all rows -> return empty DataFrame preserving dirty_df columns
     if n_result == 0:
         return pd.DataFrame(columns=dirty_df.columns)
 
-    # Step 1: 逆标准化
+    # Step 1: Inverse standardize
     X_inv = scaler.inverse_transform(X_result)
 
-    # Step 2: 构建逆转换后的 DataFrame
+    # Step 2: Build the inverse-transformed DataFrame
     result_df = pd.DataFrame(X_inv, columns=feature_cols)
 
-    # Step 3: 逆编码分类列
+    # Step 3: Inverse-encode categorical columns
     if label_encoders and categorical_cols:
         for col in feature_cols:
             if col in categorical_cols and col in label_encoders:
@@ -1350,27 +1350,27 @@ def _inverse_transform_to_csv(
                 n_classes = len(le.classes_)
 
                 if n_classes > 0 and scaler is not None:
-                    # 使用 scaler 信息计算编码空间中每个合法整数值对应的标准化值
+                    # Use scaler info to compute the standardized value of each valid integer code
                     col_idx = feature_cols.index(col)
                     mean_val = scaler.mean_[col_idx]
                     scale_val = scaler.scale_[col_idx]
-                    # 合法编码值 [0, 1, ..., n_classes-1] 在标准化空间中的值
+                    # Valid codes [0, 1, ..., n_classes-1] in standardized space
                     valid_scaled = np.array([(i - mean_val) / scale_val for i in range(n_classes)])
 
-                    # 每个值找标准化空间中最近的合法编码
+                    # For each value pick the nearest valid code in standardized space
                     col_rounded = np.zeros(len(col_vals), dtype=int)
                     for i, v in enumerate(col_vals):
                         nearest_idx = np.argmin(np.abs(valid_scaled - v))
                         col_rounded[i] = nearest_idx
                 else:
-                    # fallback: 简单 round + clip
+                    # fallback: plain round + clip
                     col_rounded = np.round(col_vals).astype(int)
                     col_rounded = np.clip(col_rounded, 0, n_classes - 1)
 
                 try:
                     result_df[col] = le.inverse_transform(col_rounded)
                 except Exception:
-                    # 如果逆转换失败，尝试编辑距离安全编码
+                    # If inverse-transform fails, try edit-distance safe encoding
                     if _find_nearest_known is not None:
                         safe_vals = []
                         known = list(le.classes_)
@@ -1378,16 +1378,16 @@ def _inverse_transform_to_csv(
                             nearest = _find_nearest_known(str(v), known)
                             safe_vals.append(nearest if nearest else known[0])
                         result_df[col] = safe_vals
-                    # 否则保留数值
+                    # Otherwise keep the numeric values
 
-    # Step 4: 逆编码标签列
+    # Step 4: Inverse-encode the label column
     y_inv = y_result[:n_result].copy()
     if label_col in label_encoders:
         le = label_encoders[label_col]
         n_classes = len(le.classes_)
 
         if n_classes > 0 and scaler is not None and label_col in feature_cols:
-            # 标签列可能也经过 scaler（如果是特征的一部分），用最近邻匹配
+            # Label column may have been scaled (if part of features); nearest-neighbor match
             col_idx = feature_cols.index(label_col)
             mean_val = scaler.mean_[col_idx]
             scale_val = scaler.scale_[col_idx]
@@ -1397,7 +1397,7 @@ def _inverse_transform_to_csv(
                 nearest_idx = np.argmin(np.abs(valid_scaled - v))
                 y_rounded[i] = nearest_idx
         else:
-            # 标签列通常不经过 scaler，简单 round + clip
+            # Label column is usually not scaled; plain round + clip
             y_rounded = np.round(y_inv).astype(int)
             y_rounded = np.clip(y_rounded, 0, n_classes - 1)
 
@@ -1407,19 +1407,19 @@ def _inverse_transform_to_csv(
             pass
     result_df[label_col] = y_inv
 
-    # Step 5: 恢复 index 列
+    # Step 5: Restore the index column
     if 'index' in dirty_df.columns:
         if keep_mask is not None and len(keep_mask) == len(dirty_df):
-            # keep_mask 对应原始 dirty_df 的行
+            # keep_mask matches rows in original dirty_df
             kept_indices = dirty_df.loc[keep_mask, 'index'].values[:n_result]
         else:
-            # 默认取前 n_result 行的 index
+            # Default: take the first n_result indices
             kept_indices = dirty_df['index'].values[:n_result]
         result_df.insert(0, 'index', kept_indices)
 
-    # Step 5.5: 恢复被 preprocess_data drop 掉的非特征列（如 'id'）
-    #   dirty_df 中有但 feature_cols / label_col / 'index' 之外的列，
-    #   从对应行的 dirty_df 中原样复制回来
+    # Step 5.5: Restore non-feature columns dropped by preprocess_data (e.g. 'id').
+    #   Columns present in dirty_df but not in feature_cols / label_col / 'index'
+    #   are copied back from the corresponding rows of dirty_df.
     extra_cols = [c for c in dirty_df.columns
                   if c not in result_df.columns and c not in ('index',)]
     if extra_cols:
@@ -1430,7 +1430,7 @@ def _inverse_transform_to_csv(
         for col in extra_cols:
             result_df[col] = src[col].values
 
-    # Step 6: 确保列顺序与 dirty_df 一致
+    # Step 6: Match column order to dirty_df
     target_cols = [c for c in dirty_df.columns if c in result_df.columns]
     result_df = result_df[target_cols]
 
@@ -1438,7 +1438,7 @@ def _inverse_transform_to_csv(
 
 
 # ============================================================================
-# run_version(): 运行单个版本的完整流程
+# run_version(): run the full pipeline for a single version
 # ============================================================================
 def run_version(
     dataset_name: str,
@@ -1479,35 +1479,35 @@ def run_version(
     output_suffix: str = '',
 ) -> dict:
     """
-    运行单个版本的完整流程
+    Run the full pipeline for a single version.
 
-    流程:
-      1. 创建 DemandClean 实例
-      2. 训练 (dc.fit)
-      3. 推理 (dc.clean 或 dc.plan/execute)
-      4. 评估 5 种 baseline
-      5. 评估容忍度 (compute_model_tolerance)
-      6. 评估检测器准确率 (evaluate_detector_accuracy)
-      7. Shapley 三维度分析 (run_full_shapley_analysis)
-      8. 训练曲线可视化
-      9. 保存输出到 results/demandclean/{dataset}/{version_name}/
+    Pipeline:
+      1. Create DemandClean instance
+      2. Train (dc.fit)
+      3. Inference (dc.clean or dc.plan/execute)
+      4. Evaluate 5 baselines
+      5. Model tolerance (compute_model_tolerance)
+      6. Detector accuracy (evaluate_detector_accuracy)
+      7. Three-dimensional Shapley analysis (run_full_shapley_analysis)
+      8. Training-curve visualization
+      9. Save outputs to results/demandclean/{dataset}/{version_name}/
 
     Args:
-        dataset_name: 数据集名称
-        version_cfg: 版本配置字典
-        X_dirty, y_dirty: 脏数据
-        X_clean, y_clean: 干净数据
-        column_names: 特征列名
-        fd_rules: FD 规则列表
-        rules_path: 规则文件路径
-        n_episodes: 训练轮数
-        verbose: 是否输出详细信息
+        dataset_name: dataset name
+        version_cfg: version config dict
+        X_dirty, y_dirty: dirty data
+        X_clean, y_clean: clean data
+        column_names: feature column names
+        fd_rules: FD rules list
+        rules_path: rules file path
+        n_episodes: number of training episodes
+        verbose: whether to print detailed info
 
     Returns:
-        版本运行结果字典
+        run result dict for this version
     """
     version_name = version_cfg['version_name']
-    # 输出目录后缀（如 NGT 变体用 _ngt 避免覆盖原始版本）
+    # Output-dir suffix (e.g. NGT variant uses _ngt to avoid overwriting the base version)
     output_version_name = version_name + output_suffix if output_suffix else version_name
     detector_mode = version_cfg['detector_mode']
     agent_type = version_cfg['agent_type']
@@ -1517,7 +1517,7 @@ def run_version(
     task_type = ds_cfg['task_type']
     model_type = ds_cfg['model_type']
 
-    # --- 创建输出目录（分类子目录） ---
+    # --- Create output directories (categorized subdirs) ---
     save_dir = os.path.join(_PROJECT_ROOT, 'results', 'demandclean', dataset_name, output_version_name)
     dir_model = os.path.join(save_dir, 'model')
     dir_data = os.path.join(save_dir, 'data')
@@ -1528,16 +1528,16 @@ def run_version(
         os.makedirs(d, exist_ok=True)
 
     start_time = time.time()
-    step_times = {}  # 各步骤计时
+    step_times = {}  # per-step timing
 
     print("\n" + "=" * 70)
-    print(f"版本: {version_name}")
-    print(f"数据集: {dataset_name} | 任务: {task_type} | 模型: {model_type}")
-    print(f"检测器: {detector_mode} | Agent: {agent_type} | 推理: {inference_mode}")
-    print(f"训练轮数: {n_episodes} | 输出目录: {save_dir}")
+    print(f"Version: {version_name}")
+    print(f"Dataset: {dataset_name} | task: {task_type} | model: {model_type}")
+    print(f"Detector: {detector_mode} | Agent: {agent_type} | inference: {inference_mode}")
+    print(f"Episodes: {n_episodes} | output dir: {save_dir}")
     print("=" * 70)
 
-    # 选择评估模型
+    # Select evaluation models
     if task_type == 'classification':
         eval_models = EVAL_MODELS_CLASSIFICATION
     elif task_type == 'clustering':
@@ -1558,83 +1558,83 @@ def run_version(
     }
 
     # ================================================================
-    # visualize_only 模式: 跳过训练和推理，直接从文件加载清洗结果
+    # visualize_only mode: skip training/inference; load cleaned results from disk
     # ================================================================
     history_path = os.path.join(dir_report, f'{version_name}_history.json')
     prev_history = None
 
     if visualize_only:
-        print(f"\n[visualize_only] 跳过训练和推理，从已有结果加载...")
+        print(f"\n[visualize_only] skipping train/inference, loading existing results...")
 
-        # 加载清洗后的数据
+        # Load cleaned data
         cleaned_csv = os.path.join(dir_data, f'{version_name}_cleaned.csv')
         if not os.path.exists(cleaned_csv):
-            print(f"  [错误] 找不到清洗结果: {cleaned_csv}，无法仅可视化")
+            print(f"  [error] cleaned result not found: {cleaned_csv}; cannot visualize only")
             return report
 
         cleaned_df = pd.read_csv(cleaned_csv)
         X_result = cleaned_df[column_names].values
         y_result = cleaned_df[ds_cfg['label_col']].values if ds_cfg['label_col'] in cleaned_df.columns else y_dirty[:len(cleaned_df)]
-        print(f"  已加载清洗结果: {cleaned_csv} ({len(X_result)} 行)")
+        print(f"  loaded cleaned result: {cleaned_csv} ({len(X_result)} rows)")
 
-        # 加载训练历史
+        # Load training history
         history = None
         if os.path.exists(history_path):
             try:
                 with open(history_path) as f:
                     history = json.load(f)
-                print(f"  已加载训练历史: {len(history.get('score', []))} episodes")
+                print(f"  loaded training history: {len(history.get('score', []))} episodes")
             except Exception as e:
-                print(f"  [警告] 加载训练历史失败: {e}")
+                print(f"  [warn] failed to load training history: {e}")
 
-        # 加载之前的 report
+        # Load previous report
         report_path = os.path.join(dir_report, f'{version_name}_report.json')
         if os.path.exists(report_path):
             try:
                 with open(report_path) as f:
                     old_report = json.load(f)
-                # 保留旧报告中的训练相关字段
+                # Preserve training-related fields from the old report
                 for key in ['action_counts', 'ground_truth_used', 'repair_log',
                             'detector_accuracy', 'raha_cost']:
                     if key in old_report:
                         report[key] = old_report[key]
-                print(f"  已加载旧报告: {report_path}")
+                print(f"  loaded prior report: {report_path}")
             except Exception as e:
-                print(f"  [警告] 加载旧报告失败: {e}")
+                print(f"  [warn] failed to load prior report: {e}")
 
-        # 跳过 dc 实例化，detected_errors 和 dc 置 None
+        # Skip dc instantiation; set detected_errors and dc to None
         dc = None
         detected_errors = None
         output_csv_original = os.path.join(dir_data, f'{version_name}_cleaned_original.csv')
         if not os.path.exists(output_csv_original):
             output_csv_original = None
 
-        # 尝试加载编码版本（若之前运行时已保存）
+        # Try loading encoded version if saved from a previous run
         output_npz = os.path.join(dir_data, f'{version_name}_cleaned_encoded.npz')
         if not os.path.exists(output_npz):
             output_npz = None
 
-        # 从旧 report 恢复后续步骤需要的局部变量
+        # Restore locals needed by downstream steps from the prior report
         ground_truth_used = report.get('ground_truth_used', 0)
         detector_accuracy = report.get('detector_accuracy', {})
 
     # ================================================================
-    # Step 1-4: 训练、推理、保存（visualize_only 模式跳过）
+    # Step 1-4: train, infer, save (skipped in visualize_only mode)
     # ================================================================
     if not visualize_only:
 
         # ================================================================
-        # 1. 创建 DemandClean 实例
+        # 1. Create DemandClean instance
         # ================================================================
-        print("\n[Step 1] 创建 DemandClean 实例...")
+        print("\n[Step 1] creating DemandClean instance...")
         t_step = time.time()
 
-        # 轻量化模型参数（训练时 reward 评估用，baseline 评估不受影响）
-        # reward_model_type 可覆盖 reward 评估用的模型类型（不影响 baseline 评估）
+        # Lightweight reward-evaluation model params (baseline evaluation unaffected).
+        # reward_model_type can override the model type used for reward evaluation only.
         effective_reward_model_type = reward_model_type or model_type
         reward_model_kwargs = REWARD_MODEL_KWARGS.get(effective_reward_model_type, {})
 
-        # 构建额外配置参数
+        # Build extra config kwargs
         extra_kwargs = {}
         if min_repair_ratio is not None:
             extra_kwargs['min_repair_ratio'] = min_repair_ratio
@@ -1649,13 +1649,13 @@ def run_version(
         if disable_raha:
             extra_kwargs['disable_raha'] = True
 
-        # 命令行覆盖 reward 参数
+        # CLI override of reward params
         if delete_shaping_reward is not None:
             extra_kwargs['delete_shaping_reward'] = delete_shaping_reward
         if keep_rate_weight is not None:
             extra_kwargs['keep_rate_weight'] = keep_rate_weight
 
-        # 回归任务自动启用优化 reward 参数（分类/聚类用默认值）
+        # Regression tasks auto-enable tuned reward params (classification/clustering use defaults)
         if task_type == 'regression':
             extra_kwargs.setdefault('delete_shaping_reward', -0.05)
             extra_kwargs.setdefault('keep_rate_weight', 1.0)
@@ -1680,10 +1680,10 @@ def run_version(
             save_path=save_dir,
             apply_raha_truth=apply_raha_truth,
             count_raha_cost=count_raha_cost,
-            # Reward 评估配置
+            # Reward evaluation config
             model_kwargs=reward_model_kwargs,
             eval_sample_ratio=1.0,
-            # 编码工具（用于 ErrorInjector 在 CSV 空间注入）
+            # Encoding tools (used by ErrorInjector when injecting in CSV space)
             encoding_label_encoders=label_encoders,
             encoding_scaler=data_scaler,
             encoding_categorical_cols=categorical_cols,
@@ -1693,10 +1693,10 @@ def run_version(
             **extra_kwargs,
         )
         step_times['step1_init'] = round(time.time() - t_step, 2)
-        print(f"  [计时] Step 1 (初始化): {step_times['step1_init']:.2f}s")
+        print(f"  [time] Step 1 (init): {step_times['step1_init']:.2f}s")
 
         # ================================================================
-        # 2. 训练（支持续训 / inference_only 跳过训练）
+        # 2. Train (supports resume; inference_only skips training)
         # ================================================================
         model_path = os.path.join(dir_model, f'{version_name}_agent.pt')
         history_path = os.path.join(dir_report, f'{version_name}_history.json')
@@ -1704,33 +1704,33 @@ def run_version(
         t_step = time.time()
 
         if inference_only:
-            # 仅推理模式：跳过训练，直接加载已有模型
+            # inference_only: skip training, load existing model
             if not ModelIO.agent_model_exists(model_path):
                 raise FileNotFoundError(
-                    f"inference_only 模式但模型不存在: {model_path}")
+                    f"inference_only mode but model not found: {model_path}")
             dc.load(model_path)
-            print(f"\n[Step 2] 跳过训练 (inference_only)，已加载模型: {model_path}")
+            print(f"\n[Step 2] training skipped (inference_only); loaded model: {model_path}")
             step_times['step2_train'] = 0.0
         else:
             resume_from = None
             prev_history = None
 
             if resume_mode == 'auto' and ModelIO.agent_model_exists(model_path):
-                # 自动检测已有模型，续训
+                # Auto-detected existing model; resume
                 resume_from = model_path
-                print(f"\n[Step 2] 续训 (检测到已有模型: {model_path})...")
+                print(f"\n[Step 2] resuming (existing model detected: {model_path})...")
                 if os.path.exists(history_path):
                     try:
                         with open(history_path) as f:
                             prev_history = json.load(f)
                         prev_eps = len(prev_history.get('score', []))
-                        print(f"  已有训练历史: {prev_eps} episodes")
+                        print(f"  existing history: {prev_eps} episodes")
                     except Exception as e:
-                        print(f"  [警告] 加载训练历史失败: {e}")
+                        print(f"  [warn] failed to load history: {e}")
                         prev_history = None
-                print(f"  新增训练: {n_episodes} episodes")
+                print(f"  adding {n_episodes} episodes")
             else:
-                print(f"\n[Step 2] 训练 ({n_episodes} episodes)...")
+                print(f"\n[Step 2] training ({n_episodes} episodes)...")
 
             dc.fit(X_dirty, y_dirty, X_clean=X_clean, y_clean=y_clean,
                    n_episodes=n_episodes, verbose=verbose,
@@ -1738,38 +1738,38 @@ def run_version(
                    X_clean_val=oracle_split['X_clean_val'] if oracle_split else None,
                    y_clean_val=oracle_split['y_clean_val'] if oracle_split else None)
 
-            # 保存模型
+            # Save model
             try:
                 dc.save(model_path)
-                print(f"  模型已保存: {model_path}")
+                print(f"  model saved: {model_path}")
             except Exception as e:
-                print(f"  [警告] 模型保存失败: {e}")
+                print(f"  [warn] model save failed: {e}")
 
-            # 保存训练历史
+            # Save training history
             history = dc.get_training_history()
             if history and history.get('score'):
                 history_file = os.path.join(dir_report, f'{version_name}_history.json')
                 try:
-                    # action_probs 是 list[list]，需要特殊处理
+                    # action_probs is list[list]; needs special handling
                     serializable_history = {}
                     for k, vals in history.items():
                         if k == 'action_probs':
-                            serializable_history[k] = vals  # 已经是可序列化的
+                            serializable_history[k] = vals  # already serializable
                         else:
                             serializable_history[k] = [float(v) for v in vals]
                     with open(history_file, 'w') as f:
                         json.dump(serializable_history, f, indent=2)
-                    print(f"  训练历史已保存: {history_file}")
+                    print(f"  history saved: {history_file}")
                 except Exception as e:
-                    print(f"  [警告] 训练历史保存失败: {e}")
+                    print(f"  [warn] history save failed: {e}")
 
             step_times['step2_train'] = round(time.time() - t_step, 2)
-            print(f"  [计时] Step 2 (训练): {step_times['step2_train']:.2f}s")
+            print(f"  [time] Step 2 (train): {step_times['step2_train']:.2f}s")
 
         # ================================================================
-        # 3. 推理
+        # 3. Inference
         # ================================================================
-        print(f"\n[Step 3] 推理 (模式: {inference_mode})...")
+        print(f"\n[Step 3] inference (mode: {inference_mode})...")
         t_step = time.time()
         ground_truth_used = 0
 
@@ -1780,50 +1780,50 @@ def run_version(
             ground_truth_used = stats.get('truth_cost', 0)
             report['action_counts'] = stats.get('action_counts', {})
             report['keep_mask'] = stats.get('keep_mask', None)
-            print(f"  真值使用: {ground_truth_used}")
-            print(f"  动作分布: {stats.get('action_counts', {})}")
+            print(f"  ground truth used: {ground_truth_used}")
+            print(f"  action counts: {stats.get('action_counts', {})}")
 
         elif inference_mode == 'two_phase':
-            # 第一阶段: 生成修复计划
+            # Phase 1: produce repair plan
             repair_plan = dc.plan(X_dirty, y_dirty, X_clean=X_clean, y_clean=y_clean, verbose=verbose)
-            print(f"  修复计划: 需要 {len(repair_plan)} 个真值")
+            print(f"  repair plan: needs {len(repair_plan)} ground-truth values")
 
-            # 准备真值（支持特征列和标签列 col=-1）
+            # Prepare ground truth (supports feature columns and label column col=-1)
             true_values = {}
             for item in repair_plan:
                 idx, col = item['idx'], item['col']
                 if col == -1:
-                    # 标签噪声：从 y_clean 获取真值
+                    # Label noise: fetch ground truth from y_clean
                     if idx < len(y_clean):
                         true_values[(idx, col)] = y_clean[idx]
                 elif idx < X_clean.shape[0] and col < X_clean.shape[1]:
                     true_values[(idx, col)] = X_clean[idx, col]
 
-            # 第二阶段: 执行修复
+            # Phase 2: execute repair
             X_result, y_result, keep_mask = dc.execute(
                 X_dirty, true_values, verbose=verbose, y_dirty=y_dirty
             )
             ground_truth_used = len(true_values)
             report['keep_mask'] = keep_mask
-            print(f"  真值使用: {ground_truth_used}")
+            print(f"  ground truth used: {ground_truth_used}")
 
         report['ground_truth_used'] = ground_truth_used
         report['cleaned_shape'] = list(X_result.shape)
 
-        # 保存清洗后数据（标准化版本 + 原始格式版本）
+        # Save cleaned data (standardized version + original-format version)
         output_csv = os.path.join(dir_data, f'{version_name}_cleaned.csv')
         output_csv_original = os.path.join(dir_data, f'{version_name}_cleaned_original.csv')
 
         try:
-            # 标准化版本（供内部分析用）
+            # Standardized version (for internal analysis)
             cleaned_df = pd.DataFrame(X_result, columns=column_names)
             cleaned_df[ds_cfg['label_col']] = y_result[:len(cleaned_df)]
             cleaned_df.to_csv(output_csv, index=False)
-            print(f"  清洗后数据已保存: {output_csv}")
+            print(f"  cleaned data saved: {output_csv}")
         except Exception as e:
-            print(f"  [警告] 清洗数据保存失败: {e}")
+            print(f"  [warn] cleaned data save failed: {e}")
 
-        # 生成原始格式 CSV（供 getScoreML 统一测评用）
+        # Produce original-format CSV (consumed by getScoreML unified evaluation)
         try:
             cleaned_original_df = _inverse_transform_to_csv(
                 X_result=X_result,
@@ -1838,13 +1838,13 @@ def run_version(
                 keep_mask=report.get('keep_mask', None),
             )
             cleaned_original_df.to_csv(output_csv_original, index=False)
-            print(f"  原始格式清洗数据已保存: {output_csv_original}")
+            print(f"  cleaned (original format) saved: {output_csv_original}")
         except Exception as e:
-            print(f"  [警告] 原始格式CSV生成失败: {e}")
+            print(f"  [warn] original-format CSV generation failed: {e}")
             traceback.print_exc()
             output_csv_original = None
 
-        # 保存编码版本（供 Step 9 直接使用，避免 CSV roundtrip 精度损失）
+        # Save encoded version (used directly by Step 9 to avoid CSV roundtrip precision loss)
         output_npz = os.path.join(dir_data, f'{version_name}_cleaned_encoded.npz')
         try:
             np.savez(output_npz,
@@ -1852,18 +1852,18 @@ def run_version(
                      y_result=y_result,
                      column_names=np.array(column_names),
                      label_col=np.array([ds_cfg['label_col']]))
-            print(f"  编码版本已保存: {output_npz}")
+            print(f"  encoded version saved: {output_npz}")
         except Exception as e:
-            print(f"  [警告] 编码版本保存失败: {e}")
+            print(f"  [warn] encoded save failed: {e}")
             output_npz = None
 
         step_times['step3_infer'] = round(time.time() - t_step, 2)
-        print(f"  [计时] Step 3 (推理): {step_times['step3_infer']:.2f}s")
+        print(f"  [time] Step 3 (infer): {step_times['step3_infer']:.2f}s")
 
         # ================================================================
-        # 4. 检测器准确率评估 (提前到 Baseline 评估之前，供 DeleteFix 使用)
+        # 4. Detector accuracy (moved before Baseline eval; needed by DeleteFix)
         # ================================================================
-        print(f"\n[Step 4] 检测器准确率评估...")
+        print(f"\n[Step 4] detector accuracy evaluation...")
         t_step = time.time()
         detected_errors = None
         try:
@@ -1874,22 +1874,22 @@ def run_version(
             )
             report['detector_accuracy'] = detector_accuracy
         except Exception as e:
-            print(f"  [错误] 检测器准确率评估失败: {e}")
+            print(f"  [error] detector accuracy evaluation failed: {e}")
             traceback.print_exc()
             detector_accuracy = {}
 
         step_times['step4_detect_eval'] = round(time.time() - t_step, 2)
-        print(f"  [计时] Step 4 (检测器评估): {step_times['step4_detect_eval']:.2f}s")
+        print(f"  [time] Step 4 (detector eval): {step_times['step4_detect_eval']:.2f}s")
 
     # ================================================================
-    # 5. 6种 Baseline 评估 + 决策边界对比图
+    # 5. 6 baseline evaluations + decision-boundary comparison chart
     # ================================================================
-    total_vis_time = 0.0  # 累计可视化耗时（最终从 elapsed_time 扣除）
+    total_vis_time = 0.0  # cumulative visualization time (later deducted from elapsed_time)
 
-    print(f"\n[Step 5] Baseline 评估与可视化...")
+    print(f"\n[Step 5] baseline evaluation and visualization...")
     t_step = time.time()
     try:
-        # Oracle 模式: 传入训练子集和测试集
+        # Oracle mode: pass train subset and test set explicitly
         if oracle_split is not None:
             eval_X_dirty = oracle_split['X_dirty_train']
             eval_y_dirty = oracle_split['y_dirty_train']
@@ -1905,7 +1905,7 @@ def run_version(
             eval_test_X = None
             eval_test_y = None
 
-        # 构造 ValueEstimator 供 ReplaceAll baseline 使用
+        # Construct ValueEstimator for the ReplaceAll baseline
         ve_for_baseline = None
         if dc is not None:
             try:
@@ -1913,7 +1913,7 @@ def run_version(
                 ve_for_baseline = ValueEstimator(dc.config)
                 print(f"  ReplaceAll VE: {ve_for_baseline.summary()}")
             except Exception as e:
-                print(f"  [警告] ValueEstimator 构造失败，ReplaceAll 降级为均值填充: {e}")
+                print(f"  [warn] ValueEstimator construction failed; ReplaceAll falls back to mean fill: {e}")
 
         baseline_results, step5_vis_time = evaluate_and_visualize(
             eval_X_dirty, eval_y_dirty, eval_X_clean, eval_y_clean,
@@ -1928,7 +1928,7 @@ def run_version(
         report['baseline_results'] = baseline_results
         total_vis_time += step5_vis_time
 
-        # Baseline 对比柱状图（也计入可视化耗时）
+        # Baseline comparison bar chart (also counted as visualization time)
         vis_start = time.time()
         plot_baseline_comparison(
             baseline_results, dir_vis, version_name,
@@ -1936,17 +1936,17 @@ def run_version(
         )
         total_vis_time += time.time() - vis_start
     except Exception as e:
-        print(f"  [错误] Baseline 评估失败: {e}")
+        print(f"  [error] baseline evaluation failed: {e}")
         traceback.print_exc()
         baseline_results = {}
 
     step_times['step5_baseline'] = round(time.time() - t_step, 2)
-    print(f"  [计时] Step 5 (Baseline评估): {step_times['step5_baseline']:.2f}s")
+    print(f"  [time] Step 5 (baseline eval): {step_times['step5_baseline']:.2f}s")
 
     # ================================================================
-    # 6. 容忍度评估 (compute_model_tolerance)
+    # 6. Model tolerance (compute_model_tolerance)
     # ================================================================
-    print(f"\n[Step 6] 模型容忍度评估...")
+    print(f"\n[Step 6] model tolerance evaluation...")
     t_step = time.time()
     try:
         tolerance_results = compute_model_tolerance(
@@ -1963,20 +1963,20 @@ def run_version(
         )
         report['tolerance_results'] = tolerance_results
     except Exception as e:
-        print(f"  [错误] 容忍度评估失败: {e}")
+        print(f"  [error] tolerance evaluation failed: {e}")
         traceback.print_exc()
         tolerance_results = {}
 
     step_times['step6_tolerance'] = round(time.time() - t_step, 2)
-    print(f"  [计时] Step 6 (容忍度评估): {step_times['step6_tolerance']:.2f}s")
+    print(f"  [time] Step 6 (tolerance): {step_times['step6_tolerance']:.2f}s")
 
     # ================================================================
-    # 7. Shapley 三维度分析 (run_full_shapley_analysis)
+    # 7. Three-dimensional Shapley analysis (run_full_shapley_analysis)
     # ================================================================
-    print(f"\n[Step 7] Shapley 三维度分析...")
+    print(f"\n[Step 7] three-dimensional Shapley analysis...")
     vis_start = time.time()
     try:
-        # 构建 error_list 格式 (从检测结果转换)
+        # Build error_list (converted from detection results)
         error_list = []
         if detected_errors is not None:
             for err_type_name, err_type_id in [('missing', 0), ('semantic', 1), ('syntactic', 2), ('label_noise', 3)]:
@@ -2005,22 +2005,22 @@ def run_version(
             )
             report['shapley_results'] = shapley_results
         else:
-            print("  [跳过] 无可用错误列表或 Agent 未就绪")
+            print("  [skip] no error list available or agent not ready")
     except Exception as e:
-        print(f"  [错误] Shapley 分析失败: {e}")
+        print(f"  [error] Shapley analysis failed: {e}")
         traceback.print_exc()
     _step7_elapsed = time.time() - vis_start
     total_vis_time += _step7_elapsed
     step_times['step7_shapley'] = round(_step7_elapsed, 2)
-    print(f"  [计时] Step 7 (Shapley分析): {step_times['step7_shapley']:.2f}s")
+    print(f"  [time] Step 7 (Shapley): {step_times['step7_shapley']:.2f}s")
 
     # ================================================================
-    # 8. 训练曲线可视化
+    # 8. Training-curve visualization
     # ================================================================
-    print(f"\n[Step 8] 训练曲线可视化...")
+    print(f"\n[Step 8] training-curve visualization...")
     vis_start = time.time()
     try:
-        # inference_only 模式下尝试从文件加载训练历史
+        # In inference_only mode, try to load training history from file
         if inference_only:
             history = None
             prev_history = None
@@ -2032,26 +2032,26 @@ def run_version(
                 except Exception:
                     pass
         if history and history.get('score'):
-            # 计算续训起点用于可视化标记
+            # Compute resume start for the visualization marker
             resume_ep = len(prev_history.get('score', [])) if prev_history else 0
             plot_training_curves(history, dir_vis, version_name,
                                  resume_episode=resume_ep)
     except Exception as e:
-        print(f"  [错误] 训练曲线绘制失败: {e}")
+        print(f"  [error] training-curve plot failed: {e}")
         traceback.print_exc()
     _step8_elapsed = time.time() - vis_start
     total_vis_time += _step8_elapsed
     step_times['step8_vis'] = round(_step8_elapsed, 2)
-    print(f"  [计时] Step 8 (训练曲线): {step_times['step8_vis']:.2f}s")
+    print(f"  [time] Step 8 (training curves): {step_times['step8_vis']:.2f}s")
 
     # ================================================================
-    # 9. getScoreML 统一测评 (与 run_baran_raha 输出格式一致)
+    # 9. getScoreML unified evaluation (matches run_baran_raha output format)
     # ================================================================
-    print(f"\n[Step 9] Clean4MLBaseline 统一测评...")
+    print(f"\n[Step 9] Clean4MLBaseline unified evaluation...")
     t_step = time.time()
     getscoreml_results = {}
     try:
-        # 确保 tools 目录在 sys.path 中
+        # Ensure tools dir is on sys.path
         _tools_dir = os.path.join(_PROJECT_ROOT, 'tools')
         if _tools_dir not in sys.path:
             sys.path.insert(0, _tools_dir)
@@ -2061,7 +2061,7 @@ def run_version(
         from tools.getScoreML import run_all_evaluation
 
         if output_csv_original and os.path.exists(output_csv_original):
-            # 选择合适的模型列表（与 raha_baran 一致）
+            # Pick the model list (matches raha_baran)
             if task_type == 'classification':
                 ml_models = ['rf', 'lr', 'svm', 'knn', 'dt', 'gb']
             elif task_type == 'clustering':
@@ -2069,17 +2069,17 @@ def run_version(
             else:
                 ml_models = ['rf', 'lr', 'ridge', 'lasso', 'knn', 'gb']
 
-            # DemandClean 的方法类型:
-            #   oracle + single_phase = Type 1 (全自动，但使用了全部真值)
-            #   oracle + two_phase = Type 3 (迭代交互，需要用户提供真值)
-            #   auto + single_phase = Type 1 (全自动)
-            #   auto + two_phase = Type 2 (需验证集，部分真值)
+            # DemandClean method type:
+            #   oracle + single_phase = Type 1 (fully automatic but uses all ground truth)
+            #   oracle + two_phase    = Type 3 (iterative, user supplies ground truth)
+            #   auto   + single_phase = Type 1 (fully automatic)
+            #   auto   + two_phase    = Type 2 (needs validation set, partial ground truth)
             if detector_mode == 'oracle':
                 method_type = 3 if inference_mode == 'two_phase' else 1
             else:
                 method_type = 2 if inference_mode == 'two_phase' else 1
 
-            # 计算 mse_attributes（数值列）
+            # Compute mse_attributes (numeric columns)
             mse_attrs = [c for c in column_names if c not in (categorical_cols or set())]
 
             getscoreml_results = run_all_evaluation(
@@ -2105,51 +2105,51 @@ def run_version(
                 verbose=verbose,
             )
 
-            # 确保无 None 值：将所有 None 替换为 0 或 "N/A"
+            # Ensure no None values: replace None with 0 or "N/A"
             for k, v in getscoreml_results.items():
                 if v is None:
                     getscoreml_results[k] = 0.0
 
             report['getscoreml_results'] = getscoreml_results
-            print(f"  统一测评完成，结果已保存到: {save_dir}/{version_name}_evaluation_results.txt")
+            print(f"  unified evaluation done; results saved: {save_dir}/{version_name}_evaluation_results.txt")
         else:
-            print(f"  [跳过] 原始格式 CSV 不可用，无法进行统一测评")
+            print(f"  [skip] original-format CSV unavailable; skip unified evaluation")
     except ImportError as e:
-        print(f"  [警告] 无法导入 getScoreML 模块: {e}")
+        print(f"  [warn] cannot import getScoreML module: {e}")
     except Exception as e:
         try:
-            print(f"  [错误] 统一测评失败: {e}")
+            print(f"  [error] unified evaluation failed: {e}")
             traceback.print_exc()
         except (ValueError, IOError):
-            # stdout 可能被子进程关闭
-            sys.stderr.write(f"  [错误] 统一测评失败: {e}\n")
+            # stdout may be closed by a child process
+            sys.stderr.write(f"  [error] unified evaluation failed: {e}\n")
             traceback.print_exc(file=sys.stderr)
 
     step_times['step9_ml_eval'] = round(time.time() - t_step, 2)
-    print(f"  [计时] Step 9 (统一测评): {step_times['step9_ml_eval']:.2f}s")
+    print(f"  [time] Step 9 (unified eval): {step_times['step9_ml_eval']:.2f}s")
 
     # ================================================================
-    # 10. 真值成本汇总
+    # 10. Ground-truth cost summary
     # ================================================================
-    print(f"\n[Step 10] 真值成本汇总...")
+    print(f"\n[Step 10] ground-truth cost summary...")
     t_step = time.time()
     try:
-        # 获取 RAHA 检测成本
+        # Fetch RAHA detection cost
         raha_cost_info = {}
         if dc is not None and hasattr(dc, 'detector') and hasattr(dc.detector, 'raha_cost_info'):
             raha_cost_info = dc.detector.raha_cost_info or {}
         elif 'raha_cost' in report:
-            # visualize_only 模式从旧 report 恢复
+            # visualize_only mode restores from old report
             raha_cost_info = report['raha_cost']
 
         raha_detection_cost = raha_cost_info.get('raha_total_cost', 0)
         if detector_mode == 'oracle':
-            raha_detection_cost = 0  # Oracle 模式无 RAHA 成本
+            raha_detection_cost = 0  # no RAHA cost in oracle mode
 
-        # Agent 修复成本 = ground_truth_used
+        # Agent repair cost = ground_truth_used
         agent_repair_cost = ground_truth_used
 
-        # 总成本
+        # Total cost
         total_cost = raha_detection_cost + agent_repair_cost if count_raha_cost else agent_repair_cost
         total_data_cells = X_dirty.shape[0] * X_dirty.shape[1]
         cost_ratio = total_cost / total_data_cells if total_data_cells > 0 else 0.0
@@ -2165,45 +2165,45 @@ def run_version(
             'count_raha_cost': count_raha_cost,
         }
 
-        print(f"  RAHA 检测成本: {raha_detection_cost}")
-        print(f"  Agent 修复成本: {agent_repair_cost}")
-        print(f"  总成本: {total_cost} / {total_data_cells} cells = {cost_ratio:.4%}")
+        print(f"  RAHA detection cost: {raha_detection_cost}")
+        print(f"  Agent repair cost:   {agent_repair_cost}")
+        print(f"  Total cost: {total_cost} / {total_data_cells} cells = {cost_ratio:.4%}")
     except Exception as e:
-        print(f"  [警告] 真值成本汇总失败: {e}")
+        print(f"  [warn] cost summary failed: {e}")
         traceback.print_exc()
 
     step_times['step10_cost'] = round(time.time() - t_step, 2)
-    print(f"  [计时] Step 10 (成本汇总): {step_times['step10_cost']:.2f}s")
+    print(f"  [time] Step 10 (cost summary): {step_times['step10_cost']:.2f}s")
 
     # ================================================================
-    # 保存完整报告
+    # Save full report
     # ================================================================
     elapsed_time = time.time() - start_time - total_vis_time
 
-    # 计时汇总
-    print(f"\n{'─'*50}")
-    print(f"  步骤计时汇总")
-    print(f"{'─'*50}")
+    # Timing summary
+    print(f"\n{'-'*50}")
+    print(f"  Step timing summary")
+    print(f"{'-'*50}")
     step_labels = {
-        'step1_init': '初始化',
-        'step2_train': '训练',
-        'step3_infer': '推理',
-        'step4_detect_eval': '检测器评估',
-        'step5_baseline': 'Baseline评估',
-        'step6_tolerance': '容忍度评估',
-        'step7_shapley': 'Shapley分析',
-        'step8_vis': '训练曲线',
-        'step9_ml_eval': '统一测评',
-        'step10_cost': '成本汇总',
+        'step1_init': 'init',
+        'step2_train': 'train',
+        'step3_infer': 'infer',
+        'step4_detect_eval': 'detector eval',
+        'step5_baseline': 'baseline eval',
+        'step6_tolerance': 'tolerance',
+        'step7_shapley': 'Shapley',
+        'step8_vis': 'training curves',
+        'step9_ml_eval': 'unified eval',
+        'step10_cost': 'cost summary',
     }
     for key, label in step_labels.items():
         t = step_times.get(key, 0)
-        print(f"  Step {key.split('_')[0].replace('step','')} {label:<12s}│ {t:>8.2f}s")
-    print(f"{'─'*50}")
-    print(f"  总计(含可视化)       │ {time.time() - start_time:>8.2f}s")
-    print(f"  可视化耗时           │ {total_vis_time:>8.2f}s")
-    print(f"  净耗时(扣可视化)     │ {elapsed_time:>8.2f}s")
-    print(f"{'─'*50}")
+        print(f"  Step {key.split('_')[0].replace('step','')} {label:<16s}| {t:>8.2f}s")
+    print(f"{'-'*50}")
+    print(f"  total (incl. viz)          | {time.time() - start_time:>8.2f}s")
+    print(f"  visualization time         | {total_vis_time:>8.2f}s")
+    print(f"  net (excl. viz)            | {elapsed_time:>8.2f}s")
+    print(f"{'-'*50}")
 
     report['elapsed_time'] = round(elapsed_time, 2)
     report['vis_time'] = round(total_vis_time, 2)
@@ -2213,101 +2213,101 @@ def run_version(
     try:
         with open(report_file, 'w', encoding='utf-8') as f:
             json.dump(report, f, indent=2, ensure_ascii=False, default=str)
-        print(f"\n  [输出] 报告已保存: {report_file}")
+        print(f"\n  [out] report saved: {report_file}")
     except Exception as e:
-        print(f"  [警告] 报告保存失败: {e}")
+        print(f"  [warn] report save failed: {e}")
 
-    # 文本摘要
+    # Text summary
     summary_file = os.path.join(dir_report, f'{version_name}_summary.txt')
     try:
         with open(summary_file, 'w', encoding='utf-8') as f:
-            f.write(f"DemandClean 结果摘要 - {version_name}\n")
+            f.write(f"DemandClean result summary - {version_name}\n")
             f.write("=" * 60 + "\n\n")
-            f.write(f"数据集: {dataset_name}\n")
-            f.write(f"检测器: {detector_mode}\n")
+            f.write(f"Dataset: {dataset_name}\n")
+            f.write(f"Detector: {detector_mode}\n")
             f.write(f"Agent: {agent_type}\n")
-            f.write(f"推理模式: {inference_mode}\n")
-            f.write(f"任务: {task_type} ({model_type})\n")
-            f.write(f"训练轮数: {n_episodes}\n")
-            f.write(f"执行时间: {elapsed_time:.2f} 秒\n")
-            f.write(f"可视化耗时: {total_vis_time:.2f} 秒\n")
-            f.write(f"数据维度: {X_dirty.shape} -> {X_result.shape}\n")
-            f.write(f"真值成本: {ground_truth_used}\n\n")
+            f.write(f"Inference mode: {inference_mode}\n")
+            f.write(f"Task: {task_type} ({model_type})\n")
+            f.write(f"Episodes: {n_episodes}\n")
+            f.write(f"Elapsed: {elapsed_time:.2f}s\n")
+            f.write(f"Visualization time: {total_vis_time:.2f}s\n")
+            f.write(f"Shape: {X_dirty.shape} -> {X_result.shape}\n")
+            f.write(f"Ground-truth cost: {ground_truth_used}\n\n")
 
-            # 步骤计时
+            # Step timing
             if step_times:
-                f.write("步骤计时:\n")
+                f.write("Step timing:\n")
                 f.write("-" * 60 + "\n")
                 _step_labels = {
-                    'step1_init': '初始化',
-                    'step2_train': '训练',
-                    'step3_infer': '推理',
-                    'step4_detect_eval': '检测器评估',
-                    'step5_baseline': 'Baseline评估',
-                    'step6_tolerance': '容忍度评估',
-                    'step7_shapley': 'Shapley分析',
-                    'step8_vis': '训练曲线',
-                    'step9_ml_eval': '统一测评',
-                    'step10_cost': '成本汇总',
+                    'step1_init': 'init',
+                    'step2_train': 'train',
+                    'step3_infer': 'infer',
+                    'step4_detect_eval': 'detector eval',
+                    'step5_baseline': 'baseline eval',
+                    'step6_tolerance': 'tolerance',
+                    'step7_shapley': 'Shapley',
+                    'step8_vis': 'training curves',
+                    'step9_ml_eval': 'unified eval',
+                    'step10_cost': 'cost summary',
                 }
                 for _key, _label in _step_labels.items():
                     _t = step_times.get(_key, 0)
                     f.write(f"  Step {_key.split('_')[0].replace('step','')} {_label}: {_t:.2f}s\n")
                 f.write("\n")
 
-            f.write("Baseline 对比:\n")
+            f.write("Baseline comparison:\n")
             f.write("-" * 60 + "\n")
             for name, res in baseline_results.items():
                 f.write(f"  {name}: {res}\n")
 
             if tolerance_results:
-                f.write("\n模型容忍度:\n")
+                f.write("\nModel tolerance:\n")
                 f.write("-" * 60 + "\n")
                 for name, res in tolerance_results.items():
                     f.write(f"  {name}: {res}\n")
 
             if detector_accuracy:
-                f.write("\n检测器准确率:\n")
+                f.write("\nDetector accuracy:\n")
                 f.write("-" * 60 + "\n")
                 for name, res in detector_accuracy.items():
                     f.write(f"  {name}: {res}\n")
 
             if getscoreml_results:
-                f.write("\nClean4MLBaseline 统一测评:\n")
+                f.write("\nClean4MLBaseline unified evaluation:\n")
                 f.write("-" * 60 + "\n")
                 for key in ['accuracy', 'recall', 'f1_score', 'edr', 'hybrid_distance', 'r_edr']:
                     if key in getscoreml_results:
                         f.write(f"  {key}: {getscoreml_results[key]}\n")
-                f.write("\n  下游任务性能:\n")
+                f.write("\n  Downstream task performance:\n")
                 for key, value in getscoreml_results.items():
                     if key.startswith('ml_'):
                         f.write(f"    {key}: {value}\n")
-                f.write("\n  容忍度:\n")
+                f.write("\n  Tolerance:\n")
                 for key, value in getscoreml_results.items():
                     if key.startswith('tolerance_'):
                         f.write(f"    {key}: {value}\n")
-                f.write("\n  Snoopy 上界:\n")
+                f.write("\n  Snoopy upper bound:\n")
                 for key, value in getscoreml_results.items():
                     if key.startswith('snoopy_'):
                         f.write(f"    {key}: {value}\n")
-                f.write("\n  真值成本:\n")
+                f.write("\n  Ground-truth cost:\n")
                 f.write(f"    method_type: {getscoreml_results.get('method_type', 'N/A')}\n")
                 f.write(f"    ground_truth_cost: {getscoreml_results.get('ground_truth_cost', 'N/A')}\n")
                 for key, value in getscoreml_results.items():
                     if key.startswith('ideal_'):
                         f.write(f"    {key}: {value}\n")
 
-            # Shapley 分析结果
+            # Shapley analysis results
             shapley = report.get('shapley_results', {})
             if shapley and 'report_text' in shapley:
                 f.write("\n" + "=" * 60 + "\n")
-                f.write("Shapley 贡献分析:\n")
+                f.write("Shapley contribution analysis:\n")
                 f.write("=" * 60 + "\n")
                 f.write(shapley['report_text'])
                 f.write("\n")
             elif shapley:
-                # 兜底：没有 report_text 时输出裸数据
-                f.write("\nShapley 分析:\n")
+                # Fallback: emit raw data when report_text is missing
+                f.write("\nShapley analysis:\n")
                 f.write("-" * 60 + "\n")
                 for dim_key in ['action_shapley', 'feature_shapley', 'error_type_shapley']:
                     dim_data = shapley.get(dim_key, {})
@@ -2316,40 +2316,40 @@ def run_version(
                         for name, val in sorted(dim_data.items(), key=lambda x: -x[1]):
                             f.write(f"    {name}: {val:+.6f}\n")
 
-            # 真值成本汇总
+            # Ground-truth cost summary
             cost_summary = report.get('ground_truth_cost_summary', {})
             if cost_summary:
                 f.write("\n" + "=" * 60 + "\n")
-                f.write("真值使用成本汇总:\n")
+                f.write("Ground-truth cost summary:\n")
                 f.write("=" * 60 + "\n")
-                f.write(f"  RAHA 检测成本: {cost_summary.get('raha_detection_cost', 0)}\n")
-                f.write(f"  Agent 修复成本: {cost_summary.get('agent_repair_cost', 0)}\n")
-                f.write(f"  总成本: {cost_summary.get('total_cost', 0)}\n")
-                f.write(f"  总数据单元: {cost_summary.get('total_data_cells', 0)}\n")
-                f.write(f"  成本率: {cost_summary.get('cost_ratio', 0):.4%}\n")
-                f.write(f"  apply_raha_truth: {cost_summary.get('apply_raha_truth', True)}\n")
-                f.write(f"  count_raha_cost: {cost_summary.get('count_raha_cost', True)}\n")
+                f.write(f"  RAHA detection cost: {cost_summary.get('raha_detection_cost', 0)}\n")
+                f.write(f"  Agent repair cost:   {cost_summary.get('agent_repair_cost', 0)}\n")
+                f.write(f"  Total cost:          {cost_summary.get('total_cost', 0)}\n")
+                f.write(f"  Total data cells:    {cost_summary.get('total_data_cells', 0)}\n")
+                f.write(f"  Cost ratio:          {cost_summary.get('cost_ratio', 0):.4%}\n")
+                f.write(f"  apply_raha_truth:    {cost_summary.get('apply_raha_truth', True)}\n")
+                f.write(f"  count_raha_cost:     {cost_summary.get('count_raha_cost', True)}\n")
     except Exception as e:
-        print(f"  [警告] 摘要保存失败: {e}")
+        print(f"  [warn] summary save failed: {e}")
 
-    print(f"\n  版本 {version_name} 完成! 耗时: {elapsed_time:.2f}s")
-    print(f"  输出目录: {save_dir}")
+    print(f"\n  Version {version_name} done! elapsed: {elapsed_time:.2f}s")
+    print(f"  Output dir: {save_dir}")
 
     return report
 
 
 # ============================================================================
-# 跨版本对比分析
+# Cross-version comparison
 # ============================================================================
 def cross_version_comparison(
     dataset_name: str,
     all_reports: dict,
 ):
     """
-    所有版本完成后，生成跨版本对比表格和图表
+    After all versions finish, produce cross-version comparison tables and charts.
 
     Args:
-        dataset_name: 数据集名称
+        dataset_name: dataset name
         all_reports: {version_name: report_dict}
     """
     ds_cfg = DATASETS[dataset_name]
@@ -2359,10 +2359,10 @@ def cross_version_comparison(
     os.makedirs(save_dir, exist_ok=True)
 
     print("\n" + "=" * 70)
-    print(f"跨版本对比分析 - {dataset_name}")
+    print(f"Cross-version comparison - {dataset_name}")
     print("=" * 70)
 
-    # --- 收集容忍度结果用于 compare_versions ---
+    # --- Collect tolerance results for compare_versions ---
     tolerance_all = {}
     for version_name, report in all_reports.items():
         tol = report.get('tolerance_results', {})
@@ -2376,12 +2376,12 @@ def cross_version_comparison(
                 save_dir=save_dir,
                 task_name=dataset_name,
             )
-            print(f"  跨版本对比已保存到: {save_dir}")
+            print(f"  cross-version comparison saved to: {save_dir}")
         except Exception as e:
-            print(f"  [错误] 跨版本对比失败: {e}")
+            print(f"  [error] cross-version comparison failed: {e}")
             traceback.print_exc()
 
-    # --- 生成汇总表格 ---
+    # --- Build summary table ---
     try:
         import matplotlib
         matplotlib.use('Agg')
@@ -2398,13 +2398,13 @@ def cross_version_comparison(
                 'elapsed_time': report.get('elapsed_time', 0),
             }
 
-            # 真值成本汇总
+            # Ground-truth cost summary
             cost_sum = report.get('ground_truth_cost_summary', {})
             row['raha_cost'] = cost_sum.get('raha_detection_cost', 0)
             row['total_cost'] = cost_sum.get('total_cost', 0)
             row['cost_ratio'] = cost_sum.get('cost_ratio', 0.0)
 
-            # 提取主模型的 DemandClean baseline 指标
+            # Extract DemandClean baseline metrics for the primary model
             baseline = report.get('baseline_results', {}).get('DemandClean', {})
             if task_type == 'classification':
                 primary_model = EVAL_MODELS_CLASSIFICATION[0]
@@ -2419,7 +2419,7 @@ def cross_version_comparison(
                 row['dc_r2'] = baseline.get(f'{primary_model}_r2', None)
                 row['dc_mse'] = baseline.get(f'{primary_model}_mse', None)
 
-            # 提取容忍度
+            # Extract tolerance
             tol = report.get('tolerance_results', {})
             first_model_tol = next(iter(tol.values()), {}) if tol else {}
             row['tol_prior'] = first_model_tol.get('tolerance_prior', None)
@@ -2430,12 +2430,12 @@ def cross_version_comparison(
         summary_df = pd.DataFrame(summary_rows)
         csv_path = os.path.join(save_dir, f'{dataset_name}_all_versions_summary.csv')
         summary_df.to_csv(csv_path, index=False, encoding='utf-8-sig')
-        print(f"  汇总表格已保存: {csv_path}")
+        print(f"  summary table saved: {csv_path}")
 
-        # 打印表格
+        # Print the table
         print("\n" + summary_df.to_string(index=False))
 
-        # --- 汇总柱状图 ---
+        # --- Summary bar chart ---
         if len(summary_df) > 1:
             if task_type == 'classification' and 'dc_accuracy' in summary_df.columns:
                 metric_col = 'dc_accuracy'
@@ -2468,43 +2468,43 @@ def cross_version_comparison(
                 fig_path = os.path.join(save_dir, f'{dataset_name}_all_versions_comparison.png')
                 fig.savefig(fig_path, dpi=150, bbox_inches='tight')
                 plt.close(fig)
-                print(f"  跨版本对比图已保存: {fig_path}")
+                print(f"  cross-version plot saved: {fig_path}")
 
     except Exception as e:
-        print(f"  [错误] 汇总分析失败: {e}")
+        print(f"  [error] summary analysis failed: {e}")
         traceback.print_exc()
 
 
 # ============================================================================
-# main() 函数
+# main()
 # ============================================================================
 def main():
     parser = argparse.ArgumentParser(
-        description='DemandClean 统一运行脚本 - 支持 8 种版本组合',
+        description='DemandClean unified runner - supports 8 version combos',
         formatter_class=argparse.RawDescriptionHelpFormatter,
         epilog="""
-示例:
-    # 默认: v5 + 全部数据集
+Examples:
+    # Default: v5 + all datasets
     python run_demandclean_base.py --n_episodes 300
 
-    # 指定单个数据集
+    # Single dataset
     python run_demandclean_base.py --dataset beers --n_episodes 300
 
-    # 指定版本 (支持短名 v1-v8 或全名)
+    # Specific versions (short names v1-v8 or full names)
     python run_demandclean_base.py --dataset beers --versions v3
     python run_demandclean_base.py --dataset beers --versions v1,v3,v5
     python run_demandclean_base.py --dataset beers --versions v3_oracle_plain_single
 
-    # 自定义错误注入率 (格式: min,max)
+    # Custom error-injection rates (format: min,max)
     python run_demandclean_base.py --dataset beers --missing_rate 0.05,0.1
     python run_demandclean_base.py --dataset beers --semantic_rate 0.1,0.2 --syntactic_rate 0.15,0.3
 
-    # 续训/仅可视化
+    # Resume / visualize only
     python run_demandclean_base.py --dataset beers --resume auto
     python run_demandclean_base.py --dataset beers --versions v6 --visualize_only
 
-版本说明:
-    v1: oracle + dueling + single_phase    v5: auto + dueling + single_phase (默认)
+Versions:
+    v1: oracle + dueling + single_phase    v5: auto + dueling + single_phase (default)
     v2: oracle + dueling + two_phase       v6: auto + dueling + two_phase
     v3: oracle + plain   + single_phase    v7: auto + plain   + single_phase
     v4: oracle + plain   + two_phase       v8: auto + plain   + two_phase
@@ -2514,114 +2514,114 @@ def main():
     parser.add_argument(
         '--dataset', type=str, default=None,
         choices=list(DATASETS.keys()),
-        help='数据集名称 (不指定则运行全部数据集)',
+        help='Dataset name (if omitted, run all datasets)',
     )
     parser.add_argument(
         '--n_episodes', type=int, default=300,
-        help='训练轮数 (默认: 300)',
+        help='Training episodes (default: 300)',
     )
     parser.add_argument(
         '--all_datasets', action='store_true',
-        help='显式指定运行全部数据集 (不指定 --dataset 时即为默认行为)',
+        help='Explicitly run all datasets (this is the default when --dataset is omitted)',
     )
     parser.add_argument(
         '--verbose', action='store_true',
-        help='输出详细训练信息',
+        help='Verbose training output',
     )
     parser.add_argument(
         '--versions', type=str, default='v5',
-        help='指定运行版本，逗号分隔 (如 v3,v5 或 v1,v2,v3)。'
-             '支持短名(v1-v8)和全名(v3_oracle_plain_single)。'
-             '默认使用代码中ENABLE_开关控制的版本',
+        help='Comma-separated versions to run (e.g. v3,v5 or v1,v2,v3). '
+             'Short names (v1-v8) or full names (v3_oracle_plain_single) are accepted. '
+             'Default: use versions enabled by the ENABLE_ switches in code',
     )
     parser.add_argument(
         '--missing_rate', type=str, default='',
-        help='缺失值注入率范围，格式: min,max (如 0.02,0.08)。默认使用 config 默认值',
+        help='Missing-value injection rate range, format: min,max (e.g. 0.02,0.08). Defaults to config values',
     )
     parser.add_argument(
         '--semantic_rate', type=str, default='',
-        help='语义错误注入率范围，格式: min,max (如 0.05,0.15)。默认使用 config 默认值',
+        help='Semantic-error injection rate range, format: min,max (e.g. 0.05,0.15). Defaults to config values',
     )
     parser.add_argument(
         '--syntactic_rate', type=str, default='',
-        help='句法错误注入率范围，格式: min,max (如 0.1,0.25)。默认使用 config 默认值',
+        help='Syntactic-error injection rate range, format: min,max (e.g. 0.1,0.25). Defaults to config values',
     )
     parser.add_argument(
         '--label_rate', type=str, default='',
-        help='标签错误注入率范围，格式: min,max (如 0.0,0.05)。默认使用 config 默认值',
+        help='Label-error injection rate range, format: min,max (e.g. 0.0,0.05). Defaults to config values',
     )
     parser.add_argument(
         '--resume', type=str, choices=['auto', 'force_new'], default='force_new',
-        help='续训模式: auto=检测到已有模型则续训, force_new=强制从头训练 (默认: auto)',
+        help='Resume mode: auto=resume if an existing model is detected; force_new=always train from scratch (default: auto)',
     )
     parser.add_argument(
         '--apply_raha_truth', type=str, choices=['true', 'false'], default='true',
-        help='是否将 RAHA 标注行的真值应用到数据修复 (默认: true)',
+        help='Apply ground-truth values from RAHA-labeled rows during repair (default: true)',
     )
     parser.add_argument(
         '--count_raha_cost', type=str, choices=['true', 'false'], default='true',
-        help='是否将 RAHA 的标注成本计入真值总成本 (默认: true)',
+        help='Count RAHA labeling cost in the total ground-truth cost (default: true)',
     )
     parser.add_argument(
         '--visualize_only', action='store_true',
-        help='仅从已有清洗结果重新生成可视化和评估，跳过训练和推理',
+        help='Regenerate visualization and evaluation from existing cleaned results; skip training and inference',
     )
     parser.add_argument(
         '--min_repair_ratio', type=float, default=None,
-        help='最低修复比例(占 VE-fill 总数), 0=不限制 (如 0.05)',
+        help='Minimum repair ratio (fraction of VE-fill total); 0 = no limit (e.g. 0.05)',
     )
     parser.add_argument(
         '--max_repair_ratio', type=float, default=None,
-        help='最高修复比例, 1.0=不限制 (如 0.80)',
+        help='Maximum repair ratio; 1.0 = no limit (e.g. 0.80)',
     )
     parser.add_argument(
         '--repair_sensitivity', type=float, default=None,
-        help='动态调节的性能敏感度 (默认: 10.0)',
+        help='Performance sensitivity for dynamic tuning (default: 10.0)',
     )
     parser.add_argument(
         '--max_truth_budget', type=int, default=None,
-        help='最大真值预算 (设为0实现NGT变体，即禁用真值修复)',
+        help='Maximum ground-truth budget (set to 0 for the NGT variant, which disables ground-truth repair)',
     )
     parser.add_argument(
         '--repair_lambda', type=float, default=None,
-        help='真值修复成本系数 (默认: 0.03, 回归任务可调低如 0.005)',
+        help='Ground-truth repair cost coefficient (default: 0.03; regression tasks may use lower values like 0.005)',
     )
     parser.add_argument(
         '--reward_model_type', type=str, default=None,
-        help='覆盖 reward 评估用的模型类型 (如 random_forest)，不影响 baseline 评估',
+        help='Override the model type used in reward evaluation (e.g. random_forest); does not affect baseline evaluation',
     )
     parser.add_argument(
         '--disable_raha', action='store_true',
-        help='禁用 RAHA 检测，仅使用规则检测 (适用于纯标签错误数据集如 adult)',
+        help='Disable RAHA detection; use rule-based detection only (for label-error-only datasets like adult)',
     )
     parser.add_argument(
         '--delete_shaping_reward', type=float, default=None,
-        help='delete 动作的 shaping reward (默认: 分类/聚类 -0.02, 回归 -0.05)',
+        help='Shaping reward for the delete action (default: -0.02 for classification/clustering, -0.05 for regression)',
     )
     parser.add_argument(
         '--keep_rate_weight', type=float, default=None,
-        help='final reward 中 keep_rate 权重 (默认: 分类/聚类 0.2, 回归 1.0)',
+        help='Weight of keep_rate in final reward (default: 0.2 for classification/clustering, 1.0 for regression)',
     )
     parser.add_argument(
         '--oracle', action='store_true', default=True,
-        help='启用 Oracle 模式: 三路划分(train/val/test), 用干净验证集做 reward (默认启用)',
+        help='Enable Oracle mode: three-way split (train/val/test) with clean validation set for reward (enabled by default)',
     )
     parser.add_argument(
         '--no-oracle', dest='oracle', action='store_false',
-        help='关闭 Oracle 模式, 使用脏数据构建的 Clean Base 做 reward',
+        help='Disable Oracle mode; use dirty-data-derived Clean Base for reward',
     )
     parser.add_argument(
         '--inference_only', action='store_true',
-        help='仅推理模式: 跳过训练，加载已有模型直接推理+评估 (适用于训练完成但推理失败的情况)',
+        help='Inference-only mode: skip training, load existing model, run inference + evaluation (useful when training finished but inference failed)',
     )
     parser.add_argument(
         '--output_suffix', type=str, default='',
-        help='输出目录后缀，避免覆盖原始版本 (如 --output_suffix _ngt)',
+        help='Output-dir suffix to avoid overwriting the base version (e.g. --output_suffix _ngt)',
     )
 
     args = parser.parse_args()
 
-    # --- 解析错误注入率 ---
+    # --- Parse error injection rates ---
     inject_kwargs = {}
     for rate_name in ['missing_rate', 'semantic_rate', 'syntactic_rate', 'label_rate']:
         rate_str = getattr(args, rate_name, '')
@@ -2633,19 +2633,19 @@ def main():
                 elif len(parts) == 1:
                     inject_kwargs[f'{rate_name}_range'] = (parts[0], parts[0])
                 else:
-                    print(f"[警告] {rate_name} 格式错误: {rate_str}，已忽略")
+                    print(f"[warn] {rate_name} bad format: {rate_str}, ignored")
             except ValueError:
-                print(f"[警告] {rate_name} 格式错误: {rate_str}，已忽略")
+                print(f"[warn] {rate_name} bad format: {rate_str}, ignored")
 
-    # 确定要运行的数据集（默认: 全部）
+    # Determine datasets to run (default: all)
     if args.dataset is not None:
         datasets_to_run = [args.dataset]
     else:
         datasets_to_run = list(DATASETS.keys())
 
     # ======================================================================
-    # 日志重定向: 同时输出到终端和日志文件
-    # 日志文件: logs/demandclean/{dataset}_{timestamp}.log
+    # Log redirection: tee output to both terminal and log file
+    # Log file: logs/demandclean/{dataset}_{timestamp}.log
     # ======================================================================
     timestamp = datetime.now().strftime('%Y%m%d_%H%M%S')
     dataset_tag = args.dataset if args.dataset else 'all'
@@ -2659,67 +2659,67 @@ def main():
     sys.stdout = tee_stdout
     sys.stderr = tee_stderr
 
-    print(f"[日志] 完整输出将保存到: {log_path}")
+    print(f"[log] full output will be saved to: {log_path}")
 
-    # 筛选启用的版本
+    # Select enabled versions
     if args.versions:
-        # 用户通过命令行指定版本
+        # CLI-provided versions
         requested = [v.strip() for v in args.versions.split(',') if v.strip()]
-        # 短名(v1-v8)到全名的映射
+        # Short-name (v1-v8) -> full name
         short_name_map = {
             f'v{i}': k for i, k in enumerate(VERSION_CONFIGS.keys(), 1)
         }
         enabled_versions = {}
         for req in requested:
-            # 先尝试完整名
+            # Try full name first
             if req in VERSION_CONFIGS:
                 cfg = VERSION_CONFIGS[req].copy()
                 cfg['enabled'] = True
                 enabled_versions[req] = cfg
-            # 再尝试短名
+            # Then short name
             elif req in short_name_map:
                 full_name = short_name_map[req]
                 cfg = VERSION_CONFIGS[full_name].copy()
                 cfg['enabled'] = True
                 enabled_versions[full_name] = cfg
             else:
-                print(f"[警告] 未知版本: {req}，已忽略。"
-                      f"可用: {list(short_name_map.keys())} 或 {list(VERSION_CONFIGS.keys())}")
+                print(f"[warn] unknown version: {req}, ignored. "
+                      f"Available: {list(short_name_map.keys())} or {list(VERSION_CONFIGS.keys())}")
     else:
-        # 使用代码中 ENABLE_ 开关
+        # Use ENABLE_ switches in code
         enabled_versions = {
             k: v for k, v in VERSION_CONFIGS.items() if v['enabled']
         }
 
     if not enabled_versions:
-        print("[错误] 没有启用任何版本! 请检查版本开关设置。")
+        print("[error] no versions enabled! Check version switch settings.")
         return
 
     print("=" * 70)
-    print("DemandClean 统一运行脚本")
+    print("DemandClean unified runner")
     print("=" * 70)
-    print(f"数据集: {datasets_to_run}")
-    print(f"启用版本: {list(enabled_versions.keys())}")
-    print(f"训练轮数: {args.n_episodes}")
-    print(f"详细输出: {args.verbose}")
+    print(f"Datasets: {datasets_to_run}")
+    print(f"Enabled versions: {list(enabled_versions.keys())}")
+    print(f"Episodes: {args.n_episodes}")
+    print(f"Verbose: {args.verbose}")
     if args.oracle:
-        print(f"Oracle 模式: 启用 (三路划分 60/20/20, --no-oracle 关闭)")
+        print(f"Oracle mode: ON (60/20/20 three-way split; disable with --no-oracle)")
     else:
-        print(f"Oracle 模式: 关闭 (使用脏数据 Clean Base 做 reward)")
+        print(f"Oracle mode: OFF (using dirty-data Clean Base for reward)")
     if args.min_repair_ratio is not None or args.max_repair_ratio is not None:
-        print(f"修复率控制: min={args.min_repair_ratio}, max={args.max_repair_ratio}")
+        print(f"Repair-ratio control: min={args.min_repair_ratio}, max={args.max_repair_ratio}")
     if inject_kwargs:
-        print(f"自定义注入率: {inject_kwargs}")
+        print(f"Custom injection rates: {inject_kwargs}")
     if args.inference_only:
-        print(f"仅推理模式: 启用 (跳过训练，直接加载已有模型)")
+        print(f"Inference-only mode: ON (skip training, load existing model)")
     print("=" * 70)
 
     total_start = time.time()
 
-    # 遍历数据集
+    # Iterate datasets
     for dataset_name in datasets_to_run:
         print(f"\n{'#'*70}")
-        print(f"# 数据集: {dataset_name}")
+        print(f"# Dataset: {dataset_name}")
         print(f"{'#'*70}")
 
         ds_cfg = DATASETS[dataset_name]
@@ -2727,11 +2727,11 @@ def main():
         try:
             if args.oracle:
                 # =============================================================
-                # 严格 60/20/20 划分: 先划分原始 CSV，再编码
+                # Strict 60/20/20 split: split raw CSV first, then encode
                 # =============================================================
                 from sklearn.model_selection import train_test_split as _tts
 
-                # 1. 读取原始 CSV
+                # 1. Load raw CSV
                 data_dir = os.path.join(_PROJECT_ROOT, 'data', dataset_name)
                 _dirty_path = os.path.join(data_dir, 'dirty_index.csv')
                 _clean_path = os.path.join(data_dir, 'clean_index.csv')
@@ -2742,7 +2742,7 @@ def main():
                 raw_dirty_df = pd.read_csv(_dirty_path)
                 raw_clean_df = pd.read_csv(_clean_path)
 
-                # 2. 60/20/20 划分 (seed=42)
+                # 2. 60/20/20 split (seed=42)
                 n_total = len(raw_dirty_df)
                 all_idx = np.arange(n_total)
                 train_idx, temp_idx = _tts(all_idx, test_size=0.4, random_state=42)
@@ -2751,19 +2751,19 @@ def main():
                 dirty_train_df = raw_dirty_df.iloc[train_idx].reset_index(drop=True)
                 clean_train_df = raw_clean_df.iloc[train_idx].reset_index(drop=True)
 
-                print(f"\n  60/20/20 划分: train={len(train_idx)}, "
+                print(f"\n  60/20/20 split: train={len(train_idx)}, "
                       f"val={len(val_idx)}, test={len(test_idx)}")
 
-                # 3. 生成 60% 子集 CSV (for RAHA)
+                # 3. Write 60% subset CSV (for RAHA)
                 save_base = os.path.join(_PROJECT_ROOT, 'results', 'demandclean', dataset_name)
                 os.makedirs(save_base, exist_ok=True)
                 dirty_train_csv_path = os.path.join(save_base, 'dirty_train_60pct.csv')
                 clean_train_csv_path = os.path.join(save_base, 'clean_train_60pct.csv')
                 dirty_train_df.to_csv(dirty_train_csv_path, index=False)
                 clean_train_df.to_csv(clean_train_csv_path, index=False)
-                print(f"  60% 子集 CSV: {dirty_train_csv_path}")
+                print(f"  60% subset CSV: {dirty_train_csv_path}")
 
-                # 4. preprocess_data 只处理 60% dirty（LE/SS 仅在此 fit）
+                # 4. preprocess_data only processes 60% dirty (LE/SS fit here only)
                 (X_dirty, y_dirty,
                  _, _,
                  column_names, fd_rules, rules_path,
@@ -2772,11 +2772,11 @@ def main():
                  dirty_df, _) = preprocess_data(
                     dataset_name, dirty_df=dirty_train_df, clean_df=None)
 
-                # 用 train 60% 子集 CSV 路径（不再用全量路径）
+                # Use 60% train subset CSV path (no longer the full-data path)
                 dirty_csv_path = dirty_train_csv_path
                 clean_csv_path = clean_train_csv_path
 
-                # 5. 用 train LE/SS 编码 val/test/train 的 clean 数据
+                # 5. Encode val/test/train clean data with the train LE/SS
                 X_clean_train, y_clean_train = encode_subset(
                     clean_train_df, column_names, ds_cfg['label_col'],
                     label_encoders, data_scaler, categorical_cols)
@@ -2789,12 +2789,12 @@ def main():
                     column_names, ds_cfg['label_col'],
                     label_encoders, data_scaler, categorical_cols)
 
-                print(f"  编码完成: X_dirty_train={X_dirty.shape}, "
+                print(f"  encoding done: X_dirty_train={X_dirty.shape}, "
                       f"X_clean_train={X_clean_train.shape}, "
                       f"X_clean_val={X_clean_val.shape}, "
                       f"X_clean_test={X_clean_test.shape}")
 
-                # 用于 run_version 的参数
+                # Pass-through for run_version
                 X_clean = X_clean_train
                 y_clean = y_clean_train
                 clean_df = clean_train_df
@@ -2815,7 +2815,7 @@ def main():
 
             else:
                 # =============================================================
-                # 非 Oracle 模式: 全量编码（向后兼容）
+                # Non-Oracle mode: full-data encoding (backward compatible)
                 # =============================================================
                 (X_dirty, y_dirty,
                  X_clean, y_clean,
@@ -2826,11 +2826,11 @@ def main():
                 oracle_split = None
 
         except Exception as e:
-            print(f"\n[错误] 数据集 {dataset_name} 预处理失败: {e}")
+            print(f"\n[error] preprocessing failed for {dataset_name}: {e}")
             traceback.print_exc()
             continue
 
-        # --- 遍历启用的版本 ---
+        # --- Iterate enabled versions ---
         all_reports = {}
 
         for version_key, version_cfg in enabled_versions.items():
@@ -2876,37 +2876,37 @@ def main():
                 all_reports[version_cfg['version_name']] = report
 
             except Exception as e:
-                print(f"\n[错误] 版本 {version_key} 运行失败，已跳过:")
+                print(f"\n[error] version {version_key} failed, skipped:")
                 print(f"  {e}")
                 traceback.print_exc()
                 continue
 
-        # --- 跨版本对比 ---
+        # --- Cross-version comparison ---
         if len(all_reports) >= 2:
             try:
                 cross_version_comparison(dataset_name, all_reports)
             except Exception as e:
-                print(f"\n[错误] 跨版本对比失败: {e}")
+                print(f"\n[error] cross-version comparison failed: {e}")
                 traceback.print_exc()
         elif len(all_reports) == 1:
-            print("\n  只有 1 个版本完成，跳过跨版本对比")
+            print("\n  only 1 version finished; skip cross-version comparison")
         else:
-            print("\n  没有版本完成，跳过跨版本对比")
+            print("\n  no versions finished; skip cross-version comparison")
 
-    # --- 全局结束 ---
+    # --- Global end ---
     total_elapsed = time.time() - total_start
     print(f"\n{'='*70}")
-    print(f"全部完成! 总耗时: {total_elapsed:.2f}s")
-    print(f"结果目录: {os.path.join(_PROJECT_ROOT, 'results', 'demandclean')}")
-    print(f"日志文件: {log_path}")
+    print(f"All done! total: {total_elapsed:.2f}s")
+    print(f"Results dir: {os.path.join(_PROJECT_ROOT, 'results', 'demandclean')}")
+    print(f"Log file: {log_path}")
     print(f"{'='*70}")
 
-    # 关闭 TeeLogger，恢复 stdout/stderr
+    # Close TeeLogger, restore stdout/stderr
     sys.stdout = tee_stdout.terminal
     sys.stderr = tee_stderr.terminal
     tee_stdout.close()
     tee_stderr.close()
-    print(f"[日志] 完整日志已保存: {log_path}")
+    print(f"[log] full log saved: {log_path}")
 
 
 if __name__ == "__main__":

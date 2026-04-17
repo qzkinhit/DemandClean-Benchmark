@@ -1,19 +1,22 @@
 """
-值估计器
-========
+Value estimator
+===============
 
-统一的值估计算法，被 CleaningEnv 和 TwoPhaseCleaningEnv 共享。
+Unified value-estimation algorithm shared by CleaningEnv and
+TwoPhaseCleaningEnv.
 
-优先级链: FD 规则推导 → DC 规则推导 → CFD 基线回归 → 数值提取 → 编辑距离估值 → 多维 KNN(k=5) 加权均值 → DOMAIN 范围裁剪
+Priority chain: FD-rule derivation -> DC-rule derivation -> CFD baseline
+  regression -> numeric extraction -> edit-distance estimation ->
+  multi-dim KNN (k=5) weighted mean -> DOMAIN-range clipping.
 
-降级策略:
-  - 无 fd_rules / column_names → 跳过 FD 推导
-  - 无 rich_rules['dc_rules'] → 跳过 DC 推导
-  - 无 rich_rules['cfd_rules'] → 跳过 CFD 推导
-  - 无 dirty_df / label_encoders → 跳过编辑距离估值
-  - 无 rich_rules → 跳过 DOMAIN 裁剪
-  - 无 scaler → DOMAIN/DC/CFD 用原始空间值
-  - KNN 找不到邻居 (k=0) → fallback 到 col_means
+Fallback strategy:
+  - Missing fd_rules / column_names -> skip FD derivation.
+  - Missing rich_rules['dc_rules'] -> skip DC derivation.
+  - Missing rich_rules['cfd_rules'] -> skip CFD derivation.
+  - Missing dirty_df / label_encoders -> skip edit-distance estimation.
+  - Missing rich_rules -> skip DOMAIN clipping.
+  - Missing scaler -> DOMAIN/DC/CFD use raw-space values.
+  - KNN finds no neighbors (k=0) -> fall back to col_means.
 """
 
 from typing import Dict, List, Set, Tuple, Optional, Any

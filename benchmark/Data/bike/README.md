@@ -1,58 +1,58 @@
-# 数据集：Bike
+# Dataset: Bike
 
-## 基本信息
+## Basic Information
 
-| 项目 | 值 |
-|------|-----|
-| 任务类型 | 回归 (Regression) |
-| 目标列 | `cnt` |
-| 数据规模 | 17,379 条记录 × 17 属性 |
-| 索引文件 | `clean_with_index.csv`, `dirty_with_index.csv` |
+| Item | Value |
+|------|-------|
+| Task type | Regression |
+| Target column | `cnt` |
+| Size | 17,379 records x 17 attributes |
+| Indexed files | `clean_with_index.csv`, `dirty_with_index.csv` |
 
-## 列定义
+## Column Definitions
 
-### 索引列 (Index)
-| 列名 | 说明 |
-|------|------|
-| `index` | 行索引，不参与模型训练 |
+### Index column
+| Column | Description |
+|--------|-------------|
+| `index` | row index, not used for model training |
 
-### 排除列 (Excluded) - 不参与模型训练
-| 列名 | 类型 | 说明 |
-|------|------|------|
-| dteday | 日期 | 日期字符串，需特殊处理 |
+### Excluded columns (not used for model training)
+| Column | Type | Description |
+|--------|------|-------------|
+| dteday | Date | Date string, requires special handling |
 
-### 特征列 (Features) - 共14列
-| 属性名 | 类型 | 说明 |
-|--------|------|------|
-| season | 分类 | 季节 (1:春, 2:夏, 3:秋, 4:冬) |
-| yr | 数值 | 年份 (0:2011, 1:2012) |
-| mnth | 数值 | 月份 (1-12) |
-| hr | 数值 | 小时 (0-23) |
-| holiday | 二值 | 是否假日 |
-| weekday | 数值 | 星期几 (0-6) |
-| workingday | 二值 | 是否工作日 |
-| weathersit | 分类 | 天气情况 (1:晴, 2:多云, 3:小雨/雪, 4:恶劣天气) |
-| temp | 数值 | 归一化温度 |
-| atemp | 数值 | 归一化体感温度 |
-| hum | 数值 | 归一化湿度 |
-| windspeed | 数值 | 归一化风速 |
-| casual | 数值 | 临时用户租借数 |
-| registered | 数值 | 注册用户租借数 |
+### Feature columns (14 total)
+| Attribute | Type | Description |
+|-----------|------|-------------|
+| season | Categorical | Season (1: spring, 2: summer, 3: fall, 4: winter) |
+| yr | Numeric | Year (0: 2011, 1: 2012) |
+| mnth | Numeric | Month (1-12) |
+| hr | Numeric | Hour (0-23) |
+| holiday | Binary | Holiday flag |
+| weekday | Numeric | Day of week (0-6) |
+| workingday | Binary | Working-day flag |
+| weathersit | Categorical | Weather (1: clear, 2: cloudy, 3: light rain/snow, 4: severe) |
+| temp | Numeric | Normalized temperature |
+| atemp | Numeric | Normalized feels-like temperature |
+| hum | Numeric | Normalized humidity |
+| windspeed | Numeric | Normalized wind speed |
+| casual | Numeric | Casual rental count |
+| registered | Numeric | Registered rental count |
 
-### 目标列 (Label)
-| 属性名 | 类型 | 说明 |
-|--------|------|------|
-| cnt | 数值 | 总租借数量 (casual + registered) |
+### Label column
+| Attribute | Type | Description |
+|-----------|------|-------------|
+| cnt | Numeric | Total rental count (casual + registered) |
 
-## 错误信息
-- **错误类型**: 规则违例(Rule Violation), 异常值(Outlier)
-- **错误条目数**: 16,926
-- **错误单元格数**: 45,205
+## Error Information
+- **Error types**: Rule violations, outliers
+- **Error entry count**: 16,926
+- **Error cell count**: 45,205
 
-## 数据来源
+## Source
 Fanaee-T, H. Bike Sharing. https://archive.ics.uci.edu/dataset/275/bike+sharing+dataset. 2013.
 
-## 运行命令示例
+## Example Command
 
 ```bash
 python MethodsRunScript/run_deleteall/run_deleteall_base.py \

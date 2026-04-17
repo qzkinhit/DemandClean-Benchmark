@@ -1,4 +1,4 @@
-"""清洗环境模块"""
+"""Cleaning environment module"""
 
 from .cleaning_env import CleaningEnv
 from .two_phase_env import TwoPhaseCleaningEnv

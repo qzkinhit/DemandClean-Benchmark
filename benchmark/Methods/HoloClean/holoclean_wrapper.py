@@ -1,15 +1,15 @@
 """
-HoloClean Wrapper - 约束 + 统计 + 知识库融合的数据清洗方法
+HoloClean Wrapper - 约束 + Count + 知识库融合datacleaningmethod
 
-HoloClean是一个基于概率图模型的全面数据清洗系统，通过融合多种清洗信号
-（完整性约束、统计信息、外部知识库）进行数据修复。
+HoloCleanis一个基于概率图model全面datacleaning系统，通过融合多种cleaning信号
+（完整约束、Count信息、外部知识库）进rowdatarepair。
 
 论文: HoloClean: Holistic Data Repairs with Probabilistic Inference (VLDB 2017)
 GitHub: https://github.com/HoloClean/holoclean
 
-真值使用情况: 全自动执行，无需人工参与 (Type 1)
+ground truthusestats: fully automatic执row，none需人工参and (Type 1)
 
-注意: HoloClean需要PostgreSQL数据库支持
+Note: HoloClean需needPostgreSQLdata库支持
 """
 
 import os
@@ -18,12 +18,12 @@ import pandas as pd
 import numpy as np
 from typing import List, Dict, Tuple, Optional
 
-# 添加当前目录到路径
+# 添加currentdirectorytopath
 _current_dir = os.path.dirname(os.path.abspath(__file__))
 if _current_dir not in sys.path:
     sys.path.insert(0, _current_dir)
 
-# 尝试导入官方实现
+# 尝试导入official implementation
 try:
     from holoclean import HoloClean, Session
     from detect import NullDetector, ViolationDetector
@@ -39,13 +39,13 @@ except ImportError as e:
 
 class HoloCleanWrapper:
     """
-    HoloClean清洗方法的封装类
+    HoloCleancleaningmethod封装class
 
-    该类封装了HoloClean的核心功能，提供统一的接口用于数据清洗任务。
+    该class封装HoloClean核心功can，provide统一接口used fordatacleaningtask。
 
-    注意: HoloClean需要PostgreSQL数据库支持
-    - 安装PostgreSQL并创建用户和数据库
-    - 设置环境变量或使用参数指定连接信息
+    Note: HoloClean需needPostgreSQLdata库支持
+    - 安装PostgreSQLandcreate用户anddata库
+    - setenvironment变量oruseParameter指定连接信息
     """
 
     def __init__(self,
@@ -67,26 +67,26 @@ class HoloCleanWrapper:
                  verbose: bool = False,
                  timeout: int = 60000):
         """
-        初始化HoloClean包装器
+        initializeHoloCleanpackage装器
 
         Args:
-            db_user: 数据库用户名
-            db_pwd: 数据库密码
-            db_host: 数据库主机
-            db_name: 数据库名称
-            domain_thresh_1: 第一阶段域值阈值
-            domain_thresh_2: 第二阶段域值阈值
-            weak_label_thresh: 弱标签阈值
-            max_domain: 最大域大小
-            cor_strength: 相关性强度
-            nb_cor_strength: 近邻相关性强度
+            db_user: data库用户名
+            db_pwd: data库密码
+            db_host: data库主机
+            db_name: data库名称
+            domain_thresh_1: firstStage域值阈值
+            domain_thresh_2: secondStage域值阈值
+            weak_label_thresh: 弱label阈值
+            max_domain: 最大域size
+            cor_strength: 相关强度
+            nb_cor_strength: 近邻相关强度
             weight_decay: 权重衰减
             learning_rate: 学习率
             threads: 线程数
-            batch_size: 批大小
-            epochs: 训练轮数
-            verbose: 是否打印详细信息
-            timeout: 超时时间（毫秒）
+            batch_size: batch size
+            epochs: trainingrounds
+            verbose: whether打印详细信息
+            timeout: 超时time（毫秒）
         """
         self.db_user = db_user
         self.db_pwd = db_pwd
@@ -111,20 +111,20 @@ class HoloCleanWrapper:
         self.ground_truth_used = 0
 
     def _check_dependencies(self):
-        """检查依赖是否满足"""
+        """check依赖whether满足"""
         if not HAS_HOLOCLEAN:
             raise ImportError(
-                f"HoloClean模块导入失败: {IMPORT_ERROR}\n"
-                "请确保在Methods/HoloClean目录下有完整的官方代码，"
-                "并安装必要的依赖（torch, psycopg2等）"
+                f"HoloCleanmodule import failed: {IMPORT_ERROR}\n"
+                "Ensure that underMethods/HoloCleanthere is a complete copy of the official code，"
+                "and install the required dependencies（torch, psycopg2等）"
             )
 
     def setup(self) -> bool:
         """
-        设置HoloClean环境
+        setHoloCleanenvironment
 
         Returns:
-            是否成功初始化
+            whethersuccessinitialize
         """
         self._check_dependencies()
 
@@ -152,7 +152,7 @@ class HoloCleanWrapper:
             return True
         except Exception as e:
             if self.verbose:
-                print(f"HoloClean初始化失败: {e}")
+                print(f"HoloCleaninitialization failed: {e}")
             return False
 
     def clean(self,
@@ -161,41 +161,41 @@ class HoloCleanWrapper:
               output_path: str = None,
               dataset_name: str = "data") -> Tuple[pd.DataFrame, Dict]:
         """
-        执行完整的清洗流程
+        执row完整cleaning流程
 
         Args:
-            dirty_path: 脏数据路径
-            dc_path: 约束文件路径（可选）
-            output_path: 输出路径（可选）
-            dataset_name: 数据集名称
+            dirty_path: 脏datapath
+            dc_path: 约束filepath（optional）
+            output_path: outputpath（optional）
+            dataset_name: Dataset名称
 
         Returns:
-            修复后的数据和清洗信息
+            repairafterdataandcleaning信息
         """
         self._check_dependencies()
 
-        # 初始化
+        # initialize
         if not self.setup():
-            raise RuntimeError("HoloClean初始化失败，请检查数据库配置")
+            raise RuntimeError("HoloCleaninitialization failed，Please checkdata库Configuration")
 
         try:
-            # 加载数据
+            # Load data
             self.session.load_data(dataset_name, dirty_path)
 
-            # 加载约束（如果提供）
+            # Load constraints（ifprovide）
             if dc_path and os.path.exists(dc_path):
                 self.session.load_dcs(dc_path)
 
-            # 检测错误
+            # detectionError
             detectors = [NullDetector()]
             if dc_path:
                 detectors.append(ViolationDetector())
             self.session.detect_errors(detectors)
 
-            # 设置域
+            # Set domain
             self.session.setup_domain()
 
-            # 特征提取器
+            # feature extractor
             featurizers = [
                 InitAttrFeaturizer(),
                 OccurAttrFeaturizer(),
@@ -204,13 +204,13 @@ class HoloCleanWrapper:
             if dc_path:
                 featurizers.append(ConstraintFeaturizer())
 
-            # 修复
+            # repair
             self.session.repair_errors(featurizers)
 
-            # 获取修复后的数据
+            # getrepairafterdata
             repaired_df = self.session.ds.get_repaired_dataset()
 
-            # 保存结果
+            # Save results
             if output_path:
                 repaired_df.to_csv(output_path, index=False)
 
@@ -218,7 +218,7 @@ class HoloCleanWrapper:
                 'ground_truth_cost': self.ground_truth_used,
                 'method': 'HoloClean',
                 'type': 'data-oriented',
-                'auto_level': 1,  # 全自动
+                'auto_level': 1,  # fully automatic
                 'detectors': len(detectors),
                 'featurizers': len(featurizers)
             }
@@ -226,10 +226,10 @@ class HoloCleanWrapper:
             return repaired_df, info
 
         except Exception as e:
-            raise RuntimeError(f"HoloClean清洗失败: {e}")
+            raise RuntimeError(f"HoloCleancleaningfailure: {e}")
 
     def get_ground_truth_cost(self) -> int:
-        """获取真值使用成本（HoloClean全自动，始终为0）"""
+        """getground truthuse成本（HoloCleanfully automatic，始终to0）"""
         return self.ground_truth_used
 
 
@@ -237,6 +237,6 @@ def holoclean_clean(dirty_path: str,
                     dc_path: str = None,
                     output_path: str = None,
                     **kwargs) -> Tuple[pd.DataFrame, Dict]:
-    """HoloClean清洗的便捷函数"""
+    """HoloCleancleaning便捷function"""
     wrapper = HoloCleanWrapper(**kwargs)
     return wrapper.clean(dirty_path, dc_path, output_path)

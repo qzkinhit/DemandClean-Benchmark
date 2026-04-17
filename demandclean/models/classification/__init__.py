@@ -1,4 +1,4 @@
-"""分类模型适配器"""
+"""Classification model adapters"""
 
 from .svm_adapter import SVMAdapter
 from .random_forest_adapter import RandomForestAdapter

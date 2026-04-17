@@ -1,4 +1,4 @@
-"""训练模块"""
+"""Training module"""
 
 from .trainer import Trainer
 

@@ -6,7 +6,7 @@ path = Path("./data/soilmoisture/clean_with_index.csv")
 df = pd.read_csv(path, encoding="utf-8-sig")
 
 rows, cols = df.shape
-print(f"表格维度: {rows} 行 * {cols} 列")
+print(f"Table dimensions: {rows} rows * {cols} columns")
 
 cols_text = "[" + ",".join(df.columns.astype(str)) + "]"
 print(cols_text)

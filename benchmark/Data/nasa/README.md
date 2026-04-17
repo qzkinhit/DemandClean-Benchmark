@@ -1,44 +1,44 @@
-# 数据集：NASA (Airfoil Self-Noise)
+# Dataset: NASA (Airfoil Self-Noise)
 
-## 基本信息
+## Basic Information
 
-| 项目 | 值 |
-|------|-----|
-| 任务类型 | 回归 (Regression) |
-| 目标列 | `sound_pressure_level` |
-| 数据规模 | 1,503 条记录 × 7 属性 |
-| 索引文件 | `clean_with_index.csv`, `dirty_with_index.csv` |
+| Item | Value |
+|------|-------|
+| Task type | Regression |
+| Target column | `sound_pressure_level` |
+| Size | 1,503 records x 7 attributes |
+| Indexed files | `clean_with_index.csv`, `dirty_with_index.csv` |
 
-## 列定义
+## Column Definitions
 
-### 索引列 (Index)
-| 列名 | 说明 |
-|------|------|
-| `index` | 行索引，不参与模型训练 |
+### Index column
+| Column | Description |
+|--------|-------------|
+| `index` | row index, not used for model training |
 
-### 特征列 (Features) - 共5列
-| 属性名 | 类型 | 说明 |
-|--------|------|------|
-| frequency | 数值 | 频率 (Hz) |
-| angle | 数值 | 攻角 (度) |
-| chord_length | 数值 | 弦长 (米) |
-| velocity | 数值 | 自由流速度 (米/秒) |
-| thickness | 数值 | 吸力侧位移厚度 (米) |
+### Feature columns (5 total)
+| Attribute | Type | Description |
+|-----------|------|-------------|
+| frequency | Numeric | Frequency (Hz) |
+| angle | Numeric | Angle of attack (degrees) |
+| chord_length | Numeric | Chord length (meters) |
+| velocity | Numeric | Free-stream velocity (m/s) |
+| thickness | Numeric | Suction-side displacement thickness (meters) |
 
-### 目标列 (Label)
-| 属性名 | 类型 | 说明 |
-|--------|------|------|
-| sound_pressure_level | 数值 | 缩放声压级 (分贝) |
+### Label column
+| Attribute | Type | Description |
+|-----------|------|-------------|
+| sound_pressure_level | Numeric | Scaled sound pressure level (decibels) |
 
-## 错误信息
-- **错误类型**: 缺失值(Missing Value), 异常值(Outlier)
-- **错误条目数**: 731
-- **错误单元格数**: 731
+## Error Information
+- **Error types**: Missing values, outliers
+- **Error entry count**: 731
+- **Error cell count**: 731
 
-## 数据来源
+## Source
 Brooks, T., Pope, D., & Marcolini, M. Airfoil Self-Noise. https://archive.ics.uci.edu/dataset/291/airfoil+self+noise. 1989.
 
-## 运行命令示例
+## Example Command
 
 ```bash
 python MethodsRunScript/run_deleteall/run_deleteall_base.py \

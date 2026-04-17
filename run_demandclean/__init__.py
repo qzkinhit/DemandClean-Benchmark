@@ -1,1 +1,1 @@
-"""run_demandclean 入口包"""
+"""run_demandclean entry package"""

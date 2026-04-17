@@ -1,9 +1,9 @@
 #!/bin/bash
-# 设置可执行权限： chmod +x CleanerRunScript/run_raha_baran/run_nwcpk.sh
-# 运行方式：./CleanerRunScript/run_raha_baran/run_nwcpk.sh
+# Make executable: chmod +x CleanerRunScript/run_raha_baran/run_nwcpk.sh
+# Run with: ./CleanerRunScript/run_raha_baran/run_nwcpk.sh
 
-# 定义数据集配置
-# 解析dataset index_attr mse_attr noise_dir clean_path这几个参数，后续需要，根据你的系统配置自行修改
+# Dataset configuration
+# Each entry encodes: dataset index_attr mse_attr noise_dir clean_path. Adjust paths to your setup.
 datasets=(
     "1_hospitals:index:Score:Data/1_hospitals/noise_with_correct_primary_key:Data/1_hospitals/clean_index.csv"
     "2_flights:index::Data/2_flights/noise_with_correct_primary_key:Data/2_flights/clean_index.csv"
@@ -15,19 +15,19 @@ datasets=(
     "6_soccer:index::Data/6_soccer/noise_with_correct_primary_key:Data/6_soccer/clean_index.csv"
 )
 
-# 定义错误比例集合
+# Error-ratio set
 error_ratios=("0.25" "0.5" "0.75" "1" "1.25" "1.5" "1.75" "2")
 #error_ratios=("0.25")
 
-# 创建日志目录
+# Create log directory
 log_dir="logs/raha_baran_nwcpk"
 mkdir -p "${log_dir}"
 
-# 遍历数据集和错误比例，生成并执行命令（根据各自的系统进行更改）
+# Iterate over datasets and error ratios; generate and run the command (tune for your system)
 for dataset_config in "${datasets[@]}"; do
-    # 使用分隔符解析键值对
+    # Parse key/value pairs
     IFS=":" read -r dataset index_attr mse_attr noise_dir clean_path <<< "${dataset_config}"
-    # 从第三个字符开始取数据集名称
+    # Dataset short name starts at the 3rd character
     short_dataset_name="${dataset:2}"
     for ratio in "${error_ratios[@]}"; do
         task_name="${dataset}_nwcpk_${ratio//./}"
@@ -35,18 +35,18 @@ for dataset_config in "${datasets[@]}"; do
         output_path="results/raha_baran/nwcpk"
         log_file="${log_dir}/${dataset}_raha_baran_nwcpk_${ratio//./}.log"
 
-        # 生成命令
+        # Build command
         cmd="python3 CleanerRunScript/run_raha_baran/repair_with_raha.py --dirty_path ${dirty_path} --clean_path ${clean_path} --task_name ${task_name} --output_path ${output_path} --index_attribute ${index_attr}"
 
         if [ -n "${mse_attr}" ]; then
             cmd+=" --mse_attributes ${mse_attr}"
         fi
 
-        # 打印命令用于调试
+        # Echo the command for debugging
         echo "Generated command:"
         echo "${cmd}"
 
-        # 执行命令
+        # Run it
         eval "${cmd}" &> "${log_file}"
 
         if [ $? -ne 0 ]; then

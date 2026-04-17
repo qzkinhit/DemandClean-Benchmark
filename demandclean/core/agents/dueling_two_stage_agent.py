@@ -1,8 +1,8 @@
 """
-Dueling Double DQN 两阶段 Agent (PyTorch)
-==========================================
+Dueling Double DQN two-stage agent (PyTorch)
+=============================================
 
-使用 Dueling 网络 + Double DQN + 软更新的两阶段 Agent。
+Two-stage agent combining a Dueling network, Double DQN, and soft target updates.
 """
 
 from typing import Tuple, Optional, Dict
@@ -19,22 +19,22 @@ from .dueling_network import DuelingNetwork
 
 class DuelingTwoStageAgent(BaseAgent):
     """
-    Dueling Double DQN 两阶段 Agent
+    Dueling Double DQN two-stage agent.
 
-    Stage 1: 分诊决策 (3 种动作, 全部免费)
-        0: no_action   — 跳过该错误
-        1: delete      — 删除该行
-        2: VE-fill     — 用值估计填充，进入 Stage2 决策
+    Stage 1: triage decision (3 actions, all free)
+        0: no_action  - skip the error
+        1: delete     - drop the row
+        2: VE-fill    - fill with a value-estimator prediction, then move to Stage 2
 
-    Stage 2: 质量决策 (2 种动作, 仅当 stage1=VE-fill 时触发)
-        0: keep_VE       — 保留 VE 估值 (免费)
-        1: truth_repair  — 花预算用真值替换 (有成本)
+    Stage 2: quality decision (2 actions, only when stage1 == VE-fill)
+        0: keep_VE       - keep the VE estimate (free)
+        1: truth_repair  - spend budget to replace with the ground truth
 
-    最终动作映射:
-        0: no_action                       (stage1=0)
-        1: repair_value   (stage1=2, stage2=1)
-        2: delete                          (stage1=1)
-        3: replace_nearby (stage1=2, stage2=0)
+    Final action mapping:
+        0: no_action                       (stage1 = 0)
+        1: repair_value   (stage1 = 2, stage2 = 1)
+        2: delete                          (stage1 = 1)
+        3: replace_nearby (stage1 = 2, stage2 = 0)
     """
 
     def __init__(self,
@@ -57,21 +57,21 @@ class DuelingTwoStageAgent(BaseAgent):
 
         self.device = torch.device('cpu')
 
-        # Stage 1: 策略选择 (3 动作)
+        # Stage 1: policy selection (3 actions)
         self.stage1_action_size = 3
         self.stage1_memory = deque(maxlen=memory_size)
         self.stage1_model = DuelingNetwork(state_size, self.stage1_action_size, hidden_size).to(self.device)
         self.stage1_target = DuelingNetwork(state_size, self.stage1_action_size, hidden_size).to(self.device)
         self.stage1_optimizer = optim.Adam(self.stage1_model.parameters(), lr=learning_rate)
 
-        # Stage 2: 修复方式 (2 动作)
+        # Stage 2: repair strategy (2 actions)
         self.stage2_action_size = 2
         self.stage2_memory = deque(maxlen=memory_size)
         self.stage2_model = DuelingNetwork(state_size, self.stage2_action_size, hidden_size).to(self.device)
         self.stage2_target = DuelingNetwork(state_size, self.stage2_action_size, hidden_size).to(self.device)
         self.stage2_optimizer = optim.Adam(self.stage2_model.parameters(), lr=learning_rate)
 
-        # 初始同步
+        # Sync target networks
         self.stage1_target.load_state_dict(self.stage1_model.state_dict())
         self.stage2_target.load_state_dict(self.stage2_model.state_dict())
 
@@ -94,14 +94,14 @@ class DuelingTwoStageAgent(BaseAgent):
 
     def act(self, state: np.ndarray, training: bool = True) -> Tuple[int, int, Optional[int]]:
         """
-        两阶段动作选择
+        Two-stage action selection.
 
-        新映射:
-          s1=0 → no_action(0)
-          s1=1 → delete(2)
-          s1=2 → VE-fill → Stage2 决策:
-            s2=0 → keep_VE → replace_nearby(3)
-            s2=1 → truth_repair → repair_value(1)
+        Mapping:
+          s1 = 0 -> no_action(0)
+          s1 = 1 -> delete(2)
+          s1 = 2 -> VE-fill -> Stage 2 decision:
+            s2 = 0 -> keep_VE -> replace_nearby(3)
+            s2 = 1 -> truth_repair -> repair_value(1)
 
         Returns:
             (final_action, stage1_action, stage2_action)
@@ -112,11 +112,11 @@ class DuelingTwoStageAgent(BaseAgent):
             return 0, s1, None        # no_action
         elif s1 == 1:
             return 2, s1, None        # delete
-        else:  # s1 == 2: VE-fill → Stage2 决策
+        else:  # s1 == 2: VE-fill -> Stage 2 decision
             s2 = self.act_stage2(state, training)
             return (3 if s2 == 0 else 1), s1, s2
-            # s2=0: keep_VE → replace_nearby(3)
-            # s2=1: truth_repair → repair_value(1)
+            # s2 = 0: keep_VE -> replace_nearby(3)
+            # s2 = 1: truth_repair -> repair_value(1)
 
     def remember_stage1(self, state: np.ndarray, action: int,
                         reward: float, next_state: np.ndarray, done: bool) -> None:
@@ -164,7 +164,7 @@ class DuelingTwoStageAgent(BaseAgent):
         self.decay_epsilon()
 
     def _soft_update(self, model: nn.Module, target: nn.Module) -> None:
-        """软更新: target = tau * model + (1-tau) * target"""
+        """Soft update: target = tau * model + (1 - tau) * target."""
         for t_param, param in zip(target.parameters(), model.parameters()):
             t_param.data.copy_(self.tau * param.data + (1 - self.tau) * t_param.data)
 
@@ -173,7 +173,7 @@ class DuelingTwoStageAgent(BaseAgent):
         self._soft_update(self.stage2_model, self.stage2_target)
 
     def get_q_values(self, state: np.ndarray) -> np.ndarray:
-        """获取两阶段 Q 值拼接 (stage1_action_size + stage2_action_size,)"""
+        """Return concatenated Q-values for both stages, shape (stage1_action_size + stage2_action_size,)."""
         with torch.no_grad():
             st = self._to_tensor(state).unsqueeze(0)
             q1 = self.stage1_model(st).cpu().numpy().flatten()
@@ -181,7 +181,7 @@ class DuelingTwoStageAgent(BaseAgent):
             return np.concatenate([q1, q2])
 
     def save(self, path: str) -> None:
-        """保存两个阶段的模型 (.pt 格式)，含续训元数据"""
+        """Save both stage models (.pt format) together with resume-training metadata."""
         base = path.replace('.h5', '').replace('.pt', '')
         stage1_path = base + '_stage1.pt'
         stage2_path = base + '_stage2.pt'
@@ -203,7 +203,7 @@ class DuelingTwoStageAgent(BaseAgent):
         }, stage2_path)
 
     def load(self, path: str) -> None:
-        """加载两个阶段的模型（向后兼容旧 checkpoint）"""
+        """Load both stage models (backward compatible with older checkpoints)."""
         base = path.replace('.h5', '').replace('.pt', '')
         stage1_path = base + '_stage1.pt'
         stage2_path = base + '_stage2.pt'

@@ -1,6 +1,6 @@
 """
-模型适配器测试
-==============
+Model Adapter Tests
+===================
 """
 
 import sys
@@ -13,42 +13,42 @@ from demandclean.config import ModelType, TaskType
 
 
 def test_create_svm_adapter():
-    """测试创建 SVM 适配器"""
+    """Test SVM adapter creation."""
     adapter = create_model_adapter(ModelType.SVM, TaskType.CLASSIFICATION)
     assert adapter is not None
-    print("✓ SVM 适配器创建测试通过")
+    print("✓ SVM adapter creation test passed")
 
 
 def test_create_random_forest_adapter():
-    """测试创建 RandomForest 适配器"""
+    """Test RandomForest adapter creation."""
     adapter = create_model_adapter(ModelType.RANDOM_FOREST, TaskType.CLASSIFICATION)
     assert adapter is not None
-    print("✓ RandomForest 适配器创建测试通过")
+    print("✓ RandomForest adapter creation test passed")
 
 
 def test_create_linear_adapter():
-    """测试创建 Linear 适配器"""
+    """Test Linear adapter creation."""
     adapter = create_model_adapter(ModelType.LINEAR, TaskType.REGRESSION)
     assert adapter is not None
-    print("✓ Linear 适配器创建测试通过")
+    print("✓ Linear adapter creation test passed")
 
 
 def test_create_ridge_adapter():
-    """测试创建 Ridge 适配器"""
+    """Test Ridge adapter creation."""
     adapter = create_model_adapter(ModelType.RIDGE, TaskType.REGRESSION)
     assert adapter is not None
-    print("✓ Ridge 适配器创建测试通过")
+    print("✓ Ridge adapter creation test passed")
 
 
 def test_create_adapter_with_string():
-    """测试使用字符串创建适配器"""
+    """Test adapter creation using strings."""
     adapter = create_model_adapter('svm', 'classification')
     assert adapter is not None
-    print("✓ 字符串创建适配器测试通过")
+    print("✓ String-based adapter creation test passed")
 
 
 def test_svm_fit_predict():
-    """测试 SVM 训练和预测"""
+    """Test SVM train and predict."""
     np.random.seed(42)
     X = np.random.randn(100, 5)
     y = np.random.randint(0, 2, 100)
@@ -59,11 +59,11 @@ def test_svm_fit_predict():
     pred = adapter.predict(X)
     assert len(pred) == 100
     assert all(p in [0, 1] for p in pred)
-    print("✓ SVM 训练预测测试通过")
+    print("✓ SVM train/predict test passed")
 
 
 def test_svm_evaluate():
-    """测试 SVM 评估"""
+    """Test SVM evaluation."""
     np.random.seed(42)
     X = np.random.randn(100, 5)
     y = np.random.randint(0, 2, 100)
@@ -72,12 +72,12 @@ def test_svm_evaluate():
     adapter.fit(X, y)
 
     score = adapter.evaluate(X, y)
-    assert 0 <= score <= 1  # 准确率在 0-1 之间
-    print(f"✓ SVM 评估测试通过: 准确率={score:.4f}")
+    assert 0 <= score <= 1  # Accuracy in [0, 1]
+    print(f"✓ SVM evaluation test passed: accuracy={score:.4f}")
 
 
 def test_svm_distance_to_boundary():
-    """测试 SVM 边界距离"""
+    """Test SVM distance-to-boundary."""
     np.random.seed(42)
     X = np.random.randn(100, 5)
     y = np.random.randint(0, 2, 100)
@@ -88,11 +88,11 @@ def test_svm_distance_to_boundary():
     distance = adapter.get_distance_to_boundary(X[:5])
     assert len(distance) == 5
     assert all(0 <= d <= 1 for d in distance)
-    print(f"✓ SVM 边界距离测试通过: {distance[:3]}")
+    print(f"✓ SVM distance-to-boundary test passed: {distance[:3]}")
 
 
 def test_svm_feature_importance():
-    """测试 SVM 特征重要性"""
+    """Test SVM feature importance."""
     np.random.seed(42)
     X = np.random.randn(100, 5)
     y = np.random.randint(0, 2, 100)
@@ -102,12 +102,12 @@ def test_svm_feature_importance():
 
     importance = adapter.get_feature_importance()
     assert len(importance) == 5
-    assert np.isclose(importance.sum(), 1.0)  # 归一化
-    print(f"✓ SVM 特征重要性测试通过: {importance}")
+    assert np.isclose(importance.sum(), 1.0)  # Normalized
+    print(f"✓ SVM feature importance test passed: {importance}")
 
 
 def test_random_forest_fit_predict():
-    """测试 RandomForest 训练和预测"""
+    """Test RandomForest train and predict."""
     np.random.seed(42)
     X = np.random.randn(100, 5)
     y = np.random.randint(0, 2, 100)
@@ -117,11 +117,11 @@ def test_random_forest_fit_predict():
 
     pred = adapter.predict(X)
     assert len(pred) == 100
-    print("✓ RandomForest 训练预测测试通过")
+    print("✓ RandomForest train/predict test passed")
 
 
 def test_random_forest_distance_to_boundary():
-    """测试 RandomForest 边界距离"""
+    """Test RandomForest distance-to-boundary."""
     np.random.seed(42)
     X = np.random.randn(100, 5)
     y = np.random.randint(0, 2, 100)
@@ -132,11 +132,11 @@ def test_random_forest_distance_to_boundary():
     distance = adapter.get_distance_to_boundary(X[:5])
     assert len(distance) == 5
     assert all(0 <= d <= 1 for d in distance)
-    print(f"✓ RandomForest 边界距离测试通过: {distance[:3]}")
+    print(f"✓ RandomForest distance-to-boundary test passed: {distance[:3]}")
 
 
 def test_linear_fit_predict():
-    """测试 Linear 回归训练和预测"""
+    """Test Linear regression train and predict."""
     np.random.seed(42)
     X = np.random.randn(100, 5)
     y = np.random.randn(100)
@@ -146,11 +146,11 @@ def test_linear_fit_predict():
 
     pred = adapter.predict(X)
     assert len(pred) == 100
-    print("✓ Linear 回归训练预测测试通过")
+    print("✓ Linear regression train/predict test passed")
 
 
 def test_linear_evaluate():
-    """测试 Linear 回归评估"""
+    """Test Linear regression evaluation."""
     np.random.seed(42)
     X = np.random.randn(100, 5)
     y = np.random.randn(100)
@@ -159,12 +159,12 @@ def test_linear_evaluate():
     adapter.fit(X, y)
 
     score = adapter.evaluate(X, y)
-    assert score <= 0  # 负 MSE
-    print(f"✓ Linear 回归评估测试通过: 负MSE={score:.4f}")
+    assert score <= 0  # Negative MSE
+    print(f"✓ Linear regression evaluation test passed: -MSE={score:.4f}")
 
 
 def test_ridge_fit_predict():
-    """测试 Ridge 回归训练和预测"""
+    """Test Ridge regression train and predict."""
     np.random.seed(42)
     X = np.random.randn(100, 5)
     y = np.random.randn(100)
@@ -174,11 +174,11 @@ def test_ridge_fit_predict():
 
     pred = adapter.predict(X)
     assert len(pred) == 100
-    print("✓ Ridge 回归训练预测测试通过")
+    print("✓ Ridge regression train/predict test passed")
 
 
 def test_ridge_distance_to_boundary():
-    """测试 Ridge 回归影响度"""
+    """Test Ridge regression influence."""
     np.random.seed(42)
     X = np.random.randn(100, 5)
     y = np.random.randn(100)
@@ -189,11 +189,11 @@ def test_ridge_distance_to_boundary():
     distance = adapter.get_distance_to_boundary(X[:5])
     assert len(distance) == 5
     assert all(0 <= d <= 1 for d in distance)
-    print(f"✓ Ridge 回归影响度测试通过: {distance[:3]}")
+    print(f"✓ Ridge regression influence test passed: {distance[:3]}")
 
 
 def test_model_clone():
-    """测试模型克隆"""
+    """Test model clone."""
     np.random.seed(42)
     X = np.random.randn(100, 5)
     y = np.random.randint(0, 2, 100)
@@ -202,13 +202,13 @@ def test_model_clone():
     adapter.fit(X, y)
 
     cloned = adapter.clone()
-    assert not cloned._is_fitted  # 克隆应该是未训练的
-    print("✓ 模型克隆测试通过")
+    assert not cloned._is_fitted  # Clone should be untrained
+    print("✓ Model clone test passed")
 
 
 if __name__ == '__main__':
     print("\n" + "=" * 50)
-    print("模型适配器测试")
+    print("Model Adapter Tests")
     print("=" * 50 + "\n")
 
     test_create_svm_adapter()
@@ -228,4 +228,4 @@ if __name__ == '__main__':
     test_ridge_distance_to_boundary()
     test_model_clone()
 
-    print("\n所有测试通过!")
+    print("\nAll tests passed!")

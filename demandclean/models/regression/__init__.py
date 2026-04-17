@@ -1,4 +1,4 @@
-"""回归模型适配器"""
+"""Regression model adapters"""
 
 from .linear_adapter import LinearAdapter
 from .ridge_adapter import RidgeAdapter

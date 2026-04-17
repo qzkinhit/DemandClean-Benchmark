@@ -1,6 +1,6 @@
 """
-DemandClean API 测试
-====================
+DemandClean API Tests
+=====================
 """
 
 import sys
@@ -15,7 +15,7 @@ from demandclean.utils.model_io import ModelIO
 
 
 def test_demandclean_init_classification():
-    """测试分类任务初始化"""
+    """Test classification task initialization."""
     dc = DemandClean(
         task_type='classification',
         model_type='svm',
@@ -27,11 +27,11 @@ def test_demandclean_init_classification():
     assert dc.config.model_type.value == 'svm'
     assert dc.config.agent_type.value == 'single'
     assert not dc.is_fitted
-    print("✓ 分类任务初始化测试通过")
+    print("✓ Classification task initialization test passed")
 
 
 def test_demandclean_init_regression():
-    """测试回归任务初始化"""
+    """Test regression task initialization."""
     dc = DemandClean(
         task_type='regression',
         model_type='ridge',
@@ -42,11 +42,11 @@ def test_demandclean_init_regression():
     assert dc.config.task_type.value == 'regression'
     assert dc.config.model_type.value == 'ridge'
     assert dc.config.agent_type.value == 'two_stage'
-    print("✓ 回归任务初始化测试通过")
+    print("✓ Regression task initialization test passed")
 
 
 def test_demandclean_fit():
-    """测试训练功能"""
+    """Test training functionality."""
     np.random.seed(42)
     X = np.random.randn(50, 4)
     y = np.random.randint(0, 2, 50)
@@ -61,11 +61,11 @@ def test_demandclean_fit():
     dc.fit(X, y, verbose=False)
     assert dc.is_fitted
     assert dc.agent is not None
-    print("✓ 训练功能测试通过")
+    print("✓ Training functionality test passed")
 
 
 def test_demandclean_fit_with_semantic_errors():
-    """测试带语义错误训练"""
+    """Test training with semantic errors."""
     np.random.seed(42)
     X = np.random.randn(50, 4)
     y = np.random.randint(0, 2, 50)
@@ -80,11 +80,11 @@ def test_demandclean_fit_with_semantic_errors():
 
     dc.fit(X, y, semantic_errors=semantic_errors, verbose=False)
     assert dc.is_fitted
-    print("✓ 带语义错误训练测试通过")
+    print("✓ Training with semantic errors test passed")
 
 
 def test_demandclean_detect_errors():
-    """测试错误检测"""
+    """Test error detection."""
     np.random.seed(42)
     X_dirty = np.random.randn(50, 4)
     X_dirty[5, 0] = np.nan
@@ -102,12 +102,12 @@ def test_demandclean_detect_errors():
     assert 'missing' in detected
     assert 'semantic' in detected
     assert 'syntactic' in detected
-    assert len(detected['missing']) >= 2  # 至少有我们注入的 2 个
-    print(f"✓ 错误检测测试通过: {len(detected['missing'])} 个缺失值")
+    assert len(detected['missing']) >= 2  # at least the 2 we injected
+    print(f"✓ Error detection test passed: {len(detected['missing'])} missing values")
 
 
 def test_demandclean_get_config():
-    """测试获取配置"""
+    """Test configuration retrieval."""
     dc = DemandClean(
         task_type='classification',
         model_type='svm',
@@ -118,11 +118,11 @@ def test_demandclean_get_config():
     config = dc.get_config()
     assert config.n_episodes == 100
     assert config.repair_lambda == 0.05
-    print("✓ 获取配置测试通过")
+    print("✓ Get config test passed")
 
 
 def test_demandclean_get_training_history():
-    """测试获取训练历史"""
+    """Test training history retrieval."""
     np.random.seed(42)
     X = np.random.randn(30, 3)
     y = np.random.randint(0, 2, 30)
@@ -139,16 +139,16 @@ def test_demandclean_get_training_history():
     assert 'score' in history
     assert 'reward' in history
     assert len(history['episode']) == 3
-    print("✓ 获取训练历史测试通过")
+    print("✓ Get training history test passed")
 
 
 def test_demandclean_save_load():
-    """测试模型保存和加载"""
+    """Test model save and load."""
     np.random.seed(42)
     X = np.random.randn(30, 3)
     y = np.random.randint(0, 2, 30)
 
-    # 训练
+    # Train
     dc = DemandClean(
         task_type='classification',
         model_type='svm',
@@ -156,13 +156,13 @@ def test_demandclean_save_load():
     )
     dc.fit(X, y, verbose=False)
 
-    # 保存
+    # Save
     with tempfile.TemporaryDirectory() as tmpdir:
         model_path = os.path.join(tmpdir, 'model.pt')
         dc.save(model_path)
         assert ModelIO.agent_model_exists(model_path)
 
-        # 加载
+        # Load
         dc2 = DemandClean(
             task_type='classification',
             model_type='svm'
@@ -170,36 +170,36 @@ def test_demandclean_save_load():
         dc2.load(model_path)
         assert dc2.is_fitted
 
-    print("✓ 模型保存加载测试通过")
+    print("✓ Model save/load test passed")
 
 
 def test_demandclean_not_fitted_error():
-    """测试未训练时调用错误"""
+    """Test error when calling without training."""
     dc = DemandClean()
 
     try:
         dc.clean(np.random.randn(10, 3), np.random.randint(0, 2, 10),
                  np.random.randn(10, 3), verbose=False)
-        assert False, "应该抛出异常"
+        assert False, "Should raise an exception"
     except ValueError as e:
-        assert "未训练" in str(e)
-        print("✓ 未训练错误测试通过")
+        assert "not trained" in str(e).lower()
+        print("✓ Not-trained error test passed")
 
 
 def test_demandclean_plan_not_fitted_error():
-    """测试未训练时 plan 调用错误"""
+    """Test error when calling plan without training."""
     dc = DemandClean()
 
     try:
         dc.plan(np.random.randn(10, 3), np.random.randint(0, 2, 10), verbose=False)
-        assert False, "应该抛出异常"
+        assert False, "Should raise an exception"
     except ValueError as e:
-        assert "未训练" in str(e)
-        print("✓ plan 未训练错误测试通过")
+        assert "not trained" in str(e).lower()
+        print("✓ plan not-trained error test passed")
 
 
 def test_demandclean_execute_no_plan_error():
-    """测试未 plan 时 execute 错误"""
+    """Test error when calling execute without plan."""
     np.random.seed(42)
     X = np.random.randn(30, 3)
     y = np.random.randint(0, 2, 30)
@@ -209,15 +209,15 @@ def test_demandclean_execute_no_plan_error():
 
     try:
         dc.execute(X, {}, verbose=False)
-        assert False, "应该抛出异常"
+        assert False, "Should raise an exception"
     except ValueError as e:
         assert "plan" in str(e).lower()
-        print("✓ execute 无 plan 错误测试通过")
+        print("✓ execute without plan error test passed")
 
 
 if __name__ == '__main__':
     print("\n" + "=" * 50)
-    print("DemandClean API 测试")
+    print("DemandClean API Tests")
     print("=" * 50 + "\n")
 
     test_demandclean_init_classification()
@@ -232,4 +232,4 @@ if __name__ == '__main__':
     test_demandclean_plan_not_fitted_error()
     test_demandclean_execute_no_plan_error()
 
-    print("\n所有测试通过!")
+    print("\nAll tests passed!")

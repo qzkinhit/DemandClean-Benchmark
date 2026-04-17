@@ -1,6 +1,6 @@
 """
-线性回归适配器
-==============
+Linear Regression Adapter
+=========================
 """
 
 import numpy as np
@@ -12,15 +12,15 @@ from ..base_adapter import ModelAdapter
 
 class LinearAdapter(ModelAdapter):
     """
-    线性回归适配器
+    Linear regression adapter.
     """
 
     def __init__(self, **kwargs):
         """
-        初始化线性回归适配器
+        Initialize the linear regression adapter.
 
         Args:
-            **kwargs: 传递给 LinearRegression 的参数
+            **kwargs: Arguments forwarded to LinearRegression
         """
         super().__init__()
         self.kwargs = kwargs
@@ -29,28 +29,28 @@ class LinearAdapter(ModelAdapter):
         self._y_std: float = 1.0
 
     def fit(self, X: np.ndarray, y: np.ndarray) -> 'LinearAdapter':
-        """训练线性回归模型"""
+        """Train the linear regression model."""
         self.model.fit(X, y)
         self._y_mean = np.mean(y)
         self._y_std = np.std(y) + 1e-6
         self._is_fitted = True
 
-        # 特征重要性基于系数绝对值
+        # Feature importance based on absolute coefficients
         self._feature_importance = self._normalize_importance(self.model.coef_)
 
         return self
 
     def predict(self, X: np.ndarray) -> np.ndarray:
-        """预测"""
+        """Make predictions."""
         if not self._is_fitted:
-            raise RuntimeError("模型未训练，请先调用 fit()")
+            raise RuntimeError("Model is not trained; please call fit() first.")
         return self.model.predict(X)
 
     def evaluate(self, X: np.ndarray, y: np.ndarray) -> float:
         """
-        计算负 MSE
+        Compute the negative MSE.
 
-        返回负 MSE，越接近 0 越好
+        Returns negative MSE; closer to 0 is better.
         """
         y_pred = self.predict(X)
         mse = np.mean((y - y_pred) ** 2)
@@ -58,31 +58,31 @@ class LinearAdapter(ModelAdapter):
 
     def get_distance_to_boundary(self, X: np.ndarray) -> np.ndarray:
         """
-        获取到"边界"的距离
+        Return the distance to the "boundary".
 
-        回归任务中，"边界"重新定义为：
-        该数据点预测值对模型的影响程度
+        For regression, the "boundary" is redefined as how strongly the
+        prediction for this point influences the model:
 
-        预测值接近均值 -> 影响小 -> 距离小
-        预测值偏离均值 -> 影响大 -> 距离大
+        Prediction close to the mean -> small influence -> small distance
+        Prediction far from the mean -> large influence -> large distance
         """
         if not self._is_fitted:
             return np.ones(len(X)) * 0.5
 
         try:
             predictions = self.predict(X)
-            # 归一化影响度
+            # Normalized influence
             influence = np.abs(predictions - self._y_mean) / (self._y_std * 2)
             return np.clip(influence, 0, 1)
         except Exception:
             return np.ones(len(X)) * 0.5
 
     def get_feature_importance(self) -> np.ndarray:
-        """获取特征重要性"""
+        """Return feature importance."""
         if self._feature_importance is None:
-            raise RuntimeError("模型未训练，请先调用 fit()")
+            raise RuntimeError("Model is not trained; please call fit() first.")
         return self._feature_importance
 
     def clone(self) -> 'LinearAdapter':
-        """创建未训练的克隆"""
+        """Create an untrained clone."""
         return LinearAdapter(**self.kwargs)

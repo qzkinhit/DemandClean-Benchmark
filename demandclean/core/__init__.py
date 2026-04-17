@@ -1,4 +1,4 @@
-"""核心模块"""
+"""Core module"""
 
 from . import agents
 from . import environments

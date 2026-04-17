@@ -1,12 +1,14 @@
 """
-Shapley Value 分析模块
-======================
+Shapley Value analysis module
+=============================
 
-将 DQN Agent 的 4 种操作视为博弈玩家,
-通过 Shapley Value 量化每种操作对下游性能的边际贡献。
+Treat the 4 DQN-Agent actions as game-theoretic players and use Shapley
+values to quantify each action's marginal contribution to downstream
+performance.
 
-玩家: {no_action, repair_value, delete, replace_nearby}
-联盟值 v(S) = 限制 Agent 只能使用 S 中的操作后, 下游模型准确率。
+Players: {no_action, repair_value, delete, replace_nearby}
+Coalition value v(S) = downstream model accuracy obtained when the agent
+is restricted to only using actions in S.
 """
 
 import math
@@ -19,7 +21,7 @@ import numpy as np
 from sklearn.metrics import accuracy_score, mean_squared_error
 
 
-# 4 种操作名称
+# Names of the 4 actions
 OPERATIONS = ['no_action', 'repair_value', 'delete', 'replace_nearby']
 
 
@@ -33,11 +35,13 @@ def _default_coalition_value(allowed_actions: set,
                              eval_model,
                              task: str) -> float:
     """
-    计算联盟值: 限制 Agent 只能使用 allowed_actions 中的操作
+    Compute the coalition value: restrict the agent to actions in
+    ``allowed_actions``.
 
-    1. 对每个 error_cell 调用 agent.act()
-    2. 如果动作不在 allowed_actions 中, 强制替换为 no_action
-    3. 执行清洗, 训练下游模型, 返回分数
+    1. For each error cell, call ``agent.act()``.
+    2. If the selected action is not in ``allowed_actions``, force it to
+       no_action.
+    3. Run cleaning, train the downstream model, and return the score.
     """
     X_work = X_dirty.copy()
 
@@ -47,12 +51,12 @@ def _default_coalition_value(allowed_actions: set,
         if row_idx >= len(X_work):
             continue
 
-        # 构造简化 state (使用 dirty 值本身)
+        # Build a simplified state (use the dirty value itself)
         state = np.zeros(8)
         state[0] = X_work[row_idx, col_idx] if col_idx < X_work.shape[1] else 0
         state[1] = float(error_type)
 
-        # 获取 Agent 推荐动作
+        # Query the agent for a recommended action
         if hasattr(agent, 'act_stage1'):
             final_action, _, _ = agent.act(state, training=False)
         else:
@@ -60,28 +64,28 @@ def _default_coalition_value(allowed_actions: set,
 
         action_name = action_map.get(final_action, 'no_action')
 
-        # 限制操作集
+        # Restrict the action set
         if action_name not in allowed_actions:
-            final_action = 0  # 退化为 no_action
+            final_action = 0  # fall back to no_action
 
-        # 执行操作
+        # Execute the action
         if final_action == 1 and clean_val is not None:
             X_work[row_idx, col_idx] = clean_val
         elif final_action == 2:
             X_work[row_idx, col_idx] = np.nan
         elif final_action == 3:
-            # 用列均值近似
+            # Approximate with the column mean
             col_vals = X_work[:, col_idx]
             valid = col_vals[~np.isnan(col_vals)]
             X_work[row_idx, col_idx] = np.mean(valid) if len(valid) > 0 else 0
 
-    # 处理 NaN (delete 产生的)
+    # Handle NaNs introduced by delete
     col_means = np.nanmean(X_work, axis=0)
     for j in range(X_work.shape[1]):
         mask = np.isnan(X_work[:, j])
         X_work[mask, j] = col_means[j] if not np.isnan(col_means[j]) else 0
 
-    # 训练并评估
+    # Train and evaluate
     eval_model.fit(X_work, y)
     y_pred = eval_model.predict(X_test)
 
@@ -92,7 +96,7 @@ def _default_coalition_value(allowed_actions: set,
 
 
 # ---------------------------------------------------------------------------
-# 精确 Shapley (4! = 24 排列)
+# Exact Shapley (4! = 24 permutations)
 # ---------------------------------------------------------------------------
 
 def compute_exact_shapley(agent,
@@ -105,17 +109,17 @@ def compute_exact_shapley(agent,
                           task: str = 'classification',
                           value_fn: Callable = None) -> Dict[str, float]:
     """
-    精确 Shapley Value (4! = 24 排列全枚举)
+    Exact Shapley values by full enumeration of all 4! = 24 permutations.
 
     Args:
-        agent: DQN Agent (需要有 act 方法)
-        X_dirty: 脏数据特征矩阵
-        y: 标签
+        agent: DQN Agent (must expose an ``act`` method)
+        X_dirty: dirty feature matrix
+        y: labels
         error_list: [(row, col, error_type, clean_val), ...]
-        X_test, y_test: 测试数据
-        eval_model: sklearn 模型实例 (默认 RF)
-        task: 'classification' 或 'regression'
-        value_fn: 自定义联盟值函数 (可选)
+        X_test, y_test: test data
+        eval_model: sklearn model instance (default: RF)
+        task: 'classification' or 'regression'
+        value_fn: optional custom coalition-value function
 
     Returns:
         {operation_name: shapley_value}
@@ -134,7 +138,7 @@ def compute_exact_shapley(agent,
     n = len(OPERATIONS)
     shapley = {op: 0.0 for op in OPERATIONS}
 
-    # 枚举所有排列
+    # Enumerate all permutations
     for perm in itertools.permutations(range(n)):
         coalition = set()
         prev_val = value_fn(coalition)
@@ -145,7 +149,7 @@ def compute_exact_shapley(agent,
             shapley[OPERATIONS[idx]] += (curr_val - prev_val)
             prev_val = curr_val
 
-    # 平均
+    # Average
     n_perms = math.factorial(n)
     for op in OPERATIONS:
         shapley[op] /= n_perms
@@ -154,7 +158,7 @@ def compute_exact_shapley(agent,
 
 
 # ---------------------------------------------------------------------------
-# 蒙特卡洛 Shapley (大规模近似)
+# Monte Carlo Shapley (large-scale approximation)
 # ---------------------------------------------------------------------------
 
 def compute_shapley_values(agent,
@@ -169,11 +173,11 @@ def compute_shapley_values(agent,
                            value_fn: Callable = None,
                            seed: int = 42) -> Dict[str, float]:
     """
-    蒙特卡洛 Shapley Value (采样近似)
+    Monte Carlo approximation of Shapley values via permutation sampling.
 
     Args:
-        n_samples: 采样排列数
-        其余参数同 compute_exact_shapley
+        n_samples: number of sampled permutations
+        remaining arguments are the same as ``compute_exact_shapley``
 
     Returns:
         {operation_name: shapley_value}
@@ -213,19 +217,19 @@ def compute_shapley_values(agent,
 
 
 # ---------------------------------------------------------------------------
-# 可视化
+# Visualization
 # ---------------------------------------------------------------------------
 
 def plot_shapley_bar(shapley_values: Dict[str, float],
                      agent_name: str = 'Agent',
                      save_path: str = None) -> None:
-    """单 Agent 的 Shapley 柱状图"""
+    """Per-agent Shapley bar chart."""
     try:
         import matplotlib
         matplotlib.use('Agg')
         import matplotlib.pyplot as plt
     except ImportError:
-        print("matplotlib 不可用，跳过绘图")
+        print("matplotlib not available; skipping plot")
         return
 
     ops = list(shapley_values.keys())
@@ -241,7 +245,7 @@ def plot_shapley_bar(shapley_values: Dict[str, float],
 
     if save_path:
         fig.savefig(save_path, dpi=150)
-        print(f"Shapley 柱状图已保存: {save_path}")
+        print(f"Shapley bar chart saved: {save_path}")
         plt.close(fig)
     else:
         plt.show()
@@ -249,14 +253,14 @@ def plot_shapley_bar(shapley_values: Dict[str, float],
 
 def plot_shapley_comparison(all_shapley: Dict[str, Dict[str, float]],
                             save_path: str = None) -> None:
-    """多 Agent 对比 Shapley 柱状图"""
+    """Multi-agent Shapley comparison bar chart."""
     try:
         import matplotlib
         matplotlib.use('Agg')
         import matplotlib.pyplot as plt
         import numpy as _np
     except ImportError:
-        print("matplotlib 不可用，跳过绘图")
+        print("matplotlib not available; skipping plot")
         return
 
     agents = list(all_shapley.keys())
@@ -283,7 +287,7 @@ def plot_shapley_comparison(all_shapley: Dict[str, Dict[str, float]],
 
     if save_path:
         fig.savefig(save_path, dpi=150)
-        print(f"Shapley 对比图已保存: {save_path}")
+        print(f"Shapley comparison chart saved: {save_path}")
         plt.close(fig)
     else:
         plt.show()

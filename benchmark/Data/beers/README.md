@@ -1,81 +1,81 @@
-# 数据集：Beers
+# Dataset: Beers
 
-## 基本信息
+## Basic Information
 
-| 项目 | 值 |
-|------|-----|
-| 任务类型 | 分类 (Classification) |
-| 目标列 | `style` |
-| 数据规模 | 2,410 条记录 × 11 属性 |
-| 索引文件 | `clean_index.csv`, `dirty_index.csv` |
-| 缺失值标记 | `empty` |
+| Item | Value |
+|------|-------|
+| Task type | Classification |
+| Target column | `style` |
+| Size | 2,410 records x 11 attributes |
+| Indexed files | `clean_index.csv`, `dirty_index.csv` |
+| Missing value marker | `empty` |
 
-## 文件结构
+## File Layout
 
-### 主要数据文件
-| 文件名 | 说明 | 用途 |
-|--------|------|------|
-| `clean.csv` | 干净数据（无索引） | 原始干净数据 |
-| `dirty.csv` | 脏数据（无索引） | 原始脏数据 |
-| `clean_index.csv` | 干净数据（带index列） | **推荐使用** - 主要评测文件 |
-| `dirty_index.csv` | 脏数据（带index列） | **推荐使用** - 主要评测文件 |
-| `clean_with_index.csv` | 同clean_index.csv | 兼容旧版本 |
-| `dirty_with_index.csv` | 同dirty_index.csv | 兼容旧版本 |
+### Main data files
+| File | Description | Usage |
+|------|-------------|-------|
+| `clean.csv` | Clean data (no index) | Raw clean data |
+| `dirty.csv` | Dirty data (no index) | Raw dirty data |
+| `clean_index.csv` | Clean data with `index` column | **Recommended** primary evaluation file |
+| `dirty_index.csv` | Dirty data with `index` column | **Recommended** primary evaluation file |
+| `clean_with_index.csv` | Same as `clean_index.csv` | Legacy compatibility |
+| `dirty_with_index.csv` | Same as `dirty_index.csv` | Legacy compatibility |
 
-### HoloClean专用文件
-| 文件名 | 说明 |
-|--------|------|
-| `clean_holoclean.csv` | 转置格式 (tid, attribute, correct_val) |
-| `dirty_index_holoclean.csv` | 去掉index列的脏数据 |
-| `*_ori_empty.csv` | 缺失值统一为空字符串的版本 |
+### HoloClean-specific files
+| File | Description |
+|------|-------------|
+| `clean_holoclean.csv` | Transposed format (tid, attribute, correct_val) |
+| `dirty_index_holoclean.csv` | Dirty data without the `index` column |
+| `*_ori_empty.csv` | Variant with missing values normalized to empty strings |
 
-### 规则文件
-| 文件名 | 说明 |
-|--------|------|
-| `dc_rules_holoclean.txt` | HoloClean格式的Denial Constraints |
-| `dc_rules-validate-fd-horizon.txt` | Horizon格式的Functional Dependencies |
-| `fd_rule.txt` | 函数依赖规则 |
-| `rules.txt` | 通用规则文件 |
+### Rule files
+| File | Description |
+|------|-------------|
+| `dc_rules_holoclean.txt` | Denial Constraints in HoloClean format |
+| `dc_rules-validate-fd-horizon.txt` | Functional Dependencies in Horizon format |
+| `fd_rule.txt` | Functional dependency rules |
+| `rules.txt` | Generic rule file |
 
-## 列定义
+## Column Definitions
 
-### 索引列 (Index)
-| 列名 | 说明 |
-|------|------|
-| `index` | 行索引，不参与模型训练 |
+### Index column
+| Column | Description |
+|--------|-------------|
+| `index` | row index, not used for model training |
 
-### 排除列 (Excluded) - 不参与模型训练
-| 列名 | 类型 | 说明 |
-|------|------|------|
-| id | 数值 | 啤酒ID (标识符) |
-| beer_name | 文本 | 啤酒名称 (文本标识) |
-| brewery_id | 数值 | 酿酒厂ID (标识符) |
-| brewery_name | 文本 | 酿酒厂名称 (文本标识) |
-| city | 文本 | 城市 (文本分类，高基数) |
-| state | 文本 | 州 (文本分类) |
+### Excluded columns (not used for model training)
+| Column | Type | Description |
+|--------|------|-------------|
+| id | Numeric | Beer ID (identifier) |
+| beer_name | Text | Beer name (text identifier) |
+| brewery_id | Numeric | Brewery ID (identifier) |
+| brewery_name | Text | Brewery name (text identifier) |
+| city | Text | City (high-cardinality categorical) |
+| state | Text | State (categorical) |
 
-### 特征列 (Features) - 共3列
-| 属性名 | 类型 | 说明 |
-|--------|------|------|
-| ounces | 数值 | 容量(盎司) |
-| abv | 数值 | 酒精度数 |
-| ibu | 数值 | 苦度单位 |
+### Feature columns (3 total)
+| Attribute | Type | Description |
+|-----------|------|-------------|
+| ounces | Numeric | Volume in ounces |
+| abv | Numeric | Alcohol by volume |
+| ibu | Numeric | International Bitterness Units |
 
-### 目标列 (Label)
-| 属性名 | 类型 | 说明 |
-|--------|------|------|
-| style | 多分类 | 啤酒风格类型 |
+### Label column
+| Attribute | Type | Description |
+|-----------|------|-------------|
+| style | Multiclass | Beer style |
 
-## 错误信息
-- **错误类型**: 缺失值(Missing Value), 规则违例(Rule Violation), 拼写错误(Typos)
-- **错误条目数**: 2,410
-- **错误单元格数**: 3,357
-- **缺失值标记**: `empty`
+## Error Information
+- **Error types**: Missing values, rule violations, typos
+- **Error entry count**: 2,410
+- **Error cell count**: 3,357
+- **Missing value marker**: `empty`
 
-## 数据来源
+## Source
 J.-N. Hould. Craft beers dataset. https://www.kaggle.com/nickhould/craft-cans. 2017.
 
-## 运行命令示例
+## Example Command
 
 ```bash
 # DeleteAll baseline

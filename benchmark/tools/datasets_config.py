@@ -1,11 +1,11 @@
 """
-datasets_config.py - 数据集配置文件
+datasets_config.py - dataset configuration
 
-定义每个数据集的特征列、目标列、排除列、任务类型等信息。
-所有baseline脚本应引用此配置文件，确保一致性。
+Defines feature columns, target columns, excluded columns, and task types for each dataset.
+All baseline scripts should reference this config to stay consistent.
 """
 
-# 数据集配置
+# Dataset configuration.
 DATASETS_CONFIG = {
     'adult': {
         'dirty_file': 'dirty_index.csv',
@@ -13,14 +13,14 @@ DATASETS_CONFIG = {
         'label_column': 'income',
         'task_type': 'classification',
         'index_column': 'index',
-        'exclude_columns': [],  # 无需额外排除的列
+        'exclude_columns': [],  # no additional columns to exclude
         'feature_columns': [
             'age', 'workclass', 'fnlwgt', 'education', 'educational_num',
             'marital_status', 'occupation', 'relationship', 'race', 'gender',
             'capital_gain', 'capital_loss', 'hours_per_week', 'native_country'
         ],
         'rules_file': None,
-        'description': 'UCI Adult Census Income数据集'
+        'description': 'UCI Adult Census Income dataset'
     },
 
     'beers': {
@@ -32,7 +32,7 @@ DATASETS_CONFIG = {
         'exclude_columns': ['id', 'beer_name', 'brewery_id', 'brewery_name', 'city', 'state'],
         'feature_columns': ['ounces', 'abv', 'ibu'],
         'rules_file': None,
-        'description': 'Craft Beers啤酒数据集'
+        'description': 'Craft Beers dataset'
     },
 
     'bike': {
@@ -41,13 +41,13 @@ DATASETS_CONFIG = {
         'label_column': 'cnt',
         'task_type': 'regression',
         'index_column': 'index',
-        'exclude_columns': ['dteday'],  # 日期列不作为特征
+        'exclude_columns': ['dteday'],  # date column is not used as a feature
         'feature_columns': [
             'season', 'yr', 'mnth', 'hr', 'holiday', 'weekday', 'workingday',
             'weathersit', 'temp', 'atemp', 'hum', 'windspeed', 'casual', 'registered'
         ],
         'rules_file': 'rules.txt',
-        'description': 'Bike Sharing自行车租赁数据集'
+        'description': 'Bike Sharing rental dataset'
     },
 
     'breast_cancer': {
@@ -63,7 +63,7 @@ DATASETS_CONFIG = {
             'Bland Chromatin', 'Normal Nucleoli', 'Mitoses'
         ],
         'rules_file': 'rules.txt',
-        'description': 'Wisconsin Breast Cancer乳腺癌诊断数据集'
+        'description': 'Wisconsin Breast Cancer dataset'
     },
 
     'har': {
@@ -75,7 +75,7 @@ DATASETS_CONFIG = {
         'exclude_columns': [],
         'feature_columns': ['x', 'y', 'z'],
         'rules_file': 'rules.txt',
-        'description': 'Human Activity Recognition人类活动识别数据集'
+        'description': 'Human Activity Recognition dataset'
     },
 
     'mercedes': {
@@ -84,10 +84,10 @@ DATASETS_CONFIG = {
         'label_column': 'y',
         'task_type': 'regression',
         'index_column': 'index',
-        'exclude_columns': [],  # X0-X385都是特征
-        'feature_columns': 'auto',  # 自动检测: 除index和y之外的所有列
+        'exclude_columns': [],  # X0-X385 are all features
+        'feature_columns': 'auto',  # auto-detect: every column except index and y
         'rules_file': 'rules.txt',
-        'description': 'Mercedes-Benz汽车测试时间预测数据集'
+        'description': 'Mercedes-Benz vehicle test-time dataset'
     },
 
     'nasa': {
@@ -99,7 +99,7 @@ DATASETS_CONFIG = {
         'exclude_columns': [],
         'feature_columns': ['frequency', 'angle', 'chord_length', 'velocity', 'thickness'],
         'rules_file': 'rules.txt',
-        'description': 'NASA Airfoil Self-Noise机翼噪声数据集'
+        'description': 'NASA Airfoil Self-Noise dataset'
     },
 
     'smartfactory': {
@@ -118,7 +118,7 @@ DATASETS_CONFIG = {
             'i_w_hl_weg', 'o_w_hl_power', 'o_w_hl_voltage'
         ],
         'rules_file': 'rules.txt',
-        'description': 'Smart Factory智能工厂设备状态数据集'
+        'description': 'Smart Factory equipment status dataset'
     },
 
     'soilmoisture': {
@@ -127,28 +127,28 @@ DATASETS_CONFIG = {
         'label_column': 'soil_moisture',
         'task_type': 'regression',
         'index_column': 'index',
-        'exclude_columns': ['datetime'],  # 时间列不作为特征
-        'feature_columns': 'auto',  # 自动检测: 除index, datetime, soil_moisture之外的所有列
+        'exclude_columns': ['datetime'],  # timestamp column is not used as a feature
+        'feature_columns': 'auto',  # auto-detect: every column except index, datetime, soil_moisture
         'rules_file': 'rules.txt',
-        'description': 'Hyperspectral Soil Moisture高光谱土壤湿度数据集'
+        'description': 'Hyperspectral Soil Moisture dataset'
     }
 }
 
 
 def get_dataset_config(dataset_name: str) -> dict:
-    """获取数据集配置"""
+    """Return the config for the given dataset."""
     if dataset_name not in DATASETS_CONFIG:
-        raise ValueError(f"未知数据集: {dataset_name}. 可用数据集: {list(DATASETS_CONFIG.keys())}")
+        raise ValueError(f"Unknown dataset: {dataset_name}. Available datasets: {list(DATASETS_CONFIG.keys())}")
     return DATASETS_CONFIG[dataset_name]
 
 
 def get_all_datasets() -> list:
-    """获取所有数据集名称"""
+    """Return all dataset names."""
     return list(DATASETS_CONFIG.keys())
 
 
 def get_dataset_path(dataset_name: str, base_path: str = 'Data') -> dict:
-    """获取数据集的完整路径"""
+    """Return the full paths for the given dataset."""
     config = get_dataset_config(dataset_name)
     import os
     return {
@@ -159,28 +159,28 @@ def get_dataset_path(dataset_name: str, base_path: str = 'Data') -> dict:
 
 
 def print_dataset_info(dataset_name: str = None):
-    """打印数据集信息"""
+    """Print dataset information."""
     if dataset_name:
         config = get_dataset_config(dataset_name)
         print(f"\n=== {dataset_name} ===")
-        print(f"  描述: {config['description']}")
-        print(f"  任务类型: {config['task_type']}")
-        print(f"  目标列: {config['label_column']}")
-        print(f"  索引列: {config['index_column']}")
-        print(f"  排除列: {config['exclude_columns']}")
+        print(f"  Description: {config['description']}")
+        print(f"  Task type: {config['task_type']}")
+        print(f"  Label column: {config['label_column']}")
+        print(f"  Index column: {config['index_column']}")
+        print(f"  Excluded columns: {config['exclude_columns']}")
         if config['feature_columns'] == 'auto':
-            print(f"  特征列: 自动检测")
+            print(f"  Feature columns: auto-detect")
         else:
-            print(f"  特征列: {config['feature_columns']}")
+            print(f"  Feature columns: {config['feature_columns']}")
     else:
-        print("\n=== 所有数据集 ===")
+        print("\n=== All datasets ===")
         for name in get_all_datasets():
             config = DATASETS_CONFIG[name]
             print(f"  {name}: {config['task_type']}, label={config['label_column']}")
 
 
 if __name__ == '__main__':
-    # 测试配置
+    # Quick config test.
     print_dataset_info()
     print("\n" + "=" * 50)
     print_dataset_info('beers')

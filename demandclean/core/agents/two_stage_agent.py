@@ -1,8 +1,8 @@
 """
-两阶段 DQN Agent (PyTorch)
-===========================
+Two-stage DQN agent (PyTorch)
+==============================
 
-分两个阶段决策的 DQN Agent。
+DQN agent that splits each decision into two stages.
 """
 
 from typing import Tuple, Optional, Any, Dict
@@ -19,22 +19,22 @@ from .single_stage_agent import _PlainQNetwork
 
 class TwoStageDQNAgent(BaseAgent):
     """
-    两阶段 DQN Agent (PyTorch)
+    Two-stage DQN agent (PyTorch).
 
-    Stage 1: 决定策略类型 (3 种动作)
-        - 0: no_action (不操作)
-        - 1: repair (修复)
-        - 2: delete (删除)
-
-    Stage 2: 如果选择 repair，决定如何修 (2 种动作)
-        - 0: repair_with_value (用真值修复)
-        - 1: replace_nearby (用临近值替换)
-
-    最终动作映射:
+    Stage 1: choose the strategy type (3 actions)
         - 0: no_action
-        - 1: repair_value (stage1=1, stage2=0)
+        - 1: repair
         - 2: delete
-        - 3: replace_nearby (stage1=1, stage2=1)
+
+    Stage 2: if repair is selected, choose how to repair (2 actions)
+        - 0: repair_with_value (use ground truth)
+        - 1: replace_nearby (use a nearby value)
+
+    Final action mapping:
+        - 0: no_action
+        - 1: repair_value   (stage1 = 1, stage2 = 0)
+        - 2: delete
+        - 3: replace_nearby (stage1 = 1, stage2 = 1)
     """
 
     def __init__(self,
@@ -46,16 +46,16 @@ class TwoStageDQNAgent(BaseAgent):
                  epsilon_decay: float = 0.995,
                  learning_rate: float = 0.0005):
         """
-        初始化两阶段 DQN Agent
+        Initialize the two-stage DQN agent.
 
         Args:
-            state_size: 状态向量维度
-            memory_size: 经验回放缓冲区大小
-            gamma: 折扣因子
-            epsilon: 初始探索率
-            epsilon_min: 最小探索率
-            epsilon_decay: 探索率衰减
-            learning_rate: 学习率
+            state_size: dimensionality of the state vector
+            memory_size: replay buffer capacity
+            gamma: discount factor
+            epsilon: initial exploration rate
+            epsilon_min: minimum exploration rate
+            epsilon_decay: exploration decay rate
+            learning_rate: learning rate
         """
         super().__init__(state_size)
         self.gamma = gamma
@@ -66,14 +66,14 @@ class TwoStageDQNAgent(BaseAgent):
 
         self.device = torch.device('cpu')
 
-        # Stage 1: 策略选择网络
+        # Stage 1: policy selection network
         self.stage1_action_size = 3
         self.stage1_memory = deque(maxlen=memory_size)
         self.stage1_model = _PlainQNetwork(state_size, self.stage1_action_size).to(self.device)
         self.stage1_target_model = _PlainQNetwork(state_size, self.stage1_action_size).to(self.device)
         self.stage1_optimizer = optim.Adam(self.stage1_model.parameters(), lr=learning_rate)
 
-        # Stage 2: 修复方式网络
+        # Stage 2: repair-strategy network
         self.stage2_action_size = 2
         self.stage2_memory = deque(maxlen=memory_size)
         self.stage2_model = _PlainQNetwork(state_size, self.stage2_action_size).to(self.device)
@@ -83,11 +83,11 @@ class TwoStageDQNAgent(BaseAgent):
         self.update_target_models()
 
     def _to_tensor(self, arr: np.ndarray) -> torch.Tensor:
-        """numpy → torch tensor"""
+        """Convert numpy array to torch tensor."""
         return torch.FloatTensor(arr).to(self.device)
 
     def act_stage1(self, state: np.ndarray, training: bool = True) -> int:
-        """Stage 1 动作选择"""
+        """Stage 1 action selection."""
         if training and np.random.rand() <= self.epsilon:
             return random.randrange(self.stage1_action_size)
         with torch.no_grad():
@@ -95,7 +95,7 @@ class TwoStageDQNAgent(BaseAgent):
             return int(q.argmax(dim=1).item())
 
     def act_stage2(self, state: np.ndarray, training: bool = True) -> int:
-        """Stage 2 动作选择"""
+        """Stage 2 action selection."""
         if training and np.random.rand() <= self.epsilon:
             return random.randrange(self.stage2_action_size)
         with torch.no_grad():
@@ -104,17 +104,17 @@ class TwoStageDQNAgent(BaseAgent):
 
     def act(self, state: np.ndarray, training: bool = True) -> Tuple[int, int, Optional[int]]:
         """
-        根据状态选择动作
+        Select an action given the current state.
 
         Args:
-            state: 状态向量
-            training: 是否在训练模式
+            state: state vector
+            training: whether the agent is in training mode
 
         Returns:
             (final_action, stage1_action, stage2_action)
-            - final_action: 最终动作 (0=no_action, 1=repair_value, 2=delete, 3=replace_nearby)
-            - stage1_action: Stage 1 动作 (0, 1, 2)
-            - stage2_action: Stage 2 动作 (0, 1) 或 None
+            - final_action: final action (0=no_action, 1=repair_value, 2=delete, 3=replace_nearby)
+            - stage1_action: Stage 1 action (0, 1, 2)
+            - stage2_action: Stage 2 action (0, 1) or None
         """
         stage1_action = self.act_stage1(state, training)
 
@@ -131,23 +131,23 @@ class TwoStageDQNAgent(BaseAgent):
 
     def remember_stage1(self, state: np.ndarray, action: int,
                         reward: float, next_state: np.ndarray, done: bool) -> None:
-        """存储 Stage 1 经验"""
+        """Store a Stage 1 transition."""
         self.stage1_memory.append((state, action, reward, next_state, done))
 
     def remember_stage2(self, state: np.ndarray, action: int,
                         reward: float, next_state: np.ndarray, done: bool) -> None:
-        """存储 Stage 2 经验"""
+        """Store a Stage 2 transition."""
         self.stage2_memory.append((state, action, reward, next_state, done))
 
     def remember(self, state: np.ndarray, action: int,
                  reward: float, next_state: np.ndarray, done: bool) -> None:
-        """存储经验（兼容基类接口，存储到 Stage 1）"""
+        """Store a transition (base-class interface; routed to Stage 1)."""
         self.remember_stage1(state, action, reward, next_state, done)
 
     def _replay_stage(self, memory: deque, model: nn.Module,
                       target_model: nn.Module, optimizer: optim.Optimizer,
                       batch_size: int) -> None:
-        """单阶段经验回放 (Double DQN)"""
+        """Replay-train a single stage (Double DQN)."""
         if len(memory) < batch_size:
             return
 
@@ -172,26 +172,26 @@ class TwoStageDQNAgent(BaseAgent):
         optimizer.step()
 
     def replay(self, batch_size: int = 64) -> None:
-        """经验回放训练两个阶段"""
+        """Train both stages from replayed experience."""
         self._replay_stage(self.stage1_memory, self.stage1_model,
                            self.stage1_target_model, self.stage1_optimizer, batch_size)
         self._replay_stage(self.stage2_memory, self.stage2_model,
                            self.stage2_target_model, self.stage2_optimizer, batch_size)
 
-        # 衰减探索率
+        # Decay exploration rate
         self.decay_epsilon()
 
     def update_target_models(self) -> None:
-        """更新两个阶段的目标网络（硬更新）"""
+        """Hard-update both target networks."""
         self.stage1_target_model.load_state_dict(self.stage1_model.state_dict())
         self.stage2_target_model.load_state_dict(self.stage2_model.state_dict())
 
     def update_target_model(self) -> None:
-        """兼容基类接口"""
+        """Base-class compatibility wrapper."""
         self.update_target_models()
 
     def get_q_values(self, state: np.ndarray) -> np.ndarray:
-        """获取两阶段 Q 值拼接 (stage1_action_size + stage2_action_size,)"""
+        """Return concatenated Q-values for both stages, shape (stage1_action_size + stage2_action_size,)."""
         with torch.no_grad():
             st = self._to_tensor(state).unsqueeze(0)
             q1 = self.stage1_model(st).cpu().numpy().flatten()
@@ -199,7 +199,7 @@ class TwoStageDQNAgent(BaseAgent):
             return np.concatenate([q1, q2])
 
     def save(self, path: str) -> None:
-        """保存两个阶段的模型 (.pt 格式)，含续训元数据"""
+        """Save both stage models (.pt format) together with resume-training metadata."""
         base = path.replace('.h5', '').replace('.pt', '')
         stage1_path = base + '_stage1.pt'
         stage2_path = base + '_stage2.pt'
@@ -221,7 +221,7 @@ class TwoStageDQNAgent(BaseAgent):
         }, stage2_path)
 
     def load(self, path: str) -> None:
-        """加载两个阶段的模型（向后兼容旧 checkpoint）"""
+        """Load both stage models (backward compatible with older checkpoints)."""
         base = path.replace('.h5', '').replace('.pt', '')
         stage1_path = base + '_stage1.pt'
         stage2_path = base + '_stage2.pt'
@@ -243,13 +243,13 @@ class TwoStageDQNAgent(BaseAgent):
             self.stage2_optimizer.load_state_dict(ckpt2['optimizer_state'])
 
     def get_weights(self) -> Tuple[Dict[str, torch.Tensor], Dict[str, torch.Tensor]]:
-        """获取两个阶段的模型权重"""
+        """Return model weights for both stages."""
         s1 = {k: v.clone() for k, v in self.stage1_model.state_dict().items()}
         s2 = {k: v.clone() for k, v in self.stage2_model.state_dict().items()}
         return (s1, s2)
 
     def set_weights(self, weights: Tuple[Dict[str, torch.Tensor], Dict[str, torch.Tensor]]) -> None:
-        """设置两个阶段的模型权重"""
+        """Load model weights for both stages."""
         stage1_weights, stage2_weights = weights
         self.stage1_model.load_state_dict(stage1_weights)
         self.stage2_model.load_state_dict(stage2_weights)

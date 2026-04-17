@@ -1,4 +1,4 @@
-"""API 模块"""
+"""API module"""
 
 from .demand_clean import DemandClean
 

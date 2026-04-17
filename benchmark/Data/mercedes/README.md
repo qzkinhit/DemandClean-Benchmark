@@ -1,43 +1,43 @@
-# 数据集：Mercedes
+# Dataset: Mercedes
 
-## 基本信息
+## Basic Information
 
-| 项目 | 值 |
-|------|-----|
-| 任务类型 | 回归 (Regression) |
-| 目标列 | `y` |
-| 数据规模 | 4,209 条记录 × 378 属性 |
-| 索引文件 | `clean_with_index.csv`, `dirty_with_index.csv` |
+| Item | Value |
+|------|-------|
+| Task type | Regression |
+| Target column | `y` |
+| Size | 4,209 records x 378 attributes |
+| Indexed files | `clean_with_index.csv`, `dirty_with_index.csv` |
 
-## 列定义
+## Column Definitions
 
-### 索引列 (Index)
-| 列名 | 说明 |
-|------|------|
-| `index` | 行索引，不参与模型训练 |
+### Index column
+| Column | Description |
+|--------|-------------|
+| `index` | row index, not used for model training |
 
-### 特征列 (Features) - 共376列
-| 属性名 | 类型 | 说明 |
-|--------|------|------|
-| X0-X8 | 分类 | 类别特征 |
-| X10-X385 | 二值 | 匿名化的车辆配置特征 (0/1) |
+### Feature columns (376 total)
+| Attribute | Type | Description |
+|-----------|------|-------------|
+| X0-X8 | Categorical | Categorical features |
+| X10-X385 | Binary | Anonymized vehicle configuration flags (0/1) |
 
-**注意**: 特征列命名为 X0, X1, X2, ... X385，共376个特征列（部分编号缺失：X7, X9, X72, X121, X149, X188, X193, X303, X381）
+**Note**: feature columns are named X0, X1, X2, ... X385 (376 columns; some indices are missing: X7, X9, X72, X121, X149, X188, X193, X303, X381).
 
-### 目标列 (Label)
-| 属性名 | 类型 | 说明 |
-|--------|------|------|
-| y | 数值 | 车辆测试时间（秒） |
+### Label column
+| Attribute | Type | Description |
+|-----------|------|-------------|
+| y | Numeric | Vehicle test time in seconds |
 
-## 错误信息
-- **错误类型**: 缺失值(Missing Value), 异常值(Outlier), 隐性缺失值(Implicit Missing Value)
-- **错误条目数**: 4,209
-- **错误单元格数**: 301,972
+## Error Information
+- **Error types**: Missing values, outliers, implicit missing values
+- **Error entry count**: 4,209
+- **Error cell count**: 301,972
 
-## 数据来源
+## Source
 Daimler. Mercedes-Benz Greener Manufacturing. https://www.kaggle.com/c/mercedes-benz-greener-manufacturing. 2017.
 
-## 运行命令示例
+## Example Command
 
 ```bash
 python MethodsRunScript/run_deleteall/run_deleteall_base.py \

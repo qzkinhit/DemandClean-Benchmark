@@ -1,8 +1,9 @@
 """
-模型适配器基类
-==============
+Base Model Adapter
+==================
 
-定义模型适配器的统一接口，用于支持多种机器学习模型。
+Defines the unified interface for model adapters, enabling support for multiple
+machine learning models.
 """
 
 from abc import ABC, abstractmethod
@@ -12,16 +13,17 @@ import numpy as np
 
 class ModelAdapter(ABC):
     """
-    模型适配器抽象基类
+    Abstract base class for model adapters.
 
-    统一分类和回归模型的接口，使得 DQN 环境可以与不同模型交互。
+    Unifies the interface for classification and regression models so that the
+    DQN environment can interact with different backends.
 
-    核心方法:
-        - fit: 训练模型
-        - predict: 预测
-        - evaluate: 评估模型性能
-        - get_distance_to_boundary: 获取到决策边界的距离（核心！）
-        - get_feature_importance: 获取特征重要性
+    Core methods:
+        - fit: Train the model
+        - predict: Make predictions
+        - evaluate: Evaluate model performance
+        - get_distance_to_boundary: Return the distance to the decision boundary (critical!)
+        - get_feature_importance: Return feature importance
     """
 
     def __init__(self):
@@ -32,11 +34,11 @@ class ModelAdapter(ABC):
     @abstractmethod
     def fit(self, X: np.ndarray, y: np.ndarray) -> 'ModelAdapter':
         """
-        训练模型
+        Train the model.
 
         Args:
-            X: 特征矩阵 (n_samples, n_features)
-            y: 标签向量 (n_samples,)
+            X: Feature matrix (n_samples, n_features)
+            y: Label vector (n_samples,)
 
         Returns:
             self
@@ -46,65 +48,65 @@ class ModelAdapter(ABC):
     @abstractmethod
     def predict(self, X: np.ndarray) -> np.ndarray:
         """
-        预测
+        Make predictions.
 
         Args:
-            X: 特征矩阵 (n_samples, n_features)
+            X: Feature matrix (n_samples, n_features)
 
         Returns:
-            预测结果 (n_samples,)
+            Predictions (n_samples,)
         """
         pass
 
     @abstractmethod
     def evaluate(self, X: np.ndarray, y: np.ndarray) -> float:
         """
-        评估模型性能
+        Evaluate model performance.
 
         Args:
-            X: 特征矩阵
-            y: 真实标签
+            X: Feature matrix
+            y: Ground-truth labels
 
         Returns:
-            性能得分（分类返回准确率，回归返回负MSE）
+            Performance score (accuracy for classification, negative MSE for regression)
         """
         pass
 
     @abstractmethod
     def get_distance_to_boundary(self, X: np.ndarray) -> np.ndarray:
         """
-        获取到决策边界的距离
+        Return the distance to the decision boundary.
 
-        这是 DQN 状态特征的关键组成部分。
+        This is a key component of the DQN state features.
 
-        分类任务: 使用 decision_function 或预测概率
-        回归任务: 使用预测值与整体均值的偏差
+        Classification: uses decision_function or predicted probabilities.
+        Regression: uses the deviation of the prediction from the global mean.
 
         Args:
-            X: 特征矩阵 (n_samples, n_features)
+            X: Feature matrix (n_samples, n_features)
 
         Returns:
-            距离数组 (n_samples,)，归一化到 [0, 1]
+            Distance array (n_samples,), normalized to [0, 1]
         """
         pass
 
     @abstractmethod
     def get_feature_importance(self) -> np.ndarray:
         """
-        获取特征重要性
+        Return feature importance.
 
         Returns:
-            特征重要性数组，归一化后各元素和为 1
+            Feature-importance array whose elements sum to 1 after normalization
         """
         pass
 
     @property
     def is_fitted(self) -> bool:
-        """模型是否已训练"""
+        """Whether the model has been trained."""
         return self._is_fitted
 
     def _normalize_importance(self, importance: np.ndarray) -> np.ndarray:
-        """归一化特征重要性"""
+        """Normalize feature importance."""
         total = np.sum(np.abs(importance))
         if total < 1e-10:
             return np.ones_like(importance) / len(importance)
@@ -112,9 +114,9 @@ class ModelAdapter(ABC):
 
     def clone(self) -> 'ModelAdapter':
         """
-        创建一个未训练的克隆
+        Create an untrained clone.
 
         Returns:
-            新的 ModelAdapter 实例
+            A new ModelAdapter instance
         """
         return type(self)()

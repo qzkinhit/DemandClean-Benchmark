@@ -6,13 +6,13 @@ import numpy as np
 
 def calculate_accuracy_and_recall(clean, dirty, cleaned, attributes):
     """
-    计算指定属性集合下的修复准确率和召回率
+    Compute repair accuracy and recall over the specified attribute set.
 
-    :param clean: 干净数据 DataFrame
-    :param dirty: 脏数据 DataFrame
-    :param cleaned: 清洗后数据 DataFrame
-    :param attributes: 指定属性集合
-    :return: 修复准确率和召回率
+    :param clean: clean DataFrame
+    :param dirty: dirty DataFrame
+    :param cleaned: cleaned DataFrame
+    :param attributes: attribute set to evaluate
+    :return: repair accuracy and recall
     """
     total_true_positives = 0
     total_false_positives = 0
@@ -23,26 +23,26 @@ def calculate_accuracy_and_recall(clean, dirty, cleaned, attributes):
         dirty_values = dirty[attribute]
         cleaned_values = cleaned[attribute]
 
-        # 对齐索引
+        # Align indices
         common_indices = clean_values.index.intersection(cleaned_values.index).intersection(dirty_values.index)
         clean_values = clean_values.loc[common_indices]
         dirty_values = dirty_values.loc[common_indices]
         cleaned_values = cleaned_values.loc[common_indices]
 
-        # 正确修复的数据
+        # Correctly repaired cells
         true_positives = ((cleaned_values == clean_values) & (dirty_values != cleaned_values)).sum()
-        # 修错的数据
+        # Incorrectly repaired cells
         false_positives = ((cleaned_values != clean_values) & (dirty_values != cleaned_values)).sum()
-        # 应该需要修复的数据
+        # Cells that should have been repaired
         true_negatives = (dirty_values != clean_values).sum()
 
         total_true_positives += true_positives
         total_false_positives += false_positives
         total_true_negatives += true_negatives
 
-    # 总体修复的准确率
+    # Overall repair accuracy
     accuracy = total_true_positives / (total_true_positives + total_false_positives)
-    # 总体修复的召回率
+    # Overall repair recall
     recall = total_true_positives / total_true_negatives
 
     return accuracy, recall
@@ -50,13 +50,15 @@ def calculate_accuracy_and_recall(clean, dirty, cleaned, attributes):
 
 def plot_metrics(names, clean_dfs, dirty_dfs, cleaned_dfs, attributes_list):
     """
-    绘制数据集清洗的准确率、召回率和F1值图, 既能表示多个清洗系统对于一个数据集的效果，也能表示一个清洗系统在多个数据集上的效果。
+    Plot accuracy, recall, and F1 for dataset cleaning. Supports both comparing
+    multiple cleaning systems on one dataset and one cleaning system across
+    multiple datasets.
 
-    :param names: 名称列表，可以是清洗系统名或数据集名
-    :param clean_dfs: 干净数据 DataFrame 列表
-    :param dirty_dfs: 脏数据 DataFrame 列表
-    :param cleaned_dfs: 清洗后数据 DataFrame 列表
-    :param attributes_list: 每个数据集的指定属性集合列表
+    :param names: list of names (cleaning system names or dataset names)
+    :param clean_dfs: list of clean DataFrames
+    :param dirty_dfs: list of dirty DataFrames
+    :param cleaned_dfs: list of cleaned DataFrames
+    :param attributes_list: list of attribute sets, one per dataset
     """
     accuracies = []
     recalls = []
@@ -74,7 +76,7 @@ def plot_metrics(names, clean_dfs, dirty_dfs, cleaned_dfs, attributes_list):
     x = np.arange(len(labels))
     width = 0.35
 
-    # 绘制准确率图
+    # Plot accuracy
     fig, ax = plt.subplots(figsize=(12, 8))
     ax.bar(x, accuracies, width, label='Accuracy')
     ax.set_xlabel('Cleaned Datasets')
@@ -87,7 +89,7 @@ def plot_metrics(names, clean_dfs, dirty_dfs, cleaned_dfs, attributes_list):
     plt.savefig("accuracy_metrics.png")
     plt.show()
 
-    # 绘制召回率图
+    # Plot recall
     fig, ax = plt.subplots(figsize=(12, 8))
     ax.bar(x, recalls, width, label='Recall')
     ax.set_xlabel('Cleaned Datasets')
@@ -100,7 +102,7 @@ def plot_metrics(names, clean_dfs, dirty_dfs, cleaned_dfs, attributes_list):
     plt.savefig("recall_metrics.png")
     plt.show()
 
-    # 绘制F1值图
+    # Plot F1 score
     fig, ax = plt.subplots(figsize=(12, 8))
     ax.bar(x, f1_scores, width, label='F1 Score')
     ax.set_xlabel('Cleaned Datasets')
@@ -115,7 +117,7 @@ def plot_metrics(names, clean_dfs, dirty_dfs, cleaned_dfs, attributes_list):
 
 
 if __name__ == "__main__":
-    # 示例数据加载
+    # Example data loading
     names = ["System1", "System2"]
     clean_paths = ["data/clean1.csv", "data/clean2.csv"]
     dirty_paths = ["data/dirty1.csv", "data/dirty2.csv"]

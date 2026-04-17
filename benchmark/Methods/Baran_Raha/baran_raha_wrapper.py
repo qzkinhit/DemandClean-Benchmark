@@ -1,15 +1,15 @@
 """
-Baran/Raha Wrapper - 基于迭代标注的错误检测与修复系统
+Baran/Raha Wrapper - 基于迭代标注error detectionandrepair系统
 
-Raha (SIGMOD 2019): 错误检测系统，融合多种检测策略
-Baran (SIGMOD 2020): 错误修复系统，基于主动学习的迭代修复
+Raha (SIGMOD 2019): error detection系统，融合多种detection策略
+Baran (SIGMOD 2020): error repair系统，基于主动学习迭代repair
 
 论文:
 - Raha: A Configuration-Free Error Detection System (SIGMOD 2019)
 - Baran: Effective Error Correction via a Unified Context Representation (SIGMOD 2020)
 
-真值使用情况: 迭代式标注，需要人工参与 (Type 3)
-- 真值成本 = LABELING_BUDGET (默认20条)
+ground truthusestats: 迭代式标注，需need人工参and (Type 3)
+- ground truth成本 = LABELING_BUDGET (default20条)
 """
 
 import os
@@ -18,12 +18,12 @@ import pandas as pd
 import numpy as np
 from typing import Dict, Tuple, Optional, List
 
-# 添加当前目录到路径
+# 添加currentdirectorytopath
 _current_dir = os.path.dirname(os.path.abspath(__file__))
 if _current_dir not in sys.path:
     sys.path.insert(0, _current_dir)
 
-# 尝试导入官方实现
+# 尝试导入official implementation
 try:
     import raha
     from raha.dataset import Dataset
@@ -37,13 +37,13 @@ except ImportError as e:
 
 class BaranRahaWrapper:
     """
-    Baran/Raha清洗方法的封装类
+    Baran/Rahacleaningmethod封装class
 
-    Raha用于错误检测，Baran用于错误修复。
-    这是一个迭代式的系统，需要人工标注。
+    Rahaused forerror detection，Baranused forerror repair。
+    这is一个迭代式系统，需need人工标注。
 
-    真值使用: Type 3 (迭代交互)
-    - 默认LABELING_BUDGET=20，即需要人工标注20条记录
+    ground truthuse: Type 3 (iterative interactive)
+    - defaultLABELING_BUDGET=20，i.e.需need人工标注20条记录
     """
 
     def __init__(self,
@@ -55,16 +55,16 @@ class BaranRahaWrapper:
                  verbose: bool = True,
                  save_results: bool = False):
         """
-        初始化Baran/Raha包装器
+        initializeBaran/Rahapackage装器
 
         Args:
-            labeling_budget: 标注预算（需要人工标注的记录数）
-            classification_model: 分类模型 ["ABC", "DTC", "GBC", "GNB", "KNC", "SGDC", "SVC"]
+            labeling_budget: 标注预算（需need人工标注记录数）
+            classification_model: classificationmodel ["ABC", "DTC", "GBC", "GNB", "KNC", "SGDC", "SVC"]
             min_correction_candidate_probability: 最小修正候选概率
             min_correction_occurrence: 最小修正出现次数
             max_value_length: 最大值长度
-            verbose: 是否打印详细信息
-            save_results: 是否保存中间结果
+            verbose: whether打印详细信息
+            save_results: whethersave间result
         """
         self.labeling_budget = labeling_budget
         self.classification_model = classification_model
@@ -74,16 +74,16 @@ class BaranRahaWrapper:
         self.verbose = True
         self.save_results = save_results
 
-        # 真值使用成本 = 标注预算
+        # ground truthuse成本 = 标注预算
         self.ground_truth_used = labeling_budget
 
     def _check_dependencies(self):
-        """检查依赖是否满足"""
+        """check依赖whether满足"""
         if not HAS_BARAN_RAHA:
             raise ImportError(
-                f"Baran/Raha模块导入失败: {IMPORT_ERROR}\n"
-                "请确保在Methods/Baran_Raha目录下有完整的官方代码，"
-                "并安装必要的依赖（raha, mwparserfromhell, py7zr等）"
+                f"Baran/Rahamodule import failed: {IMPORT_ERROR}\n"
+                "Ensure that underMethods/Baran_Rahathere is a complete copy of the official code，"
+                "and install the required dependencies（raha, mwparserfromhell, py7zr等）"
             )
 
     def clean(self,
@@ -93,17 +93,17 @@ class BaranRahaWrapper:
               task_name: str = "baran_task",
               index_attribute: str = 'index') -> Tuple[pd.DataFrame, Dict]:
         """
-        执行Baran/Raha清洗流程
+        执rowBaran/Rahacleaning流程
 
         Args:
-            dirty_path: 脏数据路径
-            clean_path: 干净数据路径（用于自动标注，可选）
-            output_path: 输出路径
-            task_name: 任务名称
-            index_attribute: 索引列名
+            dirty_path: 脏datapath
+            clean_path: cleandatapath（used forauto-labeling，optional）
+            output_path: outputpath
+            task_name: task名称
+            index_attribute: 索引column name
 
         Returns:
-            修复后的数据和清洗信息
+            repairafterdataandcleaning信息
         """
         self._check_dependencies()
 
@@ -111,34 +111,34 @@ class BaranRahaWrapper:
         import tempfile
         start_time = time.perf_counter()
 
-        # 预处理：将 "empty" 替换为空值，让 Baran 的 fillna("nan") 统一处理
+        # 预处理：将 "empty" replacetoempty value，让 Baran  fillna("nan") 统一处理
         temp_dirty_path = None
         temp_clean_path = None
         try:
-            # 处理脏数据
+            # Handle dirty data
             dirty_df_raw = pd.read_csv(dirty_path)
             dirty_df_raw = dirty_df_raw.replace('empty', np.nan)
             temp_dirty_path = tempfile.NamedTemporaryFile(mode='w', suffix='.csv', delete=False).name
             dirty_df_raw.to_csv(temp_dirty_path, index=False)
 
-            # 处理干净数据（如果提供）
+            # Handle clean data（ifprovide）
             if clean_path:
                 clean_df_raw = pd.read_csv(clean_path)
                 clean_df_raw = clean_df_raw.replace('empty', np.nan)
                 temp_clean_path = tempfile.NamedTemporaryFile(mode='w', suffix='.csv', delete=False).name
                 clean_df_raw.to_csv(temp_clean_path, index=False)
 
-            # 构建数据集字典（使用临时文件）
+            # Build the dataset dict（using a temp file）
             dataset_dictionary = {
                 "name": task_name,
                 "path": temp_dirty_path,
             }
             if temp_clean_path:
                 dataset_dictionary["clean_path"] = temp_clean_path
-            # 1. 错误检测 (Raha)
+            # 1. error detection (Raha)
             if self.verbose:
                 print("=" * 60)
-                print("阶段1: Raha错误检测")
+                print("Stage1: Rahaerror detection")
                 print("=" * 60)
 
             detector = Detection()
@@ -146,15 +146,15 @@ class BaranRahaWrapper:
             detection_p, detection_r, detection_f = detector.d.get_data_cleaning_evaluation(detected_cells)[:3]
 
             if self.verbose:
-                print(f"检测到错误单元格: {len(detected_cells)}")
-                print(f"检测 Precision: {detection_p:.4f}")
-                print(f"检测 Recall: {detection_r:.4f}")
-                print(f"检测 F1: {detection_f:.4f}")
+                print(f"detected error cells: {len(detected_cells)}")
+                print(f"detection Precision: {detection_p:.4f}")
+                print(f"detection Recall: {detection_r:.4f}")
+                print(f"detection F1: {detection_f:.4f}")
 
-            # 2. 错误修复 (Baran)
+            # 2. error repair (Baran)
             if self.verbose:
                 print("=" * 60)
-                print("阶段2: Baran错误修复")
+                print("Stage2: Baranerror repair")
                 print("=" * 60)
 
             corrector = Correction()
@@ -169,33 +169,33 @@ class BaranRahaWrapper:
             correction_dictionary = corrector.run(detector.d)
 
             if self.verbose:
-                print(f"修复单元格数: {len(correction_dictionary)}")
+                print(f"repaired cell count: {len(correction_dictionary)}")
 
-            # 3. 应用修复（使用原始脏数据，保留原始格式）
+            # 3. Apply repairs（use the raw dirty data to keep the original format）
             repaired_df = pd.read_csv(dirty_path)
             for cell, value in correction_dictionary.items():
                 repaired_df.iloc[cell[0], cell[1]] = value
 
-            # 后处理：将 Baran 的 "nan" 空值表示替换为标准的 "empty"
+            # Post-process: map Baran's "nan" empty marker to the standard "empty"
             repaired_df = repaired_df.replace('nan', 'empty')
 
             elapsed_time = time.perf_counter() - start_time
 
-            # 保存结果
+            # Save results
             if output_path:
-                # 确保输出目录存在
+                # Ensure the output directory exists
                 output_dir = os.path.dirname(output_path)
                 if output_dir:
                     os.makedirs(output_dir, exist_ok=True)
                 repaired_df.to_csv(output_path, index=False)
                 if self.verbose:
-                    print(f"修复后数据已保存: {output_path}")
+                    print(f"Repaired data saved: {output_path}")
 
             info = {
                 'ground_truth_cost': self.ground_truth_used,
                 'method': 'Baran_Raha',
                 'type': 'data-oriented',
-                'auto_level': 3,  # 迭代交互
+                'auto_level': 3,  # iterative interactive
                 'labeling_budget': self.labeling_budget,
                 'detected_cells': len(detected_cells),
                 'corrected_cells': len(correction_dictionary),
@@ -208,17 +208,17 @@ class BaranRahaWrapper:
             return repaired_df, info
 
         except Exception as e:
-            raise RuntimeError(f"Baran/Raha清洗失败: {e}")
+            raise RuntimeError(f"Baran/Rahacleaningfailure: {e}")
 
         finally:
-            # 清理临时文件
+            # Clean up temp files
             if temp_dirty_path and os.path.exists(temp_dirty_path):
                 os.remove(temp_dirty_path)
             if temp_clean_path and os.path.exists(temp_clean_path):
                 os.remove(temp_clean_path)
 
     def get_ground_truth_cost(self) -> int:
-        """获取真值使用成本（= LABELING_BUDGET）"""
+        """getground truthuse成本（= LABELING_BUDGET）"""
         return self.ground_truth_used
 
 
@@ -227,6 +227,6 @@ def baran_raha_clean(dirty_path: str,
                      output_path: str = None,
                      labeling_budget: int = 20,
                      **kwargs) -> Tuple[pd.DataFrame, Dict]:
-    """Baran/Raha清洗的便捷函数"""
+    """Baran/Rahacleaning便捷function"""
     wrapper = BaranRahaWrapper(labeling_budget=labeling_budget, **kwargs)
     return wrapper.clean(dirty_path, clean_path, output_path)

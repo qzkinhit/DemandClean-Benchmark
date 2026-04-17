@@ -1,4 +1,4 @@
-﻿Baseline,Dataset,时间（单位 s）,传统清洗的F1值,r_edr,hybrid_distance,edr,col_avg_rmse,col_avg_f1,P_do_nothing,P_demand_clean,P_repair_all,upper_bound_dirty,upper_bound_cleaned,upper_bound_clean,upper_bound_improvement,真值使用单元格数,ML_1,ML_2,ML_3,ML_4,ML_5,ML_6
+﻿Baseline,Dataset,time_seconds,traditional_clean_F1,r_edr,hybrid_distance,edr,col_avg_rmse,col_avg_f1,P_do_nothing,P_demand_clean,P_repair_all,upper_bound_dirty,upper_bound_cleaned,upper_bound_clean,upper_bound_improvement,truth_cells_used,ML_1,ML_2,ML_3,ML_4,ML_5,ML_6
 Demandclean_v3,adult,5643.33,0.5635891731121769,-0.36566725455614346,0.008576875282664122,-0.3838918283362728,,,0.8505086245024326,0.8551525873507297,0.8542680229986731,0.8184291476911966,0.8525497775264423,0.8523286315486308,1.0065235794958287,0,"RF
     accuracy       : 0.855721
     f1             : 0.852448

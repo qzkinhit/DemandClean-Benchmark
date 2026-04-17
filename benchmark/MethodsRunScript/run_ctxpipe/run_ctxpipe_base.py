@@ -1,14 +1,14 @@
 """
-CtxPipe 运行脚本（Clean4MLBaseline 集成）
+CtxPipe runner (Clean4MLBaseline integration)
 
-功能：
-- RL 模式：上下文感知 + 预训练权重推理，生成数据准备管道（列可能改变）
-- 保模式（--schema_preserving）：仅缺失值填充（数值=中位数、类别=众数），列不变，适合传统评估
+Features:
+- RL mode: context-aware, pretrained-weight inference that generates a data preparation pipeline (columns may change).
+- Schema-preserving mode (--schema_preserving): imputation only (numeric=median, categorical=mode), columns preserved, suitable for traditional evaluation.
 
-兼容性：
-- GTE 模型优先从环境变量 `GTE_MODEL_PATH` 读取；无可用模型时回退零向量（可运行，效果下降）
-- 预训练权重强制映射到 CPU 加载
-- Multiprocessing 不可用时自动退化为单进程
+Compatibility:
+- The GTE model is loaded from the `GTE_MODEL_PATH` env var first; when no model is available the code falls back to zero vectors (runs, but lower quality).
+- Pretrained weights are always mapped onto the CPU at load time.
+- Falls back to single-process mode when multiprocessing is unavailable.
 """
 import os
 import sys
@@ -17,7 +17,7 @@ import time
 import logging
 import pandas as pd
 
-# 添加项目根目录到路径
+# Add the project root to sys.path.
 sys.path.append(os.path.dirname(os.path.abspath(__file__)) + '/../../')
 
 from tools.getScore import calculate_all_metrics
@@ -26,10 +26,10 @@ from ctxpipe_adapter import CtxPipeAdapter
 
 
 def setup_logging(result_path: str, task_name: str) -> logging.Logger:
-    """设置日志记录器，同时输出到控制台和文件"""
+    """Configure a logger that writes to both stdout and a file."""
     logger = logging.getLogger(task_name)
     logger.setLevel(logging.INFO)
-    logger.handlers = []  # 清除已有handlers
+    logger.handlers = []  # clear any existing handlers
     log_file = os.path.join(result_path, f"{task_name}.log")
     file_handler = logging.FileHandler(log_file, mode='w', encoding='utf-8')
     console_handler = logging.StreamHandler()
@@ -42,12 +42,12 @@ def setup_logging(result_path: str, task_name: str) -> logging.Logger:
 
 
 def main():
-    # 设置命令行参数解析
+    # Set up the CLI.
     parser = argparse.ArgumentParser(
         description='Run CtxPipe - Context-aware Data Preparation Pipeline Construction.'
     )
 
-    # 定义命令行参数
+    # CLI arguments.
     parser.add_argument(
         '--dirty_path', type=str,
         default='../../Data/beers/dirty_index.csv',
@@ -97,43 +97,43 @@ def main():
         help='Output schema-preserving cleaned data (imputation only). Skips RL pipeline output to keep same columns.'
     )
 
-    # 评估参数
+    # Evaluation arguments.
     parser.add_argument(
         '--label_column', type=str, default='style',
-        help='标签列名（用于下游任务评估）'
+        help='Label column name (for downstream task evaluation)'
     )
     parser.add_argument(
         '--task_type', type=str, default='classification',
         choices=['classification', 'regression', 'clustering'],
-        help='下游任务类型（默认classification）'
+        help='Downstream task type (default classification)'
     )
     parser.add_argument(
         '--models', type=str, nargs='+', default=['rf', 'lr'],
-        help='评估模型列表（默认rf lr）'
+        help='Evaluation models (default rf lr)'
     )
     parser.add_argument(
         '--verbose', action='store_true',
-        help='是否打印详细信息'
+        help='Print verbose information'
     )
     parser.add_argument(
         '--use_split', action='store_true',
-        help='使用 DemandClean 对齐的 60/20/20 数据划分（seed=42）'
+        help='Use the DemandClean-aligned 60/20/20 split (seed=42)'
     )
 
-    # 解析命令行参数
+    # Parse arguments.
     args = parser.parse_args()
     mse_attributes = args.mse_attributes
     stra_path = os.path.join(args.output_path, f"{args.task_name}")
     index_attribute = args.index_attribute
 
-    # 创建输出目录
+    # Create the output directory.
     if not os.path.exists(stra_path):
         os.makedirs(stra_path)
 
-    # 设置日志
+    # Set up logging.
     logger = setup_logging(stra_path, args.task_name)
 
-    # 处理空值表示（统一转换为empty）
+    # Normalize the null representation to "empty".
     logger.info("Preprocessing missing values...")
     inject_missing_values(
         csv_file=args.clean_path,
@@ -156,16 +156,16 @@ def main():
     logger.info(f"Model tag: {args.model_tag}")
     logger.info(f"{'='*60}\n")
 
-    # 记录开始时间
+    # Record the start time.
     start_time = time.time()
     from datetime import datetime
     start_datetime = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
-    logger.info(f"运行开始时间: {start_datetime}")
+    logger.info(f"Run start time: {start_datetime}")
 
-    # 创建CtxPipe适配器
+    # Create the CtxPipe adapter.
     adapter = CtxPipeAdapter(model_tag=args.model_tag)
 
-    # 运行CtxPipe生成管道
+    # Run CtxPipe to generate the pipeline.
     try:
         cleaned_data, ctxpipe_results = adapter.run_ctxpipe(
             dirty_path=args.dirty_path,
@@ -182,12 +182,12 @@ def main():
         traceback.print_exc()
         sys.exit(1)
 
-    # 记录结束时间
+    # Record the end time.
     end_time = time.time()
     elapsed_time = end_time - start_time
 
-    # 保存CtxPipe处理后的数据
-    # 后处理：将空值统一为 "empty"（NaN、空字符串等）
+    # Save the CtxPipe-processed data.
+    # Post-processing: normalize nulls to "empty" (NaN, empty string, etc.).
     cleaned_data = cleaned_data.fillna('empty')
     cleaned_data = cleaned_data.replace('', 'empty')
 
@@ -195,7 +195,7 @@ def main():
     cleaned_data.to_csv(res_path, index=False)
     logger.info(f"\nCtxPipe output saved to: {res_path}")
 
-    # 保存CtxPipe的管道信息
+    # Save the CtxPipe pipeline info.
     pipeline_info_path = os.path.join(stra_path, f"{args.task_name}_pipeline_info.txt")
     with open(pipeline_info_path, 'w', encoding='utf-8') as f:
         f.write("="*60 + "\n")
@@ -216,7 +216,7 @@ def main():
 
     logger.info(f"Pipeline info saved to: {pipeline_info_path}")
 
-    # 打印CtxPipe结果
+    # Print CtxPipe results.
     logger.info(f"\n{'='*60}")
     logger.info("CtxPipe Results:")
     logger.info(f"{'='*60}")
@@ -229,8 +229,8 @@ def main():
     logger.info(f"Execution Time: {elapsed_time:.2f} seconds")
     logger.info(f"{'='*60}\n")
 
-    # 可选：传统数据清洗评估
-    # 注意：CtxPipe主要用于ML数据准备，可能不适合传统的数据清洗评估
+    # Optional: traditional data cleaning evaluation.
+    # Note: CtxPipe is primarily for ML data preparation and may not fit traditional cleaning metrics cleanly.
     if not args.skip_evaluation:
         logger.info("="*60)
         logger.info("Traditional Data Cleaning Evaluation")
@@ -239,7 +239,7 @@ def main():
         logger.info("="*60)
 
         try:
-            # 处理评估数据的空值
+            # Normalize nulls in the evaluation data.
             inject_missing_values(
                 csv_file=res_path,
                 output_file=res_path,
@@ -248,19 +248,19 @@ def main():
                 missing_value_representation='empty'
             )
 
-            # 读取数据
+            # Load the data.
             clean_data = pd.read_csv(args.clean_path)
             dirty_data = pd.read_csv(args.dirty_path)
             cleaned_result = pd.read_csv(res_path)
 
-            # 检查列是否匹配
+            # Check column alignment.
             if set(cleaned_result.columns) != set(clean_data.columns):
                 logger.warning("\nWarning: Column names do not match between cleaned and original data.")
                 logger.warning(f"Original columns: {clean_data.columns.tolist()}")
                 logger.warning(f"Cleaned columns: {cleaned_result.columns.tolist()}")
                 logger.warning("Skipping traditional evaluation.\n")
             else:
-                # 计算评估指标
+                # Compute evaluation metrics.
                 attributes = clean_data.columns.tolist()
                 results = calculate_all_metrics(
                     clean_data, dirty_data, cleaned_result, attributes,
@@ -269,7 +269,7 @@ def main():
                     mse_attributes=mse_attributes
                 )
 
-                # 保存评估结果
+                # Save evaluation results.
                 results_path = os.path.join(stra_path, f"{args.task_name}_total_evaluation.txt")
                 original_stdout = sys.stdout
 
@@ -294,7 +294,7 @@ def main():
                     finally:
                         sys.stdout = original_stdout
 
-                # 打印到控制台
+                # Print to the terminal.
                 logger.info("\nTraditional Evaluation Results:")
                 logger.info(f"Accuracy: {results.get('accuracy')}")
                 logger.info(f"Recall: {results.get('recall')}")
@@ -309,10 +309,10 @@ def main():
             logger.warning(f"\nWarning: Traditional evaluation failed: {e}")
             logger.warning("This is expected if CtxPipe significantly transformed the data.")
 
-    # 调用统一测评模块 getScoreML
+    # Invoke the unified evaluation module getScoreML.
     if not args.skip_evaluation and os.path.exists(res_path):
         logger.info(f"\n{'='*60}")
-        logger.info("调用统一测评模块 getScoreML")
+        logger.info("Invoking unified evaluation module getScoreML")
         logger.info("="*60)
 
         try:
@@ -327,19 +327,19 @@ def main():
                 label_column=args.label_column,
                 task_type=args.task_type,
                 models=args.models,
-                method_type=1,  # CtxPipe是全自动Type 1
+                method_type=1,  # CtxPipe is a fully automatic Type 1 method
                 ground_truth_used=0,
                 index_attribute=index_attribute,
                 mse_attributes=mse_attributes,
                 verbose=getattr(args, 'verbose', False)
             )
 
-            logger.info("\ngetScoreML统一测评完成")
+            logger.info("\ngetScoreML unified evaluation done")
 
         except ImportError as e:
-            logger.warning(f"警告: 无法导入getScoreML模块: {e}")
+            logger.warning(f"Warning: failed to import getScoreML: {e}")
         except Exception as e:
-            logger.error(f"统一测评出错: {e}")
+            logger.error(f"Unified evaluation failed: {e}")
             import traceback
             traceback.print_exc()
 

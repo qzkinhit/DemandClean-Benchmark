@@ -5,30 +5,34 @@ import random
 
 def inject_missing_values(csv_file, output_file, attributes_error_ratio=None, missing_value_in_ori_data='empty',missing_value_representation='empty'):
     """
-    注入空值的错误注入方法，并在注入之前将已有的空值统一替换为指定的表达方式。
+    Null-value error-injection routine that normalizes any existing null values
+    to a unified representation before injecting new ones.
 
-    参数:
-        csv_file (str): 输入的CSV文件路径。
-        output_file (str): 输出的CSV文件路径。
-        attributes_error_ratio (dict): 字典，键为属性名，值为错误比例（百分比）。
-        missing_value_in_ori_data (str): 原始数据中空值的表达方式（默认值为"empty"）。
-        missing_value_representation (str): 空值的表达方式（默认值为"empty"）。
+    Args:
+        csv_file (str): Path to the input CSV file.
+        output_file (str): Path to the output CSV file.
+        attributes_error_ratio (dict): Mapping from attribute name to error
+            ratio (percentage).
+        missing_value_in_ori_data (str): Representation of null values in the
+            original data (default: "empty").
+        missing_value_representation (str): Target representation for null
+            values (default: "empty").
 
-    输出:
-        注入错误后的CSV文件。
+    Output:
+        CSV file with the injected errors.
     """
-    # 读取CSV文件
+    # Read the CSV file
     df = pd.read_csv(csv_file)
-    # 遍历每一列，将可以转换为整数的浮点数转换成整数
+    # Iterate over each column and convert floats that are integer-valued to int
     for col in df.columns:
-        # 检查列中的数据类型是否为浮点数
+        # Check whether the column dtype is float
         if pd.api.types.is_float_dtype(df[col]):
-            # 使用 apply 函数将可以转换成整数的浮点数转换成整数
+            # Use apply() to convert integer-valued floats to int
             df[col] = df[col].apply(lambda x: int(x) if pd.notna(x) and x == int(x) else x)
 
-        # 最后，将列中的所有数据类型都转换为字符串类型
+        # Finally, cast every column to string
         df[col] = df[col].astype(str)
-    # 预处理：将已有的空值（NaN 或 空字符串）替换为 missing_value_representation
+    # Preprocessing: normalize existing nulls (NaN or empty string) to missing_value_representation
     df = df.fillna(missing_value_representation)
     df.replace('', missing_value_representation, inplace=True)
     df.replace('nan', missing_value_representation, inplace=True)
@@ -37,31 +41,31 @@ def inject_missing_values(csv_file, output_file, attributes_error_ratio=None, mi
     df.replace('__NULL__', missing_value_representation, inplace=True)
     df.replace(missing_value_in_ori_data, missing_value_representation, inplace=True)
     if attributes_error_ratio is None:
-        print("没有指定错误比例，仅进行原数据集的空值替换，不添加错误")
+        print("No error ratio specified; only normalizing existing nulls in the original dataset, no errors added")
     else:
-    # 遍历每个属性，注入空值
+    # Iterate over each attribute and inject null values
         for attribute, error_ratio in attributes_error_ratio.items():
             if attribute in df.columns:
                 num_rows = len(df)
                 num_errors = int(num_rows * error_ratio / 100)
                 error_indices = random.sample(range(num_rows), num_errors)
 
-                # 替换指定行的值为空值表达方式
+                # Replace values in the selected rows with the null representation
                 df.loc[error_indices, attribute] = missing_value_representation
 
-    # 保存注入错误后的CSV文件
+    # Save the CSV file with the injected errors
     df.to_csv(output_file, index=False)
-    print(f"已将注入错误的文件保存到: {output_file}")
+    print(f"File with injected errors saved to: {output_file}")
 if __name__ == "__main__":
-    #使用方法
-    # 属性列表
+    # Usage example
+    # Attribute list
     attributes = [
         "journal_issn",
         "journal_title",
         "jounral_abbreviation",
     ]
 
-    # 每个属性注入2%的错误比例
+    # Inject 2% error ratio for each attribute
     attributes_error_ratio = {attribute: 0 for attribute in attributes}
 
     # inject_missing_values(
@@ -71,7 +75,7 @@ if __name__ == "__main__":
     #     missing_value_in_ori_data='empty',
     #     missing_value_representation='empty'
     # )
-    # 如果干净数据存在空值，记得替换clean数据中的空值，统一转换为empty
+    # If the clean data contains null values, remember to normalize them to 'empty' as well
     # inject_missing_values(
     #     csv_file='../Data/4_rayyan/dirty.csv',
     #     output_file='../Data/4_rayyan/dirty.csv',
@@ -79,7 +83,7 @@ if __name__ == "__main__":
     #     missing_value_in_ori_data='NULL',
     #     missing_value_representation='empty'
     # )
-    # 如果干净数据存在空值，记得替换clean数据中的空值，统一转换为empty
+    # If the clean data contains null values, remember to normalize them to 'empty' as well
     inject_missing_values(
         csv_file='../Data/3_beers/clean_index.csv',
         output_file='../Data/3_beers/clean_index.csv',

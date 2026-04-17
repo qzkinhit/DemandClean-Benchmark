@@ -1,8 +1,8 @@
 """
-单阶段 DQN Agent (PyTorch)
-===========================
+Single-stage DQN agent (PyTorch)
+=================================
 
-直接输出 4 种动作的 DQN Agent。
+DQN agent that outputs one of four actions directly.
 """
 
 from typing import Optional, Any, Dict
@@ -17,7 +17,7 @@ from .base_agent import BaseAgent
 
 
 class _PlainQNetwork(nn.Module):
-    """普通全连接 Q 网络: 64→64→32→action_size"""
+    """Plain fully-connected Q network: 64 -> 64 -> 32 -> action_size."""
 
     def __init__(self, state_size: int, action_size: int):
         super().__init__()
@@ -37,15 +37,15 @@ class _PlainQNetwork(nn.Module):
 
 class SingleStageDQNAgent(BaseAgent):
     """
-    单阶段 DQN Agent (PyTorch)
+    Single-stage DQN agent (PyTorch).
 
-    直接输出 4 种动作:
-        - 0: no_action (不操作)
-        - 1: repair_value (用真值修复)
-        - 2: delete (删除)
-        - 3: replace_nearby (用临近值替换)
+    Outputs one of four actions directly:
+        - 0: no_action
+        - 1: repair_value (use ground truth)
+        - 2: delete
+        - 3: replace_nearby (use a nearby value)
 
-    使用 Double DQN 技术减少过估计。
+    Uses Double DQN to reduce overestimation.
     """
 
     def __init__(self,
@@ -58,17 +58,17 @@ class SingleStageDQNAgent(BaseAgent):
                  epsilon_decay: float = 0.995,
                  learning_rate: float = 0.0005):
         """
-        初始化单阶段 DQN Agent
+        Initialize the single-stage DQN agent.
 
         Args:
-            state_size: 状态向量维度
-            action_size: 动作空间大小
-            memory_size: 经验回放缓冲区大小
-            gamma: 折扣因子
-            epsilon: 初始探索率
-            epsilon_min: 最小探索率
-            epsilon_decay: 探索率衰减
-            learning_rate: 学习率
+            state_size: dimensionality of the state vector
+            action_size: size of the action space
+            memory_size: replay buffer capacity
+            gamma: discount factor
+            epsilon: initial exploration rate
+            epsilon_min: minimum exploration rate
+            epsilon_decay: exploration decay rate
+            learning_rate: learning rate
         """
         super().__init__(state_size)
         self.action_size = action_size
@@ -81,31 +81,31 @@ class SingleStageDQNAgent(BaseAgent):
 
         self.device = torch.device('cpu')
 
-        # 构建网络
+        # Build networks
         self.model = self._build_model()
         self.target_model = self._build_model()
         self.optimizer = optim.Adam(self.model.parameters(), lr=self.learning_rate)
         self.update_target_model()
 
     def _build_model(self) -> _PlainQNetwork:
-        """构建 Q 网络"""
+        """Build the Q network."""
         model = _PlainQNetwork(self.state_size, self.action_size).to(self.device)
         return model
 
     def _to_tensor(self, arr: np.ndarray) -> torch.Tensor:
-        """numpy → torch tensor"""
+        """Convert numpy array to torch tensor."""
         return torch.FloatTensor(arr).to(self.device)
 
     def act(self, state: np.ndarray, training: bool = True) -> int:
         """
-        根据状态选择动作
+        Select an action given the current state.
 
         Args:
-            state: 状态向量 (state_size,)
-            training: 是否在训练模式
+            state: state vector of shape (state_size,)
+            training: whether the agent is in training mode
 
         Returns:
-            动作索引 (0-3)
+            Action index (0-3).
         """
         if training and np.random.rand() <= self.epsilon:
             return random.randrange(self.action_size)
@@ -117,13 +117,11 @@ class SingleStageDQNAgent(BaseAgent):
 
     def remember(self, state: np.ndarray, action: int,
                  reward: float, next_state: np.ndarray, done: bool) -> None:
-        """存储经验"""
+        """Store a transition."""
         self.memory.append((state, action, reward, next_state, done))
 
     def replay(self, batch_size: int = 64) -> None:
-        """
-        经验回放训练 (Double DQN)
-        """
+        """Train from replayed experience (Double DQN)."""
         if len(self.memory) < batch_size:
             return
 
@@ -134,7 +132,7 @@ class SingleStageDQNAgent(BaseAgent):
         next_states = self._to_tensor(np.array([x[3] for x in minibatch]))
         dones = self._to_tensor(np.array([x[4] for x in minibatch], dtype=np.float32))
 
-        # Double DQN: 主网络选动作，目标网络评估
+        # Double DQN: online net picks the action, target net evaluates it
         current_q = self.model(states).gather(1, actions.unsqueeze(1)).squeeze(1)
 
         with torch.no_grad():
@@ -147,22 +145,22 @@ class SingleStageDQNAgent(BaseAgent):
         loss.backward()
         self.optimizer.step()
 
-        # 衰减探索率
+        # Decay exploration rate
         self.decay_epsilon()
 
     def update_target_model(self) -> None:
-        """更新目标网络（硬更新）"""
+        """Hard-update the target network."""
         self.target_model.load_state_dict(self.model.state_dict())
 
     def get_q_values(self, state: np.ndarray) -> np.ndarray:
-        """获取状态对应的 Q 值 (action_size,)"""
+        """Return Q-values for the state, shape (action_size,)."""
         with torch.no_grad():
             state_tensor = self._to_tensor(state).unsqueeze(0)
             q_values = self.model(state_tensor)
             return q_values.cpu().numpy().flatten()
 
     def save(self, path: str) -> None:
-        """保存模型 (.pt 格式)，含续训元数据"""
+        """Save the model (.pt format) together with resume-training metadata."""
         path = path.replace('.h5', '.pt')
         torch.save({
             'model_state': self.model.state_dict(),
@@ -177,7 +175,7 @@ class SingleStageDQNAgent(BaseAgent):
         }, path)
 
     def load(self, path: str) -> None:
-        """加载模型（向后兼容旧 checkpoint）"""
+        """Load the model (backward compatible with older checkpoints)."""
         path = path.replace('.h5', '.pt')
         checkpoint = torch.load(path, map_location=self.device, weights_only=False)
         self.model.load_state_dict(checkpoint['model_state'])
@@ -190,10 +188,10 @@ class SingleStageDQNAgent(BaseAgent):
         self.best_episode = checkpoint.get('best_episode', 0)
 
     def get_weights(self) -> Dict[str, torch.Tensor]:
-        """获取模型权重 (state_dict 的深拷贝)"""
+        """Return a deep copy of the model weights (state_dict)."""
         return {k: v.clone() for k, v in self.model.state_dict().items()}
 
     def set_weights(self, weights: Dict[str, torch.Tensor]) -> None:
-        """设置模型权重"""
+        """Load model weights."""
         self.model.load_state_dict(weights)
         self.update_target_model()

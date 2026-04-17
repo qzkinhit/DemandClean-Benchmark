@@ -1,16 +1,16 @@
 """
-getScoreML.py - 统一的数据清洗测评模块
+getScoreML.py - unified data-cleaning evaluation module
 
-Clean4MLBaseline的核心测评程序，所有run_*_base.py脚本都应调用此模块进行评估。
+Core Clean4MLBaseline evaluator; all run_*_base.py scripts should call this module.
 
-包含指标:
-1. 传统清洗指标: 准确率、召回率、F1、EDR、混合距离、R-EDR（来自getScore.py）
-2. 下游任务性能: 分类（Accuracy, F1）、回归（MSE, R2）、聚类（Silhouette, ARI）
-3. 模型容忍度: 先验容忍度(Tolerance_prior)和后验容忍度(Tolerance_post)
-4. Snoopy指标: 基于embedding的数据质量上界评估
-5. 真值使用成本: 自动化级别(Type 1/2/3)
+Metrics included:
+1. Traditional cleaning metrics: precision, recall, F1, EDR, hybrid distance, R-EDR (from getScore.py)
+2. Downstream task performance: classification (Accuracy, F1), regression (MSE, R2), clustering (Silhouette, ARI)
+3. Model tolerance: prior tolerance (Tolerance_prior) and posterior tolerance (Tolerance_post)
+4. Snoopy metric: embedding-based data quality upper-bound evaluation
+5. Ground-truth cost: automation level (Type 1/2/3)
 
-使用方式:
+Usage:
     from utils.getScoreML import run_all_evaluation
 
     results = run_all_evaluation(
@@ -39,14 +39,14 @@ from sklearn.metrics import (
     silhouette_score, adjusted_rand_score
 )
 
-# 添加utils目录到路径
+# Add utils directory to path
 _current_dir = os.path.dirname(os.path.abspath(__file__))
 if _current_dir not in sys.path:
     sys.path.insert(0, _current_dir)
 
 
 def safe_print(msg: str) -> None:
-    """容错打印：当 stdout 被 TeeLogger 等重定向且文件已关闭时不崩溃"""
+    """Fault-tolerant print: doesn't crash when stdout is redirected by TeeLogger and the file is closed."""
     try:
         print(msg)
     except (ValueError, IOError, OSError):
@@ -59,27 +59,27 @@ def preprocess_for_ml(data: pd.DataFrame, label_column: str,
                       shared_encoders: dict = None,
                       shared_scaler: StandardScaler = None) -> Tuple[np.ndarray, np.ndarray]:
     """
-    预处理数据用于机器学习
+    Preprocess data for machine learning.
 
     Args:
-        data: 输入DataFrame
-        label_column: 标签列名
-        shared_encoders: 共享的 {col_name: LabelEncoder}（如果提供则 transform，否则 fit_transform）
-        shared_scaler: 共享的 StandardScaler（如果提供则 transform，否则 fit_transform）
+        data: input DataFrame
+        label_column: label column name
+        shared_encoders: shared {col_name: LabelEncoder} (transform if provided, else fit_transform)
+        shared_scaler: shared StandardScaler (transform if provided, else fit_transform)
 
     Returns:
-        特征矩阵X和标签向量y
+        Feature matrix X and label vector y
     """
-    # 分离特征和标签，排除索引/ID 等非特征列
+    # Separate features and label, excluding index/ID-style non-feature columns
     non_feature_cols = {label_column, 'index', 'id'}
     X = data.drop(columns=[c for c in non_feature_cols if c in data.columns])
     y = data[label_column]
 
-    # 编码分类特征
+    # Encode categorical features
     for col in X.select_dtypes(include=['object']).columns:
         if shared_encoders and col in shared_encoders:
             le = shared_encoders[col]
-            # transform（处理未见过的类别：映射到最近已知类别）
+            # transform (unseen categories map to nearest known)
             X[col] = X[col].astype(str).map(
                 lambda v, _le=le: _le.transform([v])[0] if v in _le.classes_
                 else 0
@@ -88,17 +88,17 @@ def preprocess_for_ml(data: pd.DataFrame, label_column: str,
             le = LabelEncoder()
             X[col] = le.fit_transform(X[col].astype(str))
 
-    # 处理缺失值
+    # Handle missing values
     X = X.fillna(X.mean())
 
-    # 标准化
+    # Standardize
     if shared_scaler is not None:
         X_scaled = shared_scaler.transform(X)
     else:
         scaler = StandardScaler()
         X_scaled = scaler.fit_transform(X)
 
-    # 编码标签（如果是分类任务）
+    # Encode label (if classification)
     if y.dtype == 'object':
         if shared_encoders and label_column in shared_encoders:
             le = shared_encoders[label_column]
@@ -114,7 +114,7 @@ def preprocess_for_ml(data: pd.DataFrame, label_column: str,
 
 
 def get_classifier(model_name: str):
-    """获取分类器"""
+    """Return a classifier."""
     from sklearn.ensemble import RandomForestClassifier, GradientBoostingClassifier
     from sklearn.linear_model import LogisticRegression
     from sklearn.svm import SVC
@@ -133,7 +133,7 @@ def get_classifier(model_name: str):
 
 
 def get_regressor(model_name: str):
-    """获取回归器"""
+    """Return a regressor."""
     from sklearn.ensemble import RandomForestRegressor, GradientBoostingRegressor
     from sklearn.linear_model import LinearRegression, Ridge, Lasso
     from sklearn.svm import SVR
@@ -152,7 +152,7 @@ def get_regressor(model_name: str):
 
 
 def evaluate_classification(X_train, y_train, X_test, y_test, model_name: str) -> Dict:
-    """评估分类任务"""
+    """Evaluate a classification task."""
     model = get_classifier(model_name)
     model.fit(X_train, y_train)
     y_pred = model.predict(X_test)
@@ -166,7 +166,7 @@ def evaluate_classification(X_train, y_train, X_test, y_test, model_name: str) -
 
 
 def evaluate_regression(X_train, y_train, X_test, y_test, model_name: str) -> Dict:
-    """评估回归任务"""
+    """Evaluate a regression task."""
     model = get_regressor(model_name)
     model.fit(X_train, y_train)
     y_pred = model.predict(X_test)
@@ -180,7 +180,7 @@ def evaluate_regression(X_train, y_train, X_test, y_test, model_name: str) -> Di
 
 
 def evaluate_clustering(X, y_true, n_clusters: int = None) -> Dict:
-    """评估聚类任务"""
+    """Evaluate a clustering task."""
     from sklearn.cluster import KMeans
 
     if n_clusters is None:
@@ -196,7 +196,7 @@ def evaluate_clustering(X, y_true, n_clusters: int = None) -> Dict:
 
 
 def get_clusterer(model_name: str, n_clusters: int):
-    """获取聚类器"""
+    """Return a clusterer."""
     from sklearn.cluster import KMeans, AgglomerativeClustering, DBSCAN, SpectralClustering
 
     clusterers = {
@@ -219,42 +219,42 @@ def evaluate_downstream_task(cleaned_data: pd.DataFrame,
                              X_clean_encoded: np.ndarray = None,
                              y_clean_encoded: np.ndarray = None) -> Dict:
     """
-    评估下游任务性能
+    Evaluate downstream task performance.
 
     Args:
-        cleaned_data: 清洗后的数据
-        clean_data: 干净数据（真值）
-        label_column: 标签列名
-        task_type: 任务类型 ('classification', 'regression', 'clustering')
-        models: 要评估的模型列表
-        test_size: 测试集比例
-        index_column: 索引列名（用于行对齐）
+        cleaned_data: cleaned data
+        clean_data: clean ground-truth data
+        label_column: label column name
+        task_type: task type ('classification', 'regression', 'clustering')
+        models: list of models to evaluate
+        test_size: test set fraction
+        index_column: index column name (for row alignment)
 
     Returns:
-        评估结果字典
+        Results dict
     """
     if models is None:
         models = ['rf', 'lr']
 
     results = {}
 
-    # 编码数据直传: 跳过 CSV → preprocess_for_ml 路径，避免 roundtrip 精度损失
+    # Encoded-data shortcut: skip CSV -> preprocess_for_ml to avoid roundtrip precision loss
     if X_cleaned_encoded is not None and X_clean_encoded is not None:
-        safe_print("  [下游任务] 使用编码版本（跳过 CSV preprocess）")
+        safe_print("  [downstream] using encoded version (skipping CSV preprocess)")
         X_cleaned = X_cleaned_encoded.copy()
         y_cleaned = y_cleaned_encoded.copy()
         X_clean_test = X_clean_encoded.copy()
         y_clean = y_clean_encoded.copy()
 
-        # NaN 安全处理（Agent 可能对部分错误选择 no_action，保留了 NaN）
-        # 去掉 y 中的 NaN 行
+        # NaN-safe handling (agent may leave no_action so NaNs remain)
+        # Drop rows where y is NaN
         y_valid_cleaned = ~np.isnan(y_cleaned)
         X_cleaned = X_cleaned[y_valid_cleaned]
         y_cleaned = y_cleaned[y_valid_cleaned]
         y_valid_clean = ~np.isnan(y_clean)
         X_clean_test = X_clean_test[y_valid_clean]
         y_clean = y_clean[y_valid_clean]
-        # 用列均值填充 X 中剩余的 NaN
+        # Fill remaining NaN in X with column means
         for arr in (X_cleaned, X_clean_test):
             col_means = np.nanmean(arr, axis=0)
             nan_mask = np.isnan(arr)
@@ -262,10 +262,10 @@ def evaluate_downstream_task(cleaned_data: pd.DataFrame,
                 for j in range(arr.shape[1]):
                     arr[nan_mask[:, j], j] = col_means[j]
 
-        # 最小行数检查
+        # Minimum row check
         min_rows = max(5, int(1 / test_size) + 1)
         if len(X_cleaned) < min_rows:
-            safe_print(f"[跳过] 清洗后数据仅 {len(X_cleaned)} 行，不足 {min_rows} 行，无法评估下游任务")
+            safe_print(f"[skip] cleaned data has only {len(X_cleaned)} rows, below {min_rows}; skipping downstream eval")
             return results
 
         if task_type == 'clustering':
@@ -284,19 +284,19 @@ def evaluate_downstream_task(cleaned_data: pd.DataFrame,
                     results[f'{model_name}_ari'] = ari_score
                     safe_print(f"{model_name.upper()} - Silhouette: {sil_score:.4f}, ARI: {ari_score:.4f}")
                 except Exception as e:
-                    safe_print(f"{model_name.upper()} 聚类失败: {e}")
+                    safe_print(f"{model_name.upper()} clustering failed: {e}")
         else:
-            # 分类或回归
-            # 若 X_clean_test 行数不同于 X_cleaned（Oracle test set），
-            # 则 train-on-all / test-on-test（与 Step 5 一致）
+            # Classification or regression
+            # If X_clean_test row count differs from X_cleaned (Oracle test set),
+            # use train-on-all / test-on-test (matches Step 5).
             if len(X_clean_test) != len(X_cleaned):
-                safe_print(f"  Oracle 模式: train={len(X_cleaned)}, test={len(X_clean_test)}")
+                safe_print(f"  Oracle mode: train={len(X_cleaned)}, test={len(X_clean_test)}")
                 X_train = X_cleaned
                 y_train = y_cleaned
                 X_test = X_clean_test
                 y_test = y_clean
             else:
-                # 同源数据: 内部 train/test split
+                # Same-source data: internal train/test split
                 indices = np.arange(len(X_cleaned))
                 train_idx, test_idx = train_test_split(
                     indices, test_size=test_size, random_state=42
@@ -328,12 +328,12 @@ def evaluate_downstream_task(cleaned_data: pd.DataFrame,
 
         return results
 
-    # 处理行数不一致的情况（如DeleteAll baseline）
+    # Handle row-count mismatch (e.g. DeleteAll baseline)
     if len(cleaned_data) != len(clean_data):
-        safe_print(f"警告: 清洗后数据行数({len(cleaned_data)})与干净数据行数({len(clean_data)})不一致")
-        safe_print("将使用清洗后数据自身进行评估（行对齐）")
+        safe_print(f"warning: cleaned rows ({len(cleaned_data)}) != clean rows ({len(clean_data)})")
+        safe_print("using cleaned data itself for evaluation (row alignment)")
 
-        # 尝试通过索引对齐
+        # Try aligning via index
         if index_column in cleaned_data.columns and index_column in clean_data.columns:
             cleaned_indexed = cleaned_data.set_index(index_column)
             clean_indexed = clean_data.set_index(index_column)
@@ -342,40 +342,40 @@ def evaluate_downstream_task(cleaned_data: pd.DataFrame,
             if len(common_indices) > 0:
                 cleaned_aligned = cleaned_indexed.loc[common_indices].reset_index()
                 clean_aligned = clean_indexed.loc[common_indices].reset_index()
-                safe_print(f"通过索引对齐，使用 {len(common_indices)} 行数据进行评估")
+                safe_print(f"aligned via index, using {len(common_indices)} rows")
             else:
-                # 没有共同索引，使用cleaned数据自身
+                # No common indices; use cleaned data itself
                 cleaned_aligned = cleaned_data
                 clean_aligned = cleaned_data
-                safe_print("无法对齐，使用清洗后数据自身的标签")
+                safe_print("cannot align; using cleaned data's own labels")
         else:
-            # 没有索引列，使用cleaned数据自身
+            # No index column; use cleaned data itself
             cleaned_aligned = cleaned_data
             clean_aligned = cleaned_data
-            safe_print("无索引列，使用清洗后数据自身的标签")
+            safe_print("no index column; using cleaned data's own labels")
     else:
         cleaned_aligned = cleaned_data
         clean_aligned = clean_data
 
-    # 统一编码: 用 combined 数据 fit LE/SS，确保两边标签映射一致
-    # 避免 cleaned 和 clean 各自独立 fit LabelEncoder 导致标签错位
+    # Unified encoding: fit LE/SS on combined data to keep label maps consistent across sides.
+    # Avoids mis-alignment from fitting LabelEncoder separately on cleaned and clean.
     combined = pd.concat([cleaned_aligned, clean_aligned], ignore_index=True)
     non_feature_cols = {label_column, 'index', 'id'}
     combined_features = combined.drop(columns=[c for c in non_feature_cols if c in combined.columns])
 
-    # 在 combined 数据上 fit 共享的 LabelEncoder
+    # Fit shared LabelEncoder on combined data
     shared_encoders = {}
     for col in combined_features.select_dtypes(include=['object']).columns:
         le = LabelEncoder()
         le.fit(combined_features[col].astype(str))
         shared_encoders[col] = le
-    # 标签列的 LE
+    # LE for the label column
     if combined[label_column].dtype == 'object':
         le_label = LabelEncoder()
         le_label.fit(combined[label_column].astype(str))
         shared_encoders[label_column] = le_label
 
-    # 在 combined 数据上 fit 共享的 StandardScaler
+    # Fit shared StandardScaler on combined data
     combined_encoded = combined_features.copy()
     for col in combined_encoded.select_dtypes(include=['object']).columns:
         if col in shared_encoders:
@@ -387,27 +387,27 @@ def evaluate_downstream_task(cleaned_data: pd.DataFrame,
     shared_scaler = StandardScaler()
     shared_scaler.fit(combined_encoded)
 
-    # 用共享编码器分别 transform cleaned 和 clean
+    # Transform cleaned and clean separately using the shared encoders
     X_cleaned, y_cleaned = preprocess_for_ml(cleaned_aligned, label_column,
                                               shared_encoders=shared_encoders,
                                               shared_scaler=shared_scaler)
-    # 使用对齐后的干净数据标签
+    # Use aligned clean-data labels
     _, y_clean = preprocess_for_ml(clean_aligned, label_column,
                                     shared_encoders=shared_encoders,
                                     shared_scaler=shared_scaler)
 
-    # 最小行数检查：train_test_split 至少需要 5 行
-    min_rows = max(5, int(1 / test_size) + 1)  # 确保 test_size 分割后至少 1 行
+    # Minimum row check: train_test_split needs at least 5
+    min_rows = max(5, int(1 / test_size) + 1)  # ensure test_size yields at least 1 row
     if len(X_cleaned) < min_rows:
-        safe_print(f"[跳过] 清洗后数据仅 {len(X_cleaned)} 行，不足 {min_rows} 行，无法评估下游任务")
+        safe_print(f"[skip] cleaned data has only {len(X_cleaned)} rows, below {min_rows}; skipping downstream eval")
         return results
 
     if task_type == 'clustering':
-        # 聚类任务 - 仅用 KMeans（AgglomerativeClustering O(n²~n³) 大数据集不可接受）
+        # Clustering task - KMeans only (AgglomerativeClustering O(n^2~n^3) is too costly)
         n_clusters = len(np.unique(y_clean))
         clustering_models = models if models else ['kmeans']
         n_rows = len(X_cleaned)
-        sil_sample_size = min(n_rows, 10000)  # silhouette O(n²) 采样加速
+        sil_sample_size = min(n_rows, 10000)  # silhouette O(n^2); sample to speed up
 
         for model_name in clustering_models:
             try:
@@ -419,18 +419,18 @@ def evaluate_downstream_task(cleaned_data: pd.DataFrame,
                 results[f'{model_name}_ari'] = ari_score
                 safe_print(f"{model_name.upper()} - Silhouette: {sil_score:.4f}, ARI: {ari_score:.4f}")
             except Exception as e:
-                safe_print(f"{model_name.upper()} 聚类失败: {e}")
+                safe_print(f"{model_name.upper()} clustering failed: {e}")
     else:
-        # 分类或回归任务
-        # 训练用 y_cleaned（Agent 修复后的标签），测试用 y_clean（干净标签）
-        # 这样标签修复的效果能在下游任务性能中体现出来
+        # Classification or regression
+        # Train on y_cleaned (agent-repaired labels); test on y_clean (clean labels)
+        # So the effect of label repair shows up in downstream task performance.
         indices = np.arange(len(X_cleaned))
         train_idx, test_idx = train_test_split(
             indices, test_size=test_size, random_state=42
         )
         X_train, X_test = X_cleaned[train_idx], X_cleaned[test_idx]
-        y_train = y_cleaned[train_idx]   # 训练标签: Agent 修复后的
-        y_test = y_clean[test_idx]       # 测试标签: 干净真值
+        y_train = y_cleaned[train_idx]   # training labels: agent-repaired
+        y_test = y_clean[test_idx]       # test labels: clean ground truth
 
         for model_name in models:
             if task_type == 'classification':
@@ -471,30 +471,30 @@ def calculate_tolerance(dirty_data: pd.DataFrame,
                         X_clean_test_encoded: np.ndarray = None,
                         y_clean_test_encoded: np.ndarray = None) -> Dict:
     """
-    计算模型噪声容忍度
+    Compute model noise tolerance.
 
-    先验容忍度 (Tolerance_prior):
-        Tolerance_prior(M) = (1/|E|) * Σ (P_TolerClean(M,er) / P_do_nothing(M,er))
+    Prior tolerance (Tolerance_prior):
+        Tolerance_prior(M) = (1/|E|) * sum_er (P_TolerClean(M,er) / P_do_nothing(M,er))
 
-    后验容忍度 (Tolerance_post):
-        Tolerance_post(M) = (1/|E|) * Σ (P_DemandClean(M,er) - P_do_nothing(M,er)) /
-                                        (P_repair_all(M,er) - P_do_nothing(M,er))
+    Posterior tolerance (Tolerance_post):
+        Tolerance_post(M) = (1/|E|) * sum_er (P_DemandClean(M,er) - P_do_nothing(M,er)) /
+                                         (P_repair_all(M,er) - P_do_nothing(M,er))
 
     Args:
-        dirty_data: 脏数据
-        cleaned_data: 清洗后的数据（使用当前方法清洗）
-        clean_data: 干净数据（完全修复）
-        label_column: 标签列名
-        task_type: 任务类型
-        model_name: 模型名称
+        dirty_data: dirty data
+        cleaned_data: cleaned data (by the current method)
+        clean_data: clean data (fully repaired)
+        label_column: label column name
+        task_type: task type
+        model_name: model name
 
     Returns:
-        容忍度指标字典
+        Tolerance-metric dict
     """
-    # 编码数据直传: 跳过 CSV → preprocess_for_ml 路径
+    # Encoded-data shortcut: skip CSV -> preprocess_for_ml
     if (X_dirty_encoded is not None and X_cleaned_encoded is not None
             and X_clean_encoded is not None):
-        safe_print("  [容忍度] 使用编码版本（跳过 CSV preprocess）")
+        safe_print("  [tolerance] using encoded version (skipping CSV preprocess)")
         X_dirty = X_dirty_encoded.copy()
         y_dirty = y_dirty_encoded.copy()
         X_cleaned = X_cleaned_encoded.copy()
@@ -502,9 +502,9 @@ def calculate_tolerance(dirty_data: pd.DataFrame,
         X_clean = X_clean_encoded.copy()
         y_clean = y_clean_encoded.copy()
 
-        # NaN 安全处理
+        # NaN-safe handling
         def _nan_safe(X, y):
-            """去掉 y NaN 行 + 用列均值填充 X NaN"""
+            """Drop rows with NaN in y; fill NaN in X with column means."""
             y_valid = ~np.isnan(y)
             X, y = X[y_valid].copy(), y[y_valid].copy()
             col_means = np.nanmean(X, axis=0)
@@ -528,7 +528,7 @@ def calculate_tolerance(dirty_data: pd.DataFrame,
                 'tolerance_post': 0.0,
             }
 
-        # 判断是否有 Oracle test set
+        # Check for an Oracle test set
         oracle_test = False
         if X_clean_test_encoded is not None and y_clean_test_encoded is not None:
             X_test_eval = X_clean_test_encoded.copy()
@@ -538,7 +538,7 @@ def calculate_tolerance(dirty_data: pd.DataFrame,
                 oracle_test = True
 
         def _fit_predict(X_train, y_train, X_test, y_test):
-            """训练并预测，返回性能指标"""
+            """Train and predict; return the performance metric."""
             if task_type == 'clustering':
                 from sklearn.cluster import KMeans as _KMeans
                 n_clusters = len(np.unique(y_test))
@@ -562,15 +562,15 @@ def calculate_tolerance(dirty_data: pd.DataFrame,
                 return r2_score(y_test, y_pred)
 
         if oracle_test:
-            # Oracle 模式: train on ALL, test on oracle test set（与 Step 5 一致）
-            safe_print(f"  Oracle 模式: train dirty={len(X_dirty)}, "
+            # Oracle mode: train on ALL, test on oracle test set (matches Step 5)
+            safe_print(f"  Oracle mode: train dirty={len(X_dirty)}, "
                        f"cleaned={len(X_cleaned)}, clean={len(X_clean)}, "
                        f"test={len(X_test_eval)}")
             P_do_nothing = _fit_predict(X_dirty, y_dirty, X_test_eval, y_test_eval)
             P_demand_clean = _fit_predict(X_cleaned, y_cleaned, X_test_eval, y_test_eval)
             P_repair_all = _fit_predict(X_clean, y_clean, X_test_eval, y_test_eval)
         else:
-            # 非 Oracle 模式: 从 X_clean 做 train_test_split
+            # Non-Oracle mode: derive test set via train_test_split on X_clean
             test_size = 0.2
             n_samples = len(X_clean)
             test_indices = np.random.RandomState(42).choice(
@@ -581,7 +581,7 @@ def calculate_tolerance(dirty_data: pd.DataFrame,
             X_test_eval = X_clean[test_indices]
             y_test_eval = y_clean[test_indices]
 
-            # dirty 和 cleaned 也需要按同样比例 split（使用各自的数据）
+            # Split dirty and cleaned at the same ratio (using their own data)
             def _split_and_eval(X, y):
                 n = len(X)
                 t_idx = np.random.RandomState(42).choice(
@@ -607,16 +607,16 @@ def calculate_tolerance(dirty_data: pd.DataFrame,
             'tolerance_post': tolerance_post,
         }
 
-        safe_print(f"\n容忍度计算结果:")
-        safe_print(f"  P_do_nothing (脏数据性能): {P_do_nothing:.4f}")
-        safe_print(f"  P_demand_clean (清洗后性能): {P_demand_clean:.4f}")
-        safe_print(f"  P_repair_all (完全修复性能): {P_repair_all:.4f}")
-        safe_print(f"  先验容忍度 (Tolerance_prior): {tolerance_prior:.4f}")
-        safe_print(f"  后验容忍度 (Tolerance_post): {tolerance_post:.4f}")
+        safe_print(f"\nTolerance results:")
+        safe_print(f"  P_do_nothing   (dirty perf.): {P_do_nothing:.4f}")
+        safe_print(f"  P_demand_clean (cleaned perf.): {P_demand_clean:.4f}")
+        safe_print(f"  P_repair_all   (full-repair perf.): {P_repair_all:.4f}")
+        safe_print(f"  Prior tolerance (Tolerance_prior): {tolerance_prior:.4f}")
+        safe_print(f"  Posterior tolerance (Tolerance_post): {tolerance_post:.4f}")
 
         return results
 
-    # 统一编码: 三份数据用相同的 LE/SS
+    # Unified encoding: all three datasets share the same LE/SS
     combined = pd.concat([dirty_data, cleaned_data, clean_data], ignore_index=True)
     non_feature_cols = {label_column, 'index', 'id'}
     combined_features = combined.drop(columns=[c for c in non_feature_cols if c in combined.columns])
@@ -652,7 +652,7 @@ def calculate_tolerance(dirty_data: pd.DataFrame,
                                           shared_encoders=shared_encoders,
                                           shared_scaler=shared_scaler)
 
-    # 最小行数检查：cleaned 数据行数需要与 clean 匹配索引才能正确评估
+    # Minimum row check: cleaned rows must align with clean for correct evaluation
     if len(X_cleaned) < 5:
         return {
             'P_do_nothing': 0.0,
@@ -662,10 +662,10 @@ def calculate_tolerance(dirty_data: pd.DataFrame,
             'tolerance_post': 0.0,
         }
 
-    # 当 cleaned 行数 != clean 行数时，用 cleaned 自身做 train/test split
+    # When cleaned rows != clean rows, do train/test split on cleaned itself
     use_cleaned_split = (len(X_cleaned) != len(X_clean))
 
-    # 分割数据
+    # Split data
     test_size = 0.2
     n_samples = len(X_clean)
     test_indices = np.random.RandomState(42).choice(
@@ -674,16 +674,16 @@ def calculate_tolerance(dirty_data: pd.DataFrame,
     train_indices = np.array([i for i in range(n_samples) if i not in test_indices])
 
     def get_performance(X, y_train_labels, X_test, y_test):
-        """获取模型性能
+        """Get model performance.
 
         Args:
-            X: 训练特征矩阵 (使用 train_indices 切片)
-            y_train_labels: 训练标签 (使用 train_indices 切片)
-            X_test: 测试特征
-            y_test: 测试标签 (干净真值)
+            X: training feature matrix (sliced by train_indices)
+            y_train_labels: training labels (sliced by train_indices)
+            X_test: test features
+            y_test: test labels (clean ground truth)
         """
         if task_type == 'clustering':
-            # 聚类: 用全量数据拟合，返回 silhouette_score（大数据集采样）
+            # Clustering: fit on all data, return silhouette_score (sample for large data)
             from sklearn.cluster import KMeans as _KMeans
             n_clusters = len(np.unique(y_test))
             km = _KMeans(n_clusters=n_clusters, random_state=42, n_init=10)
@@ -702,17 +702,17 @@ def calculate_tolerance(dirty_data: pd.DataFrame,
             model = get_regressor(model_name)
             model.fit(X[train_indices], y_train_labels[train_indices])
             y_pred = model.predict(X_test)
-            return r2_score(y_test, y_pred)  # R2 ∈ (-∞, 1]，越大越好
+            return r2_score(y_test, y_pred)  # R2 in (-inf, 1]; higher is better
 
-    # 计算各场景下的性能
-    # P_do_nothing: 脏特征 + 脏标签训练，干净数据测试
+    # Compute performance per scenario
+    # P_do_nothing: train on dirty features + dirty labels; test on clean data
     P_do_nothing = get_performance(X_dirty, y_dirty, X_clean[test_indices], y_clean[test_indices])
 
-    # P_DemandClean: 在清洗后数据上训练
+    # P_DemandClean: train on cleaned data
     if use_cleaned_split:
-        # cleaned 行数与 clean 不一致（Agent 删除了部分行），无法用相同索引
-        # 退化方案: 用 cleaned 自身 split，训练用 y_cleaned，测试也用 y_cleaned
-        # 注意: 此分支无法用 y_clean 测试，因为行对应关系已丢失
+        # cleaned rows differ from clean (agent deleted rows); cannot share indices.
+        # Fallback: split cleaned itself, train on y_cleaned, test on y_cleaned.
+        # Note: this branch cannot test against y_clean since row correspondence is lost.
         from sklearn.model_selection import train_test_split
         n_cleaned = len(X_cleaned)
         if n_cleaned >= 5:
@@ -729,7 +729,7 @@ def calculate_tolerance(dirty_data: pd.DataFrame,
                     y_pred = model.predict(X_cleaned[cleaned_test_idx])
                     P_demand_clean = accuracy_score(y_cleaned[cleaned_test_idx], y_pred)
                 elif task_type == 'clustering':
-                    # 聚类: 用全量 cleaned 数据拟合，返回 silhouette_score（大数据集采样）
+                    # Clustering: fit on all cleaned data, return silhouette_score (sample for large data)
                     from sklearn.cluster import KMeans as _KMeans
                     n_clusters = len(np.unique(y_cleaned))
                     km = _KMeans(n_clusters=n_clusters, random_state=42, n_init=10)
@@ -749,19 +749,19 @@ def calculate_tolerance(dirty_data: pd.DataFrame,
         else:
             P_demand_clean = 0.0
     else:
-        # 清洗后特征 + 清洗后标签训练，干净数据测试
+        # Cleaned features + cleaned labels train; clean data test
         P_demand_clean = get_performance(X_cleaned, y_cleaned, X_clean[test_indices], y_clean[test_indices])
 
-    # P_repair_all: 在完全干净数据上训练
+    # P_repair_all: train on fully clean data
     P_repair_all = get_performance(X_clean, y_clean, X_clean[test_indices], y_clean[test_indices])
 
-    # 计算先验容忍度
+    # Prior tolerance
     if P_do_nothing != 0:
         tolerance_prior = P_demand_clean / P_do_nothing
     else:
         tolerance_prior = 0
 
-    # 计算后验容忍度
+    # Posterior tolerance
     if P_repair_all != P_do_nothing:
         tolerance_post = (P_demand_clean - P_do_nothing) / (P_repair_all - P_do_nothing)
     else:
@@ -775,12 +775,12 @@ def calculate_tolerance(dirty_data: pd.DataFrame,
         'tolerance_post': tolerance_post
     }
 
-    safe_print(f"\n容忍度计算结果:")
-    safe_print(f"  P_do_nothing (脏数据性能): {P_do_nothing:.4f}")
-    safe_print(f"  P_demand_clean (清洗后性能): {P_demand_clean:.4f}")
-    safe_print(f"  P_repair_all (完全修复性能): {P_repair_all:.4f}")
-    safe_print(f"  先验容忍度 (Tolerance_prior): {tolerance_prior:.4f}")
-    safe_print(f"  后验容忍度 (Tolerance_post): {tolerance_post:.4f}")
+    safe_print(f"\nTolerance results:")
+    safe_print(f"  P_do_nothing   (dirty perf.): {P_do_nothing:.4f}")
+    safe_print(f"  P_demand_clean (cleaned perf.): {P_demand_clean:.4f}")
+    safe_print(f"  P_repair_all   (full-repair perf.): {P_repair_all:.4f}")
+    safe_print(f"  Prior tolerance (Tolerance_prior): {tolerance_prior:.4f}")
+    safe_print(f"  Posterior tolerance (Tolerance_post): {tolerance_post:.4f}")
 
     return results
 
@@ -793,25 +793,25 @@ def calculate_tolerance_multi_error_rates(dirty_data: pd.DataFrame,
                                            model_name: str = 'rf',
                                            error_rates: List[float] = None) -> Dict:
     """
-    在多个错误率下计算平均容忍度
+    Compute average tolerance across multiple error rates.
 
     Args:
-        dirty_data: 脏数据
-        clean_data: 干净数据
-        cleaned_data: 清洗后的数据
-        label_column: 标签列名
-        task_type: 任务类型
-        model_name: 模型名称
-        error_rates: 错误率列表
+        dirty_data: dirty data
+        clean_data: clean data
+        cleaned_data: cleaned data
+        label_column: label column name
+        task_type: task type
+        model_name: model name
+        error_rates: list of error rates
 
     Returns:
-        多错误率下的容忍度结果
+        Tolerance results across multiple error rates
     """
     if error_rates is None:
         error_rates = [0.05, 0.1, 0.15, 0.2, 0.25, 0.3]
 
-    # 这里简化处理，使用单一错误率的结果
-    # 实际应用中可以结合错误注入器生成不同错误率的数据
+    # Simplified: use a single error-rate result.
+    # In practice, combine with an error injector to generate data at various rates.
     base_tolerance = calculate_tolerance(
         dirty_data, cleaned_data, clean_data,
         label_column, task_type, model_name
@@ -833,26 +833,26 @@ def calculate_ground_truth_cost(method_type: int,
                                  validation_samples: int = 0,
                                  iterations: int = 0) -> Dict:
     """
-    计算真值使用成本
+    Compute the ground-truth usage cost.
 
-    真值使用类型:
-    - Type 1: 全自动执行，无需人工参与 (cost = 0)
-    - Type 2: 需少量验证集真值评估清洗效果 (cost = validation_samples)
-    - Type 3: 用户迭代逐条清洗模型选中的脏样本 (cost = iterations * batch_size)
+    Ground-truth usage types:
+    - Type 1: fully automatic, no human involvement (cost = 0)
+    - Type 2: uses a small validation-set ground truth to evaluate cleaning (cost = validation_samples)
+    - Type 3: user iteratively cleans dirty samples selected by the model (cost = iterations * batch_size)
 
     Args:
-        method_type: 方法类型 (1, 2, 3)
-        total_samples: 总样本数
-        labeled_samples: 标注样本数
-        validation_samples: 验证集样本数
-        iterations: 迭代次数（用于Type 3）
+        method_type: method type (1, 2, 3)
+        total_samples: total samples
+        labeled_samples: number of labeled samples
+        validation_samples: validation-set size
+        iterations: iteration count (for Type 3)
 
     Returns:
-        成本字典
+        Cost dict
     """
     if method_type == 1:
-        # Type 1 也使用 labeled_samples，调用方负责传入正确值
-        # Oracle 模式虽然「全自动」，但实际使用了真值
+        # Type 1 still uses labeled_samples; caller is responsible for the correct value.
+        # Oracle mode is "fully automatic" but in practice uses ground truth.
         cost = labeled_samples
         cost_ratio = labeled_samples / total_samples if total_samples > 0 else 0
     elif method_type == 2:
@@ -884,60 +884,60 @@ def comprehensive_evaluation(dirty_data: pd.DataFrame,
                               method_type: int = 1,
                               ground_truth_used: int = 0) -> Dict:
     """
-    综合评估函数
+    Comprehensive evaluation.
 
-    包含:
-    1. 下游任务性能
-    2. 模型容忍度
-    3. 真值使用成本
+    Includes:
+    1. Downstream task performance
+    2. Model tolerance
+    3. Ground-truth cost
 
     Args:
-        dirty_data: 脏数据
-        cleaned_data: 清洗后的数据
-        clean_data: 干净数据
-        label_column: 标签列名
-        task_type: 任务类型
-        models: 模型列表
-        method_type: 方法类型
-        ground_truth_used: 使用的真值数量
+        dirty_data: dirty data
+        cleaned_data: cleaned data
+        clean_data: clean data
+        label_column: label column name
+        task_type: task type
+        models: model list
+        method_type: method type
+        ground_truth_used: ground-truth samples used
 
     Returns:
-        综合评估结果
+        Comprehensive results
     """
     if models is None:
         models = ['rf', 'lr']
 
     safe_print("="*60)
-    safe_print("综合评估开始")
+    safe_print("Comprehensive evaluation start")
     safe_print("="*60)
 
-    # 1. 下游任务性能评估
-    safe_print("\n1. 下游任务性能评估")
+    # 1. Downstream task performance
+    safe_print("\n1. Downstream task performance")
     safe_print("-"*40)
     ml_results = evaluate_downstream_task(
         cleaned_data, clean_data, label_column, task_type, models
     )
 
-    # 2. 模型容忍度评估
-    safe_print("\n2. 模型容忍度评估")
+    # 2. Model tolerance
+    safe_print("\n2. Model tolerance")
     safe_print("-"*40)
     tolerance_results = calculate_tolerance(
         dirty_data, cleaned_data, clean_data, label_column, task_type
     )
 
-    # 3. 真值使用成本
-    safe_print("\n3. 真值使用成本")
+    # 3. Ground-truth cost
+    safe_print("\n3. Ground-truth cost")
     safe_print("-"*40)
     cost_results = calculate_ground_truth_cost(
         method_type=method_type,
         total_samples=len(clean_data),
         labeled_samples=ground_truth_used
     )
-    safe_print(f"  真值使用类型: Type {method_type}")
-    safe_print(f"  真值使用数量: {cost_results['ground_truth_cost']}")
-    safe_print(f"  真值使用比例: {cost_results['cost_ratio']:.2%}")
+    safe_print(f"  Ground-truth usage type: Type {method_type}")
+    safe_print(f"  Ground-truth used:       {cost_results['ground_truth_cost']}")
+    safe_print(f"  Ground-truth ratio:      {cost_results['cost_ratio']:.2%}")
 
-    # 汇总结果
+    # Aggregate results
     results = {
         'task_type': task_type,
         **ml_results,
@@ -946,20 +946,20 @@ def comprehensive_evaluation(dirty_data: pd.DataFrame,
     }
 
     safe_print("\n" + "="*60)
-    safe_print("综合评估完成")
+    safe_print("Comprehensive evaluation done")
     safe_print("="*60)
 
     return results
 
 
-# 测试函数
+# Test helper
 def test_evaluation():
-    """测试评估函数"""
-    # 创建测试数据
+    """Test the evaluation functions."""
+    # Create synthetic data
     np.random.seed(42)
     n_samples = 1000
 
-    # 干净数据
+    # Clean data
     clean_data = pd.DataFrame({
         'feature1': np.random.randn(n_samples),
         'feature2': np.random.randn(n_samples),
@@ -967,17 +967,17 @@ def test_evaluation():
         'label': np.random.choice([0, 1], n_samples)
     })
 
-    # 脏数据（添加噪声）
+    # Dirty data (with injected noise)
     dirty_data = clean_data.copy()
     noise_idx = np.random.choice(n_samples, size=int(n_samples * 0.1), replace=False)
     dirty_data.loc[noise_idx, 'feature1'] = np.nan
-    dirty_data.loc[noise_idx[:50], 'feature2'] *= 10  # 异常值
+    dirty_data.loc[noise_idx[:50], 'feature2'] *= 10  # outliers
 
-    # 清洗后数据（部分修复）
+    # Cleaned data (partially repaired)
     cleaned_data = dirty_data.copy()
     cleaned_data['feature1'].fillna(cleaned_data['feature1'].mean(), inplace=True)
 
-    # 运行评估
+    # Run evaluation
     results = comprehensive_evaluation(
         dirty_data=dirty_data,
         cleaned_data=cleaned_data,
@@ -989,13 +989,13 @@ def test_evaluation():
         ground_truth_used=0
     )
 
-    safe_print("\n最终结果:")
+    safe_print("\nFinal results:")
     for key, value in results.items():
         safe_print(f"  {key}: {value}")
 
 
 # =============================================================================
-# Snoopy评估函数 - 基于embedding的数据质量上界评估
+# Snoopy evaluation - embedding-based data quality upper-bound evaluation
 # =============================================================================
 
 def evaluate_snoopy_upper_bound(dirty_data: pd.DataFrame,
@@ -1012,19 +1012,19 @@ def evaluate_snoopy_upper_bound(dirty_data: pd.DataFrame,
                                  X_clean_test_encoded: np.ndarray = None,
                                  y_clean_test_encoded: np.ndarray = None) -> Dict:
     """
-    使用Snoopy评估清洗前后的数据质量上界
+    Use Snoopy to evaluate data quality upper bound before/after cleaning.
 
-    Snoopy通过embedding来评估数据质量上界，判断清洗是否提升了上界。
+    Snoopy uses embeddings to estimate the data-quality upper bound and tell whether cleaning improves it.
 
     Args:
-        dirty_data: 脏数据
-        cleaned_data: 清洗后的数据
-        clean_data: 干净数据（ground truth）
-        label_column: 标签列名
-        task_type: 任务类型
+        dirty_data: dirty data
+        cleaned_data: cleaned data
+        clean_data: clean data (ground truth)
+        label_column: label column name
+        task_type: task type
 
     Returns:
-        Snoopy评估结果
+        Snoopy results
     """
     results = {
         'snoopy_available': False,
@@ -1035,10 +1035,10 @@ def evaluate_snoopy_upper_bound(dirty_data: pd.DataFrame,
     }
 
     try:
-        # 编码数据直传: 跳过 CSV → preprocess_for_ml 路径
+        # Encoded-data shortcut: skip CSV -> preprocess_for_ml
         if (X_dirty_encoded is not None and X_cleaned_encoded is not None
                 and X_clean_encoded is not None):
-            safe_print("  [Snoopy] 使用编码版本（跳过 CSV preprocess）")
+            safe_print("  [Snoopy] using encoded version (skipping CSV preprocess)")
             X_dirty = X_dirty_encoded.copy()
             y_dirty = y_dirty_encoded.copy()
             X_cleaned = X_cleaned_encoded.copy()
@@ -1046,7 +1046,7 @@ def evaluate_snoopy_upper_bound(dirty_data: pd.DataFrame,
             X_clean = X_clean_encoded.copy()
             y_clean = y_clean_encoded.copy()
 
-            # NaN 安全处理
+            # NaN-safe handling
             def _nan_safe_snoopy(X, y):
                 y_valid = ~np.isnan(y)
                 X, y = X[y_valid].copy(), y[y_valid].copy()
@@ -1065,11 +1065,11 @@ def evaluate_snoopy_upper_bound(dirty_data: pd.DataFrame,
             X_clean, y_clean = _nan_safe_snoopy(X_clean, y_clean)
 
             if len(X_cleaned) < 5:
-                safe_print(f"[Snoopy] 清洗后数据仅 {len(X_cleaned)} 行，不足5行，跳过上界评估")
+                safe_print(f"[Snoopy] cleaned data has only {len(X_cleaned)} rows (<5); skipping upper-bound eval")
                 return results
 
             results['snoopy_available'] = True
-            safe_print("使用编码数据评估数据质量上界...")
+            safe_print("Evaluating data-quality upper bound on encoded data...")
 
             from sklearn.ensemble import RandomForestClassifier, RandomForestRegressor
 
@@ -1106,16 +1106,16 @@ def evaluate_snoopy_upper_bound(dirty_data: pd.DataFrame,
 
             return results
 
-        # 尝试导入snoopy
-        # 注意: tools/snoopy/snoopy/ 才是真正的包，需要把 tools/snoopy 插到
-        # sys.path 最前面，否则 Python 会先找到 tools/snoopy/__init__.py（空文件）
+        # Try to import snoopy.
+        # Note: tools/snoopy/snoopy/ is the real package; we insert tools/snoopy at the
+        # front of sys.path, otherwise Python finds tools/snoopy/__init__.py (empty) first.
         _snoopy_parent = os.path.join(_current_dir, 'snoopy')
         if _snoopy_parent in sys.path:
             sys.path.remove(_snoopy_parent)
         sys.path.insert(0, _snoopy_parent)
         from snoopy.pipeline import run as snoopy_run
 
-        # 预处理数据（统一编码）
+        # Preprocess data (unified encoding)
         combined = pd.concat([dirty_data, cleaned_data, clean_data], ignore_index=True)
         non_feature_cols = {label_column, 'index', 'id'}
         combined_features = combined.drop(columns=[c for c in non_feature_cols if c in combined.columns])
@@ -1151,20 +1151,20 @@ def evaluate_snoopy_upper_bound(dirty_data: pd.DataFrame,
                                               shared_encoders=shared_encoders,
                                               shared_scaler=shared_scaler)
 
-        # 保护: 如果清洗后数据太少无法做 cross_val
+        # Guard: if cleaned data is too small for cross_val
         if len(X_cleaned) < 5:
-            safe_print(f"[Snoopy] 清洗后数据仅 {len(X_cleaned)} 行，不足5行，跳过上界评估")
+            safe_print(f"[Snoopy] cleaned data has only {len(X_cleaned)} rows (<5); skipping upper-bound eval")
             return results
 
-        # 评估各数据集的上界
+        # Evaluate upper bound for each dataset
         results['snoopy_available'] = True
-        safe_print("Snoopy模块可用，正在评估数据质量上界...")
+        safe_print("Snoopy module available; evaluating data-quality upper bound...")
 
-        # 简化的上界估计（基于模型交叉验证）
+        # Simplified upper-bound estimate (based on model cross-validation)
         from sklearn.ensemble import RandomForestClassifier, RandomForestRegressor
 
         if task_type == 'clustering':
-            # 聚类: 用 silhouette_score 作为上界指标（大数据集采样）
+            # Clustering: use silhouette_score as the upper-bound metric (sample for large data)
             from sklearn.cluster import KMeans as _KMeans
             def _clustering_upper_bound(X, y):
                 n_clusters = len(np.unique(y))
@@ -1180,7 +1180,7 @@ def evaluate_snoopy_upper_bound(dirty_data: pd.DataFrame,
             results['upper_bound_clean'] = _clustering_upper_bound(X_clean, y_clean)
         elif task_type == 'classification':
             model = RandomForestClassifier(n_estimators=100, random_state=42)
-            # dirty: 脏特征+脏标签; cleaned: 清洗后特征+清洗后标签; clean: 干净数据
+            # dirty: dirty features + dirty labels; cleaned: cleaned features + cleaned labels; clean: clean data
             results['upper_bound_dirty'] = np.mean(cross_val_score(model, X_dirty, y_dirty, cv=5))
             results['upper_bound_cleaned'] = np.mean(cross_val_score(model, X_cleaned, y_cleaned, cv=min(5, len(X_cleaned))))
             results['upper_bound_clean'] = np.mean(cross_val_score(model, X_clean, y_clean, cv=5))
@@ -1190,7 +1190,7 @@ def evaluate_snoopy_upper_bound(dirty_data: pd.DataFrame,
             results['upper_bound_cleaned'] = -np.mean(cross_val_score(model, X_cleaned, y_cleaned, cv=min(5, len(X_cleaned)), scoring='neg_mean_squared_error'))
             results['upper_bound_clean'] = -np.mean(cross_val_score(model, X_clean, y_clean, cv=5, scoring='neg_mean_squared_error'))
 
-        # 计算上界提升
+        # Compute upper-bound improvement
         if results['upper_bound_dirty'] != 0:
             results['upper_bound_improvement'] = (
                 (results['upper_bound_cleaned'] - results['upper_bound_dirty']) /
@@ -1199,15 +1199,15 @@ def evaluate_snoopy_upper_bound(dirty_data: pd.DataFrame,
             )
 
     except ImportError:
-        safe_print("Snoopy模块不可用，跳过上界评估")
+        safe_print("Snoopy module unavailable; skipping upper-bound eval")
     except Exception as e:
-        safe_print(f"Snoopy评估出错: {e}")
+        safe_print(f"Snoopy evaluation error: {e}")
 
     return results
 
 
 # =============================================================================
-# 理想最小真值成本计算
+# Ideal minimum ground-truth cost
 # =============================================================================
 
 def calculate_ideal_min_ground_truth_cost(dirty_data: pd.DataFrame,
@@ -1215,48 +1215,48 @@ def calculate_ideal_min_ground_truth_cost(dirty_data: pd.DataFrame,
                                            clean_data: pd.DataFrame,
                                            index_attribute: str = 'index') -> Dict:
     """
-    计算理想最小真值成本
+    Compute the ideal minimum ground-truth cost.
 
-    理想最小成本 = 清洗后数据与脏数据的差异中，实际为正确修复的单元格数量
-    即：只有真正用到真值的地方才计入成本
+    Ideal minimum = number of cells in the cleaned-vs-dirty diff that are actually correct repairs.
+    Only cells that truly use ground truth are counted.
 
-    当 cleaned 行数与 dirty/clean 不同时（如 agent 删除了部分行），
-    仅比较 cleaned 中保留的行。
+    When cleaned rows differ from dirty/clean (e.g. agent deleted some rows),
+    only the rows kept in cleaned are compared.
 
     Args:
-        dirty_data: 脏数据
-        cleaned_data: 清洗后的数据
-        clean_data: 干净数据（ground truth）
-        index_attribute: 索引列名
+        dirty_data: dirty data
+        cleaned_data: cleaned data
+        clean_data: clean data (ground truth)
+        index_attribute: index column name
 
     Returns:
-        理想最小真值成本信息
+        Ideal minimum ground-truth cost info
     """
     dirty = dirty_data.copy()
     cleaned = cleaned_data.copy()
     clean = clean_data.copy()
 
-    # 排除索引列
+    # Exclude the index column
     cols_to_compare = [c for c in dirty.columns if c != index_attribute]
 
-    # 按索引对齐: 只比较 cleaned 中保留的行
+    # Align by index: compare only rows kept in cleaned
     if index_attribute in dirty.columns and index_attribute in cleaned.columns:
         dirty = dirty.set_index(index_attribute)
         cleaned = cleaned.set_index(index_attribute)
         clean = clean.set_index(index_attribute)
-        # 取三者共有的索引
+        # Intersection of all three index sets
         common_idx = dirty.index.intersection(cleaned.index).intersection(clean.index)
         dirty = dirty.loc[common_idx].reset_index()
         cleaned = cleaned.loc[common_idx].reset_index()
         clean = clean.loc[common_idx].reset_index()
     else:
-        # 无索引列时，取最短长度
+        # No index column; take the shortest length
         min_len = min(len(dirty), len(cleaned), len(clean))
         dirty = dirty.iloc[:min_len].reset_index(drop=True)
         cleaned = cleaned.iloc[:min_len].reset_index(drop=True)
         clean = clean.iloc[:min_len].reset_index(drop=True)
 
-    # 逐单元格比较
+    # Per-cell comparison
     changes_count = 0
     correct_repairs = 0
     wrong_repairs = 0
@@ -1270,16 +1270,16 @@ def calculate_ideal_min_ground_truth_cost(dirty_data: pd.DataFrame,
             cleaned_val = str(cleaned.iloc[i][col]).strip().lower() if pd.notna(cleaned.iloc[i][col]) else ''
             clean_val = str(clean.iloc[i][col]).strip().lower() if pd.notna(clean.iloc[i][col]) else ''
 
-            # 检查是否发生了修改
+            # Check whether the cell was modified
             if dirty_val != cleaned_val:
                 changes_count += 1
-                # 检查修改是否正确（与真值一致）
+                # Check whether the modification matches the ground truth
                 if cleaned_val == clean_val:
                     correct_repairs += 1
                 else:
                     wrong_repairs += 1
 
-    # 额外统计: 被删除的行数
+    # Additional stat: number of deleted rows
     deleted_rows = len(dirty_data) - len(cleaned_data)
 
     results = {
@@ -1287,7 +1287,7 @@ def calculate_ideal_min_ground_truth_cost(dirty_data: pd.DataFrame,
         'correct_repairs': correct_repairs,
         'wrong_repairs': wrong_repairs,
         'deleted_rows': max(0, deleted_rows),
-        'ideal_min_ground_truth_cost': correct_repairs,  # 理想情况下只需要这些真值
+        'ideal_min_ground_truth_cost': correct_repairs,  # ideally, only these ground-truth values are needed
         'repair_accuracy': correct_repairs / changes_count if changes_count > 0 else 0
     }
 
@@ -1295,7 +1295,7 @@ def calculate_ideal_min_ground_truth_cost(dirty_data: pd.DataFrame,
 
 
 # =============================================================================
-# 统一测评函数 - run_all_evaluation
+# Unified evaluation entry point - run_all_evaluation
 # =============================================================================
 
 def run_all_evaluation(dirty_path: str,
@@ -1314,27 +1314,27 @@ def run_all_evaluation(dirty_path: str,
                        cleaned_encoded_path: str = None,
                        encoded_arrays: dict = None) -> Dict:
     """
-    统一的数据清洗测评函数
+    Unified data-cleaning evaluation function.
 
-    所有run_*_base.py脚本都应调用此函数进行标准化评估。
+    All run_*_base.py scripts should call this function for standardized evaluation.
 
     Args:
-        dirty_path: 脏数据路径
-        cleaned_path: 清洗后数据路径
-        clean_path: 干净数据路径（ground truth）
-        output_path: 结果输出路径
-        task_name: 任务名称
-        label_column: 标签列名（可选，用于下游任务评估）
-        task_type: 任务类型 ('classification', 'regression', 'clustering')
-        models: 评估模型列表
-        method_type: 清洗方法类型 (1=全自动, 2=需验证集, 3=需迭代交互)
-        ground_truth_used: 实际使用的真值数量（由清洗方法提供）
-        index_attribute: 索引列名
-        mse_attributes: 需要计算MSE的属性列表
-        verbose: 是否打印详细信息
+        dirty_path: dirty CSV path
+        cleaned_path: cleaned CSV path
+        clean_path: clean CSV path (ground truth)
+        output_path: directory for output files
+        task_name: task name
+        label_column: label column name (optional; used for downstream evaluation)
+        task_type: task type ('classification', 'regression', 'clustering')
+        models: list of evaluation models
+        method_type: cleaning method type (1=auto, 2=needs validation set, 3=iterative)
+        ground_truth_used: number of ground-truth values actually used (supplied by the cleaning method)
+        index_attribute: index column name
+        mse_attributes: attributes for MSE computation
+        verbose: whether to print details
 
     Returns:
-        完整的评估结果字典
+        Full evaluation results dict
     """
     if models is None:
         models = ['rf', 'lr']
@@ -1342,12 +1342,12 @@ def run_all_evaluation(dirty_path: str,
     if mse_attributes is None:
         mse_attributes = []
 
-    # 加载数据
+    # Load data
     dirty_data = pd.read_csv(dirty_path)
     cleaned_data = pd.read_csv(cleaned_path)
     clean_data = pd.read_csv(clean_path)
 
-    # 加载编码版本（优先使用，避免 CSV roundtrip 精度损失）
+    # Prefer encoded version (avoids CSV roundtrip precision loss)
     enc_cleaned = None  # (X_cleaned_encoded, y_cleaned_encoded)
     enc_arrays = None   # {'X_dirty', 'y_dirty', 'X_clean', 'y_clean'}
     if cleaned_encoded_path and os.path.exists(cleaned_encoded_path):
@@ -1355,21 +1355,21 @@ def run_all_evaluation(dirty_path: str,
             npz = np.load(cleaned_encoded_path, allow_pickle=True)
             enc_cleaned = (npz['X_result'], npz['y_result'])
             if verbose:
-                safe_print(f"  使用编码版本: {cleaned_encoded_path}")
+                safe_print(f"  using encoded version: {cleaned_encoded_path}")
         except Exception as e:
             if verbose:
-                safe_print(f"  [警告] 编码版本加载失败，fallback 到 CSV: {e}")
+                safe_print(f"  [warn] encoded-version load failed; falling back to CSV: {e}")
             enc_cleaned = None
     if encoded_arrays is not None and enc_cleaned is not None:
         enc_arrays = encoded_arrays
 
-    # 获取属性列表
+    # Attribute list
     attributes = clean_data.columns.tolist()
 
-    # 对 0 行 cleaned 数据做保护：直接给出空结果
+    # Guard for empty cleaned data: return empty result
     if len(cleaned_data) == 0:
         if verbose:
-            safe_print("[警告] 清洗后数据为空(0行)，所有指标置0")
+            safe_print("[warn] cleaned data is empty (0 rows); all metrics set to 0")
         results = {
             'task_name': task_name,
             'task_type': task_type,
@@ -1378,11 +1378,11 @@ def run_all_evaluation(dirty_path: str,
             'cleaned_rows': 0,
             'note': 'cleaned_data is empty (0 rows), all metrics set to 0',
         }
-        # 写出占位结果文件
+        # Write placeholder result file
         os.makedirs(output_path, exist_ok=True)
         eval_file = os.path.join(output_path, f'{task_name}_evaluation_results.txt')
         with open(eval_file, 'w', encoding='utf-8') as f:
-            f.write(f"[警告] 清洗后数据为空(0行)，无法计算任何指标\n")
+            f.write(f"[warn] cleaned data is empty (0 rows); cannot compute any metrics\n")
         return results
 
     results = {
@@ -1395,14 +1395,14 @@ def run_all_evaluation(dirty_path: str,
 
     if verbose:
         safe_print("=" * 70)
-        safe_print(f"Clean4MLBaseline 统一测评 - {task_name}")
+        safe_print(f"Clean4MLBaseline unified evaluation - {task_name}")
         safe_print("=" * 70)
 
     # ==========================================================================
-    # 1. 传统清洗指标（来自getScore.py）
+    # 1. Traditional cleaning metrics (from getScore.py)
     # ==========================================================================
     if verbose:
-        safe_print("\n[1/5] 传统清洗指标")
+        safe_print("\n[1/5] Traditional cleaning metrics")
         safe_print("-" * 50)
 
     try:
@@ -1421,22 +1421,22 @@ def run_all_evaluation(dirty_path: str,
         results.update(traditional_results)
     except ImportError:
         if verbose:
-            safe_print("警告: getScore模块不可用，跳过传统清洗指标")
+            safe_print("warn: getScore module unavailable; skipping traditional cleaning metrics")
     except Exception as e:
         if verbose:
             import traceback
-            safe_print(f"传统清洗指标计算出错: {type(e).__name__}: {e}")
+            safe_print(f"traditional cleaning metrics failed: {type(e).__name__}: {e}")
             safe_print(traceback.format_exc())
 
     # ==========================================================================
-    # 2. 下游任务性能
+    # 2. Downstream task performance
     # ==========================================================================
     if label_column and label_column in clean_data.columns:
         if verbose:
-            safe_print(f"\n[2/5] 下游任务性能 ({task_type})")
+            safe_print(f"\n[2/5] Downstream task performance ({task_type})")
             safe_print("-" * 50)
 
-        # 确定测试集: 优先使用 oracle test（与 Step 5 一致）
+        # Choose test set: prefer oracle test (matches Step 5)
         _X_clean_test = enc_arrays.get('X_clean_test') if enc_arrays else None
         _y_clean_test = enc_arrays.get('y_clean_test') if enc_arrays else None
         if _X_clean_test is None:
@@ -1458,14 +1458,14 @@ def run_all_evaluation(dirty_path: str,
         results.update({f'ml_{k}': v for k, v in ml_results.items()})
     else:
         if verbose:
-            safe_print("\n[2/5] 下游任务性能 - 跳过（未指定标签列）")
+            safe_print("\n[2/5] Downstream task performance - skipped (no label column)")
 
     # ==========================================================================
-    # 3. 模型容忍度
+    # 3. Model tolerance
     # ==========================================================================
     if label_column and label_column in clean_data.columns:
         if verbose:
-            safe_print(f"\n[3/5] 模型容忍度")
+            safe_print(f"\n[3/5] Model tolerance")
             safe_print("-" * 50)
 
         tolerance_results = calculate_tolerance(
@@ -1486,14 +1486,14 @@ def run_all_evaluation(dirty_path: str,
         results.update({f'tolerance_{k}': v for k, v in tolerance_results.items()})
     else:
         if verbose:
-            safe_print("\n[3/5] 模型容忍度 - 跳过（未指定标签列）")
+            safe_print("\n[3/5] Model tolerance - skipped (no label column)")
 
     # ==========================================================================
-    # 4. Snoopy上界评估
+    # 4. Snoopy upper-bound evaluation
     # ==========================================================================
     if label_column and label_column in clean_data.columns:
         if verbose:
-            safe_print(f"\n[4/5] Snoopy上界评估")
+            safe_print(f"\n[4/5] Snoopy upper-bound evaluation")
             safe_print("-" * 50)
 
         snoopy_results = evaluate_snoopy_upper_bound(
@@ -1514,22 +1514,22 @@ def run_all_evaluation(dirty_path: str,
         results.update({f'snoopy_{k}': v for k, v in snoopy_results.items()})
 
         if verbose and snoopy_results.get('snoopy_available'):
-            safe_print(f"  脏数据上界: {snoopy_results['upper_bound_dirty']:.4f}")
-            safe_print(f"  清洗后上界: {snoopy_results['upper_bound_cleaned']:.4f}")
-            safe_print(f"  干净数据上界: {snoopy_results['upper_bound_clean']:.4f}")
-            safe_print(f"  上界提升比例: {snoopy_results['upper_bound_improvement']:.4f}")
+            safe_print(f"  dirty upper bound:    {snoopy_results['upper_bound_dirty']:.4f}")
+            safe_print(f"  cleaned upper bound:  {snoopy_results['upper_bound_cleaned']:.4f}")
+            safe_print(f"  clean upper bound:    {snoopy_results['upper_bound_clean']:.4f}")
+            safe_print(f"  upper-bound improvement ratio: {snoopy_results['upper_bound_improvement']:.4f}")
     else:
         if verbose:
-            safe_print("\n[4/5] Snoopy上界评估 - 跳过（未指定标签列）")
+            safe_print("\n[4/5] Snoopy upper-bound evaluation - skipped (no label column)")
 
     # ==========================================================================
-    # 5. 真值使用成本
+    # 5. Ground-truth cost
     # ==========================================================================
     if verbose:
-        safe_print(f"\n[5/5] 真值使用成本")
+        safe_print(f"\n[5/5] Ground-truth cost")
         safe_print("-" * 50)
 
-    # 计算理想最小真值成本
+    # Compute ideal minimum ground-truth cost
     ideal_cost = calculate_ideal_min_ground_truth_cost(
         dirty_data=dirty_data,
         cleaned_data=cleaned_data,
@@ -1538,7 +1538,7 @@ def run_all_evaluation(dirty_path: str,
     )
     results.update({f'ideal_{k}': v for k, v in ideal_cost.items()})
 
-    # 实际真值成本（由清洗方法提供）
+    # Actual ground-truth cost (provided by the cleaning method)
     cost_results = calculate_ground_truth_cost(
         method_type=method_type,
         total_samples=len(clean_data),
@@ -1547,53 +1547,53 @@ def run_all_evaluation(dirty_path: str,
     results.update(cost_results)
 
     if verbose:
-        safe_print(f"  方法类型: Type {method_type} ({'全自动' if method_type==1 else '需验证集' if method_type==2 else '需迭代交互'})")
-        safe_print(f"  实际真值使用: {ground_truth_used}")
-        safe_print(f"  理想最小成本: {ideal_cost['ideal_min_ground_truth_cost']}")
-        safe_print(f"  总修改单元格: {ideal_cost['total_changes']}")
-        safe_print(f"  正确修复: {ideal_cost['correct_repairs']}")
-        safe_print(f"  错误修复: {ideal_cost['wrong_repairs']}")
+        safe_print(f"  Method type: Type {method_type} ({'auto' if method_type==1 else 'needs validation set' if method_type==2 else 'iterative'})")
+        safe_print(f"  Actual ground-truth used: {ground_truth_used}")
+        safe_print(f"  Ideal minimum cost:       {ideal_cost['ideal_min_ground_truth_cost']}")
+        safe_print(f"  Total changed cells:      {ideal_cost['total_changes']}")
+        safe_print(f"  Correct repairs:          {ideal_cost['correct_repairs']}")
+        safe_print(f"  Wrong repairs:            {ideal_cost['wrong_repairs']}")
 
     # ==========================================================================
-    # 保存结果
+    # Save results
     # ==========================================================================
     results_file = os.path.join(output_path, f"{task_name}_evaluation_results.txt")
     os.makedirs(output_path, exist_ok=True)
 
     with open(results_file, 'w', encoding='utf-8') as f:
-        f.write(f"Clean4MLBaseline 统一测评报告\n")
-        f.write(f"任务名称: {task_name}\n")
+        f.write(f"Clean4MLBaseline unified evaluation report\n")
+        f.write(f"Task: {task_name}\n")
         f.write("=" * 70 + "\n\n")
 
-        f.write("[传统清洗指标]\n")
+        f.write("[Traditional cleaning metrics]\n")
         for key in ['precision', 'accuracy', 'recall', 'f1_score', 'edr', 'hybrid_distance', 'r_edr']:
             if key in results:
                 f.write(f"  {key}: {results[key]}\n")
 
-        f.write("\n[下游任务性能]\n")
+        f.write("\n[Downstream task performance]\n")
         for key, value in results.items():
             if key.startswith('ml_'):
                 f.write(f"  {key}: {value}\n")
 
-        f.write("\n[模型容忍度]\n")
+        f.write("\n[Model tolerance]\n")
         for key, value in results.items():
             if key.startswith('tolerance_'):
                 f.write(f"  {key}: {value}\n")
 
-        f.write("\n[Snoopy上界评估]\n")
+        f.write("\n[Snoopy upper bound]\n")
         for key, value in results.items():
             if key.startswith('snoopy_'):
                 f.write(f"  {key}: {value}\n")
 
-        f.write("\n[真值使用成本]\n")
-        f.write(f"  方法类型: Type {method_type}\n")
-        f.write(f"  实际真值使用: {ground_truth_used}\n")
-        f.write(f"  理想最小成本: {ideal_cost['ideal_min_ground_truth_cost']}\n")
-        f.write(f"  修复准确率: {ideal_cost['repair_accuracy']:.4f}\n")
+        f.write("\n[Ground-truth cost]\n")
+        f.write(f"  Method type: Type {method_type}\n")
+        f.write(f"  Actual ground-truth used: {ground_truth_used}\n")
+        f.write(f"  Ideal minimum cost: {ideal_cost['ideal_min_ground_truth_cost']}\n")
+        f.write(f"  Repair accuracy:    {ideal_cost['repair_accuracy']:.4f}\n")
 
     if verbose:
         safe_print("\n" + "=" * 70)
-        safe_print(f"测评完成，结果已保存到: {results_file}")
+        safe_print(f"Evaluation done; results saved: {results_file}")
         safe_print("=" * 70)
 
     return results

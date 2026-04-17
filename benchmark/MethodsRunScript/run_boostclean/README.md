@@ -1,29 +1,29 @@
 # BoostClean Baseline
 
-## 简介
+## Overview
 
-BoostClean 是一种面向模型的数据清洗方法，使用 Boosting 策略集成多种错误检测器和修复器，自动选择最优组合来提升下游ML模型性能。
+BoostClean is a model-oriented cleaning method that uses a Boosting strategy to ensemble multiple detectors and repairers, automatically selecting the combination that best improves the downstream ML model.
 
-**论文**: [BoostClean: Automatic Error Detection and Repair for Machine Learning](https://arxiv.org/abs/1711.01299)
+**Paper**: [BoostClean: Automatic Error Detection and Repair for Machine Learning](https://arxiv.org/abs/1711.01299)
 
-## 方法类型
+## Method Type
 
-| 类型 | 说明 |
-|------|------|
-| **Type 2** | 需要验证集真值 |
-| 真值使用 | 验证集（validation_ratio） |
+| Type | Description |
+|------|-------------|
+| **Type 2** | Requires a validation-set ground truth |
+| Ground truth | Validation set (validation_ratio) |
 
-## 核心思想
+## Core Idea
 
-1. 定义一组错误检测器（缺失值、异常值、类型错误等）
-2. 定义一组修复器（删除、填充、规则修复等）
-3. 使用 Boosting 策略迭代选择最优的检测器-修复器组合
-4. 以验证集上的模型性能为优化目标
+1. Define a suite of error detectors (missing value, outlier, type error, etc.).
+2. Define a suite of repairers (delete, impute, rule-based repair, etc.).
+3. Use Boosting to iteratively pick the best detector-repairer combination.
+4. Optimize against validation-set model performance.
 
-## 运行方式
+## How to Run
 
 ```bash
-# 单个数据集
+# Single dataset
 python MethodsRunScript/run_boostclean/run_boostclean_base.py \
     --dirty_path Data/beers/dirty_index.csv \
     --clean_path Data/beers/clean_index.csv \
@@ -33,42 +33,42 @@ python MethodsRunScript/run_boostclean/run_boostclean_base.py \
     --task_type classification \
     --boosting_rounds 5
 
-# 批量运行所有数据集
+# Batch run across all datasets
 bash MethodsRunScript/run_boostclean/run.sh
 ```
 
-## 参数说明
+## Arguments
 
-| 参数 | 必需 | 说明 | 默认值 |
-|------|------|------|--------|
-| `--dirty_path` | 是 | 脏数据路径 | - |
-| `--clean_path` | 是 | 干净数据路径 | - |
-| `--task_name` | 是 | 任务名称 | - |
-| `--output_path` | 否 | 结果输出路径 | `results/boostclean/` |
-| `--label_column` | 是 | 标签列名 | - |
-| `--task_type` | 否 | 任务类型 | `classification` |
-| `--boosting_rounds` | 否 | Boosting 轮数 | `5` |
-| `--quantitative_thresh` | 否 | 数值异常检测阈值 | `10` |
-| `--models` | 否 | 评估模型列表 | `rf lr` |
+| Argument | Required | Description | Default |
+|----------|----------|-------------|---------|
+| `--dirty_path` | yes | Path to the dirty data | - |
+| `--clean_path` | yes | Path to the clean data | - |
+| `--task_name` | yes | Task name | - |
+| `--output_path` | no | Output directory | `results/boostclean/` |
+| `--label_column` | yes | Label column name | - |
+| `--task_type` | no | Task type | `classification` |
+| `--boosting_rounds` | no | Number of Boosting rounds | `5` |
+| `--quantitative_thresh` | no | Numeric-outlier threshold | `10` |
+| `--models` | no | Evaluation model list | `rf lr` |
 
-## 输出文件
+## Output Files
 
 ```
 results/boostclean/{task_name}/
-├── {task_name}_cleaned.csv          # 清洗后的数据
-├── {task_name}_total_evaluation.txt # 评估报告
-└── {task_name}.log                  # 运行日志
+├── {task_name}_cleaned.csv          # Cleaned data
+├── {task_name}_total_evaluation.txt # Evaluation report
+└── {task_name}.log                  # Run log
 ```
 
-## 与 ActiveClean 对比
+## Comparison with ActiveClean
 
-| 方法 | 选择策略 | 真值使用 | 优化目标 |
-|------|----------|----------|----------|
-| ActiveClean | 梯度引导 | 按需清洗 | 模型损失 |
-| **BoostClean** | Boosting | 验证集 | 验证集性能 |
+| Method | Selection Strategy | Ground Truth | Optimization Target |
+|--------|--------------------|--------------|---------------------|
+| ActiveClean | Gradient-guided | On-demand | Model loss |
+| **BoostClean** | Boosting | Validation set | Validation set performance |
 
-## 注意事项
+## Notes
 
-- 需要划分验证集，数据量较小时可能影响效果
-- 迭代次数越多效果越好，但计算成本越高
-- 适合有明确下游任务的场景
+- Requires a validation split; small datasets may suffer.
+- More rounds usually yield better results but cost more compute.
+- Well suited to scenarios with a clear downstream task.

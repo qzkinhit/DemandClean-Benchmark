@@ -1,14 +1,15 @@
 """
-两阶段推理环境
-==============
+Two-phase inference environment
+===============================
 
-用于不提前知道真值的推理场景。
+Environment for the inference case where ground-truth values are not known up front.
 
-第一阶段：预测所有动作，repair_value 只加入 plan，其他动作立即执行
-第二阶段：用户提供真值后，执行 plan 中的修复
+Phase 1: predict every action. repair_value only adds an item to the plan;
+         other actions execute immediately.
+Phase 2: after the user supplies ground truths, execute the repairs queued in the plan.
 
-保护策略:
-  - 最低保留率: 删除上限 80%, 防止全删
+Safeguards:
+  - Minimum retention: cap deletions at 80% to prevent deleting everything.
 """
 
 from typing import Dict, List, Set, Tuple, Optional, Any
@@ -22,15 +23,16 @@ from .value_estimation import ValueEstimator
 
 class TwoPhaseCleaningEnv:
     """
-    两阶段推理环境
+    Two-phase inference environment.
 
-    状态计算策略（与训练环境完全一致）：
-    - 10 维状态 = 8 维错误级特征 + 2 维全局感知
-    - 错误级特征委托 state_extractor.extract() 计算
-    - 全局感知：[8] remaining_budget_ratio, [9] remaining_errors_ratio
-    - action==1 时用 ValueEstimator 估计值写入 X_current，使状态计算和训练一致
-    - action==3 时用 ValueEstimator 估计值（FD → KNN → DOMAIN）
-    - 周期性刷新 feature_importance（与训练一致）
+    State computation (identical to the training environment):
+    - 10-dim state = 8-dim per-error features + 2-dim global context
+    - Per-error features are delegated to state_extractor.extract()
+    - Global context: [8] remaining_budget_ratio, [9] remaining_errors_ratio
+    - When action == 1, the ValueEstimator estimate is written into X_current
+      so that state computation matches training
+    - When action == 3, the ValueEstimator is used (FD -> KNN -> DOMAIN)
+    - feature_importance is refreshed periodically (matches training)
     """
 
     def __init__(self,
@@ -41,15 +43,15 @@ class TwoPhaseCleaningEnv:
                  state_extractor: StateExtractor,
                  config: DemandCleanConfig):
         """
-        初始化两阶段推理环境
+        Initialize the two-phase inference environment.
 
         Args:
-            X_dirty: 脏数据（不需要 X_clean）
-            y: 标签
-            error_list: 检测到的错误列表，此时 repair_value 可以是估计值或 None
-            model_adapter: 模型适配器
-            state_extractor: 状态提取器
-            config: 配置对象
+            X_dirty: dirty data (X_clean is not required)
+            y: labels
+            error_list: detected errors; repair_value may be an estimate or None
+            model_adapter: model adapter
+            state_extractor: state extractor
+            config: configuration object
         """
         self.X_dirty_original = X_dirty.copy()
         self.y_original = y.copy()
@@ -59,13 +61,13 @@ class TwoPhaseCleaningEnv:
         self.config = config
         self.repair_lambda = config.repair_lambda
 
-        # 状态变量
+        # Runtime state
         self.X_current: Optional[np.ndarray] = None
         self.y_current: Optional[np.ndarray] = None
         self.current_error_idx = 0
         self.deleted_rows: Set[int] = set()
 
-        # 动作计数
+        # Action counts
         self.action_counts = {
             'no_action': 0,
             'repair_value': 0,
@@ -73,28 +75,29 @@ class TwoPhaseCleaningEnv:
             'replace_nearby': 0
         }
 
-        # 两阶段核心：修复计划
+        # Two-phase core: repair plan
         self.repair_plan: List[Dict] = []
         self.planned_repairs: Set[Tuple[int, int]] = set()
 
-        # 最大修复预算（用于全局感知 state）
-        # 与 CleaningEnv 保持一致：基于 max_repair_ratio，兼容旧 max_truth_budget
+        # Maximum repair budget (used for the global-context state).
+        # Matches CleaningEnv: based on max_repair_ratio, with legacy
+        # max_truth_budget kept for backward compatibility.
         n_errors = len(error_list) if error_list else 1
         ratio_budget = int(n_errors * config.max_repair_ratio) if config.max_repair_ratio < 1.0 else n_errors
         if config.max_truth_budget is not None:
             ratio_budget = min(config.max_truth_budget, ratio_budget)
         self.max_repair_count = ratio_budget
 
-        # 完整决策日志（记录所有4种动作的详情）
+        # Full decision log (records details for all four action types)
         self.decision_log: List[Dict] = []
 
-        # 预计算
+        # Pre-compute stats
         self._precompute_stats()
 
-        # 值估计器（FD + KNN + DOMAIN）
+        # Value estimator (FD + KNN + DOMAIN)
         self.value_estimator = ValueEstimator(config)
 
-        # 特征重要性刷新间隔
+        # Feature-importance refresh interval
         if config.importance_refresh_interval is not None:
             self.importance_refresh_interval = config.importance_refresh_interval
         else:
@@ -103,14 +106,14 @@ class TwoPhaseCleaningEnv:
         self._init_state_extractor()
 
     def _precompute_stats(self) -> None:
-        """预计算统计量"""
+        """Pre-compute column statistics."""
         n_cols = self.X_dirty_original.shape[1]
 
         self.col_means = np.nanmean(self.X_dirty_original, axis=0)
         self.col_stds = np.nanstd(self.X_dirty_original, axis=0)
         self.col_vars = np.nanvar(self.X_dirty_original, axis=0)
 
-        # 处理 NaN
+        # Handle NaNs
         for col in range(n_cols):
             if np.isnan(self.col_means[col]):
                 self.col_means[col] = 0
@@ -119,7 +122,7 @@ class TwoPhaseCleaningEnv:
             if np.isnan(self.col_vars[col]) or self.col_vars[col] == 0:
                 self.col_vars[col] = 1
 
-        # 计算每列错误数（排除标签错误 col=-1）
+        # Count errors per column (label errors with col=-1 are excluded)
         col_error_counts = np.zeros(n_cols)
         label_error_count = 0
         for error in self.error_list:
@@ -137,12 +140,12 @@ class TwoPhaseCleaningEnv:
             self.col_error_rates = np.zeros(n_cols)
             self.label_error_rate = 0.0
 
-        # 跟踪当前每列的剩余错误数
+        # Track remaining errors per column
         self.col_remaining_errors = col_error_counts.copy()
         self.total_remaining_errors = total_errors
 
     def _init_state_extractor(self) -> None:
-        """初始化状态提取器"""
+        """Initialize the state extractor."""
         X_filled = self._fill_nan(self.X_dirty_original.copy())
 
         try:
@@ -159,11 +162,11 @@ class TwoPhaseCleaningEnv:
         self.state_extractor.set_feature_importance(feature_importance)
         self.state_extractor.set_col_error_rate(self.col_error_rates)
         self.state_extractor.set_col_stats(self.col_means, self.col_stds, self.col_vars)
-        # 设置样本数，确保 compute_retention() 能正确计算 sample_retention
+        # Set sample count so compute_retention() can compute sample_retention correctly
         self.state_extractor._n_samples = len(X_filled)
 
     def _fill_nan(self, X: np.ndarray) -> np.ndarray:
-        """填充 NaN 值"""
+        """Fill NaN values with column means."""
         X_filled = X.copy()
         for col in range(X_filled.shape[1]):
             col_mean = np.nanmean(X_filled[:, col])
@@ -173,7 +176,7 @@ class TwoPhaseCleaningEnv:
         return X_filled
 
     def reset(self) -> np.ndarray:
-        """重置环境"""
+        """Reset the environment."""
         self.X_current = self.X_dirty_original.copy()
         self.y_current = self.y_original.copy()
         self.current_error_idx = 0
@@ -183,18 +186,18 @@ class TwoPhaseCleaningEnv:
         self.planned_repairs = set()
         self.decision_log = []
 
-        # 重置错误跟踪
+        # Reset error tracking
         self._precompute_stats()
 
         return self._get_state()
 
     def _get_state(self) -> np.ndarray:
-        """获取当前状态（10维 = 8维错误级特征 + 2维全局感知）"""
+        """Return the current state (10-dim = 8-dim per-error features + 2-dim global context)."""
         if self.current_error_idx >= len(self.error_list):
             return np.zeros(self.config.state_size, dtype=np.float32)
 
         error = self.error_list[self.current_error_idx]
-        # 8维错误级特征
+        # 8-dim per-error features
         base_state = self.state_extractor.extract(
             self.X_current,
             self.y_current,
@@ -202,17 +205,17 @@ class TwoPhaseCleaningEnv:
             self.deleted_rows
         )
 
-        # [8] remaining_budget_ratio: 剩余可用真值预算比例 [0,1]
+        # [8] remaining_budget_ratio: fraction of truth-repair budget still available [0, 1]
         repair_used = self.action_counts['repair_value']
         remaining_budget = max(0, self.max_repair_count - repair_used)
         remaining_budget_ratio = remaining_budget / max(self.max_repair_count, 1)
 
-        # [9] remaining_errors_ratio: 待处理错误占总数的比例 [0,1]
+        # [9] remaining_errors_ratio: pending errors as a fraction of the total [0, 1]
         total_errors = max(len(self.error_list), 1)
         remaining_errors = max(0, total_errors - self.current_error_idx)
         remaining_errors_ratio = remaining_errors / total_errors
 
-        # 拼接 10 维 state
+        # Concatenate into the 10-dim state
         return np.concatenate([
             base_state,
             np.array([remaining_budget_ratio, remaining_errors_ratio], dtype=np.float32)
@@ -220,32 +223,32 @@ class TwoPhaseCleaningEnv:
 
     def _get_majority_label(self, idx: int, k: int = 5) -> float:
         """
-        获取最近邻的标签估计
+        Estimate the label from the nearest neighbors.
 
-        分类任务: 多数投票 (majority vote)
-        回归任务: KNN 加权均值 (weighted mean)
+        Classification: majority vote.
+        Regression: KNN weighted mean.
 
-        与 CleaningEnv._get_majority_label() 保持一致
+        Matches CleaningEnv._get_majority_label().
 
         Args:
-            idx: 目标行索引
-            k: 邻居数量
+            idx: target row index
+            k: number of neighbors
 
         Returns:
-            估计的标签值
+            Estimated label value.
         """
         X_filled = self._fill_nan(self.X_current.copy())
         target = X_filled[idx]
 
-        # 计算距离
+        # Compute distances
         distances = np.linalg.norm(X_filled - target, axis=1)
-        distances[idx] = np.inf  # 排除自身
+        distances[idx] = np.inf  # Exclude the target itself
 
-        # 排除已删除的行
+        # Exclude already-deleted rows
         for d_idx in self.deleted_rows:
             distances[d_idx] = np.inf
 
-        # 取前k个最近邻
+        # Pick the k nearest neighbors
         k = min(k, (distances < np.inf).sum())
         if k == 0:
             return self.y_current[idx]
@@ -257,7 +260,7 @@ class TwoPhaseCleaningEnv:
         if len(valid_labels) == 0:
             return self.y_current[idx]
 
-        # 回归: KNN 加权均值 (距离倒数权重)
+        # Regression: KNN weighted mean (inverse-distance weights)
         if self.config.task_type == TaskType.REGRESSION:
             nearest_dists = distances[nearest_indices]
             valid_mask = ~np.isnan(nearest_labels)
@@ -266,20 +269,20 @@ class TwoPhaseCleaningEnv:
             weights /= weights.sum()
             return float(np.average(valid_labels, weights=weights))
 
-        # 分类: 多数投票
+        # Classification: majority vote
         unique, counts = np.unique(valid_labels, return_counts=True)
         return unique[np.argmax(counts)]
 
     def step(self, action: int) -> Tuple[np.ndarray, float, bool, Dict]:
         """
-        执行动作
+        Execute an action.
 
-        对于 repair_value (action=1)：
-        - 不实际修复，而是加入 repair_plan
-        - 用估计值更新状态
+        For repair_value (action = 1):
+        - Do not actually repair; add an item to repair_plan instead
+        - Update state using the estimated value
 
         Args:
-            action: 动作索引
+            action: action index
 
         Returns:
             (next_state, reward, done, info)
@@ -292,10 +295,10 @@ class TwoPhaseCleaningEnv:
         error_type = error['type']
         is_label_error = (col == -1)
 
-        # 记录原始动作（降级前）
+        # Keep the original action before any downgrade
         original_action = action
 
-        # 记录脏值
+        # Record the dirty value
         if is_label_error:
             dirty_value = self.y_current[idx]
         else:
@@ -307,20 +310,20 @@ class TwoPhaseCleaningEnv:
         if action == 0:  # no_action
             self.action_counts['no_action'] += 1
 
-        elif action == 1:  # repair_value -> 加入计划，用估计值写入 X_current
+        elif action == 1:  # repair_value -> queue in the plan, write the estimated value into X_current
             self.action_counts['repair_value'] += 1
 
             if is_label_error:
-                # 标签错误: KNN 多数投票估计
+                # Label error: KNN majority-vote estimate
                 estimated_value = self._get_majority_label(idx)
             else:
-                # 特征错误: FD → 多维 KNN → DOMAIN 裁剪
+                # Feature error: FD -> multi-dim KNN -> DOMAIN clipping
                 estimated_value = self.value_estimator.estimate_feature_value(
                     self.X_current, idx, col,
                     self.deleted_rows, self.col_means
                 )
 
-            # 加入修复计划
+            # Add to the repair plan
             self.repair_plan.append({
                 'idx': idx,
                 'col': col,
@@ -329,10 +332,10 @@ class TwoPhaseCleaningEnv:
                 'current_dirty_value': dirty_value_safe
             })
 
-            # 标记为已计划修复
+            # Mark as planned
             self.planned_repairs.add((idx, col))
 
-            # 用估计值更新当前数据
+            # Update current data with the estimate
             if is_label_error:
                 self.y_current[idx] = estimated_value
             else:
@@ -340,38 +343,38 @@ class TwoPhaseCleaningEnv:
 
             result_value = estimated_value
 
-            # 更新错误计数
+            # Update error counts
             if not is_label_error and 0 <= col < len(self.col_remaining_errors):
                 self.col_remaining_errors[col] = max(0, self.col_remaining_errors[col] - 1)
             self.total_remaining_errors = max(0, self.total_remaining_errors - 1)
 
-        elif action == 2:  # delete - 真实执行
-            # 保护策略: 至少保留 20% 数据，超过上限则强制转为 no_action
+        elif action == 2:  # delete - executed immediately
+            # Safeguard: keep at least 20% of the data; downgrade to no_action once the cap is hit
             n_total = len(self.X_current)
             max_deletions = int(n_total * 0.8)
             if len(self.deleted_rows) >= max_deletions:
-                # 已达到删除上限，退化为 no_action
+                # Deletion cap reached, downgrade to no_action
                 action = 0
                 self.action_counts['no_action'] += 1
             else:
                 self.action_counts['delete'] += 1
                 self.deleted_rows.add(idx)
 
-                # 更新错误计数（仅实际删除时才扣减）
+                # Update error counts (only when deletion actually happens)
                 if not is_label_error and 0 <= col < len(self.col_remaining_errors):
                     self.col_remaining_errors[col] = max(0, self.col_remaining_errors[col] - 1)
                 self.total_remaining_errors = max(0, self.total_remaining_errors - 1)
 
-        elif action == 3:  # replace_nearby - 真实执行
+        elif action == 3:  # replace_nearby - executed immediately
             self.action_counts['replace_nearby'] += 1
 
             if is_label_error:
-                # 标签错误: 用多数投票/KNN替换
+                # Label error: replace via majority vote / KNN
                 nearby_val = self._get_majority_label(idx)
                 self.y_current[idx] = nearby_val
                 result_value = nearby_val
             else:
-                # 特征错误: FD → 多维 KNN → DOMAIN 裁剪
+                # Feature error: FD -> multi-dim KNN -> DOMAIN clipping
                 nearby_val = self.value_estimator.estimate_feature_value(
                     self.X_current, idx, col,
                     self.deleted_rows, self.col_means
@@ -379,12 +382,12 @@ class TwoPhaseCleaningEnv:
                 self.X_current[idx, col] = nearby_val
                 result_value = nearby_val
 
-            # 更新错误计数
+            # Update error counts
             if not is_label_error and 0 <= col < len(self.col_remaining_errors):
                 self.col_remaining_errors[col] = max(0, self.col_remaining_errors[col] - 1)
             self.total_remaining_errors = max(0, self.total_remaining_errors - 1)
 
-        # 记录完整决策日志
+        # Log the full decision
         self.decision_log.append({
             'error_idx': self.current_error_idx,
             'row_idx': idx,
@@ -399,7 +402,7 @@ class TwoPhaseCleaningEnv:
         self.current_error_idx += 1
         done = self.current_error_idx >= len(self.error_list)
 
-        # 周期性刷新 feature_importance
+        # Periodically refresh feature_importance
         if (self.current_error_idx % self.importance_refresh_interval == 0
                 and not done):
             self._refresh_feature_importance()
@@ -407,22 +410,22 @@ class TwoPhaseCleaningEnv:
         return self._get_state(), 0, done, {}
 
     def get_repair_plan(self) -> List[Dict]:
-        """获取修复计划（第一阶段结果）"""
+        """Return the repair plan (Phase 1 output)."""
         return self.repair_plan
 
     def get_current_data(self) -> Tuple[np.ndarray, np.ndarray, np.ndarray]:
         """
-        获取当前数据状态（未过滤，包含估计值）
+        Return the current data state (unfiltered, includes estimates).
 
         Returns:
-            (X_current, y_current, keep_mask) - 未过滤的数据和掩码
+            (X_current, y_current, keep_mask) - unfiltered data and keep mask.
         """
         keep_mask = np.array([i not in self.deleted_rows for i in range(len(self.X_current))])
         return self.X_current.copy(), self.y_current.copy(), keep_mask
 
     def get_cleaned_data(self) -> Tuple[np.ndarray, np.ndarray, np.ndarray]:
         """
-        获取清洗后的数据（已过滤、已填充 NaN）
+        Return the cleaned data (filtered, NaNs imputed).
 
         Returns:
             (X_clean, y_clean, keep_mask)
@@ -431,10 +434,11 @@ class TwoPhaseCleaningEnv:
         X_result = self.X_current[keep_mask].copy()
         y_result = self.y_current[keep_mask]
 
-        # 填充剩余 NaN（no_action 选择的缺失值，用 ValueEstimator 逐单元格精确估值）
+        # Fill remaining NaNs (missing values kept under no_action) with per-cell
+        # ValueEstimator estimates.
         if np.isnan(X_result).any():
             col_means = np.nanmean(X_result, axis=0)
-            # keep_mask 的原始行号映射
+            # Map back to original row indices via keep_mask
             original_indices = np.where(keep_mask)[0]
             for col in range(X_result.shape[1]):
                 nan_mask = np.isnan(X_result[:, col])
@@ -448,7 +452,7 @@ class TwoPhaseCleaningEnv:
         return X_result, y_result, keep_mask
 
     def get_action_counts(self) -> Dict[str, int]:
-        """获取动作统计"""
+        """Return action counts."""
         return self.action_counts.copy()
 
     def execute_repair_plan(self,
@@ -456,16 +460,16 @@ class TwoPhaseCleaningEnv:
                             true_values: Dict[Tuple[int, int], float],
                             y_dirty: Optional[np.ndarray] = None) -> Tuple[np.ndarray, Optional[np.ndarray]]:
         """
-        执行修复计划（第二阶段）
+        Execute the repair plan (Phase 2).
 
         Args:
-            X_dirty: 原始脏数据
-            true_values: 真值字典 {(idx, col): value}
-                         col=-1 表示标签修复
-            y_dirty: 原始脏标签（标签修复时需要）
+            X_dirty: original dirty data
+            true_values: ground-truth dict {(idx, col): value};
+                         col = -1 indicates a label repair
+            y_dirty: original dirty labels (required for label repairs)
 
         Returns:
-            (X_result, y_result) - 修复后的特征和标签
+            (X_result, y_result) - repaired features and labels.
         """
         X_result = X_dirty.copy()
         y_result = y_dirty.copy() if y_dirty is not None else None
@@ -475,23 +479,23 @@ class TwoPhaseCleaningEnv:
             repair_val = true_values.get((idx, col), plan_item['estimated_value'])
 
             if col == -1:
-                # 标签修复
+                # Label repair
                 if y_result is not None:
                     y_result[idx] = repair_val
             else:
-                # 特征修复
+                # Feature repair
                 X_result[idx, col] = repair_val
 
-        # 删除标记的行
+        # Drop deleted rows
         keep_mask = np.array([i not in self.deleted_rows for i in range(len(X_result))])
         X_result = X_result[keep_mask]
         if y_result is not None:
             y_result = y_result[keep_mask]
 
-        # 填充剩余 NaN (用 ValueEstimator 逐单元格精确估值)
+        # Fill remaining NaNs (per-cell ValueEstimator estimate)
         if np.isnan(X_result).any():
             col_means = np.nanmean(X_result, axis=0)
-            # keep_mask 的原始行号映射
+            # Map back to original row indices via keep_mask
             original_indices = np.where(keep_mask)[0]
             for col in range(X_result.shape[1]):
                 nan_mask = np.isnan(X_result[:, col])
@@ -505,18 +509,18 @@ class TwoPhaseCleaningEnv:
         return X_result, y_result
 
     def print_repair_plan(self, max_rows: int = 20) -> None:
-        """打印修复计划"""
+        """Print the repair plan."""
         error_type_names = {0: 'missing', 1: 'semantic', 2: 'syntactic', 3: 'label_noise'}
 
         print(f"\n{'='*70}")
-        print(f"修复计划 (共 {len(self.repair_plan)} 条，需要用户提供真值)")
+        print(f"Repair plan ({len(self.repair_plan)} items; ground truth needed)")
         print(f"{'='*70}")
 
         if len(self.repair_plan) == 0:
-            print("  (无需修复)")
+            print("  (no repairs needed)")
             return
 
-        print(f"{'索引':<8} {'列':<6} {'脏数据':<15} {'估计值':<15} {'错误类型':<10}")
+        print(f"{'idx':<8} {'col':<6} {'dirty':<15} {'estimated':<15} {'error_type':<10}")
         print("-" * 70)
 
         display_plan = self.repair_plan[:max_rows] if max_rows else self.repair_plan
@@ -528,29 +532,29 @@ class TwoPhaseCleaningEnv:
             print(f"{record['idx']:<8} {record['col']:<6} {dirty_str:<15} {est_str:<15} {error_type_str:<10}")
 
         if max_rows and len(self.repair_plan) > max_rows:
-            print(f"... 省略 {len(self.repair_plan) - max_rows} 条 ...")
+            print(f"... {len(self.repair_plan) - max_rows} more omitted ...")
 
         print(f"{'='*70}\n")
 
     def get_plan_positions(self) -> List[Tuple[int, int]]:
         """
-        获取需要真值的位置列表
+        Return the positions that need ground-truth repairs.
 
         Returns:
-            [(idx, col), ...] 需要用户提供真值的位置
+            [(idx, col), ...] - positions the user must supply truths for.
         """
         return [(p['idx'], p['col']) for p in self.repair_plan]
 
     def get_decision_log(self) -> List[Dict]:
-        """获取完整决策日志（所有4种动作的详情）"""
+        """Return the full decision log (details for all four action types)."""
         return self.decision_log
 
     def save_plan_csv(self, filepath: str) -> None:
         """
-        将修复计划导出为 CSV 文件
+        Export the repair plan to a CSV file.
 
         Args:
-            filepath: CSV 文件路径
+            filepath: output CSV path
         """
         import csv
         error_type_names = {0: 'missing', 1: 'semantic', 2: 'syntactic', 3: 'label_noise'}
@@ -566,39 +570,39 @@ class TwoPhaseCleaningEnv:
                     item['current_dirty_value'],
                     item['estimated_value']
                 ])
-        print(f"  修复计划已保存: {filepath} (共 {len(self.repair_plan)} 条)")
+        print(f"  Repair plan saved: {filepath} ({len(self.repair_plan)} items)")
 
     def print_decision_summary(self, max_rows: int = 30) -> None:
         """
-        打印分类汇总的决策日志
+        Print a grouped summary of the decision log.
 
-        按动作类型分组显示：repair(计划) → replace → delete → no_action
+        Groups by action type in the order: repair(plan) -> replace -> delete -> no_action.
         """
-        ACTION_NAMES = {0: 'no_action', 1: 'repair_value(计划)', 2: 'delete', 3: 'replace_nearby'}
+        ACTION_NAMES = {0: 'no_action', 1: 'repair_value(plan)', 2: 'delete', 3: 'replace_nearby'}
         ERROR_TYPE_NAMES = {0: 'missing', 1: 'semantic', 2: 'syntactic', 3: 'label_noise'}
 
         total = len(self.decision_log)
         if total == 0:
-            print("  (无决策记录)")
+            print("  (no decisions recorded)")
             return
 
-        # 动作分布
-        print(f"\n  动作分布 (共 {total} 个错误):")
+        # Action distribution
+        print(f"\n  Action distribution ({total} errors):")
         ac_names = {0: 'no_action', 1: 'repair_value', 2: 'delete', 3: 'replace_nearby'}
         for act_id in [0, 1, 2, 3]:
             act_name = ac_names[act_id]
             display_name = ACTION_NAMES[act_id]
             count = self.action_counts.get(act_name, 0)
             pct = count / total * 100 if total > 0 else 0
-            bar = '█' * int(pct / 2.5)
+            bar = '#' * int(pct / 2.5)
             print(f"    {display_name:<20} {count:>5} ({pct:5.1f}%) {bar}")
 
-        # 降级统计
+        # Downgrade stats
         degraded = [d for d in self.decision_log if d['action'] != d['original_action']]
         if degraded:
-            print(f"\n  动作降级: {len(degraded)} 次")
+            print(f"\n  Action downgrades: {len(degraded)}")
 
-        # 替换明细
+        # Replace / delete detail
         replaces = [d for d in self.decision_log if d['action'] == 3]
         deletes = [d for d in self.decision_log if d['action'] == 2]
 
@@ -609,35 +613,35 @@ class TwoPhaseCleaningEnv:
 
         if replaces:
             n_show = min(max_rows, len(replaces))
-            print(f"\n  替换明细 (replace_nearby): 共 {len(replaces)} 条")
-            print(f"    {'行':<8} {'列':<6} {'脏值':<12} → {'替换值':<12} {'错误类型':<10}")
+            print(f"\n  Replace details (replace_nearby): {len(replaces)} total")
+            print(f"    {'row':<8} {'col':<6} {'dirty':<12}   {'replacement':<12} {'error_type':<10}")
             print(f"    {'-'*55}")
             for d in replaces[:n_show]:
                 print(f"    {d['row_idx']:<8} {d['col']:<6} "
-                      f"{_fmt_val(d['dirty_value']):<12} → "
+                      f"{_fmt_val(d['dirty_value']):<12} -> "
                       f"{_fmt_val(d['result_value']):<12} "
                       f"{ERROR_TYPE_NAMES.get(d['error_type'], '?'):<10}")
             if len(replaces) > n_show:
-                print(f"    ... 省略 {len(replaces) - n_show} 条")
+                print(f"    ... {len(replaces) - n_show} more omitted")
 
         if deletes:
             n_show = min(max_rows, len(deletes))
-            print(f"\n  删除明细 (delete): 共 {len(deletes)} 条")
-            print(f"    {'行':<8} {'列':<6} {'脏值':<12} {'错误类型':<10}")
+            print(f"\n  Delete details (delete): {len(deletes)} total")
+            print(f"    {'row':<8} {'col':<6} {'dirty':<12} {'error_type':<10}")
             print(f"    {'-'*40}")
             for d in deletes[:n_show]:
                 print(f"    {d['row_idx']:<8} {d['col']:<6} "
                       f"{_fmt_val(d['dirty_value']):<12} "
                       f"{ERROR_TYPE_NAMES.get(d['error_type'], '?'):<10}")
             if len(deletes) > n_show:
-                print(f"    ... 省略 {len(deletes) - n_show} 条")
+                print(f"    ... {len(deletes) - n_show} more omitted")
 
     def _refresh_feature_importance(self) -> None:
-        """周期性刷新特征重要性
+        """Periodically refresh feature importance.
 
-        每处理 importance_refresh_interval 个错误后，
-        用当前清洗数据重训模型并更新 feature_importance。
-        与 CleaningEnv._refresh_feature_importance 保持一致。
+        After processing every importance_refresh_interval errors, retrain the
+        model on the currently cleaned data and update feature_importance.
+        Matches CleaningEnv._refresh_feature_importance.
         """
         X_filled = self._fill_nan(self.X_current.copy())
         keep_mask = np.array([

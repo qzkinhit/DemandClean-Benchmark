@@ -1,4 +1,4 @@
-"""模型适配器模块"""
+"""Model adapter module"""
 
 from .base_adapter import ModelAdapter
 from .classification import SVMAdapter, RandomForestAdapter, XGBoostClassifierAdapter
@@ -22,52 +22,52 @@ __all__ = [
 
 def get_adapter(model_type: str, task_type: str = 'classification', **kwargs):
     """
-    根据模型类型获取适配器
+    Get an adapter by model type.
 
     Args:
-        model_type: 模型类型 ('svm', 'random_forest', 'xgboost', 'linear', 'ridge', 'xgboost_reg', 'kmeans')
-        task_type: 任务类型 ('classification', 'regression', 'clustering')
-        **kwargs: 传递给适配器的参数
+        model_type: Model type ('svm', 'random_forest', 'xgboost', 'linear', 'ridge', 'xgboost_reg', 'kmeans')
+        task_type: Task type ('classification', 'regression', 'clustering')
+        **kwargs: Arguments forwarded to the adapter
 
     Returns:
-        ModelAdapter 实例
+        ModelAdapter instance
     """
     adapters = {
-        # 分类
+        # Classification
         ('svm', 'classification'): SVMAdapter,
         ('random_forest', 'classification'): RandomForestAdapter,
         ('xgboost', 'classification'): XGBoostClassifierAdapter,
-        # 回归
+        # Regression
         ('linear', 'regression'): LinearAdapter,
         ('ridge', 'regression'): RidgeAdapter,
         ('xgboost_reg', 'regression'): XGBoostRegressorAdapter,
         ('random_forest', 'regression'): RandomForestRegressorAdapter,
-        # 聚类
+        # Clustering
         ('kmeans', 'clustering'): KMeansAdapter,
     }
 
     key = (model_type, task_type)
     if key not in adapters:
-        raise ValueError(f"不支持的模型类型: {model_type} for {task_type}")
+        raise ValueError(f"Unsupported model type: {model_type} for {task_type}")
 
     return adapters[key](**kwargs)
 
 
 def create_model_adapter(model_type, task_type, **kwargs):
     """
-    根据枚举类型创建模型适配器
+    Create a model adapter from enum values.
 
     Args:
-        model_type: ModelType 枚举或字符串
-        task_type: TaskType 枚举或字符串
-        **kwargs: 传递给适配器的参数
+        model_type: ModelType enum or string
+        task_type: TaskType enum or string
+        **kwargs: Arguments forwarded to the adapter
 
     Returns:
-        ModelAdapter 实例
+        ModelAdapter instance
     """
     from ..config import ModelType, TaskType
 
-    # 处理枚举类型
+    # Handle enum inputs
     if hasattr(model_type, 'value'):
         model_type_str = model_type.value
     else:
@@ -78,7 +78,7 @@ def create_model_adapter(model_type, task_type, **kwargs):
     else:
         task_type_str = str(task_type)
 
-    # 模型类型映射
+    # Model type mapping
     model_map = {
         'svm': 'svm',
         'random_forest': 'random_forest',
@@ -92,4 +92,3 @@ def create_model_adapter(model_type, task_type, **kwargs):
     model_key = model_map.get(model_type_str, model_type_str)
 
     return get_adapter(model_key, task_type_str, **kwargs)
-

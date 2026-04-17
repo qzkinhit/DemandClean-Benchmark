@@ -1,48 +1,48 @@
-# 数据集：SoilMoisture
+# Dataset: SoilMoisture
 
-## 基本信息
+## Basic Information
 
-| 项目 | 值 |
-|------|-----|
-| 任务类型 | 回归 (Regression) |
-| 目标列 | `soil_moisture` |
-| 数据规模 | 679 条记录 × 131 属性 |
-| 索引文件 | `clean_with_index.csv`, `dirty_with_index.csv` |
+| Item | Value |
+|------|-------|
+| Task type | Regression |
+| Target column | `soil_moisture` |
+| Size | 679 records x 131 attributes |
+| Indexed files | `clean_with_index.csv`, `dirty_with_index.csv` |
 
-## 列定义
+## Column Definitions
 
-### 索引列 (Index)
-| 列名 | 说明 |
-|------|------|
-| `index` | 行索引，不参与模型训练 |
+### Index column
+| Column | Description |
+|--------|-------------|
+| `index` | row index, not used for model training |
 
-### 排除列 (Excluded) - 不参与模型训练
-| 列名 | 类型 | 说明 |
-|------|------|------|
-| datetime | 时间 | 采集时间戳，需特殊处理 |
+### Excluded columns (not used for model training)
+| Column | Type | Description |
+|--------|------|-------------|
+| datetime | Timestamp | Acquisition timestamp, requires special handling |
 
-### 特征列 (Features) - 共128列
-| 属性名 | 类型 | 说明 |
-|--------|------|------|
-| soil_temperature | 数值 | 土壤温度 |
-| 454-950 | 数值 | 高光谱波段反射率 (共125个波段，波长范围454nm-950nm) |
+### Feature columns (128 total)
+| Attribute | Type | Description |
+|-----------|------|-------------|
+| soil_temperature | Numeric | Soil temperature |
+| 454-950 | Numeric | Hyperspectral band reflectance (125 bands, wavelengths 454 nm-950 nm) |
 
-**注意**: 特征列454, 458, 462, ... 950 表示对应波长(nm)的光谱反射率值
+**Note**: feature columns 454, 458, 462, ... 950 are reflectance values at the corresponding wavelengths (nm).
 
-### 目标列 (Label)
-| 属性名 | 类型 | 说明 |
-|--------|------|------|
-| soil_moisture | 数值 | 土壤含水量 |
+### Label column
+| Attribute | Type | Description |
+|-----------|------|-------------|
+| soil_moisture | Numeric | Soil moisture content |
 
-## 错误信息
-- **错误类型**: 缺失值(Missing Values), 异常值(Outliers)
-- **错误条目数**: 679
-- **错误单元格数**: 26,014
+## Error Information
+- **Error types**: Missing values, outliers
+- **Error entry count**: 679
+- **Error cell count**: 26,014
 
-## 数据来源
+## Source
 Riese, F. M., & Keller, S. Hyperspectral benchmark dataset on soil moisture. https://github.com/felixriese/hyperspectral-soilmoisture-dataset. 2018.
 
-## 运行命令示例
+## Example Command
 
 ```bash
 python MethodsRunScript/run_deleteall/run_deleteall_base.py \

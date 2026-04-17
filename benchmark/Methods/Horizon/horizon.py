@@ -13,14 +13,14 @@ except ImportError:
 
 def parse_fd_rules(constrains_path):
     """
-    解析规则文件，提取HORIZON_FD部分的功能依赖规则。
+    Parse a rules file and extract functional dependency rules from the HORIZON_FD section.
 
-    支持的格式:
-    - 纯FD规则文件: 每行一个规则，格式为 "A => B" 或 "A ⇒ B"
-    - 带section的规则文件: 只读取[HORIZON_FD]部分的规则
+    Supported formats:
+    - Pure FD rules file: one rule per line formatted as "A => B" or "A ⇒ B".
+    - Sectioned rules file: only rules under the [HORIZON_FD] section are read.
 
-    :param constrains_path: 约束文件路径
-    :return: FD规则列表，每个元素为 (left_attr, right_attr) 元组
+    :param constrains_path: path to the constraints file.
+    :return: list of FD rules, each element is a (left_attr, right_attr) tuple.
     """
     fd_rules = []
     in_horizon_section = False
@@ -29,14 +29,14 @@ def parse_fd_rules(constrains_path):
     with open(constrains_path, encoding='utf-8') as f:
         lines = f.readlines()
 
-    # 检查是否有section标记
+    # Check whether the file contains section markers
     for line in lines:
         if line.strip().startswith('['):
             has_sections = True
             break
 
     if has_sections:
-        # 带section的规则文件，只读取[HORIZON_FD]部分
+        # Sectioned rules file: read only the [HORIZON_FD] section
         for line in lines:
             line = line.strip()
             if line.startswith('[HORIZON_FD]'):
@@ -47,7 +47,7 @@ def parse_fd_rules(constrains_path):
                 continue
 
             if in_horizon_section and line and not line.startswith('#'):
-                # 解析FD规则，支持 "=>" 和 "⇒" 两种格式
+                # Parse the FD rule, supporting both "=>" and "⇒"
                 if '=>' in line:
                     parts = line.split('=>')
                 elif '⇒' in line:
@@ -61,13 +61,13 @@ def parse_fd_rules(constrains_path):
                     if left and right:
                         fd_rules.append((left, right))
     else:
-        # 纯FD规则文件，每行一个规则
+        # Pure FD rules file: one rule per line
         for line in lines:
             line = line.strip()
             if not line or line.startswith('#'):
                 continue
 
-            # 解析FD规则，支持 "=>" 和 "⇒" 两种格式
+            # Parse the FD rule, supporting both "=>" and "⇒"
             if '=>' in line:
                 parts = line.split('=>')
             elif '⇒' in line:
@@ -86,102 +86,108 @@ def parse_fd_rules(constrains_path):
 
 def BuildFDPatternGraph(D_path, constrains_path):
     """
-    根据数据文件和功能依赖约束文件，构建功能依赖模式图。
+    Build a functional dependency pattern graph from a data file and an FD constraints file.
 
-    :param D_path: 数据文件路径，CSV格式，包含多个属性的记录
-    :param constrains_path: 功能依赖约束文件路径，格式为"属性A ⇒ 属性B"
-    :return: 构建的图对象
+    :param D_path: path to the CSV data file containing records of multiple attributes.
+    :param constrains_path: path to the FD constraints file, formatted as "attr_A ⇒ attr_B".
+    :return: the constructed graph object.
     """
-    g = Graph()  # 创建图对象
+    g = Graph()  # create the graph object
     my_dict = {}
-    data = pd.read_csv(D_path)  # 读取数据文件
-    data = data.fillna("empty")  # 填充缺失值
-    data = data.astype(str)  # 将数据转换为字符串类型，方便处理
-    tot = len(data)  # 记录总数据条数
+    data = pd.read_csv(D_path)  # read the data file
+    data = data.fillna("empty")  # fill missing values
+    data = data.astype(str)  # convert data to strings for easier handling
+    tot = len(data)  # total number of records
 
-    # 使用parse_fd_rules解析规则文件
+    # Parse the rules file using parse_fd_rules
     fd_rules = parse_fd_rules(constrains_path)
 
     if not fd_rules:
-        raise ValueError(f"未能从规则文件 {constrains_path} 中解析到任何FD规则。请确保规则文件包含[HORIZON_FD]部分或正确格式的FD规则。")
+        raise ValueError(
+            f"Failed to parse any FD rules from the rules file {constrains_path}. "
+            f"Make sure the rules file contains a [HORIZON_FD] section or correctly "
+            f"formatted FD rules."
+        )
 
-    # 处理约束，构建属性映射字典，标记属性是否为左手边(LHS)或右手边(RHS)
+    # Process constraints and build an attribute-mapping dictionary that labels attributes
+    # as LHS (left-hand side) or RHS (right-hand side).
     for left_attr, right_attr in fd_rules:
         if left_attr in my_dict and my_dict[left_attr] == 1:
             my_dict[right_attr] = 1
             continue
-        my_dict[left_attr] = 0  # 左边属性标记为0（LHS）
-        my_dict[right_attr] = 1  # 右边属性标记为1（RHS）
+        my_dict[left_attr] = 0  # LHS attribute labeled as 0
+        my_dict[right_attr] = 1  # RHS attribute labeled as 1
 
-    # 根据约束和数据文件为图添加顶点和边
+    # Add vertices and edges to the graph based on the constraints and data file
     for left_attr, right_attr in fd_rules:
-        left_data = data[left_attr].tolist()  # 获取左边属性的所有数据
-        right_data = data[right_attr].tolist()  # 获取右边属性的所有数据
-        uni_left_data = list(set(left_data))  # 去重后的左边数据
-        uni_right_data = list(set(right_data))  # 去重后的右边数据
+        left_data = data[left_attr].tolist()  # values of the LHS attribute
+        right_data = data[right_attr].tolist()  # values of the RHS attribute
+        uni_left_data = list(set(left_data))  # deduplicated LHS values
+        uni_right_data = list(set(right_data))  # deduplicated RHS values
 
-        # 为左边属性添加顶点
+        # Add vertices for the LHS attribute
         for item in uni_left_data:
             g.addVertex(str(item), left_attr, my_dict[left_attr])
 
-        # 为右边属性添加顶点
+        # Add vertices for the RHS attribute
         for item in uni_right_data:
             g.addVertex(str(item), right_attr, my_dict[right_attr])
 
-        # 添加边，表示功能依赖
+        # Add edges representing functional dependencies
         for l_item, r_item in zip(left_data, right_data):
             g.addEdge(str(l_item), str(r_item))
 
-    # 计算连接权重（每个顶点的连接次数除以总数据量）
+    # Normalize edge weights (edge count divided by total record count)
     for v in g:
         for w in v.getConnections():
             v.connectedTo[w] = v.connectedTo[w] / tot
 
-    # 输出图中每条边及其权重
+    # Enumerate edges and their weights (count only)
     cnt = 0
     for v in g:
         for w in v.getConnections():
             # print("( %s , %s ), %f" % (v.getId(), w.getId(), v.connectedTo[w]))
             cnt += 1
 
-    return g  # 返回构建的图对象
+    return g  # return the constructed graph
 
 
 def dfs(g, root, vis):
     """
-    深度优先搜索，计算从root顶点出发的支持度和数量。
+    Depth-first search that computes the cumulative support and count starting from
+    the root vertex.
 
-    :param g: 图对象
-    :param root: 当前顶点
-    :param vis: 访问标记字典，记录哪些顶点已访问
-    :return: 当前顶点及其连接的总支持度和数量
+    :param g: graph object.
+    :param root: current vertex.
+    :param vis: visit-flag dictionary recording which vertices have been visited.
+    :return: cumulative support and count for the current vertex and its descendants.
     """
-    if len(root.getConnections()) == 0:  # 如果当前顶点没有连接，返回0,0
+    if len(root.getConnections()) == 0:  # no outgoing edges -> return 0, 0
         return 0, 0
-    if vis[root.attr] == 1:  # 如果该顶点已被访问，跳过（避免重复访问或处理回边）
+    if vis[root.attr] == 1:  # already visited -> skip (avoid revisiting / back edges)
         return 0, 0
-    sup = 0  # 累积支持度
-    num = 0  # 累积数量
-    vis[root.attr] = 1  # 标记当前顶点为已访问
+    sup = 0  # cumulative support
+    num = 0  # cumulative count
+    vis[root.attr] = 1  # mark the current vertex as visited
     for v in root.getConnections():
-        if vis[g.vertList[v.id].attr] == 0:  # 如果邻居未访问
-            sup += root.connectedTo[v]  # 累加边的权重
+        if vis[g.vertList[v.id].attr] == 0:  # if the neighbor has not been visited
+            sup += root.connectedTo[v]  # accumulate the edge weight
             num += 1
-            tmpa, tmpb = dfs(g, g.vertList[v.id], vis)  # 递归访问邻居节点
+            tmpa, tmpb = dfs(g, g.vertList[v.id], vis)  # recurse on the neighbor
             sup += tmpa
             num += tmpb
-            root.connectedQLT[v] = (tmpa + root.connectedTo[v]) / (tmpb + 1)  # 更新质量得分
-    vis[root.attr] = 0  # 回溯时取消标记
-    return sup, num  # 返回支持度和数量
+            root.connectedQLT[v] = (tmpa + root.connectedTo[v]) / (tmpb + 1)  # update quality score
+    vis[root.attr] = 0  # clear the flag on backtracking
+    return sup, num  # return cumulative support and count
 
 
 # def dfs1(g, root, vis):
 #     """
-#     深度优先搜索，打印图中从root出发的路径和连接质量
+#     Depth-first search that prints the path and connection quality from root.
 #
-#     :param g: 图对象
-#     :param root: 当前顶点
-#     :param vis: 访问标记字典
+#     :param g: graph object
+#     :param root: current vertex
+#     :param vis: visit-flag dictionary
 #     """
 #     print(root.id)
 #     if len(root.getConnections()) == 0:
@@ -197,65 +203,69 @@ def dfs(g, root, vis):
 
 def ComputePatternQulity(g):
     """
-    计算图中每个模式的质量。
+    Compute the pattern quality for every pattern in the graph.
 
-    :param g: 图对象
+    :param g: graph object.
     """
-    vis = {}  # 访问标记字典，用于跟踪顶点的访问状态
+    vis = {}  # visit-flag dictionary tracking visit state of vertices
     for v in g:
-        if v.getType() == 0:  # 只处理受限属性（LHS）的顶点
-            for vv in g:  # 初始化访问标记
+        if v.getType() == 0:  # only process bound (LHS) vertices
+            for vv in g:  # initialize visit flags
                 vis[vv.attr] = 0
-            dfs(g, v, vis)  # 对受限属性执行DFS，计算支持度和质量
+            dfs(g, v, vis)  # run DFS on the bound attribute to compute support and quality
 
 
 def BuildSCCGraghAndSort(constrains_path):
     """
-    构建功能依赖的强连通分量图并进行拓扑排序。
+    Build the strongly connected component (SCC) graph from the FDs and topologically
+    sort it.
 
-    :param constrains_path: 约束文件路径，文件格式为 "属性A ⇒ 属性B"，表示属性A功能依赖于属性B。
+    :param constrains_path: path to the constraints file. Entries are formatted as
+        "attr_A ⇒ attr_B", meaning attribute A functionally depends on attribute B.
     :return:
-        - order: 强连通分量图的拓扑排序结果。
-        - tar: 顶点到强连通分量的映射字典。
-        - scc: 强连通分量列表。
-        - G: 原始图的邻接表表示。
+        - order: topological order of the SCC graph.
+        - tar: mapping from vertex to SCC id.
+        - scc: list of SCCs.
+        - G: adjacency-list representation of the original graph.
     """
-    sccg = Graph()  # 创建图对象
-    G = {}  # 邻接表表示
+    sccg = Graph()  # create the graph object
+    G = {}  # adjacency-list representation
 
-    # 使用parse_fd_rules解析规则文件
+    # Parse the rules file using parse_fd_rules
     fd_rules = parse_fd_rules(constrains_path)
 
     if not fd_rules:
-        raise ValueError(f"未能从规则文件 {constrains_path} 中解析到任何FD规则。")
+        raise ValueError(
+            f"Failed to parse any FD rules from the rules file {constrains_path}."
+        )
 
-    # 构建功能依赖图
+    # Build the functional dependency graph
     for left_attr, right_attr in fd_rules:
-        sccg.addVertex(left_attr, "", 0)  # 添加左边属性顶点
-        sccg.addVertex(right_attr, "", 0)  # 添加右边属性顶点
-        sccg.addEdge(left_attr, right_attr)  # 添加功能依赖边（A → B）
+        sccg.addVertex(left_attr, "", 0)  # add LHS vertex
+        sccg.addVertex(right_attr, "", 0)  # add RHS vertex
+        sccg.addEdge(left_attr, right_attr)  # add FD edge (A -> B)
 
-    # 将图转换为邻接表表示
+    # Convert the graph to adjacency-list form
     for v in sccg.vertList:
         tmp = set()
         for vv in sccg.vertList[v].getConnections():
-            tmp.add(vv.id)  # 将顶点的连接添加到集合中
-        G.update({v: tmp})  # 更新邻接表
+            tmp.add(vv.id)  # collect neighbors
+        G.update({v: tmp})  # update adjacency list
 
-    # 计算转置图
+    # Compute the transpose graph
     GT = tr(G)
 
-    # 计算拓扑排序和强连通分量
-    seen = set()  # 已访问顶点集合
-    scc = []  # 存储强连通分量
-    for u in topoSort(G):  # 对图进行拓扑排序
+    # Compute topological order and strongly connected components
+    seen = set()  # visited vertices
+    scc = []  # stores SCCs
+    for u in topoSort(G):  # topologically sort the graph
         if u in seen:
             continue
-        C = walk(GT, u, seen)  # 在转置图上进行遍历
-        seen.update(C)  # 更新已访问的顶点
-        scc.append(sorted(list(C.keys())))  # 将强连通分量加入结果
+        C = walk(GT, u, seen)  # traverse in the transpose graph
+        seen.update(C)  # update visited vertices
+        scc.append(sorted(list(C.keys())))  # append the SCC to the result
 
-    # 构建顶点到强连通分量的映射
+    # Build the mapping from vertex to SCC id
     tar = {}
     cnt = 0
     for li in scc:
@@ -263,25 +273,25 @@ def BuildSCCGraghAndSort(constrains_path):
             tar.update({ui: cnt})
         cnt += 1
 
-    # 构建强连通分量图
+    # Build the SCC graph
     ret = {i: set() for i in range(cnt)}
     for li in G:
         for ui in G[li]:
-            left = tar[li]  # 左侧顶点的强连通分量编号
-            right = tar[ui]  # 右侧顶点的强连通分量编号
+            left = tar[li]  # SCC id of the source vertex
+            right = tar[ui]  # SCC id of the target vertex
             if left != right:
                 ret[left].add(right)
 
-    # 计算入度（用于拓扑排序）
+    # Compute in-degrees (used for topological sort)
     indegree = [0] * cnt
     for i in range(cnt):
         for j in ret[i]:
             indegree[j] += 1
 
-    # 拓扑排序
+    # Topological sort
     q = queue.Queue()
     for i in range(cnt):
-        if indegree[i] == 0:  # 入度为0的顶点加入队列
+        if indegree[i] == 0:  # enqueue vertices with zero in-degree
             q.put(i)
     order = []
     while not q.empty():
@@ -296,137 +306,139 @@ def BuildSCCGraghAndSort(constrains_path):
     print(ret)
     print(order)
     print(tar)
-    return order, tar, scc, G  # 返回拓扑排序结果、映射字典、强连通分量、原始图
+    return order, tar, scc, G  # return topological order, mapping, SCCs, and original graph
 
 
 class TmpOrder:
     def __init__(self):
         """
-        初始化 TmpOrder 对象，表示一个功能依赖项及其在排序中的位置信息。
+        Initialize a TmpOrder object that represents a functional dependency item
+        together with its ordering information.
 
-        属性:
-        - left: 字符串，表示功能依赖的左侧属性（即前提属性 LHS）。
-        - right: 字符串，表示功能依赖的右侧属性（即结果属性 RHS）。
-        - lnum: 整数，表示左侧属性所属的强连通分量编号。
-        - rnum: 整数，表示右侧属性所属的强连通分量编号。
+        Attributes:
+        - left: string, LHS (premise) attribute of the FD.
+        - right: string, RHS (consequent) attribute of the FD.
+        - lnum: int, SCC id of the LHS attribute.
+        - rnum: int, SCC id of the RHS attribute.
         """
-        self.left = ""  # 功能依赖的左侧属性
-        self.right = ""  # 功能依赖的右侧属性
-        self.lnum = 0  # 左侧属性所属的强连通分量编号
-        self.rnum = 0  # 右侧属性所属的强连通分量编号
+        self.left = ""  # LHS attribute of the FD
+        self.right = ""  # RHS attribute of the FD
+        self.lnum = 0  # SCC id of the LHS attribute
+        self.rnum = 0  # SCC id of the RHS attribute
 
 
 def OrderFDs(constrains_path, order, tar, scc, G):
     """
-    根据强连通分量和拓扑排序，对功能依赖进行排序。
+    Order the functional dependencies based on the SCCs and the topological sort.
 
-    :param constrains_path: 约束文件路径。
-    :param order: 强连通分量图的拓扑排序结果。
-    :param tar: 顶点到强连通分量的映射。
-    :param scc: 强连通分量列表。
-    :param G: 原始图的邻接表表示。
-    :return: 排序后的功能依赖列表。
+    :param constrains_path: path to the constraints file.
+    :param order: topological order of the SCC graph.
+    :param tar: mapping from vertex to SCC id.
+    :param scc: list of SCCs.
+    :param G: adjacency-list representation of the original graph.
+    :return: list of ordered functional dependencies.
     """
     OrderedFDs = []
 
-    # 使用parse_fd_rules解析规则文件
+    # Parse the rules file using parse_fd_rules
     fd_rules = parse_fd_rules(constrains_path)
 
-    # 创建功能依赖对象列表
+    # Build FD objects
     for left_attr, right_attr in fd_rules:
         tmp = TmpOrder()
-        tmp.lnum = tar[left_attr]  # 左侧属性的强连通分量编号
-        tmp.rnum = tar[right_attr]  # 右侧属性的强连通分量编号
-        tmp.left = left_attr  # 左侧属性
-        tmp.right = right_attr  # 右侧属性
+        tmp.lnum = tar[left_attr]  # SCC id of the LHS attribute
+        tmp.rnum = tar[right_attr]  # SCC id of the RHS attribute
+        tmp.left = left_attr  # LHS attribute
+        tmp.right = right_attr  # RHS attribute
         OrderedFDs.append(tmp)
 
-    # 根据强连通分量编号排序
+    # Sort by SCC ids
     OrderedFDs.sort(key=lambda x: (x.lnum, x.rnum))
 
-    # 输出排序结果
+    # Print the ordering
     for i in OrderedFDs:
         print(i.lnum, i.rnum)
 
-    return OrderedFDs  # 返回排序后的功能依赖列表
+    return OrderedFDs  # return the ordered FDs
 
 
 # def export_res(pattern_expressions, dirty_path):
 #     """
-#     将修复后的结果导出为 CSV 文件。
+#     Export the repaired results to a CSV file.
 #
-#     :param pattern_expressions: 修复后的模式表达式（每个元组的修复结果）。
-#     :param dirty_path: 脏数据文件路径。
+#     :param pattern_expressions: repaired pattern expressions (repair results per tuple).
+#     :param dirty_path: path to the dirty data file.
 #     """
-#     res_df = pd.read_csv(dirty_path)  # 读取脏数据文件
+#     res_df = pd.read_csv(dirty_path)  # read the dirty data file
 #
-#     # 更新修复结果
+#     # Apply the repair results
 #     for i in range(len(res_df)):
-#         for v in pattern_expressions[i]:  # 遍历模式表达式中的每个修复结果
-#             res_df.iloc[i, list(res_df.columns).index(v)] = pattern_expressions[i][v]  # 更新相应的单元格
+#         for v in pattern_expressions[i]:  # iterate over repair results in the pattern expression
+#             res_df.iloc[i, list(res_df.columns).index(v)] = pattern_expressions[i][v]  # update the cell
 #
-#     # 保存修复结果文件
+#     # Save the repaired file
 #     res_path = "./Repaired_res/horizon/" + task_name[:-1] + "/repaired_" + task_name + dirty_path[-25:-4] + ".csv"
-#     res_df.to_csv(res_path, index=False)  # 导出修复后的数据到 CSV 文件
+#     res_df.to_csv(res_path, index=False)  # export the repaired data to CSV
 
 
 def GeneratePatternPreservingRepairs(dirty_path, constraints_path, gt_wrong_cells, clean_df):
     """
-    生成保持模式的修复，根据功能依赖图和排序修复脏数据。
+    Generate pattern-preserving repairs by applying the FD pattern graph and the FD
+    ordering to the dirty data.
 
-    :param dirty_path: 脏数据文件路径，包含需要修复的数据。
-    :param constraints_path: 约束文件路径，包含功能依赖的定义。
-    :param gt_wrong_cells: 地面真值的错误单元格列表，用于对修复进行评估。
-    :param clean_df: 干净数据的 DataFrame，用于参考真值。
-    :return: 模式表达式列表，包含修复后的数据。
+    :param dirty_path: path to the dirty data file containing records to repair.
+    :param constraints_path: path to the constraints file defining the FDs.
+    :param gt_wrong_cells: list of ground-truth wrong cells, used to evaluate repairs.
+    :param clean_df: DataFrame of clean (ground-truth) data used for reference.
+    :return: list of pattern expressions containing the repaired data.
     """
-    # 1. 构建功能依赖模式图并计算每个模式的质量
+    # 1. Build the FD pattern graph and compute the quality of every pattern
     g = BuildFDPatternGraph(dirty_path, constraints_path)
     ComputePatternQulity(g)
 
-    # 2. 构建强连通分量图并进行拓扑排序
+    # 2. Build the SCC graph and perform topological sorting
     order, tar, scc, G = BuildSCCGraghAndSort(constraints_path)
 
-    # 3. 对功能依赖进行排序
+    # 3. Order the functional dependencies
     OrderedFDs = OrderFDs(constraints_path, order, tar, scc, G)
 
-    pattern_expressions = []  # 保存修复后的模式表达式
-    rtable_set = []  # 保存每个元组的修复结果
+    pattern_expressions = []  # repaired pattern expressions
+    rtable_set = []  # repair results per tuple
 
-    # 4. 读取脏数据文件
+    # 4. Read the dirty data file
     with open(dirty_path, 'r', encoding='utf-8') as f:
         reader = csv.DictReader(f, restval='empty')
         data = pd.read_csv(dirty_path)
-        data = data.fillna("empty")  # 用 'empty' 填充空缺值
-        data = data.astype(str)  # 确保数据都是字符串格式
+        data = data.fillna("empty")  # fill missing values with 'empty'
+        data = data.astype(str)  # ensure all values are strings
 
         for i in range(len(data)):
-            Rtable = {}  # 保存当前元组的修复结果
-            check = 0  # 用于标记修复状态
+            Rtable = {}  # repair results for the current tuple
+            check = 0  # flag used to track repair status
 
-            # 初始化 Rtable，对于图中的受限属性，添加原始数据到 Rtable 中
+            # Initialize Rtable: for bound attributes in the graph, add the original value
             for v in g.vertList:
-                if g.vertList[v].type == 0:  # 只处理受限属性（左侧属性）
-                    content = data.loc[i, g.vertList[v].attr]  # 获取原始数据
-                    Rtable.update({g.vertList[v].attr: content})  # 更新 Rtable
+                if g.vertList[v].type == 0:  # only bound (LHS) attributes
+                    content = data.loc[i, g.vertList[v].attr]  # original value
+                    Rtable.update({g.vertList[v].attr: content})  # update Rtable
 
-            # 5. 遍历排序后的功能依赖进行修复
+            # 5. Iterate over the ordered FDs to perform repair
             for j in range(len(OrderedFDs)):
-                # 如果 Rtable 中没有该依赖的左边属性，添加它
+                # If Rtable does not contain the LHS of the dependency, add it
                 if OrderedFDs[j].left not in Rtable.keys():
                     Rtable.update({OrderedFDs[j].left: data.loc[i, OrderedFDs[j].left]})
 
-                Lval = Rtable[OrderedFDs[j].left]  # 获取左侧属性的值
+                Lval = Rtable[OrderedFDs[j].left]  # value of the LHS attribute
                 # print('Lval', Lval)
-                # 如果右侧属性已经在 Rtable 中，则跳过
+                # If the RHS attribute is already in Rtable, skip
                 if OrderedFDs[j].right in Rtable:
                     continue
 
-                if Lval == '':  # 如果左侧属性为空值，则设为 'empty'
+                if Lval == '':  # treat empty LHS values as 'empty'
                     Lval = 'empty'
-                # if Lval == 'empty':  # 如果左侧属性为 'empty'，则跳过
+                # if Lval == 'empty':  # skip if LHS is 'empty'
                 #     continue
-                # 根据图中的连接质量选择最佳修复值
+                # Select the best repair value based on connection quality in the graph
                 maxedge = -1
                 for v in g.vertList[Lval].getConnections():
                     # if v.id=='empty':
@@ -434,72 +446,74 @@ def GeneratePatternPreservingRepairs(dirty_path, constraints_path, gt_wrong_cell
                     # print(v.id + "," + str(g.vertList[Lval].connectedQLT[v]))
                     if v.attr == OrderedFDs[j].right and g.vertList[Lval].connectedQLT[v] > maxedge:
                         maxedge = g.vertList[Lval].connectedQLT[v]
-                        maxp = v.id  # 记录修复值
+                        maxp = v.id  # record repair candidate
                         # print('maxp', maxp)
 
-                # 如果找到合适的修复，更新右侧属性
+                # If a valid repair candidate is found, update the RHS attribute
                 if maxedge != -1 and maxp != 'empty':
                     Rtable.update({OrderedFDs[j].right: maxp})
 
-                # 如果模式完美匹配地面真值，处理修复
+                # If the pattern perfectly matches the ground truth, process the repair
                 if PERFECTED:
                     if (i, list(clean_df.columns).index(OrderedFDs[j].right)) not in gt_wrong_cells:
                         Rtable.update({OrderedFDs[j].right: data.loc[i, OrderedFDs[j].right]})
                     if (i, list(clean_df.columns).index(OrderedFDs[j].left)) not in gt_wrong_cells:
                         Rtable.update({OrderedFDs[j].left: data.loc[i, OrderedFDs[j].left]})
 
-            # 将修复后的 Rtable 加入结果
+            # Append the repaired Rtable to the result
             pattern_expressions.append(Rtable)
             rtable_set.append(Rtable)
 
         # print(rtable_set)
 
-    return pattern_expressions  # 返回模式表达式（修复后的数据）
+    return pattern_expressions  # return the pattern expressions (repaired data)
 
 
 def dirty_cells(dirty_file, clean_file):
     """
-    识别脏数据文件与干净数据文件中的脏单元格。
+    Identify dirty cells by comparing the dirty data and the clean data.
 
-    :param dirty_file: 脏数据的 DataFrame。
-    :param clean_file: 干净数据的 DataFrame（真值）。
-    :return: 脏单元格的列表，列表中的每个元素是一个 (i, j) 元组，表示第 i 行第 j 列的单元格有错误。
+    :param dirty_file: dirty-data DataFrame.
+    :param clean_file: clean-data (ground truth) DataFrame.
+    :return: list of dirty cells; each element is an (i, j) tuple indicating that the
+             cell at row i, column j is erroneous.
     """
-    dirty_c = []  # 用于保存脏单元格的列表
-    for i in range(len(clean_file)):  # 遍历每一行
-        for j in range(len(clean_file.columns)):  # 遍历每一列
-            if dirty_file.iloc[i, j] != clean_file.iloc[i, j]:  # 如果脏数据与真值不同
-                dirty_c.append((i, j))  # 将脏单元格的索引 (i, j) 加入列表
-    return dirty_c  # 返回脏单元格列表
+    dirty_c = []  # list of dirty cells
+    for i in range(len(clean_file)):  # iterate over rows
+        for j in range(len(clean_file.columns)):  # iterate over columns
+            if dirty_file.iloc[i, j] != clean_file.iloc[i, j]:  # mismatch with ground truth
+                dirty_c.append((i, j))  # append dirty cell index (i, j)
+    return dirty_c  # return the list of dirty cells
 
 PERFECTED = 0
 
 
 def Horizon(dirty_path, rule_path, clean_path):
     """
-    主函数，用于执行数据清洗过程，仅处理数据，返回修复后的模式表达式。
+    Main entry point that runs the data cleaning process and returns the repaired
+    pattern expressions.
 
-    :param dirty_path: 脏数据文件路径，CSV 文件，包含待修复的数据。
-    :param rule_path: 约束规则文件路径，包含功能依赖的规则。
-    :param clean_path: 干净数据文件路径，CSV 文件，作为地面真值数据（ground truth）。
-    :return: 修复后的模式表达式
+    :param dirty_path: path to the dirty CSV file containing data to be repaired.
+    :param rule_path: path to the constraints rules file containing FD rules.
+    :param clean_path: path to the clean CSV file used as ground truth.
+    :return: repaired pattern expressions.
     """
-    start_time = time.time()  # 记录开始时间
+    start_time = time.time()  # record the start time
 
-    # 读取脏数据和干净数据
-    dirty_df = pd.read_csv(dirty_path).astype(str)  # 读取脏数据，并将所有数据转为字符串
-    clean_df = pd.read_csv(clean_path).astype(str)  # 读取干净数据，并将所有数据转为字符串
-    dirty_df = dirty_df.fillna("empty")  # 将脏数据中的缺失值填充为 "empty"
-    clean_df = clean_df.fillna("empty")  # 将干净数据中的缺失值填充为 "empty"
+    # Read dirty and clean data
+    dirty_df = pd.read_csv(dirty_path).astype(str)  # read dirty data as strings
+    clean_df = pd.read_csv(clean_path).astype(str)  # read clean data as strings
+    dirty_df = dirty_df.fillna("empty")  # fill missing values in dirty data with "empty"
+    clean_df = clean_df.fillna("empty")  # fill missing values in clean data with "empty"
 
-    # 识别脏单元格
-    dirty_c = dirty_cells(dirty_df, clean_df)  # 调用 dirty_cells 函数，识别哪些单元格是脏的
+    # Identify dirty cells
+    dirty_c = dirty_cells(dirty_df, clean_df)  # find dirty cells
     gt_wrong_cells = [(i, j) for i in range(len(clean_df)) for j in range(len(clean_df.columns))
-                      if clean_df.iloc[i, j] != dirty_df.iloc[i, j]]  # 生成地面真值的脏单元格列表
+                      if clean_df.iloc[i, j] != dirty_df.iloc[i, j]]  # ground-truth dirty cells
 
-    # 生成保持模式的修复
+    # Generate pattern-preserving repairs
     pattern_expressions = GeneratePatternPreservingRepairs(dirty_path, rule_path, gt_wrong_cells, clean_df)
-    end_time = time.time()  # 记录结束时间
+    end_time = time.time()  # record the end time
 
     return pattern_expressions, dirty_c, end_time - start_time
 

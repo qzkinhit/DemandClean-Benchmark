@@ -1,8 +1,8 @@
 """
-DemandClean 高层 API
-====================
+DemandClean high-level API
+==========================
 
-提供简洁的接口用于数据清洗。
+Concise interface for demand-driven data cleaning.
 """
 
 from typing import Dict, List, Tuple, Optional, Any, Union, Set
@@ -30,26 +30,26 @@ from ..utils.logger import DemandCleanLogger
 
 class DemandClean:
     """
-    DemandClean 数据清洗系统
+    DemandClean data cleaning system.
 
-    使用示例:
+    Example:
     ```python
     from demandclean import DemandClean
 
-    # 创建实例
+    # Create an instance
     dc = DemandClean(
         task_type='classification',
         model_type='random_forest',
         max_truth_budget=50
     )
 
-    # 训练（不需要干净数据）
+    # Train (does not require clean data)
     dc.fit(X_dirty, y, semantic_errors=[(10, 1), (25, 1)])
 
-    # 单阶段推理
+    # Single-phase inference
     X_clean, y_clean, stats = dc.clean(X_dirty, y, X_clean_ref)
 
-    # 两阶段推理
+    # Two-phase inference
     plan = dc.plan(X_dirty, y)
     X_clean = dc.execute(X_dirty, true_values)
     ```
@@ -78,37 +78,37 @@ class DemandClean:
                  count_raha_cost: Optional[bool] = None,
                  **kwargs):
         """
-        初始化 DemandClean
+        Initialize DemandClean.
 
         Args:
-            task_type: 任务类型 ('classification' 或 'regression')
-            model_type: 模型类型 ('svm', 'random_forest', 'xgboost', 'linear', 'ridge')
-            agent_type: Agent 类型 ('single', 'two_stage', 'dueling_single', 'dueling_two_stage')
-            detector_mode: 检测器模式 ('auto' 或 'oracle')
-            inference_mode: 推理模式 ('single_phase' 或 'two_phase')
-            training_mode: 训练模式 ('clean_base' 或 'self_supervised')
-            n_episodes: 训练轮数
-            repair_lambda: 修复成本系数
-            min_truth_budget: 最少需要使用的真值数量
-            max_truth_budget: 最多可以使用的真值数量
-            rules_path: FD规则文件路径
-            fd_rules: 解析后的FD规则列表
-            column_names: 数据特征列名列表（不含 index/label）
-            dirty_csv_path: 原始脏数据 CSV 路径（auto 模式 RAHA 需要）
-            clean_csv_path: 原始干净数据 CSV 路径（auto 模式 RAHA 需要）
-            csv_columns: 原始 CSV 的所有列名（含 index/label，用于 RAHA 列映射）
-            label_col: 标签列名
-            save_path: 输出保存路径
-            apply_raha_truth: 是否将 RAHA 标注行的真值应用到数据修复
-            count_raha_cost: 是否将 RAHA 的标注成本计入真值总成本
-            **kwargs: 其他配置参数
+            task_type: task type ('classification' or 'regression')
+            model_type: model type ('svm', 'random_forest', 'xgboost', 'linear', 'ridge')
+            agent_type: agent type ('single', 'two_stage', 'dueling_single', 'dueling_two_stage')
+            detector_mode: detector mode ('auto' or 'oracle')
+            inference_mode: inference mode ('single_phase' or 'two_phase')
+            training_mode: training mode ('clean_base' or 'self_supervised')
+            n_episodes: number of training episodes
+            repair_lambda: repair cost coefficient
+            min_truth_budget: minimum number of ground-truth values required
+            max_truth_budget: maximum number of ground-truth values allowed
+            rules_path: path to FD rules file
+            fd_rules: parsed list of FD rules
+            column_names: feature column names (excluding index/label)
+            dirty_csv_path: path to raw dirty CSV (required by RAHA in auto mode)
+            clean_csv_path: path to raw clean CSV (required by RAHA in auto mode)
+            csv_columns: all column names of the raw CSV (incl. index/label, for RAHA column mapping)
+            label_col: label column name
+            save_path: output save path
+            apply_raha_truth: whether to apply RAHA-labeled ground-truth to the data for repair
+            count_raha_cost: whether to include RAHA labeling cost in the total truth cost
+            **kwargs: other config parameters
         """
         # ============================================================
-        # 构建 config_kwargs：仅传入非 None 的参数
-        # 所有默认值由 DemandCleanConfig (config.py) 统一定义
+        # Build config_kwargs: only pass non-None parameters.
+        # All default values are centrally defined in DemandCleanConfig (config.py).
         # ============================================================
 
-        # 枚举映射表
+        # Enum mapping tables
         _task_type_map = {
             'classification': TaskType.CLASSIFICATION,
             'regression': TaskType.REGRESSION,
@@ -142,7 +142,7 @@ class DemandClean:
 
         config_kwargs: Dict[str, Any] = {}
 
-        # 枚举类参数：仅在非 None 时转换并加入
+        # Enum-typed parameters: convert and add only when non-None
         if task_type is not None:
             config_kwargs['task_type'] = _task_type_map.get(
                 task_type.lower(), TaskType.CLASSIFICATION)
@@ -159,7 +159,7 @@ class DemandClean:
             config_kwargs['inference_mode'] = _inference_mode_map.get(
                 inference_mode.lower(), InferenceMode.SINGLE_PHASE)
 
-        # 标量参数：仅在非 None 时加入
+        # Scalar parameters: add only when non-None
         _optional_params = {
             'training_mode': training_mode,
             'n_episodes': n_episodes,
@@ -178,7 +178,7 @@ class DemandClean:
             if val is not None:
                 config_kwargs[key] = val
 
-        # 编码工具（通过 **kwargs 传入，仅非 None 时加入）
+        # Encoding helpers (passed via **kwargs; added only when non-None)
         _encoding_params = {
             'label_encoders': kwargs.pop('encoding_label_encoders', None),
             'scaler': kwargs.pop('encoding_scaler', None),
@@ -190,56 +190,56 @@ class DemandClean:
             if val is not None:
                 config_kwargs[key] = val
 
-        # 提取 AutoDetector 专用参数（不传入 DemandCleanConfig）
+        # Extract AutoDetector-only parameters (not passed to DemandCleanConfig)
         self._disable_raha = kwargs.pop('disable_raha', False)
 
-        # 剩余 kwargs 直接传入（向后兼容）
+        # Remaining kwargs are forwarded directly (backward compatibility)
         config_kwargs.update(kwargs)
 
         self.config = DemandCleanConfig(**config_kwargs)
 
-        # 保存 CSV 路径参数（用于 auto 模式 RAHA 检测）
+        # Store CSV path parameters (used by RAHA detection in auto mode)
         self.dirty_csv_path = dirty_csv_path
         self.clean_csv_path = clean_csv_path
         self.csv_columns = csv_columns
         self.label_col = label_col
 
-        # 解析 FD 规则（如有 rules_path 且未直接提供 fd_rules）
+        # Parse FD rules if rules_path is provided and fd_rules is not given directly
         if rules_path and not fd_rules:
             self._parse_rules(rules_path)
 
-        # 组件
+        # Components
         self.trainer = Trainer(self.config)
         self.detector: Optional[Union[AutoDetector, OracleDetector]] = None
         self.agent: Optional[BaseAgent] = None
         self.logger = DemandCleanLogger(self.config)
         self.model_io = ModelIO()
 
-        # 推理器（延迟初始化）
+        # Inference engines (lazy-initialized)
         self._single_phase_inference: Optional[SinglePhaseInference] = None
         self._two_phase_inference: Optional[TwoPhaseInference] = None
 
-        # 状态
+        # State
         self._is_fitted = False
 
-        # 检测结果缓存: 避免 fit() 和 clean()/plan() 对同一数据重复检测
+        # Detection cache: avoid redetecting the same data across fit() and clean()/plan()
         self._detected_cache: Optional[Dict[str, List]] = None
         self._detected_cache_fingerprint: Optional[int] = None
 
     def _parse_rules(self, rules_path: str):
-        """从规则文件解析 FD 规则和丰富规则"""
+        """Parse FD rules and rich rules from the rules file."""
         try:
             parsed = load_rules(rules_path)
-            # 提取 FD 对
+            # Extract FD pairs
             fd_pairs = extract_fd_pairs(parsed)
             if fd_pairs:
                 self.config.fd_rules = fd_pairs
-            # 丰富规则（DOMAIN/CFD/DC）
+            # Rich rules (DOMAIN/CFD/DC)
             rich_dict = rules_to_dict(parsed)
             if rich_dict.get('has_rich_rules'):
                 self.config.rich_rules = rich_dict
         except Exception as e:
-            print(f"  [警告] 解析规则文件失败: {e}")
+            print(f"  [Warning] Failed to parse rules file: {e}")
 
     def fit(self,
             X_dirty: np.ndarray,
@@ -255,42 +255,43 @@ class DemandClean:
             y_clean_val: Optional[np.ndarray] = None,
             ) -> 'DemandClean':
         """
-        训练模型
+        Train the model.
 
-        支持利用 RAHA 标注的行（labeling_budget 条）预修复脏数据：
-        当提供 X_clean/y_clean 且检测器为 Auto 模式时，会先运行 RAHA 检测
-        获取 labeled_tuples，然后将脏数据中对应行替换为干净值，提升训练数据质量。
+        Supports pre-repairing dirty data using the RAHA-labeled rows (labeling_budget rows):
+        when X_clean/y_clean are provided and the detector is in Auto mode, RAHA is run first
+        to obtain labeled_tuples, and the corresponding rows in the dirty data are replaced
+        with clean values to improve training data quality.
 
         Args:
-            X_dirty: 脏数据矩阵
-            y: 标签向量
-            X_clean: 干净数据（可选，用于预修复 RAHA 标注行）
-            y_clean: 干净标签（可选，用于预修复 RAHA 标注行的标签）
-            semantic_errors: 语义错误位置列表 [(row, col), ...]
-            n_episodes: 训练轮数（默认使用配置）
-            verbose: 是否打印详细信息
-            resume_from: 续训模型路径（None=从头训练）
-            prev_history: 之前的训练历史（续训时拼接）
-            X_clean_val: 干净验证集特征（Oracle 模式用于 reward 信号）
-            y_clean_val: 干净验证集标签（Oracle 模式用于 reward 信号）
+            X_dirty: dirty feature matrix
+            y: label vector
+            X_clean: clean data (optional, used for pre-repair of RAHA-labeled rows)
+            y_clean: clean labels (optional, used for pre-repair of RAHA-labeled row labels)
+            semantic_errors: list of semantic error positions [(row, col), ...]
+            n_episodes: number of training episodes (defaults to config)
+            verbose: whether to print detailed information
+            resume_from: path to a model for resumed training (None = train from scratch)
+            prev_history: previous training history (concatenated when resuming)
+            X_clean_val: clean validation features (Oracle mode reward signal)
+            y_clean_val: clean validation labels (Oracle mode reward signal)
 
         Returns:
             self
         """
         if verbose:
             self.logger.log_info("=" * 50)
-            self.logger.log_info("DemandClean 训练开始")
-            self.logger.log_info(f"  检测器模式: {self.config.detector_mode.value}")
-            self.logger.log_info(f"  训练模式: {self.config.training_mode}")
-            self.logger.log_info(f"  Agent类型: {self.config.agent_type.value}")
-            self.logger.log_info(f"  推理模式: {self.config.inference_mode.value}")
-            self.logger.log_info(f"  FD规则: {len(self.config.fd_rules or [])}")
-            self.logger.log_info(f"  丰富规则: {'有' if self.config.rich_rules else '无'}")
+            self.logger.log_info("DemandClean training started")
+            self.logger.log_info(f"  Detector mode: {self.config.detector_mode.value}")
+            self.logger.log_info(f"  Training mode: {self.config.training_mode}")
+            self.logger.log_info(f"  Agent type: {self.config.agent_type.value}")
+            self.logger.log_info(f"  Inference mode: {self.config.inference_mode.value}")
+            self.logger.log_info(f"  FD rules: {len(self.config.fd_rules or [])}")
+            self.logger.log_info(f"  Rich rules: {'yes' if self.config.rich_rules else 'no'}")
             self.logger.log_info("=" * 50)
 
-        # 1. 创建检测器
+        # 1. Create the detector
         if verbose:
-            self.logger.log_info("\n[Step 1] 初始化错误检测器...")
+            self.logger.log_info("\n[Step 1] Initializing error detector...")
 
         if self.config.is_oracle:
             self.detector = OracleDetector(
@@ -317,14 +318,14 @@ class DemandClean:
             else:
                 self.detector.fit(verbose=verbose)
 
-        # 2. 检测错误（训练阶段需要 detected_errors 供 self_supervised 模式使用）
+        # 2. Detect errors (training needs detected_errors for self_supervised mode)
         detected_errors = None
 
         if isinstance(self.detector, AutoDetector) and X_clean is not None:
             if not self.detector.labeled_tuples:
-                # Auto 模式 + 提供 X_clean：运行 RAHA 获取 labeled_tuples
+                # Auto mode + X_clean provided: run RAHA to obtain labeled_tuples
                 if verbose:
-                    self.logger.log_info("\n[Step 1.5] 运行 RAHA 检测获取标注行...")
+                    self.logger.log_info("\n[Step 1.5] Running RAHA detection to collect labeled rows...")
                 task_type_str = self.config.task_type.value
                 detected_errors = self.detector.detect(
                     X_dirty, y_dirty=y, task_type=task_type_str,
@@ -334,11 +335,11 @@ class DemandClean:
                     for key in ['missing', 'semantic', 'syntactic', 'label_noise']:
                         if key not in detected_errors:
                             detected_errors[key] = []
-                    # 缓存检测结果，供后续 clean()/plan() 复用
+                    # Cache detection results for later clean()/plan() reuse
                     self._detected_cache = detected_errors
                     self._detected_cache_fingerprint = self._data_fingerprint(X_dirty, y)
 
-            # 预修复 RAHA 标注行（受 apply_raha_truth 开关控制）
+            # Pre-repair RAHA-labeled rows (controlled by apply_raha_truth)
             if self.config.apply_raha_truth:
                 X_dirty, y = self._prefix_labeled_rows(
                     X_dirty, y, X_clean, y_clean,
@@ -346,38 +347,38 @@ class DemandClean:
                 )
             elif verbose:
                 self.logger.log_info(
-                    "  [跳过预修复] apply_raha_truth=False, RAHA 标注仅用于检测"
+                    "  [Skip pre-repair] apply_raha_truth=False, RAHA labels used only for detection"
                 )
 
-        # self_supervised 模式下，所有检测器都需要 detected_errors
+        # In self_supervised mode, every detector needs detected_errors
         if self.config.training_mode == 'self_supervised' and detected_errors is None:
             if verbose:
-                self.logger.log_info("\n[Step 1.5] self_supervised 模式: 运行检测器获取错误分布...")
+                self.logger.log_info("\n[Step 1.5] self_supervised mode: running detector to obtain error distribution...")
             detected_errors = self.detect_errors(
                 X_dirty, X_clean, y_dirty=y, y_clean=y_clean,
                 semantic_errors=semantic_errors, verbose=verbose
             )
 
-        # 3. 续训: 加载已有模型（兼容两阶段模型文件命名）
+        # 3. Resume training: load existing model (compatible with two-stage model file naming)
         start_episode = 0
         resume_agent = None
         if resume_from and self.model_io.agent_model_exists(resume_from):
             if verbose:
-                self.logger.log_info(f"\n[Step 1.8] 加载续训模型: {resume_from}")
-            # 通过 Trainer 创建匹配配置的 Agent，再 load 权重
+                self.logger.log_info(f"\n[Step 1.8] Loading model to resume training: {resume_from}")
+            # Create an agent matching the config via Trainer, then load weights
             resume_agent = self.trainer._create_agent()
             resume_agent.load(resume_from)
             start_episode = resume_agent.total_episodes
             if verbose:
                 self.logger.log_info(
-                    f"  已训练 {start_episode} episodes, "
+                    f"  Already trained {start_episode} episodes, "
                     f"best_score={resume_agent.best_score:.4f}, "
                     f"epsilon={resume_agent.epsilon:.4f}"
                 )
 
-        # 4. 训练 DQN Agent
+        # 4. Train the DQN agent
         if verbose:
-            self.logger.log_info("\n[Step 2] 训练 DQN Agent...")
+            self.logger.log_info("\n[Step 2] Training DQN agent...")
 
         self.agent, history = self.trainer.train(
             X_dirty, y,
@@ -394,7 +395,7 @@ class DemandClean:
         self._is_fitted = True
 
         if verbose:
-            self.logger.log_info("\n训练完成!")
+            self.logger.log_info("\nTraining finished.")
 
         return self
 
@@ -407,16 +408,17 @@ class DemandClean:
               pre_detected: Optional[Dict[str, List]] = None,
               verbose: bool = True) -> Tuple[np.ndarray, np.ndarray, Dict[str, Any]]:
         """
-        单阶段推理：直接清洗数据
+        Single-phase inference: directly clean the data.
 
         Args:
-            X_dirty: 脏数据矩阵
-            y: 标签向量（脏标签）
-            X_clean: 干净数据（用于获取真值修复）
-            y_clean: 干净标签向量（用于标签噪声检测和修复，可选）
-            semantic_errors: 语义错误位置列表 [(row, col), ...]
-            pre_detected: 预先提供的检测结果，跳过内置检测器（消融实验用，确保与基线公平比较）
-            verbose: 是否打印详细信息
+            X_dirty: dirty feature matrix
+            y: label vector (dirty labels)
+            X_clean: clean data (used to obtain ground-truth repairs)
+            y_clean: clean label vector (used for label-noise detection and repair, optional)
+            semantic_errors: list of semantic error positions [(row, col), ...]
+            pre_detected: externally provided detection results, bypassing the internal detector
+                (used in ablation studies for a fair comparison with baselines)
+            verbose: whether to print detailed information
 
         Returns:
             (X_clean_result, y_clean_result, stats)
@@ -425,30 +427,30 @@ class DemandClean:
 
         if verbose:
             self.logger.log_info("\n" + "=" * 50)
-            self.logger.log_info("单阶段推理")
+            self.logger.log_info("Single-phase inference")
             self.logger.log_info("=" * 50)
 
         if pre_detected is not None:
-            # 使用外部提供的检测结果（绕过 OracleDetector）
+            # Use externally provided detection results (bypass OracleDetector)
             detected = pre_detected
         else:
-            # 检测错误（含标签噪声）
+            # Detect errors (including label noise)
             detected = self.detect_errors(
                 X_dirty, X_clean, y_dirty=y, y_clean=y_clean,
                 semantic_errors=semantic_errors, verbose=verbose
             )
 
-        # 预修复 RAHA 标注行 + 从 detected 中移除已修复行的错误（受开关控制）
+        # Pre-repair RAHA-labeled rows and drop fixed cells from `detected` (gated by switch)
         if self.config.apply_raha_truth:
             X_dirty, y, detected = self._prefix_labeled_rows_for_inference(
                 X_dirty, y, X_clean, y_clean, detected, verbose=verbose
             )
 
-        # 创建推理器
+        # Create inference engine
         if self._single_phase_inference is None:
             self._single_phase_inference = SinglePhaseInference(self.agent, self.config)
 
-        # 执行清洗
+        # Run cleaning
         X_result, y_result, keep_mask, action_counts, repair_log = \
             self._single_phase_inference.clean(
                 X_dirty, y, X_clean, detected, verbose, y_clean=y_clean
@@ -472,46 +474,46 @@ class DemandClean:
              semantic_errors: Optional[List[Tuple[int, int]]] = None,
              verbose: bool = True) -> List[Dict]:
         """
-        两阶段推理 - 第一阶段：生成修复计划
+        Two-phase inference - Phase 1: generate the repair plan.
 
-        不需要真值，返回需要修复的位置列表。
-        Oracle 模式下必须提供 X_clean 用于错误检测。
+        Does not require ground truth; returns the list of positions to repair.
+        X_clean must be provided in Oracle mode for error detection.
 
         Args:
-            X_dirty: 脏数据矩阵
-            y: 标签向量（脏标签）
-            X_clean: 干净数据（Oracle 模式必须提供）
-            y_clean: 干净标签向量（用于标签噪声检测，可选）
-            semantic_errors: 语义错误位置列表
-            verbose: 是否打印详细信息
+            X_dirty: dirty feature matrix
+            y: label vector (dirty labels)
+            X_clean: clean data (required in Oracle mode)
+            y_clean: clean label vector (used for label-noise detection, optional)
+            semantic_errors: list of semantic error positions
+            verbose: whether to print detailed information
 
         Returns:
-            repair_plan: 需要真值修复的位置列表
+            repair_plan: list of positions that require ground-truth repair
         """
         self._check_fitted()
 
         if verbose:
             self.logger.log_info("\n" + "=" * 50)
-            self.logger.log_info("两阶段推理 - 第一阶段 (Plan)")
+            self.logger.log_info("Two-phase inference - Phase 1 (Plan)")
             self.logger.log_info("=" * 50)
 
-        # 检测错误（含标签噪声，Oracle 模式需要 X_clean / y_clean）
+        # Detect errors (incl. label noise; Oracle mode requires X_clean / y_clean)
         detected = self.detect_errors(
             X_dirty, X_clean, y_dirty=y, y_clean=y_clean,
             semantic_errors=semantic_errors, verbose=verbose
         )
 
-        # 创建推理器
+        # Create inference engine
         if self._two_phase_inference is None:
             self._two_phase_inference = TwoPhaseInference(self.agent, self.config)
 
-        # 生成计划
+        # Generate plan
         repair_plan = self._two_phase_inference.plan(X_dirty, y, detected, verbose)
 
         return repair_plan
 
     def get_plan_positions(self) -> List[Tuple[int, int]]:
-        """获取需要真值的位置列表"""
+        """Return the list of positions that require ground-truth values."""
         if self._two_phase_inference is None:
             return []
         return self._two_phase_inference.get_plan_positions()
@@ -522,30 +524,31 @@ class DemandClean:
                 verbose: bool = True,
                 y_dirty: Optional[np.ndarray] = None) -> Tuple[np.ndarray, np.ndarray, np.ndarray]:
         """
-        两阶段推理 - 第二阶段：执行修复
+        Two-phase inference - Phase 2: execute the repairs.
 
         Args:
-            X_dirty: 原始脏数据
-            true_values: 真值字典 {(idx, col): value}
-            verbose: 是否打印详细信息
-            y_dirty: 原始脏标签（标签修复时需要）
+            X_dirty: original dirty data
+            true_values: ground-truth value dict {(idx, col): value}
+            verbose: whether to print detailed information
+            y_dirty: original dirty labels (required when repairing labels)
 
         Returns:
             (X_clean, y_clean, keep_mask)
         """
         if self._two_phase_inference is None:
-            raise ValueError("请先调用 plan() 方法生成修复计划")
+            raise ValueError("Call plan() first to generate the repair plan")
 
         return self._two_phase_inference.execute(X_dirty, true_values, verbose, y_dirty=y_dirty)
 
     @staticmethod
     def _data_fingerprint(X: np.ndarray, y: Optional[np.ndarray] = None) -> int:
-        """计算数据指纹（用于检测缓存命中判断）
+        """Compute a data fingerprint used to check detection-cache hits.
 
-        基于形状 + 前/后/随机采样值的哈希，O(1) 且碰撞概率极低。
+        Based on a hash of the shape plus head/tail/middle row samples. O(1) with
+        negligible collision probability.
         """
         parts = [X.shape]
-        # 头 / 尾行
+        # Head / tail rows
         if len(X) > 0:
             parts.append(X[0].tobytes())
             parts.append(X[-1].tobytes())
@@ -566,30 +569,31 @@ class DemandClean:
                       semantic_errors: Optional[List[Tuple[int, int]]] = None,
                       verbose: bool = True) -> Dict[str, List]:
         """
-        检测错误
+        Detect errors.
 
-        Oracle 模式下直接对比 dirty/clean（含特征 + 标签）；
-        Auto 模式下使用 RAHA(原始CSV) + FD + Confident Learning。
+        In Oracle mode, directly compares dirty vs. clean (features + labels).
+        In Auto mode, uses RAHA (on the raw CSV) + FD + Confident Learning.
 
         Args:
-            X_dirty: 脏数据
-            X_clean: 干净数据（Oracle 模式必须提供，Auto 模式可选）
-            y_dirty: 脏标签向量
-            y_clean: 干净标签向量（Oracle 模式用于标签噪声检测）
-            semantic_errors: 语义错误位置列表（Auto 模式且无FD规则时使用）
-            verbose: 是否打印详细信息
+            X_dirty: dirty data
+            X_clean: clean data (required in Oracle mode, optional in Auto mode)
+            y_dirty: dirty label vector
+            y_clean: clean label vector (used for label-noise detection in Oracle mode)
+            semantic_errors: list of semantic error positions (used in Auto mode when no FD rules)
+            verbose: whether to print detailed information
 
         Returns:
             detected: {'missing': [...], 'semantic': [...], 'syntactic': [...], 'label_noise': [...]}
         """
-        # 缓存命中判断: 同一数据不重复检测
+        # Cache-hit check: avoid redetecting the same data
         fingerprint = self._data_fingerprint(X_dirty, y_dirty)
         if (self._detected_cache is not None
                 and self._detected_cache_fingerprint == fingerprint):
             if verbose:
                 total = sum(len(v) for v in self._detected_cache.values())
-                print(f"  [检测缓存命中] 复用上次检测结果 ({total} cells)")
-            # 返回深拷贝，防止调用方修改（如 _prefix_labeled_rows_for_inference）影响缓存
+                print(f"  [Detection cache hit] Reusing previous results ({total} cells)")
+            # Return a shallow copy per list so callers (e.g. _prefix_labeled_rows_for_inference)
+            # cannot mutate the cached entries.
             return {k: list(v) for k, v in self._detected_cache.items()}
 
         if self.detector is None:
@@ -610,7 +614,7 @@ class DemandClean:
 
         if isinstance(self.detector, OracleDetector):
             if X_clean is None:
-                raise ValueError("Oracle 模式下必须提供 X_clean")
+                raise ValueError("X_clean is required in Oracle mode")
             detected = self.detector.detect(
                 X_dirty, X_clean,
                 y_dirty=y_dirty, y_clean=y_clean,
@@ -626,12 +630,12 @@ class DemandClean:
                 verbose=verbose
             )
 
-        # 确保所有类型的错误列表都存在
+        # Ensure every error-type list exists
         for key in ['missing', 'semantic', 'syntactic', 'label_noise']:
             if key not in detected:
                 detected[key] = []
 
-        # 写入缓存
+        # Write to cache
         self._detected_cache = detected
         self._detected_cache_fingerprint = fingerprint
 
@@ -641,37 +645,37 @@ class DemandClean:
              model_path: str,
              detector_path: Optional[str] = None) -> None:
         """
-        保存模型
+        Save the model.
 
         Args:
-            model_path: Agent 模型路径
-            detector_path: 检测器路径（可选）
+            model_path: path to save the agent model
+            detector_path: path to save the detector (optional)
         """
         self._check_fitted()
 
-        # 保存 Agent
+        # Save the agent
         self.model_io.save_agent(self.agent, model_path)
 
-        # 保存检测器
+        # Save the detector
         if detector_path and self.detector:
             self.detector.save(detector_path)
 
-        self.logger.log_info(f"模型已保存: {model_path}")
+        self.logger.log_info(f"Model saved: {model_path}")
 
     def load(self,
              model_path: str,
              detector_path: Optional[str] = None) -> 'DemandClean':
         """
-        加载模型
+        Load the model.
 
         Args:
-            model_path: Agent 模型路径
-            detector_path: 检测器路径（可选）
+            model_path: path to the agent model
+            detector_path: path to the detector (optional)
 
         Returns:
             self
         """
-        # 加载 Agent
+        # Load the agent
         _AGENT_CLASS_MAP = {
             AgentType.SINGLE_STAGE: SingleStageDQNAgent,
             AgentType.TWO_STAGE: TwoStageDQNAgent,
@@ -681,17 +685,17 @@ class DemandClean:
         agent_cls = _AGENT_CLASS_MAP.get(self.config.agent_type, SingleStageDQNAgent)
         self.agent = self.model_io.load_agent(agent_cls, model_path)
 
-        # 加载检测器
+        # Load the detector
         if detector_path and os.path.exists(detector_path):
             self.detector = AutoDetector.load(detector_path)
 
         self._is_fitted = True
-        self.logger.log_info(f"模型已加载: {model_path}")
+        self.logger.log_info(f"Model loaded: {model_path}")
 
         return self
 
     def _get_labeled_tuples(self) -> Set[int]:
-        """获取 RAHA 标注的行索引集合"""
+        """Return the set of row indices labeled by RAHA."""
         if isinstance(self.detector, AutoDetector) and self.detector.labeled_tuples:
             return self.detector.labeled_tuples
         return set()
@@ -706,18 +710,18 @@ class DemandClean:
         verbose: bool = True,
     ) -> Tuple[np.ndarray, np.ndarray]:
         """
-        利用 RAHA 标注行的干净值预修复脏数据（训练阶段）
+        Pre-repair dirty data using clean values from RAHA-labeled rows (training phase).
 
-        只替换标注行中被检测到错误的单元格，不替换整行。
+        Only cells detected as errors within labeled rows are replaced — not the whole row.
 
         Returns:
-            (X_dirty_prefixed, y_prefixed)  —— 副本，不修改原数组
+            (X_dirty_prefixed, y_prefixed)  — copies; the originals are not modified.
         """
         labeled_indices = self._get_labeled_tuples()
         if not labeled_indices or X_clean is None:
             return X_dirty, y
 
-        # 从 detected_errors 提取所有错误单元格 (idx, col)
+        # Extract all error cells (idx, col) from detected_errors
         error_cells: Set[Tuple[int, int]] = set()
         label_error_rows: Set[int] = set()
         if detected_errors:
@@ -735,12 +739,12 @@ class DemandClean:
         for idx in sorted(labeled_indices):
             if idx >= len(X_out) or idx >= len(X_clean):
                 continue
-            # 只替换该行中被检测为错误的特征单元格
+            # Only replace feature cells in this row that are detected as errors
             for col in range(X_out.shape[1]):
                 if (idx, col) in error_cells:
                     X_out[idx, col] = X_clean[idx, col]
                     fixed_feature_cells += 1
-            # 标签错误：只替换被检测为标签噪声的行
+            # Label error: only replace rows detected as label noise
             if idx in label_error_rows and y_clean is not None and idx < len(y_clean):
                 y_out[idx] = y_clean[idx]
                 fixed_label_cells += 1
@@ -748,12 +752,12 @@ class DemandClean:
         total_fixed = fixed_feature_cells + fixed_label_cells
         if verbose and total_fixed > 0:
             self.logger.log_info(
-                f"  [预修复] 利用 RAHA 标注行修复 {fixed_feature_cells} 个特征单元格"
-                f" + {fixed_label_cells} 个标签"
+                f"  [Pre-repair] Using RAHA-labeled rows, repaired {fixed_feature_cells} feature cells"
+                f" + {fixed_label_cells} labels"
             )
             self.logger.log_info(
-                f"  标注行: {sorted(labeled_indices)[:10]}"
-                + (f"... (共 {len(labeled_indices)} 行)" if len(labeled_indices) > 10 else "")
+                f"  Labeled rows: {sorted(labeled_indices)[:10]}"
+                + (f"... ({len(labeled_indices)} rows in total)" if len(labeled_indices) > 10 else "")
             )
 
         return X_out, y_out
@@ -768,8 +772,9 @@ class DemandClean:
         verbose: bool = True,
     ) -> Tuple[np.ndarray, np.ndarray, Dict[str, List]]:
         """
-        利用 RAHA 标注行的干净值预修复脏数据（推理阶段）
-        只替换标注行中被检测到错误的单元格，同时从 detected_errors 中移除已修复的错误。
+        Pre-repair dirty data using clean values from RAHA-labeled rows (inference phase).
+        Only cells detected as errors within labeled rows are replaced, and the repaired
+        entries are removed from detected_errors.
 
         Returns:
             (X_dirty_prefixed, y_prefixed, detected_filtered)
@@ -778,7 +783,7 @@ class DemandClean:
         if not labeled_indices or X_clean is None:
             return X_dirty, y, detected
 
-        # 从 detected 提取所有错误单元格 (idx, col) 和标签错误行
+        # Extract all error cells (idx, col) and label-error rows from `detected`
         error_cells: Set[Tuple[int, int]] = set()
         label_error_rows: Set[int] = set()
         for key in ['missing', 'semantic', 'syntactic']:
@@ -795,17 +800,17 @@ class DemandClean:
         for idx in sorted(labeled_indices):
             if idx >= len(X_out) or idx >= len(X_clean):
                 continue
-            # 只替换该行中被检测为错误的特征单元格
+            # Only replace feature cells in this row that are detected as errors
             for col in range(X_out.shape[1]):
                 if (idx, col) in error_cells:
                     X_out[idx, col] = X_clean[idx, col]
                     fixed_feature_cells.add((idx, col))
-            # 标签错误
+            # Label error
             if idx in label_error_rows and y_clean is not None and idx < len(y_clean):
                 y_out[idx] = y_clean[idx]
                 fixed_label_rows.add(idx)
 
-        # 从 detected_errors 中移除已修复的单元格
+        # Remove repaired cells from detected_errors
         removed_counts = {}
         detected_filtered = {}
         for key in ['missing', 'semantic', 'syntactic']:
@@ -815,7 +820,7 @@ class DemandClean:
             removed = len(original) - len(filtered)
             if removed > 0:
                 removed_counts[key] = removed
-        # 标签噪声：移除已修复行
+        # Label noise: remove repaired rows
         original_label = detected.get('label_noise', [])
         filtered_label = [e for e in original_label if e[0] not in fixed_label_rows]
         detected_filtered['label_noise'] = filtered_label
@@ -826,31 +831,31 @@ class DemandClean:
         total_fixed = len(fixed_feature_cells) + len(fixed_label_rows)
         if verbose and total_fixed > 0:
             self.logger.log_info(
-                f"  [预修复] 利用 RAHA 标注行修复 {len(fixed_feature_cells)} 个特征单元格"
-                f" + {len(fixed_label_rows)} 个标签"
+                f"  [Pre-repair] Using RAHA-labeled rows, repaired {len(fixed_feature_cells)} feature cells"
+                f" + {len(fixed_label_rows)} labels"
             )
             if removed_counts:
                 parts = [f"{k}={v}" for k, v in removed_counts.items()]
                 self.logger.log_info(
-                    f"  移除已修复错误: {', '.join(parts)}"
+                    f"  Removed repaired errors: {', '.join(parts)}"
                 )
 
         return X_out, y_out, detected_filtered
 
     def _check_fitted(self) -> None:
-        """检查是否已训练"""
+        """Check whether the model has been trained."""
         if not self._is_fitted or self.agent is None:
-            raise ValueError("模型未训练或加载，请先调用 fit() 或 load()")
+            raise ValueError("Model not trained or loaded; call fit() or load() first")
 
     def get_config(self) -> DemandCleanConfig:
-        """获取配置"""
+        """Return the configuration."""
         return self.config
 
     def get_training_history(self) -> Dict[str, List]:
-        """获取训练历史"""
+        """Return the training history."""
         return self.trainer.get_history()
 
     @property
     def is_fitted(self) -> bool:
-        """是否已训练"""
+        """Whether the model has been trained."""
         return self._is_fitted

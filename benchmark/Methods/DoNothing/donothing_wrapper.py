@@ -1,10 +1,10 @@
 """
-DoNothing Wrapper - 不做任何清洗的基准方法
+DoNothing Wrapper - 不做任何cleaning基准method
 
-DoNothing是最简单的baseline，直接返回脏数据不做任何处理。
-用于对比其他清洗方法的效果。
+DoNothingis最简单baseline，直接return脏data不做任何处理。
+used for对比其他cleaningmethod效果。
 
-真值使用情况: 无 (Type 1 - 全自动)
+ground truthusestats: none (Type 1 - fully automatic)
 """
 
 import os
@@ -14,47 +14,47 @@ from typing import Dict, Tuple
 
 class DoNothingWrapper:
     """
-    DoNothing清洗器 - 不做任何清洗
+    DoNothingcleaning器 - 不做任何cleaning
 
-    这是一个baseline方法，直接返回输入数据，不做任何修改。
-    用于建立性能下界。
+    这is一个baselinemethod，直接returninputdata，不做任何修改。
+    used for建立can下界。
     """
 
     def __init__(self, verbose: bool = False):
         """
-        初始化DoNothing
+        initializeDoNothing
 
         Args:
-            verbose: 是否打印详细信息
+            verbose: whether打印详细信息
         """
         self.verbose = verbose
         self.ground_truth_used = 0
 
     def setup(self):
-        """设置（无操作）"""
+        """set（none操作）"""
         return True
 
     def clean(self,
               dirty_path: str,
               output_path: str = None) -> Tuple[pd.DataFrame, Dict]:
         """
-        执行"清洗"（实际上不做任何操作）
+        执row"cleaning"（实际上不做任何操作）
 
         Args:
-            dirty_path: 脏数据路径
-            output_path: 输出路径
+            dirty_path: 脏datapath
+            output_path: outputpath
 
         Returns:
-            原始数据和信息
+            original始dataand信息
         """
-        # 直接读取脏数据
+        # 直接Read脏data
         data = pd.read_csv(dirty_path)
 
         if self.verbose:
-            print(f"DoNothing: 读取数据 {len(data)} 行, {len(data.columns)} 列")
-            print("DoNothing: 不做任何清洗操作")
+            print(f"DoNothing: Read data {len(data)} row, {len(data.columns)} column")
+            print("DoNothing: 不做任何cleaning操作")
 
-        # 保存结果（与输入相同）
+        # Save results（andinput相同）
         if output_path:
             data.to_csv(output_path, index=False)
 
@@ -71,13 +71,13 @@ class DoNothingWrapper:
         return data, info
 
     def get_ground_truth_cost(self) -> int:
-        """获取真值使用成本"""
+        """getground truthuse成本"""
         return self.ground_truth_used
 
 
 def donothing_clean(dirty_path: str,
                     output_path: str = None,
                     **kwargs) -> Tuple[pd.DataFrame, Dict]:
-    """DoNothing清洗的便捷函数"""
+    """DoNothingcleaning便捷function"""
     wrapper = DoNothingWrapper(**kwargs)
     return wrapper.clean(dirty_path, output_path)

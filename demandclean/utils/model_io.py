@@ -1,8 +1,8 @@
 """
-模型 I/O 工具 (PyTorch)
-=======================
+Model I/O Utilities (PyTorch)
+=============================
 
-DQN Agent 和检测器的保存/加载功能。
+Save/load helpers for DQN agents and detectors.
 """
 
 import os
@@ -13,51 +13,51 @@ import torch
 
 
 class ModelIO:
-    """模型保存和加载工具类"""
+    """Model save/load utilities."""
 
     @staticmethod
     def agent_model_exists(path: str) -> bool:
-        """检查 Agent 模型文件是否存在（兼容单阶段/两阶段）
+        """Check whether an agent model file exists (supports both single-stage and two-stage).
 
-        单阶段 Agent: 文件直接保存在 {base}.pt
-        两阶段 Agent: 文件保存在 {base}_stage1.pt + {base}_stage2.pt
+        Single-stage agent: file stored at {base}.pt.
+        Two-stage agent: files stored at {base}_stage1.pt + {base}_stage2.pt.
 
         Args:
-            path: 模型路径（调用方传入的 base path）
+            path: Model path (the caller's base path)
 
         Returns:
-            True 如果找到单阶段 .pt 文件或两阶段 _stage1.pt 文件
+            True if a single-stage .pt file or a two-stage _stage1.pt file is found.
         """
         pt_path = path.replace('.h5', '.pt')
-        # 单阶段: 直接检查 .pt 文件
+        # Single-stage: check the .pt file directly
         if os.path.exists(pt_path):
             return True
-        # 两阶段: 检查 _stage1.pt
+        # Two-stage: check for _stage1.pt
         base = pt_path.replace('.pt', '')
         stage1_path = base + '_stage1.pt'
         return os.path.exists(stage1_path)
 
     @staticmethod
     def is_two_stage_model(path: str) -> bool:
-        """判断路径对应的模型是否为两阶段（通过文件存在性推断）
+        """Determine whether the model at the given path is two-stage (inferred from file presence).
 
         Returns:
-            True 如果 _stage1.pt 存在且 base .pt 不存在
+            True if _stage1.pt exists and the base .pt does not.
         """
         pt_path = path.replace('.h5', '.pt')
         if os.path.exists(pt_path):
-            return False  # base .pt 存在 → 单阶段
+            return False  # base .pt present -> single-stage
         base = pt_path.replace('.pt', '')
         return os.path.exists(base + '_stage1.pt')
 
     @staticmethod
     def save_agent(agent: Any, path: str) -> None:
         """
-        保存 DQN Agent (.pt 格式)
+        Save a DQN agent (.pt format).
 
         Args:
-            agent: DQN Agent 实例
-            path: 保存路径
+            agent: DQN agent instance
+            path: Destination path
         """
         os.makedirs(os.path.dirname(path) or '.', exist_ok=True)
         agent.save(path)
@@ -65,32 +65,32 @@ class ModelIO:
     @staticmethod
     def load_agent(agent_class: Type, path: str, **kwargs) -> Any:
         """
-        加载 DQN Agent
+        Load a DQN agent.
 
-        从 checkpoint 自动提取 state_size / action_size 等初始化参数。
-        外部传入的 kwargs 优先级更高。
+        Automatically extracts state_size / action_size and other initialization
+        arguments from the checkpoint. External kwargs take precedence.
 
-        兼容两阶段模型: 当 base .pt 不存在但 _stage1.pt 存在时，
-        从 _stage1.pt 读取元数据。
+        Two-stage models are supported: when the base .pt is missing but
+        _stage1.pt exists, metadata is read from _stage1.pt.
 
         Args:
-            agent_class: Agent 类
-            path: 模型路径
-            **kwargs: Agent 初始化参数（可覆盖 checkpoint 中保存的值）
+            agent_class: Agent class
+            path: Model path
+            **kwargs: Agent initialization arguments (overrides values saved in the checkpoint)
         """
         pt_path = path.replace('.h5', '.pt')
         base = pt_path.replace('.pt', '')
 
-        # 确定实际的 checkpoint 路径（用于提取初始化参数）
+        # Determine which checkpoint to read for initialization parameters
         if os.path.exists(pt_path):
             ckpt_path = pt_path
         elif os.path.exists(base + '_stage1.pt'):
             ckpt_path = base + '_stage1.pt'
         else:
             raise FileNotFoundError(
-                f"Agent 模型文件不存在: {pt_path} 或 {base}_stage1.pt")
+                f"Agent model file not found: {pt_path} or {base}_stage1.pt")
 
-        # 读 checkpoint 获取构建参数
+        # Read the checkpoint to obtain construction arguments
         checkpoint = torch.load(ckpt_path, map_location='cpu', weights_only=False)
         init_kwargs = {}
         for key in ('state_size', 'action_size'):
@@ -100,50 +100,50 @@ class ModelIO:
 
         agent = agent_class(**init_kwargs)
         agent.load(pt_path)
-        print(f"Agent 已加载: {pt_path}")
+        print(f"Agent loaded: {pt_path}")
         return agent
 
     @staticmethod
     def save_detector(detector: Any, path: str) -> None:
         """
-        保存错误检测器
+        Save an error detector.
 
         Args:
-            detector: 检测器实例
-            path: 保存路径 (.pkl)
+            detector: Detector instance
+            path: Destination path (.pkl)
         """
         os.makedirs(os.path.dirname(path) or '.', exist_ok=True)
         with open(path, 'wb') as f:
             pickle.dump(detector, f)
-        print(f"检测器已保存: {path}")
+        print(f"Detector saved: {path}")
 
     @staticmethod
     def load_detector(path: str) -> Any:
         """
-        加载错误检测器
+        Load an error detector.
 
         Args:
-            path: 检测器文件路径 (.pkl)
+            path: Detector file path (.pkl)
 
         Returns:
-            检测器实例
+            Detector instance
         """
         if not os.path.exists(path):
-            raise FileNotFoundError(f"检测器文件不存在: {path}")
+            raise FileNotFoundError(f"Detector file not found: {path}")
 
         with open(path, 'rb') as f:
             detector = pickle.load(f)
-        print(f"检测器已加载: {path}")
+        print(f"Detector loaded: {path}")
         return detector
 
     @staticmethod
     def save_config(config: Any, path: str) -> None:
         """
-        保存配置
+        Save a configuration object.
 
         Args:
-            config: 配置对象
-            path: 保存路径 (.json)
+            config: Configuration object
+            path: Destination path (.json)
         """
         import json
         os.makedirs(os.path.dirname(path) or '.', exist_ok=True)
@@ -151,24 +151,24 @@ class ModelIO:
         config_dict = config.to_dict() if hasattr(config, 'to_dict') else vars(config)
         with open(path, 'w', encoding='utf-8') as f:
             json.dump(config_dict, f, indent=2, ensure_ascii=False)
-        print(f"配置已保存: {path}")
+        print(f"Configuration saved: {path}")
 
     @staticmethod
     def load_config(config_class: Type, path: str) -> Any:
         """
-        加载配置
+        Load a configuration object.
 
         Args:
-            config_class: 配置类
-            path: 配置文件路径 (.json)
+            config_class: Configuration class
+            path: Configuration file path (.json)
 
         Returns:
-            配置对象
+            Configuration object
         """
         import json
 
         if not os.path.exists(path):
-            raise FileNotFoundError(f"配置文件不存在: {path}")
+            raise FileNotFoundError(f"Configuration file not found: {path}")
 
         with open(path, 'r', encoding='utf-8') as f:
             config_dict = json.load(f)
@@ -179,12 +179,12 @@ class ModelIO:
 
     @staticmethod
     def exists(path: str) -> bool:
-        """检查文件是否存在（兼容两阶段模型）"""
+        """Check whether a file exists (supports two-stage models)."""
         return ModelIO.agent_model_exists(path)
 
     @staticmethod
     def ensure_dir(path: str) -> str:
-        """确保目录存在，返回目录路径"""
+        """Ensure the containing directory exists, and return it."""
         dir_path = os.path.dirname(path) or '.'
         os.makedirs(dir_path, exist_ok=True)
         return dir_path

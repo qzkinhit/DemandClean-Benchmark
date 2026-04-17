@@ -1,4 +1,4 @@
-"""DQN Agent 模块"""
+"""DQN Agent module"""
 
 from .base_agent import BaseAgent
 from .single_stage_agent import SingleStageDQNAgent

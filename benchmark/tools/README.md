@@ -1,52 +1,52 @@
-# Utils 工具函数目录
+# Utils Directory
 
-本目录包含数据清洗实验中常用的工具函数。
+This directory contains utility functions commonly used in the data cleaning experiments.
 
-## 文件说明
+## Files
 
-### 评估相关
+### Evaluation
 
-| 文件 | 说明 |
-|------|------|
-| `getScore.py` | 传统数据质量评估指标（准确率、召回率、EDR等） |
-| `getScoreML.py` | 下游任务评估与模型容忍度计算 |
+| File | Description |
+|------|-------------|
+| `getScore.py` | Traditional data quality metrics (accuracy, recall, EDR, etc.) |
+| `getScoreML.py` | Downstream task evaluation and model tolerance |
 
-### 数据处理
+### Data processing
 
-| 文件 | 说明 |
-|------|------|
-| `inject_errors.py` | 错误注入工具（随机/系统错误） |
-| `insert_null.py` | 空值插入工具 |
-| `get_error_num.py` | 错误统计工具 |
+| File | Description |
+|------|-------------|
+| `inject_errors.py` | Error injection utility (random/system errors) |
+| `insert_null.py` | Null value insertion utility |
+| `get_error_num.py` | Error counting utility |
 
-### 数据转换
+### Data transformation
 
-| 文件 | 说明 |
-|------|------|
-| `adult_vectorize.py` | Adult数据集向量化 |
-| `eeg_vectorize.py` | EEG数据集向量化 |
+| File | Description |
+|------|-------------|
+| `adult_vectorize.py` | Adult dataset vectorization |
+| `eeg_vectorize.py` | EEG dataset vectorization |
 
-### 可视化
+### Visualization
 
-| 文件 | 说明 |
-|------|------|
-| `get_plt.py` | 结果可视化 |
-| `resultPLT.py` | 结果绘图 |
+| File | Description |
+|------|-------------|
+| `get_plt.py` | Result visualization |
+| `resultPLT.py` | Result plotting |
 
-### 辅助工具
+### Helpers
 
-| 文件 | 说明 |
-|------|------|
-| `readData.py` | 数据读取 |
-| `saveData.py` | 数据保存 |
-| `get_subset.py` | 数据子集提取 |
-| `generate_index/` | 索引生成工具 |
+| File | Description |
+|------|-------------|
+| `readData.py` | Data loading |
+| `saveData.py` | Data saving |
+| `get_subset.py` | Subset extraction |
+| `generate_index/` | Index-generation tools |
 
 ---
 
-## 主要功能
+## Key Functions
 
-### getScore.py - 传统评估指标
+### getScore.py — Traditional Metrics
 
 ```python
 from utils.getScore import calculate_all_metrics
@@ -55,10 +55,10 @@ results = calculate_all_metrics(
     clean, dirty, cleaned, attributes,
     output_path, task_name, index_attribute
 )
-# 返回: accuracy, recall, f1_score, edr, hybrid_distance, r_edr
+# Returns: accuracy, recall, f1_score, edr, hybrid_distance, r_edr
 ```
 
-### getScoreML.py - 下游任务评估
+### getScoreML.py — Downstream Task Evaluation
 
 ```python
 from utils.getScoreML import comprehensive_evaluation
@@ -71,44 +71,44 @@ results = comprehensive_evaluation(
     method_type=1,
     ground_truth_used=0
 )
-# 返回: 下游任务性能、容忍度、真值使用成本
+# Returns: downstream task performance, tolerance, ground-truth usage cost
 ```
 
-### inject_errors.py - 错误注入
+### inject_errors.py — Error Injection
 
 ```python
 from utils.inject_errors import inject_random_error, inject_system_error
 
-# 随机错误注入
+# Random error injection
 dirty_df = inject_random_error(clean_df, percent=0.1)
 
-# 系统错误注入（基于模型重要性）
+# System error injection (based on model importance)
 dirty_df = inject_system_error(clean_df, percent=0.1, target_column='label')
 ```
 
 ---
 
-## 详细说明
+## Details
 
 ### `inject_error.py`
 
-用于在adult和eeg的特征向量数据集上进行**错误注入**操作。错误注入的类型有两种：**随机错误（random errors）** 和 **系统错误（system errors）**。
+Performs **error injection** on the vectorized adult and eeg feature datasets. Two injection types are supported: **random errors** and **system errors**.
 
-#### 主要函数
+#### Key functions
 
 1. **`inject_random_error(df, percent)`**:
-   - 随机选择一定比例的**行**，将这些行的所有数值型特征替换为该列最大值的 3 倍
+   - Randomly selects a fraction of rows and replaces every numeric feature in those rows with 3x the column maximum.
 
 2. **`inject_system_error(df, percent, target_column)`**:
-   - 基于 **SGDClassifier** 模型权重选择前 `x%` 的数据行，将最重要的 3 个特征替换为均值
+   - Uses SGDClassifier feature weights to pick the top `x%` of rows and replaces their three most important features with the column mean.
 
-#### 命令行示例
+#### Command-line examples
 
 ```bash
-# 随机错误注入
+# Random error injection
 python inject_errors.py --input adult_data_vectorized.csv --output adult_with_random_errors.csv --error_type random --percent 5
 
-# 系统错误注入
+# System error injection
 python inject_error.py --input adult_vectorized.csv --output adult_with_system_errors.csv --error_type system --percent 10
 ```
 
@@ -116,9 +116,9 @@ python inject_error.py --input adult_vectorized.csv --output adult_with_system_e
 
 ### `eeg_vectorize.py`
 
-对 **EEG Eye State 数据集** 进行向量化处理，提取每个时间步的统计特征。
+Vectorizes the **EEG Eye State dataset** by extracting per-timestep statistical features.
 
-#### 命令行示例
+#### Command-line example
 
 ```bash
 python vectorize_eeg.py --input eeg_eye_state.arff --output eeg_vectorized.csv
@@ -128,15 +128,15 @@ python vectorize_eeg.py --input eeg_eye_state.arff --output eeg_vectorized.csv
 
 ### `adult_vectorize.py`
 
-对 **Adult 数据集** 进行向量化处理。
+Vectorizes the **Adult dataset**.
 
-#### 特征处理说明
+#### Feature processing
 
-1. **数值型特征** (`age`, `fnlwgt`, `education-num`, `hours-per-week`)：使用**标准化**
-2. **类别型特征** (`workclass`, `education`等)：使用 **TF-IDF词袋编码**
-3. **收入标签**：`<=50K` → 0, `>50K` → 1
+1. **Numeric features** (`age`, `fnlwgt`, `education-num`, `hours-per-week`): standardized.
+2. **Categorical features** (`workclass`, `education`, etc.): TF-IDF bag-of-words encoded.
+3. **Income label**: `<=50K` -> 0, `>50K` -> 1.
 
-#### 命令行示例
+#### Command-line example
 
 ```bash
 python adult_vectorize.py --input adult.csv --output adult_vectorized.csv
@@ -144,23 +144,23 @@ python adult_vectorize.py --input adult.csv --output adult_vectorized.csv
 
 ---
 
-## 评估指标详解
+## Metric Reference
 
-### 传统指标
+### Traditional metrics
 
-- **准确率**: 正确修复数 / 总修复数
-- **召回率**: 正确修复数 / 应修复数
-- **F1值**: 2 * 准确率 * 召回率 / (准确率 + 召回率)
+- **Accuracy**: correctly repaired / total repaired
+- **Recall**: correctly repaired / total actual errors
+- **F1**: 2 * Accuracy * Recall / (Accuracy + Recall)
 - **EDR**: (D_dirty_to_clean - D_repaired_to_clean) / D_dirty_to_clean
-- **R-EDR**: 基于记录的错误减少率
+- **R-EDR**: record-based error reduction rate
 
-### 下游任务指标
+### Downstream task metrics
 
-- **分类**: Accuracy, F1, Precision, Recall
-- **回归**: MSE, MAE, R²
-- **聚类**: Silhouette Score, ARI
+- **Classification**: Accuracy, F1, Precision, Recall
+- **Regression**: MSE, MAE, R^2
+- **Clustering**: Silhouette Score, ARI
 
-### 模型容忍度
+### Model tolerance
 
-- **先验容忍度**: P_demand_clean / P_do_nothing
-- **后验容忍度**: (P_demand_clean - P_do_nothing) / (P_repair_all - P_do_nothing)
+- **Prior tolerance**: P_demand_clean / P_do_nothing
+- **Posterior tolerance**: (P_demand_clean - P_do_nothing) / (P_repair_all - P_do_nothing)

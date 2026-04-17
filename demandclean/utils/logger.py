@@ -1,8 +1,8 @@
 """
-日志工具
-========
+Logging Utilities
+=================
 
-统一的日志管理和训练历史记录。
+Unified logging management and training history recording.
 """
 
 import logging
@@ -14,12 +14,12 @@ from typing import Dict, List, Any, Optional
 
 class DemandCleanLogger:
     """
-    DemandClean 日志管理器
+    DemandClean logger manager
 
-    提供:
-        - 控制台和文件日志输出
-        - 训练历史记录
-        - JSON 格式的历史导出
+    Provides:
+        - Console and file logging output
+        - Training history recording
+        - JSON-formatted history export
     """
 
     def __init__(self,
@@ -29,30 +29,30 @@ class DemandCleanLogger:
                  to_file: bool = True,
                  to_console: bool = True):
         """
-        初始化日志管理器
+        Initialize the logger manager.
 
         Args:
-            config_or_name: 配置对象或日志名称字符串
-            log_dir: 日志文件目录
-            level: 日志级别
-            to_file: 是否输出到文件
-            to_console: 是否输出到控制台
+            config_or_name: Configuration object or logger name string
+            log_dir: Directory for log files
+            level: Log level
+            to_file: Whether to output to a file
+            to_console: Whether to output to the console
         """
-        # 处理配置对象
+        # Handle config object input
         if hasattr(config_or_name, 'save_path'):
-            # 传入的是配置对象
+            # A configuration object was passed in
             config = config_or_name
             name = "demandclean"
             log_dir = log_dir or config.save_path
         else:
-            # 传入的是字符串名称
+            # A string name was passed in
             name = str(config_or_name)
 
         self.logger = logging.getLogger(name)
         self.logger.setLevel(level)
-        self.logger.handlers = []  # 清除已有的 handler
+        self.logger.handlers = []  # Clear existing handlers
 
-        # 日志格式
+        # Log format
         formatter = logging.Formatter(
             '[%(asctime)s] %(levelname)s: %(message)s',
             datefmt='%H:%M:%S'
@@ -61,13 +61,13 @@ class DemandCleanLogger:
             '[%(asctime)s] %(levelname)s - %(name)s: %(message)s'
         )
 
-        # 控制台输出
+        # Console output
         if to_console:
             console_handler = logging.StreamHandler()
             console_handler.setFormatter(formatter)
             self.logger.addHandler(console_handler)
 
-        # 文件输出
+        # File output
         self.log_file = None
         if to_file and log_dir:
             os.makedirs(log_dir, exist_ok=True)
@@ -77,7 +77,7 @@ class DemandCleanLogger:
             file_handler.setFormatter(file_formatter)
             self.logger.addHandler(file_handler)
 
-        # 训练历史记录
+        # Training history
         self.history: Dict[str, List] = {
             'episode': [],
             'score': [],
@@ -89,28 +89,28 @@ class DemandCleanLogger:
             'replace_nearby': []
         }
 
-        # 最佳模型记录
+        # Best-model tracking
         self.best_score = float('-inf')
         self.best_episode = 0
 
     def info(self, msg: str) -> None:
-        """输出 INFO 级别日志"""
+        """Log at INFO level."""
         self.logger.info(msg)
 
     def log_info(self, msg: str) -> None:
-        """输出 INFO 级别日志（别名）"""
+        """Log at INFO level (alias)."""
         self.logger.info(msg)
 
     def warning(self, msg: str) -> None:
-        """输出 WARNING 级别日志"""
+        """Log at WARNING level."""
         self.logger.warning(msg)
 
     def error(self, msg: str) -> None:
-        """输出 ERROR 级别日志"""
+        """Log at ERROR level."""
         self.logger.error(msg)
 
     def debug(self, msg: str) -> None:
-        """输出 DEBUG 级别日志"""
+        """Log at DEBUG level."""
         self.logger.debug(msg)
 
     def log_episode(self,
@@ -120,14 +120,14 @@ class DemandCleanLogger:
                     epsilon: float,
                     action_counts: Dict[str, int]) -> None:
         """
-        记录单轮训练结果
+        Record the result of a single training episode.
 
         Args:
-            episode: 轮次
-            score: 模型得分（准确率或负MSE）
-            reward: 累积奖励
-            epsilon: 当前探索率
-            action_counts: 动作统计
+            episode: Episode index
+            score: Model score (accuracy or negative MSE)
+            reward: Cumulative reward
+            epsilon: Current exploration rate
+            action_counts: Action count statistics
         """
         self.history['episode'].append(episode)
         self.history['score'].append(score)
@@ -137,97 +137,97 @@ class DemandCleanLogger:
         for action in ['no_action', 'repair_value', 'delete', 'replace_nearby']:
             self.history[action].append(action_counts.get(action, 0))
 
-        # 更新最佳记录
+        # Update best-so-far
         if score > self.best_score:
             self.best_score = score
             self.best_episode = episode
 
     def log_training_start(self, config: Any) -> None:
-        """记录训练开始"""
+        """Record the start of training."""
         self.info("=" * 60)
-        self.info("DemandClean 训练开始")
+        self.info("DemandClean training started")
         self.info("=" * 60)
-        self.info(f"任务类型: {config.task_type.value}")
-        self.info(f"模型类型: {config.model_type.value}")
-        self.info(f"Agent类型: {config.agent_type.value}")
-        self.info(f"训练轮数: {config.n_episodes}")
-        self.info(f"真值预算: [{config.min_truth_budget}, {config.max_truth_budget}]")
+        self.info(f"Task type: {config.task_type.value}")
+        self.info(f"Model type: {config.model_type.value}")
+        self.info(f"Agent type: {config.agent_type.value}")
+        self.info(f"Training episodes: {config.n_episodes}")
+        self.info(f"Truth budget: [{config.min_truth_budget}, {config.max_truth_budget}]")
         self.info("-" * 60)
 
     def log_training_end(self) -> None:
-        """记录训练结束"""
+        """Record the end of training."""
         self.info("-" * 60)
-        self.info("训练完成!")
-        self.info(f"最佳得分: {self.best_score:.4f} (Episode {self.best_episode})")
+        self.info("Training completed!")
+        self.info(f"Best score: {self.best_score:.4f} (Episode {self.best_episode})")
         self.info("=" * 60)
 
     def log_inference(self,
                       action_counts: Dict[str, int],
                       repair_log: List[Dict]) -> None:
         """
-        记录推理结果
+        Record inference results.
 
         Args:
-            action_counts: 动作统计
-            repair_log: 修复日志
+            action_counts: Action counts
+            repair_log: Repair log entries
         """
         self.info("=" * 50)
-        self.info("推理完成")
+        self.info("Inference completed")
         self.info("=" * 50)
-        self.info(f"动作统计:")
-        self.info(f"  不操作: {action_counts.get('no_action', 0)}")
-        self.info(f"  真值修复: {action_counts.get('repair_value', 0)}")
-        self.info(f"  删除: {action_counts.get('delete', 0)}")
-        self.info(f"  临近值替换: {action_counts.get('replace_nearby', 0)}")
-        self.info(f"使用真值数: {len(repair_log)}")
+        self.info(f"Action statistics:")
+        self.info(f"  No-op: {action_counts.get('no_action', 0)}")
+        self.info(f"  Truth repair: {action_counts.get('repair_value', 0)}")
+        self.info(f"  Delete: {action_counts.get('delete', 0)}")
+        self.info(f"  Replace with nearby: {action_counts.get('replace_nearby', 0)}")
+        self.info(f"Truth values consumed: {len(repair_log)}")
         self.info("-" * 50)
 
     def log_two_phase_plan(self, repair_plan: List[Dict]) -> None:
-        """记录两阶段推理计划"""
+        """Record a two-phase inference plan."""
         self.info("=" * 50)
-        self.info("两阶段推理 - 第一阶段: 修复计划")
+        self.info("Two-phase inference - Phase 1: repair plan")
         self.info("=" * 50)
-        self.info(f"需要真值修复的位置: {len(repair_plan)} 个")
-        for i, item in enumerate(repair_plan[:10]):  # 最多显示10个
-            self.info(f"  [{i+1}] 位置({item['idx']}, {item['col']}): "
-                     f"估计值={item.get('estimated_value', 'N/A'):.4f}")
+        self.info(f"Positions requiring truth repair: {len(repair_plan)}")
+        for i, item in enumerate(repair_plan[:10]):  # Show at most 10 entries
+            self.info(f"  [{i+1}] Position ({item['idx']}, {item['col']}): "
+                     f"estimated value={item.get('estimated_value', 'N/A'):.4f}")
         if len(repair_plan) > 10:
-            self.info(f"  ... 还有 {len(repair_plan) - 10} 个")
+            self.info(f"  ... and {len(repair_plan) - 10} more")
         self.info("-" * 50)
 
     def log_two_phase_execute(self, repair_count: int) -> None:
-        """记录两阶段推理执行"""
+        """Record two-phase inference execution."""
         self.info("=" * 50)
-        self.info("两阶段推理 - 第二阶段: 执行修复")
+        self.info("Two-phase inference - Phase 2: execute repairs")
         self.info("=" * 50)
-        self.info(f"已修复: {repair_count} 个位置")
+        self.info(f"Repaired: {repair_count} positions")
         self.info("-" * 50)
 
     def save_history(self, path: str) -> None:
         """
-        保存训练历史到 JSON 文件
+        Save training history to a JSON file.
 
         Args:
-            path: 保存路径
+            path: Destination path
         """
         os.makedirs(os.path.dirname(path) or '.', exist_ok=True)
         with open(path, 'w', encoding='utf-8') as f:
             json.dump(self.history, f, indent=2)
-        self.info(f"训练历史已保存到: {path}")
+        self.info(f"Training history saved to: {path}")
 
     def load_history(self, path: str) -> None:
         """
-        加载训练历史
+        Load training history from disk.
 
         Args:
-            path: 历史文件路径
+            path: History file path
         """
         with open(path, 'r', encoding='utf-8') as f:
             self.history = json.load(f)
-        self.info(f"训练历史已加载: {path}")
+        self.info(f"Training history loaded from: {path}")
 
     def get_summary(self) -> Dict[str, Any]:
-        """获取训练摘要"""
+        """Get a training summary."""
         if not self.history['episode']:
             return {}
 

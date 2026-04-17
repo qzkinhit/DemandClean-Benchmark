@@ -1,4 +1,4 @@
-"""聚类模型适配器"""
+"""Clustering model adapters"""
 
 from .kmeans_adapter import KMeansAdapter
 

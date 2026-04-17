@@ -1,9 +1,9 @@
 """
-单阶段推理
-==========
+Single-phase inference
+======================
 
-直接使用训练好的 Agent 进行数据清洗。
-需要提供真值用于修复。
+Runs data cleaning with a trained agent in a single pass.
+Requires ground-truth values for repairs.
 """
 
 import sys
@@ -19,7 +19,7 @@ from ..core.state import (
 )
 from ..models import ModelAdapter, create_model_adapter
 
-# Agent类型 → 算法名映射
+# Agent type -> algorithm name
 _AGENT_ALGO_NAME = {
     AgentType.SINGLE_STAGE: 'DQN (Single Stage)',
     AgentType.DUELING_SINGLE_STAGE: 'Dueling DQN (Single Stage)',
@@ -30,36 +30,36 @@ _AGENT_ALGO_NAME = {
 
 class SinglePhaseInference:
     """
-    单阶段推理
+    Single-phase inference.
 
-    直接使用训练好的 Agent 对数据进行清洗。
-    需要提供干净数据用于获取真值修复。
+    Runs data cleaning with a trained agent in a single pass.
+    Clean data is required to fetch ground-truth repair values.
     """
 
     def __init__(self,
                  agent: BaseAgent,
                  config: DemandCleanConfig):
         """
-        初始化推理器
+        Initialize the inference engine.
 
         Args:
-            agent: 训练好的 Agent
-            config: 配置对象
+            agent: trained agent
+            config: configuration object
         """
         self.agent = agent
         self.config = config
 
-        # 创建模型适配器
+        # Build the model adapter
         self.model_adapter = create_model_adapter(config.model_type, config.task_type)
 
-        # 创建状态提取器
+        # Build the state extractor
         self.state_extractor = self._create_state_extractor()
 
-        # 推理后的环境引用（用于获取 decision_log）
+        # Reference to the environment used for inference (used to fetch decision_log)
         self._env: Optional[CleaningEnv] = None
 
     def _create_state_extractor(self) -> StateExtractor:
-        """创建状态提取器"""
+        """Build the state extractor."""
         if self.config.task_type == TaskType.REGRESSION:
             return RegressionStateExtractor(self.model_adapter, self.config)
         elif self.config.task_type == TaskType.CLUSTERING:
@@ -75,20 +75,20 @@ class SinglePhaseInference:
               verbose: bool = True,
               y_clean: Optional[np.ndarray] = None) -> Tuple[np.ndarray, np.ndarray, np.ndarray, Dict[str, int], List[Dict]]:
         """
-        使用检测到的错误进行数据清洗
+        Clean data using detected errors.
 
         Args:
-            X_dirty: 脏数据矩阵
-            y: 标签向量
-            X_clean: 干净数据（用于获取真值修复）
-            detected_errors: 检测到的错误
-            verbose: 是否打印详细信息
-            y_clean: 干净标签向量（用于标签噪声修复）
+            X_dirty: dirty data matrix
+            y: label vector
+            X_clean: clean data (used to fetch ground-truth repairs)
+            detected_errors: detected errors
+            verbose: whether to print details
+            y_clean: clean label vector (used for label-noise repairs)
 
         Returns:
             (X_clean_result, y_clean_result, keep_mask, action_counts, repair_log)
         """
-        # 构建错误列表（用真值修复）
+        # Build the error list (with ground-truth repairs)
         error_list = self._build_error_list(detected_errors, X_clean, y_clean)
 
         n_missing = len(detected_errors.get('missing', []))
@@ -100,36 +100,36 @@ class SinglePhaseInference:
         if verbose:
             algo_name = _AGENT_ALGO_NAME.get(self.config.agent_type, self.config.agent_type.value)
             print(f"\n{'='*60}")
-            print(f"单阶段推理")
+            print(f"Single-phase inference")
             print(f"{'='*60}")
-            print(f"  算法: {algo_name}")
-            print(f"  任务类型: {self.config.task_type.value}")
-            print(f"  下游模型: {self.config.model_type.value}")
-            print(f"  检测到的错误: {total_errors} 个"
+            print(f"  Algorithm: {algo_name}")
+            print(f"  Task type: {self.config.task_type.value}")
+            print(f"  Downstream model: {self.config.model_type.value}")
+            print(f"  Detected errors: {total_errors}"
                   f" (missing={n_missing}, semantic={n_semantic},"
                   f" syntactic={n_syntactic}, label={n_label})")
 
-        # 创建环境
+        # Build the environment
         env = CleaningEnv(
             X_dirty, y, error_list,
             self.model_adapter, self.state_extractor, self.config
         )
         self._env = env
 
-        # 设置为推理模式
+        # Switch to inference mode
         self.agent.epsilon = 0
         state = env.reset()
 
-        # 进度条参数
+        # Progress-bar parameters
         progress_total = 20
         progress_step = max(1, total_errors // progress_total)
         processed = 0
 
         if verbose:
-            sys.stdout.write(f"\n  推理进度: [")
+            sys.stdout.write(f"\n  Inference progress: [")
             sys.stdout.flush()
 
-        # 推理
+        # Run inference
         while True:
             if self.config.agent_type in (AgentType.TWO_STAGE, AgentType.DUELING_TWO_STAGE):
                 final_action, _, _ = self.agent.act(state, training=False)
@@ -140,7 +140,7 @@ class SinglePhaseInference:
             state = next_state
             processed += 1
 
-            # 更新进度条
+            # Update progress bar
             if verbose and processed % progress_step == 0:
                 sys.stdout.write("=")
                 sys.stdout.flush()
@@ -149,7 +149,7 @@ class SinglePhaseInference:
                 break
 
         if verbose:
-            # 补齐进度条
+            # Finish progress bar
             bars_printed = processed // progress_step
             remaining = progress_total - bars_printed
             sys.stdout.write("=" * remaining + f"] {processed}/{total_errors}\n")
@@ -165,7 +165,7 @@ class SinglePhaseInference:
         return X_result, y_result, keep_mask, action_counts, repair_log
 
     def get_decision_log(self) -> List[Dict]:
-        """获取推理后的完整决策日志"""
+        """Return the full decision log produced during inference."""
         if self._env is None:
             return []
         return self._env.get_decision_log()
@@ -174,7 +174,7 @@ class SinglePhaseInference:
                           detected_errors: Dict[str, List],
                           X_clean: np.ndarray,
                           y_clean: Optional[np.ndarray] = None) -> List[Dict]:
-        """将检测到的错误转换为环境需要的格式"""
+        """Convert detected errors into the format expected by the environment."""
         error_list = []
 
         # Missing errors (type=0)
@@ -214,7 +214,7 @@ class SinglePhaseInference:
         for item in detected_errors.get('label_noise', []):
             if isinstance(item, (list, tuple)) and len(item) >= 2:
                 idx = item[0]
-                # 优先使用 y_clean 获取真值
+                # Prefer y_clean as the source of truth
                 if y_clean is not None and idx < len(y_clean):
                     repair_value = y_clean[idx]
                 elif len(item) > 2:
@@ -231,7 +231,7 @@ class SinglePhaseInference:
         return error_list
 
     def get_stats(self) -> Dict[str, Any]:
-        """获取推理统计信息"""
+        """Return inference stats."""
         return {
             'agent_type': self.config.agent_type.value,
             'task_type': self.config.task_type.value,

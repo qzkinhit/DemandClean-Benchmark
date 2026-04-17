@@ -1,12 +1,12 @@
 #!/bin/bash
 # ============================================================
-# SimpleImputer Baseline 完整测评脚本
-# 支持 --dataset 参数和 VERSION 环境变量
+# SimpleImputer Baseline full benchmark script
+# supports --dataset argument and VERSION env var
 # ============================================================
 
 set -e
 
-trap 'echo "脚本在第 $LINENO 行失败，退出码: $?"' ERR
+trap 'echo "Script failed at line $LINENO , exit code: $?"' ERR
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 PROJECT_ROOT="$(cd "$SCRIPT_DIR/../.." && pwd)"
@@ -14,7 +14,7 @@ cd "$PROJECT_ROOT"
 
 VERSION="${VERSION:-}"
 
-# 解析命令行参数
+# Parse command-line arguments
 SELECTED_DATASET=""
 while [[ $# -gt 0 ]]; do
     case $1 in
@@ -25,11 +25,11 @@ while [[ $# -gt 0 ]]; do
 done
 
 echo "============================================================"
-echo "SimpleImputer Baseline 完整测评"
-echo "项目根目录: $PROJECT_ROOT"
-echo "版本标识: ${VERSION:-无}"
-echo "指定数据集: ${SELECTED_DATASET:-全部}"
-echo "开始时间: $(date)"
+echo "SimpleImputer Baseline full benchmark"
+echo "Project root: $PROJECT_ROOT"
+echo "Version tag: ${VERSION:-none}"
+echo "Selected dataset: ${SELECTED_DATASET:-all}"
+echo "Start time: $(date)"
 echo "============================================================"
 
 source $HOME/miniconda3/etc/profile.d/conda.sh
@@ -65,7 +65,7 @@ for dataset_config in "${ALL_DATASETS[@]}"; do
     fi
 
     echo "------------------------------------------------------------"
-    echo "数据集: $dataset | 标签: $label_column | 任务: $task_type"
+    echo "Dataset: $dataset | label: $label_column | task: $task_type"
     echo "------------------------------------------------------------"
 
     case $task_type in
@@ -80,8 +80,8 @@ for dataset_config in "${ALL_DATASETS[@]}"; do
     task_name="${dataset}_simpleimputer${VERSION:+_$VERSION}"
     log_file="logs/simpleimputer/${task_name}.log"
 
-    [[ ! -f "$dirty_path" ]] && echo "跳过: $dirty_path 不存在" && failed=$((failed + 1)) && continue
-    [[ ! -f "$clean_path" ]] && echo "跳过: $clean_path 不存在" && failed=$((failed + 1)) && continue
+    [[ ! -f "$dirty_path" ]] && echo "skip: $dirty_path does not exist" && failed=$((failed + 1)) && continue
+    [[ ! -f "$clean_path" ]] && echo "skip: $clean_path does not exist" && failed=$((failed + 1)) && continue
 
     cmd="python MethodsRunScript/run_simpleimputer/run_simpleimputer_base.py \
         --dirty_path $dirty_path --clean_path $clean_path \
@@ -91,15 +91,15 @@ for dataset_config in "${ALL_DATASETS[@]}"; do
 
     [[ -n "$mse_attrs" ]] && cmd="$cmd --mse_attributes $(echo $mse_attrs | tr ',' ' ')"
 
-    echo "日志: $log_file"
+    echo "log: $log_file"
     total=$((total + 1))
     if eval "$cmd" 2>&1 | tee "$log_file"; then
-        echo "✓ 成功: $dataset"; success=$((success + 1))
+        echo "✓ success: $dataset"; success=$((success + 1))
     else
-        echo "✗ 失败: $dataset"; failed=$((failed + 1))
+        echo "✗ failure: $dataset"; failed=$((failed + 1))
     fi
 done
 
 echo "============================================================"
-echo "SimpleImputer 测评完成: 总计=$total 成功=$success 失败=$failed"
+echo "SimpleImputer benchmark done: total=$total success=$success failure=$failed"
 echo "============================================================"

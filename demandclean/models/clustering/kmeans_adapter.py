@@ -1,8 +1,9 @@
 """
-KMeans 聚类适配器
-=================
+KMeans Clustering Adapter
+=========================
 
-使用 silhouette_score 作为评估指标，支持 DQN 环境的聚类任务。
+Uses silhouette_score as the evaluation metric; supports clustering tasks in
+the DQN environment.
 """
 
 import numpy as np
@@ -15,16 +16,16 @@ from ..base_adapter import ModelAdapter
 
 class KMeansAdapter(ModelAdapter):
     """
-    KMeans 聚类适配器
+    KMeans clustering adapter.
 
-    evaluate() 返回 silhouette_score ∈ [-1, 1]，值越大越好。
-    DQN 环境中将其归一化到 [0, 1]。
+    evaluate() returns silhouette_score in [-1, 1]; larger is better.
+    The DQN environment normalizes it to [0, 1].
 
-    对大数据集（>10000 样本）自动采样计算 silhouette_score，
-    避免 O(n²) 全量距离矩阵导致性能瓶颈。
+    For large datasets (>10000 samples), silhouette_score is computed on a
+    subsample to avoid the O(n^2) full-distance-matrix bottleneck.
     """
 
-    # silhouette_score 采样阈值：超过此行数使用采样
+    # Silhouette sampling threshold: use sampling once the row count exceeds this
     _SILHOUETTE_SAMPLE_THRESHOLD = 10000
     _SILHOUETTE_SAMPLE_SIZE = 5000
 
@@ -42,18 +43,18 @@ class KMeansAdapter(ModelAdapter):
         self._labels: Optional[np.ndarray] = None
 
     def fit(self, X: np.ndarray, y: np.ndarray = None) -> 'KMeansAdapter':
-        """训练 KMeans 模型
+        """Train the KMeans model.
 
         Args:
-            X: 特征矩阵
-            y: 真实标签（仅用于确定 n_clusters，不参与训练）
+            X: Feature matrix
+            y: Ground-truth labels (used only to infer n_clusters; not used in training)
         """
-        # 自动从 y 推断簇数
+        # Infer the cluster count from y automatically
         if self.n_clusters is None:
             if y is not None:
                 self.n_clusters = len(np.unique(y))
             else:
-                self.n_clusters = 5  # 默认值
+                self.n_clusters = 5  # Default
 
         self.model = KMeans(
             n_clusters=self.n_clusters,
@@ -64,7 +65,7 @@ class KMeansAdapter(ModelAdapter):
         self._labels = self.model.fit_predict(X)
         self._is_fitted = True
 
-        # 特征重要性：基于聚类中心与全局均值的偏离程度
+        # Feature importance: deviation of cluster centers from the global mean
         if X.shape[1] > 0:
             global_mean = X.mean(axis=0)
             center_deviation = np.abs(self.model.cluster_centers_ - global_mean).mean(axis=0)
@@ -75,16 +76,16 @@ class KMeansAdapter(ModelAdapter):
         return self
 
     def predict(self, X: np.ndarray) -> np.ndarray:
-        """预测簇标签"""
+        """Predict cluster labels."""
         if not self._is_fitted:
-            raise RuntimeError("模型未训练，请先调用 fit()")
+            raise RuntimeError("Model is not trained; please call fit() first.")
         return self.model.predict(X)
 
     def evaluate(self, X: np.ndarray, y: np.ndarray = None) -> float:
-        """评估聚类质量
+        """Evaluate clustering quality.
 
-        返回 silhouette_score ∈ [-1, 1]。
-        对大数据集（>10000 样本）自动采样，避免 O(n²) 性能瓶颈。
+        Returns silhouette_score in [-1, 1]. For large datasets (>10000 samples)
+        a subsample is used automatically to avoid the O(n^2) bottleneck.
         """
         if not self._is_fitted:
             return 0.0
@@ -107,11 +108,12 @@ class KMeansAdapter(ModelAdapter):
             return 0.0
 
     def get_distance_to_boundary(self, X: np.ndarray) -> np.ndarray:
-        """获取到聚类边界的距离
+        """Return the distance to the clustering boundary.
 
-        使用每个样本到最近聚类中心和次近聚类中心的距离差值：
-        - 差值大 → 深入某个簇内部 → 远离边界
-        - 差值小 → 接近两簇交界 → 靠近边界
+        Uses the gap between each sample's distance to its nearest and
+        second-nearest cluster centers:
+        - Large gap -> deep inside a cluster -> far from boundary
+        - Small gap -> close to the boundary between two clusters
         """
         if not self._is_fitted:
             return np.ones(len(X)) * 0.5
@@ -123,10 +125,10 @@ class KMeansAdapter(ModelAdapter):
             if sorted_dists.shape[1] < 2:
                 return np.ones(len(X)) * 0.5
 
-            # 次近距离 - 最近距离（差值越大越确定）
+            # Second-nearest minus nearest (a larger gap means more certainty)
             margin = sorted_dists[:, 1] - sorted_dists[:, 0]
 
-            # 归一化到 [0, 1]
+            # Normalize to [0, 1]
             max_margin = margin.max()
             if max_margin < 1e-10:
                 return np.ones(len(X)) * 0.5
@@ -135,13 +137,13 @@ class KMeansAdapter(ModelAdapter):
             return np.ones(len(X)) * 0.5
 
     def get_feature_importance(self) -> np.ndarray:
-        """获取特征重要性"""
+        """Return feature importance."""
         if self._feature_importance is None:
-            raise RuntimeError("模型未训练，请先调用 fit()")
+            raise RuntimeError("Model is not trained; please call fit() first.")
         return self._feature_importance
 
     def clone(self) -> 'KMeansAdapter':
-        """创建未训练的克隆"""
+        """Create an untrained clone."""
         return KMeansAdapter(
             n_clusters=self.n_clusters,
             random_state=self.random_state,

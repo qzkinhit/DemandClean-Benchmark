@@ -1,6 +1,6 @@
 """
-RandomForest 分类器适配器
-=========================
+RandomForest Classifier Adapter
+===============================
 """
 
 import numpy as np
@@ -12,9 +12,9 @@ from ..base_adapter import ModelAdapter
 
 class RandomForestAdapter(ModelAdapter):
     """
-    随机森林分类器适配器
+    Random forest classifier adapter.
 
-    支持获取特征重要性和预测概率。
+    Provides feature importance and predicted probabilities.
     """
 
     def __init__(self,
@@ -23,13 +23,13 @@ class RandomForestAdapter(ModelAdapter):
                  random_state: int = 42,
                  **kwargs):
         """
-        初始化 RandomForest 适配器
+        Initialize the random forest adapter.
 
         Args:
-            n_estimators: 树的数量
-            max_depth: 最大深度
-            random_state: 随机种子
-            **kwargs: 传递给 RandomForestClassifier 的其他参数
+            n_estimators: Number of trees
+            max_depth: Maximum tree depth
+            random_state: Random seed
+            **kwargs: Additional arguments forwarded to RandomForestClassifier
         """
         super().__init__()
         self.n_estimators = n_estimators
@@ -44,12 +44,12 @@ class RandomForestAdapter(ModelAdapter):
         self._y_classes: Optional[np.ndarray] = None
 
     def fit(self, X: np.ndarray, y: np.ndarray) -> 'RandomForestAdapter':
-        """训练随机森林模型"""
+        """Train the random forest model."""
         self.model.fit(X, y)
         self._y_classes = np.unique(y)
         self._is_fitted = True
 
-        # 特征重要性
+        # Feature importance
         self._feature_importance = self._normalize_importance(
             self.model.feature_importances_
         )
@@ -57,46 +57,46 @@ class RandomForestAdapter(ModelAdapter):
         return self
 
     def predict(self, X: np.ndarray) -> np.ndarray:
-        """预测"""
+        """Make predictions."""
         if not self._is_fitted:
-            raise RuntimeError("模型未训练，请先调用 fit()")
+            raise RuntimeError("Model is not trained; please call fit() first.")
         return self.model.predict(X)
 
     def evaluate(self, X: np.ndarray, y: np.ndarray) -> float:
-        """计算准确率"""
+        """Compute accuracy."""
         y_pred = self.predict(X)
         return np.mean(y_pred == y)
 
     def get_distance_to_boundary(self, X: np.ndarray) -> np.ndarray:
         """
-        获取到决策边界的距离
+        Return the distance to the decision boundary.
 
-        使用预测概率的最大值作为置信度
-        置信度高 -> 远离边界 -> 距离大
-        置信度低（接近0.5）-> 接近边界 -> 距离小
+        Uses the maximum predicted probability as a confidence score.
+        High confidence -> far from the boundary -> large distance.
+        Low confidence (close to 0.5) -> close to the boundary -> small distance.
         """
         if not self._is_fitted:
             return np.ones(len(X)) * 0.5
 
         try:
             proba = self.model.predict_proba(X)
-            # 最大概率作为置信度
+            # Use the max probability as the confidence
             max_proba = np.max(proba, axis=1)
-            # 置信度 0.5 -> 0, 置信度 1.0 -> 1
-            # (max_proba - 0.5) * 2 将 [0.5, 1] 映射到 [0, 1]
+            # Confidence 0.5 -> 0, confidence 1.0 -> 1
+            # (max_proba - 0.5) * 2 maps [0.5, 1] to [0, 1]
             distances = (max_proba - 0.5) * 2
             return np.clip(distances, 0, 1)
         except Exception:
             return np.ones(len(X)) * 0.5
 
     def get_feature_importance(self) -> np.ndarray:
-        """获取特征重要性"""
+        """Return feature importance."""
         if self._feature_importance is None:
-            raise RuntimeError("模型未训练，请先调用 fit()")
+            raise RuntimeError("Model is not trained; please call fit() first.")
         return self._feature_importance
 
     def clone(self) -> 'RandomForestAdapter':
-        """创建未训练的克隆"""
+        """Create an untrained clone."""
         return RandomForestAdapter(
             n_estimators=self.n_estimators,
             max_depth=self.max_depth,

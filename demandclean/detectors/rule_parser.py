@@ -1,23 +1,24 @@
 """
-规则解析器 (DemandClean 用)
-============================
+Rule parser (for DemandClean)
+=============================
 
-解析 data/{dataset}/rules.txt 的所有 Section，
-为语义错误注入和检测提供结构化规则数据。
+Parses every section of data/{dataset}/rules.txt and produces structured rule
+data used for semantic error injection and detection.
 
-支持的 Section:
-  [REGEX]       — 正则句法检测规则（仅存储，注入不用）
-  [DOMAIN]      — 值域约束（语义注入: 注入超域值）
-  [FD]          — 函数依赖（语义注入: FD 违规）
-  [HORIZON_FD]  — 等价于 [FD]
-  [CFD]         — 条件函数依赖（语义注入: 条件违规）
-  [DC]          — 跨列完整性约束（语义注入参考）
-  [STATISTICAL] — 统计阈值参数（仅存储，供检测用）
+Supported sections:
+  [REGEX]       - regex-based syntactic detection rules (stored only, not used for injection)
+  [DOMAIN]      - value-domain constraints (semantic injection: out-of-domain values)
+  [FD]          - functional dependencies (semantic injection: FD violations)
+  [HORIZON_FD]  - equivalent to [FD]
+  [CFD]         - conditional functional dependencies (semantic injection: condition violations)
+  [DC]          - cross-column integrity constraints (semantic-injection reference)
+  [STATISTICAL] - statistical threshold parameters (stored only, used for detection)
 
-设计原则:
-  - 所有规则注入产生的都是语义错误（规则违反）
-  - 句法错误由 RAHA-aware 统计方法注入，不使用规则
-  - 无丰富规则的数据集自动回退到 FD/随机注入
+Design notes:
+  - All rule-based injections produce semantic errors (rule violations).
+  - Syntactic errors are injected by the RAHA-aware statistical method and do
+    not use rules.
+  - Datasets without rich rules automatically fall back to FD-based or random injection.
 """
 
 import os
@@ -27,16 +28,16 @@ from typing import List, Dict, Optional, Tuple, Set, Any
 
 
 # ============================================================================
-# 数据结构定义
+# Data structures
 # ============================================================================
 
 @dataclass
 class DomainRule:
-    """值域约束规则
+    """Value-domain constraint rule.
 
     Examples:
-        INT [1, 10]   → dtype='INT', min_val=1, max_val=10, enum_vals=None
-        ENUM {2, 4}   → dtype='ENUM', min_val=None, max_val=None, enum_vals={2, 4}
+        INT [1, 10]   -> dtype='INT', min_val=1, max_val=10, enum_vals=None
+        ENUM {2, 4}   -> dtype='ENUM', min_val=None, max_val=None, enum_vals={2, 4}
     """
     column: str
     dtype: str          # 'INT', 'FLOAT', 'ENUM'
@@ -47,93 +48,93 @@ class DomainRule:
 
 @dataclass
 class RegexRule:
-    """正则检测规则（仅存储，注入不使用）"""
-    column: str         # 列名或 'ALL_FEATURES'
-    pattern: str        # 正则表达式
+    """Regex detection rule (stored only; not used for injection)."""
+    column: str         # column name or 'ALL_FEATURES'
+    pattern: str        # regex pattern
 
 
 @dataclass
 class CFDRule:
-    """条件函数依赖规则
+    """Conditional functional dependency rule.
 
     Example:
         class=2, n_anomaly<=2 => Clump Thickness EXCESS >= 5 FROM_BASELINE 5
-        → conditions = [('class', '=', '2'), ('n_anomaly', '<=', '2')]
-          target_col = 'Clump Thickness'
-          direction = 'EXCESS'   # 或 'DEFICIT'
-          threshold = 5
-          baseline = 5
+        -> conditions = [('class', '=', '2'), ('n_anomaly', '<=', '2')]
+           target_col = 'Clump Thickness'
+           direction = 'EXCESS'   # or 'DEFICIT'
+           threshold = 5
+           baseline = 5
     """
     conditions: List[Tuple[str, str, str]]  # [(col, op, val), ...]
     target_col: str
-    direction: str      # 'EXCESS' 或 'DEFICIT'
+    direction: str      # 'EXCESS' or 'DEFICIT'
     threshold: float
     baseline: float
 
 
 @dataclass
 class DCRule:
-    """结构化的 DC (Denial Constraint) 规则
+    """Structured DC (Denial Constraint) rule.
 
-    DC 使用 denial 语义：当所有子句条件都成立时表示约束被违反。
-    MARK 子句指定违反时标记的目标列。
+    DCs use denial semantics: the constraint is violated when every clause holds.
+    The MARK clause specifies the column to flag when a violation occurs.
 
     Examples:
         t1&EQ(t1.holiday, 1)&NEQ(t1.workingday, 0)&MARK(t1.workingday)
-        → clauses = [{'type':'simple','op':'EQ','col':'holiday','value':1.0},
+        -> clauses = [{'type':'simple','op':'EQ','col':'holiday','value':1.0},
                       {'type':'simple','op':'NEQ','col':'workingday','value':0.0}]
-          mark_cols = ['workingday']
-          involved_cols = ['holiday', 'workingday']
+           mark_cols = ['workingday']
+           involved_cols = ['holiday', 'workingday']
 
         t1&GT(ABS(t1.454 - t1.458), 0.03)
-        → clauses = [{'type':'abs_diff','op':'GT','col1':'454','col2':'458','value':0.03}]
-          mark_cols = []
-          involved_cols = ['454', '458']
+        -> clauses = [{'type':'abs_diff','op':'GT','col1':'454','col2':'458','value':0.03}]
+           mark_cols = []
+           involved_cols = ['454', '458']
     """
-    raw: str                                    # 原始字符串
-    clauses: List[Dict[str, Any]]               # 解析后的条件子句列表
-    mark_cols: List[str]                        # MARK 标记的目标列（可能为空）
-    involved_cols: List[str]                    # 所有涉及的列（不含 MARK 列自身）
+    raw: str                                    # original string
+    clauses: List[Dict[str, Any]]               # parsed condition clauses
+    mark_cols: List[str]                        # target columns flagged by MARK (may be empty)
+    involved_cols: List[str]                    # all columns referenced (excluding MARK columns)
 
 
 @dataclass
 class ParsedRules:
-    """解析后的完整规则集合"""
-    # 语义注入用
+    """Full parsed rule collection."""
+    # Semantic-injection rules
     domain_rules: List[DomainRule] = field(default_factory=list)
     fd_rules: List[Tuple[str, str]] = field(default_factory=list)       # [(lhs, rhs)]
     cfd_rules: List[CFDRule] = field(default_factory=list)
-    dc_rules: List[DCRule] = field(default_factory=list)                # 结构化 DC 规则
+    dc_rules: List[DCRule] = field(default_factory=list)                # structured DC rules
 
-    # 可选
-    primary_key: Optional[List[str]] = None     # 主键列名列表（分块聚类用）
+    # Optional
+    primary_key: Optional[List[str]] = None     # primary-key columns (used for block clustering)
 
-    # 仅存储，供检测用
+    # Stored only, used for detection
     regex_rules: List[RegexRule] = field(default_factory=list)
     statistical: Dict[str, Any] = field(default_factory=dict)
 
-    # 元信息
+    # Metadata
     raw_sections: Dict[str, List[str]] = field(default_factory=dict)
 
     @property
     def has_rich_rules(self) -> bool:
-        """是否有丰富规则（DOMAIN / CFD / DC）
+        """Whether rich rules exist (DOMAIN / CFD / DC).
 
-        有丰富规则时优先用规则注入语义错误；
-        否则回退到 FD 注入或随机注入。
+        When rich rules are available, rule-based semantic injection is
+        preferred; otherwise fall back to FD-based or random injection.
         """
         return bool(self.domain_rules or self.cfd_rules or self.dc_rules)
 
     @property
     def has_any_rules(self) -> bool:
-        """是否有任何规则"""
+        """Whether any rule at all is defined."""
         return bool(
             self.domain_rules or self.fd_rules or self.cfd_rules
             or self.dc_rules or self.regex_rules
         )
 
     def summary(self) -> str:
-        """规则摘要"""
+        """Rule summary."""
         parts = []
         if self.regex_rules:
             parts.append(f"REGEX={len(self.regex_rules)}")
@@ -151,22 +152,22 @@ class ParsedRules:
 
 
 # ============================================================================
-# 解析函数
+# Parsing functions
 # ============================================================================
 
 def parse_rules_file(rules_path: str) -> ParsedRules:
-    """解析 rules.txt 的所有 Section
+    """Parse every section of rules.txt.
 
     Args:
-        rules_path: 规则文件路径
+        rules_path: path to the rule file
 
     Returns:
-        ParsedRules 结构化规则对象
+        A structured ParsedRules object.
     """
     if not rules_path or not os.path.exists(rules_path):
         return ParsedRules()
 
-    # 第一步：按 section 分组读取原始行
+    # Step 1: group raw lines by section
     raw_sections: Dict[str, List[str]] = {}
     current_section = None
 
@@ -181,7 +182,7 @@ def parse_rules_file(rules_path: str) -> ParsedRules:
             elif current_section:
                 raw_sections[current_section].append(line)
 
-    # 第二步：逐 section 解析
+    # Step 2: parse section by section
     result = ParsedRules(raw_sections=raw_sections)
 
     # REGEX
@@ -196,7 +197,7 @@ def parse_rules_file(rules_path: str) -> ParsedRules:
         if rule:
             result.domain_rules.append(rule)
 
-    # FD (合并 [FD] 和 [HORIZON_FD])
+    # FD (merge [FD] and [HORIZON_FD])
     for section_name in ('FD', 'HORIZON_FD'):
         for line in raw_sections.get(section_name, []):
             pair = _parse_fd_line(line)
@@ -209,13 +210,13 @@ def parse_rules_file(rules_path: str) -> ParsedRules:
         if rule:
             result.cfd_rules.append(rule)
 
-    # DC（结构化解析）
+    # DC (structured parsing)
     for line in raw_sections.get('DC', []):
         rule = _parse_dc_line(line)
         if rule:
             result.dc_rules.append(rule)
 
-    # PRIMARY_KEY（可选，分块聚类用）
+    # PRIMARY_KEY (optional, used for block clustering)
     pk_lines = raw_sections.get('PRIMARY_KEY', [])
     if pk_lines:
         pk_cols = []
@@ -231,7 +232,7 @@ def parse_rules_file(rules_path: str) -> ParsedRules:
     for line in raw_sections.get('STATISTICAL', []):
         key, val = _parse_statistical_line(line)
         if key == 'COL_STATS' and isinstance(val, tuple):
-            # 按列统计量: val = (col_name, {mean, std, ...})
+            # Per-column stats: val = (col_name, {mean, std, ...})
             col_stats_dict = result.statistical.setdefault('col_stats', {})
             col_name, stats = val
             col_stats_dict[col_name] = stats
@@ -242,13 +243,13 @@ def parse_rules_file(rules_path: str) -> ParsedRules:
 
 
 # ============================================================================
-# Section 级解析器
+# Section-level parsers
 # ============================================================================
 
 def _parse_regex_line(line: str) -> Optional[RegexRule]:
-    """解析 REGEX 规则行
+    """Parse a REGEX rule line.
 
-    格式: COLUMN: pattern
+    Format: COLUMN: pattern
     Example: ALL_FEATURES: ^(\\d)\\1$
     """
     if ':' not in line:
@@ -262,9 +263,9 @@ def _parse_regex_line(line: str) -> Optional[RegexRule]:
 
 
 def _parse_domain_line(line: str) -> Optional[DomainRule]:
-    """解析 DOMAIN 规则行
+    """Parse a DOMAIN rule line.
 
-    格式:
+    Formats:
         Column Name: INT [min, max]
         Column Name: FLOAT [min, max]
         Column Name: ENUM {val1, val2, ...}
@@ -279,7 +280,7 @@ def _parse_domain_line(line: str) -> Optional[DomainRule]:
     if not col or not spec:
         return None
 
-    # INT/FLOAT 范围
+    # INT / FLOAT range
     range_match = re.match(r'(INT|FLOAT)\s*\[([^,]+),\s*([^\]]+)\]', spec)
     if range_match:
         dtype = range_match.group(1)
@@ -287,7 +288,7 @@ def _parse_domain_line(line: str) -> Optional[DomainRule]:
         max_val = float(range_match.group(3).strip())
         return DomainRule(column=col, dtype=dtype, min_val=min_val, max_val=max_val)
 
-    # ENUM 集合
+    # ENUM set
     enum_match = re.match(r'ENUM\s*\{([^}]+)\}', spec)
     if enum_match:
         vals = {v.strip() for v in enum_match.group(1).split(',')}
@@ -297,9 +298,9 @@ def _parse_domain_line(line: str) -> Optional[DomainRule]:
 
 
 def _parse_fd_line(line: str) -> Optional[Tuple[str, str]]:
-    """解析 FD 规则行
+    """Parse an FD rule line.
 
-    格式: LHS => RHS  或  LHS ⇒ RHS
+    Format: LHS => RHS  or  LHS \u21d2 RHS
     """
     for sep in ('=>', '⇒'):
         if sep in line:
@@ -313,9 +314,9 @@ def _parse_fd_line(line: str) -> Optional[Tuple[str, str]]:
 
 
 def _parse_cfd_line(line: str) -> Optional[CFDRule]:
-    """解析 CFD 规则行
+    """Parse a CFD rule line.
 
-    格式:
+    Format:
         class=2, n_anomaly<=2 => Clump Thickness EXCESS >= 5 FROM_BASELINE 5
         class=4, n_anomaly<=1 => Clump Thickness DEFICIT >= 3 FROM_BASELINE 4
     """
@@ -326,11 +327,11 @@ def _parse_cfd_line(line: str) -> Optional[CFDRule]:
     lhs = lhs.strip()
     rhs = rhs.strip()
 
-    # 解析条件部分 (逗号分隔的 col op val)
+    # Parse conditions (comma-separated "col op val")
     conditions = []
     for cond_str in lhs.split(','):
         cond_str = cond_str.strip()
-        # 匹配 col op val，支持 =, <=, >=, <, >, !=
+        # Match "col op val"; supports =, <=, >=, <, >, !=
         m = re.match(r'(\w+)\s*(<=|>=|!=|=|<|>)\s*(.+)', cond_str)
         if m:
             conditions.append((m.group(1).strip(), m.group(2), m.group(3).strip()))
@@ -338,7 +339,7 @@ def _parse_cfd_line(line: str) -> Optional[CFDRule]:
     if not conditions:
         return None
 
-    # 解析右侧:  ColName EXCESS/DEFICIT >= threshold FROM_BASELINE baseline
+    # Parse RHS:  ColName EXCESS/DEFICIT >= threshold FROM_BASELINE baseline
     rhs_match = re.match(
         r'(.+?)\s+(EXCESS|DEFICIT)\s*>=\s*(\d+(?:\.\d+)?)\s+FROM_BASELINE\s+(\d+(?:\.\d+)?)',
         rhs
@@ -360,18 +361,18 @@ def _parse_cfd_line(line: str) -> Optional[CFDRule]:
     )
 
 
-# ---- DC 子句解析（共享逻辑，auto_detector 也使用） ----
+# ---- DC clause parsing (shared; auto_detector uses it too) ----
 
 def parse_dc_clause(clause_str: str) -> Optional[Dict[str, Any]]:
-    """解析单个 DC 子句
+    """Parse a single DC clause.
 
-    支持格式:
-        EQ(t1.col, val)     → {'type':'simple', 'op':'EQ', 'col':'col', 'value':val}
-        GTE(t1.col, val)    → {'type':'simple', 'op':'GTE', 'col':'col', 'value':val}
-        GT(ABS(t1.c1-t1.c2), val) → {'type':'abs_diff', 'op':'GT', 'col1','col2','value'}
-        MARK(t1.col)        → {'type':'mark', 'col':'col'}
+    Supported formats:
+        EQ(t1.col, val)           -> {'type':'simple', 'op':'EQ', 'col':'col', 'value':val}
+        GTE(t1.col, val)          -> {'type':'simple', 'op':'GTE', 'col':'col', 'value':val}
+        GT(ABS(t1.c1-t1.c2), val) -> {'type':'abs_diff', 'op':'GT', 'col1','col2','value'}
+        MARK(t1.col)              -> {'type':'mark', 'col':'col'}
     """
-    # MARK 格式: MARK(t1.col)
+    # MARK format: MARK(t1.col)
     mark_match = re.match(r'MARK\(t1\.(.+?)\)', clause_str)
     if mark_match:
         col = mark_match.group(1).strip()
@@ -381,7 +382,7 @@ def parse_dc_clause(clause_str: str) -> Optional[Dict[str, Any]]:
             'columns': [col],
         }
 
-    # ABS 差值格式: GT(ABS(t1.col1 - t1.col2), val)
+    # ABS-diff format: GT(ABS(t1.col1 - t1.col2), val)
     abs_match = re.match(
         r'(GT|GTE|LT|LTE|EQ|NEQ)\(ABS\(t1\.(.+?)\s*-\s*t1\.(.+?)\)\s*,\s*(.+?)\)',
         clause_str
@@ -404,7 +405,7 @@ def parse_dc_clause(clause_str: str) -> Optional[Dict[str, Any]]:
             'columns': [col1, col2],
         }
 
-    # 简单格式: OP(t1.col, val)
+    # Simple format: OP(t1.col, val)
     simple_match = re.match(
         r'(GT|GTE|LT|LTE|EQ|NEQ|IQ)\(t1\.(.+?)\s*,\s*(.+?)\)',
         clause_str
@@ -435,10 +436,10 @@ def parse_dc_clause(clause_str: str) -> Optional[Dict[str, Any]]:
 
 
 def _parse_dc_line(line: str) -> Optional[DCRule]:
-    """解析 DC 规则行
+    """Parse a DC rule line.
 
-    格式: t1&CLAUSE1&CLAUSE2&...&MARK(t1.col)
-    Example:
+    Format: t1&CLAUSE1&CLAUSE2&...&MARK(t1.col)
+    Examples:
         t1&EQ(t1.holiday, 1)&NEQ(t1.workingday, 0)&MARK(t1.workingday)
         t1&GT(ABS(t1.454 - t1.458), 0.03)
     """
@@ -454,7 +455,7 @@ def _parse_dc_line(line: str) -> Optional[DCRule]:
     mark_cols = []
     involved_cols = []
 
-    for part in parts[1:]:  # 跳过 "t1"
+    for part in parts[1:]:  # skip "t1"
         clause = parse_dc_clause(part.strip())
         if clause:
             if clause['type'] == 'mark':
@@ -466,7 +467,7 @@ def _parse_dc_line(line: str) -> Optional[DCRule]:
     if not clauses:
         return None
 
-    # 去重但保序
+    # Deduplicate while preserving order
     seen = set()
     unique_cols = []
     for c in involved_cols:
@@ -483,14 +484,14 @@ def _parse_dc_line(line: str) -> Optional[DCRule]:
 
 
 def _parse_statistical_line(line: str) -> Tuple[Optional[str], Any]:
-    """解析 STATISTICAL 配置行
+    """Parse a STATISTICAL configuration line.
 
-    格式1 (全局参数): KEY: value
-    Example:
+    Format 1 (global parameter): KEY: value
+    Examples:
         IQR_MULTIPLIER: 2.5
         ZSCORE_THRESHOLD: 3.0
 
-    格式2 (按列统计量): COL_STATS: col_name | mean=0.123 | std=0.456 | ...
+    Format 2 (per-column stats): COL_STATS: col_name | mean=0.123 | std=0.456 | ...
     Example:
         COL_STATS: abv | mean=0.059 | std=0.014 | q1=0.050 | q3=0.068 | min=0.001 | max=0.128 | median=0.056
     """
@@ -504,7 +505,7 @@ def _parse_statistical_line(line: str) -> Tuple[Optional[str], Any]:
     if not key:
         return None, None
 
-    # 按列统计量
+    # Per-column stats
     if key == 'COL_STATS' and '|' in val:
         parts = [p.strip() for p in val.split('|')]
         col_name = parts[0]
@@ -520,13 +521,13 @@ def _parse_statistical_line(line: str) -> Tuple[Optional[str], Any]:
             return 'COL_STATS', (col_name, stats)
         return None, None
 
-    # 尝试解析为数值
+    # Try numeric
     try:
         return key, float(val)
     except ValueError:
         pass
 
-    # 逗号分隔的列名列表
+    # Comma-separated column-name list
     if ',' in val:
         return key, [v.strip() for v in val.split(',')]
 
@@ -534,17 +535,17 @@ def _parse_statistical_line(line: str) -> Tuple[Optional[str], Any]:
 
 
 # ============================================================================
-# 便捷函数
+# Convenience helpers
 # ============================================================================
 
 def load_rules(rules_path: Optional[str]) -> ParsedRules:
-    """加载并解析规则文件（带空值保护）
+    """Load and parse a rule file (null-safe).
 
     Args:
-        rules_path: 规则文件路径，None 时返回空规则集
+        rules_path: path to the rule file; None returns an empty rule set
 
     Returns:
-        ParsedRules 对象
+        A ParsedRules object.
     """
     if not rules_path:
         return ParsedRules()
@@ -552,9 +553,9 @@ def load_rules(rules_path: Optional[str]) -> ParsedRules:
 
 
 def extract_fd_pairs(parsed: ParsedRules) -> List[Tuple[str, str]]:
-    """提取 FD 规则对（兼容 HORIZON_FD 和 FD section）
+    """Extract FD pairs (compatible with both HORIZON_FD and FD sections).
 
-    返回去重后的 (lhs, rhs) 列表
+    Returns a deduplicated list of (lhs, rhs) tuples.
     """
     seen = set()
     result = []
@@ -567,10 +568,10 @@ def extract_fd_pairs(parsed: ParsedRules) -> List[Tuple[str, str]]:
 
 
 def get_domain_range(parsed: ParsedRules, column: str) -> Optional[Tuple[float, float]]:
-    """获取指定列的值域范围
+    """Return the domain range for a column.
 
     Returns:
-        (min_val, max_val) 或 None
+        (min_val, max_val) or None
     """
     for rule in parsed.domain_rules:
         if rule.column == column and rule.min_val is not None:
@@ -579,10 +580,10 @@ def get_domain_range(parsed: ParsedRules, column: str) -> Optional[Tuple[float, 
 
 
 def get_domain_enum(parsed: ParsedRules, column: str) -> Optional[Set[str]]:
-    """获取指定列的枚举合法值集合
+    """Return the set of valid enum values for a column.
 
     Returns:
-        set of valid values 或 None
+        Set of valid values, or None.
     """
     for rule in parsed.domain_rules:
         if rule.column == column and rule.enum_vals is not None:
@@ -591,7 +592,7 @@ def get_domain_enum(parsed: ParsedRules, column: str) -> Optional[Set[str]]:
 
 
 def get_cfd_rules_for_class(parsed: ParsedRules, class_val: str) -> List[CFDRule]:
-    """获取指定 class 值的所有 CFD 规则"""
+    """Return all CFD rules conditioned on a given class value."""
     result = []
     for rule in parsed.cfd_rules:
         for col, op, val in rule.conditions:
@@ -605,11 +606,11 @@ def get_col_stats_from_rules(
     parsed: ParsedRules,
     column_names: List[str],
 ) -> Dict[int, Dict[str, float]]:
-    """从 parsed_rules.statistical['col_stats'] 提取按列索引的统计量
+    """Extract per-column-index statistics from parsed_rules.statistical['col_stats'].
 
     Args:
-        parsed: 解析后的规则
-        column_names: 特征列名列表
+        parsed: parsed rules
+        column_names: list of feature column names
 
     Returns:
         {col_idx: {'mean': ..., 'std': ..., 'q1': ..., 'q3': ..., 'min': ..., 'max': ..., 'median': ...}}
@@ -627,7 +628,7 @@ def get_col_stats_from_rules(
 
 
 def rules_to_dict(parsed: ParsedRules) -> Dict[str, Any]:
-    """将 ParsedRules 转为可序列化的字典（供 config 传递）"""
+    """Convert ParsedRules to a serializable dict (for passing through config)."""
     return {
         'has_rich_rules': parsed.has_rich_rules,
         'has_any_rules': parsed.has_any_rules,
@@ -667,7 +668,7 @@ def rules_to_dict(parsed: ParsedRules) -> Dict[str, Any]:
 
 
 # ============================================================================
-# 测试入口
+# Test entry point
 # ============================================================================
 
 if __name__ == '__main__':
@@ -702,7 +703,7 @@ if __name__ == '__main__':
         print(f"\nDC ({len(parsed.dc_rules)}):")
         for r in parsed.dc_rules:
             mark_str = f" MARK={r.mark_cols}" if r.mark_cols else ""
-            print(f"  {r.raw}  →  clauses={len(r.clauses)}, cols={r.involved_cols}{mark_str}")
+            print(f"  {r.raw}  ->  clauses={len(r.clauses)}, cols={r.involved_cols}{mark_str}")
 
     if parsed.statistical:
         print(f"\nSTATISTICAL: {parsed.statistical}")

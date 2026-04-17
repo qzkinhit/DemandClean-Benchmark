@@ -1,13 +1,13 @@
 """
 RepairAll Wrapper
 
-RepairAll是一个上界baseline，直接使用干净数据替换脏数据。
-相当于"完美修复"所有错误，用于建立性能上界。
+RepairAllis一个上界baseline，直接usecleandatareplace脏data。
+相当于"完美repair"allError，used for建立can上界。
 
 特点:
-- 直接返回干净数据作为"修复"结果
-- Type 2方法（需要真值）
-- 用于建立性能上界baseline
+- 直接returncleandata作to"repair"result
+- Type 2method（需needground truth）
+- used for建立can上界baseline
 """
 
 import os
@@ -17,15 +17,15 @@ from typing import Dict, Optional, Tuple
 
 class RepairAllWrapper:
     """
-    RepairAll清洗方法 - 完美修复baseline
+    RepairAllcleaningmethod - 完美repairbaseline
 
-    直接使用干净数据替换脏数据，相当于100%正确修复所有错误。
+    直接usecleandatareplace脏data，相当于100%正确repairallError。
     """
 
     def __init__(self, verbose: bool = False):
         self.verbose = verbose
         self.method_name = "RepairAll"
-        self.method_type = 2  # 需要真值
+        self.method_type = 2  # 需needground truth
 
     def clean(self,
               dirty_path: str,
@@ -33,30 +33,30 @@ class RepairAllWrapper:
               output_path: str,
               index_attribute: str = 'index') -> Tuple[pd.DataFrame, Dict]:
         """
-        执行"完美修复"：直接返回干净数据
+        执row"完美repair"：直接returncleandata
 
         Args:
-            dirty_path: 脏数据路径
-            clean_path: 干净数据路径
-            output_path: 输出文件路径
-            index_attribute: 索引列名
+            dirty_path: 脏datapath
+            clean_path: cleandatapath
+            output_path: outputfilepath
+            index_attribute: 索引column name
 
         Returns:
-            (修复后的数据DataFrame, 清洗信息字典)
+            (repairafterdataDataFrame, cleaning信息dict)
         """
-        # 读取数据
+        # Read data
         dirty_data = pd.read_csv(dirty_path)
         clean_data = pd.read_csv(clean_path)
 
         if self.verbose:
-            print(f"RepairAll: 读取脏数据 {len(dirty_data)} 行, {len(dirty_data.columns)} 列")
-            print(f"RepairAll: 读取干净数据 {len(clean_data)} 行, {len(clean_data.columns)} 列")
+            print(f"RepairAll: Read脏data {len(dirty_data)} row, {len(dirty_data.columns)} column")
+            print(f"RepairAll: Readcleandata {len(clean_data)} row, {len(clean_data.columns)} column")
 
-        # 计算修复统计信息
+        # 计算repairCount信息
         total_cells = len(dirty_data) * len(dirty_data.columns)
         repaired_cells = 0
 
-        # 比较脏数据和干净数据，计算修复了多少单元格
+        # 比较脏dataandcleandata，计算repair多少cell
         common_indices = dirty_data.index.intersection(clean_data.index)
         common_columns = [c for c in dirty_data.columns if c in clean_data.columns]
 
@@ -72,15 +72,15 @@ class RepairAllWrapper:
                 except:
                     pass
 
-        # 直接使用干净数据作为输出
+        # 直接usecleandata作tooutput
         result = clean_data.copy()
 
-        # 保存结果
+        # Save results
         result.to_csv(output_path, index=False)
 
         if self.verbose:
-            print(f"RepairAll: 修复了 {repaired_cells} 个单元格")
-            print(f"RepairAll: 输出保存到 {output_path}")
+            print(f"RepairAll: repair {repaired_cells} 个cell")
+            print(f"RepairAll: outputsaveto {output_path}")
 
         clean_info = {
             'original_rows': len(dirty_data),
@@ -88,7 +88,7 @@ class RepairAllWrapper:
             'repaired_cells': repaired_cells,
             'total_cells': total_cells,
             'repair_ratio': repaired_cells / total_cells if total_cells > 0 else 0,
-            'ground_truth_cost': repaired_cells,  # 使用了所有真值来修复
+            'ground_truth_cost': repaired_cells,  # useallground truth来repair
             'method_type': self.method_type
         }
 
@@ -105,4 +105,4 @@ if __name__ == '__main__':
             clean_path=sys.argv[2],
             output_path='test_repairall_output.csv'
         )
-        print(f"结果: {info}")
+        print(f"result: {info}")

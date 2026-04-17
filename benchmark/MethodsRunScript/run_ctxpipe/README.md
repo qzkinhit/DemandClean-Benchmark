@@ -1,32 +1,32 @@
 # CtxPipe Baseline
 
-## 简介
+## Overview
 
-CtxPipe (Context-aware Data Preparation Pipeline) 是一个基于强化学习的数据准备管道自动生成工具，能够根据数据上下文自动选择最优的数据处理流程。
+CtxPipe (Context-aware Data Preparation Pipeline) is a reinforcement-learning-based tool for automatically generating data preparation pipelines, selecting the optimal processing flow for the context of the data.
 
-**论文**: [CtxPipe: Context-aware Data Preparation Pipeline Construction for Machine Learning](https://dl.acm.org/doi/10.1145/3626246.3653389) (SIGMOD 2025)
+**Paper**: [CtxPipe: Context-aware Data Preparation Pipeline Construction for Machine Learning](https://dl.acm.org/doi/10.1145/3626246.3653389) (SIGMOD 2025)
 
-**重要说明**:
-- `Methods/ctxpipe` 目录与官方仓库完全一致，未做代码修改
-- 使用预训练模型 `ctx_50000` 进行推理，**无需训练**
+**Notes**:
+- `Methods/ctxpipe` mirrors the official repository exactly; no source modifications.
+- Inference uses the pretrained model `ctx_50000`; **no training required**.
 
-## 方法类型
+## Method Type
 
-| 类型 | 说明 |
-|------|------|
-| **Type 1** | 全自动，无需真值 |
-| 真值使用 | 0（仅用于评估） |
+| Type | Description |
+|------|-------------|
+| **Type 1** | Fully automatic; no ground truth required |
+| Ground truth | 0 (used only for evaluation) |
 
-## 核心思想
+## Core Idea
 
-1. 使用 GTE-large 嵌入模型提取数据表的上下文向量
-2. 通过 DQN 强化学习选择最优数据处理组件
-3. 自动构建端到端的数据准备管道
+1. Extract table context vectors with the GTE-large embedding model.
+2. Use a DQN agent to pick the best data-processing component at each step.
+3. Automatically assemble the end-to-end data preparation pipeline.
 
-## 运行方式
+## How to Run
 
 ```bash
-# 单个数据集
+# Single dataset
 python MethodsRunScript/run_ctxpipe/run_ctxpipe_base.py \
     --dirty_path Data/beers/dirty_index.csv \
     --clean_path Data/beers/clean_index.csv \
@@ -36,27 +36,27 @@ python MethodsRunScript/run_ctxpipe/run_ctxpipe_base.py \
     --task_type classification \
     --model_tag ctx_50000
 
-# 批量运行所有数据集
+# Batch run across all datasets
 bash MethodsRunScript/run_ctxpipe/run.sh
 ```
 
-## 参数说明
+## Arguments
 
-| 参数 | 必需 | 说明 | 默认值 |
-|------|------|------|--------|
-| `--dirty_path` | 是 | 脏数据路径 | - |
-| `--clean_path` | 是 | 干净数据路径（用于评估） | - |
-| `--task_name` | 是 | 任务名称 | - |
-| `--output_path` | 否 | 结果输出路径 | `results/ctxpipe/` |
-| `--label_index` | 否 | 标签列索引（从0开始） | 自动检测 |
-| `--task_type` | 否 | 任务类型 | `classification` |
-| `--model_tag` | 否 | 预训练模型标签 | `ctx_50000` |
-| `--skip_evaluation` | 否 | 跳过评估 | `False` |
+| Argument | Required | Description | Default |
+|----------|----------|-------------|---------|
+| `--dirty_path` | yes | Path to the dirty data | - |
+| `--clean_path` | yes | Path to the clean data (for evaluation) | - |
+| `--task_name` | yes | Task name | - |
+| `--output_path` | no | Output directory | `results/ctxpipe/` |
+| `--label_index` | no | Label column index (0-based) | auto-detect |
+| `--task_type` | no | Task type | `classification` |
+| `--model_tag` | no | Pretrained model tag | `ctx_50000` |
+| `--skip_evaluation` | no | Skip evaluation | `False` |
 
-## 数据集配置
+## Dataset Configuration
 
-| 数据集 | 任务类型 | label_index | 标签列 |
-|--------|----------|-------------|--------|
+| Dataset | Task Type | label_index | Label Column |
+|---------|-----------|-------------|--------------|
 | adult | classification | 14 | income |
 | beers | classification | 4 | style |
 | breast_cancer | classification | 9 | class |
@@ -67,42 +67,42 @@ bash MethodsRunScript/run_ctxpipe/run.sh
 | soilmoisture | regression | 2 | soil_moisture |
 | har | clustering | 3 | gt |
 
-## 管道组件
+## Pipeline Components
 
-CtxPipe 自动选择以下组件的最优组合：
+CtxPipe picks the best combination over these components:
 
-| 组件 | 选项 |
-|------|------|
-| 数值填充 | 均值、中位数、众数 |
-| 类别填充 | 众数 |
-| 编码器 | 标签编码、独热编码 |
-| 特征预处理 | MinMaxScaler, StandardScaler, RobustScaler |
-| 特征工程 | 多项式特征、PCA、核PCA |
-| 特征选择 | 方差阈值 |
+| Component | Options |
+|-----------|---------|
+| Numeric imputation | mean, median, mode |
+| Categorical imputation | mode |
+| Encoder | label encoding, one-hot encoding |
+| Feature preprocessing | MinMaxScaler, StandardScaler, RobustScaler |
+| Feature engineering | polynomial features, PCA, kernel PCA |
+| Feature selection | variance threshold |
 
-## 输出文件
+## Output Files
 
 ```
 results/ctxpipe/{task_name}/
-├── {task_name}_ctxpipe_output.csv   # 处理后的数据
-├── {task_name}_pipeline_info.txt    # 选择的管道信息
-├── {task_name}_total_evaluation.txt # 评估报告
-└── {task_name}.log                  # 运行日志
+├── {task_name}_ctxpipe_output.csv   # Processed data
+├── {task_name}_pipeline_info.txt    # Selected pipeline info
+├── {task_name}_total_evaluation.txt # Evaluation report
+└── {task_name}.log                  # Run log
 ```
 
-## 依赖要求
+## Dependencies
 
 - PyTorch
-- sentence-transformers（GTE-large 模型）
-- 需要下载嵌入模型到 `Methods/ctxpipe/embed/gte-large/`
+- sentence-transformers (GTE-large)
+- Download the embedding model to `Methods/ctxpipe/embed/gte-large/`
 
-## 设备说明
+## Device Notes
 
-- 自动检测：有 GPU 时使用 CUDA，无 GPU 时使用 CPU
-- 适配器会自动处理设备兼容性
+- Auto-detected: CUDA when a GPU is available, CPU otherwise.
+- The adapter handles device compatibility automatically.
 
-## 注意事项
+## Notes
 
-- 使用独立的 conda 环境 `ctxpipe-pt112`
-- 每个数据集运行时间几秒到几十秒
-- 无需训练，直接使用预训练模型推理
+- Uses the dedicated conda environment `ctxpipe-pt112`.
+- Per-dataset runtime is a few to a few tens of seconds.
+- No training needed; inference uses the pretrained model directly.

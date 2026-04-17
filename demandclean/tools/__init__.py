@@ -1,8 +1,8 @@
 """
-工具模块
-========
+Tools module
+============
 
-提供 Shapley 分析、CSV 格式归一化等工具。
+Provides Shapley analysis, CSV format normalization, and other utilities.
 """
 
 from .shapley_analysis import (

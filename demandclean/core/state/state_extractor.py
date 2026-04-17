@@ -1,8 +1,8 @@
 """
-状态特征提取器基类
-==================
+State-feature extractor base class
+==================================
 
-从数据和错误信息中提取 DQN 状态向量。
+Build the DQN state vector from data and error info.
 """
 
 from abc import ABC, abstractmethod
@@ -16,40 +16,40 @@ if TYPE_CHECKING:
 
 class StateExtractor(ABC):
     """
-    状态特征提取器抽象基类
+    Abstract base class for state-feature extractors.
 
-    负责从数据和错误信息中提取 8 维状态向量:
-        1. error_type: 错误类型 (归一化到 [0, 1])
-        2. feature_importance: 特征重要性
-        3. distance_to_boundary: 到决策边界的距离
-        4. row_position: 行位置
-        5. col_index: 列索引
-        6. col_error_rate: 当前列的错误率
-        7. sample_retention: 样本保留率
-        8. var_retention: 方差保留率
+    Produces an 8-dim state vector from data and error info:
+        1. error_type: error type (normalized to [0, 1])
+        2. feature_importance: feature importance
+        3. distance_to_boundary: distance to the decision boundary
+        4. row_position: row position
+        5. col_index: column index
+        6. col_error_rate: error rate of the current column
+        7. sample_retention: sample retention ratio
+        8. var_retention: variance retention ratio
     """
 
     def __init__(self, model_adapter: 'ModelAdapter', config: 'DemandCleanConfig'):
         """
-        初始化状态提取器
+        Initialize the state extractor.
 
         Args:
-            model_adapter: 模型适配器
-            config: 配置对象
+            model_adapter: model adapter
+            config: configuration object
         """
         self.model_adapter = model_adapter
         self.config = config
 
-        # 列统计量
+        # Column statistics
         self.col_stats: Dict[int, Dict[str, float]] = {}
 
-        # 特征重要性
+        # Feature importance
         self.feature_importance: Optional[np.ndarray] = None
 
-        # 列错误率
+        # Column error rates
         self.col_error_rate: Optional[np.ndarray] = None
 
-        # 原始数据统计
+        # Original data stats
         self._n_samples: int = 0
         self._n_features: int = 0
 
@@ -58,12 +58,12 @@ class StateExtractor(ABC):
                    y: np.ndarray,
                    error_list: List[Dict[str, Any]]) -> None:
         """
-        初始化状态提取器
+        Initialize the state extractor.
 
         Args:
-            X: 数据矩阵
-            y: 标签
-            error_list: 错误列表
+            X: data matrix
+            y: labels
+            error_list: list of errors
         """
         self._n_samples = len(X)
         self._n_features = X.shape[1] if X.ndim > 1 else 1
@@ -73,7 +73,7 @@ class StateExtractor(ABC):
         self._train_reference_model(X, y)
 
     def _compute_col_stats(self, X: np.ndarray) -> None:
-        """计算列统计量"""
+        """Compute per-column statistics."""
         n_cols = X.shape[1] if X.ndim > 1 else 1
 
         for col in range(n_cols):
@@ -100,32 +100,32 @@ class StateExtractor(ABC):
                 }
 
     def _compute_col_error_rate(self, error_list: List[Dict[str, Any]]) -> None:
-        """计算每列的错误率"""
+        """Compute per-column error rate."""
         col_error_counts = np.zeros(self._n_features)
 
         for error in error_list:
             col = error.get('col', 0)
             if 0 <= col < self._n_features:
                 col_error_counts[col] += 1
-            # col == -1 (标签错误) 不计入特征列错误率
+            # col == -1 (label errors) are not counted toward feature columns
 
         total = len(error_list) if error_list else 1
         self.col_error_rate = col_error_counts / total
 
     def _train_reference_model(self, X: np.ndarray, y: np.ndarray) -> None:
-        """训练参考模型用于计算特征重要性和边界距离"""
+        """Train the reference model used for feature importance and boundary distance."""
         X_filled = self.fill_nan(X)
 
         try:
             self.model_adapter.fit(X_filled, y)
             self.feature_importance = self.model_adapter.get_feature_importance()
         except Exception as e:
-            # 训练失败，使用均匀分布
-            print(f"参考模型训练失败: {e}")
+            # Fall back to a uniform distribution if training fails
+            print(f"Reference model training failed: {e}")
             self.feature_importance = np.ones(self._n_features) / self._n_features
 
     def fill_nan(self, X: np.ndarray) -> np.ndarray:
-        """用列均值填充 NaN"""
+        """Fill NaNs with column means."""
         X_filled = X.copy()
         n_cols = X_filled.shape[1] if X_filled.ndim > 1 else 1
 
@@ -148,16 +148,16 @@ class StateExtractor(ABC):
                 error: Dict[str, Any],
                 deleted_rows: Set[int]) -> np.ndarray:
         """
-        提取状态特征向量
+        Build the state feature vector.
 
         Args:
-            X_current: 当前数据矩阵
-            y: 标签
-            error: 当前错误信息
-            deleted_rows: 已删除的行集合
+            X_current: current data matrix
+            y: labels
+            error: current error info
+            deleted_rows: set of already-deleted row indices
 
         Returns:
-            8 维状态向量
+            8-dim state vector.
         """
         pass
 
@@ -167,15 +167,15 @@ class StateExtractor(ABC):
                                   idx: int,
                                   col: int) -> float:
         """
-        获取到决策边界的归一化距离
+        Return the normalized distance to the decision boundary.
 
         Args:
-            X_current: 当前数据矩阵
-            idx: 行索引
-            col: 列索引
+            X_current: current data matrix
+            idx: row index
+            col: column index
 
         Returns:
-            归一化距离 [0, 1]
+            Normalized distance in [0, 1].
         """
         pass
 
@@ -184,12 +184,12 @@ class StateExtractor(ABC):
                           col: int,
                           deleted_rows: Set[int]) -> tuple:
         """
-        计算样本保留率和方差保留率
+        Compute the sample retention and variance retention ratios.
 
         Args:
-            X_current: 当前数据矩阵
-            col: 列索引
-            deleted_rows: 已删除的行集合
+            X_current: current data matrix
+            col: column index
+            deleted_rows: set of already-deleted row indices
 
         Returns:
             (sample_retention, var_retention)
@@ -200,13 +200,13 @@ class StateExtractor(ABC):
         if n_kept < 2:
             return 0.0, 0.0
 
-        # 避免除以零
+        # Avoid division by zero
         if self._n_samples == 0:
             sample_retention = 1.0
         else:
             sample_retention = n_kept / self._n_samples
 
-        # 方差保留率
+        # Variance retention
         X_kept = X_current[keep_mask]
         col_data = X_kept[:, col] if X_kept.ndim > 1 else X_kept
         valid_kept = ~np.isnan(col_data)
@@ -226,15 +226,15 @@ class StateExtractor(ABC):
 
     def get_nearby_value(self, X: np.ndarray, idx: int, col: int) -> float:
         """
-        获取临近值
+        Return a nearby value.
 
         Args:
-            X: 数据矩阵
-            idx: 行索引
-            col: 列索引
+            X: data matrix
+            idx: row index
+            col: column index
 
         Returns:
-            临近值
+            Nearby value.
         """
         current_val = X[idx, col] if X.ndim > 1 else X[idx]
         col_stats = self.col_stats.get(col, {})
@@ -242,14 +242,14 @@ class StateExtractor(ABC):
         if np.isnan(current_val):
             return col_stats.get('mean', 0.0)
 
-        # 获取该列所有非 NaN 值
+        # Gather all non-NaN values in the column
         col_vals = X[:, col] if X.ndim > 1 else X
         valid_vals = col_vals[~np.isnan(col_vals)]
 
         if len(valid_vals) == 0:
             return current_val
 
-        # 找距离最近的不同值
+        # Find the closest distinct value
         distances = np.abs(valid_vals - current_val)
         mask = distances > 0.01
         if mask.sum() > 0:
@@ -260,22 +260,22 @@ class StateExtractor(ABC):
 
     # Setter methods for use by environments
     def set_model_adapter(self, model_adapter: 'ModelAdapter') -> None:
-        """设置模型适配器"""
+        """Set the model adapter."""
         self.model_adapter = model_adapter
 
     def set_feature_importance(self, importance: np.ndarray) -> None:
-        """设置特征重要性"""
+        """Set the feature importance."""
         self.feature_importance = importance
 
     def set_col_error_rate(self, error_rate: np.ndarray) -> None:
-        """设置列错误率"""
+        """Set the column error rates."""
         self.col_error_rate = error_rate
 
     def set_col_stats(self,
                       col_means: np.ndarray,
                       col_stds: np.ndarray,
                       col_vars: np.ndarray) -> None:
-        """设置列统计量"""
+        """Set column statistics."""
         n_cols = len(col_means)
         self._n_features = n_cols
 

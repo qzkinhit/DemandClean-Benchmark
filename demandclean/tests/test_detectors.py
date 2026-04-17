@@ -1,6 +1,6 @@
 """
-检测器模块测试
-==============
+Detector Module Tests
+=====================
 """
 
 import sys
@@ -12,7 +12,7 @@ from demandclean.detectors import ErrorInjector, RahaBasedDetector
 
 
 def test_error_injector_init():
-    """测试错误注入器初始化"""
+    """Test error injector initialization."""
     np.random.seed(42)
     X = np.random.randn(100, 5)
     y = np.random.randint(0, 2, 100)
@@ -20,11 +20,11 @@ def test_error_injector_init():
     injector = ErrorInjector(X, y)
     assert injector.X_base.shape == (100, 5)
     assert injector.y_base.shape == (100,)
-    print("✓ 错误注入器初始化测试通过")
+    print("✓ Error injector initialization test passed")
 
 
 def test_error_injector_missing():
-    """测试缺失值注入"""
+    """Test missing value injection."""
     np.random.seed(42)
     X = np.random.randn(100, 5)
     y = np.random.randint(0, 2, 100)
@@ -34,11 +34,11 @@ def test_error_injector_missing():
 
     assert np.isnan(X_dirty).sum() > 0
     assert len(injected['missing']) > 0
-    print(f"✓ 缺失值注入测试通过: {len(injected['missing'])} 个缺失值")
+    print(f"✓ Missing value injection test passed: {len(injected['missing'])} missing values")
 
 
 def test_error_injector_semantic():
-    """测试语义错误注入"""
+    """Test semantic error injection."""
     np.random.seed(42)
     X = np.random.randn(100, 5)
     y = np.random.randint(0, 2, 100)
@@ -47,14 +47,14 @@ def test_error_injector_semantic():
     X_dirty, y_dirty, injected = injector.inject_errors(semantic_rate=0.1)
 
     assert len(injected['semantic']) > 0
-    # 语义错误会替换原值
+    # Semantic errors replace original values
     diff_count = np.sum(X != X_dirty)
     assert diff_count >= len(injected['semantic'])
-    print(f"✓ 语义错误注入测试通过: {len(injected['semantic'])} 个语义错误")
+    print(f"✓ Semantic error injection test passed: {len(injected['semantic'])} semantic errors")
 
 
 def test_error_injector_syntactic():
-    """测试句法错误注入"""
+    """Test syntactic error injection."""
     np.random.seed(42)
     X = np.random.randn(100, 5)
     y = np.random.randint(0, 2, 100)
@@ -63,11 +63,11 @@ def test_error_injector_syntactic():
     X_dirty, y_dirty, injected = injector.inject_errors(syntactic_rate=0.15)
 
     assert len(injected['syntactic']) > 0
-    print(f"✓ 句法错误注入测试通过: {len(injected['syntactic'])} 个句法错误")
+    print(f"✓ Syntactic error injection test passed: {len(injected['syntactic'])} syntactic errors")
 
 
 def test_error_injector_combined():
-    """测试组合错误注入"""
+    """Test combined error injection."""
     np.random.seed(42)
     X = np.random.randn(100, 5)
     y = np.random.randint(0, 2, 100)
@@ -81,11 +81,11 @@ def test_error_injector_combined():
 
     total_errors = len(injected['missing']) + len(injected['semantic']) + len(injected['syntactic'])
     assert total_errors > 0
-    print(f"✓ 组合错误注入测试通过: 共 {total_errors} 个错误")
+    print(f"✓ Combined error injection test passed: {total_errors} errors total")
 
 
 def test_error_injector_build_error_list():
-    """测试错误列表构建"""
+    """Test error list construction."""
     np.random.seed(42)
     X = np.random.randn(100, 5)
     y = np.random.randint(0, 2, 100)
@@ -101,20 +101,20 @@ def test_error_injector_build_error_list():
 
     assert len(error_list) > 0
     assert all('idx' in e and 'col' in e and 'type' in e for e in error_list)
-    print(f"✓ 错误列表构建测试通过: {len(error_list)} 个错误")
+    print(f"✓ Error list construction test passed: {len(error_list)} errors")
 
 
 def test_raha_detector_init():
-    """测试 RAHA 检测器初始化（RahaBasedDetector 是 AutoDetector 的别名）"""
+    """Test RAHA detector initialization (RahaBasedDetector is an alias of AutoDetector)."""
     detector = RahaBasedDetector()
 
     assert detector.is_fitted == False
     assert isinstance(detector.col_stats, dict)
-    print("✓ RAHA 检测器初始化测试通过")
+    print("✓ RAHA detector initialization test passed")
 
 
 def test_raha_detector_col_stats():
-    """测试列统计量计算"""
+    """Test column statistics computation."""
     np.random.seed(42)
     X = np.random.randn(100, 3)
 
@@ -124,14 +124,14 @@ def test_raha_detector_col_stats():
     assert len(detector.col_stats) == 3
     assert 'mean' in detector.col_stats[0]
     assert 'std' in detector.col_stats[0]
-    print("✓ 列统计量计算测试通过")
+    print("✓ Column statistics test passed")
 
 
 def test_raha_detector_detect_missing():
-    """测试缺失值检测"""
+    """Test missing value detection."""
     np.random.seed(42)
     X = np.random.randn(100, 3)
-    # 注入一些 NaN
+    # Inject some NaN
     X[5, 0] = np.nan
     X[10, 1] = np.nan
     X[20, 2] = np.nan
@@ -141,11 +141,11 @@ def test_raha_detector_detect_missing():
     detected = detector.detect(X, verbose=False)
 
     assert len(detected['missing']) == 3
-    print("✓ 缺失值检测测试通过")
+    print("✓ Missing value detection test passed")
 
 
 def test_raha_detector_detect_with_semantic():
-    """测试带语义错误位置的检测"""
+    """Test detection with semantic error positions."""
     np.random.seed(42)
     X = np.random.randn(100, 3)
 
@@ -156,12 +156,12 @@ def test_raha_detector_detect_with_semantic():
     detected = detector.detect(X, semantic_positions=semantic_positions, verbose=False)
 
     assert len(detected['semantic']) == 3
-    print("✓ 语义错误检测测试通过")
+    print("✓ Semantic error detection test passed")
 
 
 if __name__ == '__main__':
     print("\n" + "=" * 50)
-    print("检测器模块测试")
+    print("Detector Module Tests")
     print("=" * 50 + "\n")
 
     test_error_injector_init()
@@ -175,4 +175,4 @@ if __name__ == '__main__':
     test_raha_detector_detect_missing()
     test_raha_detector_detect_with_semantic()
 
-    print("\n所有测试通过!")
+    print("\nAll tests passed!")

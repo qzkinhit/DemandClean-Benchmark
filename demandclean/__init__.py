@@ -1,32 +1,32 @@
 """
-DemandClean - 按需数据清洗系统
-==============================
+DemandClean - Demand-Driven Data Cleaning System
+=================================================
 
-基于深度强化学习的自监督数据清洗框架。
+A self-supervised data cleaning framework based on deep reinforcement learning.
 
-核心特性:
-    - 训练时不接触干净数据，完全自监督学习
-    - 支持分类和回归任务
-    - 支持多种机器学习模型（SVM、RandomForest、XGBoost等）
-    - 提供单阶段和两阶段推理模式
+Key features:
+    - Self-supervised learning without access to clean data during training
+    - Supports both classification and regression tasks
+    - Supports multiple machine learning models (SVM, RandomForest, XGBoost, etc.)
+    - Provides single-phase and two-phase inference modes
 
-使用示例:
+Usage example:
     >>> from demandclean import DemandClean
     >>>
-    >>> # 创建实例
+    >>> # Create an instance
     >>> dc = DemandClean(
     ...     task_type='classification',
     ...     model_type='random_forest',
     ...     max_truth_budget=50
     ... )
     >>>
-    >>> # 训练（不需要干净数据）
+    >>> # Train (no clean data required)
     >>> dc.fit(X_dirty, y, semantic_errors=[(10, 1), (25, 1)])
     >>>
-    >>> # 单阶段推理
+    >>> # Single-phase inference
     >>> X_clean, y_clean, stats = dc.clean(X_dirty, y, X_clean_ref)
     >>>
-    >>> # 或两阶段推理
+    >>> # Or two-phase inference
     >>> plan = dc.plan(X_dirty, y)
     >>> X_clean = dc.execute(X_dirty, plan, true_values)
 """
@@ -34,7 +34,7 @@ DemandClean - 按需数据清洗系统
 __version__ = '1.0.0'
 __author__ = 'DemandClean Team'
 
-# 延迟导入，避免循环依赖
+# Lazy imports to avoid circular dependencies
 def __getattr__(name):
     if name == 'DemandClean':
         from .api.demand_clean import DemandClean

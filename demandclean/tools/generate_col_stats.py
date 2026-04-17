@@ -1,21 +1,22 @@
 """
-[已废弃] 为 9 个数据集生成 [STATISTICAL] 段写入 rules.txt
-=====================================================
+[Deprecated] Generate [STATISTICAL] sections for rules.txt across all 9 datasets
+================================================================================
 
-⚠️ 本脚本已废弃，不再使用。
+This script is deprecated and no longer used.
 
-原因: generate_col_stats 基于 dirty 数据 fit StandardScaler 计算统计量，
-但主 pipeline (shared_preprocess) 基于 clean 数据 fit StandardScaler，
-导致两者编码空间不一致。
+Reason: generate_col_stats fits a StandardScaler on the dirty data to compute
+statistics, while the main pipeline (shared_preprocess) fits StandardScaler on
+the clean data. That leaves the two encoding spaces inconsistent.
 
-替代方案: AutoDetector 现在完全依赖运行时计算 col_stats:
-  1. fit(X_clean_subset) 时从实际数据计算 (最优先)
-  2. detect() 时用 X_dirty 回退计算
-所有 rules.txt 中的 [STATISTICAL] 段已被移除。
+Replacement: AutoDetector now computes col_stats fully at runtime:
+  1. Preferentially from actual data during fit(X_clean_subset).
+  2. Falls back to X_dirty during detect().
+All [STATISTICAL] sections have been removed from rules.txt.
 
-如需重新生成，请确保 scaler 与主 pipeline 的 fit 基准一致（clean 数据）。
+If this needs to be regenerated, make sure the scaler is fit on the same basis
+as the main pipeline (clean data).
 
-旧用法（不再推荐）:
+Legacy usage (no longer recommended):
     python -m demandclean.tools.generate_col_stats
     python -m demandclean.tools.generate_col_stats --datasets beers adult
 """
@@ -33,7 +34,7 @@ warnings.filterwarnings("ignore")
 PROJECT_ROOT = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 sys.path.insert(0, PROJECT_ROOT)
 
-# 数据集配置（与 run_demandclean_base.py 一致）
+# Dataset config (matches run_demandclean_base.py)
 DATASETS = {
     'beers':         {'label_col': 'style'},
     'adult':         {'label_col': 'income'},
@@ -48,7 +49,8 @@ DATASETS = {
 
 
 def load_dirty_encoded(dataset_name: str):
-    """加载脏数据并编码到数值空间（与 run_demandclean_base.py 一致）
+    """Load dirty data and encode it into the numeric space
+    (matches run_demandclean_base.py).
 
     Returns:
         (X_dirty, column_names)
@@ -66,7 +68,7 @@ def load_dirty_encoded(dataset_name: str):
     dirty_df = pd.read_csv(dirty_path)
     clean_df = pd.read_csv(clean_path)
 
-    # 清洗列名
+    # Normalize column names
     dirty_df.columns = [c.strip().strip('\ufeff') for c in dirty_df.columns]
     clean_df.columns = [c.strip().strip('\ufeff') for c in clean_df.columns]
     dirty_df.replace(['empty', 'Empty', 'EMPTY', 'nan', 'NaN', 'NULL', 'null'], np.nan, inplace=True)
@@ -75,7 +77,7 @@ def load_dirty_encoded(dataset_name: str):
     drop_cols = [c for c in ['index', 'id', label_col] if c in dirty_df.columns]
     feature_cols = [c for c in dirty_df.columns if c not in drop_cols]
 
-    # 识别分类列
+    # Identify categorical columns
     categorical_cols = set()
     for col in feature_cols:
         combined = pd.concat([dirty_df[col], clean_df[col]]).dropna()
@@ -85,7 +87,7 @@ def load_dirty_encoded(dataset_name: str):
         except (ValueError, TypeError):
             categorical_cols.add(col)
 
-    # LabelEncoder（基于 dirty + clean 的 union）
+    # LabelEncoder (fit on the union of dirty + clean values)
     label_encoders = {}
     X_df = dirty_df[feature_cols].copy()
     for col in feature_cols:
@@ -107,7 +109,7 @@ def load_dirty_encoded(dataset_name: str):
 
     X_dirty_raw = X_df.values.astype(float)
 
-    # StandardScaler（基于 dirty 中非 NaN 行拟合，与 run_demandclean_base.py 一致）
+    # StandardScaler (fit on non-NaN rows of dirty data; matches run_demandclean_base.py)
     nan_mask_row = np.isnan(X_dirty_raw).any(axis=1)
     X_for_fit = X_dirty_raw[~nan_mask_row]
     if len(X_for_fit) == 0:
@@ -121,7 +123,7 @@ def load_dirty_encoded(dataset_name: str):
     scaler = StandardScaler()
     scaler.fit(X_for_fit)
 
-    # scale（保留 NaN）
+    # Scale (preserve NaNs)
     X_out = X_dirty_raw.copy()
     nan_mask = np.isnan(X_out)
     X_out[nan_mask] = 0
@@ -132,7 +134,8 @@ def load_dirty_encoded(dataset_name: str):
 
 
 def compute_col_stats(X: np.ndarray) -> dict:
-    """计算编码空间中每列的统计量（与 auto_detector._compute_col_stats 完全一致）"""
+    """Compute per-column statistics in the encoded space
+    (matches auto_detector._compute_col_stats exactly)."""
     col_stats = {}
     for col in range(X.shape[1]):
         valid = X[:, col][~np.isnan(X[:, col])]
@@ -150,14 +153,14 @@ def compute_col_stats(X: np.ndarray) -> dict:
 
 
 def write_stats_to_rules(rules_path: str, column_names: list, col_stats: dict):
-    """将 [STATISTICAL] 段追加/替换到 rules.txt"""
-    # 读取现有内容
+    """Append or replace the [STATISTICAL] section in rules.txt."""
+    # Read existing content
     existing_lines = []
     if os.path.exists(rules_path):
         with open(rules_path, 'r', encoding='utf-8') as f:
             existing_lines = f.readlines()
 
-    # 移除已有的 [STATISTICAL] 段
+    # Remove any existing [STATISTICAL] section
     new_lines = []
     in_statistical = False
     for line in existing_lines:
@@ -172,13 +175,13 @@ def write_stats_to_rules(rules_path: str, column_names: list, col_stats: dict):
             continue
         new_lines.append(line)
 
-    # 确保末尾有换行
+    # Ensure trailing newline
     if new_lines and not new_lines[-1].endswith('\n'):
         new_lines[-1] += '\n'
 
-    # 追加 [STATISTICAL] 段
+    # Append the [STATISTICAL] section
     new_lines.append('\n[STATISTICAL]\n')
-    new_lines.append('# 按列统计量（编码空间，基于脏数据计算）\n')
+    new_lines.append('# Per-column stats (encoded space, computed from dirty data)\n')
     for col_idx, stats in sorted(col_stats.items()):
         if col_idx < len(column_names):
             col_name = column_names[col_idx]
@@ -195,32 +198,32 @@ def main():
     args = parser.parse_args()
 
     print("=" * 60)
-    print("为 rules.txt 生成 [STATISTICAL] 段")
+    print("Generating [STATISTICAL] section for rules.txt")
     print("=" * 60)
 
     for ds in args.datasets:
         if ds not in DATASETS:
-            print(f"  [跳过] 未知数据集: {ds}")
+            print(f"  [skip] unknown dataset: {ds}")
             continue
 
         try:
             rules_path = os.path.join(PROJECT_ROOT, 'data', ds, 'rules.txt')
             if not os.path.exists(rules_path):
-                print(f"  [跳过] {ds}: rules.txt 不存在")
+                print(f"  [skip] {ds}: rules.txt not found")
                 continue
 
             X_dirty, column_names = load_dirty_encoded(ds)
             col_stats = compute_col_stats(X_dirty)
 
             write_stats_to_rules(rules_path, column_names, col_stats)
-            print(f"  {ds}: {len(col_stats)} 列统计量已写入 {rules_path}")
+            print(f"  {ds}: wrote {len(col_stats)} column stats to {rules_path}")
 
         except Exception as e:
-            print(f"  [错误] {ds}: {e}")
+            print(f"  [error] {ds}: {e}")
             import traceback
             traceback.print_exc()
 
-    print("\n完成!")
+    print("\nDone!")
 
 
 if __name__ == '__main__':

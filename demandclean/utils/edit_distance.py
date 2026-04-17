@@ -1,14 +1,15 @@
 """
-编辑距离工具模块
-================
+Edit Distance Utilities
+=======================
 
-提供基于编辑距离（SequenceMatcher）的字符串相似度、最近值查找和 typo 生成功能。
-零外部依赖，仅使用标准库 difflib + random + string。
+Provides string similarity, nearest-value lookup, and typo generation based on
+edit distance (SequenceMatcher). Has zero external dependencies - only the
+standard library modules difflib + random + string are used.
 
-三个核心场景:
-  1. ErrorInjector: generate_typo() 为分类列生成真实拼写错误
-  2. encode_df(): find_nearest_known() 将脏值映射到已知类别（替代 NaN）
-  3. ValueEstimator: find_nearest_known() 编辑距离估值（修复明显 typo）
+Three core use cases:
+  1. ErrorInjector: generate_typo() produces realistic typos for categorical columns.
+  2. encode_df(): find_nearest_known() maps dirty values to known categories (as a NaN replacement).
+  3. ValueEstimator: find_nearest_known() performs edit-distance-based estimation (to fix obvious typos).
 """
 
 import random
@@ -18,17 +19,17 @@ from typing import List, Optional, Tuple
 
 
 def edit_distance_ratio(a: str, b: str) -> float:
-    """计算两个字符串的相似度比率
+    """Compute the similarity ratio between two strings.
 
-    基于 SequenceMatcher.ratio()，返回值域 [0, 1]。
-    1.0 = 完全相同，0.0 = 完全不同。
+    Based on SequenceMatcher.ratio(); the returned value lies in [0, 1].
+    1.0 = identical, 0.0 = completely different.
 
     Args:
-        a: 第一个字符串
-        b: 第二个字符串
+        a: First string
+        b: Second string
 
     Returns:
-        相似度 0~1
+        Similarity in [0, 1]
     """
     if not a and not b:
         return 1.0
@@ -42,18 +43,18 @@ def find_nearest_known(
     known_values: List[str],
     threshold: float = 0.6,
 ) -> Optional[str]:
-    """在已知值列表中找编辑距离最近的值
+    """Find the value with the smallest edit distance in a list of known values.
 
-    遍历 known_values，计算与 value 的相似度，
-    返回相似度最高且 >= threshold 的值。
+    Iterates over known_values, computes similarity with value, and returns the
+    candidate with the highest similarity that is >= threshold.
 
     Args:
-        value: 待匹配的字符串
-        known_values: 已知合法值列表
-        threshold: 最低相似度阈值，低于此值返回 None
+        value: Target string to match
+        known_values: List of known valid values
+        threshold: Minimum similarity threshold; returns None if not met
 
     Returns:
-        最近的已知值，或 None（无匹配超过阈值）
+        The nearest known value, or None if no match meets the threshold
     """
     if not value or not known_values:
         return None
@@ -78,16 +79,16 @@ def find_top_k_nearest(
     k: int = 3,
     threshold: float = 0.3,
 ) -> List[Tuple[str, float]]:
-    """在已知值列表中找编辑距离最近的 top-k 值
+    """Find the top-k nearest values by edit distance from a list of known values.
 
     Args:
-        value: 待匹配的字符串
-        known_values: 已知合法值列表
-        k: 返回的最大数量
-        threshold: 最低相似度阈值
+        value: Target string to match
+        known_values: List of known valid values
+        k: Maximum number of results to return
+        threshold: Minimum similarity threshold
 
     Returns:
-        [(known_value, ratio), ...] 按相似度降序排列
+        [(known_value, ratio), ...] sorted by similarity in descending order
     """
     if not value or not known_values:
         return []
@@ -103,21 +104,21 @@ def find_top_k_nearest(
 
 
 def generate_typo(value: str) -> str:
-    """对字符串施加一个随机 typo
+    """Apply a single random typo to a string.
 
-    四种等概率策略:
-      - char_swap:   交换相邻字符      "Colorado" -> "Clorado"
-      - char_delete: 删除随机字符        "Colorado" -> "Colordo"
-      - char_insert: 插入随机字符        "Colorado" -> "Coloradoo"
-      - case_change: 大小写变化          "Colorado" -> "cOlorado"
+    Four equiprobable strategies:
+      - char_swap:   swap adjacent characters   "Colorado" -> "Clorado"
+      - char_delete: delete a random character  "Colorado" -> "Colordo"
+      - char_insert: insert a random character  "Colorado" -> "Coloradoo"
+      - case_change: change letter case         "Colorado" -> "cOlorado"
 
-    对于长度 <= 1 的字符串，仅使用 char_insert 策略。
+    For strings of length <= 1, only char_insert is used.
 
     Args:
-        value: 原始字符串
+        value: Original string
 
     Returns:
-        施加 typo 后的字符串（保证与原始值不同）
+        The string after applying a typo (guaranteed to differ from the original)
     """
     if not value:
         return value
@@ -125,7 +126,7 @@ def generate_typo(value: str) -> str:
     chars = list(value)
 
     if len(chars) <= 1:
-        # 短字符串只能插入
+        # Short strings can only be extended via insertion
         strategies = ['char_insert', 'case_change']
     else:
         strategies = ['char_swap', 'char_delete', 'char_insert', 'case_change']
@@ -133,10 +134,10 @@ def generate_typo(value: str) -> str:
     strategy = random.choice(strategies)
 
     if strategy == 'char_swap' and len(chars) >= 2:
-        # 交换相邻字符
+        # Swap adjacent characters
         pos = random.randint(0, len(chars) - 2)
         chars[pos], chars[pos + 1] = chars[pos + 1], chars[pos]
-        # 如果交换后相同（如 "aa" 中交换），换另一个位置
+        # If the swap produces an identical string (e.g. swapping in "aa"), try another position
         result = ''.join(chars)
         if result == value and len(chars) >= 3:
             pos = (pos + 1) % (len(chars) - 1)
@@ -144,18 +145,18 @@ def generate_typo(value: str) -> str:
             chars[pos], chars[pos + 1] = chars[pos + 1], chars[pos]
 
     elif strategy == 'char_delete' and len(chars) >= 2:
-        # 删除随机字符（避免删到只剩空串）
+        # Delete a random character (avoid reducing to an empty string)
         pos = random.randint(0, len(chars) - 1)
         chars.pop(pos)
 
     elif strategy == 'char_insert':
-        # 在随机位置插入一个随机字母
+        # Insert a random letter at a random position
         pos = random.randint(0, len(chars))
         insert_char = random.choice(string.ascii_lowercase)
         chars.insert(pos, insert_char)
 
     elif strategy == 'case_change':
-        # 随机切换 1~2 个字母的大小写
+        # Flip the case of 1-2 random letters
         alpha_positions = [i for i, c in enumerate(chars) if c.isalpha()]
         if alpha_positions:
             n_changes = min(random.choice([1, 2]), len(alpha_positions))
@@ -165,11 +166,9 @@ def generate_typo(value: str) -> str:
 
     result = ''.join(chars)
 
-    # 保证与原始值不同
+    # Guarantee the output differs from the original value
     if result == value:
-        # fallback: 在末尾插入一个随机字符
+        # Fallback: append a random character at the end
         result = value + random.choice(string.ascii_lowercase)
 
     return result
-
-

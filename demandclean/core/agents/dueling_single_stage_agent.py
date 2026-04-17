@@ -1,8 +1,8 @@
 """
-Dueling Double DQN 单阶段 Agent (PyTorch)
-==========================================
+Dueling Double DQN single-stage agent (PyTorch)
+================================================
 
-使用 Dueling 网络 + Double DQN + 软更新的单阶段 Agent。
+Single-stage agent combining a Dueling network, Double DQN, and soft target updates.
 """
 
 from typing import Any, Dict
@@ -19,18 +19,18 @@ from .dueling_network import DuelingNetwork
 
 class DuelingSingleStageAgent(BaseAgent):
     """
-    Dueling Double DQN 单阶段 Agent
+    Dueling Double DQN single-stage agent.
 
-    直接输出 4 种动作:
+    Outputs one of four actions directly:
         0: no_action
         1: repair_value
         2: delete
         3: replace_nearby
 
-    相比普通 DQN:
-        - 使用 Dueling 网络分离 V(s) 和 A(s,a)
-        - 软更新目标网络 (tau)
-        - 更大的隐藏层 (128)
+    Differences from plain DQN:
+        - Uses a Dueling network that separates V(s) and A(s, a)
+        - Soft target updates (tau)
+        - Larger hidden layers (128)
     """
 
     def __init__(self,
@@ -56,12 +56,12 @@ class DuelingSingleStageAgent(BaseAgent):
 
         self.device = torch.device('cpu')
 
-        # 构建网络
+        # Build networks
         self.model = DuelingNetwork(state_size, action_size, hidden_size).to(self.device)
         self.target_model = DuelingNetwork(state_size, action_size, hidden_size).to(self.device)
         self.optimizer = optim.Adam(self.model.parameters(), lr=learning_rate)
 
-        # 初始同步目标网络
+        # Initialize target network weights
         self.target_model.load_state_dict(self.model.state_dict())
 
     def _to_tensor(self, arr: np.ndarray) -> torch.Tensor:
@@ -90,7 +90,7 @@ class DuelingSingleStageAgent(BaseAgent):
         next_states = self._to_tensor(np.array([x[3] for x in batch]))
         dones = self._to_tensor(np.array([x[4] for x in batch], dtype=np.float32))
 
-        # Double DQN: 主网络选动作，目标网络评估
+        # Double DQN: online net picks the action, target net evaluates it
         current_q = self.model(states).gather(1, actions.unsqueeze(1)).squeeze(1)
 
         with torch.no_grad():
@@ -106,18 +106,18 @@ class DuelingSingleStageAgent(BaseAgent):
         self.decay_epsilon()
 
     def update_target_model(self) -> None:
-        """软更新目标网络: target = tau * model + (1-tau) * target"""
+        """Soft-update the target network: target = tau * model + (1 - tau) * target."""
         for t_param, param in zip(self.target_model.parameters(), self.model.parameters()):
             t_param.data.copy_(self.tau * param.data + (1 - self.tau) * t_param.data)
 
     def get_q_values(self, state: np.ndarray) -> np.ndarray:
-        """获取状态对应的 Q 值 (action_size,)"""
+        """Return Q-values for the state, shape (action_size,)."""
         with torch.no_grad():
             q = self.model(self._to_tensor(state).unsqueeze(0))
             return q.cpu().numpy().flatten()
 
     def save(self, path: str) -> None:
-        """保存模型 (.pt 格式)，含续训元数据"""
+        """Save the model (.pt format) together with resume-training metadata."""
         path = path.replace('.h5', '.pt')
         torch.save({
             'model_state': self.model.state_dict(),
@@ -130,7 +130,7 @@ class DuelingSingleStageAgent(BaseAgent):
         }, path)
 
     def load(self, path: str) -> None:
-        """加载模型（向后兼容旧 checkpoint）"""
+        """Load the model (backward compatible with older checkpoints)."""
         path = path.replace('.h5', '.pt')
         ckpt = torch.load(path, map_location=self.device, weights_only=False)
         self.model.load_state_dict(ckpt['model_state'])

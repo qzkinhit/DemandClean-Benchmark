@@ -1,54 +1,54 @@
-# Logs 目录说明
+# Logs Directory
 
-本目录存放各个清洗方法运行时的日志文件。
+This directory stores runtime log files for each cleaning method.
 
-## 命名规范
+## Naming Convention
 
 ```
 {method}_{dataset}_{timestamp}.log
 ```
 
-### 示例
-- `simpleimputer_beers_20260113_010830.log` - SimpleImputer在beers数据集上的运行日志
-- `baran_adult_20260113_020000.log` - Baran在adult数据集上的运行日志
-- `uniclean_hospital_20260113_030000.log` - UniClean在hospital数据集上的运行日志
+### Examples
+- `simpleimputer_beers_20260113_010830.log` — SimpleImputer on the beers dataset
+- `baran_adult_20260113_020000.log` — Baran on the adult dataset
+- `uniclean_hospital_20260113_030000.log` — UniClean on the hospital dataset
 
-## 方法名称对照
+## Method Name Reference
 
-| 方法缩写 | 完整名称 | 说明 |
-|---------|---------|------|
-| simpleimputer | SimpleImputer | 简单统计插补 |
-| mlimputer | MLImputer | 机器学习插补 |
-| deleteall | DeleteAll | 删除缺失行 |
-| donothing | DoNothing | 不做处理 |
-| baran | Baran_Raha | Raha检测+Baran修复 |
-| horizon | Horizon | 功能依赖模式选择 |
-| holoclean | HoloClean | 概率图模型清洗 |
-| activeclean | ActiveClean | 模型导向迭代清洗 |
-| boostclean | BoostClean | 检测-修复器集成 |
-| ctxpipe | CtxPipe | 上下文感知数据准备 |
-| uniclean | UniClean | 多信号融合清洗 |
-| lopster | Lopster | 潜在空间表示学习 |
+| Abbreviation | Full Name | Description |
+|--------------|-----------|-------------|
+| simpleimputer | SimpleImputer | Statistical imputation |
+| mlimputer | MLImputer | ML-based imputation |
+| deleteall | DeleteAll | Drop rows with missing/erroneous values |
+| donothing | DoNothing | No cleaning |
+| baran | Baran_Raha | Raha detection + Baran repair |
+| horizon | Horizon | Functional-dependency pattern selection |
+| holoclean | HoloClean | Probabilistic graphical model cleaning |
+| activeclean | ActiveClean | Model-driven iterative cleaning |
+| boostclean | BoostClean | Detector-repair ensemble |
+| ctxpipe | CtxPipe | Context-aware data preparation |
+| uniclean | UniClean | Multi-signal fusion cleaning |
+| lopster | Lopster | Latent-space representation learning |
 
-## 数据集名称对照
+## Dataset Reference
 
-| 数据集 | 任务类型 | 来源 |
-|-------|---------|------|
-| adult | 分类 | UCI |
-| beers | 回归 | Kaggle |
-| bike | 回归 | UCI |
-| breast_cancer | 分类 | UCI |
-| har | 分类 | UCI |
-| mercedes | 回归 | Kaggle |
-| nasa | 分类 | NASA |
-| smartfactory | 分类 | 工业数据 |
-| soilmoisture | 回归 | 传感器数据 |
+| Dataset | Task Type | Source |
+|---------|-----------|--------|
+| adult | Classification | UCI |
+| beers | Regression | Kaggle |
+| bike | Regression | UCI |
+| breast_cancer | Classification | UCI |
+| har | Classification | UCI |
+| mercedes | Regression | Kaggle |
+| nasa | Classification | NASA |
+| smartfactory | Classification | Industrial data |
+| soilmoisture | Regression | Sensor data |
 
-## 日志内容
+## Log Contents
 
-每个日志文件通常包含：
-1. 运行开始时间
-2. 输入数据信息（路径、行数、列数）
-3. 清洗过程详情
-4. 清洗结果统计
-5. 运行结束时间和总耗时
+Each log file typically contains:
+1. Start time
+2. Input data information (path, row count, column count)
+3. Cleaning process details
+4. Cleaning result statistics
+5. End time and total runtime

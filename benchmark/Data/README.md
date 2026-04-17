@@ -1,133 +1,133 @@
-# Data 数据集目录
+# Data Directory
 
-本目录包含用于数据清洗Baseline实验的数据集。每个数据集包含干净版本和脏版本，并附带索引用于追踪。
+This directory contains the datasets used in the baseline data cleaning experiments. Each dataset ships with both a clean and a dirty version, along with index columns for row tracking.
 
-## 数据集概览
+## Dataset Overview
 
-| 数据集 | 任务类型 | 属性数 | 记录数 | 错误类型 | 来源 |
-|--------|----------|--------|--------|----------|------|
-| adult | 分类 (C) | 15 | 45,222 | 规则违例, 异常值 | UCI ML Repository |
-| beers | 回归 (R) | - | - | 缺失值, 异常值 | Kaggle |
-| bike | 回归 (R) | - | - | 缺失值, 噪声 | UCI ML Repository |
-| breast_cancer | 分类 (C) | - | - | 缺失值 | UCI ML Repository |
-| har | 分类 (C) | - | - | 缺失值, 噪声 | UCI ML Repository |
-| mercedes | 回归 (R) | - | - | 缺失值 | Kaggle |
-| nasa | - | - | - | 缺失值 | NASA |
-| smartfactory | - | - | - | 缺失值, 异常值 | 工业数据 |
-| soilmoisture | - | - | - | 缺失值 | 传感器数据 |
+| Dataset | Task Type | Attributes | Records | Error Types | Source |
+|---------|-----------|------------|---------|-------------|--------|
+| adult | Classification (C) | 15 | 45,222 | Rule violations, outliers | UCI ML Repository |
+| beers | Regression (R) | - | - | Missing values, outliers | Kaggle |
+| bike | Regression (R) | - | - | Missing values, noise | UCI ML Repository |
+| breast_cancer | Classification (C) | - | - | Missing values | UCI ML Repository |
+| har | Classification (C) | - | - | Missing values, noise | UCI ML Repository |
+| mercedes | Regression (R) | - | - | Missing values | Kaggle |
+| nasa | - | - | - | Missing values | NASA |
+| smartfactory | - | - | - | Missing values, outliers | Industrial data |
+| soilmoisture | - | - | - | Missing values | Sensor data |
 
-## 文件命名规范
+## File Naming Convention
 
-每个数据集目录应包含以下文件：
+Each dataset directory should contain the following files:
 
 ```
 {dataset_name}/
-├── clean.csv              # 干净数据（真值）
-├── dirty.csv              # 脏数据（含错误）
-├── clean_with_index.csv   # 带索引的干净数据
-├── dirty_with_index.csv   # 带索引的脏数据
-├── constraints.txt        # 约束文件（如适用）
-├── README.md              # 数据集说明
-└── *.py                   # ML任务脚本
+├── clean.csv              # Clean data (ground truth)
+├── dirty.csv              # Dirty data (with injected errors)
+├── clean_with_index.csv   # Clean data with index column
+├── dirty_with_index.csv   # Dirty data with index column
+├── constraints.txt        # Constraint file (if applicable)
+├── README.md              # Dataset description
+└── *.py                   # ML task scripts
 ```
 
-## 索引说明
+## Index Convention
 
-索引列用于追踪数据清洗过程中的修改：
+Index columns are used to track modifications during the cleaning process:
 
-- `index`: 行索引，从0开始
-- 索引在clean和dirty版本之间保持一致
-- 评估时使用索引对齐数据
+- `index`: row index starting from 0
+- The index is consistent between the clean and dirty versions
+- Evaluation uses the index to align rows
 
-## 任务类型
+## Task Types
 
-- **C (Classification)**: 分类任务
-- **R (Regression)**: 回归任务
-- **Clustering**: 聚类任务
+- **C (Classification)**: classification tasks
+- **R (Regression)**: regression tasks
+- **Clustering**: clustering tasks
 
-## 错误类型
+## Error Types
 
-1. **缺失值 (Missing Values)**: NULL, NaN, 空字符串
-2. **异常值 (Outliers)**: 偏离正常分布的极端值
-3. **规则违例 (Rule Violations)**: 违反业务规则或约束
-4. **噪声 (Noise)**: 随机错误或测量误差
-5. **重复 (Duplicates)**: 重复记录
-6. **不一致 (Inconsistency)**: 同一实体的不同表示
+1. **Missing Values**: NULL, NaN, empty strings
+2. **Outliers**: extreme values far from the normal distribution
+3. **Rule Violations**: violations of business rules or constraints
+4. **Noise**: random errors or measurement noise
+5. **Duplicates**: duplicate records
+6. **Inconsistency**: different representations of the same entity
 
-## 数据集详细说明
+## Dataset Details
 
 ### Adult
 
-**来源**: UCI Machine Learning Repository
+**Source**: UCI Machine Learning Repository
 
-**任务**: 预测收入是否超过50K
+**Task**: predict whether income exceeds 50K.
 
-**属性**:
+**Attributes**:
 - age, workclass, fnlwgt, education, educational_num
 - marital_status, occupation, relationship, race, gender
 - capital_gain, capital_loss, hours_per_week
-- native_country, income (标签)
+- native_country, income (label)
 
-**错误类型**: 规则违例, 异常值
+**Error types**: rule violations, outliers
 
-**原生错误条目数**: 1,701
+**Native error count**: 1,701
 
 ### Beers
 
-**来源**: Kaggle
+**Source**: Kaggle
 
-**任务**: 预测啤酒评分
+**Task**: predict beer rating.
 
-**主要属性**: abv, ibu, rating等
+**Key attributes**: abv, ibu, rating, etc.
 
-**错误类型**: 缺失值, 异常值
+**Error types**: missing values, outliers
 
 ### HAR (Human Activity Recognition)
 
-**来源**: UCI Machine Learning Repository
+**Source**: UCI Machine Learning Repository
 
-**任务**: 人体活动识别
+**Task**: human activity recognition.
 
-**错误类型**: 缺失值, 传感器噪声
+**Error types**: missing values, sensor noise
 
-## 添加新数据集
+## Adding a New Dataset
 
-1. 在Data目录下创建以数据集名称命名的文件夹
-2. 准备clean.csv和dirty.csv文件
-3. 使用utils/generate_index生成带索引版本
-4. 编写README.md说明数据来源和错误类型
-5. 如有约束规则，创建constraints.txt
+1. Create a folder named after the dataset under `Data/`.
+2. Prepare `clean.csv` and `dirty.csv`.
+3. Generate indexed versions using `utils/generate_index`.
+4. Write a `README.md` describing the data source and error types.
+5. If constraint rules apply, create `constraints.txt`.
 
-### 约束文件格式
+### Constraint File Format
 
-使用否定约束(Denial Constraints)格式：
+Use the Denial Constraint format:
 
 ```
 # FD: A -> B
 t1&t2&EQ(t1.A,t2.A)&IQ(t1.B,t2.B)
 
-# 范围约束
+# Range constraint
 t1&LT(t1.age,0)
 
-# 模式约束
+# Pattern constraint
 t1&NOT(MATCH(t1.email,"^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$"))
 ```
 
-## 使用示例
+## Usage Example
 
 ```python
 import pandas as pd
 
-# 加载数据
+# Load data
 clean = pd.read_csv('Data/adult/clean.csv')
 dirty = pd.read_csv('Data/adult/dirty.csv')
 
-# 检查错误
+# Count errors
 diff = (clean != dirty).sum().sum()
-print(f"错误单元格数: {diff}")
+print(f"Number of error cells: {diff}")
 ```
 
-## 参考文献
+## References
 
 - UCI Machine Learning Repository: https://archive.ics.uci.edu/ml
 - Kaggle Datasets: https://www.kaggle.com/datasets

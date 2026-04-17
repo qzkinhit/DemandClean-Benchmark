@@ -1,5 +1,5 @@
 """
-DQN Agent 测试
+DQN Agent Tests
 ===============
 """
 
@@ -12,75 +12,75 @@ from demandclean.core.agents import SingleStageDQNAgent, TwoStageDQNAgent
 
 
 def test_single_stage_agent_init():
-    """测试单阶段 Agent 初始化"""
+    """Test single-stage Agent initialization."""
     agent = SingleStageDQNAgent(state_size=8, action_size=4)
 
     assert agent.state_size == 8
     assert agent.action_size == 4
     assert agent.epsilon == 1.0
-    print("✓ 单阶段 Agent 初始化测试通过")
+    print("✓ Single-stage Agent initialization test passed")
 
 
 def test_single_stage_agent_act_training():
-    """测试单阶段 Agent 训练时动作"""
+    """Test single-stage Agent action selection during training."""
     agent = SingleStageDQNAgent(state_size=8, action_size=4)
     state = np.random.randn(8).astype(np.float32)
 
     action = agent.act(state, training=True)
     assert action in [0, 1, 2, 3]
-    print(f"✓ 单阶段 Agent 训练动作测试通过: 动作={action}")
+    print(f"✓ Single-stage Agent training action test passed: action={action}")
 
 
 def test_single_stage_agent_act_inference():
-    """测试单阶段 Agent 推理时动作"""
+    """Test single-stage Agent action selection during inference."""
     agent = SingleStageDQNAgent(state_size=8, action_size=4)
-    agent.epsilon = 0  # 关闭探索
+    agent.epsilon = 0  # Disable exploration
     state = np.random.randn(8).astype(np.float32)
 
     action = agent.act(state, training=False)
     assert action in [0, 1, 2, 3]
-    print(f"✓ 单阶段 Agent 推理动作测试通过: 动作={action}")
+    print(f"✓ Single-stage Agent inference action test passed: action={action}")
 
 
 def test_single_stage_agent_remember():
-    """测试单阶段 Agent 经验回放存储"""
+    """Test single-stage Agent experience replay storage."""
     agent = SingleStageDQNAgent(state_size=8, action_size=4, memory_size=100)
     state = np.random.randn(8).astype(np.float32)
     next_state = np.random.randn(8).astype(np.float32)
 
     agent.remember(state, 1, 0.5, next_state, False)
     assert len(agent.memory) == 1
-    print("✓ 单阶段 Agent 经验存储测试通过")
+    print("✓ Single-stage Agent experience storage test passed")
 
 
 def test_single_stage_agent_replay():
-    """测试单阶段 Agent 经验回放"""
+    """Test single-stage Agent experience replay."""
     agent = SingleStageDQNAgent(state_size=8, action_size=4, memory_size=100)
 
-    # 添加足够的经验
+    # Add enough experience
     for _ in range(64):
         state = np.random.randn(8).astype(np.float32)
         next_state = np.random.randn(8).astype(np.float32)
         agent.remember(state, np.random.randint(4), np.random.randn(), next_state, False)
 
-    # 执行回放
+    # Execute replay
     agent.replay(batch_size=32)
-    print("✓ 单阶段 Agent 经验回放测试通过")
+    print("✓ Single-stage Agent experience replay test passed")
 
 
 def test_single_stage_agent_update_target():
-    """测试单阶段 Agent 目标网络更新"""
+    """Test single-stage Agent target network update."""
     agent = SingleStageDQNAgent(state_size=8, action_size=4)
     agent.update_target_model()
-    print("✓ 单阶段 Agent 目标网络更新测试通过")
+    print("✓ Single-stage Agent target network update test passed")
 
 
 def test_single_stage_agent_epsilon_decay():
-    """测试单阶段 Agent 探索率衰减"""
+    """Test single-stage Agent exploration rate decay."""
     agent = SingleStageDQNAgent(state_size=8, action_size=4, epsilon_decay=0.99)
     initial_eps = agent.epsilon
 
-    # 添加经验并回放
+    # Add experience and replay
     for _ in range(64):
         state = np.random.randn(8).astype(np.float32)
         next_state = np.random.randn(8).astype(np.float32)
@@ -88,44 +88,44 @@ def test_single_stage_agent_epsilon_decay():
 
     agent.replay(batch_size=32)
     assert agent.epsilon < initial_eps
-    print(f"✓ 单阶段 Agent 探索率衰减测试通过: {initial_eps:.3f} -> {agent.epsilon:.3f}")
+    print(f"✓ Single-stage Agent epsilon decay test passed: {initial_eps:.3f} -> {agent.epsilon:.3f}")
 
 
 def test_two_stage_agent_init():
-    """测试两阶段 Agent 初始化"""
+    """Test two-stage Agent initialization."""
     agent = TwoStageDQNAgent(state_size=8)
 
     assert agent.state_size == 8
-    assert agent.stage1_action_size == 3  # no_action, 处理, delete
+    assert agent.stage1_action_size == 3  # no_action, process, delete
     assert agent.stage2_action_size == 2  # repair_value, replace_nearby
-    print("✓ 两阶段 Agent 初始化测试通过")
+    print("✓ Two-stage Agent initialization test passed")
 
 
 def test_two_stage_agent_act_training():
-    """测试两阶段 Agent 训练时动作"""
+    """Test two-stage Agent action selection during training."""
     agent = TwoStageDQNAgent(state_size=8)
     state = np.random.randn(8).astype(np.float32)
 
     final_action, stage1_action, stage2_action = agent.act(state, training=True)
     assert final_action in [0, 1, 2, 3]
     assert stage1_action in [0, 1, 2]
-    # stage2_action 可能是 None（如果 stage1 不是"处理"）
-    print(f"✓ 两阶段 Agent 训练动作测试通过: final={final_action}, s1={stage1_action}, s2={stage2_action}")
+    # stage2_action may be None (when stage1 is not "process")
+    print(f"✓ Two-stage Agent training action test passed: final={final_action}, s1={stage1_action}, s2={stage2_action}")
 
 
 def test_two_stage_agent_act_inference():
-    """测试两阶段 Agent 推理时动作"""
+    """Test two-stage Agent action selection during inference."""
     agent = TwoStageDQNAgent(state_size=8)
     agent.epsilon = 0
     state = np.random.randn(8).astype(np.float32)
 
     final_action, stage1_action, stage2_action = agent.act(state, training=False)
     assert final_action in [0, 1, 2, 3]
-    print(f"✓ 两阶段 Agent 推理动作测试通过: final={final_action}")
+    print(f"✓ Two-stage Agent inference action test passed: final={final_action}")
 
 
 def test_two_stage_agent_remember():
-    """测试两阶段 Agent 经验回放存储"""
+    """Test two-stage Agent experience replay storage."""
     agent = TwoStageDQNAgent(state_size=8, memory_size=100)
     state = np.random.randn(8).astype(np.float32)
     next_state = np.random.randn(8).astype(np.float32)
@@ -135,39 +135,39 @@ def test_two_stage_agent_remember():
 
     assert len(agent.stage1_memory) == 1
     assert len(agent.stage2_memory) == 1
-    print("✓ 两阶段 Agent 经验存储测试通过")
+    print("✓ Two-stage Agent experience storage test passed")
 
 
 def test_two_stage_agent_replay():
-    """测试两阶段 Agent 经验回放"""
+    """Test two-stage Agent experience replay."""
     agent = TwoStageDQNAgent(state_size=8, memory_size=100)
 
-    # 添加足够的经验
+    # Add enough experience
     for _ in range(64):
         state = np.random.randn(8).astype(np.float32)
         next_state = np.random.randn(8).astype(np.float32)
         agent.remember_stage1(state, np.random.randint(3), np.random.randn(), next_state, False)
         agent.remember_stage2(state, np.random.randint(2), np.random.randn(), next_state, False)
 
-    # 执行回放
+    # Execute replay
     agent.replay(batch_size=32)
-    print("✓ 两阶段 Agent 经验回放测试通过")
+    print("✓ Two-stage Agent experience replay test passed")
 
 
 def test_agent_get_set_weights():
-    """测试获取和设置权重"""
+    """Test getting and setting weights."""
     agent = SingleStageDQNAgent(state_size=8, action_size=4)
 
     weights = agent.get_weights()
     assert weights is not None
 
     agent.set_weights(weights)
-    print("✓ Agent 权重获取设置测试通过")
+    print("✓ Agent get/set weights test passed")
 
 
 if __name__ == '__main__':
     print("\n" + "=" * 50)
-    print("DQN Agent 测试")
+    print("DQN Agent Tests")
     print("=" * 50 + "\n")
 
     test_single_stage_agent_init()
@@ -184,4 +184,4 @@ if __name__ == '__main__':
     test_two_stage_agent_replay()
     test_agent_get_set_weights()
 
-    print("\n所有测试通过!")
+    print("\nAll tests passed!")

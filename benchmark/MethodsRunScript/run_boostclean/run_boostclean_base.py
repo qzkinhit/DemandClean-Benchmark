@@ -1,17 +1,17 @@
 """
-BoostClean 运行脚本
+BoostClean runner
 
-BoostClean是面向模型的自动数据清洗方法，通过Boosting策略集成多种检测-修复器。
+BoostClean is a model-oriented automatic data-cleaning method that ensembles multiple detector-repairer pairs with a Boosting strategy.
 
-注意:
-- BoostClean使用activedetect包进行错误检测
-- 最后一列被视为标签列
-- 需要验证集真值来评估清洗效果
+Notes:
+- BoostClean uses the activedetect package for error detection.
+- The last column is treated as the label column.
+- Requires a validation-set ground truth to evaluate cleaning quality.
 
-用法:
-    python run_boostclean_base.py --dirty_path <脏数据路径> --clean_path <干净数据路径>
+Usage:
+    python run_boostclean_base.py --dirty_path <dirty_path> --clean_path <clean_path>
 
-示例:
+Example:
     python run_boostclean_base.py \\
         --dirty_path ../../Data/adult/dirty.csv \\
         --clean_path ../../Data/adult/clean.csv \\
@@ -26,12 +26,12 @@ import time
 import logging
 import pandas as pd
 
-# 添加项目根目录到路径
+# Add the project root to sys.path.
 sys.path.append(os.path.dirname(os.path.abspath(__file__)) + '/../../')
 
 
 def setup_logging(result_path: str, task_name: str) -> logging.Logger:
-    """设置日志记录器，同时输出到控制台和文件"""
+    """Configure a logger that writes to both stdout and a file."""
     logger = logging.getLogger(task_name)
     logger.setLevel(logging.INFO)
     logger.handlers = []
@@ -54,83 +54,83 @@ def main():
         description='Run BoostClean data cleaning.',
         formatter_class=argparse.RawDescriptionHelpFormatter,
         epilog="""
-示例:
+Example:
   python run_boostclean_base.py --dirty_path ../../Data/adult/dirty.csv --clean_path ../../Data/adult/clean.csv
 
-注意:
-  - 使用activedetect包进行错误检测
-  - 最后一列被视为标签列
-  - 需要验证集真值来评估清洗效果
+Notes:
+  - Uses the activedetect package for error detection.
+  - The last column is treated as the label column.
+  - Requires a validation-set ground truth to evaluate cleaning quality.
         """
     )
 
-    # 数据路径参数
+    # Data path arguments.
     parser.add_argument('--dirty_path', type=str, default='../../Data/beers/dirty_index.csv',
-                        help='脏数据路径')
+                        help='Path to the dirty data')
     parser.add_argument('--clean_path', type=str, default='../../Data/beers/clean_index.csv',
-                        help='干净数据路径（用于评估，可选）')
+                        help='Path to the clean data (used for evaluation; optional)')
 
-    # 任务参数
+    # Task arguments.
     parser.add_argument('--task_name', type=str, default='beers_boostclean',
-                        help='任务名称')
+                        help='Task name')
     parser.add_argument('--output_path', type=str, default='../../results/boostclean/',
-                        help='结果输出路径')
+                        help='Output directory')
     parser.add_argument('--label_column', type=str, default='style',
-                        help='标签列名（如果不指定，使用最后一列）')
+                        help='Label column name (defaults to the last column if unspecified)')
 
-    # BoostClean参数
+    # BoostClean arguments.
     parser.add_argument('--boosting_rounds', type=int, default=5,
-                        help='Boosting轮数（默认5）')
+                        help='Number of Boosting rounds (default 5)')
     parser.add_argument('--quantitative_thresh', type=int, default=10,
-                        help='数值异常检测阈值（默认10）')
+                        help='Numeric outlier threshold (default 10)')
 
-    # 评估参数
+    # Evaluation arguments.
     parser.add_argument('--index_attribute', type=str, default='index',
-                        help='索引列名')
+                        help='Index column name')
     parser.add_argument('--task_type', type=str, default='classification',
                         choices=['classification', 'regression', 'clustering'],
-                        help='下游任务类型（默认classification）')
+                        help='Downstream task type (default classification)')
     parser.add_argument('--models', type=str, nargs='+', default=['rf', 'lr'],
-                        help='评估模型列表（默认rf lr）')
+                        help='Evaluation models (default rf lr)')
     parser.add_argument('--mse_attributes', type=str, nargs='*', default=[],
-                        help='需要计算MSE的属性列表')
+                        help='Attributes to evaluate with MSE')
 
     parser.add_argument('--verbose', action='store_true',
-                        help='是否打印详细信息')
+                        help='Print verbose information')
     parser.add_argument('--use_split', action='store_true',
-                        help='使用 DemandClean 对齐的 60/20/20 数据划分（seed=42）')
+                        help='Use the DemandClean-aligned 60/20/20 split (seed=42)')
 
     args = parser.parse_args()
 
-    # 创建输出目录
+    # Create the output directory.
     result_path = os.path.join(args.output_path, args.task_name)
     os.makedirs(result_path, exist_ok=True)
 
-    # 设置日志
+    # Set up logging.
     logger = setup_logging(result_path, args.task_name)
 
-    # 记录开始时间
+    # Record the start time.
     start_time = time.time()
     from datetime import datetime
     start_datetime = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
-    logger.info(f"运行开始时间: {start_datetime}")
+    logger.info(f"Run start time: {start_datetime}")
     logger.info("=" * 60)
-    logger.info("BoostClean 数据清洗")
+    logger.info("BoostClean data cleaning")
     logger.info("=" * 60)
-    logger.info(f"脏数据: {args.dirty_path}")
-    logger.info(f"干净数据: {args.clean_path or '未提供'}")
-    logger.info(f"任务名称: {args.task_name}")
-    logger.info(f"Boosting轮数: {args.boosting_rounds}")
+    logger.info(f"Dirty data: {args.dirty_path}")
+    logger.info(f"Clean data: {args.clean_path or 'not provided'}")
+    logger.info(f"Task name: {args.task_name}")
+    logger.info(f"Boosting rounds: {args.boosting_rounds}")
     logger.info("-" * 60)
 
-    # 创建清洗器
+    # Instantiate the cleaner.
     cleaner = BoostCleanWrapper(
         boosting_rounds=args.boosting_rounds,
         quantitative_thresh=args.quantitative_thresh,
         verbose=args.verbose
     )
 
-    # 执行清洗
+    # Run the cleaner.
     output_file = os.path.join(result_path, f"{args.task_name}_cleaned.csv")
     try:
         repaired_df, clean_info = cleaner.clean(
@@ -141,28 +141,28 @@ def main():
         )
         success = True
     except ImportError as e:
-        logger.error(f"依赖导入失败: {e}")
-        logger.error("请确保activedetect包已正确安装")
+        logger.error(f"Dependency import failed: {e}")
+        logger.error("Ensure the activedetect package is installed correctly.")
         success = False
         clean_info = {'ground_truth_cost': 0, 'ensemble_size': 0}
     except Exception as e:
-        logger.error(f"执行出错: {e}")
+        logger.error(f"Execution failed: {e}")
         success = False
         clean_info = {'ground_truth_cost': 0, 'ensemble_size': 0}
 
-    # 记录时间
+    # Record elapsed time.
     elapsed_time = time.time() - start_time
     logger.info("-" * 60)
-    logger.info(f"执行时间: {elapsed_time:.2f} 秒")
-    logger.info(f"执行状态: {'成功' if success else '失败'}")
-    logger.info(f"集成大小: {clean_info.get('ensemble_size', 0)}")
-    logger.info(f"真值使用成本: {clean_info.get('ground_truth_cost', 0)}")
+    logger.info(f"Execution Time: {elapsed_time:.2f} seconds")
+    logger.info(f"Status: {'success' if success else 'failed'}")
+    logger.info(f"Ensemble size: {clean_info.get('ensemble_size', 0)}")
+    logger.info(f"Ground Truth Cost: {clean_info.get('ground_truth_cost', 0)}")
 
-    # 调用统一测评模块
+    # Invoke the unified evaluation module.
     if success and args.clean_path and os.path.exists(args.clean_path):
         logger.info("")
         logger.info("=" * 60)
-        logger.info("调用统一测评模块 getScoreML")
+        logger.info("Invoking unified evaluation module getScoreML")
         logger.info("=" * 60)
 
         try:
@@ -177,28 +177,28 @@ def main():
                 label_column=args.label_column,
                 task_type=args.task_type,
                 models=args.models,
-                method_type=2,  # BoostClean是Type 2需要验证集
+                method_type=2,  # BoostClean is Type 2 (validation set required)
                 ground_truth_used=clean_info.get('ground_truth_cost', 0),
                 index_attribute=args.index_attribute,
                 mse_attributes=args.mse_attributes,
                 verbose=args.verbose
             )
 
-            # 合并结果
+            # Merge results.
             clean_info.update(eval_results)
 
         except ImportError as e:
-            logger.warning(f"无法导入getScoreML模块: {e}")
+            logger.warning(f"Failed to import getScoreML: {e}")
         except Exception as e:
-            logger.error(f"统一测评出错: {e}")
+            logger.error(f"Unified evaluation failed: {e}")
             import traceback
             logger.error(traceback.format_exc())
     else:
         if not args.clean_path:
-            logger.info("未提供干净数据路径，跳过统一测评")
+            logger.info("No clean path provided; skipping unified evaluation.")
 
-    logger.info(f"结果已保存到: {result_path}")
-    logger.info(f"日志文件: {os.path.join(result_path, f'{args.task_name}.log')}")
+    logger.info(f"Results saved to: {result_path}")
+    logger.info(f"Log file: {os.path.join(result_path, f'{args.task_name}.log')}")
     logger.info("=" * 60)
 
 

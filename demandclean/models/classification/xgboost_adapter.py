@@ -1,6 +1,6 @@
 """
-XGBoost 分类器适配器
-====================
+XGBoost Classifier Adapter
+==========================
 """
 
 import numpy as np
@@ -12,9 +12,9 @@ from ..base_adapter import ModelAdapter
 
 class XGBoostClassifierAdapter(ModelAdapter):
     """
-    XGBoost 分类器适配器
+    XGBoost classifier adapter.
 
-    支持梯度提升分类。
+    Supports gradient-boosted classification.
     """
 
     def __init__(self,
@@ -24,14 +24,14 @@ class XGBoostClassifierAdapter(ModelAdapter):
                  random_state: int = 42,
                  **kwargs):
         """
-        初始化 XGBoost 适配器
+        Initialize the XGBoost adapter.
 
         Args:
-            n_estimators: 树的数量
-            max_depth: 最大深度
-            learning_rate: 学习率
-            random_state: 随机种子
-            **kwargs: 传递给 XGBClassifier 的其他参数
+            n_estimators: Number of trees
+            max_depth: Maximum tree depth
+            learning_rate: Learning rate
+            random_state: Random seed
+            **kwargs: Additional arguments forwarded to XGBClassifier
         """
         super().__init__()
         self.n_estimators = n_estimators
@@ -43,7 +43,7 @@ class XGBoostClassifierAdapter(ModelAdapter):
         self._y_classes: Optional[np.ndarray] = None
 
     def _create_model(self):
-        """创建 XGBoost 模型"""
+        """Create the XGBoost model."""
         try:
             from xgboost import XGBClassifier
             self.model = XGBClassifier(
@@ -56,7 +56,7 @@ class XGBoostClassifierAdapter(ModelAdapter):
                 **self.kwargs
             )
         except ImportError:
-            warnings.warn("XGBoost 未安装，使用 RandomForest 替代")
+            warnings.warn("XGBoost is not installed; falling back to RandomForest.")
             from sklearn.ensemble import RandomForestClassifier
             self.model = RandomForestClassifier(
                 n_estimators=self.n_estimators,
@@ -65,7 +65,7 @@ class XGBoostClassifierAdapter(ModelAdapter):
             )
 
     def fit(self, X: np.ndarray, y: np.ndarray) -> 'XGBoostClassifierAdapter':
-        """训练 XGBoost 模型"""
+        """Train the XGBoost model."""
         if self.model is None:
             self._create_model()
 
@@ -73,7 +73,7 @@ class XGBoostClassifierAdapter(ModelAdapter):
         self._y_classes = np.unique(y)
         self._is_fitted = True
 
-        # 特征重要性
+        # Feature importance
         if hasattr(self.model, 'feature_importances_'):
             self._feature_importance = self._normalize_importance(
                 self.model.feature_importances_
@@ -84,21 +84,21 @@ class XGBoostClassifierAdapter(ModelAdapter):
         return self
 
     def predict(self, X: np.ndarray) -> np.ndarray:
-        """预测"""
+        """Make predictions."""
         if not self._is_fitted:
-            raise RuntimeError("模型未训练，请先调用 fit()")
+            raise RuntimeError("Model is not trained; please call fit() first.")
         return self.model.predict(X)
 
     def evaluate(self, X: np.ndarray, y: np.ndarray) -> float:
-        """计算准确率"""
+        """Compute accuracy."""
         y_pred = self.predict(X)
         return np.mean(y_pred == y)
 
     def get_distance_to_boundary(self, X: np.ndarray) -> np.ndarray:
         """
-        获取到决策边界的距离
+        Return the distance to the decision boundary.
 
-        使用预测概率
+        Uses predicted probabilities.
         """
         if not self._is_fitted:
             return np.ones(len(X)) * 0.5
@@ -112,13 +112,13 @@ class XGBoostClassifierAdapter(ModelAdapter):
             return np.ones(len(X)) * 0.5
 
     def get_feature_importance(self) -> np.ndarray:
-        """获取特征重要性"""
+        """Return feature importance."""
         if self._feature_importance is None:
-            raise RuntimeError("模型未训练，请先调用 fit()")
+            raise RuntimeError("Model is not trained; please call fit() first.")
         return self._feature_importance
 
     def clone(self) -> 'XGBoostClassifierAdapter':
-        """创建未训练的克隆"""
+        """Create an untrained clone."""
         return XGBoostClassifierAdapter(
             n_estimators=self.n_estimators,
             max_depth=self.max_depth,

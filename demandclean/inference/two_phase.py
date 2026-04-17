@@ -1,9 +1,9 @@
 """
-两阶段推理
-==========
+Two-phase inference
+===================
 
-第一阶段：生成修复计划，不需要真值
-第二阶段：用户提供真值后执行修复
+Phase 1: produce a repair plan without requiring ground truths.
+Phase 2: execute the plan after the user supplies ground truths.
 """
 
 import sys
@@ -19,7 +19,7 @@ from ..core.state import (
 )
 from ..models import ModelAdapter, create_model_adapter
 
-# Agent类型 → 算法名映射
+# Agent type -> algorithm name
 _AGENT_ALGO_NAME = {
     AgentType.SINGLE_STAGE: 'DQN (Single Stage)',
     AgentType.DUELING_SINGLE_STAGE: 'Dueling DQN (Single Stage)',
@@ -30,37 +30,38 @@ _AGENT_ALGO_NAME = {
 
 class TwoPhaseInference:
     """
-    两阶段推理
+    Two-phase inference.
 
-    第一阶段 (plan): 预测所有动作，repair_value 只加入 plan，其他动作立即执行
-    第二阶段 (execute): 用户提供真值后，执行 plan 中的修复
+    Phase 1 (plan): predict every action; repair_value is added to the plan while
+        other actions execute immediately.
+    Phase 2 (execute): after the user supplies ground truths, execute the planned repairs.
     """
 
     def __init__(self,
                  agent: BaseAgent,
                  config: DemandCleanConfig):
         """
-        初始化推理器
+        Initialize the inference engine.
 
         Args:
-            agent: 训练好的 Agent
-            config: 配置对象
+            agent: trained agent
+            config: configuration object
         """
         self.agent = agent
         self.config = config
 
-        # 创建模型适配器
+        # Build the model adapter
         self.model_adapter = create_model_adapter(config.model_type, config.task_type)
 
-        # 创建状态提取器
+        # Build the state extractor
         self.state_extractor = self._create_state_extractor()
 
-        # 两阶段环境
+        # Two-phase environment
         self._env: Optional[TwoPhaseCleaningEnv] = None
         self._repair_plan: List[Dict] = []
 
     def _create_state_extractor(self) -> StateExtractor:
-        """创建状态提取器"""
+        """Build the state extractor."""
         if self.config.task_type == TaskType.REGRESSION:
             return RegressionStateExtractor(self.model_adapter, self.config)
         elif self.config.task_type == TaskType.CLUSTERING:
@@ -75,22 +76,22 @@ class TwoPhaseInference:
              verbose: bool = True,
              save_csv_path: Optional[str] = None) -> List[Dict]:
         """
-        第一阶段：生成修复计划
+        Phase 1: build the repair plan.
 
-        不需要真值，返回需要修复的位置列表。
+        Ground truths are not needed; returns the list of positions that need repair.
 
         Args:
-            X_dirty: 脏数据矩阵
-            y: 标签向量
-            detected_errors: 检测到的错误
-            verbose: 是否打印详细信息
-            save_csv_path: 可选，自动保存修复计划CSV路径
+            X_dirty: dirty data matrix
+            y: label vector
+            detected_errors: detected errors
+            verbose: whether to print details
+            save_csv_path: optional path to save the repair-plan CSV
 
         Returns:
-            repair_plan: 需要真值修复的位置列表
+            repair_plan: positions that require ground-truth repair
                 [{'idx', 'col', 'error_type', 'estimated_value', 'current_dirty_value'}, ...]
         """
-        # 构建错误列表（不需要真值）
+        # Build the error list (no ground truth required)
         error_list = self._build_error_list_no_truth(detected_errors)
 
         n_missing = len(detected_errors.get('missing', []))
@@ -102,35 +103,35 @@ class TwoPhaseInference:
         if verbose:
             algo_name = _AGENT_ALGO_NAME.get(self.config.agent_type, self.config.agent_type.value)
             print(f"\n{'='*60}")
-            print(f"两阶段推理 - 第一阶段 (Plan)")
+            print(f"Two-phase inference - Phase 1 (Plan)")
             print(f"{'='*60}")
-            print(f"  算法: {algo_name}")
-            print(f"  任务类型: {self.config.task_type.value}")
-            print(f"  下游模型: {self.config.model_type.value}")
-            print(f"  检测到的错误: {total_errors} 个"
+            print(f"  Algorithm: {algo_name}")
+            print(f"  Task type: {self.config.task_type.value}")
+            print(f"  Downstream model: {self.config.model_type.value}")
+            print(f"  Detected errors: {total_errors}"
                   f" (missing={n_missing}, semantic={n_semantic},"
                   f" syntactic={n_syntactic}, label={n_label})")
 
-        # 创建两阶段环境
+        # Build the two-phase environment
         self._env = TwoPhaseCleaningEnv(
             X_dirty, y, error_list,
             self.model_adapter, self.state_extractor, self.config
         )
 
-        # 设置为推理模式
+        # Switch to inference mode
         self.agent.epsilon = 0
         state = self._env.reset()
 
-        # 进度条参数
+        # Progress-bar parameters
         progress_total = 20
         progress_step = max(1, total_errors // progress_total)
         processed = 0
 
         if verbose:
-            sys.stdout.write(f"\n  推理进度: [")
+            sys.stdout.write(f"\n  Inference progress: [")
             sys.stdout.flush()
 
-        # 推理
+        # Run inference
         while True:
             if self.config.agent_type in (AgentType.TWO_STAGE, AgentType.DUELING_TWO_STAGE):
                 final_action, _, _ = self.agent.act(state, training=False)
@@ -141,7 +142,7 @@ class TwoPhaseInference:
             state = next_state
             processed += 1
 
-            # 更新进度条
+            # Update progress bar
             if verbose and processed % progress_step == 0:
                 sys.stdout.write("=")
                 sys.stdout.flush()
@@ -159,22 +160,22 @@ class TwoPhaseInference:
 
         if verbose:
             self._env.print_decision_summary()
-            print(f"\n  需要用户提供 {len(self._repair_plan)} 个真值")
+            print(f"\n  User must supply {len(self._repair_plan)} ground-truth values")
 
-        # 自动保存计划CSV
+        # Optionally save the plan to CSV
         if save_csv_path:
             self._env.save_plan_csv(save_csv_path)
             if verbose:
-                print(f"  修复计划已保存: {save_csv_path}")
+                print(f"  Repair plan saved: {save_csv_path}")
 
         return self._repair_plan
 
     def get_plan_positions(self) -> List[Tuple[int, int]]:
         """
-        获取需要真值的位置列表
+        Return the positions that need ground-truth repairs.
 
         Returns:
-            [(idx, col), ...] 需要用户提供真值的位置
+            [(idx, col), ...] - positions the user must supply truths for.
         """
         if self._env is None:
             return []
@@ -186,46 +187,46 @@ class TwoPhaseInference:
                 verbose: bool = True,
                 y_dirty: Optional[np.ndarray] = None) -> Tuple[np.ndarray, np.ndarray, np.ndarray]:
         """
-        第二阶段：执行修复
+        Phase 2: execute the repairs.
 
         Args:
-            X_dirty: 原始脏数据
-            true_values: 真值字典 {(idx, col): value}
-            verbose: 是否打印详细信息
-            y_dirty: 原始脏标签（标签修复时需要）
+            X_dirty: original dirty data
+            true_values: ground-truth dict {(idx, col): value}
+            verbose: whether to print details
+            y_dirty: original dirty labels (required for label repairs)
 
         Returns:
             (X_clean, y_clean, keep_mask)
         """
         if self._env is None:
-            raise ValueError("请先调用 plan() 方法生成修复计划")
+            raise ValueError("Call plan() first to build the repair plan")
 
         if verbose:
             print(f"\n{'='*60}")
-            print(f"两阶段推理 - 第二阶段 (Execute)")
+            print(f"Two-phase inference - Phase 2 (Execute)")
             print(f"{'='*60}")
-            print(f"  提供的真值数量: {len(true_values)}")
-            print(f"  计划修复数量: {len(self._repair_plan)}")
+            print(f"  Ground-truth values provided: {len(true_values)}")
+            print(f"  Planned repairs: {len(self._repair_plan)}")
 
-        # 获取 keep_mask 和标签（使用 get_cleaned_data 确保一致性）
+        # Fetch keep_mask and labels from the environment for consistency
         _, y_from_env, keep_mask = self._env.get_cleaned_data()
 
-        # 执行修复（传入 y_dirty 以支持标签修复）
+        # Execute repairs (pass y_dirty to enable label repairs)
         X_result, y_result = self._env.execute_repair_plan(
             X_dirty, true_values, y_dirty=y_dirty
         )
 
-        # 如果没有传入 y_dirty，使用环境中的 y 结果
+        # If y_dirty was not provided, fall back to the environment's y
         if y_result is None:
             y_result = y_from_env
 
         if verbose:
             matched = sum(1 for item in self._repair_plan
                           if (item['idx'], item['col']) in true_values)
-            print(f"\n  执行结果:")
-            print(f"    成功匹配真值: {matched} / {len(self._repair_plan)}")
-            print(f"    删除行数: {int((~keep_mask).sum())}")
-            print(f"    最终数据行数: {int(keep_mask.sum())}")
+            print(f"\n  Execution results:")
+            print(f"    Ground truths matched: {matched} / {len(self._repair_plan)}")
+            print(f"    Rows deleted: {int((~keep_mask).sum())}")
+            print(f"    Final row count: {int(keep_mask.sum())}")
 
         return X_result, y_result, keep_mask
 
@@ -238,38 +239,38 @@ class TwoPhaseInference:
                              y_clean: Optional[np.ndarray] = None,
                              save_csv_path: Optional[str] = None) -> Tuple[np.ndarray, np.ndarray, np.ndarray, Dict[str, int], List[Dict]]:
         """
-        使用参考数据进行两阶段清洗
+        Two-phase cleaning with reference data.
 
-        这是一个便捷方法，自动从 X_clean/y_clean 提取真值。
+        Convenience method that pulls ground truths from X_clean / y_clean.
 
         Args:
-            X_dirty: 脏数据矩阵
-            y: 标签向量
-            X_clean: 干净数据（用于获取真值）
-            detected_errors: 检测到的错误
-            verbose: 是否打印详细信息
-            y_clean: 干净标签向量（用于标签噪声修复）
-            save_csv_path: 可选，自动保存修复计划CSV路径
+            X_dirty: dirty data matrix
+            y: label vector
+            X_clean: clean data (used to fetch ground truths)
+            detected_errors: detected errors
+            verbose: whether to print details
+            y_clean: clean label vector (used for label-noise repairs)
+            save_csv_path: optional path to save the repair-plan CSV
 
         Returns:
             (X_clean_result, y_clean_result, keep_mask, action_counts, repair_plan)
         """
-        # 第一阶段
+        # Phase 1
         repair_plan = self.plan(X_dirty, y, detected_errors, verbose,
                                 save_csv_path=save_csv_path)
 
-        # 从 X_clean / y_clean 提取真值
+        # Pull ground truths from X_clean / y_clean
         true_values = {}
         for item in repair_plan:
             idx, col = item['idx'], item['col']
             if col == -1:
-                # 标签噪声：从 y_clean 获取真值
+                # Label noise: use y_clean
                 if y_clean is not None and idx < len(y_clean):
                     true_values[(idx, col)] = y_clean[idx]
             else:
                 true_values[(idx, col)] = X_clean[idx, col]
 
-        # 第二阶段
+        # Phase 2
         X_result, y_result, keep_mask = self.execute(
             X_dirty, true_values, verbose, y_dirty=y
         )
@@ -280,7 +281,7 @@ class TwoPhaseInference:
 
     def _build_error_list_no_truth(self,
                                    detected_errors: Dict[str, List]) -> List[Dict]:
-        """将检测到的错误转换为环境需要的格式（不需要真值）"""
+        """Convert detected errors into the environment format (no ground truth)."""
         error_list = []
 
         # Missing errors (type=0)
@@ -291,7 +292,7 @@ class TwoPhaseInference:
                 'idx': idx,
                 'col': col,
                 'type': 0,
-                'repair_value': None  # 不需要真值
+                'repair_value': None  # no ground truth needed
             })
 
         # Semantic errors (type=1)
@@ -328,7 +329,7 @@ class TwoPhaseInference:
         return error_list
 
     def get_stats(self) -> Dict[str, Any]:
-        """获取推理统计信息"""
+        """Return inference stats."""
         stats = {
             'agent_type': self.config.agent_type.value,
             'task_type': self.config.task_type.value,
@@ -342,7 +343,7 @@ class TwoPhaseInference:
         return stats
 
     def get_decision_log(self) -> List[Dict]:
-        """获取推理后的完整决策日志"""
+        """Return the full decision log produced during inference."""
         if self._env is None:
             return []
         return self._env.get_decision_log()

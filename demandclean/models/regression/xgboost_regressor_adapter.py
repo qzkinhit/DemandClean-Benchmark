@@ -1,6 +1,6 @@
 """
-XGBoost 回归适配器
-==================
+XGBoost Regressor Adapter
+=========================
 """
 
 import numpy as np
@@ -12,9 +12,9 @@ from ..base_adapter import ModelAdapter
 
 class XGBoostRegressorAdapter(ModelAdapter):
     """
-    XGBoost 回归适配器
+    XGBoost regressor adapter.
 
-    支持梯度提升回归。
+    Supports gradient-boosted regression.
     """
 
     def __init__(self,
@@ -24,14 +24,14 @@ class XGBoostRegressorAdapter(ModelAdapter):
                  random_state: int = 42,
                  **kwargs):
         """
-        初始化 XGBoost 回归适配器
+        Initialize the XGBoost regression adapter.
 
         Args:
-            n_estimators: 树的数量
-            max_depth: 最大深度
-            learning_rate: 学习率
-            random_state: 随机种子
-            **kwargs: 传递给 XGBRegressor 的其他参数
+            n_estimators: Number of trees
+            max_depth: Maximum tree depth
+            learning_rate: Learning rate
+            random_state: Random seed
+            **kwargs: Additional arguments forwarded to XGBRegressor
         """
         super().__init__()
         self.n_estimators = n_estimators
@@ -44,7 +44,7 @@ class XGBoostRegressorAdapter(ModelAdapter):
         self._y_std: float = 1.0
 
     def _create_model(self):
-        """创建 XGBoost 回归模型"""
+        """Create the XGBoost regression model."""
         try:
             from xgboost import XGBRegressor
             self.model = XGBRegressor(
@@ -55,7 +55,7 @@ class XGBoostRegressorAdapter(ModelAdapter):
                 **self.kwargs
             )
         except ImportError:
-            warnings.warn("XGBoost 未安装，使用 GradientBoostingRegressor 替代")
+            warnings.warn("XGBoost is not installed; falling back to GradientBoostingRegressor.")
             from sklearn.ensemble import GradientBoostingRegressor
             self.model = GradientBoostingRegressor(
                 n_estimators=self.n_estimators,
@@ -65,7 +65,7 @@ class XGBoostRegressorAdapter(ModelAdapter):
             )
 
     def fit(self, X: np.ndarray, y: np.ndarray) -> 'XGBoostRegressorAdapter':
-        """训练 XGBoost 回归模型"""
+        """Train the XGBoost regression model."""
         if self.model is None:
             self._create_model()
 
@@ -74,7 +74,7 @@ class XGBoostRegressorAdapter(ModelAdapter):
         self._y_std = np.std(y) + 1e-6
         self._is_fitted = True
 
-        # 特征重要性
+        # Feature importance
         if hasattr(self.model, 'feature_importances_'):
             self._feature_importance = self._normalize_importance(
                 self.model.feature_importances_
@@ -85,16 +85,16 @@ class XGBoostRegressorAdapter(ModelAdapter):
         return self
 
     def predict(self, X: np.ndarray) -> np.ndarray:
-        """预测"""
+        """Make predictions."""
         if not self._is_fitted:
-            raise RuntimeError("模型未训练，请先调用 fit()")
+            raise RuntimeError("Model is not trained; please call fit() first.")
         return self.model.predict(X)
 
     def evaluate(self, X: np.ndarray, y: np.ndarray) -> float:
         """
-        计算负 MSE
+        Compute the negative MSE.
 
-        返回负 MSE，越接近 0 越好
+        Returns negative MSE; closer to 0 is better.
         """
         y_pred = self.predict(X)
         mse = np.mean((y - y_pred) ** 2)
@@ -102,9 +102,9 @@ class XGBoostRegressorAdapter(ModelAdapter):
 
     def get_distance_to_boundary(self, X: np.ndarray) -> np.ndarray:
         """
-        获取到"边界"的距离
+        Return the distance to the "boundary".
 
-        使用预测值偏离均值的程度
+        Uses how far the prediction deviates from the mean.
         """
         if not self._is_fitted:
             return np.ones(len(X)) * 0.5
@@ -117,13 +117,13 @@ class XGBoostRegressorAdapter(ModelAdapter):
             return np.ones(len(X)) * 0.5
 
     def get_feature_importance(self) -> np.ndarray:
-        """获取特征重要性"""
+        """Return feature importance."""
         if self._feature_importance is None:
-            raise RuntimeError("模型未训练，请先调用 fit()")
+            raise RuntimeError("Model is not trained; please call fit() first.")
         return self._feature_importance
 
     def clone(self) -> 'XGBoostRegressorAdapter':
-        """创建未训练的克隆"""
+        """Create an untrained clone."""
         return XGBoostRegressorAdapter(
             n_estimators=self.n_estimators,
             max_depth=self.max_depth,
