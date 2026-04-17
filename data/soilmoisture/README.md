@@ -1,57 +1,57 @@
-# 数据集：SoilMoisture
+# Dataset: SoilMoisture
 
-## 基本信息
+## Basic Information
 
-| 项目 | 值 |
+| Item | Value |
 |------|-----|
-| 任务类型 | 回归 (Regression) |
-| 目标列 | `soil_moisture` |
-| 数据规模 | 679 条记录 × 128 列 (127 特征 + 1 标签) |
-| 索引文件 | `clean_index.csv`, `dirty_index.csv` |
+| Task Type | Regression |
+| Target Column | `soil_moisture` |
+| Data Scale | 679 records × 128 columns (127 features + 1 label) |
+| Index Files | `clean_index.csv`, `dirty_index.csv` |
 
-## 列定义
+## Column Definitions
 
-### 索引列 (Index)
-| 列名 | 说明 |
+### Index Column
+| Column | Description |
 |------|------|
-| `index` | 行索引，不参与模型训练 |
+| `index` | Row index, not used in model training |
 
-### 特征列 (Features) - 共127列
-| 属性名 | 类型 | 说明 |
+### Feature Columns (127 total)
+| Attribute | Type | Description |
 |--------|------|------|
-| datetime | 时间 | 采集时间戳 |
-| soil_temperature | 数值 | 土壤温度 |
-| 454-950 | 数值 | 高光谱波段反射率 (共125个波段，波长范围454nm-950nm) |
+| datetime | Timestamp | Acquisition timestamp |
+| soil_temperature | Numeric | Soil temperature |
+| 454-950 | Numeric | Hyperspectral band reflectance (125 bands covering 454nm-950nm) |
 
-**注意**: 特征列454, 458, 462, ... 950 表示对应波长(nm)的光谱反射率值
+**Note**: Feature columns 454, 458, 462, ... 950 represent reflectance values at their corresponding wavelengths (nm).
 
-### 目标列 (Label)
-| 属性名 | 类型 | 说明 |
+### Label Column
+| Attribute | Type | Description |
 |--------|------|------|
-| soil_moisture | 数值 | 土壤含水量 |
+| soil_moisture | Numeric | Soil moisture content |
 
-## 错误统计
+## Error Statistics
 
-### 总览
-| 指标 | 值 |
+### Overview
+| Metric | Value |
 |------|-----|
-| 错误单元格数 | 26,014 |
-| 总单元格数 | 86,233 |
-| 单元格错误率 | 30.17% |
-| 错误行数 | 679 / 679 |
-| 行错误率 | 100.0% |
-| 标签错误数 | 0 |
-| 标签错误率 | 0.0% |
+| Error cells | 26,014 |
+| Total cells | 86,233 |
+| Cell error rate | 30.17% |
+| Error rows | 679 / 679 |
+| Row error rate | 100.0% |
+| Label errors | 0 |
+| Label error rate | 0.0% |
 
-### 错误类型分布
-| 类型 | 数量 | 占比 |
+### Error Type Distribution
+| Type | Count | Ratio |
 |------|------|------|
-| Semantic (语义错误) | 14,367 | 55.23% |
-| Syntactic (句法错误) | 11,647 | 44.77% |
-| Missing (缺失值) | 0 | 0.00% |
+| Semantic | 14,367 | 55.23% |
+| Syntactic | 11,647 | 44.77% |
+| Missing | 0 | 0.00% |
 
-### 各列错误分布 (Top-10)
-| 列名 | 错误数 | 错误率 | Semantic | Syntactic |
+### Per-Column Error Distribution (Top-10)
+| Column | Errors | Error Rate | Semantic | Syntactic |
 |------|--------|--------|----------|-----------|
 | 766 | 238 | 35.05% | 142 | 96 |
 | 602 | 237 | 34.90% | 137 | 100 |
@@ -64,7 +64,7 @@
 | 794 | 222 | 32.70% | 106 | 116 |
 | 454 | 221 | 32.55% | 111 | 110 |
 
-> 共 127 列特征，各列错误率在 ~28-35% 之间分布，上表仅展示错误数最多的前 10 列。
+> The dataset has 127 feature columns, with per-column error rates distributed between ~28-35%. The table above shows only the top 10 columns by error count.
 
-## 数据来源
+## Data Source
 Riese, F. M., & Keller, S. Hyperspectral benchmark dataset on soil moisture. https://github.com/felixriese/hyperspectral-soilmoisture-dataset. 2018.

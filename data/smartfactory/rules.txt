@@ -1,11 +1,11 @@
 # =============================================================================
 # Dataset: smartfactory (Industrial Smart Factory)
 # =============================================================================
-# 23645 行 × 20 列 (含 index, labels)
-# 任务: 分类 (标签列: labels, 二分类 {0, 1})
-# 错误: 纯缺失值 (30% 行, 每行 1 列 "empty"), 标签无错误
+# 23,645 rows x 20 cols (including index and labels)
+# Task: classification (label column: labels, binary {0, 1})
+# Errors: pure missing values (30% of rows, one column "empty" per such row); label is error-free
 #
-# 检测策略: NaN 检测即可 100% 覆盖, RAHA 可选
+# Detection strategy: NaN detection alone covers 100% of errors; RAHA is optional
 # =============================================================================
 
 [DOMAIN]
@@ -29,5 +29,5 @@ o_w_hl_power: INT [0, 41790]
 o_w_hl_voltage: INT [0, 596]
 labels: ENUM {0, 1}
 
-# FD 已删除: 原 12 条 weg=>power/voltage 在 clean 数据上有 33-73% 违反率
-# 纯缺失值数据集不需要 FD 做检测
+# FDs removed: the original 12 weg=>power/voltage FDs had 33-73% violation rates on clean data.
+# A pure-missing-value dataset does not need FDs for detection.

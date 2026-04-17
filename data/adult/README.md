@@ -1,70 +1,70 @@
-# 数据集：Adult
+# Dataset: Adult
 
-## 基本信息
+## Basic Information
 
-| 项目 | 值 |
+| Item | Value |
 |------|-----|
-| 任务类型 | 分类 (Classification) |
-| 目标列 | `income` |
-| 数据规模 | 45,222 条记录 × 15 列 (14 特征 + 1 标签) |
-| 索引文件 | `clean_index.csv`, `dirty_index.csv` |
+| Task Type | Classification |
+| Target Column | `income` |
+| Data Scale | 45,222 records × 15 columns (14 features + 1 label) |
+| Index Files | `clean_index.csv`, `dirty_index.csv` |
 
-## 列定义
+## Column Definitions
 
-### 索引列 (Index)
-| 列名 | 说明 |
+### Index Column
+| Column | Description |
 |------|------|
-| `index` | 行索引，不参与模型训练 |
+| `index` | Row index, not used in model training |
 
-### 特征列 (Features) - 共14列
-| 属性名 | 类型 | 说明 |
+### Feature Columns (14 total)
+| Attribute | Type | Description |
 |--------|------|------|
-| age | 数值 | 年龄 |
-| workclass | 分类 | 工作类型 |
-| fnlwgt | 数值 | 最终权重 |
-| education | 分类 | 教育程度 |
-| educational_num | 数值 | 教育年数 |
-| marital_status | 分类 | 婚姻状态 |
-| occupation | 分类 | 职业 |
-| relationship | 分类 | 家庭关系 |
-| race | 分类 | 种族 |
-| gender | 分类 | 性别 |
-| capital_gain | 数值 | 资本收益 |
-| capital_loss | 数值 | 资本损失 |
-| hours_per_week | 数值 | 每周工作小时数 |
-| native_country | 分类 | 原籍国 |
+| age | Numeric | Age |
+| workclass | Categorical | Work class |
+| fnlwgt | Numeric | Final weight |
+| education | Categorical | Education level |
+| educational_num | Numeric | Years of education |
+| marital_status | Categorical | Marital status |
+| occupation | Categorical | Occupation |
+| relationship | Categorical | Family relationship |
+| race | Categorical | Race |
+| gender | Categorical | Gender |
+| capital_gain | Numeric | Capital gain |
+| capital_loss | Numeric | Capital loss |
+| hours_per_week | Numeric | Working hours per week |
+| native_country | Categorical | Country of origin |
 
-### 目标列 (Label)
-| 属性名 | 类型 | 说明 |
+### Label Column
+| Attribute | Type | Description |
 |--------|------|------|
-| income | 二分类 | 收入是否超过50K (0/1) |
+| income | Binary | Whether income exceeds 50K (0/1) |
 
-## 错误统计
+## Error Statistics
 
-### 总览
-| 指标 | 值 |
+### Overview
+| Metric | Value |
 |------|-----|
-| 错误单元格数 | 0 |
-| 总单元格数 | 633,108 |
-| 单元格错误率 | 0.00% |
-| 错误行数 | 0 / 45,222 |
-| 行错误率 | 0.0% |
-| 标签错误数 | 1,701 |
-| 标签错误率 | 3.76% |
+| Error cells | 0 |
+| Total cells | 633,108 |
+| Cell error rate | 0.00% |
+| Error rows | 0 / 45,222 |
+| Row error rate | 0.0% |
+| Label errors | 1,701 |
+| Label error rate | 3.76% |
 
-> 该数据集的特征列无错误，仅标签列 `income` 存在 1,701 个错误（占标签总数的 3.76%）。
+> Feature columns contain no errors. All 1,701 errors are in the label column `income` (3.76% of labels).
 
-### 错误类型分布
-| 类型 | 数量 | 占比 |
+### Error Type Distribution
+| Type | Count | Ratio |
 |------|------|------|
-| Semantic (语义错误) | 0 | - |
-| Syntactic (句法错误) | 0 | - |
-| Missing (缺失值) | 0 | - |
-| 标签错误 | 1,701 | 100% |
+| Semantic | 0 | - |
+| Syntactic | 0 | - |
+| Missing | 0 | - |
+| Label errors | 1,701 | 100% |
 
-### 各列错误分布
+### Per-Column Error Distribution
 
-特征列无错误。所有 1,701 个错误均位于标签列 `income`。
+Feature columns contain no errors. All 1,701 errors are located in the label column `income`.
 
-## 数据来源
+## Data Source
 Becker, B. & Kohavi, R. Adult. https://archive.ics.uci.edu/dataset/2/adult. 1996.

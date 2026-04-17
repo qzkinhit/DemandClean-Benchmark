@@ -1,56 +1,56 @@
-# 数据集：Mercedes
+# Dataset: Mercedes
 
-## 基本信息
+## Basic Information
 
-| 项目 | 值 |
+| Item | Value |
 |------|-----|
-| 任务类型 | 回归 (Regression) |
-| 目标列 | `y` |
-| 数据规模 | 4,209 条记录 × 377 列 (376 特征 + 1 标签) |
-| 索引文件 | `clean_index.csv`, `dirty_index.csv` |
+| Task Type | Regression |
+| Target Column | `y` |
+| Data Scale | 4,209 records × 377 columns (376 features + 1 label) |
+| Index Files | `clean_index.csv`, `dirty_index.csv` |
 
-## 列定义
+## Column Definitions
 
-### 索引列 (Index)
-| 列名 | 说明 |
+### Index Column
+| Column | Description |
 |------|------|
-| `index` | 行索引，不参与模型训练 |
+| `index` | Row index, not used in model training |
 
-### 特征列 (Features) - 共376列
-| 属性名 | 类型 | 说明 |
+### Feature Columns (376 total)
+| Attribute | Type | Description |
 |--------|------|------|
-| X0-X8 | 分类 | 类别特征 |
-| X10-X385 | 二值 | 匿名化的车辆配置特征 (0/1) |
+| X0-X8 | Categorical | Categorical features |
+| X10-X385 | Binary | Anonymized vehicle configuration features (0/1) |
 
-**注意**: 特征列命名为 X0, X1, X2, ... X385，共376个特征列（部分编号缺失：X7, X9, X72, X121, X149, X188, X193, X303, X381）
+**Note**: Feature columns are named X0, X1, X2, ... X385, with 376 feature columns in total (some indices missing: X7, X9, X72, X121, X149, X188, X193, X303, X381).
 
-### 目标列 (Label)
-| 属性名 | 类型 | 说明 |
+### Label Column
+| Attribute | Type | Description |
 |--------|------|------|
-| y | 数值 | 车辆测试时间（秒） |
+| y | Numeric | Vehicle testing time (seconds) |
 
-## 错误统计
+## Error Statistics
 
-### 总览
-| 指标 | 值 |
+### Overview
+| Metric | Value |
 |------|-----|
-| 错误单元格数 | 301,127 |
-| 总单元格数 | 1,582,584 |
-| 单元格错误率 | 19.03% |
-| 错误行数 | 4,209 / 4,209 |
-| 行错误率 | 100.0% |
-| 标签错误数 | 0 |
-| 标签错误率 | 0.0% |
+| Error cells | 301,127 |
+| Total cells | 1,582,584 |
+| Cell error rate | 19.03% |
+| Error rows | 4,209 / 4,209 |
+| Row error rate | 100.0% |
+| Label errors | 0 |
+| Label error rate | 0.0% |
 
-### 错误类型分布
-| 类型 | 数量 | 占比 |
+### Error Type Distribution
+| Type | Count | Ratio |
 |------|------|------|
-| Semantic (语义错误) | 165,155 | 54.85% |
-| Syntactic (句法错误) | 135,972 | 45.15% |
-| Missing (缺失值) | 0 | 0.00% |
+| Semantic | 165,155 | 54.85% |
+| Syntactic | 135,972 | 45.15% |
+| Missing | 0 | 0.00% |
 
-### 各列错误分布 (Top-10)
-| 列名 | 错误数 | 错误率 | Semantic | Syntactic |
+### Per-Column Error Distribution (Top-10)
+| Column | Errors | Error Rate | Semantic | Syntactic |
 |------|--------|--------|----------|-----------|
 | X304 | 910 | 21.62% | 494 | 416 |
 | X39 | 905 | 21.50% | 484 | 421 |
@@ -63,7 +63,7 @@
 | X202 | 892 | 21.19% | 492 | 400 |
 | X178 | 891 | 21.17% | 489 | 402 |
 
-> 共 376 列特征，各列错误率在 ~19-22% 之间均匀分布，上表仅展示错误数最多的前 10 列。
+> The dataset has 376 feature columns, with per-column error rates evenly distributed between ~19-22%. The table above shows only the top 10 columns by error count.
 
-## 数据来源
+## Data Source
 Daimler. Mercedes-Benz Greener Manufacturing. https://www.kaggle.com/c/mercedes-benz-greener-manufacturing. 2017.

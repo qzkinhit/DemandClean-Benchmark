@@ -1,57 +1,61 @@
-## Horizon代码简介
-该Horizon的目标是通过分析功能依赖（FD）的约束来修复数据中的错误。Horizon的主要组件包括图数据结构的构建、功能依赖模式图的生成、强连通分量的分析、拓扑排序以及基于这些模式的脏数据修复方法。
+## Horizon Overview
 
-## 文件结构
+Horizon repairs data errors by analyzing functional dependency (FD) constraints. Its core components include a graph data structure, FD pattern graph construction, strongly-connected-component (SCC) analysis, topological sorting, and a pattern-based dirty-data repair procedure.
+
+## File Structure
+
 ### 1. `graph.py`
-- **`Vertex` 类**: 表示图中的一个顶点，通常为一个属性或属性-值对。顶点包含属性标识符、类型（受限属性或自由属性）、连接的邻居顶点以及与这些邻居的连接权重和质量得分。
-    - **方法**:
-      - `addNeighbor(nbr)`: 向当前顶点添加与邻居顶点的连接。
-      - `getConnections()`: 获取所有邻居顶点。
-      - `getWeight(nbr)`: 获取与指定邻居的连接权重。
-- **`Graph` 类**: 表示功能依赖的图，顶点代表属性或属性值，边表示属性间的功能依赖关系。
-    - **方法**:
-      - `addVertex(key, key1, type)`: 添加一个新顶点。
-      - `addEdge(f, t)`: 添加一条从顶点f到顶点t的边。
-      - `getVertices()`: 返回图中所有顶点的ID。
-- **辅助函数**:
-  - `tr(G)`: 计算图的转置，即反转所有边的方向。
-  - `topoSort(G)`: 对图进行拓扑排序。
-  - `walk(G, s)`: 从某个顶点开始遍历图，并返回遍历路径。
+- **`Vertex` class**: Represents a vertex in the graph, typically an attribute or an attribute-value pair. It stores the attribute identifier, type (restricted or free), and edges to neighbor vertices with their weights and quality scores.
+    - **Methods**:
+      - `addNeighbor(nbr)`: Adds an edge from the current vertex to a neighbor.
+      - `getConnections()`: Returns all neighbor vertices.
+      - `getWeight(nbr)`: Returns the edge weight to the specified neighbor.
+- **`Graph` class**: Represents the FD pattern graph, where vertices stand for attributes or attribute values and edges encode FD relationships.
+    - **Methods**:
+      - `addVertex(key, key1, type)`: Adds a new vertex.
+      - `addEdge(f, t)`: Adds an edge from vertex `f` to vertex `t`.
+      - `getVertices()`: Returns the IDs of all vertices.
+- **Helper functions**:
+  - `tr(G)`: Computes the transpose of the graph (reverses all edge directions).
+  - `topoSort(G)`: Performs a topological sort on the graph.
+  - `walk(G, s)`: Traverses the graph starting from a given vertex and returns the traversal path.
 
 ### 2. `horizon.py`
-- **`BuildFDPatternGraph`**: 根据数据文件和功能依赖约束文件构建功能依赖模式图。该图用于表示属性之间的依赖关系。
-- **`ComputePatternQulity`**: 计算图中每个模式的质量，包括支持度和边权重。
-- **`BuildSCCGraghAndSort`**: 构建功能依赖的强连通分量图，并对其进行拓扑排序。返回排序结果、顶点到分量的映射以及分量列表。
-- **`OrderFDs`**: 根据强连通分量和拓扑排序，对功能依赖进行排序。
-- **`GeneratePatternPreservingRepairs`**: 根据功能依赖图和排序修复脏数据，生成保持模式的修复结果。
-- **`dirty_cells`**: 识别脏数据文件与干净数据文件中的脏单元格。
-- **`Horizon`**: Horizon的主函数，执行数据清洗过程并返回修复后的模式表达式。
+- **`BuildFDPatternGraph`**: Builds the FD pattern graph from the data file and FD constraint file. This graph encodes the dependencies between attributes.
+- **`ComputePatternQulity`**: Computes the quality of each pattern in the graph, including support and edge weight.
+- **`BuildSCCGraghAndSort`**: Builds the SCC graph of the FD graph and performs topological sorting. Returns the sort order, the vertex-to-component mapping, and the list of components.
+- **`OrderFDs`**: Orders the FDs based on SCC structure and topological order.
+- **`GeneratePatternPreservingRepairs`**: Repairs dirty data according to the FD graph and ordering, producing pattern-preserving repair results.
+- **`dirty_cells`**: Identifies dirty cells between the dirty and clean data files.
+- **`Horizon`**: Main entry function — runs the end-to-end cleaning pipeline and returns repaired pattern expressions.
 
 ### 3. `util.py`
-- **`check_string(string)`**: 检查字符串中是否包含特定错误标记，并返回相应的错误类型。
-- **`calF1(precision, recall)`**: 计算 F1 值。
-- **`calRepPrec(pattern_expressions, dirty_path, clean_path)`**: 计算修复的精度。
-- **`calRepRec(pattern_expressions, dirty_path, clean_path)`**: 计算修复的召回率。
+- **`check_string(string)`**: Checks whether a string contains specific error markers and returns the corresponding error type.
+- **`calF1(precision, recall)`**: Computes the F1 score.
+- **`calRepPrec(pattern_expressions, dirty_path, clean_path)`**: Computes repair precision.
+- **`calRepRec(pattern_expressions, dirty_path, clean_path)`**: Computes repair recall.
 
-## 流程说明
-1. **构建功能依赖模式图**:
-   - 调用 `BuildFDPatternGraph` 读取数据文件和功能依赖约束，构建图对象。
-   - 每个顶点表示数据中的属性或属性值，边表示功能依赖关系。
-   
-2. **计算模式质量**:
-   - 调用 `ComputePatternQulity` 使用深度优先搜索遍历图，计算每个模式的支持度和质量得分。
+## Pipeline
 
-3. **强连通分量分析**:
-   - 使用 `BuildSCCGraghAndSort` 识别图中的强连通分量并对其进行拓扑排序。
+1. **Build the FD pattern graph**:
+   - Call `BuildFDPatternGraph` to read the data file and FD constraints and construct the graph object.
+   - Each vertex represents an attribute or attribute value; each edge encodes an FD relationship.
 
-4. **功能依赖排序**:
-   - 调用 `OrderFDs` 对功能依赖进行排序，以便根据依赖关系修复数据。
+2. **Compute pattern quality**:
+   - `ComputePatternQulity` performs a depth-first traversal of the graph and computes the support and quality score of each pattern.
 
-5. **修复脏数据**:
-   - 调用 `GeneratePatternPreservingRepairs` 根据排序后的功能依赖修复脏数据，生成保持模式的修复表达式。
-   - 最终修复结果通过 `Horizon` 函数执行，并返回模式表达式。
+3. **SCC analysis**:
+   - `BuildSCCGraghAndSort` identifies the strongly connected components and topologically sorts them.
 
-## 主要功能
-- **模式修复**: Horizon根据功能依赖约束修复数据中的脏单元格。
-- **拓扑排序**: 使用图的拓扑排序保证修复顺序符合功能依赖的约束。
-- **质量评分**: 通过计算支持度和连接质量评估修复模式的优劣。
+4. **Order the FDs**:
+   - Call `OrderFDs` to sort the FDs so the repair order respects dependencies.
+
+5. **Repair dirty data**:
+   - Call `GeneratePatternPreservingRepairs` to repair dirty cells according to the ordered FDs and produce pattern-preserving repair expressions.
+   - The `Horizon` entry function orchestrates the pipeline and returns the final pattern expressions.
+
+## Key Capabilities
+
+- **Pattern-preserving repair**: Fixes dirty cells by honoring FD constraints.
+- **Topological ordering**: Guarantees that repairs are applied in an order consistent with the FD structure.
+- **Quality scoring**: Evaluates repair patterns through support and connection quality.

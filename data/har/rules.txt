@@ -1,8 +1,8 @@
 # =============================================================================
 # Dataset: har (Human Activity Recognition)
 # =============================================================================
-# 70000 行 × 5 列; 分类 (gt: {sit, stand})
-# 错误: 异常值 + empty, 标签 empty
+# 70,000 rows x 5 cols; classification (gt: {sit, stand})
+# Errors: outliers + empty values; labels include empty values
 # =============================================================================
 
 [DOMAIN]

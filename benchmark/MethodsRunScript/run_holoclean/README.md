@@ -1,29 +1,29 @@
 # HoloClean Baseline
 
-## 简介
+## Overview
 
-HoloClean 是一个基于概率图模型的数据清洗系统，通过融合多种信号（约束、统计、知识库）来自动修复数据错误。
+HoloClean is a probabilistic-graphical-model-based data cleaning system that combines multiple signals (constraints, statistics, knowledge bases) to automatically repair data errors.
 
-**论文**: [HoloClean: Holistic Data Repairs with Probabilistic Inference](https://www.vldb.org/pvldb/vol10/p1190-rekatsinas.pdf) (VLDB 2017)
+**Paper**: [HoloClean: Holistic Data Repairs with Probabilistic Inference](https://www.vldb.org/pvldb/vol10/p1190-rekatsinas.pdf) (VLDB 2017)
 
-## 方法类型
+## Method Type
 
-| 类型 | 说明 |
+| Type | Description |
 |------|------|
-| **Type 1** | 全自动，无需真值 |
-| 真值使用 | 0（仅用于评估） |
+| **Type 1** | Fully automatic, no ground truth required |
+| Ground-truth usage | 0 (used only for evaluation) |
 
-## 核心思想
+## Core Ideas
 
-1. 使用 Denial Constraints (DC) 检测错误
-2. 生成候选修复值
-3. 构建因子图，融合多种信号
-4. 使用概率推理选择最优修复
+1. Uses Denial Constraints (DC) to detect errors
+2. Generates candidate repair values
+3. Builds a factor graph fusing multiple signals
+4. Uses probabilistic inference to pick the best repair
 
-## 运行方式
+## Usage
 
 ```bash
-# 单个数据集
+# Single dataset
 python MethodsRunScript/run_holoclean/run_holoclean_base.py \
     --dirty_path Data/beers/dirty_index.csv \
     --clean_path Data/beers/clean_index.csv \
@@ -33,53 +33,53 @@ python MethodsRunScript/run_holoclean/run_holoclean_base.py \
     --label_column style \
     --task_type classification
 
-# 批量运行所有数据集
+# Batch run on all datasets
 bash MethodsRunScript/run_holoclean/run.sh
 ```
 
-## 参数说明
+## Parameters
 
-| 参数 | 必需 | 说明 | 默认值 |
+| Parameter | Required | Description | Default |
 |------|------|------|--------|
-| `--dirty_path` | 是 | 脏数据路径 | - |
-| `--clean_path` | 否 | 干净数据路径（用于评估） | - |
-| `--rule_path` | 否 | 规则文件路径 | - |
-| `--task_name` | 是 | 任务名称 | - |
-| `--output_path` | 否 | 结果输出路径 | `results/holoclean/` |
-| `--label_column` | 否 | 标签列名 | - |
-| `--task_type` | 否 | 任务类型 | `classification` |
-| `--db_user` | 否 | PostgreSQL 用户名 | `holocleanuser` |
-| `--db_name` | 否 | 数据库名称 | `holo` |
-| `--epochs` | 否 | 训练轮数 | `10` |
-| `--learning_rate` | 否 | 学习率 | `0.001` |
-| `--threads` | 否 | 线程数 | `1` |
-| `--weak_label_thresh` | 否 | 弱标签阈值 | `0.99` |
-| `--models` | 否 | 评估模型列表 | `rf lr` |
+| `--dirty_path` | Yes | Path to dirty data | - |
+| `--clean_path` | No | Path to clean data (for evaluation) | - |
+| `--rule_path` | No | Path to the rules file | - |
+| `--task_name` | Yes | Task name | - |
+| `--output_path` | No | Output path | `results/holoclean/` |
+| `--label_column` | No | Label column name | - |
+| `--task_type` | No | Task type | `classification` |
+| `--db_user` | No | PostgreSQL user | `holocleanuser` |
+| `--db_name` | No | Database name | `holo` |
+| `--epochs` | No | Training epochs | `10` |
+| `--learning_rate` | No | Learning rate | `0.001` |
+| `--threads` | No | Number of threads | `1` |
+| `--weak_label_thresh` | No | Weak-label threshold | `0.99` |
+| `--models` | No | Evaluation models | `rf lr` |
 
-## 规则文件格式
+## Rule File Format
 
-规则文件需包含 `[HOLOCLEAN_DC]` 部分：
+The rules file must contain a `[HOLOCLEAN_DC]` section:
 
 ```
 [HOLOCLEAN_DC]
-# Denial Constraint 格式
+# Denial Constraint format
 t1&t2&EQ(t1.brewery_id,t2.brewery_id)&IQ(t1.brewery_name,t2.brewery_name)
 t1&t2&EQ(t1.brewery_id,t2.brewery_id)&IQ(t1.city,t2.city)
 ```
 
-**DC 语法说明**:
-- `t1&t2`: 定义两个元组变量
-- `EQ(t1.attr, t2.attr)`: 相等谓词
-- `IQ(t1.attr, t2.attr)`: 不等谓词
-- `LT/GT/LTE/GTE`: 比较谓词
+**DC syntax**:
+- `t1&t2`: Declares two tuple variables
+- `EQ(t1.attr, t2.attr)`: Equality predicate
+- `IQ(t1.attr, t2.attr)`: Inequality predicate
+- `LT/GT/LTE/GTE`: Comparison predicates
 
-## 依赖要求
+## Requirements
 
-- **PostgreSQL**: 需要创建 `holo` 数据库
-- **Python 3.7**: HoloClean 官方仅支持 Python 3.7
+- **PostgreSQL**: A `holo` database must be created
+- **Python 3.7**: HoloClean upstream only supports Python 3.7
 - PyTorch, psycopg2, sqlalchemy
 
-### PostgreSQL 配置
+### PostgreSQL Setup
 
 ```sql
 CREATE DATABASE holo;
@@ -89,25 +89,25 @@ GRANT ALL PRIVILEGES ON DATABASE holo TO holocleanuser;
 GRANT ALL ON SCHEMA public TO holocleanuser;
 ```
 
-## 输出文件
+## Output Files
 
 ```
 results/holoclean/{task_name}/
-├── {task_name}_cleaned.csv          # 修复后的数据
-├── {task_name}_total_evaluation.txt # 评估报告
-└── {task_name}.log                  # 运行日志
+├── {task_name}_cleaned.csv          # Repaired data
+├── {task_name}_total_evaluation.txt # Evaluation report
+└── {task_name}.log                  # Run log
 ```
 
-## 与 Horizon 对比
+## Comparison with Horizon
 
-| 方法 | 约束类型 | 修复策略 | 特点 |
+| Method | Constraint Type | Repair Strategy | Characteristics |
 |------|----------|----------|------|
-| Horizon | FD | 模式质量 | 快速、可扩展 |
-| **HoloClean** | DC | 概率推理 | 更灵活、信号融合 |
+| Horizon | FD | Pattern quality | Fast, scalable |
+| **HoloClean** | DC | Probabilistic inference | More flexible, signal fusion |
 
-## 注意事项
+## Notes
 
-- Python 3.10+ 可能存在兼容性问题
-- 需要 PostgreSQL 数据库支持
-- 大数据集处理较慢、内存消耗大
-- 无 DC 规则时会跳过修复
+- Python 3.10+ may have compatibility issues
+- Requires PostgreSQL
+- Slow and memory-intensive on large datasets
+- Skips repair when no DC rules are provided

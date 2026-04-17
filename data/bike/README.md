@@ -1,67 +1,67 @@
-# 数据集：Bike
+# Dataset: Bike
 
-## 基本信息
+## Basic Information
 
-| 项目 | 值 |
+| Item | Value |
 |------|-----|
-| 任务类型 | 回归 (Regression) |
-| 目标列 | `cnt` |
-| 数据规模 | 17,379 条记录 × 16 列 (15 特征 + 1 标签) |
-| 索引文件 | `clean_index.csv`, `dirty_index.csv` |
+| Task Type | Regression |
+| Target Column | `cnt` |
+| Data Scale | 17,379 records × 16 columns (15 features + 1 label) |
+| Index Files | `clean_index.csv`, `dirty_index.csv` |
 
-## 列定义
+## Column Definitions
 
-### 索引列 (Index)
-| 列名 | 说明 |
+### Index Column
+| Column | Description |
 |------|------|
-| `index` | 行索引，不参与模型训练 |
+| `index` | Row index, not used in model training |
 
-### 特征列 (Features) - 共15列
-| 属性名 | 类型 | 说明 |
+### Feature Columns (15 total)
+| Attribute | Type | Description |
 |--------|------|------|
-| dteday | 日期 | 日期字符串 |
-| season | 分类 | 季节 (1:春, 2:夏, 3:秋, 4:冬) |
-| yr | 数值 | 年份 (0:2011, 1:2012) |
-| mnth | 数值 | 月份 (1-12) |
-| hr | 数值 | 小时 (0-23) |
-| holiday | 二值 | 是否假日 |
-| weekday | 数值 | 星期几 (0-6) |
-| workingday | 二值 | 是否工作日 |
-| weathersit | 分类 | 天气情况 (1:晴, 2:多云, 3:小雨/雪, 4:恶劣天气) |
-| temp | 数值 | 归一化温度 |
-| atemp | 数值 | 归一化体感温度 |
-| hum | 数值 | 归一化湿度 |
-| windspeed | 数值 | 归一化风速 |
-| casual | 数值 | 临时用户租借数 |
-| registered | 数值 | 注册用户租借数 |
+| dteday | Date | Date string |
+| season | Categorical | Season (1: Spring, 2: Summer, 3: Fall, 4: Winter) |
+| yr | Numeric | Year (0: 2011, 1: 2012) |
+| mnth | Numeric | Month (1-12) |
+| hr | Numeric | Hour (0-23) |
+| holiday | Binary | Is holiday |
+| weekday | Numeric | Day of week (0-6) |
+| workingday | Binary | Is working day |
+| weathersit | Categorical | Weather (1: Clear, 2: Cloudy, 3: Light rain/snow, 4: Severe) |
+| temp | Numeric | Normalized temperature |
+| atemp | Numeric | Normalized apparent temperature |
+| hum | Numeric | Normalized humidity |
+| windspeed | Numeric | Normalized wind speed |
+| casual | Numeric | Count of casual users |
+| registered | Numeric | Count of registered users |
 
-### 目标列 (Label)
-| 属性名 | 类型 | 说明 |
+### Label Column
+| Attribute | Type | Description |
 |--------|------|------|
-| cnt | 数值 | 总租借数量 (casual + registered) |
+| cnt | Numeric | Total rental count (casual + registered) |
 
-## 错误统计
+## Error Statistics
 
-### 总览
-| 指标 | 值 |
+### Overview
+| Metric | Value |
 |------|-----|
-| 错误单元格数 | 44,324 |
-| 总单元格数 | 260,685 |
-| 单元格错误率 | 17.00% |
-| 错误行数 | 16,900 / 17,379 |
-| 行错误率 | 97.2% |
-| 标签错误数 | 0 |
-| 标签错误率 | 0.0% |
+| Error cells | 44,324 |
+| Total cells | 260,685 |
+| Cell error rate | 17.00% |
+| Error rows | 16,900 / 17,379 |
+| Row error rate | 97.2% |
+| Label errors | 0 |
+| Label error rate | 0.0% |
 
-### 错误类型分布
-| 类型 | 数量 | 占比 |
+### Error Type Distribution
+| Type | Count | Ratio |
 |------|------|------|
-| Semantic (语义错误) | 23,935 | 54.00% |
-| Syntactic (句法错误) | 20,389 | 46.00% |
-| Missing (缺失值) | 0 | 0.00% |
+| Semantic | 23,935 | 54.00% |
+| Syntactic | 20,389 | 46.00% |
+| Missing | 0 | 0.00% |
 
-### 各列错误分布
-| 列名 | 错误数 | 错误率 | Semantic | Syntactic |
+### Per-Column Error Distribution
+| Column | Errors | Error Rate | Semantic | Syntactic |
 |------|--------|--------|----------|-----------|
 | dteday | 11,820 | 68.01% | 11,418 | 402 |
 | mnth | 7,482 | 43.05% | 6,583 | 899 |
@@ -79,5 +79,5 @@
 | hr | 856 | 4.93% | 471 | 385 |
 | hum | 831 | 4.78% | 438 | 393 |
 
-## 数据来源
+## Data Source
 Fanaee-T, H. Bike Sharing. https://archive.ics.uci.edu/dataset/275/bike+sharing+dataset. 2013.

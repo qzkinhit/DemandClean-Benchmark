@@ -1,61 +1,61 @@
-# 数据集：Breast_Cancer
+# Dataset: Breast_Cancer
 
-## 基本信息
+## Basic Information
 
-| 项目 | 值 |
+| Item | Value |
 |------|-----|
-| 任务类型 | 分类 (Classification) |
-| 目标列 | `class` |
-| 数据规模 | 699 条记录 × 10 列 (9 特征 + 1 标签) |
-| 索引文件 | `clean_index.csv`, `dirty_index.csv` |
+| Task Type | Classification |
+| Target Column | `class` |
+| Data Scale | 699 records × 10 columns (9 features + 1 label) |
+| Index Files | `clean_index.csv`, `dirty_index.csv` |
 
-## 列定义
+## Column Definitions
 
-### 索引列 (Index)
-| 列名 | 说明 |
+### Index Column
+| Column | Description |
 |------|------|
-| `index` | 行索引，不参与模型训练 |
+| `index` | Row index, not used in model training |
 
-### 特征列 (Features) - 共9列
-| 属性名 | 类型 | 说明 |
+### Feature Columns (9 total)
+| Attribute | Type | Description |
 |--------|------|------|
-| Clump Thickness | 数值 | 细胞团厚度 (1-10) |
-| Uniformity of Cell Size | 数值 | 细胞大小均匀性 (1-10) |
-| Uniformity of Cell Shape | 数值 | 细胞形状均匀性 (1-10) |
-| Marginal Adhesion | 数值 | 边缘粘附性 (1-10) |
-| Single Epithelial Cell Size | 数值 | 单上皮细胞大小 (1-10) |
-| Bare Nuclei | 数值 | 裸核 (1-10) |
-| Bland Chromatin | 数值 | 平淡染色质 (1-10) |
-| Normal Nucleoli | 数值 | 正常核仁 (1-10) |
-| Mitoses | 数值 | 有丝分裂 (1-10) |
+| Clump Thickness | Numeric | Clump thickness (1-10) |
+| Uniformity of Cell Size | Numeric | Uniformity of cell size (1-10) |
+| Uniformity of Cell Shape | Numeric | Uniformity of cell shape (1-10) |
+| Marginal Adhesion | Numeric | Marginal adhesion (1-10) |
+| Single Epithelial Cell Size | Numeric | Single epithelial cell size (1-10) |
+| Bare Nuclei | Numeric | Bare nuclei (1-10) |
+| Bland Chromatin | Numeric | Bland chromatin (1-10) |
+| Normal Nucleoli | Numeric | Normal nucleoli (1-10) |
+| Mitoses | Numeric | Mitoses (1-10) |
 
-### 目标列 (Label)
-| 属性名 | 类型 | 说明 |
+### Label Column
+| Attribute | Type | Description |
 |--------|------|------|
-| class | 二分类 | 肿瘤类型 (2:良性, 4:恶性) |
+| class | Binary | Tumor class (2: Benign, 4: Malignant) |
 
-## 错误统计
+## Error Statistics
 
-### 总览
-| 指标 | 值 |
+### Overview
+| Metric | Value |
 |------|-----|
-| 错误单元格数 | 531 |
-| 总单元格数 | 6,291 |
-| 单元格错误率 | 8.44% |
-| 错误行数 | 387 / 699 |
-| 行错误率 | 55.4% |
-| 标签错误数 | 15 |
-| 标签错误率 | 2.15% |
+| Error cells | 531 |
+| Total cells | 6,291 |
+| Cell error rate | 8.44% |
+| Error rows | 387 / 699 |
+| Row error rate | 55.4% |
+| Label errors | 15 |
+| Label error rate | 2.15% |
 
-### 错误类型分布
-| 类型 | 数量 | 占比 |
+### Error Type Distribution
+| Type | Count | Ratio |
 |------|------|------|
-| Semantic (语义错误) | 371 | 69.87% |
-| Syntactic (句法错误) | 138 | 25.99% |
-| Missing (缺失值) | 0 | 0.00% |
+| Semantic | 371 | 69.87% |
+| Syntactic | 138 | 25.99% |
+| Missing | 0 | 0.00% |
 
-### 各列错误分布
-| 列名 | 错误数 | 错误率 | Semantic | Syntactic |
+### Per-Column Error Distribution
+| Column | Errors | Error Rate | Semantic | Syntactic |
 |------|--------|--------|----------|-----------|
 | Clump Thickness | 73 | 10.44% | 49 | 24 |
 | Bare Nuclei | 72 | 10.30% | 50 | 0 |
@@ -67,5 +67,5 @@
 | Marginal Adhesion | 51 | 7.30% | 33 | 18 |
 | Mitoses | 42 | 6.01% | 26 | 16 |
 
-## 数据来源
+## Data Source
 Wolberg, W. Breast Cancer Wisconsin (Original). https://archive.ics.uci.edu/dataset/15/breast+cancer+wisconsin+original. 1990.

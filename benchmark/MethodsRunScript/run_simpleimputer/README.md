@@ -1,22 +1,22 @@
 # SimpleImputer Baseline
 
-## 简介
+## Overview
 
-SimpleImputer 是基于 scikit-learn 的简单缺失值填充方法，使用统计量（均值、中位数、众数等）填充缺失值。
+SimpleImputer is a scikit-learn-based missing-value imputer that fills missing values with simple statistics (mean, median, most frequent value, etc.).
 
-**论文**: scikit-learn 内置方法
+**Paper**: Built-in method of scikit-learn.
 
-## 方法类型
+## Method Type
 
-| 类型 | 说明 |
+| Type | Description |
 |------|------|
-| **Type 1** | 全自动，无需真值 |
-| 真值使用 | 0（仅用于评估） |
+| **Type 1** | Fully automatic, no ground truth required |
+| Ground-truth usage | 0 (used only for evaluation) |
 
-## 运行方式
+## Usage
 
 ```bash
-# 使用默认策略（均值填充）
+# Default strategy (mean imputation)
 python MethodsRunScript/run_simpleimputer/run_simpleimputer_base.py \
     --dirty_path Data/beers/dirty_index.csv \
     --clean_path Data/beers/clean_index.csv \
@@ -25,50 +25,50 @@ python MethodsRunScript/run_simpleimputer/run_simpleimputer_base.py \
     --label_column style \
     --task_type classification
 
-# 指定填充策略
+# Specify the imputation strategy
 python MethodsRunScript/run_simpleimputer/run_simpleimputer_base.py \
     --dirty_path Data/beers/dirty_index.csv \
     --clean_path Data/beers/clean_index.csv \
     --task_name beers_simpleimputer \
     --strategy median
 
-# 批量运行所有数据集
+# Batch run on all datasets
 bash MethodsRunScript/run_simpleimputer/run.sh
 ```
 
-## 参数说明
+## Parameters
 
-| 参数 | 必需 | 说明 | 默认值 |
+| Parameter | Required | Description | Default |
 |------|------|------|--------|
-| `--dirty_path` | 是 | 脏数据路径 | - |
-| `--clean_path` | 是 | 干净数据路径（用于评估） | - |
-| `--task_name` | 是 | 任务名称 | - |
-| `--output_path` | 否 | 结果输出路径 | `results/simpleimputer/` |
-| `--strategy` | 否 | 填充策略 | `mean` |
-| `--label_column` | 否 | 标签列名 | - |
-| `--task_type` | 否 | 任务类型 | `classification` |
-| `--models` | 否 | 评估模型列表 | `rf lr` |
+| `--dirty_path` | Yes | Path to dirty data | - |
+| `--clean_path` | Yes | Path to clean data (for evaluation) | - |
+| `--task_name` | Yes | Task name | - |
+| `--output_path` | No | Output path | `results/simpleimputer/` |
+| `--strategy` | No | Imputation strategy | `mean` |
+| `--label_column` | No | Label column name | - |
+| `--task_type` | No | Task type | `classification` |
+| `--models` | No | Evaluation models | `rf lr` |
 
-## 支持的填充策略
+## Supported Strategies
 
-| 策略 | 说明 | 适用类型 |
+| Strategy | Description | Applicable Type |
 |------|------|----------|
-| `mean` | 均值填充 | 数值列 |
-| `median` | 中位数填充 | 数值列 |
-| `most_frequent` | 众数填充 | 所有类型 |
-| `constant` | 常数填充 | 所有类型 |
+| `mean` | Mean imputation | Numeric columns |
+| `median` | Median imputation | Numeric columns |
+| `most_frequent` | Most-frequent imputation | All types |
+| `constant` | Constant imputation | All types |
 
-## 输出文件
+## Output Files
 
 ```
 results/simpleimputer/{task_name}/
-├── {task_name}_cleaned.csv          # 填充后的数据
-├── {task_name}_total_evaluation.txt # 完整评估报告
-└── {task_name}.log                  # 运行日志
+├── {task_name}_cleaned.csv          # Imputed data
+├── {task_name}_total_evaluation.txt # Full evaluation report
+└── {task_name}.log                  # Run log
 ```
 
-## 特点
+## Key Features
 
-- 简单高效，适合快速基准测试
-- 仅处理缺失值，不修复错误值
-- 数值列和类别列分别处理
+- Simple and efficient, suitable for quick benchmarking
+- Handles missing values only — does not repair erroneous values
+- Numeric and categorical columns are handled separately

@@ -1,65 +1,65 @@
 # MLImputer
 
-## 简介
+## Overview
 
-MLImputer是基于机器学习模型的缺失值填充方法，通过训练模型预测缺失值。
+MLImputer is an ML-based missing-value imputation method that trains a model to predict missing values.
 
-## 核心特点
+## Key Features
 
-- **MICE插补**: Multiple Imputation by Chained Equations
-- **KNN插补**: 基于K近邻的插补
-- **随机森林插补**: 使用随机森林作为基估计器
+- **MICE imputation**: Multiple Imputation by Chained Equations
+- **KNN imputation**: Based on K-nearest neighbors
+- **Random Forest imputation**: Uses Random Forest as the base estimator
 
-## 真值使用情况
+## Ground-Truth Usage
 
-**类型**: 全自动执行，无需人工参与 (Type 1)
+**Type**: Fully automatic, no human effort required (Type 1)
 
-MLImputer通过已有数据训练模型预测缺失值，不需要额外标注。
+MLImputer trains its model on the available data to predict missing values and requires no additional annotation.
 
-## 文件结构
+## File Structure
 
 ```
 MLImputer/
-├── __init__.py             # 包初始化
-├── mlimputer_wrapper.py    # MLImputer封装类
-├── readme.md               # 说明文档
-└── requirements.txt        # 依赖
+├── __init__.py             # Package init
+├── mlimputer_wrapper.py    # MLImputer wrapper class
+├── readme.md               # Documentation
+└── requirements.txt        # Dependencies
 ```
 
-## 支持的方法
+## Supported Methods
 
-| 方法 | 说明 |
+| Method | Description |
 |------|------|
-| `mice` | 多重插补（迭代式） |
-| `knn` | K近邻插补 |
-| `rf` | 随机森林插补 |
+| `mice` | Multiple Imputation by Chained Equations (iterative) |
+| `knn` | K-nearest-neighbor imputation |
+| `rf` | Random Forest imputation |
 
-## 使用示例
+## Example Usage
 
 ```python
 from Methods.MLImputer import MLImputerWrapper
 
-# 创建插补器
+# Create the imputer
 imputer = MLImputerWrapper(
     method='mice',
     max_iter=10,
     verbose=True
 )
 
-# 执行插补
+# Run imputation
 repaired_df, info = imputer.clean(
     dirty_path='data/dirty.csv',
     output_path='results/imputed.csv'
 )
 
-print(f"填充的单元格数: {info['imputed_cells']}")
+print(f"Imputed cells: {info['imputed_cells']}")
 ```
 
-## 参数说明
+## Parameters
 
-| 参数 | 默认值 | 说明 |
+| Parameter | Default | Description |
 |------|--------|------|
-| method | 'mice' | 插补方法 |
-| max_iter | 10 | MICE最大迭代次数 |
-| n_neighbors | 5 | KNN邻居数 |
-| random_state | 42 | 随机种子 |
+| method | 'mice' | Imputation method |
+| max_iter | 10 | Maximum iterations for MICE |
+| n_neighbors | 5 | Number of neighbors for KNN |
+| random_state | 42 | Random seed |

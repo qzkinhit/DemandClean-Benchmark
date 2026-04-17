@@ -1,82 +1,82 @@
-# 项目目录简短说明
+# Project Directory Overview
 
 ## .streamlit
-**配置文件**
-- `config.toml`: streamlit 项目的配置文件。
+**Configuration files**
+- `config.toml`: Streamlit project configuration.
 
 ## resources
-**外部资源(可能会用到的外部模型)**
-- `readme.txt`: 外部资源文件的说明文档。
+**External resources (may be consumed by external models)**
+- `readme.txt`: Description of the external resources.
 
 ## CleanLogs
-**日志文件**
-- 清洗日志文件夹，用于记录一键端的清洗日志。
+**Log files**
+- Cleaning-log folder; records end-to-end cleaning logs.
 
 ## AnalyticsCache
-**分析与缓存,分析和处理各模块直接的输入输出，起到缓存区的作用**
-- **ModuleTest**:模块测试代码
-- `get_cleaner_excute_info.py`: 基于规则给算子分类权重,获取算子的执行顺序。
-- `get_planuml_graph.py`: 利用 plantuml可视化执行顺序图。
-- `cleaner_associations_cycle.py`: 在有环图上合并顶点，对合并后的顶点获取算子关联性。
-- `handle_rules.py`: 规则转换,分析规则，将挖掘的规则实例化到 Spark 上。
+**Analytics and caching — caches per-module inputs/outputs and acts as a staging area between modules**
+- **ModuleTest**: Module-level test code
+- `get_cleaner_excute_info.py`: Computes cleaner weights and execution order based on rules.
+- `get_planuml_graph.py`: Visualizes the execution-order graph using PlantUML.
+- `cleaner_associations_cycle.py`: Merges vertices on a cyclic graph and derives cleaner associations from the merged graph.
+- `handle_rules.py`: Rule transformation — analyzes and instantiates mined rules for Spark execution.
 
 ## CoreSetSample
-**核心集抽样**
-- **ModuleTest**:模块测试代码
-- `get_patition_block.py`: 分块算法。
-- `distri_samplify.py`: 利用数据分布对数据进行抽样。
-- `handle_data_distri.py`: 计算数据之间的分布。
-- `mapping_samplify.py`: 利用映射关系采样。
+**Core-set sampling**
+- **ModuleTest**: Module-level test code
+- `get_patition_block.py`: Partitioning/blocking algorithm.
+- `distri_samplify.py`: Samples data using the data distribution.
+- `handle_data_distri.py`: Computes inter-sample distributions.
+- `mapping_samplify.py`: Samples data based on mapping relationships.
 
 ## SampleScrubber
-**样本清理工具**
-- **ModuleTest**:模块测试代码
+**Sample-scrubbing utilities**
+- **ModuleTest**: Module-level test code
 - **util**
-    - `distance.py`: 计算距离。
-    - `getNum.py`: 计算清洗准确度。
-- `uniop_model.py`: 规则挖掘模型。
-- `param_builder.py`: 规则参数构建。
-- `param_selector.py`: 规则参数选择。
+    - `distance.py`: Distance computation.
+    - `getNum.py`: Cleaning-accuracy metrics.
+- `uniop_model.py`: Rule-mining model.
+- `param_builder.py`: Rule-parameter construction.
+- `param_selector.py`: Rule-parameter selection.
 - **cleanOps**
-    - `single.py`: 单属性算子。
-    - `multiple.py`: 多属性关联算子。
-    - `soft.py`: 其他尝试性算子。
-    - `clean_penalty.py`: 计算清洗成本，包括edit惩罚，语义距离惩罚，jaccard距离。
+    - `single.py`: Single-attribute operators.
+    - `multiple.py`: Multi-attribute operators.
+    - `soft.py`: Experimental operators.
+    - `clean_penalty.py`: Cleaning-cost computation, including edit penalty, semantic-distance penalty, and Jaccard distance.
 
 ## SparkClean
-**Spark 清理模块**
-- **ModuleTest**:模块测试代码
-- - **util**
-    - `distance.py`: 计算距离。
-    - `get_types.py`: 获取数据类型。
-    - `cleanudf.py`: Spark 用户自定义 UDF。
-- `get_spark_rule.py`: 规则处理和分配参数
-- `spark_rule_model.py`: 适用于 Spark 环境的操作模型。
-- `selector.py`: 参数选择。
-- `cleaner_model.py`: 算子的数据结构。
-- `function_denpendency.py`: 依赖cleaner。
+**Spark-based cleaning module**
+- **ModuleTest**: Module-level test code
+- **util**
+    - `distance.py`: Distance computation.
+    - `get_types.py`: Data-type inference.
+    - `cleanudf.py`: Custom Spark UDFs.
+- `get_spark_rule.py`: Rule processing and parameter distribution.
+- `spark_rule_model.py`: Model adapted for the Spark environment.
+- `selector.py`: Parameter selection.
+- `cleaner_model.py`: Cleaner data structures.
+- `function_denpendency.py`: Cleaner dependency handling.
 
 ## TestDataset
-**测试数据集**
+**Test dataset**
 
 ## sysFlowVisualizer
-**可视化工具**
-- **cleanCache**: 可视化展示的数据和图表缓存区。
-- **PageHistory**: 一些弃用的可视化方案。
+**Visualization utilities**
+- **cleanCache**: Cache for visualized data and charts.
+- **PageHistory**: Deprecated visualization prototypes.
 
 ## pages
-**Streamlit 网页**
-- Streamlit 的可视化网页前端代码。
+**Streamlit web pages**
+- Frontend code for the Streamlit visualization pages.
 
-## 主要脚本
-- `Welcome.py`: Streamlit 前端启动一键端，前端首页代码。
-- `main.py`: 利用终端一键端清洗的实例。
-- `logsetting.py`: 一键端日志配置。
-- `Clean.py`: 一键端终端清洗的代码。
-- `requirements.txt`: 一键端依赖包。
-- `Plantuml.svg`: 可视化清洗流程图。
+## Main Scripts
+- `Welcome.py`: Streamlit frontend entry point and home page.
+- `main.py`: Terminal entry point for running a cleaning instance.
+- `logsetting.py`: Logging configuration for the entry point.
+- `Clean.py`: Core terminal cleaning code.
+- `requirements.txt`: Entry-point dependencies.
+- `Plantuml.svg`: Visualization of the cleaning pipeline.
 
-# 下一步优化方向
-- [ ] 更多样清洗算子
-- [ ] 更多样检测器
-- [ ] 更多样的数据
+# Roadmap
+- [ ] More cleaning operators
+- [ ] More detectors
+- [ ] More varied datasets

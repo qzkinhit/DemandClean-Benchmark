@@ -1,28 +1,28 @@
 # UniClean Baseline
 
-## 简介
+## Overview
 
-UniClean 是一种多信号融合的数据清洗框架，基于 PySpark 实现分布式处理，使用多种预定义的清洗器（Cleaner）对数据进行规则化清洗。
+UniClean is a multi-signal unified data cleaning framework built on PySpark for distributed processing. It applies a suite of predefined cleaners (range checks, pattern matching, outlier detection, etc.) to rule-based data cleaning.
 
-**论文**: UniClean: A Multi-Signal Unified Data Cleaning Framework (VLDB 2025)
+**Paper**: UniClean: A Multi-Signal Unified Data Cleaning Framework (VLDB 2025)
 
-## 方法类型
+## Method Type
 
-| 类型 | 说明 |
+| Type | Description |
 |------|------|
-| **Type 1** | 全自动，无需真值 |
-| 真值使用 | 0（仅用于评估） |
+| **Type 1** | Fully automatic, no ground truth required |
+| Ground-truth usage | 0 (used only for evaluation) |
 
-## 核心思想
+## Core Ideas
 
-1. 定义一组清洗器（Cleaner），如数值范围检查、模式匹配、异常值检测等
-2. 对每一列应用对应的清洗器
-3. 清洗器基于规则自动修复数据
+1. Defines a set of cleaners (e.g., numeric range checks, pattern matches, outlier detection)
+2. Applies the appropriate cleaner to each column
+3. Cleaners repair the data automatically based on rules
 
-## 运行方式
+## Usage
 
 ```bash
-# 单个数据集
+# Single dataset
 python MethodsRunScript/run_uniclean/run_uniclean_base.py \
     --dirty_path Data/beers/dirty_index.csv \
     --clean_path Data/beers/clean_index.csv \
@@ -32,71 +32,71 @@ python MethodsRunScript/run_uniclean/run_uniclean_base.py \
     --label_column style \
     --task_type classification
 
-# 批量运行所有数据集
+# Batch run on all datasets
 bash MethodsRunScript/run_uniclean/run.sh
 ```
 
-## 参数说明
+## Parameters
 
-| 参数 | 必需 | 说明 | 默认值 |
+| Parameter | Required | Description | Default |
 |------|------|------|--------|
-| `--dirty_path` | 是 | 脏数据路径 | - |
-| `--clean_path` | 是 | 干净数据路径（用于评估） | - |
-| `--dataset` | 是 | 数据集名称 | - |
-| `--task_name` | 是 | 任务名称 | - |
-| `--output_path` | 否 | 结果输出路径 | `results/uniclean/` |
-| `--label_column` | 否 | 标签列名 | - |
-| `--task_type` | 否 | 任务类型 | `classification` |
-| `--single_max` | 否 | 单次处理最大记录数 | `10000` |
-| `--executor_memory` | 否 | Spark executor 内存 | `8g` |
-| `--driver_memory` | 否 | Spark driver 内存 | `8g` |
+| `--dirty_path` | Yes | Path to dirty data | - |
+| `--clean_path` | Yes | Path to clean data (for evaluation) | - |
+| `--dataset` | Yes | Dataset name | - |
+| `--task_name` | Yes | Task name | - |
+| `--output_path` | No | Output path | `results/uniclean/` |
+| `--label_column` | No | Label column name | - |
+| `--task_type` | No | Task type | `classification` |
+| `--single_max` | No | Max records processed per batch | `10000` |
+| `--executor_memory` | No | Spark executor memory | `8g` |
+| `--driver_memory` | No | Spark driver memory | `8g` |
 
-## 规则文件格式
+## Rule File Format
 
-清洗器定义在 `rules.txt` 的 `[UNICLEAN]` 部分：
+Cleaners are defined in the `[UNICLEAN]` section of `rules.txt`:
 
 ```
 [UNICLEAN]
-# 数值类型检查
+# Numeric-type checks
 Number("ibu")
 Number("abv")
 
-# 模式匹配
+# Pattern matching
 Pattern("phone", r"^\d{3}-\d{4}$")
 
-# 异常值检测
+# Outlier detection
 Outlier("price", [], "price_outlier")
 
-# 属性关系
+# Attribute relationship
 AttrRelation("brewery_id", ["brewery_name", "city", "state"])
 ```
 
-## 支持的清洗器
+## Supported Cleaners
 
-| 清洗器 | 说明 | 示例 |
+| Cleaner | Description | Example |
 |--------|------|------|
-| `Number(col)` | 数值类型检查 | `Number("price")` |
-| `Pattern(col, regex)` | 正则模式匹配 | `Pattern("email", r".*@.*")` |
-| `Outlier(col, bounds, name)` | 异常值检测 | `Outlier("age", [0, 120], "age_check")` |
-| `Date(col, format)` | 日期格式检查 | `Date("date", "%Y-%m-%d")` |
-| `AttrRelation(key, deps)` | 属性依赖关系 | `AttrRelation("id", ["name"])` |
+| `Number(col)` | Numeric-type check | `Number("price")` |
+| `Pattern(col, regex)` | Regex pattern match | `Pattern("email", r".*@.*")` |
+| `Outlier(col, bounds, name)` | Outlier detection | `Outlier("age", [0, 120], "age_check")` |
+| `Date(col, format)` | Date-format check | `Date("date", "%Y-%m-%d")` |
+| `AttrRelation(key, deps)` | Attribute-dependency relationship | `AttrRelation("id", ["name"])` |
 
-## 输出文件
+## Output Files
 
 ```
 results/uniclean/{task_name}/
-├── {task_name}_cleaned.csv          # 清洗后的数据
-├── {task_name}_total_evaluation.txt # 评估报告
-└── {task_name}.log                  # 运行日志
+├── {task_name}_cleaned.csv          # Cleaned data
+├── {task_name}_total_evaluation.txt # Evaluation report
+└── {task_name}.log                  # Run log
 ```
 
-## 依赖要求
+## Requirements
 
 - PySpark
 - Java 8+
 
-## 注意事项
+## Notes
 
-- 需要配置 Spark 环境
-- 大数据集可能需要调整内存参数
-- 清洗效果依赖于清洗器的配置质量
+- Requires a configured Spark environment
+- Memory parameters may need tuning on large datasets
+- Cleaning quality depends on the configuration of the cleaners

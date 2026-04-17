@@ -1,40 +1,40 @@
 # DeleteAll Baseline
 
-## 简介
+## Overview
 
-DeleteAll是一种简单的baseline方法，通过**删除含有问题的行**来"清洗"数据。
+DeleteAll is a simple baseline that "cleans" data by **dropping rows that contain problems**.
 
-## 支持模式
+## Supported Modes
 
-### 1. drop_missing (默认)
-- 删除所有含有缺失值（NaN、空字符串、N/A等）的行
-- **Type 1**: 全自动执行，无需人工参与
-- **真值成本**: 0
+### 1. drop_missing (default)
+- Drops all rows containing missing values (NaN, empty string, "N/A", etc.)
+- **Type 1**: Fully automatic, no human effort required
+- **Ground-truth cost**: 0
 
 ### 2. drop_errors
-- 删除所有与干净数据不一致的行
-- **Type 2**: 需要干净数据对比
-- **真值成本**: 删除的行数
+- Drops all rows that differ from the clean data
+- **Type 2**: Requires comparison against clean data
+- **Ground-truth cost**: Proportional to the number of dropped rows
 
-## 用途
+## Purpose
 
-- 建立一种激进的清洗策略baseline
-- 对比保留数据量vs数据质量的权衡
-- 验证模型对数据量减少的敏感度
+- Provides a baseline for an aggressive deletion-based cleaning strategy
+- Highlights the trade-off between preserving row count and data quality
+- Validates a model's sensitivity to reduced row count
 
-## 使用方式
+## Usage
 
 ```python
 from Methods.DeleteAll.deleteall_wrapper import DeleteAllWrapper
 
-# 模式1: 仅删除缺失值行
+# Mode 1: drop rows containing missing values only
 cleaner = DeleteAllWrapper(mode='drop_missing', verbose=True)
 repaired_df, info = cleaner.clean(
     dirty_path='path/to/dirty.csv',
     output_path='path/to/output.csv'
 )
 
-# 模式2: 删除所有错误行
+# Mode 2: drop all erroneous rows
 cleaner = DeleteAllWrapper(mode='drop_errors', verbose=True)
 repaired_df, info = cleaner.clean(
     dirty_path='path/to/dirty.csv',
@@ -43,6 +43,6 @@ repaired_df, info = cleaner.clean(
 )
 ```
 
-## 代码修改说明
+## Implementation Notes
 
-本方法为本仓库新实现，无官方代码基础。
+This method is newly implemented in this repository and is not based on any upstream code.

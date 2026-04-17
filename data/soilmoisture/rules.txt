@@ -1,9 +1,9 @@
 # =============================================================================
 # Dataset: soilmoisture (Hyperspectral Soil Moisture)
 # =============================================================================
-# 679 行 x 129 列; 回归 (soil_moisture)
-# DOMAIN: 0% margin (精确 min/max from clean data)
-# DC: 相邻波段差异阈值 (检测域内值替换)
+# 679 rows x 129 cols; regression (soil_moisture)
+# DOMAIN: 0% margin (exact min/max from clean data)
+# DC: adjacent-band delta thresholds (detect in-domain value substitutions)
 # =============================================================================
 
 [DOMAIN]
@@ -136,9 +136,9 @@ soil_temperature: FLOAT [26.40, 47.10]
 950: FLOAT [0.1381, 0.2999]
 
 [DC]
-# 相邻波段平滑约束: |band[i+1] - band[i]| 应小于阈值
-# Clean P99=0.010, P99.5=0.028, P99.9=0.046
-# 使用阈值 0.03 (≈3x P99)
+# Adjacent-band smoothness constraint: |band[i+1] - band[i]| must stay below a threshold.
+# Clean data: P99=0.010, P99.5=0.028, P99.9=0.046.
+# Threshold: 0.03 (~ 3x P99).
 t1&GT(ABS(t1.454 - t1.458), 0.03)
 t1&GT(ABS(t1.458 - t1.462), 0.03)
 t1&GT(ABS(t1.462 - t1.466), 0.03)

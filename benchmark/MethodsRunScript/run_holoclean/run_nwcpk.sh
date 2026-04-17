@@ -1,9 +1,10 @@
 #!/bin/bash
-# 设置可执行权限： chmod +x CleanerRunScript/run_holoclean/run_nwcpk.sh
-# 运行方式：./CleanerRunScript/run_holoclean/run_nwcpk.sh
+# Make executable: chmod +x CleanerRunScript/run_holoclean/run_nwcpk.sh
+# Usage: ./CleanerRunScript/run_holoclean/run_nwcpk.sh
 
-# 定义数据集配置
-# 解析dataset index_attr mse_attr noise_dir clean_path这几个参数，后续需要，根据你的系统配置自行修改
+# Dataset configuration
+# Each entry parses into: dataset, index_attr, mse_attr, noise_dir, clean_path, rule_path.
+# Adjust the paths below to match your environment.
 datasets=(
 #     "1_hospitals:index:Score:Data/1_hospitals/noise_with_correct_primary_key:Data/1_hospitals/clean_index.csv:Data/1_hospitals/dc_rules_dc_holoclean.txt"
 #     "2_flights:index::Data/2_flights/noise_with_correct_primary_key:Data/2_flights/clean_index.csv:Data/2_flights/dc_rules_holoclean.txt"
@@ -15,18 +16,19 @@ datasets=(
      "6_soccer:index::Data/6_soccer/subset_soccer_10k/noise_with_correct_primary_key:Data/6_soccer/subset_soccer_10k/subset_clean_index_10k.csv:Data/6_soccer/dc_rules_holoclean.txt"
 )
 
-# 定义错误比例集合
+# Error ratios to sweep
 error_ratios=("0.25" "0.5" "0.75" "1" "1.25" "1.5" "1.75" "2")
 
-# 创建日志目录
+# Create the log directory
 log_dir="logs/holoclean_nwcpk"
 mkdir -p "${log_dir}"
 
-# 遍历数据集和错误比例，生成并执行命令（根据各自的系统进行更改）
+# Iterate over datasets and error ratios, build and execute commands
+# (tweak as needed for your environment)
 for dataset_config in "${datasets[@]}"; do
-    # 使用分隔符解析键值对
+    # Parse the ":"-delimited key-value pairs
     IFS=":" read -r dataset index_attr mse_attr noise_dir clean_path rule_path <<< "${dataset_config}"
-    # 从第三个字符开始取数据集名称
+    # Strip the leading "N_" prefix from the dataset id
     short_dataset_name="${dataset:2}"
     for ratio in "${error_ratios[@]}"; do
         task_name="${dataset}_nwcpk_${ratio//./}"
@@ -34,18 +36,18 @@ for dataset_config in "${datasets[@]}"; do
         output_path="results/holoclean/nwcpk"
         log_file="${log_dir}/${dataset}_holoclean_nwcpk_${ratio//./}.log"
 
-        # 生成命令
+        # Build the command
         cmd="python3 CleanerRunScript/run_holoclean/run_holoclean_base.py --dirty_path ${dirty_path} --clean_path ${clean_path} --rule_path ${rule_path} --task_name ${task_name} --output_path ${output_path} --index_attribute ${index_attr}"
 
         if [ -n "${mse_attr}" ]; then
             cmd+=" --mse_attributes ${mse_attr}"
         fi
 
-        # 打印命令用于调试
+        # Print for debugging
         echo "Generated command:"
         echo "${cmd}"
 
-        # 执行命令
+        # Execute
         eval "${cmd}" &> "${log_file}"
 
         if [ $? -ne 0 ]; then
@@ -56,4 +58,4 @@ for dataset_config in "${datasets[@]}"; do
     done
 done
 
-echo "All Raha Baran tasks completed successfully."
+echo "All HoloClean tasks completed successfully."

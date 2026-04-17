@@ -1,53 +1,53 @@
-# Lopster - 潜在空间数据清洗
+# Lopster — Latent-Space Data Cleaning
 
-## 官方信息
-- **论文**: Generalizable Data Cleaning of Tabular Data in Latent Space (VLDB 2024)
+## Upstream Information
+- **Paper**: Generalizable Data Cleaning of Tabular Data in Latent Space (VLDB 2024)
 - **GitHub**: https://github.com/DataManagementLab/data_cleaning_with_latent_operators
-- **作者**: Eduardo dos Reis, Mohamed Abdelaal, Carsten Binnig
+- **Authors**: Eduardo dos Reis, Mohamed Abdelaal, Carsten Binnig
 
-## 方法描述
-Lopster通过学习数据的潜在空间表示来检测和修复错误，是一种基于VAE的通用数据清洗方法。
+## Method Description
+Lopster is a VAE-based general-purpose data cleaning method. It learns a latent-space representation of the data and uses it to detect and repair errors.
 
-## 真值使用情况
+## Ground-Truth Usage
 
-**Type 2 - 需要训练数据**
+**Type 2 — Requires training data**
 
-- Lopster使用 `clean.csv` 训练VAE模型来学习数据的潜在空间表示
-- **真值成本 = clean.csv的行数**（全部数据用于训练）
-- 这意味着Lopster需要一定量的干净数据来学习"正常"数据的分布
+- Lopster trains its VAE on `clean.csv` to learn the latent-space representation
+- **Ground-truth cost = number of rows in `clean.csv`** (all clean data is used for training)
+- Lopster therefore needs a reasonable amount of clean data to learn the distribution of "normal" data
 
-## 依赖安装
+## Installation
 
 ```bash
 pip install tensorflow keras scikit-learn pandas numpy matplotlib
 ```
 
-或使用本目录的requirements.txt:
+Or use the local `requirements.txt`:
 ```bash
 pip install -r Methods/Lopster/requirements.txt
 ```
 
-## 数据格式要求
+## Data Format Requirements
 
-**重要**: Lopster官方实现要求特定的数据格式：
+**Important**: The upstream implementation expects a specific layout:
 
 ```
 Data/{dataset_name}/
-├── clean.csv      # 干净数据（用于训练）
-└── dirty01.csv    # 脏数据（注意是dirty01.csv，不是dirty.csv）
+├── clean.csv      # Clean data (for training)
+└── dirty01.csv    # Dirty data (note: named dirty01.csv, not dirty.csv)
 ```
 
-## 配置文件
+## Configuration File
 
-需要在 `dataset_configuration.json` 中配置数据集信息。参考现有配置。
+Dataset information must be registered in `dataset_configuration.json`. Follow the existing entries as reference.
 
-## 运行方式
+## Usage
 
-### 方式1: 使用wrapper
+### Option 1: via the wrapper
 ```python
 from Methods.Lopster.lopster_wrapper import LopsterWrapper, prepare_data_for_lopster
 
-# 准备数据格式
+# Prepare the required data layout
 prepare_data_for_lopster(
     'Data/beers/dirty.csv',
     'Data/beers/clean.csv',
@@ -55,30 +55,30 @@ prepare_data_for_lopster(
     'Data/'
 )
 
-# 运行清洗
+# Run cleaning
 wrapper = LopsterWrapper(epochs=100, latent_dim=120)
 df, info = wrapper.clean('beers', 'Data/')
 ```
 
-### 方式2: 直接运行官方脚本
+### Option 2: run the upstream script directly
 ```bash
 python Methods/Lopster/lopster.py --dataset beers --path Data/ --epochs 100 --latent 120
 ```
 
-## 与官方实现的差异
+## Differences from the Upstream Implementation
 
-**无差异** - wrapper仅封装官方实现，不含任何简化版本。
+**None** — the wrapper only packages the upstream implementation; no simplified variant is included.
 
-## 参数说明
+## Parameters
 
-| 参数 | 默认值 | 说明 |
+| Parameter | Default | Description |
 |------|--------|------|
-| epochs | 100 | 训练轮数 |
-| learning_rate | 0.001 | 学习率 |
-| latent | 120 | 潜在空间维度 |
-| batch_size | 256 | 批大小 |
-| K | 12 | 翻译操作参数 |
+| epochs | 100 | Training epochs |
+| learning_rate | 0.001 | Learning rate |
+| latent | 120 | Latent-space dimension |
+| batch_size | 256 | Batch size |
+| K | 12 | Translation-operator parameter |
 
-## 输出
+## Output
 
-清洗后的数据保存到 `{path}/{dataset}/lopster.csv`
+The cleaned data is written to `{path}/{dataset}/lopster.csv`.

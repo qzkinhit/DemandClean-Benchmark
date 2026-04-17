@@ -1,8 +1,8 @@
 # =============================================================================
 # Dataset: mercedes (Mercedes-Benz Greener Manufacturing)
 # =============================================================================
-# 4209 行 × 378 列; 回归 (y)
-# 错误: 二值列翻转 + 分类列 empty, 标签无错误
+# 4,209 rows x 378 cols; regression (y)
+# Errors: binary-column flips + categorical empties; label is error-free
 # =============================================================================
 
 [DOMAIN]

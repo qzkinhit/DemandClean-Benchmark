@@ -1,20 +1,20 @@
 # DeleteAll Baseline
 
-## 简介
+## Overview
 
-DeleteAll 是基于删除策略的 baseline 方法，通过删除含有问题的行来"清洗"数据。支持两种删除模式。
+DeleteAll is a deletion-based baseline that "cleans" data by dropping rows that contain problems. Two modes are supported.
 
-## 方法类型
+## Method Types
 
-| 模式 | 类型 | 说明 |
+| Mode | Type | Description |
 |------|------|------|
-| drop_missing | **Type 1** | 删除含缺失值的行，全自动 |
-| drop_errors | **Type 2** | 删除与干净数据不一致的行，需要真值 |
+| drop_missing | **Type 1** | Drops rows containing missing values, fully automatic |
+| drop_errors | **Type 2** | Drops rows that differ from the clean data, requires ground truth |
 
-## 运行方式
+## Usage
 
 ```bash
-# drop_missing 模式（默认）- 删除含缺失值的行
+# drop_missing mode (default) — drop rows with missing values
 python MethodsRunScript/run_deleteall/run_deleteall_base.py \
     --dirty_path Data/beers/dirty_index.csv \
     --clean_path Data/beers/clean_index.csv \
@@ -23,7 +23,7 @@ python MethodsRunScript/run_deleteall/run_deleteall_base.py \
     --label_column style \
     --task_type classification
 
-# drop_errors 模式 - 删除所有错误行
+# drop_errors mode — drop all erroneous rows
 python MethodsRunScript/run_deleteall/run_deleteall_base.py \
     --dirty_path Data/beers/dirty_index.csv \
     --clean_path Data/beers/clean_index.csv \
@@ -31,41 +31,41 @@ python MethodsRunScript/run_deleteall/run_deleteall_base.py \
     --mode drop_errors \
     --label_column style
 
-# 批量运行所有数据集
+# Batch run on all datasets
 bash MethodsRunScript/run_deleteall/run.sh
 ```
 
-## 参数说明
+## Parameters
 
-| 参数 | 必需 | 说明 | 默认值 |
+| Parameter | Required | Description | Default |
 |------|------|------|--------|
-| `--dirty_path` | 是 | 脏数据路径 | - |
-| `--clean_path` | 是 | 干净数据路径 | - |
-| `--task_name` | 是 | 任务名称 | - |
-| `--mode` | 否 | 删除模式 | `drop_missing` |
-| `--output_path` | 否 | 结果输出路径 | `results/deleteall/` |
-| `--label_column` | 否 | 标签列名 | - |
-| `--task_type` | 否 | 任务类型 | `classification` |
-| `--models` | 否 | 评估模型列表 | `rf lr` |
+| `--dirty_path` | Yes | Path to dirty data | - |
+| `--clean_path` | Yes | Path to clean data | - |
+| `--task_name` | Yes | Task name | - |
+| `--mode` | No | Deletion mode | `drop_missing` |
+| `--output_path` | No | Output path | `results/deleteall/` |
+| `--label_column` | No | Label column name | - |
+| `--task_type` | No | Task type | `classification` |
+| `--models` | No | Evaluation models | `rf lr` |
 
-## 删除模式对比
+## Mode Comparison
 
-| 模式 | 检测方式 | 适用场景 | 数据量影响 |
+| Mode | Detection | Use case | Row-count impact |
 |------|----------|----------|------------|
-| `drop_missing` | 检测空值/NaN | 缺失值较少时 | 可能删除少量行 |
-| `drop_errors` | 与真值对比 | 需要真值时 | 可能删除大量行 |
+| `drop_missing` | Empty value / NaN detection | When missing values are few | Drops a small number of rows |
+| `drop_errors` | Comparison against ground truth | When ground truth is available | May drop many rows |
 
-## 输出文件
+## Output Files
 
 ```
 results/deleteall/{task_name}/
-├── {task_name}_cleaned.csv          # 删除后的数据
-├── {task_name}_total_evaluation.txt # 完整评估报告
-└── {task_name}.log                  # 运行日志
+├── {task_name}_cleaned.csv          # Data after deletion
+├── {task_name}_total_evaluation.txt # Full evaluation report
+└── {task_name}.log                  # Run log
 ```
 
-## 注意事项
+## Notes
 
-- `drop_errors` 模式会导致数据量大幅减少
-- 删除行可能影响数据分布和模型训练
-- 适用于错误行较少的场景
+- `drop_errors` mode may drastically reduce the row count
+- Dropping rows can affect data distribution and model training
+- Best suited to cases with few erroneous rows

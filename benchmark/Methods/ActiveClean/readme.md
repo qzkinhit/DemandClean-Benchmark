@@ -1,47 +1,51 @@
-## ActiveClean代码简介
-ActiveClean以梯度下降的形式，逐步清洗数据并更新数据下游模型的参数，最终得到干净数据对应的模型。
-## 文件结构
+## ActiveClean Overview
+
+ActiveClean performs gradient-descent-based data cleaning: it incrementally cleans data and updates the downstream model parameters in each iteration, eventually producing the model corresponding to the fully cleaned data.
+
+## File Structure
+
 ### 1. `activeclean.py`
-- **activeclean函数**: activeclean的主体函数。
-    - **输入**:
-      - `dirty_data`: 脏数据。
-      - `clean_data`: 干净数据。
-      - `test_data`: 测试数据。
-      - `index_tuple`: 索引数组。
-      - `batchsize`: 每轮抽样的规模。
-      - `total`: 数据总数。
-    - **输入**:
-      - `globali`: 元素集合。
-      - `imap`: 待查找索引的集合。
-    - **输出**:
-      - `clf` globali中的元素在imap中对应的索引。
-- **error_classifier函数**: 利用抽样的数据的label训练一个错误检测的分类器。
-    - **输入**:
-      - `total_labels`: 抽样数据的label。
-      - `full_data`: 全部数据。
-    - **输出**:
-      - `clf` 利用标签得到的分类器。
-- **ec_filter函数**: 利用分类器判断尚未清洗的元组是脏数据还是干净数据。
-    - **输入**:
-      - `dirtyex`: 脏数据的索引。
-      - `full_data`: 全部数据。
-      - `clf`: 分类器，用于给脏数据进行分类。
-      - `t`: 置信度阈值，高于该阈值的元组认为是干净的元组。
-    - **输出**:
-      - `dirtyex` 分类置信度低于阈值t的索引。
+- **`activeclean`**: Main entry function.
+    - **Inputs**:
+      - `dirty_data`: The dirty data.
+      - `clean_data`: The clean data.
+      - `test_data`: The test data.
+      - `index_tuple`: Index array.
+      - `batchsize`: Sample size per iteration.
+      - `total`: Total number of records.
+    - **Helper inputs**:
+      - `globali`: The element set.
+      - `imap`: The index set to look up.
+    - **Output**:
+      - `clf`: Indices in `globali` that correspond to entries in `imap`.
+- **`error_classifier`**: Trains an error-detection classifier using the sampled labeled data.
+    - **Inputs**:
+      - `total_labels`: Sampled labels.
+      - `full_data`: All data.
+    - **Output**:
+      - `clf`: Classifier trained on the sampled labels.
+- **`ec_filter`**: Uses the classifier to decide whether uncleaned tuples are dirty or clean.
+    - **Inputs**:
+      - `dirtyex`: Indices of dirty data.
+      - `full_data`: All data.
+      - `clf`: Classifier for labeling dirty rows.
+      - `t`: Confidence threshold; tuples above this threshold are considered clean.
+    - **Output**:
+      - Subset of `dirtyex` whose classification confidence is below the threshold `t`.
 
-## 流程说明
-1. **数据抽样**:
-   - 调用 `random` 函数在尚未清洗的数据种抽样。
+## Pipeline
 
-2. **清洗抽样数据**:
-   - 直接在数据集中读取抽样数据的干净版本。
+1. **Sampling**:
+   - Call `random` to sample from the remaining uncleaned data.
 
-3. **分类器训练**:
-   - 调用 `error_classifier` 训练分类器，对干净和脏的数据进行分类。
+2. **Cleaning the sample**:
+   - Read the clean version of the sampled rows directly from the dataset.
 
-4. **利用已抽样数据优化清洗过程**:
-   - 调用 `ec_filter` 函数，对尚未清洗的数据进行分类，分类结果为干净数据且可信度高的数据，后续不再参与抽样过程。
+3. **Training the classifier**:
+   - Call `error_classifier` to train a classifier that distinguishes clean from dirty rows.
 
-5. **更新模型**:
-   - 调用`partial_fit`函数，在目前已清洗干净的数据上更新模型。
+4. **Using the classifier to prune the cleaning workload**:
+   - Call `ec_filter` on the remaining uncleaned data. Rows confidently classified as clean are excluded from subsequent sampling rounds.
+
+5. **Updating the model**:
+   - Call `partial_fit` to update the model on the currently cleaned rows.

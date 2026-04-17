@@ -1,32 +1,33 @@
-# Rein-Baseline 复现结果
+# Rein-Baseline Reproduction Results
 
-本目录用于汇总 **Rein-Baseline** 在各数据集上的运行产物，包含三类结果文件：**错误检测**、**错误清洗**、**模型训练**。
+This directory collects the run artifacts of **Rein-Baseline** on each dataset. It contains three result categories: **error detection**, **error cleaning**, and **model training**.
 
 ---
 
-## 1. 错误检测
-**错误检测命令：**
+## 1. Error Detection
+**Command:**
 ```bash
 python3 scripts/detect_errors.py \
   --dataset_name <dataset_name> \
   --detect_method <detect_method>
   --n_iterations 1 
 ```
-**命令参数：**
-<dataset_name>：指定数据集
-<detect_method>：指定要运行的检测器
+**Arguments:**
+- `<dataset_name>`: Selected dataset
+- `<detect_method>`: Detector to run
 
-**结果文件：** `results/detection_results.csv`
+**Result file:** `results/detection_results.csv`
 
-### 包含检测器
+### Included detectors
 - `mvdetector`
 - `outlierdetector`
 - `min_k`
 - `max_entropy`
+
 ---
 
-## 2. 错误清洗
-**错误清洗命令：**
+## 2. Error Cleaning
+**Command:**
 ```bash
 python3 scripts/repair_errors.py \
   --dataset_name <dataset_name> \
@@ -34,21 +35,22 @@ python3 scripts/repair_errors.py \
   --n_iterations 1 \
   --store_postgres
 ```
-**命令参数：**
-<dataset_name>：指定数据集
-<repair_method>：指定清洗器和修复方法
+**Arguments:**
+- `<dataset_name>`: Selected dataset
+- `<repair_method>`: Cleaner and repair method
 
-**结果文件：** `results/cleaning_results.csv`
+**Result file:** `results/cleaning_results.csv`
 
-### 已包含清洗器
+### Included cleaners
 - `standardImputer`
 - `cleanWithGroundTruth`
 - `mlImputer`
 - `duplicatesCleaner`
+
 ---
 
-## 3. 模型训练
-**模型训练命令：**
+## 3. Model Training
+**Command:**
 ```bash
 python3 scripts/train_model.py \
   --dataset_name <dataset_name> \
@@ -58,23 +60,22 @@ python3 scripts/train_model.py \
   --early_termination False \
   --store_postgres
 ```
-**命令参数：**
-<dataset_name>：指定数据集
-<ml_models>：指定要训练的模型
+**Arguments:**
+- `<dataset_name>`: Selected dataset
+- `<ml_models>`: Model(s) to train
 
-**结果文件：** `results/model_results.csv`
+**Result file:** `results/model_results.csv`
 
-### 3.1 分类任务（Classification）
+### 3.1 Classification
 - `forest_clf`
 - `logit_clf`
 - `tree_clf`
 - `cleanlab`
 
-### 3.2 回归任务（Regression）
+### 3.2 Regression
 - `forest_reg`
 - `lin_reg`
 - `tree_reg`
 
-### 3.3 聚类任务（Clustering）
+### 3.3 Clustering
 - 
-

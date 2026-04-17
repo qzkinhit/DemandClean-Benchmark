@@ -1,59 +1,59 @@
-# 数据集：HAR (Human Activity Recognition)
+# Dataset: HAR (Human Activity Recognition)
 
-## 基本信息
+## Basic Information
 
-| 项目 | 值 |
+| Item | Value |
 |------|-----|
-| 任务类型 | 聚类 (Clustering) |
-| 目标列 | `gt` |
-| 数据规模 | 70,000 条记录 × 4 列 (3 特征 + 1 标签) |
-| 索引文件 | `clean_index.csv`, `dirty_index.csv` |
+| Task Type | Clustering |
+| Target Column | `gt` |
+| Data Scale | 70,000 records × 4 columns (3 features + 1 label) |
+| Index Files | `clean_index.csv`, `dirty_index.csv` |
 
-## 列定义
+## Column Definitions
 
-### 索引列 (Index)
-| 列名 | 说明 |
+### Index Column
+| Column | Description |
 |------|------|
-| `index` | 行索引，不参与模型训练 |
+| `index` | Row index, not used in model training |
 
-### 特征列 (Features) - 共3列
-| 属性名 | 类型 | 说明 |
+### Feature Columns (3 total)
+| Attribute | Type | Description |
 |--------|------|------|
-| x | 数值 | 加速度计X轴数据 |
-| y | 数值 | 加速度计Y轴数据 |
-| z | 数值 | 加速度计Z轴数据 |
+| x | Numeric | Accelerometer X-axis reading |
+| y | Numeric | Accelerometer Y-axis reading |
+| z | Numeric | Accelerometer Z-axis reading |
 
-### 目标列 (Label)
-| 属性名 | 类型 | 说明 |
+### Label Column
+| Attribute | Type | Description |
 |--------|------|------|
-| gt | 多分类 | 活动类型真值标签 (ground truth)，用于确定聚类数 k 和评估 ARI |
+| gt | Multi-class | Activity ground-truth label, used to determine the number of clusters k and to compute ARI |
 
-## 错误统计
+## Error Statistics
 
-### 总览
-| 指标 | 值 |
+### Overview
+| Metric | Value |
 |------|-----|
-| 错误单元格数 | 37,035 |
-| 总单元格数 | 210,000 |
-| 单元格错误率 | 17.64% |
-| 错误行数 | 31,012 / 70,000 |
-| 行错误率 | 44.3% |
-| 标签错误数 | 2,087 |
-| 标签错误率 | 2.98% |
+| Error cells | 37,035 |
+| Total cells | 210,000 |
+| Cell error rate | 17.64% |
+| Error rows | 31,012 / 70,000 |
+| Row error rate | 44.3% |
+| Label errors | 2,087 |
+| Label error rate | 2.98% |
 
-### 错误类型分布
-| 类型 | 数量 | 占比 |
+### Error Type Distribution
+| Type | Count | Ratio |
 |------|------|------|
-| Semantic (语义错误) | 23,061 | 62.27% |
-| Syntactic (句法错误) | 13,974 | 37.73% |
-| Missing (缺失值) | 0 | 0.00% |
+| Semantic | 23,061 | 62.27% |
+| Syntactic | 13,974 | 37.73% |
+| Missing | 0 | 0.00% |
 
-### 各列错误分布
-| 列名 | 错误数 | 错误率 | Semantic | Syntactic |
+### Per-Column Error Distribution
+| Column | Errors | Error Rate | Semantic | Syntactic |
 |------|--------|--------|----------|-----------|
 | y | 12,367 | 17.67% | 7,654 | 4,713 |
 | x | 12,334 | 17.62% | 7,716 | 4,618 |
 | z | 12,334 | 17.62% | 7,691 | 4,643 |
 
-## 数据来源
+## Data Source
 Reyes-Ortiz, J., Anguita, D., Ghio, A., Oneto, L., & Parra, X. Human Activity Recognition Using Smartphones. https://archive.ics.uci.edu/dataset/240/human+activity+recognition+using+smartphones. 2013.

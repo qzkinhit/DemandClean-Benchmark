@@ -1,62 +1,62 @@
-# 数据集：Beers
+# Dataset: Beers
 
-## 基本信息
+## Basic Information
 
-| 项目 | 值 |
+| Item | Value |
 |------|-----|
-| 任务类型 | 分类 (Classification) |
-| 目标列 | `state` |
-| 数据规模 | 2,410 条记录 × 10 列 (9 特征 + 1 标签) |
-| 索引文件 | `clean_index.csv`, `dirty_index.csv` |
-| 缺失值标记 | `empty` |
+| Task Type | Classification |
+| Target Column | `state` |
+| Data Scale | 2,410 records × 10 columns (9 features + 1 label) |
+| Index Files | `clean_index.csv`, `dirty_index.csv` |
+| Missing Marker | `empty` |
 
-## 列定义
+## Column Definitions
 
-### 索引列 (Index)
-| 列名 | 说明 |
+### Index Column
+| Column | Description |
 |------|------|
-| `index` | 行索引，不参与模型训练 |
+| `index` | Row index, not used in model training |
 
-### 特征列 (Features) - 共9列
-| 属性名 | 类型 | 说明 |
+### Feature Columns (9 total)
+| Attribute | Type | Description |
 |--------|------|------|
-| id | 数值 | 啤酒ID |
-| beer_name | 文本 | 啤酒名称 |
-| style | 多分类 | 啤酒风格类型 |
-| ounces | 数值 | 容量(盎司) |
-| abv | 数值 | 酒精度数 |
-| ibu | 数值 | 苦度单位 |
-| brewery_id | 数值 | 酿酒厂ID |
-| brewery_name | 文本 | 酿酒厂名称 |
-| city | 文本 | 城市 |
+| id | Numeric | Beer ID |
+| beer_name | Text | Beer name |
+| style | Multi-class | Beer style |
+| ounces | Numeric | Volume (ounces) |
+| abv | Numeric | Alcohol by volume |
+| ibu | Numeric | International Bitterness Units |
+| brewery_id | Numeric | Brewery ID |
+| brewery_name | Text | Brewery name |
+| city | Text | City |
 
-### 目标列 (Label)
-| 属性名 | 类型 | 说明 |
+### Label Column
+| Attribute | Type | Description |
 |--------|------|------|
-| state | 文本分类 | 州 |
+| state | Text categorical | State |
 
-## 错误统计
+## Error Statistics
 
-### 总览
-| 指标 | 值 |
+### Overview
+| Metric | Value |
 |------|-----|
-| 错误单元格数 | 3,232 |
-| 总单元格数 | 21,690 |
-| 单元格错误率 | 14.90% |
-| 错误行数 | 2,410 / 2,410 |
-| 行错误率 | 100.0% |
-| 标签错误数 | 127 |
-| 标签错误率 | 5.27% |
+| Error cells | 3,232 |
+| Total cells | 21,690 |
+| Cell error rate | 14.90% |
+| Error rows | 2,410 / 2,410 |
+| Row error rate | 100.0% |
+| Label errors | 127 |
+| Label error rate | 5.27% |
 
-### 错误类型分布
-| 类型 | 数量 | 占比 |
+### Error Type Distribution
+| Type | Count | Ratio |
 |------|------|------|
-| Semantic (语义错误) | 3,231 | 99.97% |
-| Syntactic (句法错误) | 0 | 0.00% |
-| Missing (缺失值) | 0 | 0.00% |
+| Semantic | 3,231 | 99.97% |
+| Syntactic | 0 | 0.00% |
+| Missing | 0 | 0.00% |
 
-### 各列错误分布
-| 列名 | 错误数 | 错误率 | Semantic | Syntactic |
+### Per-Column Error Distribution
+| Column | Errors | Error Rate | Semantic | Syntactic |
 |------|--------|--------|----------|-----------|
 | ounces | 2,409 | 99.96% | 2,409 | 0 |
 | abv | 692 | 28.71% | 692 | 0 |
@@ -64,5 +64,5 @@
 | style | 2 | 0.08% | 2 | 0 |
 | brewery_id | 2 | 0.08% | 1 | 0 |
 
-## 数据来源
+## Data Source
 J.-N. Hould. Craft beers dataset. https://www.kaggle.com/nickhould/craft-cans. 2017.

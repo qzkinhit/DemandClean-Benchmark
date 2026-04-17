@@ -1,26 +1,26 @@
-# HoloClean - 基于概率推断的数据清洗
+# HoloClean — Probabilistic-Inference-Based Data Cleaning
 
-## 官方信息
-- **论文**: HoloClean: Holistic Data Repairs with Probabilistic Inference (VLDB 2017)
+## Upstream Information
+- **Paper**: HoloClean: Holistic Data Repairs with Probabilistic Inference (VLDB 2017)
 - **GitHub**: https://github.com/HoloClean/holoclean
-- **网站**: http://www.holoclean.io
+- **Website**: http://www.holoclean.io
 
-## 方法描述
-HoloClean是一个统计推断引擎，通过结合质量规则、值相关性、参考数据等多种信号构建概率模型进行数据清洗。
+## Method Description
+HoloClean is a statistical inference engine that builds a probabilistic model for data cleaning by combining multiple signals — quality rules, value correlations, reference data, and more.
 
-## 依赖安装
+## Installation
 
-### 1. PostgreSQL数据库（必需）
+### 1. PostgreSQL (required)
 
-#### Windows:
-从 https://www.postgresql.org/download/windows/ 下载安装
+#### Windows
+Download the installer from https://www.postgresql.org/download/windows/.
 
-#### Ubuntu:
+#### Ubuntu
 ```bash
 apt-get install postgresql postgresql-contrib
 ```
 
-#### Docker方式:
+#### Docker
 ```bash
 docker run --name pghc \
     -e POSTGRES_DB=holo \
@@ -30,7 +30,7 @@ docker run --name pghc \
     -d postgres:11
 ```
 
-### 2. 配置数据库
+### 2. Configure the database
 
 ```sql
 CREATE DATABASE holo;
@@ -41,16 +41,16 @@ GRANT ALL PRIVILEGES ON DATABASE holo TO holocleanuser;
 ALTER SCHEMA public OWNER TO holocleanuser;
 ```
 
-### 3. Python依赖
+### 3. Python dependencies
 
 ```bash
 pip install psycopg2-binary peewee torch
 pip install -r Methods/HoloClean/requirements.txt
 ```
 
-## 运行方式
+## Usage
 
-### 使用wrapper
+### Via the wrapper
 ```python
 from Methods.HoloClean.holoclean_wrapper import HoloCleanWrapper
 
@@ -62,23 +62,23 @@ wrapper = HoloCleanWrapper(
 
 df, info = wrapper.clean(
     dirty_path='Data/beers/dirty.csv',
-    dc_path='Data/beers/constraints.txt'  # 约束文件
+    dc_path='Data/beers/constraints.txt'  # constraints file
 )
 ```
 
-## 约束文件格式
+## Constraint File Format
 
-Denial Constraints (DC) 格式:
+Denial Constraints (DC) syntax:
 ```
 t1&t2&EQ(t1.brewery_id,t2.brewery_id)&IQ(t1.brewery_name,t2.brewery_name)
 ```
 
-## 与官方实现的差异
+## Differences from the Upstream Implementation
 
-**无差异** - wrapper封装官方实现。
+**None** — the wrapper packages the upstream implementation.
 
-## 注意事项
+## Notes
 
-1. PostgreSQL服务必须运行
-2. 首次运行会在数据库中创建辅助表
-3. 大数据集可能需要增加数据库和Python内存配置
+1. PostgreSQL must be running
+2. The first run creates auxiliary tables in the database
+3. Large datasets may require increased database and Python memory limits

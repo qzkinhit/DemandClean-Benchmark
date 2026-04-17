@@ -1,38 +1,38 @@
 # Raha & Baran Baseline
 
-## 简介
+## Overview
 
-Raha 是一种基于配置无关方法集成的错误检测系统，Baran 是其对应的错误修复系统。两者结合实现端到端的数据清洗。
+Raha is a configuration-free ensemble error-detection system; Baran is the corresponding error-repair system. Together they provide an end-to-end data cleaning pipeline.
 
-**论文**:
+**Papers**:
 - [Raha: A Configuration-Free Error Detection System](https://dl.acm.org/doi/10.1145/3299869.3324956) (SIGMOD 2019)
 - [Baran: Effective Error Correction via a Unified Context Representation](https://www.vldb.org/pvldb/vol13/p1948-mahdavi.pdf) (VLDB 2020)
 
-## 方法类型
+## Method Type
 
-| 类型 | 说明 |
+| Type | Description |
 |------|------|
-| **Type 3** | 需要用户标注样本 |
-| 真值使用 | 按需标注（labeling_budget） |
+| **Type 3** | Requires user-labeled examples |
+| Ground-truth usage | On-demand labeling (`labeling_budget`) |
 
-## 核心思想
+## Core Ideas
 
-### Raha（错误检测）
-1. 运行多种错误检测策略（异常值、模式违规、FD违规等）
-2. 使用聚类生成候选错误特征
-3. 用户标注少量样本
-4. 训练分类器识别所有错误
+### Raha (error detection)
+1. Runs multiple error-detection strategies (outliers, pattern violations, FD violations, etc.)
+2. Clusters the candidate error features
+3. Asks the user to label a small sample
+4. Trains a classifier to identify all errors
 
-### Baran（错误修复）
-1. 构建统一的上下文表示
-2. 生成候选修复值
-3. 使用上下文相似度排序修复建议
-4. 应用最优修复
+### Baran (error repair)
+1. Builds a unified context representation
+2. Generates candidate repair values
+3. Ranks repair suggestions using contextual similarity
+4. Applies the best repair
 
-## 运行方式
+## Usage
 
 ```bash
-# 单个数据集
+# Single dataset
 python MethodsRunScript/run_raha_baran/run_raha_baran_base.py \
     --dirty_path Data/beers/dirty_index.csv \
     --clean_path Data/beers/clean_index.csv \
@@ -42,50 +42,50 @@ python MethodsRunScript/run_raha_baran/run_raha_baran_base.py \
     --task_type classification \
     --labeling_budget 20
 
-# 批量运行所有数据集
+# Batch run on all datasets
 bash MethodsRunScript/run_raha_baran/run.sh
 ```
 
-## 参数说明
+## Parameters
 
-| 参数 | 必需 | 说明 | 默认值 |
+| Parameter | Required | Description | Default |
 |------|------|------|--------|
-| `--dirty_path` | 是 | 脏数据路径 | - |
-| `--clean_path` | 是 | 干净数据路径（模拟用户标注） | - |
-| `--task_name` | 是 | 任务名称 | - |
-| `--output_path` | 否 | 结果输出路径 | `results/raha_baran/` |
-| `--label_column` | 否 | 标签列名 | - |
-| `--task_type` | 否 | 任务类型 | `classification` |
-| `--labeling_budget` | 否 | 标注预算（元组数） | `20` |
-| `--models` | 否 | 评估模型列表 | `rf lr` |
+| `--dirty_path` | Yes | Path to dirty data | - |
+| `--clean_path` | Yes | Path to clean data (simulates user labels) | - |
+| `--task_name` | Yes | Task name | - |
+| `--output_path` | No | Output path | `results/raha_baran/` |
+| `--label_column` | No | Label column name | - |
+| `--task_type` | No | Task type | `classification` |
+| `--labeling_budget` | No | Labeling budget (number of tuples) | `20` |
+| `--models` | No | Evaluation models | `rf lr` |
 
-## 输出文件
+## Output Files
 
 ```
 results/raha_baran/{task_name}/
-├── {task_name}_cleaned.csv          # 清洗后的数据
-├── {task_name}_detection.csv        # 检测到的错误
-├── {task_name}_total_evaluation.txt # 评估报告
-└── {task_name}.log                  # 运行日志
+├── {task_name}_cleaned.csv          # Cleaned data
+├── {task_name}_detection.csv        # Detected errors
+├── {task_name}_total_evaluation.txt # Evaluation report
+└── {task_name}.log                  # Run log
 ```
 
-## 特点
+## Key Features
 
-- **配置无关**: 无需预定义规则或阈值
-- **策略集成**: 融合多种检测方法的优势
-- **主动学习**: 智能选择最有价值的标注样本
-- **上下文感知**: 利用数据上下文提升修复准确性
+- **Configuration-free**: No predefined rules or thresholds required
+- **Ensemble strategies**: Combines the strengths of multiple detection methods
+- **Active learning**: Intelligently selects the most informative tuples to label
+- **Context-aware**: Leverages data context to improve repair accuracy
 
-## 与其他方法对比
+## Comparison with Other Methods
 
-| 方法 | 检测策略 | 修复策略 | 真值使用 |
+| Method | Detection | Repair | Ground-truth usage |
 |------|----------|----------|----------|
-| **Raha/Baran** | 多策略集成 | 上下文相似度 | 少量标注 |
-| ActiveClean | - | 梯度引导 | 按需清洗 |
-| HoloClean | DC约束 | 概率推理 | 无需 |
+| **Raha/Baran** | Multi-strategy ensemble | Context similarity | Small set of labels |
+| ActiveClean | - | Gradient-guided | On-demand cleaning |
+| HoloClean | DC constraints | Probabilistic inference | None |
 
-## 注意事项
+## Notes
 
-- 标注预算影响检测准确率
-- 需要足够的数据量才能发挥优势
-- 检测和修复是分开的两个阶段
+- Labeling budget directly affects detection accuracy
+- Works best on datasets with sufficient row counts
+- Detection and repair are two separate stages

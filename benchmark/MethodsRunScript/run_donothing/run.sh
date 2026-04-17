@@ -1,24 +1,24 @@
 #!/bin/bash
 # ============================================================
-# DoNothing Baseline 完整测评脚本
+# DoNothing Baseline full benchmark script
 #
-# 功能：一键运行所有数据集的测评
-# 支持通过 --dataset 指定单个数据集
-# 支持通过 VERSION 环境变量添加版本后缀
+# Purpose: run the benchmark on all datasets in one go
+# Supports --dataset <name> to select a single dataset
+# Supports VERSION env var to append a version suffix
 # ============================================================
 
 set -e
 
-trap 'echo "脚本在第 $LINENO 行失败，退出码: $?"' ERR
+trap 'echo "Script failed at line $LINENO , exit code: $?"' ERR
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 PROJECT_ROOT="$(cd "$SCRIPT_DIR/../.." && pwd)"
 cd "$PROJECT_ROOT"
 
-# 读取版本标识（由 run_all.sh 传入或手动设置）
+# Read version tag (passed by run_all.sh or set manually)
 VERSION="${VERSION:-}"
 
-# 解析命令行参数
+# Parse command-line arguments
 SELECTED_DATASET=""
 while [[ $# -gt 0 ]]; do
     case $1 in
@@ -29,11 +29,11 @@ while [[ $# -gt 0 ]]; do
 done
 
 echo "============================================================"
-echo "DoNothing Baseline 完整测评"
-echo "项目根目录: $PROJECT_ROOT"
-echo "版本标识: ${VERSION:-无}"
-echo "指定数据集: ${SELECTED_DATASET:-全部}"
-echo "开始时间: $(date)"
+echo "DoNothing Baseline full benchmark"
+echo "Project root: $PROJECT_ROOT"
+echo "Version tag: ${VERSION:-none}"
+echo "Selected dataset: ${SELECTED_DATASET:-all}"
+echo "Start time: $(date)"
 echo "============================================================"
 
 source $HOME/miniconda3/etc/profile.d/conda.sh
@@ -42,7 +42,7 @@ conda activate multibaseline
 mkdir -p logs/donothing
 mkdir -p results/donothing
 
-# 数据集配置: 数据集名称|标签列|任务类型|MSE属性
+# Dataset configuration: dataset|label_column|task_type|mse_attrs
 declare -a ALL_DATASETS=(
     "adult|income|classification|age,fnlwgt,capital_gain,capital_loss,hours_per_week"
     "beers|style|classification|ibu,abv"
@@ -66,15 +66,15 @@ failed=0
 for dataset_config in "${ALL_DATASETS[@]}"; do
     IFS='|' read -r dataset label_column task_type mse_attrs <<< "$dataset_config"
 
-    # 如果指定了数据集，跳过其他数据集
+    # If a specific dataset was requested, skip all others
     if [[ -n "$SELECTED_DATASET" && "$dataset" != "$SELECTED_DATASET" ]]; then
         continue
     fi
 
     echo "------------------------------------------------------------"
-    echo "数据集: $dataset"
-    echo "标签列: $label_column"
-    echo "任务类型: $task_type"
+    echo "Dataset: $dataset"
+    echo "Label column: $label_column"
+    echo "Task type: $task_type"
     echo "------------------------------------------------------------"
 
     case $task_type in
@@ -90,13 +90,13 @@ for dataset_config in "${ALL_DATASETS[@]}"; do
     log_file="logs/donothing/${task_name}.log"
 
     if [[ ! -f "$dirty_path" ]]; then
-        echo "警告: 脏数据文件不存在: $dirty_path，跳过..."
+        echo "Warning: dirty data file does not exist: $dirty_path, skipping..."
         failed=$((failed + 1))
         continue
     fi
 
     if [[ ! -f "$clean_path" ]]; then
-        echo "警告: 干净数据文件不存在: $clean_path，跳过..."
+        echo "Warning: clean data file does not exist: $clean_path, skipping..."
         failed=$((failed + 1))
         continue
     fi
@@ -117,15 +117,15 @@ for dataset_config in "${ALL_DATASETS[@]}"; do
         cmd="$cmd --mse_attributes $mse_attrs_space"
     fi
 
-    echo "运行命令: $cmd"
-    echo "日志文件: $log_file"
+    echo "Command: $cmd"
+    echo "Log file: $log_file"
 
     total=$((total + 1))
     if eval "$cmd" 2>&1 | tee "$log_file"; then
-        echo "✓ 成功: $dataset"
+        echo "[OK] success: $dataset"
         success=$((success + 1))
     else
-        echo "✗ 失败: $dataset (查看日志: $log_file)"
+        echo "[FAIL] failure: $dataset (see log: $log_file)"
         failed=$((failed + 1))
     fi
 
@@ -133,12 +133,12 @@ for dataset_config in "${ALL_DATASETS[@]}"; do
 done
 
 echo "============================================================"
-echo "DoNothing Baseline 测评完成"
+echo "DoNothing Baseline benchmark done"
 echo "============================================================"
-echo "总数据集: $total"
-echo "成功: $success"
-echo "失败: $failed"
-echo "结束时间: $(date)"
-echo "结果目录: results/donothing/"
-echo "日志目录: logs/donothing/"
+echo "Total datasets: $total"
+echo "Success: $success"
+echo "Failure: $failed"
+echo "End time: $(date)"
+echo "Results directory: results/donothing/"
+echo "Logs directory: logs/donothing/"
 echo "============================================================"

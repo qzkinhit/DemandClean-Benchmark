@@ -1,16 +1,16 @@
-# HoloClean Wrapper 说明
+# HoloClean Wrapper
 
-## 概述
-HoloClean是基于概率图模型的数据清洗系统，发表于VLDB 2017。
+## Overview
+HoloClean is a probabilistic-graphical-model-based data cleaning system published at VLDB 2017.
 
-## 依赖要求
-- **PostgreSQL 9.4+** (必需)
+## Requirements
+- **PostgreSQL 9.4+** (required)
 - PyTorch
 - psycopg2
 
-## PostgreSQL 配置
+## PostgreSQL Setup
 
-### 方式1: 本地安装
+### Option 1: Local installation
 ```sql
 CREATE DATABASE holo;
 CREATE USER holocleanuser;
@@ -18,7 +18,7 @@ ALTER USER holocleanuser WITH PASSWORD 'abcd1234';
 GRANT ALL PRIVILEGES ON DATABASE holo TO holocleanuser;
 ```
 
-### 方式2: Docker
+### Option 2: Docker
 ```bash
 docker run --name pghc \
     -e POSTGRES_DB=holo -e POSTGRES_USER=holocleanuser -e POSTGRES_PASSWORD=abcd1234 \
@@ -26,7 +26,7 @@ docker run --name pghc \
     -d postgres:11
 ```
 
-## 使用方式
+## Usage
 
 ```python
 from Methods.HoloClean.holoclean_wrapper import HoloCleanWrapper
@@ -40,15 +40,15 @@ wrapper = HoloCleanWrapper(
 
 repaired_df, info = wrapper.clean(
     dirty_path="data/dirty.csv",
-    dc_path="data/constraints.txt",  # 可选
+    dc_path="data/constraints.txt",  # optional
     output_path="results/repaired.csv"
 )
 ```
 
-## Baseline项目修改说明
-- 添加了 `holoclean_wrapper.py` 统一接口
-- 修复了Python 3.9兼容性问题
+## Baseline Project Modifications
+- Added `holoclean_wrapper.py` as a unified interface
+- Fixed Python 3.9 compatibility issues
 
-## 注意事项
-- 由于需要PostgreSQL，本方法在无数据库环境下无法运行
-- 建议使用Docker快速部署测试环境
+## Notes
+- Requires PostgreSQL; this method cannot run without a database
+- Docker is recommended for a quick test environment

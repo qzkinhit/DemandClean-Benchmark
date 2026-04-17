@@ -1,21 +1,21 @@
 # DoNothing Baseline
 
-## 简介
+## Overview
 
-DoNothing是最简单的baseline方法，**不对数据做任何清洗操作**，直接返回原始脏数据。
+DoNothing is the simplest baseline: it **performs no cleaning** and returns the original dirty data as-is.
 
-## 用途
+## Purpose
 
-- 建立性能下界（lower bound）
-- 对比其他清洗方法的改进效果
-- 验证评估流程的正确性
+- Establishes a lower bound on performance
+- Serves as a reference point for measuring the improvement brought by other cleaning methods
+- Validates the correctness of the evaluation pipeline
 
-## 真值使用
+## Ground-Truth Usage
 
-- **Type 1**: 全自动执行，无需人工参与
-- **真值成本**: 0
+- **Type 1**: Fully automatic, no human effort required
+- **Ground-truth cost**: 0
 
-## 使用方式
+## Usage
 
 ```python
 from Methods.DoNothing.donothing_wrapper import DoNothingWrapper
@@ -27,6 +27,6 @@ repaired_df, info = cleaner.clean(
 )
 ```
 
-## 代码修改说明
+## Implementation Notes
 
-本方法为本仓库新实现，无官方代码基础。
+This method is newly implemented in this repository and is not based on any upstream code.

@@ -1,42 +1,42 @@
-# UniClean - 多信号融合数据清洗
+# UniClean — Multi-Signal Unified Data Cleaning
 
-## 官方信息
-- **论文**: UniClean: A Unified Framework for Data Cleaning with Multi-Signal Fusion (VLDB 2025)
-- **类型**: Type 1 - 全自动执行
+## Upstream Information
+- **Paper**: UniClean: A Unified Framework for Data Cleaning with Multi-Signal Fusion (VLDB 2025)
+- **Type**: Type 1 — Fully automatic
 
-## 方法描述
-UniClean通过融合多种清洗信号（约束、统计、模式等）并优化清洗工作流来实现高效的数据清洗。
+## Method Description
+UniClean achieves efficient data cleaning by fusing multiple cleaning signals (constraints, statistics, patterns, etc.) and optimizing the cleaning workflow.
 
-## 依赖安装
+## Installation
 
 ```bash
 pip install pyspark==3.1.1
 ```
 
-或使用本目录的requirements.txt:
+Or use the local `requirements.txt`:
 ```bash
 pip install -r Methods/UniClean/requirements.txt
 ```
 
-## 核心文件
+## Core Files
 
-- `Clean.py` - 核心清洗逻辑（CleanonLocalWithnoSmple等函数）
-- `SampleScrubber/cleaner/single.py` - 单属性清洗器（Number, Pattern, Outlier）
-- `SampleScrubber/cleaner/multiple.py` - 多属性清洗器（AttrRelation）
-- `AnalyticsCache/` - 分析和缓存模块
+- `Clean.py` — Core cleaning logic (e.g., `CleanonLocalWithnoSmple`)
+- `SampleScrubber/cleaner/single.py` — Single-attribute cleaners (`Number`, `Pattern`, `Outlier`)
+- `SampleScrubber/cleaner/multiple.py` — Multi-attribute cleaner (`AttrRelation`)
+- `AnalyticsCache/` — Analytics and cache module
 
-## 数据格式要求
+## Data Format Requirements
 
-数据需要有index列：
+Data must contain an `index` column:
 ```
 Data/{dataset}/
 ├── dirty_with_index.csv
 └── clean_with_index.csv
 ```
 
-## 运行方式
+## Usage
 
-### 方式1: 使用wrapper
+### Option 1: via the wrapper
 ```python
 from Methods.UniClean.uniclean_wrapper import UniCleanWrapper, get_beers_cleaners
 
@@ -45,7 +45,7 @@ wrapper = UniCleanWrapper(cleaners=cleaners)
 df, info = wrapper.clean('Data/beers/dirty_with_index.csv')
 ```
 
-### 方式2: 直接运行官方脚本
+### Option 2: run the upstream script directly
 ```bash
 python Methods/UniClean/main_beers.py \
     --file_load Data/beers/dirty_with_index.csv \
@@ -53,13 +53,13 @@ python Methods/UniClean/main_beers.py \
     --save_path results/uniclean/
 ```
 
-## 清洗器配置示例
+## Example Cleaner Configuration
 
 ```python
 from SampleScrubber.cleaner.single import Number, Pattern, Outlier
 from SampleScrubber.cleaner.multiple import AttrRelation
 
-# beers数据集清洗器
+# Cleaners for the beers dataset
 cleaners = [
     Number("ounces", name="Number_ounces"),
     Number("abv", name="Number_abv"),
@@ -69,15 +69,15 @@ cleaners = [
 ]
 ```
 
-## 与官方实现的差异
+## Differences from the Upstream Implementation
 
-**无差异** - wrapper仅封装官方实现，不含任何简化版本。
+**None** — the wrapper only packages the upstream implementation; no simplified variant is included.
 
-## 参数说明
+## Parameters
 
-| 参数 | 默认值 | 说明 |
+| Parameter | Default | Description |
 |------|--------|------|
-| single_max | 10000 | 单次处理最大记录数 |
-| batch_size | 500 | 批处理大小 |
-| executor_memory | 8g | Spark executor内存 |
-| driver_memory | 8g | Spark driver内存 |
+| single_max | 10000 | Max records processed per batch |
+| batch_size | 500 | Batch size |
+| executor_memory | 8g | Spark executor memory |
+| driver_memory | 8g | Spark driver memory |

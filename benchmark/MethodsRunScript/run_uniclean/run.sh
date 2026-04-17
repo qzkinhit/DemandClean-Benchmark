@@ -1,11 +1,11 @@
 #!/bin/bash
 # ============================================================
-# UniClean Baseline 完整测评脚本
-# 前置要求：
-# - 安装JDK 8或11
-# - 设置JAVA_HOME环境变量
-# - 安装PySpark
-# 支持 --dataset 参数和 VERSION 环境变量
+# UniClean Baseline full benchmark script
+# Prerequisites:
+# - Install JDK 8 or 11
+# - Set JAVA_HOME
+# - Install PySpark
+# Supports --dataset argument and VERSION env var
 # ============================================================
 
 set -e
@@ -16,7 +16,7 @@ cd "$PROJECT_ROOT"
 
 VERSION="${VERSION:-}"
 
-# 解析命令行参数
+# Parse command-line arguments
 SELECTED_DATASET=""
 while [[ $# -gt 0 ]]; do
     case $1 in
@@ -27,16 +27,16 @@ while [[ $# -gt 0 ]]; do
 done
 
 echo "============================================================"
-echo "UniClean Baseline 完整测评"
-echo "项目根目录: $PROJECT_ROOT"
-echo "版本标识: ${VERSION:-无}"
-echo "指定数据集: ${SELECTED_DATASET:-全部}"
-echo "开始时间: $(date)"
+echo "UniClean Baseline full benchmark"
+echo "Project root: $PROJECT_ROOT"
+echo "Version tag: ${VERSION:-none}"
+echo "Selected dataset: ${SELECTED_DATASET:-all}"
+echo "Start time: $(date)"
 echo "============================================================"
 
-# 检查Java环境
+# Check Java environment
 if [ -z "$JAVA_HOME" ]; then
-    echo "警告: JAVA_HOME未设置，UniClean需要Java环境"
+    echo "Warning: JAVA_HOME is not set; UniClean requires a Java environment"
 fi
 
 source $HOME/miniconda3/etc/profile.d/conda.sh
@@ -61,7 +61,7 @@ MODELS_CLASSIFICATION="rf lr svm knn dt gb"
 MODELS_REGRESSION="rf lr ridge lasso knn gb"
 MODELS_CLUSTERING="kmeans agglomerative"
 
-# UniClean参数
+# UniClean parameters
 SINGLE_MAX=10000
 EXECUTOR_MEMORY="48g"
 DRIVER_MEMORY="48g"
@@ -76,7 +76,7 @@ for dataset_config in "${ALL_DATASETS[@]}"; do
     fi
 
     echo "------------------------------------------------------------"
-    echo "数据集: $dataset | 标签: $label_column | 任务: $task_type"
+    echo "Dataset: $dataset | label: $label_column | task: $task_type"
     echo "------------------------------------------------------------"
 
     case $task_type in
@@ -91,8 +91,8 @@ for dataset_config in "${ALL_DATASETS[@]}"; do
     task_name="${dataset}_uniclean${VERSION:+_$VERSION}"
     log_file="logs/uniclean/${task_name}.log"
 
-    [[ ! -f "$dirty_path" ]] && echo "跳过: $dirty_path 不存在" && failed=$((failed + 1)) && continue
-    [[ ! -f "$clean_path" ]] && echo "跳过: $clean_path 不存在" && failed=$((failed + 1)) && continue
+    [[ ! -f "$dirty_path" ]] && echo "skip: $dirty_path does not exist" && failed=$((failed + 1)) && continue
+    [[ ! -f "$clean_path" ]] && echo "skip: $clean_path does not exist" && failed=$((failed + 1)) && continue
 
     cmd="python MethodsRunScript/run_uniclean/run_uniclean_base.py \
         --dirty_path $dirty_path --clean_path $clean_path \
@@ -103,15 +103,15 @@ for dataset_config in "${ALL_DATASETS[@]}"; do
         --single_max $SINGLE_MAX \
         --executor_memory $EXECUTOR_MEMORY --driver_memory $DRIVER_MEMORY --verbose"
 
-    echo "日志: $log_file"
+    echo "log: $log_file"
     total=$((total + 1))
     if eval "$cmd" 2>&1 | tee "$log_file"; then
-        echo "✓ 成功: $dataset"; success=$((success + 1))
+        echo "[OK] success: $dataset"; success=$((success + 1))
     else
-        echo "✗ 失败: $dataset"; failed=$((failed + 1))
+        echo "[FAIL] failure: $dataset"; failed=$((failed + 1))
     fi
 done
 
 echo "============================================================"
-echo "UniClean 测评完成: 总计=$total 成功=$success 失败=$failed"
+echo "UniClean benchmark done: total=$total success=$success failure=$failed"
 echo "============================================================"
