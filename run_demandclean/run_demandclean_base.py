@@ -284,6 +284,33 @@ DATASETS = {
         'categorical_cols': set(),  # all FLOAT spectral bands
         'protected_cols': set(),
     },
+    # ---- Rebuttal additions: real-world dirty datasets (native errors, from UniClean/DDPAgent) ----
+    'hospitals': {
+        'task_type': 'classification',
+        'model_type': 'random_forest',
+        'label_col': 'Condition',
+        'categorical_cols': {'ProviderNumber', 'HospitalName', 'Address1', 'Address2', 'Address3',
+                             'City', 'State', 'ZipCode', 'CountyName', 'PhoneNumber', 'HospitalType',
+                             'HospitalOwner', 'EmergencyService', 'MeasureCode', 'MeasureName',
+                             'Score', 'Sample', 'Stateavg'},
+        'protected_cols': {'HospitalName', 'MeasureCode', 'ProviderNumber', 'City', 'ZipCode',
+                           'MeasureName', 'Condition'},  # FD LHS + target
+    },
+    'flights': {
+        'task_type': 'classification',
+        'model_type': 'random_forest',
+        'label_col': 'arrival_delay_bucket',  # derived from sched/act arrival times (kept as features)
+        'categorical_cols': {'src', 'flight', 'sched_dep_time', 'act_dep_time',
+                             'sched_arr_time', 'act_arr_time'},
+        'protected_cols': {'arrival_delay_bucket'},
+    },
+    'soccer': {
+        'task_type': 'classification',
+        'model_type': 'random_forest',
+        'label_col': 'manager',
+        'categorical_cols': {'name', 'surname', 'birthplace', 'position', 'team', 'city', 'stadium'},
+        'protected_cols': {'name', 'manager'},  # single-LHS FD + target
+    },
 }
 
 # Short model names for evaluation (classification / regression / clustering, two each)
@@ -1975,7 +2002,11 @@ def run_version(
     # ================================================================
     print(f"\n[Step 7] three-dimensional Shapley analysis...")
     vis_start = time.time()
-    try:
+    if os.environ.get('DC_SKIP_SHAPLEY') == '1':
+        print("  [skip] DC_SKIP_SHAPLEY=1 set; skipping Shapley/visualization")
+        step_times['step7_shapley'] = 0.0
+    else:
+      try:
         # Build error_list (converted from detection results)
         error_list = []
         if detected_errors is not None:
@@ -2006,9 +2037,9 @@ def run_version(
             report['shapley_results'] = shapley_results
         else:
             print("  [skip] no error list available or agent not ready")
-    except Exception as e:
-        print(f"  [error] Shapley analysis failed: {e}")
-        traceback.print_exc()
+      except Exception as e:
+          print(f"  [error] Shapley analysis failed: {e}")
+          traceback.print_exc()
     _step7_elapsed = time.time() - vis_start
     total_vis_time += _step7_elapsed
     step_times['step7_shapley'] = round(_step7_elapsed, 2)
@@ -2264,7 +2295,11 @@ def run_version(
                 f.write("\nModel tolerance:\n")
                 f.write("-" * 60 + "\n")
                 for name, res in tolerance_results.items():
-                    f.write(f"  {name}: {res}\n")
+                    # 只展示 tolerance_*,隐藏 P_* 内部量(P_clean/P_dirty/P_dc 仅用于 tolerance 公式,
+                    # 不等于 donothing/repairall baseline 的下游性能 — 以 baseline 跑出的为准)
+                    shown = ({k: v for k, v in res.items() if not str(k).startswith('P_')}
+                             if isinstance(res, dict) else res)
+                    f.write(f"  {name}: {shown}\n")
 
             if detector_accuracy:
                 f.write("\nDetector accuracy:\n")

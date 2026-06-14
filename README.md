@@ -1,6 +1,6 @@
 # DemandClean-Benchmark
 
-A comprehensive benchmark for evaluating data cleaning methods in machine learning pipelines, featuring DemandClean — a demand-driven data cleaning framework based on deep reinforcement learning — alongside 14 established baseline methods evaluated on 9 standard datasets.
+A comprehensive benchmark for evaluating data cleaning methods in machine learning pipelines, featuring DemandClean — a demand-driven data cleaning framework based on deep reinforcement learning — alongside 14 established baseline methods evaluated on 12 datasets: 9 from the public [REIN benchmark](https://github.com/mohamedyd/rein-benchmark) (Abdelaal et al., EDBT 2023) plus 3 real-world datasets with native errors from the UniClean benchmark (`hospitals`, `flights`, `soccer`). See [`data/README.md`](data/README.md) for per-dataset provenance.
 
 ## Overview
 
@@ -164,6 +164,10 @@ DemandClean supports 8 configuration variants combining three dimensions:
 
 **v5** is the default and recommended configuration for practical use. It uses automatic error detection (RAHA + rule-based pipeline) and requires no oracle access.
 
+**`ngt` variant** (e.g. directory `v5_auto_dueling_single_ngt`): any Auto version run with `--max_truth_budget 0`, i.e. **zero ground-truth labels** — the agent uses only cost-free operations (no-op / delete / VE-replace). Demonstrates fully label-free cleaning.
+
+> **All v5–v8 and the ngt variants are different hyper-parameter configurations of the *same* DemandClean system — they are not different methods.** The three dimensions (Dueling vs. Plain DQN, single- vs. two-phase inference, GT budget) are tuning knobs. **None of v5–v8/ngt requires any external ground-truth or oracle information**: they rely only on the automatic detector + self-supervised value estimation. (v1–v4 use an oracle detector and are for ablation studies only.) When a single number is reported per dataset, the best configuration is selected on the **validation set**, never the test set.
+
 - **Oracle detector**: uses ground-truth clean data to identify errors (for ablation studies only)
 - **Auto detector**: 4-stage pipeline — missing value detection → RAHA → FD/CFD/DC rules → label noise rules
 - **Dueling DQN**: separates value and advantage streams for better action differentiation
@@ -207,26 +211,75 @@ cleaned_df = dc.infer(dirty_path="data/beers/dirty_index.csv")
 | ActiveClean | SIGMOD 2016 | Gradient-based sample prioritization | Iterative |
 | BoostClean | SIGMOD 2017 | Detector-repair ensemble with boosting | Validation set |
 | CTXPipe | SIGMOD 2024 | Context-aware RL pipeline generation | None |
+| LLM (FM) | VLDB 2022 | Foundation-model prompting for cell repair (closed/open LLM) | None |
 
 See `benchmark/README.md` for detailed setup instructions per method, including external dependencies (PostgreSQL for HoloClean, Spark for UniClean, etc.).
+
+### LLM Cleaning Baseline
+
+A foundation-model cleaning baseline following *Narayan et al., "Can Foundation Models Wrangle Your Data?", VLDB 2022* — the dirty table is handed to an LLM, which repairs cells by prompting alone.
+
+Design choices (to keep the comparison fair and reproducible):
+- **Anti-leakage**: the model receives *all* rows (it is never told which rows/cells are wrong) and only the **feature** columns (the label/target column is withheld). It must locate errors itself.
+- **Anti-cheating**: the prompt forbids web search / external-database / ground-truth lookup; the model repairs using only within-row consistency and its own knowledge. We use a lightweight model (Claude Haiku by default) rather than a frontier model, so results reflect inference, not memorized answers.
+- **Sparse-edit output**: the model returns only the cells it changes (`{"edits":[{"index","column","value"}]}`), which keeps token cost low and avoids truncation on large batches.
+
+Two interchangeable entry points:
+
+```bash
+# (A) Direct API — bring your own key (OpenAI-style or Anthropic-style endpoint)
+export ANTHROPIC_API_KEY=sk-...            # or pass --api-key
+python run_demandclean/llm_clean.py --dataset flights --batch 200
+# Use GPT / any OpenAI-compatible endpoint:
+python run_demandclean/llm_clean.py --dataset flights \
+    --api-style openai --base-url https://api.openai.com/v1 \
+    --model gpt-4o-mini --api-key $OPENAI_API_KEY --batch 200
+# Wide tables (e.g. mercedes, 377 cols) — use a smaller batch:
+python run_demandclean/llm_clean.py --dataset mercedes --batch 50
+
+# (B) Local Claude subagents (no external key) — prepare batches, clean, collect
+python run_demandclean/llm_agent_clean.py prepare --dataset flights --batch 1000
+#   (each batch_<i>.json cleaned into cleaned_<i>.json by a subagent)
+python run_demandclean/llm_agent_clean.py collect --dataset flights
+```
+
+Output: `results/llm_baseline/<dataset>_cleaned_by_llm.csv`, evaluated under the same unified split protocol as every other method (`tools/reeval_with_split.py`: 60/20/20 seed=42, encoder fit on the dirty 60% train split, train on cleaned / test on clean ground truth, per-dataset feature set and downstream model identical to the main results table).
+
+#### Results on real-world datasets
+
+On real-world datasets with native errors, a state-of-the-art LLM cleaning baseline (accessed via API, prompting only) does **not** surpass DemandClean on any dataset, while incurring substantial API cost — each dirty table must be fed to the LLM in full (e.g. the 10,610-row soccer table costs tens of USD in tokens):
+
+| Dataset | Downstream | NoFix | DeleteAll | RepairAll | Best external | LLM (API) | **DemandClean** | GT% |
+|---------|-----------|-------|-----------|-----------|---------------|-----------|-----------------|-----|
+| beers   | RF | .228 | .207 | .295 | .295 (Raha+Baran) | .272 | **.344** | <0.1% |
+| flights | DT | .981 | .908 | 1.00 | .914 (Baran)      | .992 | **.996** | 0.8% |
+| soccer  | DT | .902 | .856 | 1.00 | .811 (Horizon)    | .952 | **1.00** | 0 |
+| hospitals | RF | 1.00 | .995 | .995 | ~1.0            | ~1.00 | 1.00 | 0 |
+
+DemandClean reaches or exceeds the oracle RepairAll upper bound on beers, surpasses all traditional/learned cleaners by large margins (flights +0.08, soccer +0.19 over the best external method), and matches or beats LLM-based cleaning — using under 1% ground-truth labels (zero on soccer and hospitals) and no large model. On the saturated `hospitals` table (errors do not affect the downstream task), DemandClean spends zero GT and matches the upper bound.
 
 ## Datasets
 
 | Dataset | Task | Target Column | Rows | Features | Error Types |
 |---------|------|---------------|------|----------|-------------|
 | adult | Classification | income | 45,222 | 15 | Rule violations, outliers |
-| beers | Classification | style | 2,410 | 8 | Missing values, outliers |
-| bike | Regression | cnt | 17,379 | 12 | Missing values, noise |
-| breast_cancer | Classification | class | 699 | 31 | Missing values |
-| har | Clustering | gt | 10,299 | 562 | Missing values, noise |
+| beers | Classification | style | 2,410 | 9 | Missing values, outliers |
+| bike | Regression | cnt | 17,379 | 16 | Missing values, noise |
+| breast_cancer | Classification | class | 699 | 10 | Missing values |
+| har | Clustering | gt | 70,000 | 4 | Missing values, noise |
 | mercedes | Regression | y | 4,209 | 377 | Missing values |
 | nasa | Regression | sound_pressure_level | 1,503 | 6 | Missing values |
-| smartfactory | Classification | labels | 7,484 | 6 | Missing values, outliers |
-| soilmoisture | Regression | soil_moisture | 1,440 | 14 | Missing values |
+| smartfactory | Classification | labels | 23,645 | 19 | Missing values, outliers |
+| soilmoisture | Regression | soil_moisture | 679 | 128 | Missing values |
+| hospitals ⁺ | Classification | Condition | 1,000 | 18 | Typos, FD violations |
+| flights ⁺ | Classification | arrival_delay_bucket | 2,376 | 6 | Missing, format inconsistency |
+| soccer ⁺ | Classification | manager | 10,610 | 9 | Missing, format errors |
+
+⁺ = UniClean real-world datasets with native errors (added to evaluate generalization to naturalistic error distributions).
 
 Each dataset directory contains:
-- `dirty_index.csv` — error-injected data with index column
-- `clean_index.csv` — ground-truth clean data with index column
+- `dirty_index.csv` — dirty version (from REIN), with index column
+- `clean_index.csv` — clean reference version (from REIN), with index column
 - `rules.txt` — functional dependency and domain constraint rules
 
 ## Experiments

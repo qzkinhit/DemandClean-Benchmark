@@ -131,6 +131,39 @@ DATASETS_CONFIG = {
         'feature_columns': 'auto',  # auto-detect: every column except index, datetime, soil_moisture
         'rules_file': 'rules.txt',
         'description': 'Hyperspectral Soil Moisture dataset'
+    },
+    'flights': {
+        'dirty_file': 'dirty_index.csv',
+        'clean_file': 'clean_index.csv',
+        'label_column': 'arrival_delay_bucket',
+        'task_type': 'classification',
+        'index_column': 'index',
+        'exclude_columns': [],
+        'feature_columns': 'auto',  # src, flight, scheduled/actual dep & arr times
+        'rules_file': 'rules.txt',
+        'description': 'Flight schedule records (UniClean real-world; native errors)'
+    },
+    'soccer': {
+        'dirty_file': 'dirty_index.csv',
+        'clean_file': 'clean_index.csv',
+        'label_column': 'manager',
+        'task_type': 'classification',
+        'index_column': 'index',
+        'exclude_columns': [],
+        'feature_columns': 'auto',  # name, surname, birthyear/place, position, team, city, stadium, season
+        'rules_file': 'rules.txt',
+        'description': 'Soccer player records (UniClean real-world; native errors)'
+    },
+    'hospitals': {
+        'dirty_file': 'dirty_index.csv',
+        'clean_file': 'clean_index.csv',
+        'label_column': 'Condition',
+        'task_type': 'classification',
+        'index_column': 'index',
+        'exclude_columns': [],
+        'feature_columns': 'auto',  # provider/hospital/address/measure fields
+        'rules_file': 'rules.txt',
+        'description': 'US hospital quality-measure records (UniClean real-world; native errors)'
     }
 }
 

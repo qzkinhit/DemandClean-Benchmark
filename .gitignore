@@ -35,3 +35,13 @@ htmlcov/
 # Large debug files
 search_space_results111.csv
 *_副本.*
+
+# Internal rebuttal analysis & raw LLM cleaning outputs — NOT for public release
+# (public-facing results are summarized in README.md; these contain internal notes,
+#  model/version details, external absolute paths, and per-batch raw outputs)
+analysis/rebuttal_3ds/
+analysis/o3_mercedes/
+results/llm_baseline/
+
+# Early all-columns eval script (superseded by benchmark/tools/reeval_with_split.py)
+run_demandclean/reeval_unified.py

@@ -1,0 +1,5 @@
+# Dataset: flights (real-world, from UniClean/DDPAgent benchmark)
+# clean/dirty pairs used unmodified; index column appended; missing = "empty".
+
+[DOMAIN]
+arrival_delay_bucket: ENUM {early, late, on_time}
