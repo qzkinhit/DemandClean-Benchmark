@@ -1,4 +1,4 @@
-Clean4MLBaseline 统一测评报告
+DemandClean-Benchmark 统一测评报告
 任务名称: v8_auto_plain_two
 ======================================================================
 
@@ -26,9 +26,6 @@ Clean4MLBaseline 统一测评报告
   ml_gb_r2: 0.560092517069938
 
 [模型容忍度]
-  tolerance_P_do_nothing: 0.6237630590001768
-  tolerance_P_demand_clean: 0.5807226928460292
-  tolerance_P_repair_all: 0.680036678206931
   tolerance_tolerance_prior: 0.930998853598133
   tolerance_tolerance_post: -0.7648409105519506
 

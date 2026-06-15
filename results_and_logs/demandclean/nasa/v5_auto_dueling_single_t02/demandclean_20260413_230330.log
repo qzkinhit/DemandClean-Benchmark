@@ -1,5 +1,0 @@
-[2026-04-13 23:03:57,993] INFO - demandclean:   Clean Base 自动选择 (5-fold CV, 样本保留率加权):
-[2026-04-13 23:03:57,994] INFO - demandclean:     DeleteFix: 407 行, CV=0.0374, 权重=0.672, 加权=0.0251
-[2026-04-13 23:03:57,994] INFO - demandclean:     VE-Fill:   901 行, CV=0.0291, 权重=1.000, 加权=0.0291
-[2026-04-13 23:03:57,994] INFO - demandclean:     → 选择 VE-Fill (901 行)
-[2026-04-13 23:05:49,154] INFO - demandclean: 模型已保存: /Users/qianzekai/PycharmProjects/TolerDM/results/demandclean/nasa/v5_auto_dueling_single_t02/model/v5_auto_dueling_single_agent.pt

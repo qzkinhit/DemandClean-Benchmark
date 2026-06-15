@@ -1,5 +1,0 @@
-[2026-04-12 05:38:37,935] INFO - demandclean:   Clean Base 自动选择 (5-fold CV, 样本保留率加权):
-[2026-04-12 05:38:37,935] INFO - demandclean:     DeleteFix: 21139 行, CV=0.9534, 权重=0.709, 加权=0.6764
-[2026-04-12 05:38:37,935] INFO - demandclean:     VE-Fill:   42000 行, CV=0.8865, 权重=1.000, 加权=0.8865
-[2026-04-12 05:38:37,935] INFO - demandclean:     → 选择 VE-Fill (42000 行)
-[2026-04-12 12:52:28,562] INFO - demandclean: 模型已保存: /Users/qianzekai/PycharmProjects/TolerDM/results/demandclean/har/v7_auto_plain_single/model/v7_auto_plain_single_agent.pt

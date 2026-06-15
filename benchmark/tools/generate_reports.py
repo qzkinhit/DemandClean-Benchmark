@@ -200,7 +200,7 @@ def generate_reports_for_baseline(baseline_name, datasets=None, verbose=True):
 
     for ds in datasets_to_process:
         dataset = ds['dataset']
-        task_name = f"{dataset}_{baseline_name}_vzekai"
+        task_name = f"{dataset}_{baseline_name}_run"
 
         result_dir = os.path.join(results_base, task_name)
         cleaned_path = os.path.join(result_dir, f'{task_name}_cleaned.csv')

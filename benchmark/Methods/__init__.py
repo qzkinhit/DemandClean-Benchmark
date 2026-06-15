@@ -1,7 +1,7 @@
 """
 Methods package containing various data cleaning and preparation methods.
 
-Clean4MLBaseline Methods Package
+DemandClean-Benchmark Methods Package
 面向下游机器学习任务的数据清洗方法集合
 
 包含方法分类:

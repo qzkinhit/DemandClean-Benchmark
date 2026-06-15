@@ -1,5 +1,0 @@
-[15:35:46] INFO:   Clean Base 自动选择 (5-fold CV, 样本保留率加权):
-[15:35:46] INFO:     DeleteFix: 505 行, CV=0.0018, 权重=0.447, 加权=0.0008
-[15:35:46] INFO:     VE-Fill:   2525 行, CV=0.0095, 权重=1.000, 加权=0.0095
-[15:35:46] INFO:     → 选择 VE-Fill (2525 行)
-[17:12:28] INFO: 模型已保存: /Users/qianzekai/PycharmProjects/TolerDM/results/demandclean/mercedes/v8_auto_plain_two/model/v8_auto_plain_two_agent.pt

@@ -1,5 +1,5 @@
 """
-CtxPipe Adapter for the Clean4MLBaseline project.
+CtxPipe Adapter for the DemandClean-Benchmark project.
 Adapts the official ctxpipe API to the project's unified interface.
 
 Notes:

@@ -1,11 +1,11 @@
 #!/usr/bin/env python3
 """
-ReplaceAll Baseline 评估脚本 (v2 — 与 Clean4MLBaseline reeval_with_split.py 对齐)
+ReplaceAll Baseline 评估脚本 (v2 — 与 DemandClean-Benchmark reeval_with_split.py 对齐)
 ==================================================================================
 
 对所有 Oracle 检测到的错误调用值估计链 (VEC) 进行替换，零 GT 成本。
-评估流水线与 Clean4MLBaseline/tools/reeval_with_split.py 完全一致:
-  - 数据来源: Clean4MLBaseline/Data/{dataset}/
+评估流水线与 DemandClean-Benchmark/tools/reeval_with_split.py 完全一致:
+  - 数据来源: DemandClean-Benchmark/Data/{dataset}/
   - 预处理: 60% dirty train fit 编码器 (LabelEncoder + StandardScaler)
   - 评估: 分类=RF accuracy, 回归=RF R², 聚类=KMeans silhouette (全量)
   - 容忍度: P_do_nothing / P_demand_clean / P_repair_all + Snoopy upper bounds
@@ -56,7 +56,7 @@ C4ML_ROOT = os.path.join(_PROJECT_ROOT, 'benchmark')
 C4ML_DATA = os.path.join(C4ML_ROOT, 'Data')
 
 # ============================================================================
-# 数据集配置 (与 Clean4MLBaseline datasets_config.py 完全一致)
+# 数据集配置 (与 DemandClean-Benchmark datasets_config.py 完全一致)
 # ============================================================================
 DATASETS = {
     'adult': {'label_column': 'income', 'task_type': 'classification', 'exclude_columns': [],
@@ -105,7 +105,7 @@ DC_CATEGORICAL = {
 def preprocess_for_ml(df: pd.DataFrame, label_col: str, index_col: str = 'index',
                       exclude_cols: List[str] = None, feature_cols=None,
                       fitted_encoders: Dict = None, fitted_scaler=None, fitted_label_encoder=None):
-    """与 Clean4MLBaseline/tools/reeval_with_split.py:preprocess_for_ml 完全一致"""
+    """与 DemandClean-Benchmark/tools/reeval_with_split.py:preprocess_for_ml 完全一致"""
     is_fit_mode = (fitted_encoders is None)
     drop_cols = [index_col] if index_col in df.columns else []
     if exclude_cols:

@@ -1,4 +1,4 @@
-Clean4MLBaseline 统一测评报告
+DemandClean-Benchmark 统一测评报告
 任务名称: v3_oracle_plain_single
 ======================================================================
 
@@ -26,9 +26,6 @@ Clean4MLBaseline 统一测评报告
   ml_gb_r2: 0.5852618370198669
 
 [模型容忍度]
-  tolerance_P_do_nothing: 0.5493791207518035
-  tolerance_P_demand_clean: 0.49220883372505886
-  tolerance_P_repair_all: 0.49220883372505886
   tolerance_tolerance_prior: 0.8959365493386254
   tolerance_tolerance_post: 1.0
 

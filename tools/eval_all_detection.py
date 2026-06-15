@@ -82,11 +82,11 @@ def find_cleaned_csv(baseline, dataset):
     """Locate the cleaned-CSV path produced by a baseline."""
     patterns = [
         os.path.join(C4ML_ROOT, 'results', baseline,
-                     f'{dataset}_{baseline}_vzekai',
-                     f'{dataset}_{baseline}_vzekai_cleaned.csv'),
+                     f'{dataset}_{baseline}_run',
+                     f'{dataset}_{baseline}_run_cleaned.csv'),
         os.path.join(C4ML_ROOT, 'results', baseline,
-                     f'{dataset}_{baseline}_vzekai',
-                     f'{dataset}_{baseline}_vzekai_output.csv'),
+                     f'{dataset}_{baseline}_run',
+                     f'{dataset}_{baseline}_run_output.csv'),
         os.path.join(C4ML_ROOT, 'results', baseline,
                      f'{dataset}_{baseline}',
                      f'{dataset}_{baseline}_cleaned.csv'),

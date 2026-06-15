@@ -1,1 +1,0 @@
-{"0": {"dataset": "soilmoisture", "csv_file": "ctxpipe_5stgegxf.csv", "label": "1", "model": "LogisticRegression", "task_name": "soilmoisture_ctxpipe_vzekai"}}

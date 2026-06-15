@@ -1,5 +1,0 @@
-[04:56:39] INFO:   Clean Base 自动选择 (5-fold CV, 样本保留率加权):
-[04:56:39] INFO:     DeleteFix: 185 行, CV=0.9838, 权重=0.664, 加权=0.6537
-[04:56:39] INFO:     VE-Fill:   419 行, CV=0.9570, 权重=1.000, 加权=0.9570
-[04:56:39] INFO:     → 选择 VE-Fill (419 行)
-[04:57:06] INFO: 模型已保存: /Users/qianzekai/PycharmProjects/TolerDM/results/demandclean/breast_cancer/v5_auto_dueling_single_ngt/model/v5_auto_dueling_single_agent.pt

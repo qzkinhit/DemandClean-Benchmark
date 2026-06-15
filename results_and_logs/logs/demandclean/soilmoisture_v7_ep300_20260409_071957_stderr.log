@@ -1,5 +1,0 @@
-[07:23:34] INFO:   Clean Base 自动选择 (5-fold CV, 样本保留率加权):
-[07:23:34] INFO:     DeleteFix: 81 行, CV=0.0715, 权重=0.446, 加权=0.0319
-[07:23:34] INFO:     VE-Fill:   407 行, CV=0.1894, 权重=1.000, 加权=0.1894
-[07:23:34] INFO:     → 选择 VE-Fill (407 行)
-[09:18:03] INFO: 模型已保存: /Users/qianzekai/PycharmProjects/TolerDM/results/demandclean/soilmoisture/v7_auto_plain_single/model/v7_auto_plain_single_agent.pt

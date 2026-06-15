@@ -1,5 +1,5 @@
 """
-CtxPipe runner (Clean4MLBaseline integration)
+CtxPipe runner (DemandClean-Benchmark integration)
 
 Features:
 - RL mode: context-aware, pretrained-weight inference that generates a data preparation pipeline (columns may change).

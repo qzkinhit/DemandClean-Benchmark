@@ -2,7 +2,7 @@
 """
 DemandClean CSV 报告生成器
 
-从 report.json 提取实验结果，生成与 Clean4MLBaseline 格式一致的 CSV。
+从 report.json 提取实验结果，生成与 DemandClean-Benchmark 格式一致的 CSV。
 
 Usage:
     python generate_csv.py --versions v3,v6

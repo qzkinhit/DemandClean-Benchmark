@@ -1,4 +1,4 @@
-Clean4MLBaseline 统一测评报告
+DemandClean-Benchmark 统一测评报告
 任务名称: v5_auto_dueling_single
 ======================================================================
 
@@ -26,9 +26,6 @@ Clean4MLBaseline 统一测评报告
   ml_gb_r2: 0.99792632656276
 
 [模型容忍度]
-  tolerance_P_do_nothing: 0.9964703729484502
-  tolerance_P_demand_clean: 0.9975520592984068
-  tolerance_P_repair_all: 0.9997725104834372
   tolerance_tolerance_prior: 1.0010855178230298
   tolerance_tolerance_post: 0.32757156190373815
 

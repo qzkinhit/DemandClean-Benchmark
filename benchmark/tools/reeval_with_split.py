@@ -2,7 +2,7 @@
 """
 reeval_with_split.py - 快速重评估脚本
 
-利用 Clean4MLBaseline 中已有的 cleaned CSV，
+利用 DemandClean-Benchmark 中已有的 cleaned CSV，
 按照 DemandClean 相同的 seed=42, 60/20/20 划分重新评估，
 输出与 DemandClean 格式完全一致的指标表 CSV。
 
@@ -45,7 +45,7 @@ warnings.filterwarnings('ignore')
 
 # ─── 项目路径 ───
 _SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
-_PROJECT_ROOT = os.path.dirname(_SCRIPT_DIR)  # Clean4MLBaseline 根目录
+_PROJECT_ROOT = os.path.dirname(_SCRIPT_DIR)  # DemandClean-Benchmark 根目录
 sys.path.insert(0, _SCRIPT_DIR)
 
 from datasets_config import DATASETS_CONFIG
@@ -541,7 +541,7 @@ def find_cleaned_csv(baseline: str, dataset: str) -> Optional[str]:
     """查找 cleaned CSV 文件路径"""
     results_root = os.path.join(_PROJECT_ROOT, 'results', baseline)
     # 尝试多种命名模式
-    for suffix in ['_vzekai', '']:
+    for suffix in ['_run', '']:
         dir_name = f"{dataset}_{baseline}{suffix}"
         result_dir = os.path.join(results_root, dir_name)
         if os.path.isdir(result_dir):
@@ -556,7 +556,7 @@ def find_cleaned_csv(baseline: str, dataset: str) -> Optional[str]:
 def find_result_dir(baseline: str, dataset: str) -> Optional[str]:
     """查找结果目录"""
     results_root = os.path.join(_PROJECT_ROOT, 'results', baseline)
-    for suffix in ['_vzekai', '']:
+    for suffix in ['_run', '']:
         dir_name = f"{dataset}_{baseline}{suffix}"
         result_dir = os.path.join(results_root, dir_name)
         if os.path.isdir(result_dir):
@@ -807,7 +807,7 @@ def write_csv(rows: List[Dict], output_path: str):
 # ═══════════════════════════════════════════════════════════════
 
 def main():
-    parser = argparse.ArgumentParser(description='快速重评估 Clean4MLBaseline 的全部 cleaned CSV')
+    parser = argparse.ArgumentParser(description='快速重评估 DemandClean-Benchmark 的全部 cleaned CSV')
     parser.add_argument('--baselines', nargs='+', default=ALL_BASELINES,
                         help=f'要评估的 baseline 列表（默认全部）')
     parser.add_argument('--datasets', nargs='+', default=ALL_DATASETS,
@@ -821,7 +821,7 @@ def main():
 
     mode_str = "训练集模式（60%% cleaned）" if args.train_only else "全量模式（100%% cleaned）"
     print("=" * 70)
-    print("Clean4MLBaseline 快速重评估（DemandClean 对齐版）")
+    print("DemandClean-Benchmark 快速重评估（DemandClean 对齐版）")
     print(f"划分方式: seed={SEED}, 60/20/20")
     print(f"评估模式: {mode_str}")
     print(f"Baselines: {args.baselines}")

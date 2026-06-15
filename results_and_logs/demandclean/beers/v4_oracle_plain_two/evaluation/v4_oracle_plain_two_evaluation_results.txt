@@ -1,4 +1,4 @@
-Clean4MLBaseline 统一测评报告
+DemandClean-Benchmark 统一测评报告
 任务名称: v4_oracle_plain_two
 ======================================================================
 
@@ -38,9 +38,6 @@ Clean4MLBaseline 统一测评报告
   ml_gb_recall: 0.31958762886597936
 
 [模型容忍度]
-  tolerance_P_do_nothing: 0.3796680497925311
-  tolerance_P_demand_clean: 0.5567010309278351
-  tolerance_P_repair_all: 0.38589211618257263
   tolerance_tolerance_prior: 1.4662835896569208
   tolerance_tolerance_post: 28.443298969072018
 

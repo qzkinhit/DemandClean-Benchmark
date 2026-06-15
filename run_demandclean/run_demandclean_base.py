@@ -2078,7 +2078,7 @@ def run_version(
     # ================================================================
     # 9. getScoreML unified evaluation (matches run_baran_raha output format)
     # ================================================================
-    print(f"\n[Step 9] Clean4MLBaseline unified evaluation...")
+    print(f"\n[Step 9] DemandClean-Benchmark unified evaluation...")
     t_step = time.time()
     getscoreml_results = {}
     try:
@@ -2308,7 +2308,7 @@ def run_version(
                     f.write(f"  {name}: {res}\n")
 
             if getscoreml_results:
-                f.write("\nClean4MLBaseline unified evaluation:\n")
+                f.write("\nDemandClean-Benchmark unified evaluation:\n")
                 f.write("-" * 60 + "\n")
                 for key in ['accuracy', 'recall', 'f1_score', 'edr', 'hybrid_distance', 'r_edr']:
                     if key in getscoreml_results:

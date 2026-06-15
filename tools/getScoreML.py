@@ -1,7 +1,7 @@
 """
 getScoreML.py - unified data-cleaning evaluation module
 
-Core Clean4MLBaseline evaluator; all run_*_base.py scripts should call this module.
+Core DemandClean-Benchmark evaluator; all run_*_base.py scripts should call this module.
 
 Metrics included:
 1. Traditional cleaning metrics: precision, recall, F1, EDR, hybrid distance, R-EDR (from getScore.py)
@@ -607,10 +607,10 @@ def calculate_tolerance(dirty_data: pd.DataFrame,
             'tolerance_post': tolerance_post,
         }
 
+        # Note: P_do_nothing/P_demand_clean/P_repair_all are INTERNAL quantities for the
+        # tolerance formula only. The do-nothing / repair-all DOWNSTREAM performance to cite
+        # is the one produced by the donothing / repairall BASELINE runs, not these P_ values.
         safe_print(f"\nTolerance results:")
-        safe_print(f"  P_do_nothing   (dirty perf.): {P_do_nothing:.4f}")
-        safe_print(f"  P_demand_clean (cleaned perf.): {P_demand_clean:.4f}")
-        safe_print(f"  P_repair_all   (full-repair perf.): {P_repair_all:.4f}")
         safe_print(f"  Prior tolerance (Tolerance_prior): {tolerance_prior:.4f}")
         safe_print(f"  Posterior tolerance (Tolerance_post): {tolerance_post:.4f}")
 
@@ -775,10 +775,8 @@ def calculate_tolerance(dirty_data: pd.DataFrame,
         'tolerance_post': tolerance_post
     }
 
+    # P_* are INTERNAL tolerance-formula quantities; cite donothing/repairall BASELINE perf instead.
     safe_print(f"\nTolerance results:")
-    safe_print(f"  P_do_nothing   (dirty perf.): {P_do_nothing:.4f}")
-    safe_print(f"  P_demand_clean (cleaned perf.): {P_demand_clean:.4f}")
-    safe_print(f"  P_repair_all   (full-repair perf.): {P_repair_all:.4f}")
     safe_print(f"  Prior tolerance (Tolerance_prior): {tolerance_prior:.4f}")
     safe_print(f"  Posterior tolerance (Tolerance_post): {tolerance_post:.4f}")
 
@@ -1395,7 +1393,7 @@ def run_all_evaluation(dirty_path: str,
 
     if verbose:
         safe_print("=" * 70)
-        safe_print(f"Clean4MLBaseline unified evaluation - {task_name}")
+        safe_print(f"DemandClean-Benchmark unified evaluation - {task_name}")
         safe_print("=" * 70)
 
     # ==========================================================================
@@ -1561,7 +1559,7 @@ def run_all_evaluation(dirty_path: str,
     os.makedirs(output_path, exist_ok=True)
 
     with open(results_file, 'w', encoding='utf-8') as f:
-        f.write(f"Clean4MLBaseline unified evaluation report\n")
+        f.write(f"DemandClean-Benchmark unified evaluation report\n")
         f.write(f"Task: {task_name}\n")
         f.write("=" * 70 + "\n\n")
 

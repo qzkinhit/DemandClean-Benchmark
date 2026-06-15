@@ -1,2 +1,0 @@
-t1&t2&EQ(t1.X0,t2.X0)&IQ(t1.X4,t2.X4)
-t1&t2&EQ(t1.X2,t2.X2)&IQ(t1.X4,t2.X4)

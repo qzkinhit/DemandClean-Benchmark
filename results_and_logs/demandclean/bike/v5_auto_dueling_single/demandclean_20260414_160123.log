@@ -1,4 +1,0 @@
-[2026-04-14 16:12:20,347] INFO - demandclean:   Clean Base 自动选择 (5-fold CV, 样本保留率加权):
-[2026-04-14 16:12:20,347] INFO - demandclean:     DeleteFix: 2085 行, CV=0.0007, 权重=0.447, 加权=0.0003
-[2026-04-14 16:12:20,347] INFO - demandclean:     VE-Fill:   10427 行, CV=0.0011, 权重=1.000, 加权=0.0011
-[2026-04-14 16:12:20,347] INFO - demandclean:     → 选择 VE-Fill (10427 行)

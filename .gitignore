@@ -45,3 +45,14 @@ results/llm_baseline/
 
 # Early all-columns eval script (superseded by benchmark/tools/reeval_with_split.py)
 run_demandclean/reeval_unified.py
+
+# Intermediate per-run logs / trained agents / visualizations — not needed to reproduce
+# (every result is regenerable via the provided scripts; these also held machine-local paths)
+results_and_logs/logs/
+experiment/
+benchmark/logs/
+benchmark/results/
+*.log
+**/visualization/
+*.pt
+*.pth

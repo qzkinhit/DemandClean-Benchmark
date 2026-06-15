@@ -22,8 +22,8 @@ Baseline 对比:
 
 模型容忍度:
 ------------------------------------------------------------
-  rf: {'P_clean': 0.4769097734262032, 'P_dirty': 0.4964578944275001, 'P_dc': 0.4769097734262032, 'tolerance_prior': 0.9606248158792214, 'tolerance_post': 1.0}
-  ridge: {'P_clean': 0.5534886411235009, 'P_dirty': 0.4867459902430401, 'P_dc': 0.5534886411235009, 'tolerance_prior': 1.1371200836130877, 'tolerance_post': 1.0}
+  rf: {'tolerance_prior': 0.9606248158792214, 'tolerance_post': 1.0}
+  ridge: {'tolerance_prior': 1.1371200836130877, 'tolerance_post': 1.0}
 
 检测器准确率:
 ------------------------------------------------------------
@@ -35,7 +35,7 @@ Baseline 对比:
   ground_truth_total: 301127
   detected_total: 301127
 
-Clean4MLBaseline 统一测评:
+DemandClean-Benchmark 统一测评:
 ------------------------------------------------------------
   accuracy: 0.826974486378806
   recall: 0.9594954952561544
@@ -59,9 +59,6 @@ Clean4MLBaseline 统一测评:
     ml_gb_r2: 0.5852618370198669
 
   容忍度:
-    tolerance_P_do_nothing: 0.5493791207518035
-    tolerance_P_demand_clean: 0.49220883372505886
-    tolerance_P_repair_all: 0.49220883372505886
     tolerance_tolerance_prior: 0.8959365493386254
     tolerance_tolerance_post: 1.0
 

@@ -1,5 +1,0 @@
-[2026-03-01 01:00:26,815] INFO - demandclean:   Clean Base 自动选择 (3-fold CV):
-[2026-03-01 01:00:26,816] INFO - demandclean:     DeleteFix: 77 行, CV=0.8954
-[2026-03-01 01:00:26,816] INFO - demandclean:     VE-Fill:   80 行, CV=0.9122
-[2026-03-01 01:00:26,816] INFO - demandclean:     → 选择 VE-Fill (80 行)
-[2026-03-01 01:00:26,816] INFO - demandclean:   VE-Fill 策略: 80 行 (修复 3 个错误单元格 + 0 个标签错误, 填充 0 个残余 NaN)

@@ -1,6 +1,6 @@
 #!/bin/bash
 # ============================================================
-# Clean4MLBaseline - Run All Baselines
+# DemandClean-Benchmark - Run All Baselines
 # ============================================================
 #
 # Usage:
@@ -92,7 +92,7 @@ fi
 export VERSION
 
 echo "============================================================"
-echo "Clean4MLBaseline - Running Baselines"
+echo "DemandClean-Benchmark - Running Baselines"
 echo "============================================================"
 echo "Version:   $VERSION"
 echo "Baselines: ${BASELINES[*]}"

@@ -1,5 +1,0 @@
-[2026-04-13 05:00:18,061] INFO - demandclean:   Clean Base 自动选择 (5-fold CV, 样本保留率加权):
-[2026-04-13 05:00:18,062] INFO - demandclean:     DeleteFix: 81 行, CV=0.0734, 权重=0.446, 加权=0.0327
-[2026-04-13 05:00:18,062] INFO - demandclean:     VE-Fill:   407 行, CV=0.2011, 权重=1.000, 加权=0.2011
-[2026-04-13 05:00:18,062] INFO - demandclean:     → 选择 VE-Fill (407 行)
-[2026-04-13 05:04:18,569] INFO - demandclean: 模型已保存: /Users/qianzekai/PycharmProjects/TolerDM/results/demandclean/soilmoisture/v5_auto_dueling_single_ngt/model/v5_auto_dueling_single_agent.pt

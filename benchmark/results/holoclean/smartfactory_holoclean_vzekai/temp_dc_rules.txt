@@ -1,2 +1,0 @@
-t1&t2&EQ(t1.i_w_blo_weg,t2.i_w_blo_weg)&IQ(t1.o_w_blo_power,t2.o_w_blo_power)
-t1&t2&EQ(t1.i_w_bhr_weg,t2.i_w_bhr_weg)&IQ(t1.o_w_bhr_power,t2.o_w_bhr_power)

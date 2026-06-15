@@ -1,0 +1,5 @@
+dataset,downstream_model,LLM_accuracy,DemandClean_accuracy,input_tokens,cost_usd
+beers,RF,0.272,0.344,153000,13
+flights,DT,0.992,0.996,135000,11
+soccer,DT,0.952,1.000,723000,60
+hospitals,RF,0.995,1.000,166000,3

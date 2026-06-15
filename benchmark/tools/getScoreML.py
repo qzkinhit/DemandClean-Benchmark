@@ -1,7 +1,7 @@
 """
 getScoreML.py - Unified data cleaning evaluation module
 
-The core evaluation program for Clean4MLBaseline. All run_*_base.py scripts should
+The core evaluation program for DemandClean-Benchmark. All run_*_base.py scripts should
 invoke this module to perform evaluation.
 
 Metrics included:
@@ -1015,7 +1015,7 @@ def run_all_evaluation(dirty_path: str,
 
     if verbose:
         safe_print("=" * 70)
-        safe_print(f"Clean4MLBaseline unified evaluation - {task_name}")
+        safe_print(f"DemandClean-Benchmark unified evaluation - {task_name}")
         safe_print("=" * 70)
 
     # ==========================================================================
@@ -1167,7 +1167,7 @@ def run_all_evaluation(dirty_path: str,
 
     with open(results_file, 'w', encoding='utf-8') as f:
         f.write("=" * 80 + "\n")
-        f.write("Clean4MLBaseline unified evaluation report\n")
+        f.write("DemandClean-Benchmark unified evaluation report\n")
         f.write("=" * 80 + "\n")
         f.write(f"Task name: {task_name}\n")
         f.write(f"Task type: {task_type}\n")

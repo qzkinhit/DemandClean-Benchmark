@@ -10,7 +10,7 @@ This repository provides:
 
 - **DemandClean framework**: the complete RL-based cleaning pipeline with 8 configuration variants
 - **14 baseline methods**: from simple imputation to state-of-the-art learning-based cleaners (HoloClean, Raha+Baran, UniClean, Lopster, CTXPipe, etc.)
-- **9 benchmark datasets**: spanning classification, regression, and clustering tasks
+- **12 benchmark datasets**: 9 from REIN + 3 real-world (UniClean), spanning classification, regression, and clustering tasks
 - **Pre-computed results**: all experiment outputs, evaluation metrics, and summary tables for direct comparison
 - **One-click reproducibility**: shell scripts to re-run any experiment from scratch
 
@@ -38,7 +38,7 @@ DemandClean-Benchmark/
 │   ├── utils/                  #   Logging, metrics, model I/O
 │   └── tests/                  #   Unit and integration tests
 │
-├── data/                       # 9 benchmark datasets (clean/dirty pairs)
+├── data/                       # 12 benchmark datasets (9 REIN + 3 real-world, clean/dirty pairs)
 │
 ├── run_demandclean/            # Experiment execution scripts
 │   ├── run.sh                  #   DemandClean runner (train + infer + eval)
@@ -54,7 +54,7 @@ DemandClean-Benchmark/
 │   ├── search_space_beers/     #   Search space visualization (1000 samples)
 │   └── ablation_beers/         #   Component ablation (17 strategies)
 │
-├── benchmark/                  # Baseline methods (Clean4MLBaseline)
+├── benchmark/                  # Baseline methods (DemandClean-Benchmark)
 │   ├── README.md               #   Baseline-specific documentation
 │   ├── run_all.sh              #   One-click runner for all baselines
 │   ├── Data/                   #   Datasets (clean/dirty CSV pairs)
@@ -221,7 +221,7 @@ A foundation-model cleaning baseline following *Narayan et al., "Can Foundation 
 
 Design choices (to keep the comparison fair and reproducible):
 - **Anti-leakage**: the model receives *all* rows (it is never told which rows/cells are wrong) and only the **feature** columns (the label/target column is withheld). It must locate errors itself.
-- **Anti-cheating**: the prompt forbids web search / external-database / ground-truth lookup; the model repairs using only within-row consistency and its own knowledge. We use a lightweight model (Claude Haiku by default) rather than a frontier model, so results reflect inference, not memorized answers.
+- **Anti-cheating**: the prompt forbids web search / external-database / ground-truth lookup; the model repairs using only within-row consistency and its own knowledge. The model is selected with `--model` (any frontier or open LLM via an OpenAI/Anthropic-style endpoint); results reflect inference under the anti-cheating prompt, not memorized answers.
 - **Sparse-edit output**: the model returns only the cells it changes (`{"edits":[{"index","column","value"}]}`), which keeps token cost low and avoids truncation on large batches.
 
 Two interchangeable entry points:
@@ -243,7 +243,7 @@ python run_demandclean/llm_agent_clean.py prepare --dataset flights --batch 1000
 python run_demandclean/llm_agent_clean.py collect --dataset flights
 ```
 
-Output: `results/llm_baseline/<dataset>_cleaned_by_llm.csv`, evaluated under the same unified split protocol as every other method (`tools/reeval_with_split.py`: 60/20/20 seed=42, encoder fit on the dirty 60% train split, train on cleaned / test on clean ground truth, per-dataset feature set and downstream model identical to the main results table).
+Output: `results/llm_baseline/<dataset>_cleaned_by_llm.csv`, evaluated under the same unified split protocol as every other method (`benchmark/tools/reeval_with_split.py`: 60/20/20 seed=42, encoder fit on the dirty 60% train split, train on cleaned / test on clean ground truth, per-dataset feature set and downstream model identical to the main results table). Pre-computed real-world results (the 4-dataset comparison table, LLM-cleaned tables, token/cost accounting, and the mercedes mechanistic check) are released under [`results_and_logs/real_world/`](results_and_logs/real_world/) and [`results_and_logs/mercedes_mechanistic/`](results_and_logs/mercedes_mechanistic/).
 
 #### Results on real-world datasets
 
@@ -252,7 +252,7 @@ On real-world datasets with native errors, a state-of-the-art LLM cleaning basel
 | Dataset | Downstream | NoFix | DeleteAll | RepairAll | Best external | LLM (API) | **DemandClean** | GT% |
 |---------|-----------|-------|-----------|-----------|---------------|-----------|-----------------|-----|
 | beers   | RF | .228 | .207 | .295 | .295 (Raha+Baran) | .272 | **.344** | <0.1% |
-| flights | DT | .981 | .908 | 1.00 | .914 (Baran)      | .992 | **.996** | 0.8% |
+| flights | DT | .981 | .908 | 1.00 | .914 (Baran)      | .992 | **.996** | 0.7% |
 | soccer  | DT | .902 | .856 | 1.00 | .811 (Horizon)    | .952 | **1.00** | 0 |
 | hospitals | RF | 1.00 | .995 | .995 | ~1.0            | ~1.00 | 1.00 | 0 |
 

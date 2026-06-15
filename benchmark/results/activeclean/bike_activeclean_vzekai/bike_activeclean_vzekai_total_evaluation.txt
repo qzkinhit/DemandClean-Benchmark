@@ -1,3 +1,0 @@
-ActiveClean-specific Metrics:
-Ground Truth Cost: 500
-Execution Time: 1.42s

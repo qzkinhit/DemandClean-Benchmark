@@ -1,1 +1,0 @@
-t1&t2&EQ(t1.class,t2.class)&LT(t1.Mitoses,t2.Mitoses)&GT(t1.Clump Thickness,t2.Clump Thickness)

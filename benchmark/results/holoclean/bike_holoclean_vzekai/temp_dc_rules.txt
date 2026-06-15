@@ -1,1 +1,0 @@
-t1&t2&EQ(t1.mnth,t2.mnth)&IQ(t1.season,t2.season)

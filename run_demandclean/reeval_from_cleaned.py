@@ -61,6 +61,18 @@ DATASETS = {
         'task_type': 'regression',
         'label_col': 'soil_moisture',
     },
+    'hospitals': {
+        'task_type': 'classification',
+        'label_col': 'Condition',
+    },
+    'flights': {
+        'task_type': 'classification',
+        'label_col': 'arrival_delay_bucket',
+    },
+    'soccer': {
+        'task_type': 'classification',
+        'label_col': 'manager',
+    },
 }
 
 VERSION = 'v3_oracle_plain_single'

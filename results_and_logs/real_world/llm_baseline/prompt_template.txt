@@ -1,0 +1,42 @@
+LLM CLEANING BASELINE — EXACT PROMPT TEMPLATE
+=============================================
+
+Foundation-model cleaning baseline in the style of Narayan et al., "Can Foundation Models
+Wrangle Your Data?" (PVLDB 16(4):738-746, 2022). The dirty table is handed to a state-of-the-art
+LLM via API (set with --model in run_demandclean/llm_clean.py), prompting only.
+
+Design (fair comparison, no leakage, no cheating):
+  - ALL rows are sent (the model is never told which rows/cells are wrong).
+  - Only FEATURE columns are sent; the label/target column is withheld.
+  - The prompt forbids web search / external lookup / ground-truth lookup.
+  - Sparse-edit output: the model returns only the cells it changes, keeping token cost low.
+
+Per-batch prompt (rows are a JSON array; each row has an "index" plus the feature columns):
+
+----------------------------------------------------------------------
+You are a strict data-cleaning system. The following are rows from a table of {dataset semantics}.
+Feature columns: {feature_cols}   (each row also carries an "index" field — its row id.)
+
+IMPORTANT: most cells are already CORRECT; only SOME cells contain errors. You are NOT told which
+rows or cells are wrong — judge that yourself from within-row consistency and plausibility. Error
+kinds: typos, the literal token "empty"/"nan"/"NULL" for a missing value, or format
+inconsistencies. Fix ONLY cells that genuinely look wrong; leave correct-looking cells unchanged.
+
+ANTI-CHEATING (critical): use ONLY your own reasoning over these rows. Do NOT search the web, do
+NOT look up any external database or ground-truth, do NOT guess identifiers you cannot infer. For
+a missing ("empty") value, infer the most plausible value from the rest of the SAME row; if truly
+unknowable, do NOT edit it.
+
+Return ONLY a JSON object of this exact shape (no prose):
+{"edits":[{"index":"<exact index value from input>","column":"<feature column>","value":"<corrected value>"}]}
+Include an entry ONLY for cells you actually change. If you change nothing, return {"edits":[]}.
+
+Rows:
+{rows_json}
+----------------------------------------------------------------------
+
+Reproduce with:
+  python run_demandclean/llm_clean.py --dataset flights --model <your-frontier-model> \
+      --api-style openai --base-url <endpoint> --api-key <key> --batch 200
+Output is written to results/llm_baseline/<dataset>_cleaned_by_llm.csv and evaluated under the
+same unified protocol (benchmark/tools/reeval_with_split.py) as every other method.

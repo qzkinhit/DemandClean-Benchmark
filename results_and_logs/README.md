@@ -70,7 +70,7 @@ Results in JSON format with per-model (RF, LR, SVM, KNN, DT, GB) metrics.
 
 ## ReplaceAll Baseline (`replaceall_baseline/`)
 
-Detailed evaluation of the ReplaceAll strategy using an oracle detector and value estimation chain (VEC). Aligned with Clean4MLBaseline's evaluation pipeline for fair comparison.
+Detailed evaluation of the ReplaceAll strategy using an oracle detector and value estimation chain (VEC). Aligned with DemandClean-Benchmark's evaluation pipeline for fair comparison.
 
 ## Summary Tables (`summary/`)
 

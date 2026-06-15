@@ -1,0 +1,4 @@
+strategy,A_true,R_sam,V_Def3.5,note
+NoFix,0.810,1.0,1.00,all errors retained (baseline)
+DemandClean,0.836,1.0,0.76,GT-repair 24851 cells (1.6% GT); retains 76% mean per-column variance
+RepairAll,1.000,1.0,0.24,full GT-repair; per-column variance contracted to 24% of dirty level

@@ -1,4 +1,4 @@
-# Clean4MLBaseline
+# DemandClean-Benchmark
 
 A benchmark repository for evaluating data cleaning methods with a focus on downstream machine learning task performance.
 

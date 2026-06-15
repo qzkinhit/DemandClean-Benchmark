@@ -1,5 +1,0 @@
-[2026-04-09 09:55:05,278] INFO - demandclean:   Clean Base 自动选择 (5-fold CV, 样本保留率加权):
-[2026-04-09 09:55:05,279] INFO - demandclean:     DeleteFix: 439 行, CV=0.0214, 权重=0.698, 加权=0.0149
-[2026-04-09 09:55:05,279] INFO - demandclean:     VE-Fill:   901 行, CV=0.0206, 权重=1.000, 加权=0.0206
-[2026-04-09 09:55:05,279] INFO - demandclean:     → 选择 VE-Fill (901 行)
-[2026-04-09 09:56:06,964] INFO - demandclean: 模型已保存: /Users/qianzekai/PycharmProjects/TolerDM/results/demandclean/nasa/v8_auto_plain_two/model/v8_auto_plain_two_agent.pt
