@@ -278,11 +278,23 @@ def evaluate_downstream_task(cleaned_data: pd.DataFrame,
                 try:
                     clusterer = get_clusterer(model_name, n_clusters)
                     y_pred = clusterer.fit_predict(X_cleaned)
+                    # Silhouette is unsupervised (only X_cleaned and y_pred), so
+                    # store it first. Otherwise an ARI failure below discards an
+                    # already-computed silhouette.
                     sil_score = silhouette_score(X_cleaned, y_pred, sample_size=sil_sample_size, random_state=42)
-                    ari_score = adjusted_rand_score(y_clean, y_pred)
                     results[f'{model_name}_silhouette'] = sil_score
-                    results[f'{model_name}_ari'] = ari_score
-                    safe_print(f"{model_name.upper()} - Silhouette: {sil_score:.4f}, ARI: {ari_score:.4f}")
+
+                    # ARI needs ground-truth labels for the same rows as y_pred.
+                    # y_clean may be the held-out clean test split (different row
+                    # count), in which case ARI is undefined -- skip it.
+                    if len(y_clean) == len(y_pred):
+                        ari_score = adjusted_rand_score(y_clean, y_pred)
+                        results[f'{model_name}_ari'] = ari_score
+                        safe_print(f"{model_name.upper()} - Silhouette: {sil_score:.4f}, ARI: {ari_score:.4f}")
+                    else:
+                        safe_print(f"{model_name.upper()} - Silhouette: {sil_score:.4f}, "
+                                   f"ARI: skipped (y_clean has {len(y_clean)} rows, "
+                                   f"clustered {len(y_pred)})")
                 except Exception as e:
                     safe_print(f"{model_name.upper()} clustering failed: {e}")
         else:
@@ -413,11 +425,18 @@ def evaluate_downstream_task(cleaned_data: pd.DataFrame,
             try:
                 clusterer = get_clusterer(model_name, n_clusters)
                 y_pred = clusterer.fit_predict(X_cleaned)
+                # Same as above: silhouette is unsupervised, store before ARI.
                 sil_score = silhouette_score(X_cleaned, y_pred, sample_size=sil_sample_size, random_state=42)
-                ari_score = adjusted_rand_score(y_clean, y_pred)
                 results[f'{model_name}_silhouette'] = sil_score
-                results[f'{model_name}_ari'] = ari_score
-                safe_print(f"{model_name.upper()} - Silhouette: {sil_score:.4f}, ARI: {ari_score:.4f}")
+
+                if len(y_clean) == len(y_pred):
+                    ari_score = adjusted_rand_score(y_clean, y_pred)
+                    results[f'{model_name}_ari'] = ari_score
+                    safe_print(f"{model_name.upper()} - Silhouette: {sil_score:.4f}, ARI: {ari_score:.4f}")
+                else:
+                    safe_print(f"{model_name.upper()} - Silhouette: {sil_score:.4f}, "
+                               f"ARI: skipped (y_clean has {len(y_clean)} rows, "
+                               f"clustered {len(y_pred)})")
             except Exception as e:
                 safe_print(f"{model_name.upper()} clustering failed: {e}")
     else:

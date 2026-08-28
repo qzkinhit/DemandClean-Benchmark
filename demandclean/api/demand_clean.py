@@ -518,6 +518,23 @@ class DemandClean:
             return []
         return self._two_phase_inference.get_plan_positions()
 
+    def get_action_counts(self) -> Dict[str, int]:
+        """
+        Return the action distribution after two-phase inference.
+
+        Single-phase inference already exposes it via stats['action_counts']
+        from clean(); execute() only returns (X, y, keep_mask), so this
+        accessor fills that gap.
+
+        Returns:
+            {'no_action': int, 'repair_value': int, 'delete': int,
+             'replace_nearby': int}; empty dict if two-phase inference has
+            not run yet.
+        """
+        if self._two_phase_inference is None:
+            return {}
+        return self._two_phase_inference.get_stats().get('action_counts', {})
+
     def execute(self,
                 X_dirty: np.ndarray,
                 true_values: Dict[Tuple[int, int], float],

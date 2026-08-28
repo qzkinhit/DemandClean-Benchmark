@@ -95,6 +95,9 @@ def _fill_nan(X: np.ndarray) -> np.ndarray:
 # 辅助：评估下游性能
 # ---------------------------------------------------------------------------
 
+_EVAL_FAILURE_WARNED = False
+
+
 def _evaluate_downstream(
     X: np.ndarray,
     y: np.ndarray,
@@ -125,6 +128,16 @@ def _evaluate_downstream(
         X_available = X_filled
         y_available = y
 
+    # 剔除标签为 NaN 的行（与 run_demandclean_base.safe_prepare 保持一致）。
+    # 标签缺失的样本无法用于监督训练：sklearn 的 fit 会直接抛
+    # "Input contains NaN"，被下面的 except 吞掉后所有联盟值退化成 0.0，
+    # 导致整个 Shapley 分解恒为 0（beers 的 style 列有 4 个缺失值即触发此路径）。
+    if np.issubdtype(y_available.dtype, np.floating):
+        y_valid = ~np.isnan(y_available)
+        if not y_valid.all():
+            X_available = X_available[y_valid]
+            y_available = y_available[y_valid]
+
     # 使用 80/20 train/test split 避免 train-on-test 偏差
     n = len(X_available)
     if n < 10:
@@ -143,7 +156,13 @@ def _evaluate_downstream(
     try:
         adapter.fit(X_train, y_train)
         return adapter.evaluate(X_test, y_test)
-    except Exception:
+    except Exception as e:
+        # 静默返回 0.0 会让所有联盟值退化成同一个常数、Shapley 恒为 0，
+        # 且从结果文件上完全看不出来。首次失败时打印一次，便于定位。
+        global _EVAL_FAILURE_WARNED
+        if not _EVAL_FAILURE_WARNED:
+            _EVAL_FAILURE_WARNED = True
+            print(f"[Shapley][警告] 下游评估失败，联盟值退化为 0.0: {type(e).__name__}: {e}")
         return 0.0
 
 

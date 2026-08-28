@@ -1832,7 +1832,9 @@ def run_version(
             )
             ground_truth_used = len(true_values)
             report['keep_mask'] = keep_mask
+            report['action_counts'] = dc.get_action_counts()
             print(f"  ground truth used: {ground_truth_used}")
+            print(f"  action distribution: {report['action_counts']}")
 
         report['ground_truth_used'] = ground_truth_used
         report['cleaned_shape'] = list(X_result.shape)
@@ -2263,7 +2265,17 @@ def run_version(
             f.write(f"Elapsed: {elapsed_time:.2f}s\n")
             f.write(f"Visualization time: {total_vis_time:.2f}s\n")
             f.write(f"Shape: {X_dirty.shape} -> {X_result.shape}\n")
-            f.write(f"Ground-truth cost: {ground_truth_used}\n\n")
+            f.write(f"Ground-truth cost: {ground_truth_used}\n")
+
+            # Action distribution (actions the agent actually took at inference)
+            _action_counts = report.get('action_counts', {}) or {}
+            if _action_counts:
+                _act_total = sum(_action_counts.values())
+                f.write(f"Action distribution: {_action_counts}\n")
+                if _act_total > 0:
+                    _act_pct = {k: f"{v / _act_total * 100:.1f}%" for k, v in _action_counts.items()}
+                    f.write(f"Action share: {_act_pct}\n")
+            f.write("\n")
 
             # Step timing
             if step_times:
